@@ -57,7 +57,7 @@ function restored(state: GameState) {
 }
 
 test('W26-S01: old companies migrate with synthetic support without grants, clock changes or new synthetic records', () => {
-  assert.equal(CONTENT.research.length, 54);
+  assert.equal(CONTENT.research.length, 66);
   assert.deepEqual(CONTENT.research.filter(item => ['S1', 'S2'].includes(item.id)).map(item => ({ id: item.id, requires: item.requires, fee: item.feeCents, role: item.role, staff: item.staffWeeks, work: item.workCUw })), [
     { id: 'S1', requires: ['R2A', 'R10A'], fee: 600000, role: 'data', staff: 3, work: 6000000000 },
     { id: 'S2', requires: ['S1', 'R4C'], fee: 900000, role: 'ml', staff: 5, work: 12000000000 },

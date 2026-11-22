@@ -6,6 +6,9 @@ import { TRAINING_RECIPES } from '../content/wave2-lab';
  * or marks an unevaluated specialist ready for release. */
 export function recommendedDesignEvaluation(training: DevelopmentTrainingOrder): { suiteId: EvaluationSuiteId; reason: string } {
   const design = training.modelDesign;
+  if (design?.system) {
+    return { suiteId: 'expanded-capabilities-1', reason: 'Establish a paid capability baseline for this operating design. Run its systems challenge next to measure cost, memory, retention or verified completion.' };
+  }
   if (design && (design.dataMix.reasoning > 0 || design.dataMix.longContext > 0 || design.dataMix.multimodal > 0
     || ['reasoning','grounded','multimodal','agentic'].includes(design.customization?.objective ?? ''))) {
     return { suiteId: 'advanced-capabilities-1', reason: 'This design targets reasoning, long-context or visual skills. Advanced capabilities measures those skills; Basic conversation does not.' };

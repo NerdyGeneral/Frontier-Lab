@@ -67,18 +67,18 @@ test('W0-C01: opening catalog and initial state preserve the authored values', (
   assert.equal(state.slices.data.packets[CONTENT.starterData.id].prepared, false);
 });
 
-test('W0-C02: catalog retains its core and applied programs alongside Studio, design and thirteen customization discoveries', () => {
+test('W0-C02: catalog retains existing programs and includes thirteen customization and twelve AI systems discoveries', () => {
   const parents = CONTENT.research.filter((item) => !item.parentId && item.id.startsWith('R'));
   const children = CONTENT.research.filter((item) => item.parentId);
   assert.equal(parents.length, 16);
   assert.equal(children.length, 13);
   assert.deepEqual(CONTENT.research.filter(item => item.id.startsWith('S')).map(item => item.id).sort(), ['S1', 'S2', 'S3', 'S4', 'S5', 'S6']);
-  assert.equal(CONTENT.research.length, 54);
+  assert.equal(CONTENT.research.length, 66);
   assert.deepEqual(CONTENT.research.filter(item => item.id.startsWith('M')).map(item => item.id), ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M10', 'M11', 'M12', 'M13']);
   assert.deepEqual(children.map((item) => item.id).sort(), [
     'R1A', 'R2A', 'R3B', 'R4B', 'R4C', 'R5A', 'R6A', 'R7A', 'R8A', 'R9A', 'R10A', 'R11A', 'R12A',
   ].sort());
-  assert.deepEqual(CONTENT.research.filter(item => item.implemented).map(item => item.id).sort(), ['R1','R2','R3','R4','R5','R6','R7','R8','R9','R10','R11','R12','R13','R14','R15','R16','R1A','R2A','R3B','R5A','R6A','R7A','R8A','R12A','R4B','R4C','R9A','R10A','R11A','S1','S2','S3','S4','S5','S6','D1','D2','D3','D4','D5','D6','M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12','M13'].sort());
+  assert.deepEqual(CONTENT.research.filter(item => item.implemented).map(item => item.id).sort(), ['R1','R2','R3','R4','R5','R6','R7','R8','R9','R10','R11','R12','R13','R14','R15','R16','R1A','R2A','R3B','R5A','R6A','R7A','R8A','R12A','R4B','R4C','R9A','R10A','R11A','S1','S2','S3','S4','S5','S6','D1','D2','D3','D4','D5','D6','M1','M2','M3','M4','M5','M6','M7','M8','M9','M10','M11','M12','M13','A1','A2','A3','A4','A5','A6','A7','A8','A9','A10','A11','A12'].sort());
   assert.equal(CONTENT.staff.find((item) => item.id === 'hardware')?.availableOnResearchEntry, 'R16');
 });
 

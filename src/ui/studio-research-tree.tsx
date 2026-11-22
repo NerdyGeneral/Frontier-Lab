@@ -3,7 +3,7 @@
 import { formatWorkPoints, WORK_POINT_LABELS } from '../modules/workforce-points';
 import { useId, useMemo, useRef, useState } from 'react';
 import type { CSSProperties, KeyboardEvent } from 'react';
-import { ArrowDown, ArrowRight, Check, CheckCheck, ChevronRight, Clock3, Cpu, Database, FlaskConical, Focus, GitBranch, Layers3, List, LockKeyhole, Network, Pause, Play, Search, SlidersHorizontal, Sparkles } from 'lucide-react';
+import { ArrowDown, ArrowRight, Check, CheckCheck, ChevronRight, Clock3, Compass, Cpu, Database, FlaskConical, Focus, GitBranch, Layers3, List, LockKeyhole, Network, Pause, Play, Search, SlidersHorizontal, Sparkles } from 'lucide-react';
 import type { CommandPayload, ComputePool, GameState, ResearchDefinition, ResearchViewItem, RoleAllocation } from '../contracts/types';
 import { CONTENT } from '../content/catalog';
 import { EFFICIENCY_RULES, SYSTEM_RULES, VARIANT_RULES } from '../content/wave4-research';
@@ -18,6 +18,9 @@ import { getUiCommandPreview } from './command-preview';
 import { DESIGN_RECIPES, TRAINING_WORKSPACES } from '../content/model-designs';
 import { CUSTOMIZATION_RESEARCH, CUSTOMIZATION_RESEARCH_GROUPS, CUSTOMIZATION_RESEARCH_IDS, isCustomizationResearch } from '../content/model-customization-research';
 import { researchApplicationLink } from './guide-links';
+import { AI_SYSTEM_RESEARCH, AI_SYSTEM_RESEARCH_GROUPS, AI_SYSTEM_RESEARCH_IDS } from '../content/ai-systems';
+import { useModelWorkspace } from './model-workspace-context';
+import { developmentGoalName, developmentGoalResearch } from './development-goals';
 import { ModelResearchPanel } from './model-research-panel';
 import { getModelResearchLevel } from '../modules/model-research';
 import { humanizeDesignRequirement } from './model-design-insights';
@@ -38,14 +41,16 @@ export interface StudioResearchTreeProps {
 
 const LANES = [
   { id: 'data', name: 'Data & learning', short: 'Data', icon: Database, ids: ['R2', 'R2A', 'R4', 'R4B', 'R4C', 'S1', 'S2', 'D1', 'D2', 'M8', 'M11'] },
-  { id: 'evaluation', name: 'Evaluation & alignment', short: 'Evaluation', icon: FlaskConical, ids: ['R1', 'R1A', 'R5', 'R5A', 'R10A', 'S3', 'M12', 'M13'] },
-  { id: 'models', name: 'Models & serving', short: 'Models', icon: Layers3, ids: ['R3', 'R3B', 'R7', 'R7A', 'R8', 'R8A', 'R13', 'R14', 'D4', 'D5', 'D6', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7'] },
-  { id: 'agents', name: 'Retrieval & agents', short: 'Agents', icon: Network, ids: ['R6', 'R6A', 'R9', 'R9A', 'R10', 'R11', 'R11A', 'R15', 'D3', 'M9', 'M10'] },
+  { id: 'evaluation', name: 'Evaluation & alignment', short: 'Evaluation', icon: FlaskConical, ids: ['R1', 'R1A', 'R5', 'R5A', 'R10A', 'S3', 'M12', 'M13', 'A9', 'A10', 'A11', 'A12'] },
+  { id: 'models', name: 'Models & serving', short: 'Models', icon: Layers3, ids: ['R3', 'R3B', 'R7', 'R7A', 'R8', 'R8A', 'R13', 'R14', 'D4', 'D5', 'D6', 'M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'A1', 'A2', 'A3', 'A4'] },
+  { id: 'agents', name: 'Retrieval & agents', short: 'Agents', icon: Network, ids: ['R6', 'R6A', 'R9', 'R9A', 'R10', 'R11', 'R11A', 'R15', 'D3', 'M9', 'M10', 'A5', 'A6', 'A7', 'A8'] },
   { id: 'operations', name: 'Operations & silicon', short: 'Operations', icon: Cpu, ids: ['R12', 'R12A', 'R16', 'S4', 'S5', 'S6'] },
 ] as const;
 const CUSTOMIZATION_ICONS = { attention: Network, 'context-precision': Cpu, objectives: FlaskConical, behavior: Sparkles } as const;
 const CUSTOMIZATION_LANES = CUSTOMIZATION_RESEARCH_GROUPS.map(group => ({ ...group, icon: CUSTOMIZATION_ICONS[group.id] }));
-type ResearchScope = 'all' | 'customization';
+const SYSTEM_LANES = AI_SYSTEM_RESEARCH_GROUPS.map(group => ({ ...group, icon: group.id === 'experts' ? Network : group.id === 'stateful' ? Layers3 : FlaskConical }));
+const isSystemResearch = (id: string) => (AI_SYSTEM_RESEARCH_IDS as readonly string[]).includes(id);
+type ResearchScope = 'all' | 'customization' | 'systems';
 
 type TreeStatus = ResearchViewItem['status'] | 'queued' | 'blocked';
 type StatusFilter = 'all' | 'available' | 'active' | 'complete' | 'locked';
@@ -184,6 +189,12 @@ function estimateResearch(node: Pick<ResearchViewItem, 'role' | 'requiredWork' |
 
 export function getStudioResearchApplication(game: GameState, id: string): ApplicationState {
   const companyId = game.playerCompanyId;
+  if (isSystemResearch(id)) {
+    const definition = AI_SYSTEM_RESEARCH.find(item => item.id === id)!;
+    const runs = Object.values(game.slices.models.trainingRuns).filter(run => run.companyId === companyId && run.plan?.modelDesign?.system?.researchIds.includes(id));
+    return { summary: runs.length ? `${runs.length} system designs · ${runs.filter(run => run.status === 'complete').length} completed` : 'Build a new AI foundation',
+      detail: definition.description + ' Use the model designer to compare the operating cost, memory, retention and verification tradeoffs. A discovery unlocks a choice for future paid models.' };
+  }
   if (isCustomizationResearch(id)) {
     const definition = CUSTOMIZATION_RESEARCH.find(item => item.id === id)!;
     const runs = Object.values(game.slices.models.trainingRuns).filter(run => run.companyId === companyId && run.plan?.modelDesign && run.plan.methods.includes(id));
@@ -304,6 +315,7 @@ export function StudioResearchDesignerShortcut({ onOpenDesigner, onOpenPanel }: 
 
 export function StudioResearchTree({ game, canAct, onQueue, onOpenPanel, onOpenMethod, onOpenDesigner, catalogLock, selection }: StudioResearchTreeProps) {
   const uniqueId = useId().replaceAll(':', '');
+  const developmentGoal = useModelWorkspace()?.developmentGoal;
   const nodeRefs = useRef(new Map<string, HTMLButtonElement>());
   const detailRef = useRef<HTMLElement>(null);
   const fullTreeRef = useRef<HTMLHeadingElement>(null);
@@ -319,7 +331,7 @@ export function StudioResearchTree({ game, canAct, onQueue, onOpenPanel, onOpenM
     setConsumedSelection(selection.intentId);
     if (summaryNodes.some(node => node.id === selection.researchId)) {
       setSelectedId(selection.researchId); setQuery(''); setLaneFilter('all'); setStatusFilter('all');
-      setScope(isCustomizationResearch(selection.researchId) ? 'customization' : 'all');
+      setScope(isSystemResearch(selection.researchId) ? 'systems' : isCustomizationResearch(selection.researchId) ? 'customization' : 'all');
     }
   }
   const selectedSummary = summaryNodes.find(node => node.id === selectedId) ?? summaryNodes[0];
@@ -340,11 +352,12 @@ export function StudioResearchTree({ game, canAct, onQueue, onOpenPanel, onOpenM
   const readiness = useMemo(() => new Map(nodes.map(node => [node.id, getStudioResearchReadiness(node, capacity)])), [nodes, capacity]);
   const estimates = useMemo(() => new Map(nodes.map(node => [node.id, readiness.get(node.id)!.estimate])), [nodes, readiness]);
   const normalizedQuery = query.trim().toLocaleLowerCase();
-  const displayLanes = scope === 'customization' ? CUSTOMIZATION_LANES : LANES;
+  const displayLanes = scope === 'customization' ? CUSTOMIZATION_LANES : scope === 'systems' ? SYSTEM_LANES : LANES;
+  const inScope = (id: string) => scope === 'all' || (scope === 'systems' ? isSystemResearch(id) : isCustomizationResearch(id));
   const displayLane = (node: TreeNode) => scope === 'customization'
     ? CUSTOMIZATION_LANES.find(lane => (lane.ids as readonly string[]).includes(node.id)) ?? LANES[node.lane]
-    : LANES[node.lane];
-  const matches = nodes.filter(node => (scope === 'all' || isCustomizationResearch(node.id))
+    : scope === 'systems' ? SYSTEM_LANES.find(lane => (lane.ids as readonly string[]).includes(node.id)) ?? LANES[node.lane] : LANES[node.lane];
+  const matches = nodes.filter(node => inScope(node.id)
     && (laneFilter === 'all' || displayLane(node).id === laneFilter)
     && (statusFilter === 'all' || statusFilter === 'available' && node.status === 'available' || statusFilter === 'active' && ['running', 'paused', 'queued', 'pending'].includes(node.status) || statusFilter === 'complete' && node.status === 'complete' || statusFilter === 'locked' && ['locked', 'blocked', 'planned'].includes(node.status))
     && (!normalizedQuery || [node.id, node.name, node.description, displayLane(node).name, WORK_POINT_LABELS[node.role]].join(' ').toLocaleLowerCase().includes(normalizedQuery)));
@@ -353,28 +366,31 @@ export function StudioResearchTree({ game, canAct, onQueue, onOpenPanel, onOpenM
   const visibleIds = new Set(matchIds);
   const addPrerequisites = (id: string) => {
     for (const prerequisite of byId.get(id)?.definition.requires ?? []) if (!visibleIds.has(prerequisite)
-      && (scope === 'all' || isCustomizationResearch(prerequisite))) { visibleIds.add(prerequisite); addPrerequisites(prerequisite); }
+      && inScope(prerequisite)) { visibleIds.add(prerequisite); addPrerequisites(prerequisite); }
   };
   matches.forEach(node => addPrerequisites(node.id));
-  const layout = graphLayout(nodes.filter(node => visibleIds.has(node.id)).map(node => scope === 'customization'
-    ? { ...node, lane: CUSTOMIZATION_LANES.findIndex(lane => (lane.ids as readonly string[]).includes(node.id)) } : node), displayLanes.length);
+  const layout = graphLayout(nodes.filter(node => visibleIds.has(node.id)).map(node => scope !== 'all'
+    ? { ...node, lane: displayLanes.findIndex(lane => (lane.ids as readonly string[]).includes(node.id)) } : node), displayLanes.length);
   const successors = selected ? nodes.filter(node => node.definition.requires.includes(selected.id)) : [];
   const prerequisiteChain = selected ? getStudioResearchPrerequisiteChain(nodes, selected.id) : [];
   const prerequisiteIds = new Set([selected?.id, ...prerequisiteChain.map(node => node.id)]);
   const relatedIds = new Set([...prerequisiteIds, ...successors.map(node => node.id)]);
   const nextPrerequisite = prerequisiteChain.find(node => node.status !== 'complete');
-  const collectionNodes = nodes.filter(node => scope === 'all' || isCustomizationResearch(node.id));
+  const collectionNodes = nodes.filter(node => inScope(node.id));
   const completed = collectionNodes.filter(node => node.status === 'complete').length;
   const active = collectionNodes.filter(node => ['running', 'paused', 'queued', 'pending'].includes(node.status)).length;
   const available = collectionNodes.filter(node => node.status === 'available').length;
-  const availableChoices = collectionNodes.filter(node => node.status === 'available');
+  const goalResearchIds = new Set<string>();
+  const addGoalPath = (id: string) => { if (goalResearchIds.has(id)) return; goalResearchIds.add(id); byId.get(id)?.definition.requires.forEach(addGoalPath); };
+  developmentGoalResearch(developmentGoal).forEach(addGoalPath);
+  const availableChoices = collectionNodes.filter(node => node.status === 'available').sort((a, b) => Number(goalResearchIds.has(b.id)) - Number(goalResearchIds.has(a.id)));
   const application = selected ? getStudioResearchApplication(game, selected.id) : null;
   const applicationLink = selected ? researchApplicationLink(selected.id) : undefined;
   const estimate = selected ? estimates.get(selected.id)! : null;
 
   const focusNode = (id: string, clearFilters = false) => {
     if (clearFilters) { setQuery(''); setLaneFilter('all'); setStatusFilter('all'); }
-    if (scope === 'customization' && !isCustomizationResearch(id)) setScope('all');
+    if (!inScope(id)) setScope('all');
     setSelectedId(id);
     requestAnimationFrame(() => {
       const mapNode = nodeRefs.current.get('map-' + id);
@@ -427,7 +443,13 @@ export function StudioResearchTree({ game, canAct, onQueue, onOpenPanel, onOpenM
         setScope('customization'); setQuery(''); setLaneFilter('all'); setStatusFilter('all');
         if (!isCustomizationResearch(selected.id)) setSelectedId('M1');
       }}><SlidersHorizontal size={16} aria-hidden="true" />Model customization<span>{CUSTOMIZATION_RESEARCH_IDS.length}</span></button>
+      <button type="button" aria-pressed={scope === 'systems'} onClick={() => {
+        setScope('systems'); setQuery(''); setLaneFilter('all'); setStatusFilter('all');
+        if (!isSystemResearch(selected.id)) setSelectedId('A1');
+      }}><Network size={16} aria-hidden="true" />AI systems<span>{AI_SYSTEM_RESEARCH_IDS.length}</span></button>
     </div>
+    {scope === 'systems' && <div className="research-tree-customization-intro"><p>Three ways to operate an AI: route specialist experts, preserve a working state, or spend effort searching and verifying. Each path has four discoveries and its own costs.</p><StudioResearchDesignerShortcut onOpenDesigner={onOpenDesigner} onOpenPanel={onOpenPanel} /></div>}
+    {developmentGoal && <div className="research-development-goal"><Compass size={16} aria-hidden="true" /><span>Working toward <strong>{developmentGoalName(developmentGoal)}</strong>. Relevant discoveries and prerequisites appear first.</span><StudioResearchDesignerShortcut onOpenDesigner={onOpenDesigner} onOpenPanel={onOpenPanel} /></div>}
     {scope === 'customization' && <div className="research-tree-customization-intro"><p>Choose how your model learns, responds and uses hardware. Select a discovery to see its tradeoff.</p><StudioResearchDesignerShortcut onOpenDesigner={onOpenDesigner} onOpenPanel={onOpenPanel} /></div>}
 
     {scope === 'all' && <details className="research-tree-architecture-program"><summary><span>Architecture program<strong>Level {getModelResearchLevel(game, game.playerCompanyId)}</strong></span><small>Repeatable research · unlock families and improve future designs</small></summary><ModelResearchPanel game={game} canAct={canAct} onQueue={onQueue} /></details>}
@@ -437,7 +459,7 @@ export function StudioResearchTree({ game, canAct, onQueue, onOpenPanel, onOpenM
       {availableChoices.length ? <div className="research-available-grid">{availableChoices.slice(0, 3).map(node => {
         const resources = readiness.get(node.id)!;
         return <article key={node.id} className="research-available-card" data-research-id={node.id} data-ready={resources.ready}>
-          <div className="research-available-description"><h4>{node.name}</h4><p className="research-available-benefit">{node.description.split(/(?<=[.!?])\s/)[0]}</p>
+          <div className="research-available-description"><h4>{node.name}</h4>{developmentGoal && goalResearchIds.has(node.id) && <span className="research-goal-match">For your objective</span>}<p className="research-available-benefit">{node.description.split(/(?<=[.!?])\s/)[0]}</p>
             <p className="research-available-readiness"><strong>{formatMoney(node.feeCents)}</strong><span>{resources.ready ? <Check size={14} aria-hidden="true" /> : <Clock3 size={14} aria-hidden="true" />}{resources.label}</span></p></div>
           <button type="button" aria-label={'Review ' + node.name.toLowerCase()} onClick={() => onOpenMethod ? onOpenMethod(node.id) : focusNode(node.id, true)}>Review<ArrowRight size={14} aria-hidden="true" /></button>
         </article>;
@@ -448,7 +470,7 @@ export function StudioResearchTree({ game, canAct, onQueue, onOpenPanel, onOpenM
       }}>See all {availableChoices.length} available discoveries<ArrowDown size={14} aria-hidden="true" /></button>}
     </section>
 
-    <h3 className="research-tree-full-heading" ref={fullTreeRef} tabIndex={-1}>{scope === 'customization' ? 'Model customization research' : 'Full research tree'}</h3>
+    <h3 className="research-tree-full-heading" ref={fullTreeRef} tabIndex={-1}>{scope === 'customization' ? 'Model customization research' : scope === 'systems' ? 'AI systems research' : 'Full research tree'}</h3>
 
     <div className="research-tree-tools">
       <label className="research-tree-search" htmlFor={uniqueId + '-search'}><Search size={16} aria-hidden="true" /><span className="research-tree-sr-only">Search research</span><input id={uniqueId + '-search'} type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Find a method, role or idea…" /></label>
@@ -457,7 +479,7 @@ export function StudioResearchTree({ game, canAct, onQueue, onOpenPanel, onOpenM
       <div className="research-tree-view-toggle" role="group" aria-label="Research presentation"><button type="button" aria-pressed={view === 'map'} onClick={() => setView('map')}><GitBranch size={14} aria-hidden="true" />Map</button><button type="button" aria-pressed={view === 'list'} onClick={() => setView('list')}><List size={14} aria-hidden="true" />List</button></div>
     </div>
 
-    <div className="research-tree-context"><p role="status">{filtered ? matches.length + ' matching ' + (matches.length === 1 ? 'method' : 'methods') : scope === 'customization' ? CUSTOMIZATION_RESEARCH_IDS.length + ' methods across four design pathways' : nodes.length + ' methods across five pathways'}<span className="research-tree-map-note">{scope === 'customization' ? ' · All prerequisites are linked in the method details and List view.' : filtered && matches.length > 0 ? ' · Required discoveries are also shown.' : ' · Unlock every required discovery first. Select a method to see its cost and start research.'}</span></p><div>{filtered && <button type="button" onClick={() => { setQuery(''); setLaneFilter('all'); setStatusFilter('all'); }}>Clear filters</button>}{matches.length > 0 && filtered && <button type="button" onClick={() => focusNode(matches[0].id)}><Focus size={13} aria-hidden="true" />First match</button>}<a href="#research-tree-details" onClick={event => { event.preventDefault(); detailRef.current?.focus(); detailRef.current?.scrollIntoView({ block: 'nearest' }); }}>Selected method <ArrowDown size={13} aria-hidden="true" /></a></div></div>
+    <div className="research-tree-context"><p role="status">{filtered ? matches.length + ' matching ' + (matches.length === 1 ? 'method' : 'methods') : scope === 'customization' ? CUSTOMIZATION_RESEARCH_IDS.length + ' methods across four design pathways' : scope === 'systems' ? '12 discoveries across three operating designs' : nodes.length + ' methods across five pathways'}<span className="research-tree-map-note">{scope !== 'all' ? ' · All prerequisites are linked in the method details and List view.' : filtered && matches.length > 0 ? ' · Required discoveries are also shown.' : ' · Unlock every required discovery first. Select a method to see its cost and start research.'}</span></p><div>{filtered && <button type="button" onClick={() => { setQuery(''); setLaneFilter('all'); setStatusFilter('all'); }}>Clear filters</button>}{matches.length > 0 && filtered && <button type="button" onClick={() => focusNode(matches[0].id)}><Focus size={13} aria-hidden="true" />First match</button>}<a href="#research-tree-details" onClick={event => { event.preventDefault(); detailRef.current?.focus(); detailRef.current?.scrollIntoView({ block: 'nearest' }); }}>Selected method <ArrowDown size={13} aria-hidden="true" /></a></div></div>
 
     <div className="research-tree-body">
       <div className="research-tree-explorer">

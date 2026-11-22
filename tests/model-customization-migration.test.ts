@@ -25,7 +25,7 @@ const encoded = (state: GameState) => JSON.stringify({ format: 'frontier-lab', s
 const customization = { version: 1, attention: 'standard', contextWindow: 'standard', precision: 'full', objective: 'generalist', behavior: 'balanced' } as const;
 
 test('published 0.34 campaigns migrate by changing only version metadata', () => {
-  assert.ok([MODEL_CUSTOMIZATION_CONTENT_VERSION, '0.36.0'].includes(CONTENT.version));
+  assert.ok([MODEL_CUSTOMIZATION_CONTENT_VERSION, '0.36.0', '0.37.0'].includes(CONTENT.version));
   for (const raw of [initialRaw, activeRaw]) {
     const envelope = JSON.parse(raw), original = envelope.state as GameState, before = structuredClone(original);
     assert.equal(envelope.contentVersion, '0.34.0');

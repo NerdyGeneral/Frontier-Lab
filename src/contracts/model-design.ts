@@ -13,6 +13,7 @@ export interface ModelDesignSpec {
   computeBudgetCUw: number;
   dataMix: Record<DesignDomain, number>;
   customization?: ModelCustomization;
+  system?: import('./ai-systems').AISystemSpec;
 }
 /** Immutable engineering choices and research available when the run began. */
 export interface ModelDesignReceipt {
@@ -20,6 +21,7 @@ export interface ModelDesignReceipt {
   researchLevel: number;
   researchFocus?: import('./model-research').ModelResearchFocusReceipt;
   customization?: ModelCustomizationReceipt;
+  system?: import('./ai-systems').AISystemReceipt;
   frontierRating: number;
   servingWorkBps: number;
   requiredEvidence: number;

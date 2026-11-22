@@ -1,3 +1,4 @@
+import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from '../core/model-customization-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
 import { STRATEGY_CONTENT_VERSION } from '../core/strategy-version';
@@ -14,7 +15,7 @@ export const QUARTER_FTE = RESOURCE_SCALE / 4;
 
 /** Historical replays retain their original one-role staff output and wording. */
 export function usesWorkPointProfiles(state: Pick<GameState, 'contentVersion'>): boolean {
-  return [WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(state.contentVersion);
+  return [WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion);
 }
 
 export function emptyRoleAllocation(): RoleAllocation {

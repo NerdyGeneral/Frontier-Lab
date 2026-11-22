@@ -1,0 +1,397 @@
+{
+  "source": "259cdad146b91efaa855416b9adda0a52aa38027",
+  "stages": [
+    {
+      "stage": "Published company imported",
+      "week": 574,
+      "cashCents": 632879910
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 582,
+      "cashCents": 640053925,
+      "detail": {
+        "id": "R14",
+        "name": "Sparse architecture"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 585,
+      "cashCents": 642775396,
+      "detail": {
+        "id": "A1",
+        "name": "Expert decomposition"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 588,
+      "cashCents": 645697001,
+      "detail": {
+        "id": "A2",
+        "name": "Learned expert routing"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 591,
+      "cashCents": 648645383,
+      "detail": {
+        "id": "R8",
+        "name": "Request routing"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 594,
+      "cashCents": 651302275,
+      "detail": {
+        "id": "A3",
+        "name": "Expert load balancing"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 598,
+      "cashCents": 654374605,
+      "detail": {
+        "id": "A4",
+        "name": "Expandable expert banks"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 601,
+      "cashCents": 657317180,
+      "detail": {
+        "id": "A5",
+        "name": "Recurrent working state"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 604,
+      "cashCents": 660071817,
+      "detail": {
+        "id": "A6",
+        "name": "State compression"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 607,
+      "cashCents": 663020610,
+      "detail": {
+        "id": "M4",
+        "name": "Extended context"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 610,
+      "cashCents": 665432702,
+      "detail": {
+        "id": "A7",
+        "name": "Selective memory"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 613,
+      "cashCents": 667722019,
+      "detail": {
+        "id": "A8",
+        "name": "State contradiction repair"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 616,
+      "cashCents": 670741211,
+      "detail": {
+        "id": "A9",
+        "name": "Reasoning work budgets"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 619,
+      "cashCents": 673599493,
+      "detail": {
+        "id": "M8",
+        "name": "Reasoning curriculum"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 622,
+      "cashCents": 676213185,
+      "detail": {
+        "id": "A10",
+        "name": "Candidate search"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 625,
+      "cashCents": 678629332,
+      "detail": {
+        "id": "A11",
+        "name": "Independent verification"
+      }
+    },
+    {
+      "stage": "Discovery earned",
+      "week": 628,
+      "cashCents": 680808486,
+      "detail": {
+        "id": "A12",
+        "name": "Confidence stopping"
+      }
+    },
+    {
+      "stage": "Research and infrastructure ready",
+      "week": 638,
+      "cashCents": 690214704
+    },
+    {
+      "stage": "System trained",
+      "week": 658,
+      "cashCents": 711328412,
+      "detail": {
+        "modelId": "model-ai-systems-proof-command-42",
+        "label": "Expert service network",
+        "metrics": {
+          "kind": "experts",
+          "servingCUwPer1000": 0.0805,
+          "residentMU": 2160000000,
+          "sessionMemoryMU": 22000000,
+          "retentionBps": 3302,
+          "verifiedCompletionBps": 5704,
+          "latencyBps": 10460,
+          "routingQualityBps": 9100,
+          "activeParameterMillions": 1375,
+          "stateCapacity": 0
+        },
+        "scores": {
+          "conversation": 6676,
+          "documents": 6676,
+          "coding": 8099,
+          "tools": 6626
+        },
+        "advanced": {
+          "reasoning": 6576,
+          "longContext": 6576,
+          "multimodal": 6576
+        },
+        "reliabilityBps": 9090
+      }
+    },
+    {
+      "stage": "Systems challenge passed",
+      "week": 661,
+      "cashCents": 714745069,
+      "detail": {
+        "modelId": "model-ai-systems-proof-command-42",
+        "suiteId": "systems-cost-1",
+        "passedCases": 6
+      }
+    },
+    {
+      "stage": "Customer delivery paid",
+      "week": 663,
+      "cashCents": 717524399,
+      "detail": {
+        "offerId": "systems-offer-efficient-experts-55",
+        "briefId": "efficient-experts",
+        "feeCents": 480000
+      }
+    },
+    {
+      "stage": "System trained",
+      "week": 672,
+      "cashCents": 727919120,
+      "detail": {
+        "modelId": "model-ai-systems-proof-command-48",
+        "label": "Local memory assistant",
+        "metrics": {
+          "kind": "stateful",
+          "servingCUwPer1000": 0.0839,
+          "residentMU": 850000000,
+          "sessionMemoryMU": 36000000,
+          "retentionBps": 2375,
+          "verifiedCompletionBps": 5311,
+          "latencyBps": 7864,
+          "routingQualityBps": 10000,
+          "activeParameterMillions": 2000,
+          "stateCapacity": 16
+        },
+        "scores": {
+          "conversation": 6277,
+          "documents": 6608,
+          "coding": 5994,
+          "tools": 6027
+        },
+        "advanced": {
+          "reasoning": 5844,
+          "longContext": 7040,
+          "multimodal": 5844
+        },
+        "reliabilityBps": 8948
+      }
+    },
+    {
+      "stage": "Systems challenge passed",
+      "week": 675,
+      "cashCents": 731453382,
+      "detail": {
+        "modelId": "model-ai-systems-proof-command-48",
+        "suiteId": "systems-memory-1",
+        "passedCases": 6
+      }
+    },
+    {
+      "stage": "Customer delivery paid",
+      "week": 677,
+      "cashCents": 734266197,
+      "detail": {
+        "offerId": "systems-offer-bounded-memory-56",
+        "briefId": "bounded-memory",
+        "feeCents": 400000
+      }
+    },
+    {
+      "stage": "System trained",
+      "week": 713,
+      "cashCents": 777617467,
+      "detail": {
+        "modelId": "model-ai-systems-proof-command-54",
+        "label": "Case continuity model",
+        "metrics": {
+          "kind": "stateful",
+          "servingCUwPer1000": 0.45546,
+          "residentMU": 3400000000,
+          "sessionMemoryMU": 199200000,
+          "retentionBps": 8917,
+          "verifiedCompletionBps": 6478,
+          "latencyBps": 10024,
+          "routingQualityBps": 10000,
+          "activeParameterMillions": 8000,
+          "stateCapacity": 384
+        },
+        "scores": {
+          "conversation": 7367,
+          "documents": 7758,
+          "coding": 7043,
+          "tools": 7083
+        },
+        "advanced": {
+          "reasoning": 6876,
+          "longContext": 8283,
+          "multimodal": 6876
+        },
+        "reliabilityBps": 9280
+      }
+    },
+    {
+      "stage": "Systems challenge passed",
+      "week": 716,
+      "cashCents": 781056749,
+      "detail": {
+        "modelId": "model-ai-systems-proof-command-54",
+        "suiteId": "systems-retention-1",
+        "passedCases": 6
+      }
+    },
+    {
+      "stage": "Customer delivery paid",
+      "week": 722,
+      "cashCents": 788573593,
+      "detail": {
+        "offerId": "systems-offer-continuity-desk-60",
+        "briefId": "continuity-desk",
+        "feeCents": 580000
+      }
+    },
+    {
+      "stage": "System trained",
+      "week": 758,
+      "cashCents": 831001168,
+      "detail": {
+        "modelId": "model-ai-systems-proof-command-60",
+        "label": "Verified reasoning model",
+        "metrics": {
+          "kind": "adaptive",
+          "servingCUwPer1000": 0.95906,
+          "residentMU": 5400000000,
+          "sessionMemoryMU": 40000000,
+          "retentionBps": 3691,
+          "verifiedCompletionBps": 8472,
+          "latencyBps": 26500,
+          "routingQualityBps": 10000,
+          "activeParameterMillions": 8000,
+          "stateCapacity": 0
+        },
+        "scores": {
+          "conversation": 7289,
+          "documents": 7289,
+          "coding": 8021,
+          "tools": 8176
+        },
+        "advanced": {
+          "reasoning": 8596,
+          "longContext": 7423,
+          "multimodal": 6876
+        },
+        "reliabilityBps": 9090
+      }
+    },
+    {
+      "stage": "Systems challenge passed",
+      "week": 761,
+      "cashCents": 834556987,
+      "detail": {
+        "modelId": "model-ai-systems-proof-command-60",
+        "suiteId": "systems-verification-1",
+        "passedCases": 6
+      }
+    },
+    {
+      "stage": "Customer delivery paid",
+      "week": 763,
+      "cashCents": 837719980,
+      "detail": {
+        "offerId": "systems-offer-verified-analysis-63",
+        "briefId": "verified-analysis",
+        "feeCents": 800000
+      }
+    }
+  ],
+  "finalWeek": 763,
+  "minimumCashCents": 632879910,
+  "commands": 64,
+  "models": [
+    {
+      "modelId": "model-ai-systems-proof-command-42",
+      "suiteId": "systems-cost-1",
+      "briefId": "efficient-experts"
+    },
+    {
+      "modelId": "model-ai-systems-proof-command-48",
+      "suiteId": "systems-memory-1",
+      "briefId": "bounded-memory"
+    },
+    {
+      "modelId": "model-ai-systems-proof-command-54",
+      "suiteId": "systems-retention-1",
+      "briefId": "continuity-desk"
+    },
+    {
+      "modelId": "model-ai-systems-proof-command-60",
+      "suiteId": "systems-verification-1",
+      "briefId": "verified-analysis"
+    }
+  ],
+  "validation": []
+}

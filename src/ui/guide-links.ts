@@ -108,6 +108,7 @@ const RESEARCH_APPLICATIONS: Readonly<Record<string, GuideLink>> = {
 };
 
 export function researchApplicationLink(researchId: string): GuideLink | undefined {
+  if (/^A([1-9]|1[0-2])$/.test(researchId)) return { href: '#lab-projects', label: 'Design this AI system' };
   if (isCustomizationResearch(researchId)) return { href: '#lab-projects', label: 'Use in custom design' };
   return RESEARCH_APPLICATIONS[researchId];
 }

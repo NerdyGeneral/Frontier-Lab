@@ -7,6 +7,8 @@ import { isCapabilitySuite } from './evaluation-classification';
 import { modelExecutionHints } from './model-runtime';
 import { getResearchView } from './research';
 import { isSpecialistBrief, specialistBriefBinding, specialistBriefMeter, specialistBriefProofId, specialistBriefRequestId, specialistBriefWorkRequest } from './specialist-briefs';
+import { activeSystemsBrief, getSystemsBriefOrders } from './systems-briefs';
+import { systemsBriefDefinition } from '../content/systems-briefs';
 
 const emptyBinding: BriefBinding = { targetId: null, contractGeneration: 0, baselineCostCents: 0 };
 const BURST_REQUEST = 'brief:launch-window:burst';
@@ -76,7 +78,7 @@ export function validateBriefCommand(state: Readonly<GameState>, command: GameCo
   const p = command.payload;
   if (command.companyId !== state.playerCompanyId || p.kind !== 'accept_customer_brief' || !OPTIONAL_BRIEF_IDS.includes(p.briefId)
     || Object.keys(p).sort().join() !== 'briefId,kind') return {code: 'INVALID_COMMAND', message: 'Choose an optional customer brief for your lab.'};
-  if (activeBrief(state) || state.queuedCommands.some(c => c.companyId === command.companyId && c.id !== command.id && c.payload.kind === p.kind)) {
+  if (activeBrief(state) || activeSystemsBrief(state) || state.queuedCommands.some(c => c.companyId === command.companyId && c.id !== command.id && ['accept_customer_brief', 'accept_systems_brief'].includes(c.payload.kind))) {
     return { code: 'ALREADY_ACTIVE', message: 'Finish the active or scheduled customer brief before taking another.' };
   }
   if (state.slices.campaign.customerBriefs?.[p.briefId]?.status === 'completed') return { code: 'ALREADY_ACTIVE', message: 'The client has already paid for this delivery.' };
@@ -214,6 +216,13 @@ export function settleBrief(game: Readonly<GameState>, ctx: ModuleContext): Doma
 
 export function getCustomerBriefSpotlight(game: Readonly<GameState>) {
   const brief = activeBrief(game) ?? Object.values(game.slices.campaign.customerBriefs ?? {}).sort((a, b) => (b.finishedWeek ?? 0) - (a.finishedWeek ?? 0))[0];
+  const systems = activeSystemsBrief(game) ?? getSystemsBriefOrders(game)[0];
+  if (systems && (systems.status === 'active' || !brief || brief.status !== 'active' && (systems.finishedWeek ?? 0) > (brief.finishedWeek ?? 0))) {
+    return { title: systemsBriefDefinition(systems.briefId)!.title, status: systems.status, deadlineWeek: systems.deadlineWeek,
+      progressText: systems.status === 'completed' ? `${formatMoney(systems.terms.feeCents)} received in Week ${systems.finishedWeek}`
+        : systems.status === 'expired' ? `Deadline passed in Week ${systems.finishedWeek}`
+        : `${systems.qualifyingWeeks}/${systems.terms.qualifyingWeeks} delivery weeks · ${systems.feedback}` };
+  }
   if (!brief) return null;
   const definition = CUSTOMER_BRIEFS[brief.id];
   const progressText = brief.status === 'completed' ? formatMoney(definition.feeCents) + ' received in Week ' + brief.finishedWeek

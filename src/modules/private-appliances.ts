@@ -1,3 +1,4 @@
+import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from '../core/model-customization-version';
 import { STRATEGY_CONTENT_VERSION } from '../core/strategy-version';
@@ -96,7 +97,7 @@ function orderUnavailableReason(state: Readonly<GameState>, excludeCommandId?: s
 
 export function validatePrivateApplianceOrder(state: Readonly<GameState>, command: GameCommand, content: GameContent = CONTENT): Rejection | undefined {
   const p = command.payload;
-  if (![STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version) || p.kind !== 'accept_private_appliance_order' || p.buyerId !== BUYER.id || !isChipFoundry(p.foundry)) return reject('Choose the supported private appliance buyer and foundry.', 'INVALID_COMMAND');
+  if (![STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) || p.kind !== 'accept_private_appliance_order' || p.buyerId !== BUYER.id || !isChipFoundry(p.foundry)) return reject('Choose the supported private appliance buyer and foundry.', 'INVALID_COMMAND');
   const validId = (value: unknown) => typeof value === 'string' && value.trim().length > 0 && value.length <= 160 && !/[\u0000-\u001f\u007f]/.test(value) && !['__proto__', 'prototype', 'constructor'].includes(value);
   if (Object.keys(p).sort().join() !== 'buyerId,designId,foundry,kind,modelId' || !validId(p.modelId) || !validId(p.designId)) return reject('Choose only the supported appliance buyer, model, design and foundry.', 'INVALID_COMMAND');
   if (command.companyId !== state.playerCompanyId) return reject('This private appliance order is offered to the player’s lab.');
@@ -188,7 +189,7 @@ export function settlePrivateAppliances(state: Readonly<GameState>, products: Pr
 }
 
 export function getPrivateApplianceView(state: Readonly<GameState>, companyId = state.playerCompanyId, content: GameContent = CONTENT): PrivateApplianceView {
-  const unlocked = [STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version) && hasResearch(state, companyId);
+  const unlocked = [STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && hasResearch(state, companyId);
   const unavailableReason = orderUnavailableReason(state);
   return { unlocked, gateReason: unlocked ? '' : 'Complete S4 Private appliance to qualify and commit this customer-hosted package.', buyer: structuredClone(BUYER), available: !unavailableReason, unavailableReason,
     models: Object.values(state.slices.models.versions).filter(model => model.companyId === companyId && model.status !== 'checkpoint').map(model => {

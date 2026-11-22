@@ -42,7 +42,7 @@ export function getStudioPanelLock(panel: StudioPanelId, sections: GameSectionVi
 
 export type StudioWorkspaceSection = { id: StudioPanelId | 'work' | 'plan'; label: string };
 const SECTIONS: Partial<Record<StudioDestination, readonly StudioWorkspaceSection[]>> = {
-  projects: [{ id: 'work', label: 'Work queue' }, { id: 'development-plans', label: 'Development plans' }, { id: 'plan', label: 'Plan week' }, { id: 'lab-projects', label: 'Training' }, { id: 'models', label: 'Models' }, { id: 'data', label: 'Datasets' }, { id: 'model-corpus-compare', label: 'Compare' }],
+  projects: [{ id: 'work', label: 'Work queue' }, { id: 'development-plans', label: 'Development plans' }, { id: 'plan', label: 'Plan week' }, { id: 'lab-projects', label: 'Develop a model' }, { id: 'models', label: 'Models' }, { id: 'data', label: 'Datasets' }, { id: 'model-corpus-compare', label: 'Compare' }],
   products: [{ id: 'product', label: 'Basic Chat' }, { id: 'developer-api', label: 'Developer API' }, { id: 'business-commitments', label: 'Business' }, { id: 'customer-briefs', label: 'Customer briefs' }, { id: 'agents', label: 'Agents' }, { id: 'release-desk', label: 'Release desk' }, { id: 'market', label: 'Market & rivals' }],
   operations: [{ id: 'people', label: 'Team' }, { id: 'compute', label: 'Compute' }, { id: 'infrastructure', label: 'Racks & facilities' }, { id: 'campus', label: 'Campus' }, { id: 'chips', label: 'Chips & fabrication' }],
   company: [{ id: 'business', label: 'Overview & ledger' }, { id: 'compute-costs', label: 'Compute costs' }, { id: 'capacity-forecast', label: 'Forecast' }, { id: 'company-log', label: 'Journal' }, { id: 'campaign', label: 'Chapters & ambitions' }],

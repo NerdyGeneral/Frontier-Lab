@@ -52,6 +52,7 @@ import { applyModelDesignResearch, inheritModelDesignDraft } from './model-desig
 import { ModelProfile } from './model-profile';
 import { AdvancedSkillsPanel } from './advanced-skills-panel';
 import { ADVANCED_DOMAINS, ADVANCED_EVALUATION_SUITE, ADVANCED_SKILL_LABELS } from '../content/advanced-skills';
+import { DevelopmentWorkspaceHeader } from './development-workspace';
 import { ModelResearchPanel } from './model-research-panel';
 import { DataCatalog } from './data-catalog';
 import type { AdvancedDomain } from '../contracts/advanced-skills';
@@ -372,14 +373,15 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
   const browseData = canBrowseData && (openDataLibrary
     ? <button type="button" className="training-text-action" onClick={() => { if (base && baseId === null) setBaseId(base.id); openDataLibrary(); }}>Browse data catalog</button>
     : <a href="#data">Browse data catalog</a>);
-  return <Section title="Lab" id="lab-projects">
+  return <Section title="Develop a model" id="lab-projects">
+    <DevelopmentWorkspaceHeader game={game} mode="manual" canAct={canAct}
+      onDelegate={taskActions?.delegateTraining && payload?.kind === 'start_training' ? () => { pinDraftInputs(); taskActions.delegateTraining?.(payload); } : undefined} />
     <div className="model-design-route" role="group" aria-label="Training approach">
       <button type="button" aria-pressed={customMode} onClick={() => { pinDraftInputs(); setDesignRoute('custom'); }}>Design your own<small>Shape architecture, skills and responses</small></button>
       <button type="button" aria-pressed={!customMode} onClick={() => { pinDraftInputs(); setDesignRoute('methods'); }}>Training methods<small>Guided training and specialist methods</small></button>
     </div>
     <ModelBlueprintTools training={payload?.kind === 'start_training' ? payload : null} canAct={canAct}
-      onLoad={blueprint => useExperiment(blueprint.training)}
-      onDelegate={taskActions?.delegateTraining ? () => { if (payload?.kind === 'start_training') taskActions.delegateTraining?.(payload); } : undefined} />
+      onLoad={blueprint => useExperiment(blueprint.training)} />
     <StudioDecisionLayout focused={focusedTraining} className="studio-training-task training-builder" decisionSummary={customMode && base ? <ModelDesignDecisionSummary game={game} baseModelId={base.id} packetIds={packetIds} value={modelDesign} /> : undefined} summaryLabel="Training forecast and requirements" summary={<>
       <TrainingStepTitle step={4}>Preview this run</TrainingStepTitle>
       {customMode ? base ? <ModelDesignForecast game={game} baseModelId={base.id} packetIds={packetIds} value={modelDesign} />

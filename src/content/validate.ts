@@ -1,5 +1,6 @@
 import { DESIGN_RESEARCH_IDS } from './model-designs';
 import { CUSTOMIZATION_RESEARCH_IDS } from './model-customization-research';
+import { AI_SYSTEM_RESEARCH_IDS } from './ai-systems';
 import type { GameContent } from '../contracts/types';
 
 type RecordValue = Record<string, unknown>;
@@ -339,7 +340,7 @@ export function validateContent(content: GameContent): string[] {
     integer(item.workCUw, `${path}.workCUw`, 1);
     coefficient(item.staffWeeks, `${path}.staffWeeks`);
     enumValue(item.role, staffIds, `${path}.role`);
-    if (item.implemented !== ['R1','R2','R3','R4','R5','R6','R7','R8','R9','R10','R11','R12','R13','R14','R15','R16','R1A','R2A','R3B','R5A','R6A','R7A','R8A','R12A','R4B','R4C','R9A','R10A','R11A','S1','S2','S3','S4','S5','S6',...DESIGN_RESEARCH_IDS,...CUSTOMIZATION_RESEARCH_IDS].includes(String(item.id))) fail(`${path}.implemented`, 'research availability must match the implemented research programs');
+    if (item.implemented !== ['R1','R2','R3','R4','R5','R6','R7','R8','R9','R10','R11','R12','R13','R14','R15','R16','R1A','R2A','R3B','R5A','R6A','R7A','R8A','R12A','R4B','R4C','R9A','R10A','R11A','S1','S2','S3','S4','S5','S6',...DESIGN_RESEARCH_IDS,...CUSTOMIZATION_RESEARCH_IDS,...AI_SYSTEM_RESEARCH_IDS].includes(String(item.id))) fail(`${path}.implemented`, 'research availability must match the implemented research programs');
     const requires = array(item.requires, `${path}.requires`);
     const validRequires: string[] = [];
     for (const [requireIndex, requirement] of requires.entries()) {
@@ -349,9 +350,9 @@ export function validateContent(content: GameContent): string[] {
     if (validId) prerequisites.set(item.id as string, validRequires);
     if (item.parentId !== undefined) id(item.parentId, `${path}.parentId`);
   }
-  sameMembers(roots, [...CORE_IDS, 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', ...DESIGN_RESEARCH_IDS, ...CUSTOMIZATION_RESEARCH_IDS], 'research.core');
+  sameMembers(roots, [...CORE_IDS, 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', ...DESIGN_RESEARCH_IDS, ...CUSTOMIZATION_RESEARCH_IDS, ...AI_SYSTEM_RESEARCH_IDS], 'research.core');
   sameMembers(children, Object.keys(PRIORITY_PARENTS), 'research.prioritized');
-  if (research.length !== 35 + DESIGN_RESEARCH_IDS.length + CUSTOMIZATION_RESEARCH_IDS.length) fail('research', 'missing or extra research programs');
+  if (research.length !== 35 + DESIGN_RESEARCH_IDS.length + CUSTOMIZATION_RESEARCH_IDS.length + AI_SYSTEM_RESEARCH_IDS.length) fail('research', 'missing or extra research programs');
   for (const [researchId, item] of researchMap) {
     const requires = prerequisites.get(researchId) ?? [];
     for (const prerequisite of requires) {

@@ -32,7 +32,7 @@ test('development plan builder exposes data, model, method, evaluation and budge
   assert.match(html, /id="development-plans"/);
   for (const label of ['Project name', 'Starting model', 'Training sources', 'Training method', 'Final evaluation', 'Finish within', 'Project-fee budget', 'Keep cash reserve']) assert.ok(html.includes(label), label);
   assert.match(html, /Needs preparation/); assert.match(html, /Design a custom model/);
-  const start = buttons(html).find(button => button.text === 'Start development plan'); assert.ok(start);
+  const start = buttons(html).find(button => button.text === 'Schedule development plan'); assert.ok(start);
   assert.doesNotMatch(start.attributes, /disabled/);
   assert.match(html, /data-studio-primary-for="development-plan"/);
   assert.match(html, /Expected setup fees/); assert.match(html, /Current base bills/);
@@ -92,5 +92,5 @@ test('challenge workbench keeps its stable panel id and exposes locked tiers wit
   assert.equal((html.match(/id="model-challenges"/g) ?? []).length, 1);
   assert.match(html, /No titles earned yet/); assert.match(html, /paid capability test/);
   const evaluations = buttons(html).filter(button => button.attributes.includes('data-studio-review="evaluate_model"'));
-  assert.equal(evaluations.length, 3); assert.ok(evaluations.every(button => button.attributes.includes('disabled')));
+  assert.equal(evaluations.length, 7); assert.ok(evaluations.every(button => button.attributes.includes('disabled')));
 });

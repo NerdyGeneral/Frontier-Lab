@@ -11,7 +11,7 @@ import type { StudioScreen } from './studio-navigation';
 
 export const STUDIO_PANEL_TITLES = {
   'development-plans': 'Development plans', 'model-challenges': 'Research challenges',
-  data: 'Data desk', 'lab-projects': 'Training bench', models: 'Test station', people: 'Your team',
+  data: 'Data desk', 'lab-projects': 'Develop a model', models: 'Test station', people: 'Your team',
   compute: 'Compute rack', product: 'Basic Chat', 'release-desk': 'Release desk', research: 'Research catalog',
   'applied-research': 'Applied research', market: 'Market & rivals', 'developer-api': 'Developer API',
   'business-commitments': 'Business customers', 'customer-briefs': 'Customer briefs', agents: 'Agent workflows', business: 'Company finances',
@@ -28,10 +28,10 @@ export function isStudioPanelId(value: string): value is StudioPanelId {
 /** Each task has one existing retained form owner. Guided setup and inline
  * inspection use those same forms and drafts. */
 export const STUDIO_TASKS = {
-  'development-plan': { owner: 'development-plans', title: 'Plan model development', pauseOnEntry: true },
+  'development-plan': { owner: 'development-plans', title: 'Develop a model · delegated', pauseOnEntry: true },
   'model-challenge': { owner: 'model-challenges', title: 'Run a research challenge', pauseOnEntry: true },
   'prepare-data': { owner: 'data', title: 'Prepare data', pauseOnEntry: true },
-  'train-model': { owner: 'lab-projects', title: 'Train a model', pauseOnEntry: true },
+  'train-model': { owner: 'lab-projects', title: 'Develop a model', pauseOnEntry: true },
   'evaluate-model': { owner: 'models', title: 'Evaluate a model', pauseOnEntry: true },
   'launch-basic-chat': { owner: 'product', title: 'Launch Basic Chat', pauseOnEntry: true },
   'manage-basic-chat': { owner: 'product', title: 'Manage Basic Chat', pauseOnEntry: true },

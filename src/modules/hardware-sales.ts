@@ -1,3 +1,4 @@
+import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from '../core/model-customization-version';
 import { STRATEGY_CONTENT_VERSION } from '../core/strategy-version';
@@ -34,7 +35,7 @@ export function availableFoundrySlots(state: Readonly<GameState>, foundry: ChipF
 
 export function validateHardwareSale(state: Readonly<GameState>, command: GameCommand, content: GameContent): Rejection | undefined {
   const payload = command.payload;
-  if (![SILICON_CONTENT_VERSION, SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version) || payload.kind !== 'accept_hardware_order' || !Object.hasOwn(HARDWARE_BUYERS, payload.buyerId) || !isChipFoundry(payload.foundry)) return { code: 'INVALID_COMMAND', message: 'Choose a listed hardware buyer and foundry.' };
+  if (![SILICON_CONTENT_VERSION, SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) || payload.kind !== 'accept_hardware_order' || !Object.hasOwn(HARDWARE_BUYERS, payload.buyerId) || !isChipFoundry(payload.foundry)) return { code: 'INVALID_COMMAND', message: 'Choose a listed hardware buyer and foundry.' };
   if (command.companyId !== state.playerCompanyId) return { code: 'NOT_READY', message: 'This order is offered to the player’s lab.' };
   const design = state.slices.compute.chipDesigns[payload.designId], buyer = HARDWARE_BUYERS[payload.buyerId];
   if (design?.companyId !== command.companyId || design.status !== 'validated') return { code: 'NOT_READY', message: 'Choose an owned, prototype-qualified chip design.' };

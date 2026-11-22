@@ -1,0 +1,1362 @@
+{
+  "format": "frontier-lab",
+  "schemaVersion": 5,
+  "contentVersion": "0.36.0",
+  "checksum": "39c7ac81",
+  "state": {
+    "schemaVersion": 5,
+    "contentVersion": "0.36.0",
+    "buildVersion": "0.36.1",
+    "revision": 0,
+    "week": 0,
+    "nextId": 2,
+    "seed": "frontier-lab-wave-0:university",
+    "playerCompanyId": "company-player",
+    "random": {},
+    "slices": {
+      "company": {
+        "companies": {
+          "company-player": {
+            "id": "company-player",
+            "name": "Frontier Lab",
+            "cashCents": 3000000,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 2,
+            "earnedRevenueCents": 0,
+            "totalOperatingExpenseCents": 0,
+            "lastWeek": {
+              "revenueCents": 0,
+              "operatingExpenseCents": 0,
+              "cashChangeCents": 0
+            }
+          },
+          "rival-atlas": {
+            "id": "rival-atlas",
+            "name": "Atlas Systems",
+            "cashCents": 18000000,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 6,
+            "earnedRevenueCents": 0,
+            "totalOperatingExpenseCents": 0,
+            "lastWeek": {
+              "revenueCents": 0,
+              "operatingExpenseCents": 0,
+              "cashChangeCents": 0
+            }
+          },
+          "rival-swift": {
+            "id": "rival-swift",
+            "name": "Swiftworks",
+            "cashCents": 9000000,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 4,
+            "earnedRevenueCents": 0,
+            "totalOperatingExpenseCents": 0,
+            "lastWeek": {
+              "revenueCents": 0,
+              "operatingExpenseCents": 0,
+              "cashChangeCents": 0
+            }
+          },
+          "rival-harbor": {
+            "id": "rival-harbor",
+            "name": "Harbor AI",
+            "cashCents": 12000000,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 4,
+            "earnedRevenueCents": 0,
+            "totalOperatingExpenseCents": 0,
+            "lastWeek": {
+              "revenueCents": 0,
+              "operatingExpenseCents": 0,
+              "cashChangeCents": 0
+            }
+          }
+        },
+        "ledger": [],
+        "postedFacts": {},
+        "staff": {
+          "rival-atlas-staff-0": {
+            "id": "rival-atlas-staff-0",
+            "companyId": "rival-atlas",
+            "role": "research",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-atlas-staff-1": {
+            "id": "rival-atlas-staff-1",
+            "companyId": "rival-atlas",
+            "role": "research",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-atlas-staff-2": {
+            "id": "rival-atlas-staff-2",
+            "companyId": "rival-atlas",
+            "role": "ml",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-atlas-staff-3": {
+            "id": "rival-atlas-staff-3",
+            "companyId": "rival-atlas",
+            "role": "ml",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-atlas-staff-4": {
+            "id": "rival-atlas-staff-4",
+            "companyId": "rival-atlas",
+            "role": "data",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-atlas-staff-5": {
+            "id": "rival-atlas-staff-5",
+            "companyId": "rival-atlas",
+            "role": "commercial",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-swift-staff-0": {
+            "id": "rival-swift-staff-0",
+            "companyId": "rival-swift",
+            "role": "ml",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-swift-staff-1": {
+            "id": "rival-swift-staff-1",
+            "companyId": "rival-swift",
+            "role": "ml",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-swift-staff-2": {
+            "id": "rival-swift-staff-2",
+            "companyId": "rival-swift",
+            "role": "data",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-swift-staff-3": {
+            "id": "rival-swift-staff-3",
+            "companyId": "rival-swift",
+            "role": "commercial",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-harbor-staff-0": {
+            "id": "rival-harbor-staff-0",
+            "companyId": "rival-harbor",
+            "role": "ml",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-harbor-staff-1": {
+            "id": "rival-harbor-staff-1",
+            "companyId": "rival-harbor",
+            "role": "infrastructure",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-harbor-staff-2": {
+            "id": "rival-harbor-staff-2",
+            "companyId": "rival-harbor",
+            "role": "commercial",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-harbor-staff-3": {
+            "id": "rival-harbor-staff-3",
+            "companyId": "rival-harbor",
+            "role": "commercial",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "origin-university-research": {
+            "id": "origin-university-research",
+            "companyId": "company-player",
+            "role": "research",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "origin-university-data": {
+            "id": "origin-university-data",
+            "companyId": "company-player",
+            "role": "data",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          }
+        },
+        "founderAssignments": {
+          "company-player": {
+            "research": 0,
+            "ml": 0,
+            "data": 1000000000,
+            "infrastructure": 0,
+            "commercial": 0,
+            "hardware": 0
+          },
+          "rival-atlas": {
+            "research": 1000000000,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 0,
+            "commercial": 0,
+            "hardware": 0
+          },
+          "rival-swift": {
+            "research": 1000000000,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 0,
+            "commercial": 0,
+            "hardware": 0
+          },
+          "rival-harbor": {
+            "research": 1000000000,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 0,
+            "commercial": 0,
+            "hardware": 0
+          }
+        },
+        "lastStaff": {},
+        "passiveWorkforce": true
+      },
+      "compute": {
+        "fleets": {
+          "company-player": {
+            "companyId": "company-player",
+            "cloudCU": 4000000000,
+            "ownedCU": 0,
+            "memoryMU": 8000000000,
+            "occupiedMemoryMU": 0,
+            "allocation": {
+              "development": 2000000000,
+              "research": 2000000000,
+              "serving": 0
+            },
+            "lastWork": {
+              "serving": 0,
+              "development": 0,
+              "research": 0
+            },
+            "reservedCU": 0,
+            "deliveredEquipmentIds": [],
+            "inventory": {},
+            "lastBottleneck": "",
+            "lastReservedMemoryMU": 0,
+            "lastGrants": [],
+            "variableCostCarry": 0
+          },
+          "rival-atlas": {
+            "companyId": "rival-atlas",
+            "cloudCU": 16000000000,
+            "ownedCU": 0,
+            "memoryMU": 32000000000,
+            "occupiedMemoryMU": 0,
+            "allocation": {
+              "serving": 12000000000,
+              "development": 2000000000,
+              "research": 2000000000
+            },
+            "lastWork": {
+              "serving": 0,
+              "development": 0,
+              "research": 0
+            },
+            "reservedCU": 0,
+            "deliveredEquipmentIds": [],
+            "inventory": {},
+            "lastBottleneck": "",
+            "lastReservedMemoryMU": 0,
+            "lastGrants": [],
+            "variableCostCarry": 0
+          },
+          "rival-swift": {
+            "companyId": "rival-swift",
+            "cloudCU": 8000000000,
+            "ownedCU": 0,
+            "memoryMU": 16000000000,
+            "occupiedMemoryMU": 0,
+            "allocation": {
+              "serving": 6000000000,
+              "development": 1000000000,
+              "research": 1000000000
+            },
+            "lastWork": {
+              "serving": 0,
+              "development": 0,
+              "research": 0
+            },
+            "reservedCU": 0,
+            "deliveredEquipmentIds": [],
+            "inventory": {},
+            "lastBottleneck": "",
+            "lastReservedMemoryMU": 0,
+            "lastGrants": [],
+            "variableCostCarry": 0
+          },
+          "rival-harbor": {
+            "companyId": "rival-harbor",
+            "cloudCU": 8000000000,
+            "ownedCU": 0,
+            "memoryMU": 16000000000,
+            "occupiedMemoryMU": 0,
+            "allocation": {
+              "serving": 6000000000,
+              "development": 1000000000,
+              "research": 1000000000
+            },
+            "lastWork": {
+              "serving": 0,
+              "development": 0,
+              "research": 0
+            },
+            "reservedCU": 0,
+            "deliveredEquipmentIds": [],
+            "inventory": {},
+            "lastBottleneck": "",
+            "lastReservedMemoryMU": 0,
+            "lastGrants": [],
+            "variableCostCarry": 0
+          }
+        },
+        "racks": {},
+        "facilities": {},
+        "chipDesigns": {},
+        "chipBatches": {},
+        "fabricProjects": {},
+        "servingHistory": {}
+      },
+      "models": {
+        "versions": {
+          "seed-0": {
+            "id": "seed-0",
+            "name": "Seed 0",
+            "companyId": "company-player",
+            "family": "compact",
+            "architecture": "dense",
+            "status": "checkpoint",
+            "capabilityBps": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            },
+            "reliabilityBps": 7000,
+            "residentMU": 2000000000,
+            "source": "Your starting model, licensed for commercial use. Its included test report helps you plan your first training run.",
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            }
+          },
+          "rival-atlas-model-1": {
+            "id": "rival-atlas-model-1",
+            "name": "Atlas Systems v1",
+            "companyId": "rival-atlas",
+            "family": "medium",
+            "architecture": "dense",
+            "status": "released",
+            "capabilityBps": {
+              "conversation": 6400,
+              "documents": 5800,
+              "coding": 5000,
+              "tools": 4600
+            },
+            "reliabilityBps": 9200,
+            "residentMU": 8000000000,
+            "source": "Authored competitor starting release",
+            "evaluationReportId": "rival-atlas-baseline-report",
+            "createdWeek": 0,
+            "scenarioStart": true,
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "foundationAnchor": {
+              "conversation": 6400,
+              "documents": 5800,
+              "coding": 5000,
+              "tools": 4600
+            }
+          },
+          "rival-swift-model-1": {
+            "id": "rival-swift-model-1",
+            "name": "Swiftworks v1",
+            "companyId": "rival-swift",
+            "family": "compact",
+            "architecture": "dense",
+            "status": "released",
+            "capabilityBps": {
+              "conversation": 4800,
+              "documents": 4000,
+              "coding": 5800,
+              "tools": 5400
+            },
+            "reliabilityBps": 9000,
+            "residentMU": 2000000000,
+            "source": "Authored competitor starting release",
+            "evaluationReportId": "rival-swift-baseline-report",
+            "createdWeek": 0,
+            "scenarioStart": true,
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "foundationAnchor": {
+              "conversation": 4800,
+              "documents": 4000,
+              "coding": 5800,
+              "tools": 5400
+            }
+          },
+          "rival-harbor-model-1": {
+            "id": "rival-harbor-model-1",
+            "name": "Harbor AI v1",
+            "companyId": "rival-harbor",
+            "family": "compact",
+            "architecture": "dense",
+            "status": "released",
+            "capabilityBps": {
+              "conversation": 6200,
+              "documents": 7200,
+              "coding": 4000,
+              "tools": 5000
+            },
+            "reliabilityBps": 9600,
+            "residentMU": 2000000000,
+            "source": "Authored competitor starting release",
+            "evaluationReportId": "rival-harbor-baseline-report",
+            "createdWeek": 0,
+            "scenarioStart": true,
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "foundationAnchor": {
+              "conversation": 6200,
+              "documents": 7200,
+              "coding": 4000,
+              "tools": 5000
+            }
+          }
+        },
+        "trainingRuns": {},
+        "evaluationRuns": {},
+        "reports": {
+          "rival-atlas-baseline-report": {
+            "id": "rival-atlas-baseline-report",
+            "companyId": "rival-atlas",
+            "modelId": "rival-atlas-model-1",
+            "week": 0,
+            "heldOut": true,
+            "scenarioStart": true,
+            "suiteId": "basic-conversation-1",
+            "capabilityBps": {
+              "conversation": 6400,
+              "documents": 5800,
+              "coding": 5000,
+              "tools": 4600
+            },
+            "reliabilityBps": 9200,
+            "cases": [
+              {
+                "id": "rival-atlas-baseline-report-case-0",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-1",
+                "domain": "documents",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-2",
+                "domain": "coding",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-3",
+                "domain": "tools",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-4",
+                "domain": "conversation",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-5",
+                "domain": "documents",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-6",
+                "domain": "coding",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-7",
+                "domain": "tools",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-8",
+                "domain": "conversation",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-9",
+                "domain": "documents",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-10",
+                "domain": "coding",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-11",
+                "domain": "tools",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-12",
+                "domain": "conversation",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-13",
+                "domain": "documents",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-14",
+                "domain": "coding",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-15",
+                "domain": "tools",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-16",
+                "domain": "conversation",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-17",
+                "domain": "documents",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-18",
+                "domain": "coding",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-19",
+                "domain": "tools",
+                "difficultyBps": 4000,
+                "passed": false
+              }
+            ],
+            "passedCases": 16,
+            "basicChatEligible": true
+          },
+          "rival-swift-baseline-report": {
+            "id": "rival-swift-baseline-report",
+            "companyId": "rival-swift",
+            "modelId": "rival-swift-model-1",
+            "week": 0,
+            "heldOut": true,
+            "scenarioStart": true,
+            "suiteId": "basic-conversation-1",
+            "capabilityBps": {
+              "conversation": 4800,
+              "documents": 4000,
+              "coding": 5800,
+              "tools": 5400
+            },
+            "reliabilityBps": 9000,
+            "cases": [
+              {
+                "id": "rival-swift-baseline-report-case-0",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-1",
+                "domain": "documents",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-2",
+                "domain": "coding",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-3",
+                "domain": "tools",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-4",
+                "domain": "conversation",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-swift-baseline-report-case-5",
+                "domain": "documents",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-6",
+                "domain": "coding",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-7",
+                "domain": "tools",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-8",
+                "domain": "conversation",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-9",
+                "domain": "documents",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-swift-baseline-report-case-10",
+                "domain": "coding",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-11",
+                "domain": "tools",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-12",
+                "domain": "conversation",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-13",
+                "domain": "documents",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-14",
+                "domain": "coding",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-swift-baseline-report-case-15",
+                "domain": "tools",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-16",
+                "domain": "conversation",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-17",
+                "domain": "documents",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-18",
+                "domain": "coding",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-19",
+                "domain": "tools",
+                "difficultyBps": 4000,
+                "passed": false
+              }
+            ],
+            "passedCases": 16,
+            "basicChatEligible": true
+          },
+          "rival-harbor-baseline-report": {
+            "id": "rival-harbor-baseline-report",
+            "companyId": "rival-harbor",
+            "modelId": "rival-harbor-model-1",
+            "week": 0,
+            "heldOut": true,
+            "scenarioStart": true,
+            "suiteId": "basic-conversation-1",
+            "capabilityBps": {
+              "conversation": 6200,
+              "documents": 7200,
+              "coding": 4000,
+              "tools": 5000
+            },
+            "reliabilityBps": 9600,
+            "cases": [
+              {
+                "id": "rival-harbor-baseline-report-case-0",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-1",
+                "domain": "documents",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-2",
+                "domain": "coding",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-3",
+                "domain": "tools",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-4",
+                "domain": "conversation",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-5",
+                "domain": "documents",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-6",
+                "domain": "coding",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-7",
+                "domain": "tools",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-8",
+                "domain": "conversation",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-9",
+                "domain": "documents",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-10",
+                "domain": "coding",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-11",
+                "domain": "tools",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-12",
+                "domain": "conversation",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-13",
+                "domain": "documents",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-14",
+                "domain": "coding",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-15",
+                "domain": "tools",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-16",
+                "domain": "conversation",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-17",
+                "domain": "documents",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-18",
+                "domain": "coding",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-19",
+                "domain": "tools",
+                "difficultyBps": 4000,
+                "passed": false
+              }
+            ],
+            "passedCases": 16,
+            "basicChatEligible": true
+          }
+        },
+        "applicationRuns": {}
+      },
+      "data": {
+        "packets": {
+          "starter-public": {
+            "id": "starter-public",
+            "name": "Starter public sample",
+            "rawUnits": 100,
+            "readyUnits": 0,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 10000,
+              "documents": 3500,
+              "coding": 2500,
+              "tools": 2500
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": false,
+            "companyId": "company-player",
+            "catalogId": "starter-public",
+            "sourceIds": [
+              "starter-public"
+            ]
+          },
+          "rival-atlas-starter-data": {
+            "id": "rival-atlas-starter-data",
+            "name": "Atlas Systems starting corpus",
+            "rawUnits": 500,
+            "readyUnits": 500,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 6000,
+              "documents": 6000,
+              "coding": 6000,
+              "tools": 6000
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": true,
+            "companyId": "rival-atlas",
+            "catalogId": "scenario-corpus",
+            "sourceIds": [
+              "rival-atlas-starter-data"
+            ],
+            "broadUnits": 500,
+            "behaviorUnits": 100
+          },
+          "rival-swift-starter-data": {
+            "id": "rival-swift-starter-data",
+            "name": "Swiftworks starting corpus",
+            "rawUnits": 500,
+            "readyUnits": 500,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 6000,
+              "documents": 6000,
+              "coding": 6000,
+              "tools": 6000
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": true,
+            "companyId": "rival-swift",
+            "catalogId": "scenario-corpus",
+            "sourceIds": [
+              "rival-swift-starter-data"
+            ],
+            "broadUnits": 500,
+            "behaviorUnits": 100
+          },
+          "rival-harbor-starter-data": {
+            "id": "rival-harbor-starter-data",
+            "name": "Harbor AI starting corpus",
+            "rawUnits": 500,
+            "readyUnits": 500,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 6000,
+              "documents": 6000,
+              "coding": 6000,
+              "tools": 6000
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": true,
+            "companyId": "rival-harbor",
+            "catalogId": "scenario-corpus",
+            "sourceIds": [
+              "rival-harbor-starter-data"
+            ],
+            "broadUnits": 500,
+            "behaviorUnits": 100
+          }
+        },
+        "preparationJobs": {}
+      },
+      "research": {
+        "completed": [
+          "R1",
+          "R2"
+        ],
+        "active": [],
+        "completedByCompany": {
+          "company-player": [
+            "R1",
+            "R2"
+          ],
+          "rival-atlas": [
+            "R1",
+            "R2",
+            "R3",
+            "R4",
+            "R5"
+          ],
+          "rival-swift": [
+            "R1",
+            "R2",
+            "R3",
+            "R4"
+          ],
+          "rival-harbor": [
+            "R1",
+            "R2",
+            "R3",
+            "R5",
+            "R6",
+            "R9",
+            "R10",
+            "R12"
+          ]
+        },
+        "projects": {},
+        "systemRollouts": {},
+        "assistantsByCompany": {}
+      },
+      "products": {
+        "activeIds": [
+          "rival-atlas-product",
+          "rival-swift-product",
+          "rival-harbor-product"
+        ],
+        "offers": {
+          "rival-atlas-product": {
+            "id": "rival-atlas-product",
+            "companyId": "rival-atlas",
+            "name": "Atlas Chat",
+            "kind": "basic-chat",
+            "features": {
+              "memory": false,
+              "extendedContext": false,
+              "deepReasoning": false
+            },
+            "publicModelId": "rival-atlas-model-1",
+            "deploymentId": "rival-atlas-deployment",
+            "contractId": "rival-atlas-contract",
+            "status": "active",
+            "createdWeek": 0
+          },
+          "rival-swift-product": {
+            "id": "rival-swift-product",
+            "companyId": "rival-swift",
+            "name": "Swift API",
+            "kind": "developer-api",
+            "features": {
+              "memory": false,
+              "extendedContext": false,
+              "deepReasoning": false
+            },
+            "publicModelId": "rival-swift-model-1",
+            "deploymentId": "rival-swift-deployment",
+            "contractId": "rival-swift-contract",
+            "status": "active",
+            "createdWeek": 0
+          },
+          "rival-harbor-product": {
+            "id": "rival-harbor-product",
+            "companyId": "rival-harbor",
+            "name": "Harbor Private Docs",
+            "kind": "business-docs",
+            "features": {
+              "memory": false,
+              "extendedContext": false,
+              "deepReasoning": false
+            },
+            "publicModelId": "rival-harbor-model-1",
+            "deploymentId": "rival-harbor-deployment",
+            "contractId": "rival-harbor-contract",
+            "status": "active",
+            "createdWeek": 0
+          }
+        },
+        "deployments": {
+          "rival-atlas-deployment": {
+            "id": "rival-atlas-deployment",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "modelId": "rival-atlas-model-1",
+            "status": "active",
+            "startedWeek": 0,
+            "requiredStaff": 1000000000,
+            "completedStaff": 1000000000,
+            "readyWeek": 0,
+            "lastBottleneck": "",
+            "scenarioStart": true
+          },
+          "rival-swift-deployment": {
+            "id": "rival-swift-deployment",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "modelId": "rival-swift-model-1",
+            "status": "active",
+            "startedWeek": 0,
+            "requiredStaff": 1000000000,
+            "completedStaff": 1000000000,
+            "readyWeek": 0,
+            "lastBottleneck": "",
+            "scenarioStart": true
+          },
+          "rival-harbor-deployment": {
+            "id": "rival-harbor-deployment",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "modelId": "rival-harbor-model-1",
+            "status": "active",
+            "startedWeek": 0,
+            "requiredStaff": 1000000000,
+            "completedStaff": 1000000000,
+            "readyWeek": 0,
+            "lastBottleneck": "",
+            "scenarioStart": true
+          }
+        },
+        "contracts": {
+          "rival-atlas-contract": {
+            "id": "rival-atlas-contract",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "weeklyPriceCents": 1200,
+            "allowance": 100,
+            "creditBps": 10000,
+            "effectiveWeek": 0
+          },
+          "rival-swift-contract": {
+            "id": "rival-swift-contract",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "weeklyPriceCents": 6000,
+            "allowance": 600,
+            "creditBps": 10000,
+            "effectiveWeek": 0
+          },
+          "rival-harbor-contract": {
+            "id": "rival-harbor-contract",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "weeklyPriceCents": 30000,
+            "allowance": 3000,
+            "creditBps": 10000,
+            "effectiveWeek": 0
+          }
+        },
+        "lastUsage": {},
+        "invoices": [],
+        "retrievalInstalls": {},
+        "commercialContracts": {},
+        "commercialInvoices": [],
+        "efficiencyInstalls": {}
+      },
+      "markets": {
+        "companyTrustBps": {
+          "company-player": 5000,
+          "rival-atlas": 5000,
+          "rival-swift": 5000,
+          "rival-harbor": 5000
+        },
+        "carries": {
+          "company-player:regular": {
+            "conversion": 0,
+            "churn": 0,
+            "reach": 0
+          }
+        },
+        "shopperCarry": {},
+        "rivals": {
+          "rival-atlas": {
+            "companyId": "rival-atlas",
+            "style": "frontier",
+            "interval": 8,
+            "reserveWeeks": 16,
+            "nextPlanWeek": 8,
+            "lastPriceWeek": 0,
+            "publicActivity": "Established consumer platform; pursuing model research.",
+            "lastActionWeek": 0,
+            "withdrawn": false
+          },
+          "rival-swift": {
+            "companyId": "rival-swift",
+            "style": "efficient",
+            "interval": 4,
+            "reserveWeeks": 10,
+            "nextPlanWeek": 4,
+            "lastPriceWeek": 0,
+            "publicActivity": "Coding API specialist; prioritizing efficient delivery.",
+            "lastActionWeek": 0,
+            "withdrawn": false
+          },
+          "rival-harbor": {
+            "companyId": "rival-harbor",
+            "style": "enterprise",
+            "interval": 6,
+            "reserveWeeks": 16,
+            "nextPlanWeek": 6,
+            "lastPriceWeek": 0,
+            "publicActivity": "Private document provider; inherited enterprise certification.",
+            "lastActionWeek": 0,
+            "withdrawn": false
+          }
+        },
+        "returnedNextWeek": {},
+        "payingConsumers": 0,
+        "waitlistRemaining": 40,
+        "activeRivalIds": [
+          "rival-atlas",
+          "rival-swift",
+          "rival-harbor"
+        ],
+        "trials": [],
+        "cohorts": [
+          {
+            "id": "rival-atlas-cohort-casual",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "segmentId": "casual",
+            "count": 173,
+            "activeWeek": 0
+          },
+          {
+            "id": "rival-atlas-cohort-regular",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "segmentId": "regular",
+            "count": 87,
+            "activeWeek": 0
+          },
+          {
+            "id": "rival-atlas-cohort-heavy",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "segmentId": "heavy",
+            "count": 38,
+            "activeWeek": 0
+          },
+          {
+            "id": "rival-atlas-cohort-professional",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "segmentId": "professional",
+            "count": 12,
+            "activeWeek": 0
+          },
+          {
+            "id": "rival-swift-cohort-developers",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "contractId": "rival-swift-contract",
+            "segmentId": "developers",
+            "count": 40,
+            "activeWeek": 0
+          },
+          {
+            "id": "rival-harbor-cohort-business",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "contractId": "rival-harbor-contract",
+            "segmentId": "business",
+            "count": 8,
+            "activeWeek": 0,
+            "renewalWeek": 12,
+            "breachWeeks": 0
+          }
+        ],
+        "trustBps": 5000,
+        "acquisitionCarry": 0,
+        "conversionCarry": 0,
+        "churnCarry": 0,
+        "reachCarry": 0,
+        "nextTrialId": 1,
+        "lastGained": 0,
+        "lastLost": 0,
+        "lastTrialCount": 0,
+        "lastExplanation": "A one-time waitlist is ready when Basic Chat launches.",
+        "opportunityCalendar": {
+          "startedWeek": 0,
+          "sequenceVersion": 2
+        }
+      },
+      "agents": {
+        "activeJobIds": [],
+        "jobs": {},
+        "actionReceipts": {},
+        "invoices": [],
+        "claims": {},
+        "totalsByCompany": {}
+      },
+      "campaign": {
+        "milestones": [
+          "company-founded"
+        ],
+        "endingStreaks": {
+          "frontier": 0,
+          "platform": 0,
+          "specialist": 0
+        },
+        "history": [],
+        "endings": {},
+        "rules": "release",
+        "origin": "university"
+      }
+    },
+    "queuedCommands": [],
+    "commandReceipts": {},
+    "scheduled": [],
+    "journal": [
+      {
+        "id": "event-1",
+        "week": 0,
+        "category": "system",
+        "message": "Your research team is ready. Evaluation Suite and Data Curation are already unlocked."
+      }
+    ],
+    "lastTick": null
+  }
+}

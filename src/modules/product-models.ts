@@ -6,6 +6,7 @@ import { BASE_BEHAVIOR } from './lab-planner';
 import { modelWorkBps } from './model-runtime';
 import { isCapabilitySuite } from './evaluation-classification';
 import { policyReleaseRejection } from './policy-holdouts';
+import { aiSystemSessionMemory } from './ai-systems';
 
 /** Shared public-model eligibility and standard request measurements. */
 export function familyMultiplier(model: ModelVersion): number { return FAMILY_SERVING_MULTIPLIER[model.family]; }
@@ -13,7 +14,7 @@ export function requestMeter(model: ModelVersion, features: ProductFeatures) {
   const inputTokens = (500 + (features.memory ? 100 : 0)) * (features.extendedContext ? 2 : 1);
   const outputTokens = 100, internalTokens = features.deepReasoning ? 200 : 0;
   // 0.0002 CUw/1K input and 0.001/1K output/internal; apply family scaling once.
-  return { inputTokens, outputTokens, internalTokens, work: mulDiv((inputTokens * 200 + (outputTokens + internalTokens) * 1000) * familyMultiplier(model), modelWorkBps(model), 10000), sessionMemory: features.extendedContext ? 80_000_000 : 20_000_000 };
+  return { inputTokens, outputTokens, internalTokens, work: mulDiv((inputTokens * 200 + (outputTokens + internalTokens) * 1000) * familyMultiplier(model), modelWorkBps(model), 10000), sessionMemory: (features.extendedContext ? 80_000_000 : 20_000_000) + aiSystemSessionMemory(model) };
 }
 
 export function taskScore(model: ModelVersion, segment: SegmentDefinition, features: ProductFeatures, documentBonusBps = 0): number {

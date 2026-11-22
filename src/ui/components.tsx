@@ -38,6 +38,7 @@ export function commandLabel(payload: CommandPayload): string {
     case 'cancel_development_plan': return 'Stop development plan';
     case 'set_product_strategy': return 'Apply product strategy';
     case 'select_chapter': return 'Choose chapter goal';
+    case 'accept_systems_brief': return 'Accept systems commission';
     case 'accept_customer_brief': return 'Accept ' + CUSTOMER_BRIEFS[payload.briefId].title;
     case 'start_facility_specialization': return 'Fund ' + payload.profile + ' site profile';
     case 'set_facility_specialization_paused': return payload.paused ? 'Pause site profile retrofit' : 'Resume site profile retrofit';
@@ -133,6 +134,7 @@ export function commandLabel(payload: CommandPayload): string {
 function actionKey(payload: CommandPayload): string {
   switch (payload.kind) {
     case 'accept_customer_brief': return payload.kind + ':' + payload.briefId;
+    case 'accept_systems_brief': return payload.kind + ':' + payload.offerId;
     case 'start_facility_specialization': return payload.kind + ':' + payload.facilityId;
     case 'set_facility_specialization_paused': return payload.kind + ':' + payload.specializationId;
     case 'start_chip_successor': return payload.kind + ':' + payload.parentDesignId;

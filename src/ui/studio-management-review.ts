@@ -18,6 +18,7 @@ import { GEN2_SILICON_RULES } from '../content/wave28-silicon';
 import type { CommandPayload, GameState, StaffRole } from '../contracts/types';
 import { formatMoney, formatUnits, toUnits } from '../core/math';
 import { getAgentView } from '../modules/agents';
+import { getSystemsBriefOffers } from '../modules/systems-briefs';
 import { getModelResearchQuote } from '../modules/model-research';
 import { getComputePools } from '../modules/compute-pools';
 import { getQualifiedReleaseRehearsal } from '../modules/release-rehearsals';
@@ -394,6 +395,19 @@ export function getStudioManagementReview(game: GameState, payload: CommandPaylo
       field('orderId', 'Batch order', identity('batch order', payload.orderId, order?.name));
       if (order) add('Batch job size', `${order.requests.toLocaleString()} requests · ${order.windowWeeks} week window`);
       if (!payload.poolId) add('Placement', 'Choose compatible hardware automatically'); break;
+    }
+    case 'accept_systems_brief': {
+      const offer = getSystemsBriefOffers(game).find(item => item.id === payload.offerId);
+      field('offerId', 'Customer commission', offer ? `${offer.title} · ${offer.client}` : 'This offer is unavailable');
+      field('modelId', 'Delivery model', modelName(payload.modelId));
+      if (offer) {
+        add('Payment on delivery', formatMoney(offer.feeCents));
+        add('Service commitment', `${offer.requestsPerWeek.toLocaleString()} requests / week · ${offer.concurrentSessions} sessions`);
+        add('Delivery requirement', `${offer.qualifyingWeeks} consecutive service weeks within ${offer.deadlineWeeks} weeks`);
+        add('Model requirements', offer.requirements.join(' · '));
+      }
+      notes.push('The accepted model and terms stay fixed. Serving resources are charged alongside your existing products. The client pays only after successful delivery.');
+      break;
     }
     case 'accept_customer_brief': {
       const brief = CUSTOMER_BRIEFS[payload.briefId];

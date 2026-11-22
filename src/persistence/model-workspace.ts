@@ -27,14 +27,21 @@ export interface DelegatedTrainingDraft {
   importedTraining: DevelopmentTrainingOrder | null;
 }
 export interface ModelBlueprint { id: string; name: string; training: DevelopmentTrainingOrder; suiteId?: EvaluationSuiteId }
+export type DevelopmentGoal =
+  | { kind: 'purpose'; id: 'balanced' | 'support' | 'coding' | 'analyst' | 'visual' }
+  | { kind: 'system-challenge'; id: 'systems-cost-1' | 'systems-memory-1' | 'systems-retention-1' | 'systems-verification-1' }
+  | { kind: 'renewable-brief'; id: 'efficient-experts' | 'bounded-memory' | 'continuity-desk' | 'verified-analysis' };
 export interface ModelWorkspaceData {
   manual: ManualTrainingDraft | null; delegated: DelegatedTrainingDraft | null; blueprints: ModelBlueprint[];
+  /** A planning objective shared by manual work, delegated work and research.
+   * This is optional so historical browser drafts remain byte-compatible. */
+  developmentGoal?: DevelopmentGoal | null;
 }
 export interface ModelWorkspaceSnapshot extends ModelWorkspaceData { ready: boolean; epoch: number; notice: string; persistent: boolean }
 export interface ModelWorkspacePersistence extends ResultsPersistence { hashSync?(bytes: string): SavedByteBinding }
 interface Envelope { version: 1; playerId: string; timelineToken: string; binding: SavedByteBinding; data: ModelWorkspaceData }
 type Session = { playerId: string; mode: ResultsSessionMode; savedBytes?: string };
-const empty = (): ModelWorkspaceData => ({ manual: null, delegated: null, blueprints: [] });
+const empty = (): ModelWorkspaceData => ({ manual: null, delegated: null, blueprints: [], developmentGoal: undefined });
 const object = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
 const text = (v: unknown, max = 160): v is string => typeof v === 'string' && v.length <= max && !/[\u0000-\u001f\u007f]/.test(v);
 const ids = (v: unknown): v is string[] => Array.isArray(v) && v.length <= 64 && v.every(x => text(x));
@@ -56,6 +63,12 @@ function curriculum(v: unknown): v is TrainingCurriculumChoice {
   return object(v) && exact(v, ['shareBps', 'tracks']) && Number.isSafeInteger(v.shareBps)
     && (v.shareBps as number) >= 0 && (v.shareBps as number) <= 10000 && Array.isArray(v.tracks) && v.tracks.length === 2
     && v.tracks.every(t => object(t) && exact(t, ['domain', 'packetIds']) && oneOf(t.domain, domains) && ids(t.packetIds));
+}
+export function isDevelopmentGoal(value: unknown): value is DevelopmentGoal {
+  if (!object(value) || !exact(value, ['kind', 'id'])) return false;
+  return value.kind === 'purpose' && oneOf(value.id, ['balanced', 'support', 'coding', 'analyst', 'visual'])
+    || value.kind === 'system-challenge' && oneOf(value.id, ['systems-cost-1', 'systems-memory-1', 'systems-retention-1', 'systems-verification-1'])
+    || value.kind === 'renewable-brief' && oneOf(value.id, ['efficient-experts', 'bounded-memory', 'continuity-desk', 'verified-analysis']);
 }
 export function isTrainingBlueprintOrder(value: unknown): value is DevelopmentTrainingOrder {
   if (!object(value) || value.kind !== 'start_training'
@@ -86,7 +99,8 @@ export function parseModelWorkspace(textValue: string | null): Envelope | null {
       || typeof v.timelineToken !== 'string' || !/^[a-f0-9]{32}$/.test(v.timelineToken) || !object(v.binding)
       || !exact(v.binding,['algorithm','digest','byteLength']) || v.binding.algorithm !== 'SHA-256'
       || typeof v.binding.digest !== 'string' || !/^[a-f0-9]{64}$/.test(v.binding.digest) || !Number.isSafeInteger(v.binding.byteLength) || (v.binding.byteLength as number) < 1
-      || !object(v.data) || !exact(v.data,['manual','delegated','blueprints'])
+      || !object(v.data) || !exact(v.data,['manual','delegated','blueprints', ...(Object.hasOwn(v.data, 'developmentGoal') ? ['developmentGoal'] : [])])
+      || (v.data.developmentGoal !== undefined && v.data.developmentGoal !== null && !isDevelopmentGoal(v.data.developmentGoal))
       || (v.data.manual !== null && !isManualTrainingDraft(v.data.manual)) || (v.data.delegated !== null && !isDelegatedTrainingDraft(v.data.delegated))
       || !Array.isArray(v.data.blueprints) || v.data.blueprints.length > BLUEPRINT_LIMIT) return null;
     const seen = new Set<string>();
@@ -160,8 +174,8 @@ export class ModelWorkspaceController {
     if (this.mode !== 'owner' || !this.state.ready || !this.binding || !this.bytes || !this.token) return;
     try {
       if (!this.io.snapshotMatches(this.bytes)) return;
-      const { manual, delegated, blueprints } = this.state;
-      const encoded = JSON.stringify({ version: 1, playerId: this.playerId, timelineToken: this.token, binding: this.binding, data: { manual, delegated, blueprints } });
+      const { manual, delegated, blueprints, developmentGoal } = this.state;
+      const encoded = JSON.stringify({ version: 1, playerId: this.playerId, timelineToken: this.token, binding: this.binding, data: { manual, delegated, blueprints, ...(developmentGoal !== undefined ? { developmentGoal } : {}) } });
       if (!parseModelWorkspace(encoded)) throw new Error('Draft limit');
       this.io.write(encoded);
       if (!this.state.persistent || this.state.notice) this.publish({ persistent: true, notice: '' });
@@ -172,6 +186,11 @@ export class ModelWorkspaceController {
     if (draft !== null && !(kind === 'manual' ? isManualTrainingDraft(draft) : isDelegatedTrainingDraft(draft))) return;
     if (JSON.stringify(this.state[kind]) === JSON.stringify(draft)) return;
     this.publish({ [kind]: structuredClone(draft) }); this.persist();
+  };
+  setDevelopmentGoal = (goal: DevelopmentGoal | null) => {
+    if (!this.state.ready || !['owner', 'memory'].includes(this.mode) || (goal !== null && !isDevelopmentGoal(goal))) return;
+    if (JSON.stringify(this.state.developmentGoal) === JSON.stringify(goal)) return;
+    this.publish({ developmentGoal: goal && structuredClone(goal) }); this.persist();
   };
   saveBlueprint = (name: string, training: DevelopmentTrainingOrder, suiteId?: EvaluationSuiteId): string | null => {
     if (!this.state.ready || !['owner','memory'].includes(this.mode)) return 'Wait for this lab to finish opening.';

@@ -5,7 +5,9 @@ import { OPTIONAL_BRIEF_IDS, type CustomerBrief } from '../contracts/customer-br
 import { formatMoney } from '../core/math';
 import { briefTargetText } from '../modules/customer-briefs';
 import { getSpecialistBriefCandidate, isSpecialistBrief } from '../modules/specialist-briefs';
+import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
+import { SystemsBriefsPanel } from './systems-briefs-panel';
 import { ActionControl, Section } from './components';
 import type { PanelProps } from './panels';
 
@@ -28,7 +30,7 @@ export function CustomerBriefsPanel(props: PanelProps) {
   const closed = Object.values(records).filter(b => b.status !== 'active').sort((a, b) => b.finishedWeek! - a.finishedWeek!);
   const earned = game.slices.company.companies[game.playerCompanyId].earnedRevenueCents > 0;
   const offers = OPTIONAL_BRIEF_IDS.filter(id => records[id]?.status !== 'completed'
-    && (!isSpecialistBrief(id) || game.contentVersion === GAMEPLAY_POLISH_CONTENT_VERSION));
+    && (!isSpecialistBrief(id) || [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(game.contentVersion)));
   function activeCard(brief: CustomerBrief) {
     const def = CUSTOMER_BRIEFS[brief.id], target = briefTargetText(game, brief.id, brief), next = deliveryLink(brief, props);
     return <article className="project-row campaign-route" aria-label="Active customer brief">
@@ -58,6 +60,8 @@ export function CustomerBriefsPanel(props: PanelProps) {
     </article>;
   }
   return <Section title="Customer briefs" id="customer-briefs">
+    <SystemsBriefsPanel game={game} canAct={canAct} onQueue={onQueue} />
+    <h3 className="systems-legacy-heading">Campaign commissions</h3>
     {active ? activeCard(active) : earned && offers.length > 0 ? <>
       <p className="small-note">Choose one commission at a time. The first delivery week is Week {game.week + 1}. The client pays on completion. Missed optional briefs can be tried again.</p>
       <div className="campaign-routes">{offers.map(offer)}</div>

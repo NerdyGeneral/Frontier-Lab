@@ -12,6 +12,7 @@ import { BASE_BEHAVIOR } from './lab-planner';
 import { activeEvidenceCheck, evidenceInputsMatch } from './retrieval-evidence';
 import { advancedScores } from './advanced-skills';
 import { routingSecondaryShareBps } from './product-strategy';
+import { aiSystemSessionMemory } from './ai-systems';
 
 const U = 1_000_000_000;
 export const PRODUCT_EFFICIENCY_COMMANDS = ['install_product_efficiency', 'set_product_efficiency_enabled'] as const;
@@ -55,12 +56,18 @@ export function productEfficiencyMemory(state: Readonly<GameState>, product: Pro
   const route = activeEfficiency(state, product.id, 'routing'), cache = activeEfficiency(state, product.id, 'prefix-cache');
   return (route?.secondaryModelId ? state.slices.models.versions[route.secondaryModelId].residentMU : 0) + (cache ? PREFIX_CACHE.memoryMU + tenants * PREFIX_CACHE.tenantMemoryMU : 0);
 }
+/** Routed models retain separate operating state even when their request session is shared. */
+export function productRoutingStateMemory(state: Readonly<GameState>, product: ProductOffer, tenants = 1): number {
+  const route = activeEfficiency(state, product.id, 'routing');
+  if (!route?.secondaryModelId || route.secondaryModelId === route.modelId) return 0;
+  return aiSystemSessionMemory(state.slices.models.versions[route.secondaryModelId]) * tenants;
+}
 export function getProductEfficiencyView(state: Readonly<GameState>, productId: string): ProductEfficiencyView {
   const product = state.slices.products.offers[productId], primary = state.slices.models.versions[state.slices.products.deployments[product.deploymentId].modelId], model = routedModel(state, product, primary);
   const tenants = [...state.slices.markets.cohorts, ...state.slices.markets.trials].filter(cohort => cohort.productId === productId).reduce((sum, cohort) => sum + cohort.count, 0);
   const routingActive = !!activeEfficiency(state, productId, 'routing'), cacheActive = !!activeEfficiency(state, productId, 'prefix-cache'), warm = cacheWarm(state, product);
   return { routing: efficiencyInstall(state, productId, 'routing'), prefixCache: efficiencyInstall(state, productId, 'prefix-cache'), routingActive, cacheActive, cacheWarm: warm,
-    additionalMemoryMU: productEfficiencyMemory(state, product, tenants), easyShareBps: routingSecondaryShareBps(product), cachedInputShareBps: warm ? PREFIX_CACHE.reusedInputShareBps : 0,
+    additionalMemoryMU: productEfficiencyMemory(state, product, tenants) + productRoutingStateMemory(state, product, tenants), easyShareBps: routingSecondaryShareBps(product), cachedInputShareBps: warm ? PREFIX_CACHE.reusedInputShareBps : 0,
     effectiveScores: model.capabilityBps, effectiveReliabilityBps: model.reliabilityBps, effectiveBehavior: model.behavior ?? { ...BASE_BEHAVIOR },
     summary: [routingActive ? `${routingSecondaryShareBps(product) / 100}% of requests use the smaller model and ${100 - routingSecondaryShareBps(product) / 100}% use the main model; displayed service quality is their weighted mixture. Both models remain resident.` : 'The selected model serves every request.', cacheActive ? warm ? 'Warm tenant-scoped prefixes reduce work for the eligible reused half of input. Output, internal reasoning and token bills retain their ordinary rates.' : 'The cache is empty or invalidated. Real service must warm it before a later week can use cached input.' : 'No prefix cache is active.'].join(' ') };
 }

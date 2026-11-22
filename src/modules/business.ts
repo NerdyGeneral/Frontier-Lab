@@ -1,4 +1,5 @@
 import { FAMILY_SERVING_MULTIPLIER } from './model-design';
+import { aiSystemSessionMemory } from './ai-systems';
 import { CONTENT } from '../content/catalog';
 import { assuranceCapacityRequests, assuranceQueuedCapacityRequests, assuranceOrganizationCount } from './assured-api';
 import { isCapabilitySuite } from './evaluation-classification';
@@ -115,7 +116,7 @@ function newContract(state: Readonly<GameState>, command: GameCommand, content: 
     termWeeksServed: 0, termServiceBpsTotal: 0, breachWeeks: 0, endedWeek: null, lastBottleneck: 'Delivery of the fixed model and its integration needs Design points.',
     evidence, rights: getModelCommerceRights(state, model.id, content), weeklyPriceCents: hosted ? customer.hostedWeeklyCents : customer.licenseWeeklyCents,
     weeklyRequests: hosted ? customer.weeklyRequests : 0, reservedWorkCUw: hosted ? customer.weeklyRequests * work : 0,
-    reservedMemoryMU: hosted ? checkedAdd(model.residentMU, checkedAdd(evidence!.indexMemoryMU, RULES.privateSessionMemoryMU)) : 0,
+    reservedMemoryMU: hosted ? checkedAdd(model.residentMU, checkedAdd(evidence!.indexMemoryMU, checkedAdd(RULES.privateSessionMemoryMU, aiSystemSessionMemory(model)))) : 0,
     servingHeadroomBps: hosted ? RULES.servingHeadroomBps : 0, inputTokensPerRequest: input, outputTokensPerRequest: output, workPerRequestCUw: work,
     dataStaffPerWeek: hosted ? RULES.retrievalDataStaffPerOrganization : 0, supportStaffPerWeek: RULES.supportStaffPerOrganization,
     lifetimeBilledCents: previous?.companyId === command.companyId ? previous.lifetimeBilledCents : 0,

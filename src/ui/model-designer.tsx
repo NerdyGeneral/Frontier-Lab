@@ -8,8 +8,9 @@ import type { ModelDesignSpec } from '../contracts/model-design';
 import type { ModelCustomization } from '../contracts/model-customization';
 import { DEFAULT_MODEL_CUSTOMIZATION, MODEL_CUSTOMIZATION_OPTIONS } from '../content/model-customization';
 import { CONTENT } from '../content/catalog';
-import { MODEL_DESIGN_FAMILIES, getModelDesignForecast } from '../modules/model-design';
+import { MODEL_DESIGN_FAMILIES, getModelDesignForecast, getAISystemForecastModel } from '../modules/model-design';
 import { BASE_BEHAVIOR, getTrainingPreview } from '../modules/lab-planner';
+import { getAISystemMetrics } from '../modules/ai-systems';
 import { hasResearch } from '../modules/research';
 import { formatMoney, formatUnits } from '../core/math';
 import { formatWorkPoints } from '../modules/workforce-points';
@@ -19,6 +20,10 @@ import { useStudioTaskActions } from './studio-interaction-context';
 import { copyModelDesignCandidate, forecastSkill, getComputeBenefitHint, getDesignCandidateForecast, humanizeDesignRequirement, rememberModelDesign, type ModelDesignCandidate } from './model-design-insights';
 import { ModelDesignComparison } from './model-design-comparison';
 import { StudioDecisionLayout } from './studio-decision-layout';
+import { useModelWorkspace } from './model-workspace-context';
+import { developmentGoalChecks, developmentGoalName } from './development-goals';
+import { DevelopmentGoalSummary } from './development-workspace';
+import { AISystemDesigner, AISystemMetricsView, aiSystemName } from './ai-system-designer';
 
 type DesignDomain = keyof ModelDesignSpec['dataMix'];
 type Family = ModelDesignSpec['family'];
@@ -174,7 +179,8 @@ export function ModelDesigner({ game, baseModelId, packetIds, value, onChange, c
     if (value.mode !== 'adaptation' || !base) return;
     const inherited = inheritModelDesignDraft(value, base);
     if (value.family !== inherited.family || value.parameterMillions !== inherited.parameterMillions || value.sparsityBps !== inherited.sparsityBps
-      || JSON.stringify(value.customization) !== JSON.stringify(inherited.customization)) onChange(inherited);
+      || JSON.stringify(value.customization) !== JSON.stringify(inherited.customization)
+      || JSON.stringify(value.system) !== JSON.stringify(inherited.system)) onChange(inherited);
   }, [base, value, onChange]);
 
   const setMode = (mode: ModelDesignSpec['mode']) => {
@@ -237,6 +243,10 @@ export function ModelDesigner({ game, baseModelId, packetIds, value, onChange, c
         </details>
       </section>
 
+      <AISystemDesigner game={game} value={value.system} inherited={!foundations}
+        onChange={system => { const next = { ...value }; if (system) next.system = system; else delete next.system; if (system?.kind === 'experts') next.sparsityBps = 0; applyChange(next); }}
+        onNewFoundation={() => setMode('foundation')} />
+
       <section className="model-design-section" aria-labelledby={`${id}-architecture`}>
         <header><Cpu size={18} aria-hidden="true" /><h4 id={`${id}-architecture`}>Architecture{!foundations && <small> · inherited</small>}</h4></header>
         {foundations ? <details className="model-design-section-disclosure" open={openSection === 'architecture'} onToggle={event => toggleSection('architecture', event.currentTarget.open)}>
@@ -263,7 +273,8 @@ export function ModelDesigner({ game, baseModelId, packetIds, value, onChange, c
           </div>
           <div className="model-design-control">
             <div className="model-design-control-heading"><label htmlFor={`${id}-sparsity`}>Sparsity</label><output htmlFor={`${id}-sparsity`}>{value.sparsityBps / 100}% skipped per token</output></div>
-            <input id={`${id}-sparsity`} type="range" min={0} max={8000} step={500} value={value.sparsityBps} disabled={!foundations} aria-valuetext={`${value.sparsityBps / 100}% of parameters inactive per token`} onChange={event => changed({ sparsityBps: event.target.valueAsNumber }, 'sparsity')} />
+            {value.system?.kind === 'experts' && <p className="model-design-help">Expert routing chooses the active parameter share. Use the experts-per-request control above. Expert networks also need fast fabric and at least 16 CU in one compatible pool.</p>}
+            <input id={`${id}-sparsity`} type="range" min={0} max={8000} step={500} value={value.sparsityBps} disabled={!foundations || value.system?.kind === 'experts'} aria-valuetext={`${value.sparsityBps / 100}% of parameters inactive per token`} onChange={event => changed({ sparsityBps: event.target.valueAsNumber }, 'sparsity')} />
             <p className="model-design-help">Use less of the model per token. The forecast includes the compute, memory and skill tradeoffs.</p>
           </div>
         </div>
@@ -316,9 +327,15 @@ export function ModelDesigner({ game, baseModelId, packetIds, value, onChange, c
 export function ModelDesignDecisionSummary({ game, baseModelId, packetIds, value }: Pick<ModelDesignerProps, 'game' | 'baseModelId' | 'packetIds' | 'value'>) {
   const forecast = useMemo(() => getDesignCandidateForecast(game, { spec: value, baseModelId, packetIds }), [game, baseModelId, packetIds, value]);
   const focused = DOMAINS.filter(domain => value.dataMix[domain.id] > 0).sort((a, b) => value.dataMix[b.id] - value.dataMix[a.id]).slice(0, 2);
+  const goal = useModelWorkspace()?.developmentGoal;
+  const goalModel = forecast.hasPrepared && forecast.preview ? getAISystemForecastModel(value, forecast.design, { capabilityBps: forecast.preview.capabilityRange.minimum, advancedCapabilities: forecast.preview.advancedCapabilityRange?.minimum, reliabilityBps: forecast.preview.reliabilityRange.minimum }) : undefined;
+  const checks = goal && goalModel ? developmentGoalChecks(game, goal, goalModel).checks : [];
+  const allocated = game.slices.compute.fleets[game.playerCompanyId]?.allocation.development ?? 0;
+  const weeks = allocated > 0 ? Math.max(1, Math.ceil(forecast.design.workCUw / allocated)) : null;
   return <div className="model-design-decision-reading">
+    {goal && <span className="model-design-goal-reading">{developmentGoalName(goal)}{checks.length > 0 ? ` · ${checks.filter(check => check.passed).length}/${checks.length} challenge workloads forecast to pass` : ''}</span>}
     <strong>{forecast.hasPrepared && forecast.preview ? focused.map(domain => `${domain.label} ${score(forecastSkill(forecast.preview!, domain.id))}`).join(' · ') : 'Choose prepared data for the skill forecast'}</strong>
-    <span>{formatMoney(forecast.design.feeCents)} setup · {formatUnits(forecast.design.workCUw)} CUw · {formatUnits(forecast.design.requiredMemory)} MU training memory</span>
+    <span>{formatMoney(forecast.design.feeCents)} setup · {formatUnits(forecast.design.workCUw)} CUw · {formatUnits(forecast.design.requiredMemory)} MU training memory · {weeks === null ? 'assign development compute' : `${weeks} nominal GPU ${weeks === 1 ? 'week' : 'weeks'}`}</span>
     {forecast.reason && <small title={humanizeDesignRequirement(forecast.reason.message)}>{humanizeDesignRequirement(forecast.reason.message)}</small>}
   </div>;
 }
@@ -347,7 +364,7 @@ export function ModelDesignForecast({ game, baseModelId, packetIds, value }: Pic
 
   return <section className="model-design-forecast" aria-labelledby={`${id}-forecast-title`}>
     <header className="model-design-forecast-header"><div><span className="model-designer-eyebrow">Live forecast</span><h3 id={`${id}-forecast-title`}>{value.name.trim() || 'Your next model'}</h3></div><span className="model-design-family-tag">{prettyFamily(value.family)} · {billions(value.parameterMillions)}B</span></header>
-    <p className="model-design-forecast-profile">{customizationOptionName('objective', customization.objective)} · {customizationOptionName('behavior', customization.behavior)}</p>
+    <p className="model-design-forecast-profile">{aiSystemName(value.system)} · {customizationOptionName('objective', customization.objective)} · {customizationOptionName('behavior', customization.behavior)}</p>
     {requiredResearch.length > 0 && <div className="model-design-research-needed"><LockKeyhole size={14} aria-hidden="true" /><div><strong>Research needed for this design</strong><DesignResearchRequirements game={game} ids={requiredResearch} /></div></div>}
     <p className="model-design-forecast-caption">{visiblePreview ? 'Expected skills after this training run, using the selected data.' : 'Choose prepared data to calculate expected skills.'}</p>
     <div className="model-design-forecast-legend"><span><i />Expected score</span><span><b />{value.mode === 'foundation' ? 'Reference model' : 'Starting score'}</span><span>0–100</span></div>
@@ -376,6 +393,13 @@ export function ModelDesignForecast({ game, baseModelId, packetIds, value }: Pic
       </div>)}</dl>
       <p className="model-design-help">Projected tendencies after the paid run. Response training needs suitable behavior examples; a paid behavior test measures unfamiliar cases.</p>
     </section>
+
+    {design.systemMetrics && <AISystemMetricsView metrics={visiblePreview ? getAISystemMetrics(getAISystemForecastModel(value, design, {
+      capabilityBps: preview!.capabilityRange.minimum, advancedCapabilities: preview!.advancedCapabilityRange?.minimum, reliabilityBps: preview!.reliabilityRange.minimum,
+    })) : design.systemMetrics} label={visiblePreview ? 'Expected operating performance' : 'Operating potential · data needed'} />}
+    <DevelopmentGoalSummary game={game} projected model={visiblePreview ? getAISystemForecastModel(value, design, {
+      capabilityBps: preview!.capabilityRange.minimum, advancedCapabilities: preview!.advancedCapabilityRange?.minimum, reliabilityBps: preview!.reliabilityRange.minimum,
+    }) : undefined} />
 
     <dl className="model-design-costs">
       <div><dt>Setup fee</dt><dd>{formatMoney(design.feeCents)}</dd></div>

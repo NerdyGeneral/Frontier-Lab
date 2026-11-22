@@ -24,6 +24,7 @@ export interface CampaignEnding {
 export interface Wave4CampaignFields {
   chapters?: import('./strategic-variety').ChapterProgress;
   customerBriefs?: Partial<Record<import('./customer-briefs').BriefId, import('./customer-briefs').CustomerBrief>>;
+  systemsBriefs?: Record<string, import('./systems-briefs').SystemsBriefOrder>;
   rules?: CampaignRules;
   origin?: CampaignOrigin;
   history: CampaignWeek[];

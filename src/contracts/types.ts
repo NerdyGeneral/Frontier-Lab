@@ -52,6 +52,7 @@ export type WorkCategory = 'serving' | 'development' | 'research';
 export type ReasonCode = 'INVALID_COMMAND' | 'INVALID_NAME' | 'INVALID_ALLOCATION' | 'CAPACITY_EXCEEDED' | 'UNKNOWN_COMPANY' | 'DUPLICATE_COMMAND' | 'INVALID_STATE' | 'INVALID_CONTENT' | 'INVALID_VERSION' | 'INSUFFICIENT_FUNDS' | 'ARREARS' | 'QUEUE_FULL' | 'FOREIGN_SLICE_WRITE' | 'DUPLICATE_MODULE' | 'INVALID_FACT' | 'INVARIANT_FAILED' | 'NOT_READY' | 'MISSING_STAFF' | 'MISSING_MEMORY' | 'ALREADY_ACTIVE' | 'NO_IMPROVEMENT';
 export interface Rejection { code: ReasonCode; message: string }
 export type CommandPayload =
+  | import('./systems-briefs').SystemsBriefCommand
   | import('./development-plans').DevelopmentPlanCommand
   | import('./strategic-variety').StrategicVarietyCommand
   | import('./model-research').ModelResearchCommand

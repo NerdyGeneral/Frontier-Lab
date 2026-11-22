@@ -1,4 +1,5 @@
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
+import { AI_SYSTEMS_CONTENT_VERSION, isAISystemsResearch } from '../core/ai-systems-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION, isModelCustomizationResearch } from '../core/model-customization-version';
 import { MODEL_RESEARCH_COMMANDS, validateModelResearch, quoteModelResearch, applyModelResearch, modelResearchRequests, advanceModelResearch, resolveModelResearch, commitModelResearch } from './model-research';
 import { formatWorkPoints, WORK_POINT_LABELS } from './workforce-points';
@@ -69,7 +70,8 @@ function validate(state: Readonly<GameState>, command: GameCommand, content: Gam
   if ((MODEL_RESEARCH_COMMANDS as readonly string[]).includes(p.kind)) return validateModelResearch(state, command);
   if ((SYSTEM_APPLICATION_COMMANDS as readonly string[]).includes(p.kind)) return validateSystemApplication(state, command);
   if (p.kind === 'start_research') {
-    if (isModelCustomizationResearch(p.researchId) && ![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version)) return { code: 'NOT_READY', message: 'This model design discovery is unavailable in this historical build.' };
+    if (isModelCustomizationResearch(p.researchId) && ![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) return { code: 'NOT_READY', message: 'This model design discovery is unavailable in this historical build.' };
+    if (isAISystemsResearch(p.researchId) && content.version !== AI_SYSTEMS_CONTENT_VERSION) return { code: 'NOT_READY', message: 'AI systems research is unavailable in this historical build.' };
     if (company.arrearsCents) return { code: 'ARREARS', message: 'Resolve unpaid expenses before starting research.' };
     const definition = content.research.find(item => item.id === p.researchId);
     if (!definition || !implemented.has(definition.id)) return { code: 'NOT_READY', message: 'This discovery is not available yet.' };
@@ -150,7 +152,7 @@ export function createResearchModule(content: GameContent): DomainModule {
         research.projects[project.id] = project; aliases(research, state.playerCompanyId);
         return { updates: { research }, facts: [{ id: project.id + ':fee', companyId: command.companyId, week: state.week, sourceId: project.id,
           category: 'operating', amountCents: definition.feeCents, label: definition.name + ' research', kind: 'expense' },
-          ...(isModelCustomizationResearch(definition.id) ? [{ id: `${project.id}:method:${definition.id}`, companyId: command.companyId,
+          ...(isModelCustomizationResearch(definition.id) || isAISystemsResearch(definition.id) ? [{ id: `${project.id}:method:${definition.id}`, companyId: command.companyId,
             week: state.week, sourceId: project.id, category: 'operating' as const, amountCents: 0,
             label: definition.name + ' discovery authorization', kind: 'expense' as const }] : [])],
           messages: [{ companyId: command.companyId, category: 'project', message: `${definition.name} research started. Entry fee charged once; payroll and compute are separate.` }] };

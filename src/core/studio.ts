@@ -93,7 +93,7 @@ function queuedStation(payload: CommandPayload): StudioStationId | null {
     case 'allocate_compute': case 'set_cloud_capacity': case 'set_batch_capacity':
     case 'start_facility_specialization': case 'set_facility_specialization_paused': case 'start_chip_successor':
     case 'order_rack': case 'install_rack': case 'set_rack_parked': case 'start_facility': case 'fund_facility_stage': return 'compute';
-    case 'accept_customer_brief': case 'deploy_product': case 'set_product_terms': case 'set_product_paused':
+    case 'accept_systems_brief': case 'accept_customer_brief': case 'deploy_product': case 'set_product_terms': case 'set_product_paused':
     case 'start_release_canary': case 'stop_release_canary': case 'accept_private_appliance_order': return 'product';
     default: return null;
   }

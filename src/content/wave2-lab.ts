@@ -1,6 +1,7 @@
 import { ADVANCED_DATA_CATALOG, ADVANCED_EVALUATION_SUITE } from './advanced-skills';
 import { DESIGN_RECIPES, DESIGN_RESEARCH_IDS } from './model-designs';
 import { CUSTOMIZATION_RESEARCH_IDS } from './model-customization-research';
+import { AI_SYSTEM_RESEARCH_IDS } from './ai-systems';
 import type { DataCatalogItem, EvaluationSuiteId, TrainingProfile, TrainingRecipe } from '../contracts/wave2-lab';
 import { MODEL_CHALLENGES } from './model-challenges';
 import type { ModelVersion } from '../contracts/types';
@@ -105,4 +106,4 @@ export const EVALUATION_SUITES: readonly { id: EvaluationSuiteId; name: string; 
   ADVANCED_EVALUATION_SUITE,
   ...MODEL_CHALLENGES,
 ];
-export const IMPLEMENTED_RESEARCH_IDS = ['R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R9', 'R10', 'R11', 'R12', 'R1A', 'R5A', 'R2A', 'R6A', 'R12A', 'R4B', 'R4C', 'R9A', 'R10A', 'R11A', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', ...WAVE4_APPLIED_RESEARCH_IDS, ...DESIGN_RESEARCH_IDS, ...CUSTOMIZATION_RESEARCH_IDS] as const;
+export const IMPLEMENTED_RESEARCH_IDS = ['R1', 'R2', 'R3', 'R4', 'R5', 'R6', 'R9', 'R10', 'R11', 'R12', 'R1A', 'R5A', 'R2A', 'R6A', 'R12A', 'R4B', 'R4C', 'R9A', 'R10A', 'R11A', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', ...WAVE4_APPLIED_RESEARCH_IDS, ...DESIGN_RESEARCH_IDS, ...CUSTOMIZATION_RESEARCH_IDS, ...AI_SYSTEM_RESEARCH_IDS] as const;

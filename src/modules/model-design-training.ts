@@ -39,6 +39,7 @@ export function buildCustomTrainingPlan(state: Readonly<GameState>, companyId: s
   const receipt: ModelDesignReceipt = { spec, researchLevel: forecast.researchLevel, frontierRating: forecast.frontierRating,
     ...(forecast.researchFocus ? { researchFocus: forecast.researchFocus } : {}),
     ...(customization ? { customization } : {}),
+    ...(forecast.system ? { system: structuredClone(forecast.system) } : {}),
     servingWorkBps: forecast.servingWorkBps, requiredEvidence: forecast.requiredEvidence,
     ceilings: forecast.ceilings, advancedCeilings: forecast.advancedCeilings };
   const advanced = createAdvancedTrainingReceipt(state, base.id, corpus.packetIds, forecast.advancedTargets, forecast.advancedCeilings, forecast.requiredEvidence, foundation);
@@ -56,7 +57,7 @@ export function buildCustomTrainingPlan(state: Readonly<GameState>, companyId: s
     modelDesign: receipt, advanced,
     ...(independentFoundation ? { foundationRights: 'independent' as const } : {}),
     recipeName: spec.name.trim(), kind: spec.mode, profile: 'balanced', profileApplied: false,
-    family: spec.family, architecture: spec.sparsityBps ? 'sparse' : 'dense', residentMU: forecast.residentMU,
+    family: spec.family, architecture: spec.sparsityBps || spec.system?.kind === 'experts' ? 'sparse' : 'dense', residentMU: forecast.residentMU,
     lineageId: foundation ? 'foundation-' + identity : (lineageId(state, base) ?? base.id), identity, corpus,
     targets: forecast.targets, ceilings: forecast.ceilings, savedAdjustments: { conversation: 0, documents: 0, coding: 0, tools: 0 },
     requiredEvidence: forecast.requiredEvidence, reliabilityTargetBps: forecast.reliabilityTargetBps,
@@ -64,7 +65,7 @@ export function buildCustomTrainingPlan(state: Readonly<GameState>, companyId: s
     behaviorTarget: structuredClone(foundation ? BASE_BEHAVIOR : (base.behavior ?? BASE_BEHAVIOR)),
     preparationRequired: forecast.preparationStaff, checkpointOverheadRequired: 0,
     checkpoints: [{ atBps: 5000, overheadWork: 0 }, { atBps: 10000, overheadWork: 0 }],
-    methods: customization?.researchIds ?? [], foundationAnchor,
+    methods: [...(customization?.researchIds ?? []), ...(forecast.system?.researchIds ?? [])], foundationAnchor,
     ...(!foundation ? { parentScores: { capabilityBps: structuredClone(base.capabilityBps), reliabilityBps: base.reliabilityBps } } : {}),
     ...(!foundation && base.policy ? { inheritedPolicy: structuredClone(base.policy) } : {}),
     ...(!foundation && base.planner ? { planner: structuredClone(base.planner) } : {}),
@@ -85,6 +86,21 @@ export function buildCustomTrainingPlan(state: Readonly<GameState>, companyId: s
     anchorScores: structuredClone(foundationAnchor), anchorReliabilityBps: foundation ? 7000 : base.reliabilityBps, evidence };
 }
 
+/** Admission and saved-run validation share the same evidence requirements. */
+export function customSystemEvidenceRejection(spec: NonNullable<TrainingOptions['modelDesign']>, plan: TrainingPlan): Rejection | undefined {
+  const system = spec.system; if (!system) return;
+  const relevant = { ...plan.corpus.relevantUnits, ...plan.advanced!.corpus.relevantUnits };
+  const supported = (domain: keyof typeof relevant) => spec.dataMix[domain] > 0 && relevant[domain] > 0;
+  if (system.kind === 'experts' && !supported(system.specialization))
+    return { code: 'NOT_READY', message: 'Give the expert specialty a positive data weight and matching prepared examples before training its expert bank.' };
+  if (system.kind === 'stateful' && !supported('documents') && !supported('longContext'))
+    return { code: 'NOT_READY', message: 'Stateful training needs a positive document or long-context weight and matching prepared evidence.' };
+  if (system.kind === 'adaptive' && !supported('reasoning'))
+    return { code: 'NOT_READY', message: 'Adaptive reasoning needs a positive reasoning weight and prepared reasoning examples.' };
+  if (system.kind === 'adaptive' && system.verifier === 'independent' && (plan.corpus.behaviorUnits < 100 || !supported('tools')))
+    return { code: 'NOT_READY', message: 'Train the independent checker with at least 100 reviewed behavior cases plus a positive tool-use weight and prepared tool examples.' };
+}
+
 export function validateCustomTrainingOptions(state: Readonly<GameState>, companyId: string, options: TrainingOptions, content: GameContent): Rejection | undefined {
   const spec = options.modelDesign;
   const shape = modelDesignShapeRejection(spec); if (shape) return shape;
@@ -99,6 +115,8 @@ export function validateCustomTrainingOptions(state: Readonly<GameState>, compan
   const planned = buildCustomTrainingPlan(state, companyId, options, content);
   if (spec!.customization && spec!.customization.behavior !== 'balanced' && planned.plan.corpus.behaviorUnits < 100)
     return { code: 'NOT_READY', message: 'Choose at least 100 reviewed behavior cases before training a careful or expressive model.' };
+  const system = spec!.system;
+  const systemEvidence = customSystemEvidenceRejection(spec!, planned.plan); if (systemEvidence) return systemEvidence;
   const objective = spec!.customization?.objective;
   const objectiveDomains = objective === 'reasoning' ? ['reasoning'] : objective === 'agentic' ? ['tools', 'coding'] : objective === 'grounded' ? ['documents', 'longContext'] : objective === 'multimodal' ? ['multimodal'] : [];
   if (objectiveDomains.length && !objectiveDomains.some(domain => spec!.dataMix[domain as keyof NonNullable<typeof spec>['dataMix']] > 0
@@ -107,7 +125,7 @@ export function validateCustomTrainingOptions(state: Readonly<GameState>, compan
   const focusedCore = DOMAINS.some(d => spec!.dataMix[d] > 0 && planned.plan.corpus.relevantUnits[d] > 0);
   const focusedAdvanced = Object.entries(planned.plan.advanced!.corpus.relevantUnits).some(([d, value]) => spec!.dataMix[d as keyof NonNullable<typeof spec>['dataMix']] > 0 && value > 0);
   if (!focusedCore && !focusedAdvanced) return { code: 'NOT_READY', message: 'Your selected data has no examples for the skills receiving training weight. Add suitable data or change the mix.' };
-  if (spec!.sparsityBps && !getCompatibleComputePools(state, companyId, { modelArchitecture: 'sparse', workloadKind: 'training', requiresFastFabric: true }, content)
+  if ((spec!.sparsityBps || system?.kind === 'experts') && !getCompatibleComputePools(state, companyId, { modelArchitecture: 'sparse', workloadKind: 'training', requiresFastFabric: true }, content)
     .some(pool => pool.capacityCU >= 16 * U && pool.memoryMU >= planned.requiredMemory)) return { code: 'MISSING_MEMORY', message: `This sparse design needs compatible fast fabric, at least 16 CU, and ${planned.requiredMemory / U} MU of workspace in one pool.` };
 }
 export function isCustomTrainingRecipe(recipeId: string): boolean { return (CUSTOM_MODEL_RECIPES as readonly string[]).includes(recipeId); }

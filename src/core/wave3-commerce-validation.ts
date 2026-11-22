@@ -1,7 +1,9 @@
+import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from './gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from './model-customization-version';
 import { STRATEGY_CONTENT_VERSION } from './strategy-version';
 import { FAMILY_SERVING_MULTIPLIER } from '../modules/model-design';
+import { aiSystemSessionMemory } from '../modules/ai-systems';
 import { MODEL_DESIGN_CONTENT_VERSION } from '../contracts/model-design';
 import { WORKFORCE_POINTS_CONTENT_VERSION } from '../content/wave29';
 import { CAMPUS_CONTENT_VERSION } from '../content/wave28';
@@ -31,7 +33,7 @@ export function assertWave3CommerceState(state: GameState, content: GameContent)
   record(products.retrievalInstalls, 'Retrieval installations'); record(products.commercialContracts, 'Commercial contracts');
   check(Array.isArray(products.commercialInvoices) && products.commercialInvoices.length <= RULES.invoiceHistoryLimit, 'Commercial invoice history is missing or unbounded.');
   check(Object.keys(products.retrievalInstalls).length <= Object.keys(products.offers).length, 'Retrieval indexes outnumber their products.');
-  check(Object.keys(products.commercialContracts).length <= BUSINESS_CUSTOMERS.length + ([STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version) ? 1 : 0), 'The finite customer board was expanded.');
+  check(Object.keys(products.commercialContracts).length <= BUSINESS_CUSTOMERS.length + ([STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) ? 1 : 0), 'The finite customer board was expanded.');
   const past = (week: number) => { checkedInteger(week); check(week <= state.week, 'Commercial activity comes from a future week.'); };
   const ownCompany = (companyId: string) => check(Object.hasOwn(company.companies, companyId), 'Commercial record has an unknown company.');
   const evidence = (snapshot: RetrievalEvidence, companyId: string) => {
@@ -74,7 +76,7 @@ export function assertWave3CommerceState(state: GameState, content: GameContent)
   for (const [key, contract] of Object.entries(products.commercialContracts)) {
     record(contract, 'Commercial contract');
     const customer = BUSINESS_BY_ID[contract.customerId];
-    if (contract.customerId === PRIVATE_APPLIANCE_BUYER.id) check([STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version) && products.privateApplianceOrders?.[PRIVATE_APPLIANCE_BUYER.id]?.contractId === key, 'Cedar Records requires its paid, qualified appliance order.');
+    if (contract.customerId === PRIVATE_APPLIANCE_BUYER.id) check([STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && products.privateApplianceOrders?.[PRIVATE_APPLIANCE_BUYER.id]?.contractId === key, 'Cedar Records requires its paid, qualified appliance order.');
     check(customer && key === 'business:' + customer.id && contract.id === key && customer.kinds.includes(contract.contractKind), 'Commercial contract has an unknown, duplicate or incompatible customer.');
     ownCompany(contract.companyId); id(contract.modelId); id(contract.setupFactId); note(contract.lastBottleneck); past(contract.signedWeek);
     const model = models.versions[contract.modelId], hosted = contract.contractKind === 'private-hosted';
@@ -101,7 +103,7 @@ export function assertWave3CommerceState(state: GameState, content: GameContent)
       const work = mulDiv((input * 200 + 100 * 1000) * multiplier, modelWorkBps(model), 10000) + contract.evidence!.lookupWorkCUw * multiplier;
       check(contract.weeklyRequests === customer.weeklyRequests && contract.inputTokensPerRequest === input && contract.outputTokensPerRequest === 100
         && contract.workPerRequestCUw === work && contract.reservedWorkCUw === customer.weeklyRequests * work
-        && contract.reservedMemoryMU === model.residentMU + contract.evidence!.indexMemoryMU + RULES.privateSessionMemoryMU
+        && contract.reservedMemoryMU === model.residentMU + contract.evidence!.indexMemoryMU + RULES.privateSessionMemoryMU + aiSystemSessionMemory(model)
         && contract.servingHeadroomBps === RULES.servingHeadroomBps && contract.dataStaffPerWeek === RULES.retrievalDataStaffPerOrganization, 'Private service invented capacity or omitted its fixed workload, index, memory, upkeep or headroom.');
     } else check(contract.evidence === null && [contract.weeklyRequests, contract.inputTokensPerRequest, contract.outputTokensPerRequest,
       contract.workPerRequestCUw, contract.reservedWorkCUw, contract.reservedMemoryMU, contract.servingHeadroomBps, contract.dataStaffPerWeek].every(value => value === 0), 'A customer-hosted weight license created company inference capacity, work or a retrieval index.');

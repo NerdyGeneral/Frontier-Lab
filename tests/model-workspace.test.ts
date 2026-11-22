@@ -6,6 +6,7 @@ import type { ManualTrainingDraft, DelegatedTrainingDraft, ModelWorkspacePersist
 import type { SavedByteBinding } from '../src/persistence/studio-results';
 import { hashSavedSnapshotSync } from '../src/persistence/saved-snapshot-hash';
 import { DEFAULT_MODEL_DESIGN } from '../src/modules/model-design';
+import { AI_SYSTEM_DEFAULTS } from '../src/content/ai-systems';
 import { recommendedDesignEvaluation } from '../src/core/model-evaluation-goal';
 import type { DevelopmentTrainingOrder } from '../src/contracts/development-plans';
 
@@ -166,6 +167,13 @@ test('test recommendations match specialist and response goals without granting 
   const custom: DevelopmentTrainingOrder={kind:'start_training',baseModelId:'seed-0',packetId:'data',modelDesign:structuredClone(DEFAULT_MODEL_DESIGN)};
   assert.equal(recommendedDesignEvaluation(custom).suiteId,'basic-conversation-1');
   custom.modelDesign!.dataMix.longContext=20; assert.equal(recommendedDesignEvaluation(custom).suiteId,'advanced-capabilities-1');
+  for (const system of Object.values(AI_SYSTEM_DEFAULTS)) {
+    const advice = recommendedDesignEvaluation({ ...custom, modelDesign: { ...custom.modelDesign!, system: structuredClone(system) } });
+    assert.equal(advice.suiteId, 'expanded-capabilities-1', `${system.kind} needs a paid capability baseline before its systems challenge.`);
+    assert.match(advice.reason, /paid capability baseline/);
+    assert.match(advice.reason, /systems challenge next/);
+  }
+  assert.equal(recommendedDesignEvaluation(custom).suiteId, 'advanced-capabilities-1', 'Conventional specialist designs keep their existing diagnostic advice.');
   assert.equal(recommendedDesignEvaluation({...order,recipeId:'behavior-reliability'}).suiteId,'behavior-cases-1');
   custom.modelDesign!.dataMix.longContext=0; custom.modelDesign!.dataMix.documents=80;
   assert.equal(recommendedDesignEvaluation(custom).suiteId,'expanded-capabilities-1');

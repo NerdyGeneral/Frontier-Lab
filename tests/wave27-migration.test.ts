@@ -42,7 +42,7 @@ function inBrowser(storage: MemoryStorage, run: () => void) {
 
 test('W27-M01: S3/S4 are ordinary paid discoveries and a new company receives no release artifacts', () => {
   assert.equal(createInitialState().contentVersion, CONTENT.version);
-  assert.equal(createInitialState().buildVersion, CONTENT.buildVersion); assert.equal(CONTENT.research.length, 54);
+  assert.equal(createInitialState().buildVersion, CONTENT.buildVersion); assert.equal(CONTENT.research.length, 66);
   assert.deepEqual(CONTENT.research.filter(item => ['S3', 'S4'].includes(item.id)).map(item => ({
     id: item.id, requires: item.requires, fee: item.feeCents, role: item.role, staff: item.staffWeeks, work: item.workCUw,
   })), [

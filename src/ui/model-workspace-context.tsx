@@ -12,6 +12,7 @@ import type { ModelWorkspaceSnapshot } from '../persistence/model-workspace';
 export interface ModelWorkspace extends ModelWorkspaceSnapshot {
   setDraft: ModelWorkspaceController['setDraft'];
   saveBlueprint: ModelWorkspaceController['saveBlueprint'];
+  setDevelopmentGoal: ModelWorkspaceController['setDevelopmentGoal'];
 }
 const Context = createContext<ModelWorkspace | null>(null);
 export const ModelWorkspaceProvider = Context.Provider;
@@ -34,6 +35,6 @@ export function useModelWorkspaceController() {
     replace: ({ game, ...input }: OpenInput) => controller.replace({ ...input, playerId: game.playerCompanyId }),
     saved: controller.saved, suspend: controller.suspend,
   }), [controller]);
-  const workspace = useMemo<ModelWorkspace>(() => ({ ...state, setDraft: controller.setDraft, saveBlueprint: controller.saveBlueprint }), [state, controller]);
+  const workspace = useMemo<ModelWorkspace>(() => ({ ...state, setDraft: controller.setDraft, saveBlueprint: controller.saveBlueprint, setDevelopmentGoal: controller.setDevelopmentGoal }), [state, controller]);
   return { workspace, ...actions };
 }

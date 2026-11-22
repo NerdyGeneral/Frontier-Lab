@@ -1,0 +1,14 @@
+✔ a published business funds all three system paths and earns all four new challenge and client outcomes (155433.337493ms)
+✔ systems constraints reward different operating choices and keep old challenge identities byte-stable (22.618603ms)
+✔ renewable offers are stable, visible before eligibility, and reject malformed or obsolete orders (29.814918ms)
+✔ a paid systems commission consumes real capacity, pays once, preserves terms and renews in another window (29481.429352ms)
+✔ a systems commission expires without payment when no client serving capacity is allocated (7188.755012ms)
+✔ the last acceptance boundary freezes the shown quote and does not borrow next-window terms (10487.901523ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 155723.202034

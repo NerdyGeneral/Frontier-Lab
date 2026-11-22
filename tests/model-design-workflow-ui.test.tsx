@@ -36,7 +36,7 @@ const savedManual = (packetId: string): ManualTrainingDraft => ({
   architecture: 'dense', teacherId: '', teacherDomain: 'conversation', trainingView: 'guided', designOpen: false,
 });
 const storedWorkspace = (manual: ManualTrainingDraft, ready = true): ModelWorkspace => ({ manual, delegated: null, blueprints: [], ready,
-  epoch: 17, notice: '', persistent: true, setDraft: noAction, saveBlueprint: noAction });
+  epoch: 17, notice: '', persistent: true, setDraft: noAction, saveBlueprint: noAction, setDevelopmentGoal: noAction });
 
 test('the research shortcut uses the custom intent, and a fresh lab opens the actual custom form', () => {
   let opened = 0;

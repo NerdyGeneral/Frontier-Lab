@@ -2,6 +2,8 @@
 
 import { useMemo } from 'react';
 import type { GameState } from '../contracts/types';
+import { getAISystemMetrics } from '../modules/ai-systems';
+import { getAISystemForecastModel } from '../modules/model-design';
 import { formatMoney, formatUnits } from '../core/math';
 import { DESIGN_SKILL_NAMES, forecastSkill, getDesignCandidateForecast, humanizeDesignRequirement, type ModelDesignCandidate } from './model-design-insights';
 
@@ -17,6 +19,9 @@ export function ModelDesignComparison({ game, saved, current, canAct, onRestore,
   const sameInputs = saved.baseModelId === current.baseModelId && [...saved.packetIds].sort().join('|') === [...current.packetIds].sort().join('|');
   const ready = !!pinned.preview && !!edited.preview && pinned.hasPrepared && edited.hasPrepared;
   const sameFamily = saved.spec.family === current.spec.family;
+  const operating = (candidate: ModelDesignCandidate, forecast: typeof pinned) => getAISystemMetrics(getAISystemForecastModel(candidate.spec, forecast.design,
+    forecast.preview && forecast.hasPrepared ? { capabilityBps: forecast.preview.capabilityRange.minimum, advancedCapabilities: forecast.preview.advancedCapabilityRange?.minimum, reliabilityBps: forecast.preview.reliabilityRange.minimum } : undefined));
+  const savedSystem = operating(saved, pinned), currentSystem = operating(current, edited);
   const skills = (Object.keys(DESIGN_SKILL_NAMES) as (keyof typeof DESIGN_SKILL_NAMES)[]).map(domain => ({
     id: domain, name: DESIGN_SKILL_NAMES[domain], saved: ready ? forecastSkill(pinned.preview!, domain) : null,
     current: ready ? forecastSkill(edited.preview!, domain) : null, lower: false, format: score,
@@ -25,6 +30,11 @@ export function ModelDesignComparison({ game, saved, current, canAct, onRestore,
     { id: 'memory', name: 'Deployed memory', saved: pinned.design.residentMU, current: edited.design.residentMU, lower: true, format: (n: number) => formatUnits(n) + ' MU' },
     { id: 'workspace', name: 'Training memory', saved: pinned.design.requiredMemory, current: edited.design.requiredMemory, lower: true, format: (n: number) => formatUnits(n) + ' MU' },
     { id: 'serving', name: 'Serving multiplier', saved: pinned.design.servingWorkBps, current: edited.design.servingWorkBps, lower: true, format: (n: number) => (n / 10000).toFixed(2) + '×' },
+    { id: 'request-cost', name: 'Serving / 1,000 standard requests', saved: savedSystem.servingCUwPer1000, current: currentSystem.servingCUwPer1000, lower: true, format: (n: number) => n.toLocaleString('en-US', { maximumFractionDigits: 4 }) + ' CUw' },
+    { id: 'session-memory', name: 'Memory per account', saved: savedSystem.sessionMemoryMU, current: currentSystem.sessionMemoryMU, lower: true, format: (n: number) => formatUnits(n) + ' MU' },
+    { id: 'retention', name: 'Case retention', saved: ready ? savedSystem.retentionBps : null, current: ready ? currentSystem.retentionBps : null, lower: false, format: (n: number) => score(n) + '%' },
+    { id: 'verified', name: 'Verified completion', saved: ready ? savedSystem.verifiedCompletionBps : null, current: ready ? currentSystem.verifiedCompletionBps : null, lower: false, format: (n: number) => score(n) + '%' },
+    { id: 'latency', name: 'Relative latency', saved: savedSystem.latencyBps, current: currentSystem.latencyBps, lower: true, format: (n: number) => (n / 10000).toFixed(2) + '×' },
     { id: 'work', name: 'Training work', saved: pinned.design.workCUw, current: edited.design.workCUw, lower: true, format: (n: number) => formatUnits(n) + ' CUw' },
     { id: 'fee', name: 'Setup fee', saved: pinned.design.feeCents, current: edited.design.feeCents, lower: true, format: formatMoney },
   ];

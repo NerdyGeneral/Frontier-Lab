@@ -1,4 +1,5 @@
-import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
+import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
+import { AI_SYSTEM_RESEARCH } from './ai-systems';
 import { DESIGN_RESEARCH } from './model-designs';
 import { CUSTOMIZATION_RESEARCH } from './model-customization-research';
 import { WORKFORCE_POINTS_CONTENT_VERSION } from './wave29';
@@ -12,8 +13,8 @@ import type { GameContent } from '../contracts/types';
  * research fees below exclude wages, compute, and later application work.
  */
 export const CONTENT: GameContent = {
-  version: GAMEPLAY_POLISH_CONTENT_VERSION,
-  buildVersion: '0.36.1',
+  version: AI_SYSTEMS_CONTENT_VERSION,
+  buildVersion: '0.37.0',
   infrastructure: INFRASTRUCTURE_CONTENT,
   title: 'Frontier Lab',
   opening: {
@@ -265,6 +266,7 @@ export const CONTENT: GameContent = {
     },
     ...DESIGN_RESEARCH,
     ...CUSTOMIZATION_RESEARCH,
+    ...AI_SYSTEM_RESEARCH,
   ],
   roadmap: [
     { wave: 0, title: 'Foundation', description: 'Shared state, deterministic weeks, validated commands, opening content, and versioned snapshots.', status: 'complete' },

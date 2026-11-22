@@ -1,3 +1,4 @@
+import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from './gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from './model-customization-version';
 import { CHALLENGE_SKILLS } from '../content/model-challenges';
@@ -49,10 +50,10 @@ export function assertWave1State(state: GameState, content: GameContent): void {
     else check(value.completedWeek === undefined, 'Unfinished project has a completion week.');
   };
   const meter = (completed: number, required: number) => { checkedInteger(completed); checkedInteger(required); check(required > 0 && completed <= required, 'Project work is outside its required range.'); };
-  check(!Object.hasOwn(company, 'passiveWorkforce') || (company.passiveWorkforce === true && [WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version)), 'These workforce campaign rules do not belong to this build.');
+  check(!Object.hasOwn(company, 'passiveWorkforce') || (company.passiveWorkforce === true && [WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)), 'These workforce campaign rules do not belong to this build.');
   const origin = state.slices.campaign.origin;
   if (origin !== undefined) {
-    check(Object.hasOwn(CAMPAIGN_ORIGINS, origin) && state.slices.campaign.rules === 'release' && [WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version), 'Campaign origin is invalid.');
+    check(Object.hasOwn(CAMPAIGN_ORIGINS, origin) && state.slices.campaign.rules === 'release' && [WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version), 'Campaign origin is invalid.');
     const seed = origin === 'garage' ? content.opening.seed : content.opening.seed + ':' + origin;
     check(state.seed === seed, 'Campaign origin seed is invalid.');
     check(CAMPAIGN_ORIGINS[origin].knowledge.every(id => state.slices.research.completedByCompany[state.playerCompanyId]?.includes(id)), 'Founding research is missing.');

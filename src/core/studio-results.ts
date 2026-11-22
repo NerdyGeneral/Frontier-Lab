@@ -2,6 +2,8 @@ import { modelResearchQuoteForLevel, MODEL_RESEARCH_FOCUSES } from '../modules/m
 import { canChooseStaffSpecialty, careerOutput, careerSalary, staffDisplayName } from '../modules/staff-careers';
 import { formatWorkPoints, getStaffPotentialOutput, WORK_POINT_LABELS } from '../modules/workforce-points';
 import { CUSTOMER_BRIEFS } from '../content/customer-briefs';
+import { systemsBriefDefinition } from '../content/systems-briefs';
+import { getSystemsBriefOrders, systemsBriefRequirementText } from '../modules/systems-briefs';
 import { getModelDevelopmentRows } from '../modules/model-development';
 import { modelScoreHighlights } from './model-score-highlights';
 import { CONTENT } from '../content/catalog';
@@ -196,6 +198,18 @@ export function selectStudioResults(game: GameState): readonly StudioResult[] {
       action: { label: 'Open customer briefs', target: { kind: 'intent', intent: { kind: 'panel', panel: 'customer-briefs' } } },
     });
   }
+  for (const order of getSystemsBriefOrders(game)) {
+    if (order.status === 'active' || !realWeek(order.finishedWeek)) continue;
+    const definition = systemsBriefDefinition(order.briefId)!;
+    add({ key: resultKey('brief', order.id, order.finishedWeek, order.status), kind: 'brief', week: order.finishedWeek, sourceId: order.id,
+      title: definition.title,
+      summary: order.status === 'completed' ? `${order.terms.client} paid ${formatMoney(order.terms.feeCents)}.` : `Missed the week ${order.deadlineWeek} deadline for ${order.terms.client}.`,
+      details: [{ label: 'Delivery model', value: game.slices.models.versions[order.modelId]?.name ?? order.modelId },
+        { label: 'Signed requirements', value: systemsBriefRequirementText(order.terms).join(' · ') },
+        { label: 'Delivered client work', value: `${order.qualifyingWeeks}/${order.terms.qualifyingWeeks} consecutive weeks · ${order.terms.requestsPerWeek.toLocaleString('en-US')} requests per week` },
+        { label: 'Final progress', value: order.feedback }],
+      action: { label: 'Open customer briefs', target: { kind: 'intent', intent: { kind: 'panel', panel: 'customer-briefs' } } } });
+  }
   return [...result.values()].sort((a, b) => b.week - a.week || compare(a.key, b.key)).slice(0, STUDIO_RESULT_LIMIT);
 }
 
@@ -217,6 +231,13 @@ export function selectStudioAttention(game: GameState, projects: readonly Studio
   const owner = game.playerCompanyId, attention = new Map<string, StudioAttention>();
   const add = (item: StudioAttention) => { if (!attention.has(item.key)) attention.set(item.key, item); };
   for (const issue of issues) add(issue);
+  for (const order of getSystemsBriefOrders(game)) {
+    if (order.status !== 'active') continue;
+    add({ key: 'systems-brief:' + order.id, title: `${order.terms.client} delivery`,
+      detail: `${order.qualifyingWeeks}/${order.terms.qualifyingWeeks} consecutive delivery weeks · Due Week ${order.deadlineWeek}. ${order.feedback}`,
+      tone: order.deadlineWeek - game.week <= 2 ? 'warning' : 'info',
+      action: { label: 'Review client workload', target: { kind: 'intent', intent: { kind: 'panel', panel: 'customer-briefs' } } } });
+  }
   for (const plan of Object.values(game.slices.models.developmentPlans ?? {})) {
     if (plan.status === 'blocked' || plan.status === 'review') add({ key: 'development:' + plan.id, title: plan.name, detail: plan.message, tone: plan.status === 'blocked' ? 'warning' : 'info', action: { label: 'Review development plan', target: { kind: 'intent', intent: { kind: 'panel', panel: 'development-plans' } } } });
   }

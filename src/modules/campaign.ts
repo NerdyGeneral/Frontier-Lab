@@ -2,14 +2,16 @@ import type { DomainModule } from '../contracts/types';
 import { applyBriefCommand, quoteBriefCommand, reserveBrief, settleBrief, validateBriefCommand } from './customer-briefs';
 import { advanceCampaignProgress, captureCampaignWeek } from './campaign-progress';
 import { CHAPTER_COMMANDS, advanceChapters, applyChapterCommand, quoteChapterCommand, validateChapterCommand } from './chapters';
+import { activeSystemsBrief, applySystemsBriefCommand, quoteSystemsBriefCommand, reserveSystemsBrief, settleSystemsBrief, validateSystemsBriefCommand } from './systems-briefs';
 export { getCampaignView } from './campaign-progress';
 
 export function createCampaignModule(): DomainModule {
-  return { id: 'campaign', owns: ['campaign'], commandKinds: ['accept_customer_brief', ...CHAPTER_COMMANDS],
-    validateCommand: (state, command, content) => command.payload.kind === 'select_chapter' ? validateChapterCommand(state, command) : validateBriefCommand(state, command, content),
-    quoteCommand: (state, command, content) => command.payload.kind === 'select_chapter' ? quoteChapterCommand(command) : quoteBriefCommand(state, command, content),
-    applyCommand: (state, command, content) => command.payload.kind === 'select_chapter' ? applyChapterCommand(state, command) : applyBriefCommand(state, command, content),
-    handlers: { reserve: reserveBrief, settle: settleBrief, plan(state, context) {
+  return { id: 'campaign', owns: ['campaign'], commandKinds: ['accept_customer_brief', 'accept_systems_brief', ...CHAPTER_COMMANDS],
+    validateCommand: (state, command, content) => command.payload.kind === 'select_chapter' ? validateChapterCommand(state, command) : command.payload.kind === 'accept_systems_brief' ? validateSystemsBriefCommand(state, command, content) : validateBriefCommand(state, command, content),
+    quoteCommand: (state, command, content) => command.payload.kind === 'select_chapter' ? quoteChapterCommand(command) : command.payload.kind === 'accept_systems_brief' ? quoteSystemsBriefCommand(state, command) : quoteBriefCommand(state, command, content),
+    applyCommand: (state, command, content) => command.payload.kind === 'select_chapter' ? applyChapterCommand(state, command) : command.payload.kind === 'accept_systems_brief' ? applySystemsBriefCommand(state, command) : applyBriefCommand(state, command, content),
+    handlers: { reserve: state => activeSystemsBrief(state) ? reserveSystemsBrief(state) : reserveBrief(state),
+      settle: (state, context) => activeSystemsBrief(state) ? settleSystemsBrief(state, context) : settleBrief(state, context), plan(state, context) {
     const campaign = structuredClone(state.slices.campaign);
     const conditions: [string, boolean, string][] = [
       ['starter-data-ready', Object.values(state.slices.data.packets).some(d => d.companyId === state.playerCompanyId && d.prepared), 'Prepared training data is ready.'],

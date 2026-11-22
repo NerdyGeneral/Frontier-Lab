@@ -42,7 +42,7 @@ function inBrowser(storage: MemoryStorage, run: () => void) {
 
 test('W28-M01: S5/S6 are paid discoveries with no free profile or successor at company creation', () => {
   assert.equal(createInitialState().contentVersion, CONTENT.version); assert.equal(createInitialState().buildVersion, CONTENT.buildVersion);
-  assert.equal(CONTENT.research.length, 54);
+  assert.equal(CONTENT.research.length, 66);
   assert.deepEqual(CONTENT.research.filter(item => ['S5', 'S6'].includes(item.id)).map(item => ({
     id: item.id, requires: item.requires, fee: item.feeCents, role: item.role, staff: item.staffWeeks, work: item.workCUw,
   })), [

@@ -11,7 +11,7 @@ import { getCompatibleComputePools, getComputePools, getPoolWorkCostRate } from 
 import { checkedAdd, mulDiv } from '../core/math';
 import { modelExecutionHints, modelWorkBps, inheritedModelRights } from './model-runtime';
 import { PREFIX_CACHE, ROUTING } from '../content/wave4-research';
-import { PRODUCT_EFFICIENCY_COMMANDS, activeEfficiency, advanceProductEfficiency, applyProductEfficiency, cacheWarm, commitProductEfficiency, productEfficiencyMemory, productEfficiencyRequests, quoteProductEfficiency, resolveProductEfficiency, routedModel, validateProductEfficiency, warmProductCache } from './product-efficiency';
+import { PRODUCT_EFFICIENCY_COMMANDS, activeEfficiency, advanceProductEfficiency, applyProductEfficiency, cacheWarm, commitProductEfficiency, productEfficiencyMemory, productEfficiencyRequests, productRoutingStateMemory, quoteProductEfficiency, resolveProductEfficiency, routedModel, validateProductEfficiency, warmProductCache } from './product-efficiency';
 import { COMMERCE_COMMANDS, applyBusinessCommand, businessCommit, businessExecute, businessRequests, businessResolve, businessSettle, businessTermBoundary, commercialCapacityRequests, queuedBusinessCapacityRequests, getProductRetrieval, isCommerceCommand, quoteBusinessCommand, retrievalDocumentBonus, validateBusinessCommand } from './business';
 import type { EvidenceCheckUsage } from '../contracts/wave6-evidence';
 import type { RuntimeGuardrailUsage } from '../contracts/wave12-guardrails';
@@ -46,7 +46,7 @@ export function productRequestMeter(state: Readonly<GameState>, product: Product
   // Checking is additional request work; routing, model formats and prefix reuse cannot erase it.
   work = checkedAdd(work, evidenceWorkPerRequest(state, product.id));
   work = checkedAdd(work, runtimeGuardrailWorkPerRequest(state, product.id));
-  return { inputTokens: primary.inputTokens, outputTokens: primary.outputTokens, internalTokens: primary.internalTokens, sessionMemory: primary.sessionMemory, work };
+  return { inputTokens: primary.inputTokens, outputTokens: primary.outputTokens, internalTokens: primary.internalTokens, sessionMemory: checkedAdd(primary.sessionMemory, productRoutingStateMemory(state, product)), work };
 }
 /** A trial retains its completed request fraction when model or feature work changes. */
 export function trialAtMeter(trial: TrialBatch, workPerAccount: number): TrialBatch {

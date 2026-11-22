@@ -1,3 +1,4 @@
+import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import type { CommandPayload, DomainModule, DomainResult, GameContent, GameState, ModelVersion, ModuleContext, ProductOffer } from '../contracts/types';
 import type { RivalCampaign, RivalCampaignKind } from '../contracts/market-dynamics';
 import type { RivalState } from '../contracts/wave2-market';
@@ -135,7 +136,7 @@ export function createRivalCampaign(state: Readonly<GameState>, rival: RivalStat
   const offer = Object.values(state.slices.products.offers).find(product => product.companyId === rival.companyId && product.status === 'active');
   const demand = offer ? productDemand(state, offer, content, week) : null;
   const targetSegment = campaignSegment(kind, rival.style);
-  const tactics = state.contentVersion === GAMEPLAY_POLISH_CONTENT_VERSION
+  const tactics = [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion)
     ? { version: 1 as const, focus: rivalTacticFor(state.seed, rival.companyId, week, rival.style) } : undefined;
   return { id: `rival-campaign:${rival.companyId}:${week}`, kind, startedWeek: week,
     ...(tactics ? { tactics } : {}),

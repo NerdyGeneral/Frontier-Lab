@@ -18,7 +18,7 @@ test('all thirteen customization choices remain visible and searchable in the fu
   const html = renderToStaticMarkup(<StudioResearchTree game={game} canAct onQueue={noAction} onOpenPanel={noAction} onOpenMethod={noAction} />);
   assert.match(html, /data-scope="all"/);
   assert.match(html, /aria-label="Research collection"/);
-  assert.match(textOnly(html), /All research 54 Model customization 13/);
+  assert.match(textOnly(html), /All research 66 Model customization 13 AI systems 12/);
   assert.ok(html.indexOf('aria-label="Research collection"') < html.indexOf('model-architecture-research-'), 'The new collection is reachable before the architecture panel');
   assert.match(html, /type="search"/);
   for (const definition of CUSTOMIZATION_RESEARCH) {

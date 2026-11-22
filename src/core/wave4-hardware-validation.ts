@@ -1,3 +1,4 @@
+import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from './gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from './model-customization-version';
 import { STRATEGY_CONTENT_VERSION } from './strategy-version';
@@ -189,7 +190,7 @@ export function assertWave4HardwareState(state: GameState, content: GameContent)
     check(design.id === key && companyIds.has(design.companyId), 'Chip identity or ownership is invalid.');
     if (Object.hasOwn(design, 'successor')) {
       const successor = design.successor!; record(successor, 'Successor lineage');
-      check([CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version) && Object.keys(successor).sort().join() === 'generation,improvement,parentDesignId,parentFingerprint'
+      check([CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && Object.keys(successor).sort().join() === 'generation,improvement,parentDesignId,parentFingerprint'
         && successor.generation === 2 && ['memory', 'throughput'].includes(successor.improvement), 'Successor metadata is invalid or unavailable in this build.');
       id(successor.parentDesignId, 'Parent design');
       check(typeof successor.parentFingerprint === 'string' && /^[a-f0-9]{8}$/.test(successor.parentFingerprint), 'Parent design fingerprint is invalid.');
@@ -243,8 +244,8 @@ export function assertWave4HardwareState(state: GameState, content: GameContent)
     const active = design.status === 'designing' ? design.design : design.status === 'prototyping' ? design.prototypeRun : null;
     if (design.paused) check(active && active.readyWeek === null, 'Only unfinished design or prototype work may be paused.');
   }
-  if (![CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version)) check(!state.queuedCommands.some(command => command.payload.kind === 'start_chip_successor'), 'Successor commands are unavailable in this build.');
-  const currentSilicon = [SILICON_CONTENT_VERSION, SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version);
+  if (![CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) check(!state.queuedCommands.some(command => command.payload.kind === 'start_chip_successor'), 'Successor commands are unavailable in this build.');
+  const currentSilicon = [SILICON_CONTENT_VERSION, SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version);
   const foundryBookings: { foundry: ChipFoundry; start: number; end: number; racks: number }[] = [];
   const producedRacks = new Set<string>();
   for (const [key, batch] of Object.entries(compute.chipBatches)) {

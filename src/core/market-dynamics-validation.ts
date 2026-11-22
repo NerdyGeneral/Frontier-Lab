@@ -1,3 +1,4 @@
+import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import type { GameState } from '../contracts/types';
 import { RIVAL_CAMPAIGN_RULES } from '../content/market-dynamics';
 import { SEGMENT_BY_ID } from '../content/wave2-market';
@@ -13,7 +14,7 @@ export function assertMarketDynamicsState(state: GameState): void {
   if (calendar !== undefined) {
     check(!!calendar && typeof calendar === 'object' && !Array.isArray(calendar), 'The market calendar must be an object.');
     keys(calendar, ['startedWeek', ...(calendar.sequenceVersion === undefined ? [] : ['sequenceVersion'])], 'The market calendar');
-    if (calendar.sequenceVersion !== undefined) check(calendar.sequenceVersion === 2 && state.contentVersion === GAMEPLAY_POLISH_CONTENT_VERSION, 'The market calendar sequence is not supported by these rules.');
+    if (calendar.sequenceVersion !== undefined) check(calendar.sequenceVersion === 2 && [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion), 'The market calendar sequence is not supported by these rules.');
     checkedInteger(calendar.startedWeek, 'Market calendar start');
     check(calendar.startedWeek <= state.week, 'The market calendar cannot begin in the future.');
   }
@@ -26,7 +27,7 @@ export function assertMarketDynamicsState(state: GameState): void {
     if (campaign.tactics !== undefined) {
       check(!!campaign.tactics && typeof campaign.tactics === 'object' && !Array.isArray(campaign.tactics), 'The rival tactics must be an object.');
       keys(campaign.tactics, ['version', 'focus'], 'Rival tactics');
-      check(state.contentVersion === GAMEPLAY_POLISH_CONTENT_VERSION && campaign.tactics.version === 1
+      check([GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion) && campaign.tactics.version === 1
         && campaign.tactics.focus === rivalTacticFor(state.seed, rival.companyId, campaign.startedWeek, rival.style), 'The rival tactic does not match its frozen campaign choice.');
     }
     check(Object.hasOwn(RIVAL_CAMPAIGN_RULES, campaign.kind), 'The rival campaign kind is not authored.');

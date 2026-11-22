@@ -18,6 +18,7 @@ import { getComputePools, getPoolWorkCostRate, getPoolMultiplierBps, poolSupport
 import { infrastructureRequests } from './infrastructure';
 import { inheritedModelRights, modelExecutionHints } from './model-runtime';
 import { requestMeter } from './product-models';
+import { aiSystemSessionMemory } from './ai-systems';
 import { policyReleaseRejection } from './policy-holdouts';
 import { activeRuntimeGuardrail, runtimeGuardrailAudit, runtimeGuardrailResearchReady } from './runtime-guardrails';
 
@@ -47,7 +48,8 @@ export function assuranceMeter(state: Readonly<GameState>, binding: RuntimeGuard
   return { inputTokensPerRequest: primaryMeter.inputTokens, outputTokensPerRequest: primaryMeter.outputTokens,
     internalTokensPerRequest: primaryMeter.internalTokens, workPerRequestCUw: checkedAdd(baseWork, checker.workPerRequestCUw),
     guardrailWorkPerRequestCUw: checker.workPerRequestCUw,
-    reservedMemoryMU: checkedAdd(checkedAdd(primary.residentMU, secondary?.residentMU ?? 0), checkedAdd(primaryMeter.sessionMemory, checker.memoryMU)),
+    reservedMemoryMU: checkedAdd(checkedAdd(primary.residentMU, secondary?.residentMU ?? 0), checkedAdd(primaryMeter.sessionMemory,
+      checkedAdd(checker.memoryMU, secondary && secondary.id !== primary.id ? aiSystemSessionMemory(secondary) : 0))),
     servingHeadroomBps: RULES.servingHeadroomBps, executionHints: { ...modelExecutionHints(primary),
       ...(secondary && ['edge', 'compact', 'medium', 'large', 'frontier'].indexOf(secondary.family) > ['edge', 'compact', 'medium', 'large', 'frontier'].indexOf(primary.family) ? { modelFamily: secondary.family } : {}),
       ...(secondary?.architecture === 'sparse' ? { requiresFastFabric: true } : {}) } };

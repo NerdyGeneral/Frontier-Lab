@@ -107,7 +107,7 @@ test('challenge tiers measure harder authored tasks, enforce every skill, and ca
   const model = structuredClone(CONTENT.seedModel);
   model.capabilityBps = { conversation: 7600, documents: 7600, coding: 7600, tools: 7600 };
   model.advancedCapabilities = { reasoning: 7600, longContext: 7600, multimodal: 7600 }; model.reliabilityBps = 9300;
-  const counts = MODEL_CHALLENGES.map(tier => modelChallengeCases(model, tier.id).filter(item => item.passed).length);
+  const counts = MODEL_CHALLENGES.filter(tier => !tier.format).map(tier => modelChallengeCases(model, tier.id).filter(item => item.passed).length);
   assert.deepEqual(counts, [21, 14, 0]);
   for (const tier of MODEL_CHALLENGES) assert.deepEqual(modelChallengeCases({ ...model, id: 'renamed-id', name: 'A fresh label' }, tier.id), modelChallengeCases(model, tier.id));
   model.capabilityBps = { conversation: 9900, documents: 9900, coding: 9900, tools: 9900 };

@@ -1,14 +1,18 @@
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
+import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { RESOURCE_SCALE as U } from '../contracts/types';
 import type { GameState, ModelVersion, Rejection } from '../contracts/types';
 import type { CapabilityScores } from '../contracts/wave2-lab';
 import type { AdvancedScores } from '../contracts/advanced-skills';
 import type { DesignDomain, ModelDesignSpec, ModelFamily } from '../contracts/model-design';
 import type { ModelCustomizationReceipt } from '../contracts/model-customization';
+import type { AISystemMetrics, AISystemReceipt } from '../contracts/ai-systems';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from '../core/model-customization-version';
 import { mulDiv } from '../core/math';
 import { customizationHardwareMatches, customizationShapeRejection, customizationUnavailableReason, getCustomizationEffects, getCustomizationResearchIds } from './model-customization';
 import { getModelFamilyGate, getModelResearchFocus, getModelResearchLevel, modelResearchBonusBps } from './model-research';
+import { aiSystemShapeRejection, aiSystemUnavailableReason, createAISystemReceipt, getAISystemMetrics } from './ai-systems';
+import { canonicalStateHash } from '../core/canonical';
 
 export const DESIGN_DOMAINS: readonly DesignDomain[] = ['conversation', 'documents', 'coding', 'tools', 'reasoning', 'longContext', 'multimodal'];
 export const MODEL_DESIGN_FAMILIES: Record<ModelFamily, { name: string; minMillions: number; maxMillions: number; defaultMillions: number; defaultComputeCUw: number; description: string }> = {
@@ -38,9 +42,10 @@ export function modelDesignShapeRejection(spec: unknown): Rejection | undefined 
   const invalid = (message: string): Rejection => ({ code: 'INVALID_COMMAND', message });
   if (!spec || typeof spec !== 'object' || Array.isArray(spec)) return invalid('Choose a model design.');
   const s = spec as ModelDesignSpec;
-  const keys = ['computeBudgetCUw', 'dataMix', 'family', 'mode', 'name', 'parameterMillions', 'sparsityBps', ...(Object.hasOwn(s, 'customization') ? ['customization'] : [])];
+  const keys = ['computeBudgetCUw', 'dataMix', 'family', 'mode', 'name', 'parameterMillions', 'sparsityBps', ...(Object.hasOwn(s, 'customization') ? ['customization'] : []), ...(Object.hasOwn(s, 'system') ? ['system'] : [])];
   if (Object.keys(s).sort().join() !== keys.sort().join()) return invalid('The model design contains missing or unknown choices.');
   if (Object.hasOwn(s, 'customization')) { const problem = customizationShapeRejection(s.customization); if (problem) return problem; }
+  if (Object.hasOwn(s, 'system')) { const problem = aiSystemShapeRejection(s.system); if (problem) return problem; }
   if (typeof s.name !== 'string' || !s.name.trim() || s.name.trim().length > 48 || /[\u0000-\u001f\u007f]/.test(s.name)) return invalid('Name the model using 1–48 characters.');
   if (!['foundation', 'adaptation'].includes(s.mode) || !Object.hasOwn(MODEL_DESIGN_FAMILIES, s.family)) return invalid('Choose a supported model family and training mode.');
   const family = MODEL_DESIGN_FAMILIES[s.family];
@@ -56,13 +61,15 @@ function knownAt(state: Readonly<GameState>, companyId: string, id: string, atWe
 }
 export function modelDesignRejection(state: Readonly<GameState>, companyId: string, baseModelId: string, spec: ModelDesignSpec, atWeek = state.week): Rejection | undefined {
   const shape = modelDesignShapeRejection(spec); if (shape) return shape;
-  if (spec.customization && ![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(state.contentVersion)) return { code: 'INVALID_COMMAND', message: 'These model customization choices require the current model-design version.' };
+  if (spec.customization && ![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion)) return { code: 'INVALID_COMMAND', message: 'These model customization choices require the current model-design version.' };
+  if (spec.system && state.contentVersion !== AI_SYSTEMS_CONTENT_VERSION) return { code: 'INVALID_COMMAND', message: 'AI systems require the current AI Systems version.' };
   const base = state.slices.models.versions[baseModelId];
   if (!base || base.companyId !== companyId || base.runtimeVariant) return { code: 'NOT_READY', message: 'Choose an owned trainable model as the starting point.' };
   if (spec.mode === 'adaptation') {
     const original = getModelDesignForBase(base);
     if (spec.family !== original.family || spec.parameterMillions !== original.parameterMillions || spec.sparsityBps !== original.sparsityBps) return { code: 'NOT_READY', message: 'Continued training keeps the starting model’s family, size and sparsity. Choose a new foundation to change its architecture.' };
     if ((original.customization && !spec.customization) || !customizationHardwareMatches(original.customization, spec.customization)) return { code: 'NOT_READY', message: 'Continued training keeps attention, context and precision from the starting model. Choose a new foundation to change its hardware design.' };
+    if (canonicalStateHash(original.system ?? null) !== canonicalStateHash(spec.system ?? null)) return { code: 'NOT_READY', message: 'Continued training preserves the complete AI system, including experts, state and reasoning controls. Choose a new foundation to change its operating design.' };
   } else {
     const gate = getModelFamilyGate(state, companyId, spec.family, atWeek);
     if (gate) return { code: 'NOT_READY', message: gate };
@@ -70,6 +77,10 @@ export function modelDesignRejection(state: Readonly<GameState>, companyId: stri
   }
   if (spec.sparsityBps > 0 && !knownAt(state, companyId, 'R14', atWeek)) return { code: 'NOT_READY', message: 'Complete Sparse architecture research before using sparse custom models.' };
   if (spec.customization) { const reason = customizationUnavailableReason(state, companyId, spec.customization, atWeek); if (reason) return { code: 'NOT_READY', message: reason }; }
+  if (spec.system) {
+    const reason = aiSystemUnavailableReason(state, companyId, spec.system, atWeek); if (reason) return { code: 'NOT_READY', message: reason };
+    if (spec.system.kind === 'experts' && spec.sparsityBps !== 0) return { code: 'INVALID_COMMAND', message: 'Expert networks set active work with their expert controls. Set ordinary sparsity to 0% to avoid counting the same saving twice.' };
+  }
 }
 export interface ModelDesignForecast {
   targets: CapabilityScores; advancedTargets: AdvancedScores; ceilings: CapabilityScores; advancedCeilings: AdvancedScores;
@@ -77,6 +88,8 @@ export interface ModelDesignForecast {
   servingWorkBps: number; researchLevel: number; frontierRating: number; requiredEvidence: number;
   researchFocus?: import('../contracts/model-research').ModelResearchFocusReceipt;
   customization?: ModelCustomizationReceipt;
+  system?: AISystemReceipt;
+  systemMetrics?: AISystemMetrics;
   reliabilityTargetBps: number;
   notes: string[]; reason?: Rejection;
 }
@@ -89,17 +102,23 @@ export function getModelDesignForecast(state: Readonly<GameState>, companyId: st
   const researchLevel = getModelResearchLevel(state, companyId, atWeek);
   const researchFocus = getModelResearchFocus(state, companyId, atWeek);
   const effects = spec.customization ? getCustomizationEffects(spec.customization) : undefined;
+  const system = spec.system ? createAISystemReceipt(spec.system) : undefined;
+  const systemEffects = system?.effects;
   const sparse = spec.sparsityBps / 10000;
   const researchBonus = researchFocus?.capacityBonusBps ?? modelResearchBonusBps(researchLevel);
   const capacity = Math.min(9950, familyCeiling[spec.family] + researchBonus);
   const totalWeight = Object.values(spec.dataMix).reduce((a, b) => a + b, 0);
   const researchEfficiency = researchFocus ? 1 - researchFocus.efficiencyBonusBps / 10000 : 1 - researchBonus / 20000;
-  const reliabilityTargetBps = 9200 + (researchFocus?.reliabilityBonusBps ?? 0) + (effects?.reliabilityDeltaBps ?? 0);
-  const computeRatio = spec.computeBudgetCUw / U / ((spec.mode === 'foundation' ? 10 : 3) * sizeB + 2) / (1 - sparse * 0.55) / researchEfficiency / ((effects?.computeIntensityBps ?? 10000) / 10000);
+  const originalReliability = 9200 + (researchFocus?.reliabilityBonusBps ?? 0) + (effects?.reliabilityDeltaBps ?? 0);
+  const reliabilityTargetBps = systemEffects ? Math.min(9950, originalReliability + systemEffects.reliabilityDeltaBps) : originalReliability;
+  const computeRatio = spec.computeBudgetCUw / U / ((spec.mode === 'foundation' ? 10 : 3) * sizeB + 2) / (1 - sparse * 0.55) / researchEfficiency / ((effects?.computeIntensityBps ?? 10000) / 10000) / ((systemEffects?.computeIntensityBps ?? 10000) / 10000);
   const computeFit = Math.min(1, Math.log2(1 + computeRatio) / 2.5);
   const sizeFit = Math.min(1, 0.70 + 0.30 * Math.log2(1 + spec.parameterMillions / family.minMillions) / Math.log2(1 + family.maxMillions / family.minMillions));
   const ceiling = Math.round(capacity * sizeFit);
-  const skillCeilings = Object.fromEntries(DESIGN_DOMAINS.map(domain => [domain, effects ? Math.min(9950, mulDiv(ceiling, effects.skillBps[domain], 10000, 'nearest')) : ceiling])) as Record<DesignDomain, number>;
+  const skillCeilings = Object.fromEntries(DESIGN_DOMAINS.map(domain => {
+    const customized = effects ? Math.min(9950, mulDiv(ceiling, effects.skillBps[domain], 10000, 'nearest')) : ceiling;
+    return [domain, systemEffects ? Math.min(9950, mulDiv(customized, systemEffects.skillBps[domain], 10000, 'nearest')) : customized];
+  })) as Record<DesignDomain, number>;
   const skillTargets = Object.fromEntries(DESIGN_DOMAINS.map(domain => {
     const share = spec.dataMix[domain] / totalWeight;
     const focus = 0.58 + 0.42 * Math.min(1.2, Math.sqrt(share * 7));
@@ -113,18 +132,23 @@ export function getModelDesignForecast(state: Readonly<GameState>, companyId: st
   const ceilings: CapabilityScores = { conversation: Math.max(skillCeilings.conversation, targets.conversation), documents: Math.max(skillCeilings.documents, targets.documents), coding: Math.max(skillCeilings.coding, targets.coding), tools: Math.max(skillCeilings.tools, targets.tools) };
   const advancedCeilings: AdvancedScores = { reasoning: Math.max(skillCeilings.reasoning, advancedTargets.reasoning), longContext: Math.max(skillCeilings.longContext, advancedTargets.longContext), multimodal: Math.max(skillCeilings.multimodal, advancedTargets.multimodal) };
   const foundationMemory = Math.ceil(sizeB / 2 * U * (1 + sparse * 0.25));
-  const residentMU = spec.mode === 'adaptation' && base ? base.residentMU : effects ? mulDiv(foundationMemory, effects.residentMemoryBps, 10000, 'ceil') : foundationMemory;
-  const requiredMemory = mulDiv(residentMU * (spec.mode === 'foundation' ? 3 : 2), effects?.workspaceMemoryBps ?? 10000, 10000, 'ceil');
+  const customizedMemory = effects ? mulDiv(foundationMemory, effects.residentMemoryBps, 10000, 'ceil') : foundationMemory;
+  const residentMU = spec.mode === 'adaptation' && base ? base.residentMU : systemEffects ? mulDiv(customizedMemory, systemEffects.residentMemoryBps, 10000, 'ceil') : customizedMemory;
+  const customizedWorkspace = mulDiv(residentMU * (spec.mode === 'foundation' ? 3 : 2), effects?.workspaceMemoryBps ?? 10000, 10000, 'ceil');
+  const requiredMemory = systemEffects ? mulDiv(customizedWorkspace, systemEffects.workspaceMemoryBps, 10000, 'ceil') : customizedWorkspace;
   const originalServingWorkBps = spec.mode === 'adaptation' && base?.modelDesign ? base.modelDesign.servingWorkBps
     : spec.mode === 'adaptation' && base ? (base.architecture === 'sparse' ? 6500 : 10000)
       : Math.max(500, Math.round(spec.parameterMillions / family.defaultMillions * 10000 * (1 - sparse * 0.75) * researchEfficiency));
+  const systemServingWorkBps = systemEffects && spec.mode === 'foundation' ? Math.max(500, mulDiv(originalServingWorkBps, systemEffects.servingWorkBps, 10000, 'nearest')) : originalServingWorkBps;
   const hardwareServingWorkBps = effects ? spec.mode === 'adaptation' && base
-    ? base.modelDesign?.customization?.hardwareServingWorkBps ?? originalServingWorkBps
-    : Math.max(500, mulDiv(originalServingWorkBps, effects.hardwareServingBps, 10000, 'nearest')) : originalServingWorkBps;
-  const servingWorkBps = effects ? Math.max(500, mulDiv(hardwareServingWorkBps, effects.runtimeServingBps, 10000, 'nearest')) : originalServingWorkBps;
-  const requiredEvidence = Math.ceil(Math.ceil(65 + Math.sqrt(sizeB) * (spec.mode === 'foundation' ? 35 : 15)) * (effects?.evidenceBps ?? 10000) / 10000) * U;
+    ? base.modelDesign?.customization?.hardwareServingWorkBps ?? systemServingWorkBps
+    : Math.max(500, mulDiv(systemServingWorkBps, effects.hardwareServingBps, 10000, 'nearest')) : systemServingWorkBps;
+  const servingWorkBps = effects ? Math.max(500, mulDiv(hardwareServingWorkBps, effects.runtimeServingBps, 10000, 'nearest')) : systemServingWorkBps;
+  const customizedEvidence = Math.ceil(Math.ceil(65 + Math.sqrt(sizeB) * (spec.mode === 'foundation' ? 35 : 15)) * (effects?.evidenceBps ?? 10000) / 10000) * U;
+  const requiredEvidence = systemEffects ? Math.ceil(customizedEvidence / U * systemEffects.evidenceBps / 10000) * U : customizedEvidence;
   const frontierRating = Math.round(100 * Math.log2(1 + sizeB) + 100 * Math.log2(1 + computeRatio) + 20 * researchLevel);
-  const feeCents = mulDiv(Math.round((spec.mode === 'foundation' ? 50000 + sizeB * 15000 : 15000 + sizeB * 2000) * (1 + sparse * 0.2)), effects?.setupFeeBps ?? 10000, 10000, 'nearest');
+  const customizedFee = mulDiv(Math.round((spec.mode === 'foundation' ? 50000 + sizeB * 15000 : 15000 + sizeB * 2000) * (1 + sparse * 0.2)), effects?.setupFeeBps ?? 10000, 10000, 'nearest');
+  const feeCents = systemEffects ? mulDiv(customizedFee, systemEffects.setupFeeBps, 10000, 'nearest') : customizedFee;
   const preparationStaff = spec.mode === 'foundation' ? Math.ceil(0.5 + sizeB / 8) * U : 0;
   const notes = [
     'Size, active parameters, compute and the relative data weights calculate the targets. Prepared evidence and data quality determine how much of that potential is earned.',
@@ -136,9 +160,28 @@ export function getModelDesignForecast(state: Readonly<GameState>, companyId: st
   if (effects) notes.push(`Your saved model profile changes skill ceilings, evidence and resource costs. The entire ${spec.computeBudgetCUw / U} CUw budget is still paid; training intensity changes what that work can achieve. Attention, context and precision are fixed when the foundation is built.`);
   if (spec.customization && spec.customization.behavior !== 'balanced') notes.push('Behavior changes need at least 100 reviewed cases. Checkpoints earn a fraction of the change; repeating or renaming a plan does not compound it. Existing policy refusal limits are preserved.');
   if (sparse) notes.push('Sparsity lowers active compute at a small capability cost and extra memory overhead. Compatible fast fabric is still required.');
+  if (system?.spec.kind === 'experts') notes.push(`${system.spec.activeExperts} of ${system.spec.experts} experts run per request, alongside the shared core. All expert weights stay resident; routing quality and load balancing affect useful specialist handoffs. Sparse-compatible fast fabric and at least 16 CU are required for training.`);
+  if (system?.spec.kind === 'stateful') notes.push(`${system.spec.stateSlots} state slots cost ${(system.effects.sessionMemoryMU / U).toFixed(3)} extra MU per account. Retention tests follow 128 facts across a long interaction; trained document and long-context skills determine which facts survive.`);
+  if (system?.spec.kind === 'adaptive') notes.push(`Up to ${system.spec.maxPasses} answer passes use ${system.spec.verifier === 'independent' ? 'a separately trained checker' : 'self-checking'}. ${system.spec.stopping === 'confidence' ? 'Confidence stopping lowers average work and latency with a completion tradeoff.' : 'The full reasoning budget is spent on every standard request.'} Verified completion depends on earned reasoning, tool and coding skills.`);
   if (!packetIds.length) notes.push('Select prepared datasets. A data-mix weight cannot create examples that are missing from your corpus.');
-  return { targets, advancedTargets, ceilings, advancedCeilings, residentMU, requiredMemory, workCUw: spec.computeBudgetCUw,
+  const forecast: ModelDesignForecast = { targets, advancedTargets, ceilings, advancedCeilings, residentMU, requiredMemory, workCUw: spec.computeBudgetCUw,
     feeCents, preparationStaff, servingWorkBps, researchLevel, frontierRating, requiredEvidence, reliabilityTargetBps, ...(researchFocus ? { researchFocus } : {}),
-    ...(effects && spec.customization ? { customization: { version: 1 as const, choices: structuredClone(spec.customization), researchIds: getCustomizationResearchIds(spec.customization), effects, hardwareServingWorkBps } } : {}), notes,
+    ...(effects && spec.customization ? { customization: { version: 1 as const, choices: structuredClone(spec.customization), researchIds: getCustomizationResearchIds(spec.customization), effects, hardwareServingWorkBps } } : {}), ...(system ? { system } : {}), notes,
     ...(shape ?? modelDesignRejection(state, companyId, baseModelId, spec, atWeek) ? { reason: shape ?? modelDesignRejection(state, companyId, baseModelId, spec, atWeek) } : {}) };
+  if (system) forecast.systemMetrics = getAISystemMetrics(getAISystemForecastModel(spec, forecast));
+  return forecast;
+}
+
+/** Read-only projection for comparisons. Pass earned preview scores to include evidence limits. */
+export function getAISystemForecastModel(spec: ModelDesignSpec, forecast: ModelDesignForecast,
+  earned?: { capabilityBps: CapabilityScores; advancedCapabilities?: AdvancedScores; reliabilityBps: number }): ModelVersion {
+  return { id: 'model-design-forecast', companyId: 'forecast', name: spec.name, family: spec.family,
+    architecture: spec.sparsityBps > 0 || spec.system?.kind === 'experts' ? 'sparse' : 'dense', status: 'checkpoint', source: 'Read-only design forecast',
+    capabilityBps: structuredClone(earned?.capabilityBps ?? forecast.targets), advancedCapabilities: structuredClone(earned?.advancedCapabilities ?? forecast.advancedTargets),
+    reliabilityBps: earned?.reliabilityBps ?? forecast.reliabilityTargetBps, residentMU: forecast.residentMU,
+    modelDesign: { spec: structuredClone(spec), researchLevel: forecast.researchLevel, frontierRating: forecast.frontierRating,
+      servingWorkBps: forecast.servingWorkBps, requiredEvidence: forecast.requiredEvidence, ceilings: structuredClone(forecast.ceilings), advancedCeilings: structuredClone(forecast.advancedCeilings),
+      ...(forecast.researchFocus ? { researchFocus: structuredClone(forecast.researchFocus) } : {}),
+      ...(forecast.customization ? { customization: structuredClone(forecast.customization) } : {}),
+      ...(forecast.system ? { system: structuredClone(forecast.system) } : {}) } };
 }

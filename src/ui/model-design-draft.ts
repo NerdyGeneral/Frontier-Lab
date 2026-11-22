@@ -2,6 +2,7 @@ import { RESOURCE_SCALE as U, type ModelVersion } from '../contracts/types';
 import type { ModelDesignSpec } from '../contracts/model-design';
 import type { ModelCustomization } from '../contracts/model-customization';
 import { DEFAULT_MODEL_CUSTOMIZATION, MODEL_CUSTOMIZATION_OPTIONS } from '../content/model-customization';
+import { AI_SYSTEM_DEFAULTS } from '../content/ai-systems';
 import { MODEL_DESIGN_FAMILIES, getModelDesignForBase } from '../modules/model-design';
 
 export const MODEL_CUSTOMIZATION_KEYS = ['attention', 'contextWindow', 'precision', 'objective', 'behavior'] as const;
@@ -45,6 +46,8 @@ export function inheritModelDesignDraft(draft: ModelDesignSpec, base: ModelVersi
   result.family = inherited.family;
   result.parameterMillions = inherited.parameterMillions;
   result.sparsityBps = inherited.sparsityBps;
+  if (inherited.system) result.system = structuredClone(inherited.system);
+  else delete result.system;
   if (draft.customization || inherited.customization) {
     const hardware = inherited.customization ?? DEFAULT_MODEL_CUSTOMIZATION;
     result.customization = { ...(draft.customization ?? hardware),
@@ -62,6 +65,25 @@ export function applyModelDesignPurpose(draft: ModelDesignSpec, purpose: ModelDe
 /** Research navigation changes the retained draft, never an existing model.
  * An architecture invention starts a foundation; training choices can adapt. */
 export function applyModelDesignResearch(draft: ModelDesignSpec, researchId: string): ModelDesignSpec | null {
+  const number = /^A([1-9]|1[0-2])$/.exec(researchId)?.[1];
+  if (number) {
+    const level = Number(number);
+    const system = structuredClone(level <= 4 ? AI_SYSTEM_DEFAULTS.experts : level <= 8 ? AI_SYSTEM_DEFAULTS.stateful : AI_SYSTEM_DEFAULTS.adaptive);
+    if (system.kind === 'experts') {
+      if (level >= 2) system.routing = 'learned';
+      if (level >= 3) system.routing = 'balanced';
+      if (level >= 4) system.experts = 8;
+    } else if (system.kind === 'stateful') {
+      if (level >= 6) { system.memory = 'compressed'; system.stateSlots = 64; }
+      if (level >= 7) { system.memory = 'selective'; system.stateSlots = 256; }
+      if (level >= 8) system.repair = true;
+    } else {
+      if (level >= 10) { system.maxPasses = 4; system.search = 'branching'; }
+      if (level >= 11) system.verifier = 'independent';
+      if (level >= 12) system.stopping = 'confidence';
+    }
+    return { ...structuredClone(draft), mode: 'foundation', system, ...(system.kind === 'experts' ? { sparsityBps: 0 } : {}) };
+  }
   for (const key of MODEL_CUSTOMIZATION_KEYS) {
     const option = MODEL_CUSTOMIZATION_OPTIONS[key].find(item => item.requiredResearch === researchId);
     if (!option) continue;

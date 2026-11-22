@@ -1,3 +1,4 @@
+import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from './gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from './model-customization-version';
 import { STRATEGY_CONTENT_VERSION } from './strategy-version';
@@ -44,7 +45,7 @@ export function createInitialState(content: GameContent = CONTENT, rules: Campai
   };
   initializeWave2Fields(state, content);
   initializeOrigin(state, origin);
-  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
+  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
   const invalid = validateState(state, content); if (invalid.length) throw new EngineError('INVALID_CONTENT', invalid[0].message);
   return rules === 'release' ? withPassiveWorkforce(state) : state;
 }

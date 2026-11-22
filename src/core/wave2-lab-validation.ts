@@ -1,4 +1,7 @@
 import { isModelCustomizationResearch } from './model-customization-version';
+import { isAISystemsResearch } from './ai-systems-version';
+import { AI_SYSTEM_RESEARCH_IDS } from '../content/ai-systems';
+import { CUSTOMIZATION_RESEARCH_IDS } from '../content/model-customization-research';
 import { assertCustomTrainingRun, assertModelDesignInheritance } from './model-design-validation';
 import { isCustomTrainingRecipe } from '../modules/model-design-training';
 import { FAMILY_SERVING_MULTIPLIER } from '../modules/model-design';
@@ -363,7 +366,7 @@ export function assertWave2LabState(state: GameState, content: GameContent): voi
     if (project.researchId === 'S5' || project.researchId === 'S6') check(definition!.requires.every(prerequisite =>
       Object.values(research.projects).some(proof => proof.companyId === project.companyId && proof.researchId === prerequisite
         && proof.status === 'complete' && proof.availableWeek !== undefined && proof.availableWeek <= project.startedWeek)), 'Campus research preceded its paid prerequisite availability.');
-    if (isModelCustomizationResearch(project.researchId)) {
+    if (isModelCustomizationResearch(project.researchId) || isAISystemsResearch(project.researchId)) {
       const founding = project.companyId === state.playerCompanyId ? CAMPAIGN_ORIGINS[state.slices.campaign.origin ?? 'garage'].knowledge : [];
       check(definition!.requires.every(prerequisite => founding.includes(prerequisite)
         || Object.values(research.projects).some(proof => proof.companyId === project.companyId && proof.researchId === prerequisite
@@ -372,8 +375,8 @@ export function assertWave2LabState(state: GameState, content: GameContent): voi
       check(project.id.startsWith('research-') && admission?.status === 'accepted' && admission.week === project.startedWeek, 'Model customization research has no accepted admission.');
       const proofId = `${project.id}:method:${project.researchId}`;
       check(company.postedFacts[proofId] === true, 'Model customization research changed its paid discovery.');
-      for (let index = 1; index <= 13; index++) if ('M' + index !== project.researchId)
-        check(!company.postedFacts[`${project.id}:method:M${index}`], 'Model customization research has conflicting discovery receipts.');
+      for (const id of [...CUSTOMIZATION_RESEARCH_IDS, ...AI_SYSTEM_RESEARCH_IDS]) if (id !== project.researchId)
+        check(!company.postedFacts[`${project.id}:method:${id}`], 'Model design research has conflicting discovery receipts.');
       const fee = company.ledger.find(fact => fact.id === project.id + ':fee');
       if (fee) check(fee.companyId === project.companyId && fee.sourceId === project.id && fee.week === project.startedWeek
         && fee.amountCents === definition!.feeCents && fee.kind === 'expense' && fee.category === 'operating', 'Model customization research changed its paid entry fee.');

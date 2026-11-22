@@ -1,5 +1,5 @@
 import type { GameContent, GameState, TrainingRun } from '../contracts/types';
-import { buildCustomTrainingPlan, isCustomTrainingRecipe } from '../modules/model-design-training';
+import { buildCustomTrainingPlan, customSystemEvidenceRejection, isCustomTrainingRecipe } from '../modules/model-design-training';
 import { modelDesignRejection, modelDesignShapeRejection } from '../modules/model-design';
 import { canonicalStateHash } from './canonical';
 import { checkedInteger, mulDiv } from './math';
@@ -14,6 +14,7 @@ export function assertCustomTrainingRun(state: GameState, run: TrainingRun, cont
   const expected = buildCustomTrainingPlan(state, run.companyId, { baseModelId: run.baseModelId, packetId: run.packetId,
     packetIds: plan!.corpus.packetIds, recipeId: run.recipeId, modelDesign: spec }, content, run.startedWeek, plan!.foundationRights ?? null);
   check(same(plan, expected.plan), 'Custom model targets, architecture, evidence or research changed after admission.');
+  check(!customSystemEvidenceRejection(spec!, plan!), 'AI system training omitted its required specialty or verification evidence.');
   check(run.requiredWork === expected.requiredWork && run.requiredMemory === expected.requiredMemory
     && same(run.anchorScores, expected.anchorScores) && run.anchorReliabilityBps === expected.anchorReliabilityBps
     && same(run.evidence, expected.evidence), 'Custom training changed its paid work, workspace or evidence.');

@@ -1,0 +1,101 @@
+{
+  "release": "0.37.0",
+  "scope": "Focused release verification; not the entire historical test suite",
+  "uniqueAutomatedCasesVerified": 180,
+  "groups": [
+    {
+      "name": "Published-save migration and compatibility",
+      "uniqueCases": 17,
+      "command": "node scripts/test-wave0.mjs ai-systems-migration gameplay-polish-migration model-customization-migration model-design-migration",
+      "result": "passed"
+    },
+    {
+      "name": "Operating designs and existing customization",
+      "uniqueCases": 17,
+      "command": "node scripts/test-wave0.mjs ai-systems custom-model-design model-customization model-customization-research",
+      "result": "verified across initial run and targeted rerun",
+      "rerun": "The all-twelve-discoveries case passed after its input was corrected to confidence stopping, matching its A12 expectation; production behavior was unchanged."
+    },
+    {
+      "name": "Existing customers and skill challenges",
+      "uniqueCases": 10,
+      "command": "node scripts/test-wave0.mjs customer-briefs research-focus-challenges",
+      "result": "passed"
+    },
+    {
+      "name": "Systems scenarios and complete paid continuation",
+      "uniqueCases": 6,
+      "command": "node scripts/test-wave0.mjs systems-scenarios ai-systems-progression",
+      "result": "passed",
+      "log": "ai-systems-037-progression-tests.log"
+    },
+    {
+      "name": "Existing development UI",
+      "uniqueCases": 25,
+      "command": "node --import tsx --test --test-reporter=spec tests/model-designer-ui.test.tsx tests/model-design-workflow-ui.test.tsx tests/model-customization-research-ui.test.tsx tests/development-plans-ui.test.tsx",
+      "result": "passed"
+    },
+    {
+      "name": "AI Systems UI",
+      "uniqueCases": 6,
+      "command": "node --import tsx --test --test-reporter=spec tests/ai-systems-ui.test.tsx",
+      "result": "passed"
+    },
+    {
+      "name": "Workspace persistence and evaluation handoff",
+      "uniqueCases": 13,
+      "command": "node scripts/test-wave0.mjs ai-systems-workspace model-workspace",
+      "result": "passed",
+      "rerun": "The ten model-workspace cases passed again after all three operating designs were given a paid Expanded capabilities baseline recommendation. These overlapping cases are not added twice."
+    },
+    {
+      "name": "Serving accounting, applications, and assurance",
+      "uniqueCases": 24,
+      "command": "node scripts/test-wave0.mjs ai-system-accounting wave4-research wave13-assurance",
+      "result": "verified across initial run and targeted rerun",
+      "rerun": "All four ai-system-accounting cases passed after two test lookups were corrected to select the tested product instead of a rival request. Production code was unchanged."
+    },
+    {
+      "name": "Delegation, core engine, synthetic evidence, and older migration paths",
+      "uniqueCases": 62,
+      "command": "node scripts/test-wave0.mjs development-plans wave0 wave26-synthetic wave27-migration wave28-migration",
+      "result": "verified across initial run and targeted rerun",
+      "rerun": "All 33 wave0 cases passed after the catalog expectation was extended to include the twelve new A research IDs; the other 29 cases passed in the original group."
+    }
+  ],
+  "typecheck": { "command": "npm run typecheck", "exitCode": 0 },
+  "desktopBrowser": {
+    "result": "passed scoped interaction checks",
+    "checks": [
+      "Existing Week 13 campaign and paid model draft restored without advancing time",
+      "Selected Case retention objective remained selected through research and delegated/manual handoffs",
+      "Exact draft name and 24-CUw budget retained through handoffs",
+      "Research shows all 66 discoveries and a dedicated twelve-discovery AI Systems collection",
+      "Four systems challenges and their locked requirements remain visible",
+      "All four renewable customer briefs and acceptance windows remain visible before eligibility",
+      "Restored the preview's original Open exploration objective after verification"
+    ]
+  },
+  "phoneLayout": {
+    "result": "static responsive review completed; actual phone-browser interaction unverified",
+    "limitation": "The narrow iframe harness remained blank in the browser environment, and native browser DevTools was organization-blocked. No security setting was changed.",
+    "checks": [
+      "Primary destinations form a three-column, two-row navigation grid with All menus available",
+      "Goal, operating-design, and brief grids collapse to a single column",
+      "Buttons wrap and retain 44-pixel targets; selects can shrink",
+      "Operating fieldset min-width corrected to zero",
+      "Task bounds account for the header, navigation, visual viewport, and short-screen scrolling"
+    ]
+  },
+  "paidPostTrainingContinuations": {
+    "startingWeek": 763,
+    "independentContinuations": 2,
+    "checks": [
+      { "name": "Ordinary calibration preserves the paid system", "passed": true },
+      { "name": "Memory-format variant halves resident weights while retaining account state", "passed": true, "residentMUBefore": 3.4, "residentMUAfter": 1.7, "sessionMU": 0.1992 },
+      { "name": "Changed-objective adaptation applies the system effects once", "passed": true },
+      { "name": "Paid system checkpoint distills into a conventional student", "passed": true, "residentMU": 2, "sessionMU": 0.02 },
+      { "name": "Private hosted quote, reservation, and saved validation agree", "passed": true, "reservedMU": 4.6592, "extraStateMU": 0.1792, "forgedReductionRejected": true, "saveReloadPassed": true }
+    ]
+  }
+}

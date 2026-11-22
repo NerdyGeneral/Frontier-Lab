@@ -1,3 +1,4 @@
+import { AI_SYSTEMS_CONTENT_VERSION, containsAISystemsFeatures } from './ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION, containsGameplayPolishFeatures } from './gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION, containsModelCustomizationFeatures } from './model-customization-version';
 import { initializeMarketOpportunities } from '../modules/market-opportunities';
@@ -55,14 +56,15 @@ function containsSiliconExpansion(state: GameState): boolean {
       || (command.payload?.kind === 'order_chip_batch' && Object.hasOwn(command.payload, 'foundry'))));
 }
 
-export type MigrationResult = { ok: true; state: GameState; migratedFrom: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 22 | 24 | 27 | 28 | 29 | 30 | 33 | 34 | 35 } | { ok: false; error: string };
+export type MigrationResult = { ok: true; state: GameState; migratedFrom: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 22 | 24 | 27 | 28 | 29 | 30 | 33 | 34 | 35 | 36 } | { ok: false; error: string };
 
 /** Add only Wave 1 records. Economic history, time, identities and random streams stay intact. */
 export function migrateWave0State(input: unknown, content: GameContent): MigrationResult {
+  if (containsAISystemsFeatures(input)) return { ok: false, error: 'AI Systems designs, discoveries and customer evidence were unavailable in this historical save.' };
   if (containsGameplayPolishFeatures(input)) return { ok: false, error: 'Specialist commissions and varied campaign schedules were unavailable in this historical save.' };
   if (containsModelCustomizationFeatures(input)) return { ok: false, error: 'Model customization records were unavailable in this historical save.' };
   if (containsModelDesignFeatures(input)) return { ok: false, error: 'Custom model designs and advanced skill records were unavailable in this historical save.' };
-  if (SCHEMA_VERSION !== 5 || ![WAVE18_CONTENT_VERSION, RELEASE_CAMPAIGN_VERSION, SILICON_CONTENT_VERSION, SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version)) {
+  if (SCHEMA_VERSION !== 5 || ![WAVE18_CONTENT_VERSION, RELEASE_CAMPAIGN_VERSION, SILICON_CONTENT_VERSION, SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) {
     return { ok: false, error: 'This build does not support the requested Wave 0 migration target.' };
   }
   const legacy = input as LegacyGameState;
@@ -109,6 +111,7 @@ export function migrateWave0State(input: unknown, content: GameContent): Migrati
 
 /** Validate the original Wave 1 representation before adding any Wave 2 fields. */
 export function migrateWave1State(input: unknown, content: GameContent): MigrationResult {
+  if (containsAISystemsFeatures(input)) return { ok: false, error: 'AI Systems designs, discoveries and customer evidence were unavailable in this historical save.' };
   if (containsGameplayPolishFeatures(input)) return { ok: false, error: 'Specialist commissions and varied campaign schedules were unavailable in this historical save.' };
   if (containsModelCustomizationFeatures(input)) return { ok: false, error: 'Model customization records were unavailable in this historical save.' };
   if (containsModelDesignFeatures(input)) return { ok: false, error: 'Custom model designs and advanced skill records were unavailable in this historical save.' };
@@ -120,7 +123,7 @@ export function migrateWave1State(input: unknown, content: GameContent): Migrati
   if (containsWave8Features(legacy) || containsWave9Features(legacy) || containsWave10Features(legacy) || containsWave11Features(legacy) || containsWave12Features(legacy) || containsWave13Features(legacy) || containsWave14Features(legacy) || containsWave15Features(legacy) || containsWave16Features(legacy) || containsWave17Features(legacy) || containsWave19Features(legacy) || containsWave18Features(legacy)) return { ok: false, error: 'The Wave 1 save contains methods or receipts that were unavailable in that build.' };
   const state = structuredClone(legacy);
   state.schemaVersion = SCHEMA_VERSION; state.contentVersion = content.version; state.buildVersion = content.buildVersion;
-  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
+  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
   initializeWave2Fields(state, content);
   initializeWave3Fields(state);
   initializeWave4Fields(state);
@@ -131,6 +134,7 @@ export function migrateWave1State(input: unknown, content: GameContent): Migrati
 
 /** Validate an authentic Wave 2 save before adding the empty Wave 3 records. */
 export function migrateWave2State(input: unknown, content: GameContent): MigrationResult {
+  if (containsAISystemsFeatures(input)) return { ok: false, error: 'AI Systems designs, discoveries and customer evidence were unavailable in this historical save.' };
   if (containsGameplayPolishFeatures(input)) return { ok: false, error: 'Specialist commissions and varied campaign schedules were unavailable in this historical save.' };
   if (containsModelCustomizationFeatures(input)) return { ok: false, error: 'Model customization records were unavailable in this historical save.' };
   if (containsModelDesignFeatures(input)) return { ok: false, error: 'Custom model designs and advanced skill records were unavailable in this historical save.' };
@@ -144,7 +148,7 @@ export function migrateWave2State(input: unknown, content: GameContent): Migrati
   if (containsWave8Features(legacy) || containsWave9Features(legacy) || containsWave10Features(legacy) || containsWave11Features(legacy) || containsWave12Features(legacy) || containsWave13Features(legacy) || containsWave14Features(legacy) || containsWave15Features(legacy) || containsWave16Features(legacy) || containsWave17Features(legacy) || containsWave19Features(legacy) || containsWave18Features(legacy)) return { ok: false, error: 'The Wave 2 save contains methods or receipts that were unavailable in that build.' };
   const state = structuredClone(legacy);
   state.schemaVersion = SCHEMA_VERSION; state.contentVersion = content.version; state.buildVersion = content.buildVersion;
-  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
+  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
   initializeWave3Fields(state);
   initializeWave4Fields(state);
   const invalid = validateState(state, content);
@@ -154,6 +158,7 @@ export function migrateWave2State(input: unknown, content: GameContent): Migrati
 
 /** Validate the published Wave 3 representation before adding empty Wave 4 records. */
 export function migrateWave3State(input: unknown, content: GameContent): MigrationResult {
+  if (containsAISystemsFeatures(input)) return { ok: false, error: 'AI Systems designs, discoveries and customer evidence were unavailable in this historical save.' };
   if (containsGameplayPolishFeatures(input)) return { ok: false, error: 'Specialist commissions and varied campaign schedules were unavailable in this historical save.' };
   if (containsModelCustomizationFeatures(input)) return { ok: false, error: 'Model customization records were unavailable in this historical save.' };
   if (containsModelDesignFeatures(input)) return { ok: false, error: 'Custom model designs and advanced skill records were unavailable in this historical save.' };
@@ -167,7 +172,7 @@ export function migrateWave3State(input: unknown, content: GameContent): Migrati
   if (containsWave8Features(legacy) || containsWave9Features(legacy) || containsWave10Features(legacy) || containsWave11Features(legacy) || containsWave12Features(legacy) || containsWave13Features(legacy) || containsWave14Features(legacy) || containsWave15Features(legacy) || containsWave16Features(legacy) || containsWave17Features(legacy) || containsWave19Features(legacy) || containsWave18Features(legacy)) return { ok: false, error: 'The Wave 3 save contains methods or receipts that were unavailable in that build.' };
   const state = structuredClone(legacy);
   state.schemaVersion = SCHEMA_VERSION; state.contentVersion = content.version; state.buildVersion = content.buildVersion;
-  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
+  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
   initializeWave4Fields(state);
   const invalid = validateState(state, content);
   if (invalid.length) return { ok: false, error: 'The upgraded save failed validation: ' + invalid[0].message };
@@ -337,6 +342,7 @@ function containsWave18Features(state: GameState): boolean {
 
 /** Preserve the schema 5 records; new methods require future ordinary commands. */
 function migrateSchema5Content(input: unknown, content: GameContent, sourceVersion: string, wave: 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 21 | 23 | 26 | 27 | 28 | 29): MigrationResult {
+  if (containsAISystemsFeatures(input)) return { ok: false, error: 'AI Systems designs, discoveries and customer evidence were unavailable in this historical save.' };
   if (containsGameplayPolishFeatures(input)) return { ok: false, error: 'Specialist commissions and varied campaign schedules were unavailable in this historical save.' };
   if (containsModelCustomizationFeatures(input)) return { ok: false, error: 'Model customization records were unavailable in this historical save.' };
   if (containsModelDesignFeatures(input)) return { ok: false, error: 'Custom model designs and advanced skill records were unavailable in this historical save.' };
@@ -350,7 +356,7 @@ function migrateSchema5Content(input: unknown, content: GameContent, sourceVersi
     || (wave < 14 && containsWave14Features(legacy)) || (wave < 15 && containsWave15Features(legacy)) || (wave < 16 && containsWave16Features(legacy)) || (wave < 17 && containsWave17Features(legacy)) || (wave < 21 && sourceVersion !== WAVE18_CONTENT_VERSION && ((wave < 19 && containsWave19Features(legacy)) || containsWave18Features(legacy)))) return { ok: false, error: `The Wave ${wave} save contains methods or receipts that were unavailable in that build.` };
   const state = structuredClone(legacy);
   state.contentVersion = content.version; state.buildVersion = content.buildVersion;
-  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
+  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
   const invalid = validateState(state, content);
   if (invalid.length) return { ok: false, error: 'The upgraded save failed validation: ' + invalid[0].message };
   return { ok: true, state, migratedFrom: (wave + 1) as Extract<MigrationResult, { ok: true }>['migratedFrom'] };
@@ -398,6 +404,7 @@ export function migrateWave29State(input: unknown, content: GameContent): Migrat
 
 /** Upgrade the published seven-skill build without rewriting paid model provenance. */
 export function migrateModelDevelopmentState(input: unknown, content: GameContent): MigrationResult {
+  if (containsAISystemsFeatures(input)) return { ok: false, error: 'AI Systems designs, discoveries and customer evidence were unavailable in this historical save.' };
   if (containsGameplayPolishFeatures(input)) return { ok: false, error: 'Specialist commissions and varied campaign schedules were unavailable in this historical save.' };
   if (containsModelCustomizationFeatures(input)) return { ok: false, error: 'Model customization records were unavailable in this historical save.' };
   if (containsStrategyFeatures(input)) return { ok: false, error: 'Strategy records were unavailable in the prior build.' };
@@ -412,7 +419,8 @@ export function migrateModelDevelopmentState(input: unknown, content: GameConten
 
 /** The expansion changes only version metadata. Every existing paid design stays frozen. */
 export function migrateStrategyState(input: unknown, content: GameContent): MigrationResult {
-  if (![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(content.version)) return { ok: false, error: 'This build cannot upgrade the strategy save to that version.' };
+  if (![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) return { ok: false, error: 'This build cannot upgrade the strategy save to that version.' };
+  if (containsAISystemsFeatures(input)) return { ok: false, error: 'AI Systems designs, discoveries and customer evidence were unavailable in this historical save.' };
   if (containsGameplayPolishFeatures(input)) return { ok: false, error: 'Specialist commissions and varied campaign schedules were unavailable in this historical save.' };
   if (containsModelCustomizationFeatures(input)) return { ok: false, error: 'Model customization records were unavailable in this historical save.' };
   const old = input as GameState;
@@ -428,7 +436,8 @@ export function migrateStrategyState(input: unknown, content: GameContent): Migr
 /** A 0.35 lab keeps its exact paid model plans, research, announced calendar and
  * current rival plans. New commissions and future rival campaigns are opt-in play. */
 export function migrateModelCustomizationState(input: unknown, content: GameContent): MigrationResult {
-  if (content.version !== GAMEPLAY_POLISH_CONTENT_VERSION) return { ok: false, error: 'This build cannot upgrade the model customization save to that version.' };
+  if (![GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) return { ok: false, error: 'This build cannot upgrade the model customization save to that version.' };
+  if (containsAISystemsFeatures(input)) return { ok: false, error: 'AI Systems designs, discoveries and customer evidence were unavailable in this historical save.' };
   if (containsGameplayPolishFeatures(input)) return { ok: false, error: 'Specialist commissions and varied campaign schedules were unavailable in this historical save.' };
   const old = input as GameState;
   const errors = validateState(old, { ...content, version: MODEL_CUSTOMIZATION_CONTENT_VERSION, buildVersion: old?.buildVersion });
@@ -436,4 +445,18 @@ export function migrateModelCustomizationState(input: unknown, content: GameCont
   const state = structuredClone(old); state.contentVersion = content.version; state.buildVersion = content.buildVersion;
   const invalid = validateState(state, content);
   return invalid.length ? { ok: false, error: invalid[0].message } : { ok: true, state, migratedFrom: 35 };
+}
+
+/** Upgrade 0.36 without changing any paid design, report, reserve or market plan. */
+export function migrateGameplayPolishState(input: unknown, content: GameContent): MigrationResult {
+  if (content.version !== AI_SYSTEMS_CONTENT_VERSION) return { ok: false, error: 'This build cannot upgrade the gameplay save to that version.' };
+  if (containsAISystemsFeatures(input)) return { ok: false, error: 'AI Systems records were unavailable in this historical save.' };
+  const old = input as GameState;
+  const errors = validateState(old, { ...content, version: GAMEPLAY_POLISH_CONTENT_VERSION, buildVersion: old?.buildVersion });
+  if (errors.length) return { ok: false, error: 'The previous save failed validation: ' + errors[0].message };
+  const state = structuredClone(old);
+  state.contentVersion = content.version;
+  state.buildVersion = content.buildVersion;
+  const invalid = validateState(state, content);
+  return invalid.length ? { ok: false, error: invalid[0].message } : { ok: true, state, migratedFrom: 36 };
 }

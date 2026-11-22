@@ -15,7 +15,7 @@ import { createPlayerOnlyState } from './fixtures/player-only';
 test('customization research registers thirteen paid choices, complete pathways and valid prerequisite references', () => {
   assert.deepEqual(validateContent(CONTENT), []);
   assert.deepEqual(CUSTOMIZATION_RESEARCH.map(item => item.id), ['M1', 'M2', 'M3', 'M4', 'M5', 'M6', 'M7', 'M8', 'M9', 'M10', 'M11', 'M12', 'M13']);
-  assert.equal(CONTENT.research.length, 54);
+  assert.equal(CONTENT.research.length, 66);
   assert.deepEqual(CUSTOMIZATION_RESEARCH_GROUPS.flatMap(group => [...group.ids]), [...CUSTOMIZATION_RESEARCH_IDS]);
   for (const definition of CUSTOMIZATION_RESEARCH) {
     assert.equal(CONTENT.research.filter(item => item.id === definition.id).length, 1);
