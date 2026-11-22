@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../core/connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import type { CommandPayload, DomainModule, DomainResult, GameContent, GameState, ModelVersion, ModuleContext, ProductOffer } from '../contracts/types';
 import type { RivalCampaign, RivalCampaignKind } from '../contracts/market-dynamics';
@@ -16,6 +17,8 @@ import { createComputeModule } from './compute';
 import { marketOpportunityAnnouncement } from './market-opportunities';
 import { rivalCampaignPriceTarget, rivalTacticFor } from './rival-tactics';
 import { requestMeter } from './product-models';
+import { createCompanyModule } from './company';
+import { RIVAL_SYSTEMS_RULES, proposeRivalSystemsStep, rivalSystemModelFits, rivalSystemsFocus } from './rival-systems';
 
 /** An observed-state policy proposes normal commands; the engine validates/quotes/applies them. */
 export function planRivals(state: Readonly<GameState>, ctx: ModuleContext): DomainResult {
@@ -136,10 +139,12 @@ export function createRivalCampaign(state: Readonly<GameState>, rival: RivalStat
   const offer = Object.values(state.slices.products.offers).find(product => product.companyId === rival.companyId && product.status === 'active');
   const demand = offer ? productDemand(state, offer, content, week) : null;
   const targetSegment = campaignSegment(kind, rival.style);
-  const tactics = [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion)
+  const tactics = [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion)
     ? { version: 1 as const, focus: rivalTacticFor(state.seed, rival.companyId, week, rival.style) } : undefined;
+  const systemFocus = rivalSystemsFocus(state, rival.style);
   return { id: `rival-campaign:${rival.companyId}:${week}`, kind, startedWeek: week,
     ...(tactics ? { tactics } : {}),
+    ...(systemFocus ? { systems: { version: 1 as const, focus: systemFocus } } : {}),
     reviewWeek: week + RIVAL_CAMPAIGN_RULES[kind].durationWeeks, targetSegment,
     startingCashCents: company.cashCents, startingAccounts: state.slices.markets.cohorts.filter(cohort => cohort.companyId === rival.companyId
       && (cohort.segmentId ?? 'regular') === targetSegment && cohort.activeWeek <= week).reduce((sum, cohort) => sum + cohort.count, 0),
@@ -159,6 +164,11 @@ function campaignAchieved(state: Readonly<GameState>, rival: RivalState, live: P
   if (campaign.kind === 'cash-recovery') return state.slices.company.companies[rival.companyId].cashCents >= campaign.reserveTargetCents;
   if (!live) return false;
   const demand = productDemand(state, live, content, state.week), baseline = campaign.startingModelId ? state.slices.models.versions[campaign.startingModelId] : null;
+  if (campaign.systems) {
+    const usage = state.slices.products.lastUsage[live.id];
+    return rivalSystemModelFits(state, campaign, demand.model) && live.workload?.id === campaign.systems.focus && !!usage?.billedCents && usage.fulfillmentBps >= 9500
+      && (campaign.kind !== 'value-expansion' || campaign.priceTargetCents !== null && demand.contract.weeklyPriceCents <= campaign.priceTargetCents);
+  }
   const domain = campaign.tactics ? live.kind === 'developer-api' ? 'coding' : live.kind === 'business-docs' ? 'documents' : 'conversation'
     : campaign.kind === 'enterprise-service' ? 'documents' : 'conversation';
   if (campaign.tactics?.focus === 'efficiency' && (!baseline || !efficientModelImprovement(demand.model, baseline, domain))) return false;
@@ -182,7 +192,7 @@ function planRivalCampaigns(state: Readonly<GameState>, ctx: ModuleContext): Dom
   const messages: NonNullable<DomainResult['messages']> = [];
   const announcement = marketOpportunityAnnouncement(state, ctx.week);
   if (announcement) messages.push({ category: 'market', message: announcement });
-  const owners: DomainModule[] = [createLabModule(ctx.content), createResearchModule(ctx.content), createProductsModule(ctx.content), createComputeModule(ctx.content)];
+  const owners: DomainModule[] = [createLabModule(ctx.content), createResearchModule(ctx.content), createProductsModule(ctx.content), createComputeModule(ctx.content), createCompanyModule(ctx.content)];
   for (const rival of Object.values(markets.rivals)) {
     const company = state.slices.company.companies[rival.companyId], fleet = state.slices.compute.fleets[rival.companyId];
     if (company.arrearsCents > 0) {
@@ -195,7 +205,7 @@ function planRivalCampaigns(state: Readonly<GameState>, ctx: ModuleContext): Dom
     if (!rival.campaign || ctx.week >= rival.campaign.reviewWeek) {
       rival.campaign = createRivalCampaign(state, rival, ctx.content, ctx.week);
       messages.push({ category: 'market', public: true, companyId: company.id,
-        message: `${company.name} announced “${RIVAL_CAMPAIGN_RULES[rival.campaign.kind].name}”${rival.campaign.tactics ? ' · ' + RIVAL_TACTIC_RULES[rival.campaign.tactics.focus].name : ''}, with a strategy review in Week ${rival.campaign.reviewWeek}. Plans depend on its ordinary budget and delivered results.` });
+        message: `${company.name} announced “${rival.campaign.systems ? RIVAL_SYSTEMS_RULES[rival.campaign.systems.focus].name : RIVAL_CAMPAIGN_RULES[rival.campaign.kind].name}”${rival.campaign.tactics ? ' · ' + RIVAL_TACTIC_RULES[rival.campaign.tactics.focus].name : ''}, with a strategy review in Week ${rival.campaign.reviewWeek}. Plans depend on its ordinary budget and delivered results.` });
     }
     const campaign = rival.campaign;
     campaign.status = company.cashCents < financial.reserve ? 'protecting-cash' : campaignAchieved(state, rival, live, ctx.content) ? 'completed' : 'pursuing';
@@ -220,10 +230,14 @@ function planRivalCampaigns(state: Readonly<GameState>, ctx: ModuleContext): Dom
     const researching = Object.values(state.slices.research.projects).some(project => project.companyId === company.id && project.status !== 'complete');
     const developing = Object.values(state.slices.models.trainingRuns).some(run => run.companyId === company.id && run.status !== 'complete')
       || Object.values(state.slices.models.evaluationRuns).some(run => run.companyId === company.id && run.status !== 'complete')
-      || !!campaign.tactics && Object.values(state.slices.models.applicationRuns ?? {}).some(run => run.companyId === company.id && run.status !== 'complete');
+      || !!campaign.tactics && Object.values(state.slices.models.applicationRuns ?? {}).some(run => run.companyId === company.id && run.status !== 'complete')
+      || !!campaign.systems && Object.values(state.slices.data.preparationJobs).some(job => job.companyId === company.id && job.status !== 'complete');
     const unfinished = researching || developing;
-    const minimumResearch = campaign.tactics && (researching || campaign.status === 'pursuing') ? RESOURCE_SCALE : 0;
-    const minimumDevelopment = campaign.tactics && (developing || campaign.status === 'pursuing') ? RESOURCE_SCALE : 0;
+    // A systems ambition does not by itself justify paying for a training cluster.
+    // Grow the engineering floor once ordinary commands have actually funded work;
+    // keep the small prospective budget while saving for the next prerequisite.
+    const minimumResearch = campaign.tactics && (researching || campaign.status === 'pursuing') ? (campaign.systems && researching ? 2 : 1) * RESOURCE_SCALE : 0;
+    const minimumDevelopment = campaign.tactics && (developing || campaign.status === 'pursuing') ? (campaign.systems && developing ? 4 : 1) * RESOURCE_SCALE : 0;
     const desiredServing = Math.ceil(pressure * (campaign.tactics ? 1.25 : 1.1) / (RESOURCE_SCALE / 4)) * (RESOURCE_SCALE / 4);
     const failing = offers.some(product => (state.slices.products.lastUsage[product.id]?.paidAccounts ?? 0) > 0
       && (state.slices.products.lastUsage[product.id]?.fulfillmentBps ?? 10000) < 9800);
@@ -243,6 +257,17 @@ function planRivalCampaigns(state: Readonly<GameState>, ctx: ModuleContext): Dom
     }
     if (!action && (campaign.tactics ? failing || needsCapacity && plannedCapacity > fleet.cloudCU + fleet.ownedCU : failing || desiredServing > fleet.cloudCU + fleet.ownedCU) && fleet.cloudCU < ctx.content.firstSale.maxCloudCU)
       propose({ kind: 'set_cloud_capacity', cu: Math.min(ctx.content.firstSale.maxCloudCU, fleet.cloudCU + 4 * RESOURCE_SCALE) }, 'Reserved additional paid cloud capacity to repair service.');
+    if (!action && campaign.systems && unfinished && needsCapacity) {
+      // A larger ideal budget must not strand already-paid work when another
+      // rental is unaffordable. Reuse the remaining owned/rented capacity;
+      // slower real progress is preferable to a zeroed research or model queue.
+      const serving = Math.min(desiredServing, fleet.cloudCU + fleet.ownedCU);
+      const available = fleet.cloudCU + fleet.ownedCU - serving;
+      const research = researching ? Math.min(minimumResearch, Math.floor(available / (developing ? 2 : 1))) : 0;
+      const development = developing ? Math.min(minimumDevelopment, available - research) : 0;
+      if (research + development > 0 && (serving !== fleet.allocation.serving || research !== fleet.allocation.research || development !== fleet.allocation.development))
+        propose({ kind: 'allocate_compute', serving, research, development }, 'Reused funded capacity to preserve paid engineering while new rentals are unaffordable.');
+    }
     if (!action && campaign.status === 'protecting-cash' && live && ctx.week - rival.lastPriceWeek >= 8) {
       const demand = productDemand(state, live, ctx.content, ctx.week), maximum = live.kind === 'basic-chat' ? 10000 : 100000;
       const price = Math.min(maximum, Math.ceil(demand.contract.weeklyPriceCents * 1.1));
@@ -292,6 +317,7 @@ function planRivalCampaigns(state: Readonly<GameState>, ctx: ModuleContext): Dom
       if (!action) activity = 'Continuing funded research, training or evaluation before the next campaign step.';
     }
     if (!action && !unfinished && campaign.status === 'pursuing' && live) {
+      if (campaign.systems) proposeRivalSystemsStep(state, rival, live, ctx.content, propose);
       const demand = productDemand(state, live, ctx.content, ctx.week), domain = live.kind === 'developer-api' ? 'coding' : live.kind === 'business-docs' ? 'documents' : 'conversation';
       const models = Object.values(state.slices.models.versions).filter(model => model.companyId === company.id);
       const candidate = models.find(model => !model.evaluationReportId && (model.trainingRunId && state.slices.models.trainingRuns[model.trainingRunId]?.outputModelId === model.id
@@ -332,7 +358,7 @@ function planRivalCampaigns(state: Readonly<GameState>, ctx: ModuleContext): Dom
     campaign.lastDecisionWeek = ctx.week;
     campaign.lastDecision = activity || (campaign.status === 'completed' ? 'The announced objective was reached; maintaining service until the scheduled strategy review.'
       : campaign.status === 'protecting-cash' ? 'Holding new projects while protecting operating reserves.' : 'Maintaining the current offer; the next affordable improvement is not ready yet.');
-    rival.publicActivity = `${RIVAL_CAMPAIGN_RULES[campaign.kind].name}${campaign.tactics ? ' · ' + RIVAL_TACTIC_RULES[campaign.tactics.focus].name : ''}: ${action ? 'planning to act next week. ' : ''}${campaign.lastDecision}`;
+    rival.publicActivity = `${campaign.systems ? RIVAL_SYSTEMS_RULES[campaign.systems.focus].name : RIVAL_CAMPAIGN_RULES[campaign.kind].name}${campaign.tactics ? ' · ' + RIVAL_TACTIC_RULES[campaign.tactics.focus].name : ''}: ${action ? 'planning to act next week. ' : ''}${campaign.lastDecision}`;
   }
   return { updates: { markets }, commands, messages };
 }

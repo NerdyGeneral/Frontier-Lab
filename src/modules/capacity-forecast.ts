@@ -116,7 +116,7 @@ function cloudState(state: Readonly<GameState>, totalCloudCU: number): GameState
 function cloudRemedy(state: Readonly<GameState>, requests: WorkRequest[], staffGrants: StaffGrant[], alreadyFits: boolean, content: GameContent): ForecastCloudPlan {
   const companyId = state.playerCompanyId, fleet = state.slices.compute.fleets[companyId];
   if (alreadyFits) return { additionalCU: 0, additionalRentCents: 0, totalCloudCU: fleet.cloudCU, servingAllocationCU: fleet.allocation.serving, usesSpareAllocation: false, reason: 'Your current serving limit covers this customer demand.' };
-  if (state.slices.company.companies[companyId].arrearsCents > 0) return { additionalCU: null, additionalRentCents: null, totalCloudCU: null, servingAllocationCU: null, usesSpareAllocation: false, reason: 'Pay overdue bills to make compute available again.' };
+  if (state.slices.company.companies[companyId].arrearsCents > 0) return { additionalCU: null, additionalRentCents: null, totalCloudCU: null, servingAllocationCU: null, usesSpareAllocation: false, reason: 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.' };
   const compute = createComputeModule(content);
   // Search actual whole-CU choices rather than assuming that a greedy placement
   // across specialized pools is monotone. The authored cloud ceiling bounds this.

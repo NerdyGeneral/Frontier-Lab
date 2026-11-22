@@ -2,7 +2,7 @@ import type { DevelopmentGoal } from '../persistence/model-workspace';
 import type { GameState, ModelVersion } from '../contracts/types';
 import { MODEL_CHALLENGES } from '../content/model-challenges';
 import { getModelChallengeCaseViews } from '../modules/model-challenges';
-import { getSystemsBriefOffers, systemsBriefRequirements } from '../modules/systems-briefs';
+import { getSystemsBriefOffers, systemsBriefRequirementText, systemsBriefRequirements } from '../modules/systems-briefs';
 import { MODEL_DESIGN_PURPOSES } from './model-design-draft';
 
 export const SYSTEMS_GOAL_NAMES = {
@@ -42,10 +42,11 @@ export function developmentGoalChecks(game: GameState, goal: DevelopmentGoal, mo
   const suiteId = goal.kind === 'system-challenge' ? goal.id : BRIEF_CHALLENGES[goal.id];
   const challenge = MODEL_CHALLENGES.find(item => item.id === suiteId);
   const offer = goal.kind === 'renewable-brief' ? getSystemsBriefOffers(game).find(item => item.briefId === goal.id) : undefined;
+  const terms = goal.kind === 'renewable-brief' ? goal.terms ?? offer?.terms : undefined;
   const checks = model ? getModelChallengeCaseViews(model, suiteId) : [];
   return {
     description: offer?.description ?? challenge?.description ?? 'Build toward this operating target, then measure the finished model.',
-    requirements: offer?.requirements ?? [], customerMissing: model && offer ? systemsBriefRequirements(model, offer) : [], checks,
+    requirements: terms ? systemsBriefRequirementText(terms) : [], customerMissing: model && terms ? systemsBriefRequirements(model, terms) : [], checks,
     destination: goal.kind === 'renewable-brief' ? '#customer-briefs' : '#model-challenges',
     destinationLabel: goal.kind === 'renewable-brief' ? 'View customer opportunity' : 'View paid challenge',
   };

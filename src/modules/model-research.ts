@@ -84,7 +84,7 @@ export function modelResearchGate(state: Readonly<GameState>, companyId: string)
 export function validateModelResearch(state: Readonly<GameState>, command: GameCommand): Rejection | undefined {
   const p = command.payload, owner = command.companyId;
   if (!state.slices.company.companies[owner]) return reject('The company does not exist.', 'UNKNOWN_COMPANY');
-  if (state.slices.company.companies[owner].arrearsCents) return reject('Resolve unpaid expenses before starting architecture research.', 'ARREARS');
+  if (state.slices.company.companies[owner].arrearsCents) return reject('This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.', 'ARREARS');
   if (p.kind === 'start_model_research') {
     if (p.focus !== undefined && !Object.hasOwn(MODEL_RESEARCH_FOCUSES, p.focus)) return reject('Choose a supported research focus.', 'INVALID_COMMAND');
     const gate = modelResearchGate(state, owner);

@@ -51,7 +51,7 @@ export function validateFacilitySpecializationCommand(state: Readonly<GameState>
   const shape = facilitySpecializationCommandShapeReason(command.payload); if (shape) return reject(shape, 'INVALID_COMMAND');
   const p = command.payload as Wave28FacilityCommand, company = state.slices.company.companies[command.companyId];
   if (!company) return reject('This company does not exist.', 'UNKNOWN_COMPANY');
-  if (company.arrearsCents > 0) return reject('Resolve unpaid bills before changing a facility profile.', 'ARREARS');
+  if (company.arrearsCents > 0) return reject('This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.', 'ARREARS');
   if (p.kind === 'start_facility_specialization') {
     if (!facilitySpecializationResearchReady(state, command.companyId)) return reject('Complete paid Facility specialization S5 before funding a site profile.');
     const site = state.slices.compute.facilities[p.facilityId];

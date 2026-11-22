@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
-import { ModelWorkspaceController, isTrainingBlueprintOrder, parseModelWorkspace } from '../src/persistence/model-workspace';
+import { ModelWorkspaceController, isTrainingBlueprintOrder, parseModelWorkspace, isModelWorkspaceData, modelWorkspaceDataForExport } from '../src/persistence/model-workspace';
 import type { ManualTrainingDraft, DelegatedTrainingDraft, ModelWorkspacePersistence } from '../src/persistence/model-workspace';
 import type { SavedByteBinding } from '../src/persistence/studio-results';
 import { hashSavedSnapshotSync } from '../src/persistence/saved-snapshot-hash';
@@ -177,4 +177,23 @@ test('test recommendations match specialist and response goals without granting 
   assert.equal(recommendedDesignEvaluation({...order,recipeId:'behavior-reliability'}).suiteId,'behavior-cases-1');
   custom.modelDesign!.dataMix.longContext=0; custom.modelDesign!.dataMix.documents=80;
   assert.equal(recommendedDesignEvaluation(custom).suiteId,'expanded-capabilities-1');
+});
+
+test('portable workspace metadata preserves objectives and drafts without granting commands or crossing sessions', async () => {
+  const source = storage(), original = new ModelWorkspaceController(source.io);
+  original.open({ playerId: 'player', mode: 'owner', savedBytes: source.primary }); await flush();
+  original.setDraft('manual', manual()); original.setDevelopmentGoal({ kind: 'system-challenge', id: 'systems-memory-1' });
+  assert.equal(original.saveBlueprint('Compact service', order), null);
+  const portable = modelWorkspaceDataForExport(original.getSnapshot());
+  assert.equal(isModelWorkspaceData(portable), true); assert.equal(Object.hasOwn(portable, 'ready'), false);
+  assert.deepEqual(portable.blueprints[0].objective, portable.developmentGoal);
+  const target = storage(), restored = new ModelWorkspaceController(target.io);
+  restored.replace({ playerId: 'player', mode: 'owner', savedBytes: target.primary });
+  assert.equal(await restored.restoreData(portable), true);
+  assert.deepEqual(modelWorkspaceDataForExport(restored.getSnapshot()), portable);
+  assert.deepEqual(parseModelWorkspace(target.metadata)?.data, portable);
+  const corrupt = { ...portable, blueprints: [{ ...portable.blueprints[0], objective: { kind: 'system-challenge', id: 'invented-title' } }] };
+  assert.equal(await restored.restoreData(corrupt), false);
+  restored.open({ playerId: 'player', mode: 'observer', savedBytes: target.primary });
+  assert.equal(await restored.restoreData(portable), false);
 });

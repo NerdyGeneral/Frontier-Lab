@@ -10,6 +10,8 @@ import { ModelChallengesPanel } from '../src/ui/model-challenges-panel';
 import { StudioTaskActionsProvider } from '../src/ui/studio-interaction-context';
 import { createPlayerOnlyState } from './fixtures/player-only';
 import { withPassiveWorkforce } from '../src/modules/workforce';
+import { DevelopmentProjectResult } from '../src/ui/development-project-result';
+import { ModelWorkspaceProvider } from '../src/ui/model-workspace-context';
 
 const noAction = () => assert.fail('Rendering must not start work or advance time');
 const buttons = (html: string) => [...html.matchAll(/<button\b([^>]*)>([\s\S]*?)<\/button>/g)].map(match => ({ attributes: match[1], text: match[2].replace(/<[^>]*>/g, '') }));
@@ -93,4 +95,14 @@ test('challenge workbench keeps its stable panel id and exposes locked tiers wit
   assert.match(html, /No titles earned yet/); assert.match(html, /paid capability test/);
   const evaluations = buttons(html).filter(button => button.attributes.includes('data-studio-review="evaluate_model"'));
   assert.equal(evaluations.length, 7); assert.ok(evaluations.every(button => button.attributes.includes('disabled')));
+});
+
+test('completed projects retain their own goal and route specialist releases without reading the current draft goal', () => {
+  const game = planScenario(32, 'review'), saved = game.slices.models.developmentPlans!['development-ui-plan'];
+  const workspace = { manual: null, delegated: null, blueprints: [], ready: true, epoch: 1, notice: '', persistent: false,
+    developmentGoal: { kind: 'system-challenge' as const, id: 'systems-retention-1' as const }, setDraft: noAction, saveBlueprint: () => null, setDevelopmentGoal: noAction };
+  const html = renderToStaticMarkup(<ModelWorkspaceProvider value={workspace}><DevelopmentProjectResult game={game} plan={{ ...saved, objective: { kind: 'purpose', id: 'coding' } }} canAct onQueue={noAction} /></ModelWorkspaceProvider>);
+  assert.match(html, /Plan the developer release/); assert.doesNotMatch(html, /Choose a release|Case retention|Continuity Systems/);
+  const legacy = renderToStaticMarkup(<ModelWorkspaceProvider value={workspace}><DevelopmentProjectResult game={game} plan={saved} canAct onQueue={noAction} /></ModelWorkspaceProvider>);
+  assert.doesNotMatch(legacy, /Development objective and requirements/, 'An old project without a goal must not inherit a new workbench goal.');
 });

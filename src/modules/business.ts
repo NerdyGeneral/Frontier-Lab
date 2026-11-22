@@ -1,5 +1,8 @@
 import { FAMILY_SERVING_MULTIPLIER } from './model-design';
 import { aiSystemSessionMemory } from './ai-systems';
+import { canonicalStateHash } from '../core/canonical';
+import { hasConnectedCompanyRules } from '../core/connected-company-version';
+import { createProductWorkloadReceipt, getProductWorkloadMeasure, isProductWorkloadId, productWorkloadExplanation, workloadErrorBps, workloadPrivatePrice } from './product-workloads';
 import { CONTENT } from '../content/catalog';
 import { assuranceCapacityRequests, assuranceQueuedCapacityRequests, assuranceOrganizationCount } from './assured-api';
 import { isCapabilitySuite } from './evaluation-classification';
@@ -19,6 +22,9 @@ import { acceptPrivateAppliances, applyPrivateApplianceOrder, commitPrivateAppli
 
 export { COMMERCE_COMMANDS };
 const live = (contract: CommercialContract): boolean => ['building', 'ready', 'active'].includes(contract.status);
+export function commercialWorkloadProofId(contract: Pick<CommercialContract, 'id' | 'companyId' | 'modelId' | 'generation' | 'workload' | 'weeklyPriceCents'>): string {
+  return `business-workload:${contract.companyId}:${contract.id}:${contract.generation}:${canonicalStateHash({ modelId: contract.modelId, workload: contract.workload, weeklyPriceCents: contract.weeklyPriceCents })}`;
+}
 const family = (model: GameState['slices']['models']['versions'][string]): number => FAMILY_SERVING_MULTIPLIER[model.family];
 const rejection = (code: Rejection['code'], message: string): Rejection => ({ code, message });
 const proportion = (granted: number, required: number): number => required ? Math.min(10000, mulDiv(granted, 10000, required)) : 10000;
@@ -114,7 +120,9 @@ function newContract(state: Readonly<GameState>, command: GameCommand, content: 
     status: 'building', requiredDeliveryStaff: hosted ? RULES.privateDeploymentStaff : RULES.licenseDeliveryStaff,
     completedDeliveryStaff: 0, readyWeek: null, termStartedWeek: null, termEndsWeek: null, termIndex: 0, autoRenew: false,
     termWeeksServed: 0, termServiceBpsTotal: 0, breachWeeks: 0, endedWeek: null, lastBottleneck: 'Delivery of the fixed model and its integration needs Design points.',
-    evidence, rights: getModelCommerceRights(state, model.id, content), weeklyPriceCents: hosted ? customer.hostedWeeklyCents : customer.licenseWeeklyCents,
+    evidence, rights: getModelCommerceRights(state, model.id, content), weeklyPriceCents: workloadPrivatePrice(hosted ? customer.hostedWeeklyCents : customer.licenseWeeklyCents,
+      p.workload ? createProductWorkloadReceipt(p.workload, state.week) : undefined),
+    ...(p.workload ? { workload: createProductWorkloadReceipt(p.workload, state.week) } : {}),
     weeklyRequests: hosted ? customer.weeklyRequests : 0, reservedWorkCUw: hosted ? customer.weeklyRequests * work : 0,
     reservedMemoryMU: hosted ? checkedAdd(model.residentMU, checkedAdd(evidence!.indexMemoryMU, checkedAdd(RULES.privateSessionMemoryMU, aiSystemSessionMemory(model)))) : 0,
     servingHeadroomBps: hosted ? RULES.servingHeadroomBps : 0, inputTokensPerRequest: input, outputTokensPerRequest: output, workPerRequestCUw: work,
@@ -157,6 +165,7 @@ export function validateBusinessCommand(state: Readonly<GameState>, command: Gam
     return;
   }
   if (p.kind !== 'sign_business_contract') return rejection('INVALID_COMMAND', 'This is not a business commitment action.');
+  if (p.workload !== undefined && (!hasConnectedCompanyRules(state.contentVersion) || !isProductWorkloadId(p.workload))) return rejection('INVALID_COMMAND', 'Choose an available customer workload for this campaign.');
   if (p.customerId === PRIVATE_APPLIANCE_BUYER.id) return rejection('INVALID_COMMAND', 'Cedar Records requires its qualified private appliance order; a standalone license cannot replace the hardware package.');
   if (!completed.includes('R12')) return rejection('NOT_READY', 'Complete R12 Enterprise Commitments before signing a private deployment or a weight license.');
   const customer = BUSINESS_BY_ID[p.customerId];
@@ -170,6 +179,10 @@ export function validateBusinessCommand(state: Readonly<GameState>, command: Gam
   if (!model || model.companyId !== command.companyId || !modelHasCommercialEvaluation(state, model.id)
     || model.capabilityBps[customer.domain] < customer.minimumScoreBps || model.reliabilityBps < customer.minimumReliabilityBps) return rejection('NOT_READY', `${customer.name} needs an owned evaluated ${customer.domain} score of ${customer.minimumScoreBps / 100} and reliability of ${customer.minimumReliabilityBps / 100}.`);
   const policyRejection = policyReleaseRejection(state, model.id); if (policyRejection) return policyRejection;
+  if (p.workload) {
+    const measured = getProductWorkloadMeasure(model, createProductWorkloadReceipt(p.workload, command.issuedForWeek))!;
+    if (measured.fitBps < 10000) return rejection('NOT_READY', productWorkloadExplanation(measured) + ' Meet the operating promise before signing its premium contract.');
+  }
   const rights = getModelCommerceRights(state, model.id, content);
   if (p.contractKind === 'customer-hosted' && !rights.weights) return rejection('NOT_READY', 'Customer-hosted delivery requires weight distribution rights throughout this model’s training lineage.');
   if (p.contractKind === 'private-hosted' && (!rights.hosted || !completed.includes('R6') || !p.packetId || !retrievalEvidence(state, p.packetId, command.companyId))) return rejection('NOT_READY', 'Private hosting requires R6, hosted model rights, and your prepared hosted-use retrieval data.');
@@ -220,8 +233,11 @@ export function applyBusinessCommand(state: Readonly<GameState>, command: GameCo
     return { updates: { products }, messages: [{ category: 'command', companyId: command.companyId, message: p.renew ? 'Business renewal enabled, subject to delivered service at the term boundary.' : 'Business renewal disabled; this term will expire at its boundary.' }] };
   }
   const contract = newContract(state, command, content); products.commercialContracts[contract.id] = contract;
-  return { updates: { products }, facts: [{ id: contract.setupFactId, companyId: command.companyId, week: state.week, sourceId: contract.id, category: 'operating', amountCents: contract.setupFeeCents,
-    label: BUSINESS_BY_ID[contract.customerId].name + (contract.contractKind === 'private-hosted' ? ': private deployment setup' : ': weight delivery setup'), kind: 'expense' }],
+  const facts: NonNullable<DomainResult['facts']> = [{ id: contract.setupFactId, companyId: command.companyId, week: state.week, sourceId: contract.id, category: 'operating', amountCents: contract.setupFeeCents,
+    label: BUSINESS_BY_ID[contract.customerId].name + (contract.contractKind === 'private-hosted' ? ': private deployment setup' : ': weight delivery setup'), kind: 'expense' }];
+  if (contract.workload) facts.push({ id: commercialWorkloadProofId(contract), companyId: command.companyId, week: state.week, sourceId: contract.id,
+    category: 'operating', kind: 'expense', amountCents: 0, label: 'Accepted fixed customer workload and premium fee' });
+  return { updates: { products }, facts,
     messages: [{ category: 'project', companyId: command.companyId, message: `${BUSINESS_BY_ID[contract.customerId].name} signed. Delivery must finish before the twelve-week term and weekly billing begin.` }] };
 }
 
@@ -305,18 +321,21 @@ export function businessExecute(state: Readonly<GameState>, ctx: ModuleContext):
     const grant = hosted ? ctx.resources.computeGrants.find(grant => grant.requestId === requestId) : undefined;
     const executed = grant?.hardwareEffectiveCUw ?? 0, dataGranted = staff(requestId, 'data'), supportGranted = staff(requestId, 'commercial');
     const fulfillment = hosted ? proportion(executed, contract.reservedWorkCUw) : 10000, freshness = proportion(dataGranted, contract.dataStaffPerWeek);
-    const service = Math.min(fulfillment, freshness, proportion(supportGranted, contract.supportStaffPerWeek));
+    const workload = getProductWorkloadMeasure(state.slices.models.versions[contract.modelId], contract.workload);
+    const service = Math.min(fulfillment, freshness, proportion(supportGranted, contract.supportStaffPerWeek), workload?.fitBps ?? 10000);
     const model = state.slices.models.versions[contract.modelId], bonus = hosted ? mulDiv(contract.evidence!.documentBonusBps, freshness, 10000) : 0;
     const score = Math.min(9500, mulDiv(model.capabilityBps.documents, 8000, 10000) + mulDiv(model.capabilityBps.conversation, 2000, 10000) + bonus);
     const probability = (difficulty: number) => mulDiv(Math.max(500, Math.min(9800, 5000 + score - difficulty)), model.reliabilityBps, 10000);
-    const error = hosted ? 10000 - mulDiv(probability(0), 7000, 10000) - mulDiv(probability(2000), 3000, 10000) : null;
+    const error = hosted ? workloadErrorBps(10000 - mulDiv(probability(0), 7000, 10000) - mulDiv(probability(2000), 3000, 10000), workload) : null;
     const gross = contract.weeklyPriceCents, credits = businessCredits(gross, service, BUSINESS_BY_ID[contract.customerId].slaBps);
     const shortages = [fulfillment < 10000 ? 'serving capacity' : '', freshness < 10000 ? 'data upkeep' : '', supportGranted < contract.supportStaffPerWeek ? 'support staff' : ''].filter(Boolean);
     const usage: CommercialUsage = { week: ctx.week, requestedWorkCUw: contract.reservedWorkCUw, executedWorkCUw: executed, physicalWorkCUw: grant?.physicalCUw ?? 0,
       inputTokens: hosted ? mulDiv(executed, contract.inputTokensPerRequest, contract.workPerRequestCUw) : 0, outputTokens: hosted ? mulDiv(executed, contract.outputTokensPerRequest, contract.workPerRequestCUw) : 0,
       dataStaffRequired: contract.dataStaffPerWeek, dataStaffGranted: dataGranted, supportStaffRequired: contract.supportStaffPerWeek, supportStaffGranted: supportGranted,
       freshnessBps: freshness, fulfillmentBps: fulfillment, serviceBps: service, technicalErrorBps: error, grossCents: gross, creditsCents: credits, billedCents: gross - credits,
-      explanation: shortages.length ? `Service shortfall: ${shortages.join(', ')}. Unmet service receives credits and SLA penalties.` : hosted ? 'Fixed private workload served with current evidence and support.' : 'Fixed weights delivered; support available. The customer pays for and operates its own inference compute.' };
+      ...(workload ? { workload } : {}),
+      explanation: (shortages.length ? `Service shortfall: ${shortages.join(', ')}. Unmet service receives credits and SLA penalties.` : hosted ? 'Fixed private workload served with current evidence and support.' : 'Fixed weights delivered; support available. The customer pays for and operates its own inference compute.')
+        + (workload ? ' ' + productWorkloadExplanation(workload) : '') };
     contract.lastUsage = usage; contract.termWeeksServed++; contract.termServiceBpsTotal = checkedAdd(contract.termServiceBpsTotal, service);
     contract.breachWeeks = service < RULES.breachServiceBps ? contract.breachWeeks + 1 : 0; contract.lastBottleneck = shortages.length ? usage.explanation : '';
   }
@@ -350,7 +369,8 @@ export function businessSettle(state: Readonly<GameState>, ctx: ModuleContext): 
     if (products.commercialInvoices.some(invoice => invoice.id === id) || state.slices.company.postedFacts[id]) continue;
     const invoice: CommercialInvoice = { id, contractId: contract.id, customerId: contract.customerId, companyId: contract.companyId, modelId: contract.modelId,
       contractKind: contract.contractKind, generation: contract.generation, termIndex: contract.termIndex, week: ctx.week,
-      grossCents: usage.grossCents, creditsCents: usage.creditsCents, amountCents: usage.billedCents, serviceBps: usage.serviceBps };
+      grossCents: usage.grossCents, creditsCents: usage.creditsCents, amountCents: usage.billedCents, serviceBps: usage.serviceBps,
+      ...(contract.workload ? { workload: structuredClone(contract.workload) } : {}) };
     products.commercialInvoices.push(invoice); contract.lifetimeBilledCents = checkedAdd(contract.lifetimeBilledCents, invoice.amountCents); contract.lifetimeCreditsCents = checkedAdd(contract.lifetimeCreditsCents, invoice.creditsCents);
     facts.push({ id, companyId: contract.companyId, week: ctx.week, sourceId: contract.id, category: 'revenue', amountCents: invoice.amountCents,
       label: BUSINESS_BY_ID[contract.customerId].name + (contract.contractKind === 'private-hosted' ? ': private service after SLA credits' : ': fixed-model license and support after credits'), kind: 'receipt' });

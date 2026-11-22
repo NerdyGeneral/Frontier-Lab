@@ -1,6 +1,6 @@
 import { isModelChallengeSuite, validateModelChallengeAdmission, createModelChallengeAdmission } from './model-challenges';
 import { DEVELOPMENT_PLAN_COMMANDS } from '../contracts/development-plans';
-import { applyDevelopmentCommand, quoteDevelopmentCommand, validateDevelopmentCommand } from './development-plans';
+import { applyDevelopmentCommand, quoteDevelopmentCommand, validateDevelopmentCommand, limitDevelopmentRequests } from './development-plans';
 import { formatWorkPoints } from './workforce-points';
 import { trainingEvidenceFingerprint } from './replay-curriculum';
 import { RESOURCE_SCALE as U } from '../contracts/types';
@@ -57,7 +57,7 @@ function validateLabCommand(state: Readonly<GameState>, command: GameCommand, co
   if (!own(state.slices.company.companies, command.companyId)) return rejection('UNKNOWN_COMPANY', 'The company does not exist.');
   if ((FEEDBACK_COMMANDS as readonly string[]).includes(p.kind)) return validateFeedbackCommand(state, command, content);
   if ((FEEDBACK_REVIEW_COMMANDS as readonly string[]).includes(p.kind)) return validateFeedbackReviewCommand(state, command, content);
-  if (p.kind !== 'set_job_paused' && state.slices.company.companies[command.companyId].arrearsCents) return rejection('ARREARS', 'Resolve unpaid expenses before starting a lab project.');
+  if (p.kind !== 'set_job_paused' && state.slices.company.companies[command.companyId].arrearsCents) return rejection('ARREARS', 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.');
   if ((DATA_COMMANDS as readonly string[]).includes(p.kind)) return validateDataCommand(state, command);
   if ((SYNTHETIC_COMMANDS as readonly string[]).includes(p.kind)) return validateSyntheticCommand(state, command, content);
   if (p.kind === 'create_model_variant') return validateModelApplication(state, command);
@@ -118,7 +118,7 @@ function labRequests(state: Readonly<GameState>, content: GameContent): WorkRequ
     requests.push({ id: workId(run.id), companyId: run.companyId, taskId: run.id, category: 'development', normalizedWorkCUw: work, memoryMU: work ? model.residentMU : 0, priority: 20, poolId: 'auto',
       ...modelExecutionHints(model), staffDemand: [{ role: 'research', staffWeeks: run.requiredStaff - run.completedStaff }] });
   }
-  return requests;
+  return limitDevelopmentRequests(state, requests);
 }
 function applyTrainingWork(run: TrainingRun, work: number): void {
   if (work > run.requiredWork - run.completedWork + overheadRemaining(run)) throw new Error('Training grant exceeds remaining useful work and checkpoint overhead.');

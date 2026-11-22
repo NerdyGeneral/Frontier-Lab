@@ -6,14 +6,17 @@ import { Metric, Metrics, Section } from './components';
 import type { PanelProps } from './panels';
 import { campaignActionLinks } from './guide-links';
 import { ChapterPanel } from './chapter-panel';
+import { CompanySpecialistAmbitions, CompanyWorldPanel } from './company-progression-panel';
 
 export function CampaignPanel(props: PanelProps) {
   const { game } = props;
   const campaign = getCampaignView(game, CONTENT);
   return <Section title="Chapters and company ambitions" id="campaign">
+    <CompanyWorldPanel game={game} />
     <ChapterPanel {...props} />
+    <CompanySpecialistAmbitions game={game} />
     <h3 className="campaign-ambition-heading">Long-term ambitions</h3>
-    <p className="small-note">All three ambitions track your results automatically at the end of each week. Open a route’s requirements to find your next goal.</p>
+    <p className="small-note">The original three ambitions continue tracking your results automatically at the end of each week. Open a route’s requirements to find your next goal.</p>
     <Metrics><Metric label="Campaign rules">{game.slices.campaign.rules === 'release' ? 'Release' : 'Classic'}</Metric><Metric label="Endings earned">{campaign.completedCount} / {campaign.routes.length}</Metric></Metrics>
     {campaign.completedCount > 0 && <p className="campaign-achievement">Ending unlocked! Keep running your company and work toward the other ambitions.</p>}
     <div className="campaign-routes">{campaign.routes.map(route => {

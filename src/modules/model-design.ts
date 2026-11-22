@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../core/connected-company-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { RESOURCE_SCALE as U } from '../contracts/types';
@@ -13,6 +14,7 @@ import { customizationHardwareMatches, customizationShapeRejection, customizatio
 import { getModelFamilyGate, getModelResearchFocus, getModelResearchLevel, modelResearchBonusBps } from './model-research';
 import { aiSystemShapeRejection, aiSystemUnavailableReason, createAISystemReceipt, getAISystemMetrics } from './ai-systems';
 import { canonicalStateHash } from '../core/canonical';
+import { RIVAL_STARTS } from '../core/wave2-state';
 
 export const DESIGN_DOMAINS: readonly DesignDomain[] = ['conversation', 'documents', 'coding', 'tools', 'reasoning', 'longContext', 'multimodal'];
 export const MODEL_DESIGN_FAMILIES: Record<ModelFamily, { name: string; minMillions: number; maxMillions: number; defaultMillions: number; defaultComputeCUw: number; description: string }> = {
@@ -57,12 +59,13 @@ export function modelDesignShapeRejection(spec: unknown): Rejection | undefined 
 }
 function knownAt(state: Readonly<GameState>, companyId: string, id: string, atWeek: number): boolean {
   return (state.slices.research.completedByCompany[companyId] ?? []).includes(id)
-    && Object.values(state.slices.research.projects).some(p => p.companyId === companyId && p.researchId === id && p.status === 'complete' && p.availableWeek! <= atWeek);
+    && (Object.values(state.slices.research.projects).some(p => p.companyId === companyId && p.researchId === id && p.status === 'complete' && p.availableWeek! <= atWeek)
+      || state.contentVersion === CONNECTED_COMPANY_CONTENT_VERSION && RIVAL_STARTS.some(rival => 'rival-' + rival.id === companyId && rival.research.includes(id)));
 }
 export function modelDesignRejection(state: Readonly<GameState>, companyId: string, baseModelId: string, spec: ModelDesignSpec, atWeek = state.week): Rejection | undefined {
   const shape = modelDesignShapeRejection(spec); if (shape) return shape;
-  if (spec.customization && ![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion)) return { code: 'INVALID_COMMAND', message: 'These model customization choices require the current model-design version.' };
-  if (spec.system && state.contentVersion !== AI_SYSTEMS_CONTENT_VERSION) return { code: 'INVALID_COMMAND', message: 'AI systems require the current AI Systems version.' };
+  if (spec.customization && ![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion)) return { code: 'INVALID_COMMAND', message: 'These model customization choices require the current model-design version.' };
+  if (spec.system && ![AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion)) return { code: 'INVALID_COMMAND', message: 'AI systems require the current AI Systems version.' };
   const base = state.slices.models.versions[baseModelId];
   if (!base || base.companyId !== companyId || base.runtimeVariant) return { code: 'NOT_READY', message: 'Choose an owned trainable model as the starting point.' };
   if (spec.mode === 'adaptation') {

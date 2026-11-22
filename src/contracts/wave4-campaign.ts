@@ -22,6 +22,8 @@ export interface CampaignEnding {
 }
 
 export interface Wave4CampaignFields {
+  /** Added at the 0.38 boundary; historical paid work and ending proofs stay unchanged. */
+  progression?: import('./company-progression').CompanyProgression;
   chapters?: import('./strategic-variety').ChapterProgress;
   customerBriefs?: Partial<Record<import('./customer-briefs').BriefId, import('./customer-briefs').CustomerBrief>>;
   systemsBriefs?: Record<string, import('./systems-briefs').SystemsBriefOrder>;

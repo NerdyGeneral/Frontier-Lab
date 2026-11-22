@@ -93,7 +93,7 @@ export function feedbackRowCounts(study: Pick<FeedbackStudy, 'sampling' | 'conse
 export function feedbackProductReason(state: Readonly<GameState>, companyId: string, productId: string, content: GameContent = CONTENT): Rejection | undefined {
   const company = state.slices.company.companies[companyId], product = state.slices.products.offers[productId];
   if (!company) return reject('UNKNOWN_COMPANY', 'This company does not exist.');
-  if (company.arrearsCents > 0) return reject('ARREARS', 'Resolve unpaid bills before starting customer feedback work.');
+  if (company.arrearsCents > 0) return reject('ARREARS', 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.');
   if (!feedbackResearchReady(state, companyId)) return reject('NOT_READY', 'Research Preference tuning (R5) before collecting consented customer feedback.');
   if (!product || product.companyId !== companyId || !['basic-chat', 'developer-api'].includes(product.kind)) {
     return reject('NOT_READY', 'Choose one of your paid Chat or developer API products. Business documents, private contracts and license traffic are outside this consent protocol.');

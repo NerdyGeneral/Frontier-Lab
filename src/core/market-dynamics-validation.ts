@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from './connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import type { GameState } from '../contracts/types';
 import { RIVAL_CAMPAIGN_RULES } from '../content/market-dynamics';
@@ -5,6 +6,7 @@ import { SEGMENT_BY_ID } from '../content/wave2-market';
 import { checkedInteger } from './math';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from './gameplay-polish-version';
 import { rivalCampaignPriceTarget, rivalTacticFor } from '../modules/rival-tactics';
+import { rivalSystemsFocus } from '../modules/rival-systems';
 
 const check = (condition: unknown, message: string): void => { if (!condition) throw new Error(message); };
 const keys = (value: object, expected: readonly string[], label: string) => check(Object.keys(value).sort().join() === [...expected].sort().join(), `${label} has unknown or missing fields.`);
@@ -14,7 +16,7 @@ export function assertMarketDynamicsState(state: GameState): void {
   if (calendar !== undefined) {
     check(!!calendar && typeof calendar === 'object' && !Array.isArray(calendar), 'The market calendar must be an object.');
     keys(calendar, ['startedWeek', ...(calendar.sequenceVersion === undefined ? [] : ['sequenceVersion'])], 'The market calendar');
-    if (calendar.sequenceVersion !== undefined) check(calendar.sequenceVersion === 2 && [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion), 'The market calendar sequence is not supported by these rules.');
+    if (calendar.sequenceVersion !== undefined) check(calendar.sequenceVersion === 2 && [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion), 'The market calendar sequence is not supported by these rules.');
     checkedInteger(calendar.startedWeek, 'Market calendar start');
     check(calendar.startedWeek <= state.week, 'The market calendar cannot begin in the future.');
   }
@@ -23,11 +25,17 @@ export function assertMarketDynamicsState(state: GameState): void {
     if (campaign === undefined) continue;
     check(!!calendar, 'A rival campaign requires the saved market calendar.');
     check(!!campaign && typeof campaign === 'object' && !Array.isArray(campaign), 'A rival campaign must be an object.');
-    keys(campaign, ['id', 'kind', 'startedWeek', 'reviewWeek', 'targetSegment', 'startingCashCents', 'startingAccounts', 'startingModelId', 'startingPriceCents', 'priceTargetCents', 'reserveTargetCents', 'status', 'lastDecisionWeek', 'lastDecision', ...(campaign.tactics === undefined ? [] : ['tactics'])], 'A rival campaign');
+    keys(campaign, ['id', 'kind', 'startedWeek', 'reviewWeek', 'targetSegment', 'startingCashCents', 'startingAccounts', 'startingModelId', 'startingPriceCents', 'priceTargetCents', 'reserveTargetCents', 'status', 'lastDecisionWeek', 'lastDecision', ...(campaign.tactics === undefined ? [] : ['tactics']), ...(campaign.systems === undefined ? [] : ['systems'])], 'A rival campaign');
+    if (campaign.systems !== undefined) {
+      check(!!campaign.systems && typeof campaign.systems === 'object' && !Array.isArray(campaign.systems), 'Rival systems program must be an object.');
+      keys(campaign.systems, ['version', 'focus'], 'Rival systems program');
+      check(state.contentVersion === CONNECTED_COMPANY_CONTENT_VERSION && campaign.systems.version === 1 && campaign.systems.focus === rivalSystemsFocus(state, rival.style)
+        && !!state.slices.campaign.progression && campaign.startedWeek >= state.slices.campaign.progression.activatedWeek, 'Rival operating program differs from its announced world and style.');
+    }
     if (campaign.tactics !== undefined) {
       check(!!campaign.tactics && typeof campaign.tactics === 'object' && !Array.isArray(campaign.tactics), 'The rival tactics must be an object.');
       keys(campaign.tactics, ['version', 'focus'], 'Rival tactics');
-      check([GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion) && campaign.tactics.version === 1
+      check([GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion) && campaign.tactics.version === 1
         && campaign.tactics.focus === rivalTacticFor(state.seed, rival.companyId, campaign.startedWeek, rival.style), 'The rival tactic does not match its frozen campaign choice.');
     }
     check(Object.hasOwn(RIVAL_CAMPAIGN_RULES, campaign.kind), 'The rival campaign kind is not authored.');

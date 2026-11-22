@@ -20,6 +20,7 @@ export interface BusinessCustomerDefinition {
   hostedSetupCents: number; licenseSetupCents: number; termWeeks: number; slaBps: number;
 }
 export interface CommercialUsage {
+  workload?: import('./product-workloads').ProductWorkloadUsage;
   week: number; requestedWorkCUw: number; executedWorkCUw: number; physicalWorkCUw: number;
   inputTokens: number; outputTokens: number; dataStaffRequired: number; dataStaffGranted: number;
   supportStaffRequired: number; supportStaffGranted: number; freshnessBps: number;
@@ -27,6 +28,7 @@ export interface CommercialUsage {
   grossCents: number; creditsCents: number; billedCents: number; explanation: string;
 }
 export interface CommercialContract {
+  workload?: import('./product-workloads').ProductWorkloadReceipt;
   id: string; customerId: string; companyId: string; modelId: string;
   contractKind: CommercialContractKind; generation: number; signedWeek: number;
   setupFeeCents: number; setupFactId: string; status: CommercialStatus;
@@ -41,6 +43,7 @@ export interface CommercialContract {
   lifetimeBilledCents: number; lifetimeCreditsCents: number; lastUsage: CommercialUsage | null;
 }
 export interface CommercialInvoice {
+  workload?: import('./product-workloads').ProductWorkloadReceipt;
   id: string; contractId: string; customerId: string; companyId: string; modelId: string;
   contractKind: CommercialContractKind; generation: number; termIndex: number; week: number;
   grossCents: number; creditsCents: number; amountCents: number; serviceBps: number;
@@ -52,7 +55,7 @@ export interface Wave3CommerceFields {
 }
 export type Wave3CommerceCommand =
   | { kind: 'install_retrieval'; productId: string; packetId: string }
-  | { kind: 'sign_business_contract'; customerId: string; modelId: string; contractKind: CommercialContractKind; packetId?: string }
+  | { kind: 'sign_business_contract'; customerId: string; modelId: string; contractKind: CommercialContractKind; packetId?: string; workload?: import('./product-workloads').ProductWorkloadId }
   | { kind: 'set_business_renewal'; contractId: string; renew: boolean };
 
 export interface BusinessView {

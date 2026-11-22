@@ -10,6 +10,10 @@ import { assertDevelopmentPlansState } from '../src/core/development-plan-valida
 import { getWeeklyBaseCost } from '../src/core/selectors';
 import { DEFAULT_MODEL_DESIGN } from '../src/modules/model-design';
 import { developmentFeeSpent, developmentQuote } from '../src/modules/development-plans';
+import { developmentFeasibility, developmentArchiveProofId, limitDevelopmentRequests, pinDevelopmentGoal } from '../src/modules/development-projects';
+import { createResearchModule, hasResearch } from '../src/modules/research';
+import { CAREER_RANKS } from '../src/modules/staff-careers';
+import { isPaidChallengeReport } from '../src/modules/model-challenges';
 import { getTrainingPreview } from '../src/modules/lab-planner';
 import { createCompanyModule } from '../src/modules/company';
 import { createComputeModule } from '../src/modules/compute';
@@ -215,4 +219,95 @@ test('malformed authorizations and forged stage receipts are rejected even after
     (state: GameState) => { plan(state).training.modelDesign!.name = 'Changed paid design'; (plan(state).steps.find(item => item.key === 'train')!.payload as DevelopmentPlanSpec['training']).modelDesign!.name = 'Changed paid design'; },
   ]) { const forged = structuredClone(done); mutate(forged); assert.throws(() => assertDevelopmentPlansState(forged, CONTENT)); }
   assert.equal(record.steps.length, 3); assert.deepEqual(reload(done), done);
+});
+
+test('a saved systems objective runs its real paid challenge after the capability baseline and survives reload', () => {
+  let game = initial(true);
+  game.slices.compute.fleets[game.playerCompanyId].allocation = { serving: 0, development: 14 * U, research: 2 * U };
+  game = queue(game, { kind: 'start_research', researchId: 'R1' }, 'objective-research');
+  for (let i = 0; i < 20 && !hasResearch(game, game.playerCompanyId, 'R1'); i++) {
+    const result = advanceWeek(game, CONTENT, [...modules, createResearchModule(CONTENT)]); assert.ok(result.accepted, result.reason?.message); game = result.state;
+  }
+  assert.ok(hasResearch(game, game.playerCompanyId, 'R1'));
+  const chosen: DevelopmentPlanSpec = { ...spec(game), objective: { kind: 'system-challenge', id: 'systems-memory-1' }, leadStaffId: 'founder', capacityShareBps: 10000 };
+  game = start(game, chosen);
+  game = until(game, state => plan(state).stage === 'challenge');
+  const resumed = finish(reload(game)); game = finish(game); assert.deepEqual(resumed, game);
+  const saved = plan(game), baseline = game.slices.models.reports[saved.reportId!], challenge = game.slices.models.reports[saved.challengeReportId!];
+  assert.equal(challenge.suiteId, 'systems-memory-1'); assert.equal(challenge.modelId, saved.modelId);
+  assert.equal(challenge.challenge?.admission.baselineReportId, baseline.id); assert.ok(baseline.week < challenge.week);
+  assert.ok(isPaidChallengeReport(game, challenge, game.week)); assert.equal(saved.completedWeek, challenge.week);
+  assert.deepEqual(saved.steps.map(stage => stage.key), ['train', 'evaluate', 'challenge']);
+  assert.deepEqual(game.slices.products.offers, {}, 'A completed goal does not release or sign a customer commitment.');
+  for (const mutate of [
+    (value: GameState) => { plan(value).objective = { kind: 'system-challenge', id: 'systems-cost-1' }; },
+    (value: GameState) => { delete plan(value).objective; },
+    (value: GameState) => { delete plan(value).challengeReportId; },
+  ]) { const forged = structuredClone(game); mutate(forged); assert.throws(() => assertDevelopmentPlansState(forged)); }
+});
+
+test('parallel projects reserve distinct senior leads and real capacity, and losing a lead stops that project', () => {
+  let game = initial(true); for (let i = 0; i < 5; i++) game = step(game);
+  game.slices.company.passiveWorkforce = true;
+  game.slices.company.staff.reviewer.career = { experience: CAREER_RANKS[1].threshold, lastEarned: U / 100, earnedWeek: game.week };
+  assert.deepEqual(validateState(game), []);
+  const first = { ...spec(game, 160 * U), leadStaffId: 'founder', capacityShareBps: 5000 };
+  const second = { ...spec(game, 120 * U), name: 'Second model line', leadStaffId: 'reviewer', capacityShareBps: 5000 };
+  game = queue(game, { kind: 'start_development_plan', ...first }, 'parallel-founder');
+  assert.equal(submitCommand(game, { kind: 'start_development_plan', ...second, leadStaffId: 'founder' }).accepted, false);
+  assert.equal(submitCommand(game, { kind: 'start_development_plan', ...second, capacityShareBps: 6000 }).accepted, false);
+  game = queue(game, { kind: 'start_development_plan', ...second }, 'parallel-senior'); game = step(game); game = step(game);
+  assert.equal(Object.values(game.slices.models.developmentPlans!).filter(item => item.status === 'running').length, 2);
+  const seniorPlan = game.slices.models.developmentPlans!['development-parallel-senior'];
+  const seniorTraining = seniorPlan.steps.find(item => item.key === 'train')!;
+  const jobId = 'training-' + seniorTraining.commandId;
+  const limited = limitDevelopmentRequests(game, [{ id: jobId + ':work', companyId: game.playerCompanyId, taskId: jobId, category: 'development', normalizedWorkCUw: 80 * U, memoryMU: U, priority: 40, poolId: 'auto', staffDemand: [{ role: 'ml', staffWeeks: 10 * U }] }]);
+  assert.equal(limited[0].normalizedWorkCUw, 8 * U);
+  assert.ok(limited[0].staffDemand![0].staffWeeks < 10 * U);
+  const before = game.slices.models.trainingRuns[jobId].completedWork;
+  game = step(queue(game, { kind: 'dismiss_staff', staffId: 'reviewer' }));
+  assert.equal(game.slices.models.developmentPlans![seniorPlan.id].status, 'blocked');
+  assert.match(game.slices.models.developmentPlans![seniorPlan.id].message, /lead/);
+  assert.equal(game.slices.models.trainingRuns[jobId].completedWork, before, 'No paid work proceeds under an unavailable responsible lead.');
+  assert.deepEqual(reload(game), game);
+});
+
+test('finished plans compact before the 101st authorization without losing paid outputs or archived proof', () => {
+  let game = finish(start(initial(true))); game.slices.company.companies[game.playerCompanyId].cashCents = 1_000_000_000;
+  const first = structuredClone(plan(game)), originalModel = structuredClone(game.slices.models.versions[first.modelId!]);
+  for (let i = 0; i < 100; i++) {
+    const id = 'archive-history-' + i;
+    game = step(queue(game, { kind: 'start_development_plan', ...spec(game, (32 + i) * U) }, id));
+    game = step(queue(game, { kind: 'cancel_development_plan', planId: 'development-' + id }));
+  }
+  const archived = game.slices.models.developmentPlanArchive![first.id];
+  assert.ok(archived); assert.ok(Object.keys(game.slices.models.developmentPlans!).length <= 100);
+  assert.equal(archived.modelId, first.modelId); assert.equal(archived.reportId, first.reportId);
+  assert.deepEqual(game.slices.models.versions[first.modelId!], originalModel);
+  assert.equal(game.slices.company.postedFacts[developmentArchiveProofId(archived)], true);
+  const restored = reload(game); assert.deepEqual(restored, game);
+  const changed = structuredClone(game); changed.slices.models.developmentPlanArchive![first.id].feeSpentCents++;
+  assert.throws(() => assertDevelopmentPlansState(changed), /archiv/);
+  const removed = structuredClone(game); delete removed.slices.models.developmentPlanArchive![first.id];
+  assert.throws(() => assertDevelopmentPlansState(removed), /archiv/);
+});
+
+test('planning pins customer terms and exposes missing capacity and acceptance-window risk', () => {
+  const game = initial(true), objective = pinDevelopmentGoal(game, { kind: 'renewable-brief', id: 'bounded-memory' });
+  assert.equal(objective?.kind, 'renewable-brief'); if (objective?.kind !== 'renewable-brief') throw new Error('Expected pinned customer terms.');
+  const future = structuredClone(game); future.week = objective.terms.acceptUntilWeek + 20;
+  assert.deepEqual(pinDevelopmentGoal(future, objective), objective, 'A saved customer target must not follow later offers.');
+  const chosen = { ...spec(game, 400 * U), objective, capacityShareBps: 5000 };
+  const forecast = developmentFeasibility(game, chosen, CONTENT);
+  assert.ok(forecast.nominalWeeks !== null && forecast.cautiousWeeks! >= forecast.nominalWeeks);
+  assert.ok(forecast.issues.some(issue => /offer closes/.test(issue)));
+  const noSupervision = structuredClone(game);
+  delete noSupervision.slices.company.passiveWorkforce;
+  noSupervision.slices.company.staff = {};
+  noSupervision.slices.company.founderAssignments[game.playerCompanyId] = { ...emptyRoleAllocation(), research: U };
+  assert.equal(developmentFeasibility(noSupervision, chosen, CONTENT).nominalWeeks, null, 'Spare GPUs cannot produce an ETA without training supervision.');
+  game.slices.compute.fleets[game.playerCompanyId].allocation.development = 0;
+  const unavailable = developmentFeasibility(game, chosen, CONTENT);
+  assert.equal(unavailable.nominalWeeks, null); assert.equal(unavailable.operatingHighCents, null);
+  assert.ok(unavailable.issues.some(issue => /no assigned staff or compute/.test(issue)));
 });

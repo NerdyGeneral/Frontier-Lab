@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from './connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from './gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from './model-customization-version';
@@ -7,6 +8,7 @@ import { advanceDevelopmentPlans, developmentPlanForCommand, developmentStageAdm
 import { PHASES, RESOURCE_SCALE, SCHEMA_VERSION } from '../contracts/types';
 import type { CommandPayload, CommandQuote, DiagnosticResult, DomainModule, DomainResult, GameCommand, GameContent, GameState, LedgerFact, ModuleContext, Phase, PhaseRecord, PreviewResult, Rejection, ResourceFrame, SliceKey, SubmitResult, TickResult } from '../contracts/types';
 import { initializeOrigin } from './campaign-origins';
+import { initializeCompanyProgression } from '../modules/progression-state';
 import type { CampaignOrigin, CampaignRules } from '../contracts/wave4-campaign';
 import { initializeWave2Fields } from './wave2-state';
 import { withPassiveWorkforce } from '../modules/workforce';
@@ -45,7 +47,8 @@ export function createInitialState(content: GameContent = CONTENT, rules: Campai
   };
   initializeWave2Fields(state, content);
   initializeOrigin(state, origin);
-  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
+  initializeCompanyProgression(state);
+  if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version)) initializeMarketOpportunities(state);
   const invalid = validateState(state, content); if (invalid.length) throw new EngineError('INVALID_CONTENT', invalid[0].message);
   return rules === 'release' ? withPassiveWorkforce(state) : state;
 }

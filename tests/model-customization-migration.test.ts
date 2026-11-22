@@ -8,6 +8,7 @@ import { canonicalStateHash } from '../src/core/canonical';
 import { advanceWeek, validateState } from '../src/core/engine';
 import { migrateStrategyState } from '../src/core/migration';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION, containsModelCustomizationFeatures } from '../src/core/model-customization-version';
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../src/core/connected-company-version';
 import { deserializeState, serializeState } from '../src/core/snapshot';
 import { RECOVERY_ARCHIVE_PREFIX } from '../src/persistence/recovery-codec';
 import { browserRecoveryOptions, readBrowserRecovery, readBrowserSnapshotWithBytes, writeBrowserSnapshotWithBytes } from '../src/persistence/wave0-browser';
@@ -25,7 +26,7 @@ const encoded = (state: GameState) => JSON.stringify({ format: 'frontier-lab', s
 const customization = { version: 1, attention: 'standard', contextWindow: 'standard', precision: 'full', objective: 'generalist', behavior: 'balanced' } as const;
 
 test('published 0.34 campaigns migrate by changing only version metadata', () => {
-  assert.ok([MODEL_CUSTOMIZATION_CONTENT_VERSION, '0.36.0', '0.37.0'].includes(CONTENT.version));
+  assert.ok([MODEL_CUSTOMIZATION_CONTENT_VERSION, '0.36.0', '0.37.0', CONNECTED_COMPANY_CONTENT_VERSION].includes(CONTENT.version));
   for (const raw of [initialRaw, activeRaw]) {
     const envelope = JSON.parse(raw), original = envelope.state as GameState, before = structuredClone(original);
     assert.equal(envelope.contentVersion, '0.34.0');

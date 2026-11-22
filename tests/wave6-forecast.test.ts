@@ -208,7 +208,9 @@ test('W6-C08: suspended service still exposes owed demand, and invalid assumptio
   const before = JSON.stringify(state), row = first(state);
   assert.equal(row.requestedWorkCUw, productDemand(state, state.slices.products.offers.service, CONTENT, state.week + 1).paidWork);
   assert.ok(row.requestedWorkCUw > 0); assert.equal(row.grantedWorkCUw, 0); assert.equal(row.computeFits, false);
-  assert.equal(row.cloudPlan.additionalCU, null); assert.match(row.cloudPlan.reason, /Pay overdue bills/i);
+  assert.equal(row.cloudPlan.additionalCU, null);
+  assert.match(row.cloudPlan.reason, /unpaid bills.*cannot continue.*export.*new lab/i,
+    'A terminal unpaid-bill state must explain the available actions rather than promise an unavailable repayment command.');
   for (const options of [{ baseGrowthBps: -1 }, { stressGrowthBps: 1001 }, { baseGrowthBps: NaN }, { baseGrowthBps: 500, stressGrowthBps: 200 }]) {
     assert.throws(() => getCapacityForecast(state, options));
   }

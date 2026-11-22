@@ -7,6 +7,8 @@ import { isCustomTrainingRecipe } from '../modules/model-design-training';
 import { FAMILY_SERVING_MULTIPLIER } from '../modules/model-design';
 import { DESIGN_RESEARCH_IDS, TRAINING_WORKSPACES } from '../content/model-designs';
 import { CAMPAIGN_ORIGINS } from '../content/campaign-origins';
+import { RIVAL_STARTS } from './wave2-state';
+import { hasConnectedCompanyRules } from './connected-company-version';
 import { SPARSE_DESIGN } from '../content/wave4-research';
 import { hasCapabilityEvaluation, inheritedModelRights, modelWorkBps } from '../modules/model-runtime';
 import { RESOURCE_SCALE as U } from '../contracts/types';
@@ -367,7 +369,8 @@ export function assertWave2LabState(state: GameState, content: GameContent): voi
       Object.values(research.projects).some(proof => proof.companyId === project.companyId && proof.researchId === prerequisite
         && proof.status === 'complete' && proof.availableWeek !== undefined && proof.availableWeek <= project.startedWeek)), 'Campus research preceded its paid prerequisite availability.');
     if (isModelCustomizationResearch(project.researchId) || isAISystemsResearch(project.researchId)) {
-      const founding = project.companyId === state.playerCompanyId ? CAMPAIGN_ORIGINS[state.slices.campaign.origin ?? 'garage'].knowledge : [];
+      const founding = project.companyId === state.playerCompanyId ? CAMPAIGN_ORIGINS[state.slices.campaign.origin ?? 'garage'].knowledge
+        : hasConnectedCompanyRules(state.contentVersion) ? RIVAL_STARTS.find(rival => 'rival-' + rival.id === project.companyId)?.research ?? [] : [];
       check(definition!.requires.every(prerequisite => founding.includes(prerequisite)
         || Object.values(research.projects).some(proof => proof.companyId === project.companyId && proof.researchId === prerequisite
           && proof.status === 'complete' && proof.availableWeek !== undefined && proof.availableWeek <= project.startedWeek)), 'Model customization research preceded its prerequisite availability.');

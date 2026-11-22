@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { CONTENT } from '../src/content/catalog';
 import { MARKET_OPPORTUNITIES, MARKET_OPPORTUNITY_RULES } from '../src/content/market-dynamics';
-import type { GameState, ModuleContext } from '../src/contracts/types';
+import type { GameContent, GameState, ModuleContext } from '../src/contracts/types';
 import { createInitialState, advanceWeek, submitCommand, validateState } from '../src/core/engine';
 import { deserializeState, serializeState } from '../src/core/snapshot';
 import { getMarketOpportunityView, marketOpportunityAt } from '../src/modules/market-opportunities';
@@ -11,8 +11,8 @@ import { rivalTacticFor } from '../src/modules/rival-tactics';
 import { createDefaultModules } from '../src/core/foundation-modules';
 
 const start = (seed: string) => createInitialState({ ...CONTENT, opening: { ...CONTENT.opening, seed } }, 'release');
-function step(state: GameState) { const result = advanceWeek(state); assert.ok(result.accepted, result.reason?.message); return result.state; }
-function reload(state: GameState) { const result = deserializeState(serializeState(state)); assert.ok(result.ok, result.ok ? undefined : result.error); return result.state; }
+function step(state: GameState, content: GameContent = CONTENT) { const result = advanceWeek(state, content); assert.ok(result.accepted, result.reason?.message); return result.state; }
+function reload(state: GameState, content: GameContent = CONTENT) { const result = deserializeState(serializeState(state, content), content); assert.ok(result.ok, result.ok ? undefined : result.error); return result.state; }
 const context = (state: GameState): ModuleContext => ({ week: state.week, phase: 'plan', content: CONTENT, facts: [],
   resources: { requests: [], staffGrants: [], computeGrants: [] }, random: { draw: () => { throw new Error('Campaign choices must not consume random outcome streams.'); } } });
 
@@ -76,21 +76,24 @@ test('new rival tactics remain ordinary affordable proposals and their frozen ch
   ]) { const forged = structuredClone(valid); mutate(forged); assert.ok(validateState(forged).length); }
 });
 
-test('an efficiency rival researches, builds, tests and releases a paid compressed candidate through ordinary weeks and reload', () => {
+test('a historical 0.37 efficiency rival researches, builds, tests and releases a paid compressed candidate through ordinary weeks and reload', () => {
   const seed = Array.from({ length: 300 }, (_, i) => 'paid-efficiency-' + i).find(value =>
     rivalTacticFor(value, 'rival-swift', 1, 'efficient') === 'efficiency' && rivalTacticFor(value, 'rival-swift', 17, 'efficient') === 'efficiency');
   assert.ok(seed);
-  let state = start(seed);
-  let queued = submitCommand(state, { kind: 'allocate_compute', serving: 0, development: 0, research: 0 }); assert.ok(queued.accepted, queued.reason?.message); state = step(queued.state);
-  queued = submitCommand(state, { kind: 'set_cloud_capacity', cu: 0 }); assert.ok(queued.accepted, queued.reason?.message); state = step(queued.state);
+  // The current rival follows the paid local-system route, covered by rival-systems.test.ts.
+  // Keep the previous compression strategy replayable under its actual historical content.
+  const content = { ...CONTENT, version: '0.37.0', buildVersion: '0.37.0', opening: { ...CONTENT.opening, seed } };
+  let state = createInitialState(content, 'release');
+  let queued = submitCommand(state, { kind: 'allocate_compute', serving: 0, development: 0, research: 0 }, content); assert.ok(queued.accepted, queued.reason?.message); state = step(queued.state, content);
+  queued = submitCommand(state, { kind: 'set_cloud_capacity', cu: 0 }, content); assert.ok(queued.accepted, queued.reason?.message); state = step(queued.state, content);
   const original = structuredClone(state.slices.models.versions['rival-swift-model-1']);
   const observed: { kind: string; companyId: string }[] = [];
   let restored: GameState | null = null;
   for (let i = 0; i < 40; i++) {
     observed.push(...state.queuedCommands.filter(command => command.companyId === 'rival-swift').map(command => ({ kind: command.payload.kind, companyId: command.companyId })));
-    if (state.week === 12) restored = reload(state);
-    state = step(state);
-    if (restored) { restored = step(restored); assert.equal(serializeState(restored), serializeState(state)); }
+    if (state.week === 12) restored = reload(state, content);
+    state = step(state, content);
+    if (restored) { restored = step(restored, content); assert.equal(serializeState(restored, content), serializeState(state, content)); }
     const live = state.slices.products.offers['rival-swift-product'];
     const id = live.publicModelId ?? state.slices.products.deployments[live.deploymentId].modelId;
     if (state.slices.models.versions[id].runtimeVariant?.kind === 'compression') break;

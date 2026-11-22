@@ -145,11 +145,20 @@ test('W1-M06: unknown versions and header/state mismatches cannot be auto-upgrad
   assert.equal(migrateWave0State(legacyEnvelope().state, futureTarget).ok, false);
 });
 
-test('W1-M07: a v2 save with downgraded headers is not accepted as authentic legacy data', () => {
-  const state = createInitialState(); state.schemaVersion = 1; state.contentVersion = '0.1.0'; state.buildVersion = '0.1.0';
-  const text = JSON.stringify({ format: 'frontier-lab', schemaVersion: 1, contentVersion: '0.1.0', checksum: canonicalStateHash(state), state });
-  const result = deserializeState(text);
-  assert.equal(result.ok, false); if (!result.ok) assert.match(result.error, /Specialist commissions and varied campaign schedules do not belong to this historical save version/);
+test('W1-M07: newer saves with downgraded headers are not accepted as authentic legacy data', () => {
+  // Keep the historical calendar rejection isolated from newly initialized
+  // connected-company records, and verify the current header downgrade too.
+  for (const [sourceContent, message] of [
+    [{ ...CONTENT, version: '0.36.0', buildVersion: '0.36.0' }, /Specialist commissions and varied campaign schedules do not belong to this historical save version/],
+    [CONTENT, /Connected Company records do not belong to this historical save version/],
+  ] as const) {
+    const state = createInitialState(sourceContent);
+    assert.deepEqual(validateState(state, sourceContent), [], 'Begin with a valid state under its actual source rules.');
+    state.schemaVersion = 1; state.contentVersion = '0.1.0'; state.buildVersion = '0.1.0';
+    const text = JSON.stringify({ format: 'frontier-lab', schemaVersion: 1, contentVersion: '0.1.0', checksum: canonicalStateHash(state), state });
+    const result = deserializeState(text);
+    assert.equal(result.ok, false); if (!result.ok) assert.match(result.error, message);
+  }
 });
 
 test('W1-M08: new validation rejects incompatible legacy records without silently resetting them', () => {

@@ -1,10 +1,11 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from './connected-company-version';
 import type { GameState } from '../contracts/types';
 import { SYSTEMS_BRIEF_IDS, type SystemsBriefOrder } from '../contracts/systems-briefs';
 import { SYSTEMS_BRIEF_ORDER_LIMIT } from '../content/systems-briefs';
 import { CONTENT } from '../content/catalog';
 import { canonicalStateHash } from './canonical';
 import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
-import { createSystemsBriefTerms, systemsBriefPaymentId, systemsBriefProofId, systemsBriefReport, systemsBriefRequirements } from '../modules/systems-briefs';
+import { isCanonicalSystemsBriefTerms, systemsBriefPaymentId, systemsBriefProofId, systemsBriefReport, systemsBriefRequirements } from '../modules/systems-briefs';
 import { modelChallengeFingerprint } from '../modules/model-challenges';
 import { inheritedModelRights } from '../modules/model-runtime';
 
@@ -19,17 +20,17 @@ export function assertSystemsBriefsState(state: GameState): void {
   const posted = Object.keys(state.slices.company.postedFacts).filter(id => id.startsWith(paymentPrefix));
   const proofs = Object.keys(state.slices.company.postedFacts).filter(id => id.startsWith(proofPrefix));
   if (orders === undefined) { check(posted.length === 0 && proofs.length === 0, 'Systems commission payments or work proofs have no order history.'); return; }
-  check(state.contentVersion === AI_SYSTEMS_CONTENT_VERSION && orders && typeof orders === 'object' && !Array.isArray(orders)
+  check([AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion) && orders && typeof orders === 'object' && !Array.isArray(orders)
     && Object.keys(orders).length <= SYSTEMS_BRIEF_ORDER_LIMIT, 'Invalid systems commission archive.');
   const windows = new Set<number>();
   let active = Object.values(state.slices.campaign.customerBriefs ?? {}).filter(order => order.status === 'active').length;
   for (const [id, order] of Object.entries(orders)) {
     check(order && typeof order === 'object' && !Array.isArray(order) && Object.keys(order).sort().join() === fields
       && order.id === id && SYSTEMS_BRIEF_IDS.includes(order.briefId), 'Invalid systems commission identity.');
-    check(order.terms && typeof order.terms === 'object' && order.terms.version === 1 && order.terms.briefId === order.briefId
+    check(order.terms && typeof order.terms === 'object' && [1, 2].includes(order.terms.version) && order.terms.briefId === order.briefId
       && Number.isSafeInteger(order.terms.windowIndex) && order.terms.windowIndex >= 0, 'Invalid signed systems commission terms.');
-    const expected = createSystemsBriefTerms(state.seed, order.briefId, order.terms.windowIndex);
-    check(same(order.terms, expected) && id === expected.id, 'Signed systems commission requirements, client or payment were changed.');
+    const expected = order.terms;
+    check(isCanonicalSystemsBriefTerms(state, expected) && id === expected.id, 'Signed systems commission requirements, client, relationship or payment were changed.');
     check(!windows.has(expected.windowIndex), 'Only one systems commission can be chosen per market window.'); windows.add(expected.windowIndex);
     check(Number.isSafeInteger(order.startedWeek) && order.startedWeek >= expected.opensWeek && order.startedWeek <= expected.acceptUntilWeek
       && order.startedWeek <= state.week && order.deadlineWeek === order.startedWeek + expected.deadlineWeeks - 1, 'Invalid systems commission dates.');

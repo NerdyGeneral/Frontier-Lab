@@ -1,7 +1,7 @@
 'use client';
 
 import { formatWorkPoints } from '../modules/workforce-points';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { CommandPayload } from '../contracts/types';
 import type { BusinessView, CommercialContract, CommercialContractKind, RetrievalInstallation } from '../contracts/wave3-commerce';
 import { CONTENT } from '../content/catalog';
@@ -17,6 +17,13 @@ import { ProductEfficiencyControls } from './applied-research-panel';
 import { ProductStrategyControls } from './product-strategy-controls';
 import { ReleaseOperationsControls } from './release-operations-controls';
 import { EvidencePanel } from './evidence-panel';
+import { hasConnectedCompanyRules } from '../core/connected-company-version';
+import type { ProductWorkloadId } from '../contracts/product-workloads';
+import { createProductWorkloadReceipt, workloadPrivatePrice } from '../modules/product-workloads';
+import { PRODUCT_WORKLOADS } from '../content/product-workloads';
+import { ProductPortfolioPicker, ProductWorkloadControls, ProductWorkloadPicker, RetireProductControl } from './product-workload-controls';
+import { useStudioLaunchSelection } from './studio-interaction-context';
+import { isCapabilitySuite } from '../modules/evaluation-classification';
 
 const percent = (bps: number) => (bps / 100).toLocaleString('en-US', { maximumFractionDigits: 2 }) + '%';
 const count = (amount: number) => amount.toLocaleString('en-US');
@@ -49,16 +56,36 @@ function BusinessDocumentTerms(props: PanelProps & { business: BusinessView; pro
   const { game, canAct, onQueue, business, productId } = props;
   const current = productId ? getProductView(game, productId, CONTENT) : undefined;
   const candidates = business.models.filter(model => model.evaluated);
+  const launchSelection = useStudioLaunchSelection();
+  const selection = !current && launchSelection?.productKind === 'business-docs' ? launchSelection : null;
   const [modelId, setModelId] = useState(candidates[candidates.length - 1]?.id ?? '');
+  const [appliedIntent, setAppliedIntent] = useState<number | null>(null), [explicitSelection, setExplicitSelection] = useState(false);
+  const [reportId, setReportId] = useState<string | undefined>(), [selectionProblem, setSelectionProblem] = useState<string | undefined>();
+  const [offerName, setOfferName] = useState(''), [workload, setWorkload] = useState<ProductWorkloadId>('general');
   const [price, setPrice] = useState(String((current?.contract.weeklyPriceCents ?? SEGMENT_BY_ID.business.referencePriceCents) / 100));
   const [allowance, setAllowance] = useState(String(current?.contract.allowance ?? SEGMENT_BY_ID.business.exchanges));
-  const model = candidates.find(item => item.id === modelId) ?? candidates[candidates.length - 1];
+  const incoming = !!selection && selection.intentId !== appliedIntent;
+  const selectedId = incoming ? selection.modelId : modelId, selectedReportId = incoming ? selection.reportId : reportId;
+  const model = candidates.find(item => item.id === selectedId) ?? (incoming || explicitSelection ? undefined : candidates[candidates.length - 1]);
+  const report = selectedReportId ? game.slices.models.reports[selectedReportId] : undefined;
+  const selectionError = !current ? (incoming ? selection.unavailableReason : selectionProblem)
+    ?? (!model && (incoming || explicitSelection) ? 'The chosen model is unavailable or lacks its own capability evaluation. Choose a tested model explicitly.' : undefined)
+    ?? (selectedReportId && (!report || report.companyId !== game.playerCompanyId || report.modelId !== model?.id || !isCapabilitySuite(report.suiteId)) ? 'The chosen report does not prove this exact model. Choose a model explicitly to review its current evidence.' : undefined) : undefined;
+  useEffect(() => {
+    if (!incoming) return;
+    setModelId(selection.modelId ?? ''); setReportId(selection.reportId); setSelectionProblem(selection.unavailableReason);
+    setExplicitSelection(true); setAppliedIntent(selection.intentId);
+  }, [incoming, selection]);
+  const chooseModel = (id: string) => { setModelId(id); setReportId(undefined); setSelectionProblem(undefined); setExplicitSelection(true); };
   const cents = parseFixed(price, 2), limit = parseWhole(allowance);
   const payload: CommandPayload | null = cents === null || limit === null ? null : current
     ? { kind: 'set_product_terms', productId: current.product.id, priceCents: cents, allowance: limit }
-    : model ? { kind: 'deploy_product', productKind: 'business-docs', modelId: model.id, priceCents: cents, allowance: limit, features: { ...DEFAULT_FEATURES } } : null;
+    : model && !selectionError ? { kind: 'deploy_product', productKind: 'business-docs', modelId: model.id, priceCents: cents, allowance: limit, features: { ...DEFAULT_FEATURES },
+      ...(hasConnectedCompanyRules(game.contentVersion) ? { workload, ...(offerName.trim() ? { name: offerName.trim() } : {}) } : {}) } : null;
   return <div className="product-terms">
-    {!current && <label className="line-control wide-select" htmlFor="business-documents-model">Model<select id="business-documents-model" value={model?.id ?? ''} onChange={event => setModelId(event.target.value)} disabled={!canAct || !candidates.length}>{!candidates.length && <option value="">Evaluate an owned model first</option>}{candidates.map(item => <option key={item.id} value={item.id}>{item.name} · documents {item.documentsBps / 100}</option>)}</select></label>}
+    {selectionError && <p className="bottleneck" role="status">{selectionError}</p>}
+    {!current && <label className="line-control wide-select" htmlFor="business-documents-model">Model<select id="business-documents-model" value={model?.id ?? ''} onChange={event => chooseModel(event.target.value)} disabled={!canAct || !candidates.length}>{!model && <option value="">Choose a tested model</option>}{candidates.map(item => <option key={item.id} value={item.id}>{item.name} · documents {item.documentsBps / 100}</option>)}</select></label>}
+    {!current && hasConnectedCompanyRules(game.contentVersion) && <><label className="line-control" htmlFor="business-new-offer-name">Offer name<input id="business-new-offer-name" value={offerName} placeholder="Business Documents" maxLength={48} onChange={event => setOfferName(event.target.value)} disabled={!canAct} /></label><ProductWorkloadPicker game={game} value={workload} onChange={setWorkload} modelId={model?.id} id="business-new-workload" disabled={!canAct} /></>}
     <label className="line-control" htmlFor="business-documents-price">Price / organization / week<span className="unit-input"><span>$</span><input id="business-documents-price" type="number" inputMode="decimal" min="1" max="1000" step="1" value={price} onChange={event => setPrice(event.target.value)} disabled={!canAct} /></span></label>
     <label className="line-control" htmlFor="business-documents-allowance">Included queries<input id="business-documents-allowance" type="number" inputMode="numeric" min="25" max="5000" step="25" value={allowance} onChange={event => setAllowance(event.target.value)} disabled={!canAct} /></label>
     <ActionControl game={game} payload={payload} label={current ? 'Update business subscription' : 'Deploy Business Documents'} canAct={canAct} onQueue={onQueue} emptyReason={!model ? 'Complete a separate capability test before launching.' : undefined} />
@@ -68,20 +95,38 @@ function BusinessDocumentTerms(props: PanelProps & { business: BusinessView; pro
 
 function BusinessDocuments(props: PanelProps & { business: BusinessView }) {
   const { game, canAct, onQueue, business } = props;
-  const item = business.products[0];
+  const [selectedOfferId, setSelectedOfferId] = useState('');
+  const launchSelection = useStudioLaunchSelection();
+  const [consumedLaunchIntent, setConsumedLaunchIntent] = useState<number | null>(null);
+  const selectedLiveProduct = business.products.find(product => product.id === selectedOfferId && game.slices.products.offers[product.id].retiredWeek === undefined)
+    ?? business.products.find(product => game.slices.products.offers[product.id].retiredWeek === undefined);
+  const matchingLaunch = launchSelection?.productKind === 'business-docs';
+  const incomingLaunch = matchingLaunch && launchSelection.intentId !== consumedLaunchIntent;
+  const handoffOfferId = selectedLiveProduct?.id ?? 'new';
+  useEffect(() => {
+    if (incomingLaunch) {
+      setSelectedOfferId(handoffOfferId); setConsumedLaunchIntent(launchSelection.intentId);
+    }
+  }, [incomingLaunch, handoffOfferId, launchSelection]);
+  const effectiveOfferId = incomingLaunch ? handoffOfferId : selectedOfferId;
+  const item = effectiveOfferId === 'new' ? undefined : business.products.find(product => product.id === effectiveOfferId)
+    ?? business.products.find(product => game.slices.products.offers[product.id].retiredWeek === undefined) ?? business.products[0];
   const current = item ? getProductView(game, item.id, CONTENT) : undefined;
   const deployment = current ? game.slices.products.deployments[current.product.deploymentId] : undefined;
-  return <>{current && item && current.product.status !== 'deploying' && <ProductStrategyControls {...props} productId={item.id} key={item.id + '-strategy'} />}<details className="inline-details" open={!item && business.research.retrieval || undefined}><summary>Business Documents and retrieval</summary>
+  if (current?.product.retiredWeek !== undefined) return <><ProductPortfolioPicker game={game} kind="business-docs" value={current.product.id} onChange={setSelectedOfferId} /><p>{current.product.name} · Retired Week {current.product.retiredWeek}. Historical contract and invoice records remain in the archive.</p></>;
+  return <><ProductPortfolioPicker game={game} kind="business-docs" value={item?.id ?? 'new'} onChange={setSelectedOfferId} />
+    {current && <ProductWorkloadControls key={current.product.id + '-workload-controls'} {...props} product={current.product} />}
+    {current && item && current.product.status !== 'deploying' && <ProductStrategyControls {...props} productId={item.id} key={item.id + '-strategy'} />}<details className="inline-details" open={!item && business.research.retrieval || hasConnectedCompanyRules(game.contentVersion) || undefined}><summary>Business Documents and retrieval</summary>
     {current && item ? <><p className="small-heading">{current.model.name}<span className="status-inline">{item.status}</span></p><Metrics><Metric label="Subscribed organizations">{count(current.accounts)}</Metric><Metric label="Organization trials">{count(current.trialAccounts)}</Metric><Metric label="Next-week requested work">{formatUnits(current.forecastWork)} CUw</Metric><Metric label="Resident and session memory">{formatUnits(current.memory)} MU</Metric></Metrics>
       {deployment && current.product.status === 'deploying' && <div className="deployment-status"><p className="small-note">ML deployment effort: {formatWorkPoints(deployment.completedStaff)} / {formatWorkPoints(deployment.requiredStaff)} points.{deployment.readyWeek !== null ? ' Available Week ' + deployment.readyWeek + '.' : ''}</p>{deployment.lastBottleneck && <p className="bottleneck">{deployment.lastBottleneck}</p>}</div>}
       {current.usage && <details className="inline-details"><summary>Latest subscription service · Week {current.usage.week}</summary><Metrics><Metric label="Paid demand fulfilled">{percent(current.usage.fulfillmentBps)}</Metric><Metric label="Technical execution errors">{percent(current.usage.errorBps)}</Metric><Metric label="Physical GPU work">{formatUnits(current.usage.tokens?.physicalWork ?? current.usage.executedWork)} CUw</Metric><Metric label="Gross bill">{formatMoney(current.usage.grossBillCents)}</Metric><Metric label="Service credits">{formatMoney(current.usage.creditsCents)}</Metric><Metric label="Net bill">{formatMoney(current.usage.billedCents)}</Metric></Metrics></details>}
       {item.installation ? <RetrievalStatus installation={item.installation} /> : <details className="inline-details"><summary>Install a retrieval index</summary><InstallRetrieval {...props} productId={item.id} /></details>}
       <details className="inline-details"><summary>Subscription price and allowance</summary><BusinessDocumentTerms key={item.id + '-terms'} {...props} productId={item.id} /></details>
-      <details className="inline-details"><summary>Replace the subscription model</summary><ReplaceModel key={item.id + '-replacement'} {...props} current={current} /></details>
+      <details className="inline-details" open={matchingLaunch || undefined}><summary>Replace the subscription model</summary><ReplaceModel key={item.id + '-replacement'} {...props} current={current} /></details>
       <ReleaseOperationsControls {...props} productId={item.id} />
       <ProductEfficiencyControls {...props} productId={item.id} />
       <EvidencePanel {...props} productId={item.id} />
-      {current.product.status !== 'deploying' && <details className="inline-details"><summary>Pause or resume subscriptions</summary><ActionControl game={game} payload={{ kind: 'set_product_paused', productId: item.id, paused: current.product.status !== 'paused' }} label={current.product.status === 'paused' ? 'Resume Business Documents' : 'Pause Business Documents'} canAct={canAct} onQueue={onQueue} /><p className="small-note">This changes Business Documents subscriptions. Signed customer contracts keep their own service terms.</p></details>}
+      {current.product.status !== 'deploying' && <details className="inline-details"><summary>Pause, resume or retire this offer</summary><ActionControl game={game} payload={{ kind: 'set_product_paused', productId: item.id, paused: current.product.status !== 'paused' }} label={(current.product.status === 'paused' ? 'Resume ' : 'Pause ') + current.product.name} canAct={canAct} onQueue={onQueue} /><RetireProductControl {...props} product={current.product} /><p className="small-note">This changes this public offer. Signed customer contracts keep their own service terms.</p></details>}
     </> : business.research.retrieval ? <><p className="small-note">Business Documents needs a tested Documents score of 55 and Reliability of 90. Install retrieval separately using prepared source data.</p><BusinessDocumentTerms {...props} /></> : <p className="small-note">Research Retrieval (R6) to launch Business Documents and search prepared source data.</p>}
   </details></>;
 }
@@ -93,20 +138,24 @@ function BusinessContractForm(props: PanelProps & { business: BusinessView }) {
   const candidates = business.models.filter(model => model.evaluated);
   const [modelId, setModelId] = useState(candidates[candidates.length - 1]?.id ?? '');
   const [packetId, setPacketId] = useState(business.packets[0]?.id ?? '');
+  const [workload, setWorkload] = useState<ProductWorkloadId>('general');
   const customer = business.board.find(item => item.id === customerId) ?? business.board.find(item => item.available) ?? business.board[0];
   const contractKind = customer?.kinds.includes(chosenKind) ? chosenKind : customer?.kinds[0] ?? chosenKind;
   const model = candidates.find(item => item.id === modelId) ?? candidates[candidates.length - 1];
   const packet = business.packets.find(item => item.id === packetId) ?? business.packets[0];
   const hosted = contractKind === 'private-hosted';
   const payload: CommandPayload | null = customer && model && (!hosted || packet)
-    ? { kind: 'sign_business_contract', customerId: customer.id, modelId: model.id, contractKind, ...(hosted && packet ? { packetId: packet.id } : {}) } : null;
+    ? { kind: 'sign_business_contract', customerId: customer.id, modelId: model.id, contractKind, ...(hosted && packet ? { packetId: packet.id } : {}),
+      ...(hasConnectedCompanyRules(game.contentVersion) ? { workload } : {}) } : null;
   return <div className="business-contract-form">
     <label className="line-control wide-select" htmlFor="business-customer">Customer<select id="business-customer" value={customer?.id ?? ''} onChange={event => setCustomerId(event.target.value)} disabled={!canAct || !business.board.length}>{business.board.map(item => <option key={item.id} value={item.id}>{item.name}{!item.available ? ' · unavailable' : ''}</option>)}</select></label>
     {customer && <><p className="small-note">{customer.description}</p>{!customer.available && <p className="bottleneck">{customer.unavailableReason}</p>}
       <label className="line-control wide-select" htmlFor="business-contract-kind">Delivery<select id="business-contract-kind" value={contractKind} onChange={event => setChosenKind(event.target.value as CommercialContractKind)} disabled={!canAct}>{customer.kinds.map(kind => <option key={kind} value={kind}>{KIND_NAME[kind]}</option>)}</select></label>
-      <Metrics><Metric label="Weekly contract price">{formatMoney(hosted ? customer.hostedWeeklyCents : customer.licenseWeeklyCents)}</Metric><Metric label="Initial term">{customer.termWeeks} weeks</Metric><Metric label="Service / support required">{percent(customer.slaBps)}</Metric><Metric label={customer.domain === 'documents' ? 'Minimum documents / reliability' : 'Minimum coding / reliability'}>{customer.minimumScoreBps / 100} / {customer.minimumReliabilityBps / 100}</Metric>{hosted && <Metric label="Committed queries / week">{count(customer.weeklyRequests)}</Metric>}</Metrics></>}
+      <Metrics><Metric label="Weekly contract price">{formatMoney(workloadPrivatePrice(hosted ? customer.hostedWeeklyCents : customer.licenseWeeklyCents, hasConnectedCompanyRules(game.contentVersion) ? createProductWorkloadReceipt(workload, game.week + 1) : undefined))}</Metric><Metric label="Initial term">{customer.termWeeks} weeks</Metric><Metric label="Service / support required">{percent(customer.slaBps)}</Metric><Metric label={customer.domain === 'documents' ? 'Minimum documents / reliability' : 'Minimum coding / reliability'}>{customer.minimumScoreBps / 100} / {customer.minimumReliabilityBps / 100}</Metric>{hosted && <Metric label="Committed queries / week">{count(customer.weeklyRequests)}</Metric>}</Metrics></>}
     <label className="line-control wide-select" htmlFor="business-contract-model">Contract model<select id="business-contract-model" value={model?.id ?? ''} onChange={event => setModelId(event.target.value)} disabled={!canAct || !candidates.length}>{!candidates.length && <option value="">Evaluate an owned model first</option>}{candidates.map(item => <option key={item.id} value={item.id}>{item.name} · {item.family}</option>)}</select></label>
     {model && <p className="small-note">Documents {model.documentsBps / 100}, coding {model.codingBps / 100}, reliability {model.reliabilityBps / 100}. Rights: hosted use {model.hosted ? 'allowed' : 'restricted'}; weight distribution {model.weights ? 'allowed' : 'restricted'}.</p>}
+    <ProductWorkloadPicker game={game} value={workload} onChange={setWorkload} modelId={model?.id} id="private-contract-workload" disabled={!canAct} />
+    {hasConnectedCompanyRules(game.contentVersion) && <p className="small-note">This customer pays {((PRODUCT_WORKLOADS[workload].privatePriceBps - 10000) / 100).toFixed(0)}% above its standard fee for this operating promise. The exact model must meet every threshold before signing; the fee and promise remain fixed for the contract.</p>}
     {hosted && <><PacketSelect business={business} value={packet?.id ?? ''} onChange={setPacketId} disabled={!canAct} id="business-contract-packet" />{packet && <p className="small-note">The private index uses this dataset, giving up to +{packet.documentBonusBps / 100} document-task points at full freshness.</p>}</>}
     <p className="small-note">{hosted ? 'Your GPUs serve the fixed workload. Signing reserves capacity with headroom and connected memory; deployment and index delivery take ' + formatWorkPoints(COMMERCE_RULES.privateDeploymentStaff) + ' Design points. Weekly upkeep needs ' + formatWorkPoints(COMMERCE_RULES.retrievalDataStaffPerOrganization) + ' Data points / week and ' + formatWorkPoints(COMMERCE_RULES.supportStaffPerOrganization) + ' Business points / week.' : 'The customer runs the weights on its own GPUs. Delivery takes ' + formatWorkPoints(COMMERCE_RULES.licenseDeliveryStaff) + ' Design points; support needs ' + formatWorkPoints(COMMERCE_RULES.supportStaffPerOrganization) + ' Business points / week each week. This license adds no company inference work.'}</p>
     <ActionControl game={game} payload={payload} label={hosted ? 'Sign private deployment' : 'Sign customer-hosted license'} canAct={canAct} onQueue={onQueue} emptyReason={!model ? 'Complete a separate capability test before signing.' : hosted && !packet ? 'Prepare source data with hosted-use rights for the private index.' : undefined} />

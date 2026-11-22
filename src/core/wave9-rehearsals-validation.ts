@@ -9,6 +9,7 @@ import { inheritedModelRights } from '../modules/model-runtime';
 import { eligibleModel, requestMeter } from '../modules/product-models';
 import { rehearsalEvidenceKey, rehearsalReceiptKey, releaseModelFingerprint, releaseRehearsalOutcomes, releaseRehearsalWorkId } from '../modules/release-rehearsals';
 import { canonicalStateHash } from './canonical';
+import { assertProductWorkloadReceipt } from '../modules/product-workloads';
 import { checkedAdd, checkedInteger, mulDiv } from './math';
 
 const check = (condition: unknown, message: string): void => { if (!condition) throw new Error(message); };
@@ -33,6 +34,7 @@ function assertConfiguration(configuration: ReleaseConfiguration, rehearsal: Rel
   if (configuration.routingPolicy !== undefined) check(configuration.routingPolicy === 'economy' || configuration.routingPolicy === 'quality', 'Captured routing policy must be an authored non-default choice.');
   check(['basic-chat', 'developer-api', 'business-docs'].includes(configuration.productKind)
     && configuration.productKind === state.slices.products.offers[rehearsal.productId]?.kind, 'Rehearsal product kind is invalid.');
+  if (configuration.workload) { assertProductWorkloadReceipt(configuration.workload, state); check(configuration.workload.selectedWeek <= rehearsal.startedWeek, 'Rehearsal workload changed after admission.'); }
   record(configuration.features, 'Rehearsal features');
   check(Object.keys(configuration.features).length === 3 && ['memory', 'extendedContext', 'deepReasoning'].every(key => typeof configuration.features[key as keyof typeof configuration.features] === 'boolean'), 'Rehearsal feature settings are invalid.');
   identifier(configuration.contractId, 'Rehearsal contract'); checkedInteger(configuration.allowance, 'Rehearsal allowance');

@@ -260,7 +260,7 @@ function validate(state: Readonly<GameState>, command: GameCommand, content: Gam
   const p = command.payload, company = state.slices.company.companies[command.companyId];
   if (!company) return { code: 'UNKNOWN_COMPANY', message: 'Choose an existing company.' };
   if (p.kind === 'start_agent_job') {
-    if (company.arrearsCents) return { code: 'ARREARS', message: 'Resolve unpaid bills before accepting agent work.' };
+    if (company.arrearsCents) return { code: 'ARREARS', message: 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.' };
     if (!hasResearch(state, command.companyId, 'R9')) return { code: 'NOT_READY', message: 'Complete fixed-workflow research (R9) before accepting agent orders.' };
     if (!validateConfiguration(p)) return { code: 'INVALID_COMMAND', message: 'Choose supported permissions, 4–24 steps, 0–2 retries, and 0.01–32 CUw of total work.' };
     if (p.verification === 'independent' && !hasResearch(state, command.companyId, 'R10')) return { code: 'NOT_READY', message: 'Independent outcome verification requires R10.' };
@@ -282,7 +282,7 @@ function validate(state: Readonly<GameState>, command: GameCommand, content: Gam
     return;
   }
   if (p.kind === 'recover_agent_job') {
-    if (company.arrearsCents) return { code: 'ARREARS', message: 'Resolve unpaid bills before commissioning recovery work.' };
+    if (company.arrearsCents) return { code: 'ARREARS', message: 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.' };
     const job = state.slices.agents.jobs[p.jobId], rollout = systemRollout(state, command.companyId, 'action-receipts');
     if (!hasResearch(state, command.companyId, AGENT_RECOVERY.research) || rollout?.status !== 'active') return { code: 'NOT_READY', message: 'Research Action receipts (R9A), then finish and activate its paid implementation.' };
     if (!job || job.companyId !== command.companyId) return { code: 'NOT_READY', message: 'Choose one of your retained support jobs.' };

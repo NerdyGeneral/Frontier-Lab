@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from './connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from './gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from './model-customization-version';
@@ -21,7 +22,7 @@ const record = (value: unknown): value is Record<string, unknown> => !!value && 
 export function assertWave4CampaignState(state: GameState, content: GameContent): void {
   assertCustomerBriefState(state);
   const campaign = state.slices.campaign;
-  check(!Object.hasOwn(campaign, 'rules') || (campaign.rules === 'release' && [RELEASE_CAMPAIGN_VERSION, SILICON_CONTENT_VERSION, SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)), 'The campaign rules do not belong to this build.');
+  check(!Object.hasOwn(campaign, 'rules') || (campaign.rules === 'release' && [RELEASE_CAMPAIGN_VERSION, SILICON_CONTENT_VERSION, SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version)), 'The campaign rules do not belong to this build.');
   check(Array.isArray(campaign.history) && campaign.history.length <= CAMPAIGN_HISTORY_LIMIT, 'Campaign evidence is missing or unbounded.');
   check(record(campaign.endings) && Object.keys(campaign.endings).every(id => ENDING_IDS.includes(id as typeof ENDING_IDS[number])), 'Campaign endings are invalid.');
   const validateRow = (row: CampaignWeek) => {

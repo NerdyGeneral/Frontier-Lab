@@ -33,7 +33,7 @@ export function useModelWorkspaceController() {
   const actions = useMemo(() => ({
     open: ({ game, ...input }: OpenInput) => controller.open({ ...input, playerId: game.playerCompanyId }),
     replace: ({ game, ...input }: OpenInput) => controller.replace({ ...input, playerId: game.playerCompanyId }),
-    saved: controller.saved, suspend: controller.suspend,
+    saved: controller.saved, suspend: controller.suspend, restoreData: controller.restoreData,
   }), [controller]);
   const workspace = useMemo<ModelWorkspace>(() => ({ ...state, setDraft: controller.setDraft, saveBlueprint: controller.saveBlueprint, setDevelopmentGoal: controller.setDevelopmentGoal }), [state, controller]);
   return { workspace, ...actions };

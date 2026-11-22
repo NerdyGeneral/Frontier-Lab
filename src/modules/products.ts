@@ -23,8 +23,18 @@ import { PREPARED_RELEASE_COMMANDS, validatePreparedRelease, quotePreparedReleas
 import { CANARY_COMMANDS, validateCanaryCommand, quoteCanaryCommand, applyCanaryCommand, canaryMutationReason, commitCanaries, resolveCanaries } from './release-canary';
 import { executeCanaryUsage, getCanaryTrafficPlan } from './canary-traffic';
 import { PRODUCT_STRATEGY_COMMANDS, applyProductStrategy, quoteProductStrategy, routingSecondaryShareBps, validateProductStrategy } from './product-strategy';
+import { hasConnectedCompanyRules } from '../core/connected-company-version';
+import { PRODUCT_KIND_LIMIT, PRODUCT_PORTFOLIO_LIMIT, PRODUCT_WORKLOADS } from '../content/product-workloads';
+import { activePortfolio, blendWorkloadMeasures, createProductWorkloadReceipt, getProductWorkloadMeasure, isProductWorkloadId, productPortfolioShapeRejection, productRetirementObligationReason, validProductName, workloadErrorBps } from './product-workloads';
 
 export function featureConfig(product: ProductOffer): ProductFeatures { return product.features ?? { ...DEFAULT_FEATURES }; }
+export function productWorkloadMeasure(state: Readonly<GameState>, product: ProductOffer) {
+  const primary = state.slices.models.versions[state.slices.products.deployments[product.deploymentId].modelId];
+  const measured = getProductWorkloadMeasure(primary, product.workload);
+  const route = activeEfficiency(state, product.id, 'routing');
+  if (!measured || !route?.secondaryModelId || route.secondaryModelId === primary.id) return measured;
+  return blendWorkloadMeasures(measured, getProductWorkloadMeasure(state.slices.models.versions[route.secondaryModelId], product.workload)!, routingSecondaryShareBps(product));
+}
 export function productRequestMeter(state: Readonly<GameState>, product: ProductOffer, model: ModelVersion, retainedInput = 0) {
   const retrieval = getProductRetrieval(state, product.id);
   const measured = (version: ModelVersion) => {
@@ -70,6 +80,7 @@ export function productDemand(state: Readonly<GameState>, product: ProductOffer,
   const contract = state.slices.products.contracts[product.contractId];
   const primaryModel = state.slices.models.versions[state.slices.products.deployments[product.deploymentId].modelId];
   const model = routedModel(state, product, primaryModel);
+  const workload = productWorkloadMeasure(state, product);
   const features = featureConfig(product), meter = productRequestMeter(state, product, model), retrieval = getProductRetrieval(state, product.id), documentBonusBps = retrievalDocumentBonus(state, product.id);
   const cohorts = state.slices.markets.cohorts.filter(c => c.productId === product.id && c.activeWeek <= week);
   const accounts = cohorts.reduce((sum, c) => sum + c.count, 0);
@@ -83,7 +94,7 @@ export function productDemand(state: Readonly<GameState>, product: ProductOffer,
     const count = members.reduce((sum, cohort) => sum + cohort.count, 0);
     if (!profile) {
       const requestedExchanges = count * Math.min(segment.exchanges, contract.allowance);
-      return { segmentId: segment.id, accounts: count, requestedExchanges, requestedWork: requestedExchanges * meter.work, errorBps: executionErrorBps(model, segment, features, documentBonusBps) };
+      return { segmentId: segment.id, accounts: count, requestedExchanges, requestedWork: requestedExchanges * meter.work, errorBps: workloadErrorBps(executionErrorBps(model, segment, features, documentBonusBps), workload) };
     }
     const history = members.reduce((sum, cohort) => {
       const retained = cohort.sessionHistory;
@@ -95,7 +106,7 @@ export function productDemand(state: Readonly<GameState>, product: ProductOffer,
     }, { ...emptySessionHistory });
     const requestedExchanges = sessionExchanges(profile, segment, contract.allowance, count, history.accounts);
     return { segmentId: segment.id, accounts: count, requestedExchanges, requestedWork: 0, sessionHistory: history,
-      errorBps: Math.max(0, executionErrorBps(model, segment, features, documentBonusBps) - sessionQuality(profile, count, history)) };
+      errorBps: Math.max(0, workloadErrorBps(executionErrorBps(model, segment, features, documentBonusBps), workload) - sessionQuality(profile, count, history)) };
   });
   const retainedInput = profile ? sessionInputTokens(profile, segments, contract.allowance, SEGMENT_BY_ID) : 0;
   const paidMeter = retainedInput ? productRequestMeter(state, product, model, retainedInput) : meter;
@@ -104,7 +115,7 @@ export function productDemand(state: Readonly<GameState>, product: ProductOffer,
   const paidWork = segments.reduce((n, row) => checkedAdd(n, row.requestedWork), 0);
   const trialWork = trials.reduce((sum, t) => checkedAdd(sum, t.requiredWork - t.workCompleted), 0);
   const memory = checkedAdd(checkedAdd(checkedAdd(model.residentMU, (accounts + trialAccounts) * meter.sessionMemory), retrieval?.evidence.indexMemoryMU ?? 0), checkedAdd(productEfficiencyMemory(state, product, accounts + trialAccounts), runtimeGuardrailMemory(state, product.id)));
-  return { contract, model, primaryModel, features, meter, paidMeter, retainedInput, historyMemory, accounts, trials, trialAccounts, paidWork, trialWork, memory: checkedAdd(memory, historyMemory), segments, retrieval, documentBonusBps };
+  return { contract, model, primaryModel, features, meter, paidMeter, retainedInput, historyMemory, accounts, trials, trialAccounts, paidWork, trialWork, memory: checkedAdd(memory, historyMemory), segments, retrieval, documentBonusBps, workload };
 }
 export function standardServingRequests(state: Readonly<GameState>, content: GameContent, week: number): WorkRequest[] {
   return Object.values(state.slices.products.offers).filter(product => product.status === 'active' && !state.slices.company.companies[product.companyId].arrearsCents).flatMap(product => {
@@ -124,9 +135,14 @@ export function createProductsModule(content: GameContent): DomainModule {
   const featureError = (f: ProductFeatures) => !f || Object.keys(f).sort().join() !== ['deepReasoning', 'extendedContext', 'memory'].sort().join() || Object.values(f).some(v => typeof v !== 'boolean');
   const names: Record<ProductKind, string> = { 'basic-chat': 'Basic Chat', 'developer-api': 'Developer API', 'business-docs': 'Business Documents' };
   return {
-    id: 'products', owns: ['products'], commandKinds: ['deploy_product', 'set_product_terms', 'set_product_paused', 'set_product_features', 'set_consumer_sessions', 'upgrade_product', ...COMMERCE_COMMANDS, ...PRODUCT_EFFICIENCY_COMMANDS, ...PRODUCT_STRATEGY_COMMANDS, ...RELEASE_REHEARSAL_COMMANDS, ...PREPARED_RELEASE_COMMANDS, ...CANARY_COMMANDS, ...RUNTIME_GUARDRAIL_COMMANDS, ...ASSURANCE_COMMANDS, ...BATCH_COMMANDS],
+    id: 'products', owns: ['products'], commandKinds: ['configure_product_offer', 'retire_product', 'deploy_product', 'set_product_terms', 'set_product_paused', 'set_product_features', 'set_consumer_sessions', 'upgrade_product', ...COMMERCE_COMMANDS, ...PRODUCT_EFFICIENCY_COMMANDS, ...PRODUCT_STRATEGY_COMMANDS, ...RELEASE_REHEARSAL_COMMANDS, ...PREPARED_RELEASE_COMMANDS, ...CANARY_COMMANDS, ...RUNTIME_GUARDRAIL_COMMANDS, ...ASSURANCE_COMMANDS, ...BATCH_COMMANDS],
     validateCommand(state, command) {
       const p = command.payload;
+      const target = 'productId' in p ? p.productId : 'releaseId' in p ? state.slices.products.preparedReleases?.[p.releaseId]?.productId
+        : 'canaryId' in p ? state.slices.products.canaryReleases?.[p.canaryId]?.productId : 'rehearsalId' in p ? state.slices.products.releaseRehearsals?.[p.rehearsalId]?.productId
+          : 'jobId' in p ? state.slices.products.batchJobs?.[p.jobId]?.productId : 'contractId' in p ? state.slices.products.assuranceContracts?.[p.contractId]?.productId : undefined;
+      if (target && state.slices.products.offers[target]?.retiredWeek !== undefined) return { code: 'NOT_READY', message: 'This offer is retired. Its delivery and invoice archive remains available; create a new offer to serve new customers.' };
+      if (target && state.queuedCommands.some(other => other.id !== command.id && other.payload.kind === 'retire_product' && other.payload.productId === target)) return { code: 'ALREADY_ACTIVE', message: 'Retirement is already queued for this offer. Remove that queued action before starting other work.' };
       if ((CANARY_COMMANDS as readonly string[]).includes(p.kind)) return validateCanaryCommand(state, command, content);
       const canaryConflict = canaryMutationReason(state, command, content); if (canaryConflict) return canaryConflict;
       if ((BATCH_COMMANDS as readonly string[]).includes(p.kind)) return validateBatchCommand(state, command, content);
@@ -135,6 +151,22 @@ export function createProductsModule(content: GameContent): DomainModule {
       if ((PREPARED_RELEASE_COMMANDS as readonly string[]).includes(p.kind)) return validatePreparedRelease(state, command, content);
       const releaseConflict = preparedReleaseMutationReason(state, command);
       if (releaseConflict) return releaseConflict;
+      if ('productId' in p && state.slices.products.offers[p.productId]?.retiredWeek !== undefined) return { code: 'NOT_READY', message: 'This offer is retired. Its historical customers and invoices remain in the archive; create a new offer to serve new customers.' };
+      if (p.kind === 'configure_product_offer' || p.kind === 'retire_product') {
+        const malformed = productPortfolioShapeRejection(p); if (malformed) return malformed;
+        if (!hasConnectedCompanyRules(state.contentVersion)) return { code: 'NOT_READY', message: 'Upgrade this campaign to manage a product portfolio.' };
+        const offer = state.slices.products.offers[p.productId];
+        if (!offer || offer.companyId !== command.companyId || offer.status === 'deploying') return { code: 'NOT_READY', message: 'Choose an owned, fully deployed offer.' };
+        if (state.queuedCommands.some(other => other.id !== command.id && 'productId' in other.payload && other.payload.productId === p.productId
+          && ['configure_product_offer', 'retire_product'].includes(other.payload.kind))) return { code: 'ALREADY_ACTIVE', message: 'A portfolio change for this offer is already queued.' };
+        if (p.kind === 'retire_product') {
+          if (offer.status !== 'paused' || state.slices.markets.cohorts.some(c => c.productId === offer.id) || state.slices.markets.trials.some(t => t.productId === offer.id)) return { code: 'NOT_READY', message: 'Pause this offer and let its remaining customer commitments and trials finish before retiring it.' };
+          const obligation = productRetirementObligationReason(state, offer.id); if (obligation) return { code: 'NOT_READY', message: obligation };
+          if (state.queuedCommands.some(other => other.id !== command.id && 'productId' in other.payload && other.payload.productId === offer.id)) return { code: 'ALREADY_ACTIVE', message: 'Settle other queued work for this offer before retiring it.' };
+        } else if (activePortfolio(state, command.companyId).some(other => other.id !== offer.id && other.name.toLowerCase() === p.name.trim().toLowerCase())) return { code: 'ALREADY_ACTIVE', message: 'Choose a different name for this offer.' };
+        else if (offer.name === p.name.trim() && offer.workload?.id === p.workload) return { code: 'NO_IMPROVEMENT', message: 'This offer already has that name and customer promise.' };
+        return;
+      }
       if (p.kind === 'set_product_strategy') return validateProductStrategy(state, command);
       if (p.kind === 'set_consumer_sessions') {
         const offer = state.slices.products.offers[p.productId];
@@ -153,7 +185,16 @@ export function createProductsModule(content: GameContent): DomainModule {
         if (p.kind === 'upgrade_product' && offer && state.slices.products.deployments[offer.deploymentId]?.modelId === p.modelId) return { code: 'NO_IMPROVEMENT', message: 'This product already uses the selected model.' };
         if (p.kind === 'upgrade_product' && (!offer || offer.companyId !== command.companyId || offer.status === 'deploying')) return { code: 'NOT_READY', message: 'Choose an existing deployed product to replace its model.' };
         if (p.kind === 'deploy_product') {
-          if (Object.values(state.slices.products.offers).some(o => o.companyId === command.companyId && o.kind === kind)) return { code: 'ALREADY_ACTIVE', message: 'This company already has this product. Adjust its terms or replace its model.' };
+          const existing = activePortfolio(state, command.companyId);
+          const queued = state.queuedCommands.filter(other => other.id !== command.id && other.companyId === command.companyId && other.payload.kind === 'deploy_product');
+          if (!hasConnectedCompanyRules(state.contentVersion)) {
+            if (p.workload !== undefined || p.name !== undefined) return { code: 'NOT_READY', message: 'Upgrade this campaign to choose an offer name and customer workload.' };
+            if (existing.some(o => o.kind === kind)) return { code: 'ALREADY_ACTIVE', message: 'This company already has this product. Adjust its terms or replace its model.' };
+          } else {
+            if (p.workload !== undefined && !isProductWorkloadId(p.workload) || p.name !== undefined && !validProductName(p.name)) return { code: 'INVALID_COMMAND', message: 'Choose a recognized workload and an offer name of 1–48 characters.' };
+            if (existing.length + queued.length >= PRODUCT_PORTFOLIO_LIMIT || existing.filter(o => o.kind === kind).length + queued.filter(other => other.payload.kind === 'deploy_product' && (other.payload.productKind ?? 'basic-chat') === kind).length >= PRODUCT_KIND_LIMIT) return { code: 'CAPACITY_EXCEEDED', message: 'A company can operate four public offers, with at most two of each kind. Paused offers still count; retire an empty offer to open a slot.' };
+            if (p.name && (existing.some(o => o.name.toLowerCase() === p.name!.trim().toLowerCase()) || queued.some(other => other.payload.kind === 'deploy_product' && other.payload.name?.trim().toLowerCase() === p.name!.trim().toLowerCase()))) return { code: 'ALREADY_ACTIVE', message: 'Choose a different name for this offer.' };
+          }
           if (termsError(p.priceCents, p.allowance, kind) || (p.features && featureError(p.features))) return { code: 'INVALID_COMMAND', message: 'Check the price, allowance, and product options.' };
         }
         const policyRejection = policyReleaseRejection(state, p.modelId); if (policyRejection) return policyRejection;
@@ -179,6 +220,8 @@ export function createProductsModule(content: GameContent): DomainModule {
       if ((PREPARED_RELEASE_COMMANDS as readonly string[]).includes(p.kind)) return quotePreparedRelease(_state, command);
       if ((PRODUCT_EFFICIENCY_COMMANDS as readonly string[]).includes(p.kind)) return quoteProductEfficiency(command, _state);
       if (p.kind === 'set_product_strategy') return quoteProductStrategy(_state, command);
+      if (p.kind === 'configure_product_offer') return { upfrontCostCents: 0, weeklyCostDeltaCents: 0, summary: `Name this offer ${p.name.trim()} and serve ${PRODUCT_WORKLOADS[p.workload].name.toLowerCase()} from next week. ${PRODUCT_WORKLOADS[p.workload].promise} Compute and memory costs remain fully metered.` };
+      if (p.kind === 'retire_product') return { upfrontCostCents: 0, weeklyCostDeltaCents: 0, summary: 'Retire this paused, empty offer and free its portfolio slot. Keep historical delivery and invoices. It cannot resume; shared cloud, facilities and payroll continue.' };
       if (isCommerceCommand(p)) return quoteBusinessCommand(_state, command, content);
       if (p.kind === 'set_consumer_sessions') return { upfrontCostCents: 0, weeklyCostDeltaCents: 0, summary: p.profile === 'off'
         ? 'Turn off persistent sessions and clear retained history at the next weekly boundary.'
@@ -207,13 +250,18 @@ export function createProductsModule(content: GameContent): DomainModule {
         if (p.kind === 'upgrade_product') { products.offers[id].publicModelId ??= products.deployments[products.offers[id].deploymentId].modelId; delete products.deployments[products.offers[id].deploymentId]; products.offers[id].deploymentId = deploymentId; products.offers[id].status = 'deploying'; }
         else {
           const kind = p.productKind ?? 'basic-chat';
-          products.offers[id] = { id, companyId: command.companyId, name: names[kind], kind, features: p.features ?? { ...DEFAULT_FEATURES }, deploymentId, contractId, status: 'deploying', createdWeek: state.week };
+          let name = p.name?.trim() ?? names[kind], suffix = 1;
+          if (!p.name) while (Object.values(products.offers).some(offer => offer.companyId === command.companyId && offer.retiredWeek === undefined && offer.name.toLowerCase() === name.toLowerCase())) name = names[kind] + ' ' + ++suffix;
+          products.offers[id] = { id, companyId: command.companyId, name, kind, features: p.features ?? { ...DEFAULT_FEATURES }, deploymentId, contractId, status: 'deploying', createdWeek: state.week,
+            ...(hasConnectedCompanyRules(state.contentVersion) ? { workload: createProductWorkloadReceipt(p.workload ?? 'general', state.week) } : {}) };
           products.contracts[contractId] = { id: contractId, companyId: command.companyId, productId: id, weeklyPriceCents: p.priceCents, allowance: p.allowance, creditBps: 10000, effectiveWeek: state.week };
         }
         products.deployments[deploymentId] = { id: deploymentId, companyId: command.companyId, productId: id, modelId: p.modelId, status: 'building', startedWeek: state.week, requiredStaff: content.firstSale.deploymentStaff, completedStaff: 0, readyWeek: null, lastBottleneck: 'Waiting for ML staff.' };
       }
       if (p.kind === 'set_product_terms') { const c = products.contracts[products.offers[p.productId].contractId]; c.weeklyPriceCents = p.priceCents; c.allowance = p.allowance; c.effectiveWeek = state.week; }
       if (p.kind === 'set_product_paused') products.offers[p.productId].status = p.paused ? 'paused' : 'active';
+      if (p.kind === 'configure_product_offer') { const offer = products.offers[p.productId]; offer.name = p.name.trim(); if (offer.workload?.id !== p.workload) offer.workload = createProductWorkloadReceipt(p.workload, state.week); }
+      if (p.kind === 'retire_product') products.offers[p.productId].retiredWeek = state.week;
       if (p.kind === 'set_consumer_sessions') {
         const offer = products.offers[p.productId];
         if (p.profile === 'off') delete offer.sessionProfile;
@@ -282,13 +330,14 @@ export function createProductsModule(content: GameContent): DomainModule {
           const grossBillCents = p.kind === 'developer-api' ? tokenBill.cents : demand.accounts * demand.contract.weeklyPriceCents, creditsCents = p.kind === 'developer-api' ? 0 : mulDiv(grossBillCents, 10000 - fulfillmentBps, 10000, 'nearest');
           let remaining = trialExecutedWork; const trialCompletedIds: string[] = [];
           for (const trial of demand.trials) { const done = Math.min(remaining, trial.requiredWork - trial.workCompleted); remaining -= done; if (trial.workCompleted + done >= trial.requiredWork) trialCompletedIds.push(trial.id); }
-          const errorBps = demand.accounts ? Math.floor(demand.segments.reduce((n, s) => n + s.accounts * s.errorBps, 0) / demand.accounts) : executionErrorBps(demand.model, segmentForProduct(p.kind)[0], demand.features, demand.documentBonusBps);
+          const errorBps = demand.accounts ? Math.floor(demand.segments.reduce((n, s) => n + s.accounts * s.errorBps, 0) / demand.accounts) : workloadErrorBps(executionErrorBps(demand.model, segmentForProduct(p.kind)[0], demand.features, demand.documentBonusBps), demand.workload);
           const evidence = measureEvidenceChecks(executingState, p, demand.paidWork + demand.trialWork, paidExecutedWork + trialExecutedWork, demand.meter.work);
           const sessionUsage = p.sessionProfile ? { profile: p.sessionProfile, paidWorkPerExchange: demand.paidMeter.work } : undefined;
           const sessionTraffic = sessionUsage ? { consumerSessions: sessionUsage, paidRequestedWork: demand.paidWork, paidExecutedWork, trialRequestedWork: demand.trialWork, trialExecutedWork } : undefined;
           const guardrail = measureRuntimeGuardrails(executingState, p, demand.paidWork + demand.trialWork, paidExecutedWork + trialExecutedWork, demand.meter.work, behaviorMeter(demand.model, errorBps).falseRefusalBps, errorBps, sessionTraffic);
           const servingPool = grant ? getComputePools(state, p.companyId, content, ctx.resources.staffGrants).find(pool => pool.id === grant.poolId) : undefined;
           const usage: WeeklyUsage = { ...(sessionUsage ? { consumerSessions: sessionUsage } : {}), week: ctx.week, productId: p.id, paidAccounts: demand.accounts, trialAccounts: demand.trialAccounts, requestedWork: demand.paidWork + demand.trialWork, executedWork: paidExecutedWork + trialExecutedWork, paidRequestedWork: demand.paidWork, paidExecutedWork, trialRequestedWork: demand.trialWork, trialExecutedWork, exchanges: sessionUsage ? Math.floor(paidExecutedWork / demand.paidMeter.work) + Math.floor(trialExecutedWork / demand.meter.work) : Math.floor((paidExecutedWork + trialExecutedWork) / demand.meter.work), fulfillmentBps, errorBps, behavior: productBehaviorMeter(demand.model, errorBps, evidence, guardrail), ...(evidence ? { evidence } : {}), ...(guardrail ? { guardrail } : {}), trialCompletedIds, grossBillCents, creditsCents, billedCents: grossBillCents - creditsCents, segments: demand.segments, tokens: { inputTokens, outputTokens, internalTokens, inputPriceCentsPerMillion: inputPrice, outputPriceCentsPerMillion: outputPrice, billCarryIn, billCarryOut: p.kind === 'developer-api' ? tokenBill.remainder : 0, physicalWork: grant?.physicalCUw ?? 0, ownedVariableCostCents: grant ? mulDiv(grant.physicalCUw, servingPool ? getPoolWorkCostRate(servingPool, { category: 'serving' }) : 0, RESOURCE_SCALE) : 0 } };
+          if (demand.workload) usage.workload = demand.workload;
           products.lastUsage[p.id] = usage;
           warmProductCache(products, executingState, p, ctx.week, usage.executedWork);
         }

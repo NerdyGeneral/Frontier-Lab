@@ -17,8 +17,9 @@ import { createPlayerOnlyState } from './fixtures/player-only';
 const config = (overrides: Partial<AgentConfiguration> = {}): AgentConfiguration => ({ mode: 'draft', verification: 'basic', tools: ['read_ticket', 'search_docs', 'send_reply', 'issue_credit'], maxSteps: 24, maxRetries: 0, workBudget: 8 * U, ...overrides });
 const researchIds = ['R1', 'R2', 'R5', 'R6', 'R9', 'R9A', 'R10', 'R11'];
 /** A qualified scenario fixture; real weekly engine, resource owners and company ledger execute every job. */
-function scenario(behavior: ModelBehavior = { confidentErrorBps: 1000, falseRefusalBps: 700 }, reliability = 9600): GameState {
-  const first = advanceWeek(createPlayerOnlyState()); assert.ok(first.accepted, first.reason?.message);
+function scenario(behavior: ModelBehavior = { confidentErrorBps: 1000, falseRefusalBps: 700 }, reliability = 9600, seed = CONTENT.opening.seed): GameState {
+  const seededContent = { ...CONTENT, opening: { ...CONTENT.opening, seed } };
+  const first = advanceWeek(createPlayerOnlyState(seededContent), seededContent); assert.ok(first.accepted, first.reason?.message);
   const state = first.state, companyId = state.playerCompanyId;
   state.slices.company.companies[companyId].cashCents = 100_000_000;
   state.slices.company.founderAssignments[companyId] = { research: 0, ml: 0, data: 0, infrastructure: 0, commercial: U, hardware: 0 };
@@ -41,10 +42,18 @@ function snapshotModel(state: GameState): AgentModelSnapshot {
   const model = state.slices.models.versions[CONTENT.seedModel.id];
   return { id: model.id, name: model.name, family: model.family, residentMU: model.residentMU, capabilityBps: { ...model.capabilityBps }, reliabilityBps: model.reliabilityBps, behavior: { ...model.behavior! }, reportId: model.evaluationReportId! };
 }
-function chooseEvidence(state: GameState, configuration: AgentConfiguration, predicate: (job: Pick<AgentJob, 'model' | 'configuration' | 'terms' | 'evidenceKey'>) => boolean, template = AGENT_ORDERS[0]): void {
+function chooseEvidence(state: GameState, configuration: AgentConfiguration, predicate: (job: Pick<AgentJob, 'model' | 'configuration' | 'terms' | 'evidenceKey'>) => boolean, template = AGENT_ORDERS[0]): GameState {
+  const hasRecovery = !!systemRollout(state, state.playerCompanyId, 'action-receipts');
+  assert.equal(state.week, hasRecovery ? 3 : 1, 'Choose the authored evidence before starting paid agent work.');
+  assert.equal(Object.keys(state.slices.agents.jobs).length, 0);
   for (let i = 0; i < 100000; i++) {
     const seed = 'agent-case-seed-' + i, probe = { model: snapshotModel(state), configuration, terms: template, evidenceKey: agentEvidenceKey(seed, state.playerCompanyId, template.id, Math.floor((state.week + 1) / 4)) };
-    if (predicate(probe)) { state.seed = seed; return; }
+    if (predicate(probe)) {
+      const seeded = scenario(probe.model.behavior, probe.model.reliabilityBps, seed);
+      // Re-run the paid setup from the selected seed; do not rewrite the fixed
+      // company world or discard the recovery implementation's evidence.
+      return hasRecovery ? installRecovery(seeded) : seeded;
+    }
   }
   assert.fail('Find a deterministic authored test case.');
 }
@@ -82,20 +91,20 @@ function recover(state: GameState, parentId: string, maxSteps = 24, workBudget =
   state = step(send(state, { kind: 'recover_agent_job', jobId: parentId, maxSteps, workBudget }));
   assert.equal(state.slices.agents.jobs[parentId].handedOffTo, id); return { state, id };
 }
-function useful(state: GameState, configuration: AgentConfiguration): void {
-  chooseEvidence(state, configuration, job => agentExpectedDraft(job, 0) === 'useful' && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)));
+function useful(state: GameState, configuration: AgentConfiguration): GameState {
+  return chooseEvidence(state, configuration, job => agentExpectedDraft(job, 0) === 'useful' && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)));
 }
 function pausedAfterAction(success = true): { state: GameState; id: string } {
   let state = installRecovery(scenario(success ? undefined : { confidentErrorBps: 8000, falseRefusalBps: 0 }, success ? 9600 : 5000));
   const configuration = config({ mode: 'bounded', verification: 'independent' });
-  chooseEvidence(state, configuration, job => agentExpectedDraft(job, 0) === (success ? 'useful' : 'confident-error') && agentExpectedCheck(job, 0) && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)));
+  state = chooseEvidence(state, configuration, job => agentExpectedDraft(job, 0) === (success ? 'useful' : 'confident-error') && agentExpectedCheck(job, 0) && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)));
   const accepted = start(state, configuration); state = until(accepted.state, accepted.id, job => job.stage === 'audit');
   state = step(send(state, { kind: 'set_agent_job_paused', jobId: accepted.id, paused: true }));
   return { state, id: accepted.id };
 }
 
 test('W7-A01: recovery needs the separate paid implementation and a stopped eligible order', () => {
-  let state = scenario(); const configuration = config({ workBudget: U / 10 }); useful(state, configuration);
+  let state = scenario(); const configuration = config({ workBudget: U / 10 }); state = useful(state, configuration);
   const accepted = start(state, configuration); state = accepted.state;
   assert.equal(state.slices.agents.jobs[accepted.id].status, 'failed');
   assert.equal(previewCommand(state, { kind: 'recover_agent_job', jobId: accepted.id, maxSteps: 24, workBudget: 8 * U }).accepted, false);
@@ -107,7 +116,7 @@ test('W7-A01: recovery needs the separate paid implementation and a stopped elig
 });
 
 test('W7-A02: partial failed work survives paid recovery and settles one customer order', () => {
-  let state = installRecovery(scenario()); const configuration = config({ workBudget: U / 10 }); useful(state, configuration);
+  let state = installRecovery(scenario()); const configuration = config({ workBudget: U / 10 }); state = useful(state, configuration);
   const accepted = start(state, configuration); state = accepted.state;
   const original = structuredClone(state.slices.agents.jobs[accepted.id]);
   assert.equal(original.stageWork, U / 10); assert.equal(state.slices.agents.totalsByCompany[state.playerCompanyId].failed, 1);
@@ -129,7 +138,7 @@ test('W7-A02: partial failed work survives paid recovery and settles one custome
 });
 
 test('W7-A03: recovery step and action-audit reserves share cumulative hard limits', () => {
-  let state = installRecovery(scenario()); const configuration = config({ mode: 'bounded', verification: 'independent', maxSteps: 4 }); useful(state, configuration);
+  let state = installRecovery(scenario()); const configuration = config({ mode: 'bounded', verification: 'independent', maxSteps: 4 }); state = useful(state, configuration);
   const accepted = start(state, configuration); state = until(accepted.state, accepted.id, isAgentTerminal);
   const failed = state.slices.agents.jobs[accepted.id]; assert.equal(failed.stage, 'action'); assert.equal(failed.steps, 4); assert.equal(failed.actionApplied, false);
   assert.equal(agentRecoveryRequirements(failed).minimumSteps, 7);
@@ -171,12 +180,12 @@ test('W7-A05: recovery keeps a wrong applied action wrong and pays its audit and
 });
 
 test('W7-A06: recovery cannot reopen permission failures, rejected checks, or completed outcomes', () => {
-  let state = installRecovery(scenario()); const configuration = config({ mode: 'bounded', verification: 'independent', tools: ['read_ticket'] }); useful(state, configuration);
+  let state = installRecovery(scenario()); const configuration = config({ mode: 'bounded', verification: 'independent', tools: ['read_ticket'] }); state = useful(state, configuration);
   const accepted = start(state, configuration); state = until(accepted.state, accepted.id, isAgentTerminal);
   assert.equal(state.slices.agents.jobs[accepted.id].permissionBlocks, 1);
   assert.equal(submitCommand(state, { kind: 'recover_agent_job', jobId: accepted.id, maxSteps: 24, workBudget: 8 * U }).accepted, false);
   let other = installRecovery(scenario({ confidentErrorBps: 1000, falseRefusalBps: 4000 })); const c = config();
-  chooseEvidence(other, c, job => !agentExpectedCheck(job, 0)); const rejected = start(other, c); other = until(rejected.state, rejected.id, isAgentTerminal);
+  other = chooseEvidence(other, c, job => !agentExpectedCheck(job, 0)); const rejected = start(other, c); other = until(rejected.state, rejected.id, isAgentTerminal);
   assert.equal(other.slices.agents.jobs[rejected.id].checkerPassed, false); assert.match(agentRecoveryBlock(other.slices.agents.jobs[rejected.id])!, /rejected check/);
   assert.equal(submitCommand(other, { kind: 'recover_agent_job', jobId: rejected.id, maxSteps: 24, workBudget: 8 * U }).accepted, false);
 });
@@ -245,7 +254,7 @@ test('W7-A10: finite planner multiplier removes only avoidable repeats and prese
 });
 
 test('W7-A11: a budget stop at the human decision restores approval without revealing an unpaid review result', () => {
-  let state = installRecovery(scenario()); const configuration = config({ maxSteps: 4 }); useful(state, configuration);
+  let state = installRecovery(scenario()); const configuration = config({ maxSteps: 4 }); state = useful(state, configuration);
   const accepted = start(state, configuration); state = until(accepted.state, accepted.id, isAgentTerminal);
   const source = state.slices.agents.jobs[accepted.id]; assert.equal(source.stage, 'review'); assert.equal(source.humanDecision, 'pending'); assert.equal(source.reviewStaff, 0);
   assert.equal(agentRecoveryBlock(source), undefined);

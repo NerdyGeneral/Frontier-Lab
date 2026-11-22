@@ -98,10 +98,15 @@ function preservesPaidWorkDuringRepair(source: GameState, companyId: string, cat
 
 test('a natural rival releases idle rentals and survives recovery while paid engineering remains funded', () => {
   const lab = openNaturalBusiness('release'), owner = 'rival-harbor';
-  let reducedRental = false, researchChecked = false, developmentChecked = false;
-  for (; lab.week < 130;) {
+  let reducedRental = false, researchChecked = false, developmentChecked = false, recoveredRental = false;
+  const completedModelWork = () => Object.values(lab.state.slices.models.trainingRuns).some(run => run.companyId === owner && run.status === 'complete');
+  // A systems foundation has a real 640-CUw budget; recovery must preserve it
+  // through completion rather than require the former short calibration job by Week 130.
+  for (; lab.week < 360 && (lab.week < 130 || !completedModelWork());) {
     const state = lab.state, fleet = state.slices.compute.fleets[owner];
+    assert.ok(state.slices.campaign.progression && state.slices.markets.rivals[owner].campaign?.systems, 'Exercise the current paid systems policy.');
     reducedRental ||= state.queuedCommands.some(command => command.companyId === owner && command.payload.kind === 'set_cloud_capacity' && command.payload.cu < fleet.cloudCU);
+    recoveredRental ||= reducedRental && fleet.cloudCU < 16 * U;
     if (!researchChecked && Object.values(state.slices.research.projects).some(project => project.companyId === owner && project.status === 'running')) {
       preservesPaidWorkDuringRepair(state, owner, 'research'); researchChecked = true;
     }
@@ -115,7 +120,7 @@ test('a natural rival releases idle rentals and survives recovery while paid eng
   assert.ok(researchChecked && developmentChecked, 'Exercise serving repair while both kinds of paid work are unfinished.');
   assert.ok(lab.state.slices.company.companies[owner].cashCents > 0);
   assert.equal(lab.state.slices.markets.rivals[owner].withdrawn, false);
-  assert.ok(lab.state.slices.compute.fleets[owner].cloudCU < 16 * U);
-  assert.ok(Object.values(lab.state.slices.models.trainingRuns).some(run => run.companyId === owner && run.status === 'complete'));
+  assert.ok(recoveredRental, 'Recovery releases idle rentals; a later funded foundation may need to rent more memory again.');
+  assert.ok(completedModelWork(), 'Paid model work must finish after recovering, not remain stranded indefinitely.');
   assert.deepEqual(validateState(lab.state), []);
 });

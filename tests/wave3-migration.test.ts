@@ -82,7 +82,10 @@ test('W3-S04: changed checksums, fake Wave 2 headers and unsupported legacy comm
   const corrupted = oldEnvelope(); corrupted.state.slices.company.companies[corrupted.state.playerCompanyId].cashCents++;
   const badChecksum = deserializeState(JSON.stringify(corrupted)); assert.equal(badChecksum.ok, false);
   if (!badChecksum.ok) assert.match(badChecksum.error, /checksum/);
-  const fake = createInitialState(); fake.schemaVersion = 3; fake.contentVersion = '0.3.0'; fake.buildVersion = '0.3.0';
+  const newerContent = { ...CONTENT, version: '0.36.0', buildVersion: '0.36.0' };
+  const fake = createInitialState(newerContent);
+  assert.deepEqual(validateState(fake, newerContent), [], 'Isolate the historical calendar feature before changing its headers.');
+  fake.schemaVersion = 3; fake.contentVersion = '0.3.0'; fake.buildVersion = '0.3.0';
   const badShape = deserializeState(JSON.stringify({ format: 'frontier-lab', schemaVersion: 3, contentVersion: '0.3.0', state: fake, checksum: canonicalStateHash(fake) }));
   assert.equal(badShape.ok, false); if (!badShape.ok) assert.match(badShape.error, /Specialist commissions and varied campaign schedules do not belong to this historical save version/);
   const unsupported = oldEnvelope(); unsupported.state.queuedCommands[0].payload = { kind: 'cancel_agent_job', jobId: 'forged-job' };

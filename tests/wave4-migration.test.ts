@@ -82,7 +82,10 @@ test('W4-S03: migration and subsequent replay remain deterministic across a sche
 test('W4-S04: checksum corruption, fake legacy headers and future commands cannot bypass schema4 validation', () => {
   const corrupt=envelope();corrupt.state.slices.company.companies[corrupt.state.playerCompanyId].cashCents++;
   const failed=deserializeState(JSON.stringify(corrupt));assert.equal(failed.ok,false);if(!failed.ok)assert.match(failed.error,/checksum/);
-  const fake=createInitialState();fake.schemaVersion=4;fake.contentVersion='0.4.0';fake.buildVersion='0.4.0';
+  const newerContent={...CONTENT,version:'0.36.0',buildVersion:'0.36.0'};
+  const fake=createInitialState(newerContent);
+  assert.deepEqual(validateState(fake,newerContent),[],'Isolate the historical calendar feature before changing its headers.');
+  fake.schemaVersion=4;fake.contentVersion='0.4.0';fake.buildVersion='0.4.0';
   const rejected=deserializeState(JSON.stringify({format:'frontier-lab',schemaVersion:4,contentVersion:'0.4.0',state:fake,checksum:canonicalStateHash(fake)}));
   assert.equal(rejected.ok,false);if(!rejected.ok)assert.match(rejected.error,/Specialist commissions and varied campaign schedules do not belong to this historical save version/);
   const command=envelope();command.state.queuedCommands[0].payload={kind:'start_chip_design',name:'Forged',spec:{architecture:'dense',target:'inference',memory:'balanced'}};

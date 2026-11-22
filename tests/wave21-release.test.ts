@@ -9,6 +9,7 @@ import type { EndingId } from '../src/contracts/wave4-campaign';
 import { getMarketView } from '../src/modules/markets';
 import { createDefaultModules } from '../src/core/foundation-modules';
 import { rivalTacticFor } from '../src/modules/rival-tactics';
+import { rivalOperatingBudget } from '../src/modules/rivals';
 import { openNaturalBusiness, playNaturalBusiness } from './fixtures/wave5-business';
 import { continueToFrontier } from './fixtures/wave5-frontier';
 
@@ -64,8 +65,13 @@ test('W20-R01: rivals use ordinary commands, finite buyers and the same quoted t
       const quote = module.quoteCommand(lab.state, command, CONTENT);
       assert.equal(command.reservedCents ?? 0, quote.upfrontCostCents, 'A rival reserves the same entry fee as an ordinary command.');
       assert.ok(quote.upfrontCostCents <= lab.state.slices.company.companies[command.companyId].cashCents, 'A queued rival action must be funded.');
+      const budget = rivalOperatingBudget(lab.state, command.companyId, CONTENT);
+      assert.ok(quote.upfrontCostCents + Math.max(0, quote.weeklyCostDeltaCents) * 8 <= budget.budget + (command.reservedCents ?? 0),
+        'The current systems plan protects its operating reserve and funds eight weeks of new recurring cost.');
     }
     lab.step();
+    for (const owner of Object.keys(lab.state.slices.markets.rivals)) assert.equal(lab.state.slices.company.companies[owner].arrearsCents, 0,
+      owner + ' cannot finance its systems program with unpaid bills in Week ' + lab.week);
     for (const command of pending) if (lab.state.commandReceipts[command.id]?.status === 'accepted') {
       if (command.payload.kind === 'set_product_terms') {
         const offer = lab.state.slices.products.offers[command.payload.productId], contract = lab.state.slices.products.contracts[offer.contractId];
@@ -103,7 +109,10 @@ test('W21-R04: previous content migrates without changing its campaign rules or 
   assert.deepEqual(resumed.state.slices, { ...classic.slices, markets: { ...classic.slices.markets, opportunityCalendar: { startedWeek: classic.week, sequenceVersion: 2 as const } } });
   const release = createInitialState(CONTENT, 'release');
   assert.ok(deserializeState(serializeState(release)).ok);
-  const invalidDowngrade = { ...structuredClone(release), contentVersion: prior.version, buildVersion: prior.buildVersion };
+  const historicalReleaseContent = { ...CONTENT, version: '0.36.0', buildVersion: '0.36.0' };
+  const historicalRelease = createInitialState(historicalReleaseContent, 'release');
+  assert.deepEqual(validateState(historicalRelease, historicalReleaseContent), [], 'Isolate the older feature gates without removing current progression proof.');
+  const invalidDowngrade = { ...structuredClone(historicalRelease), contentVersion: prior.version, buildVersion: prior.buildVersion };
   assert.throws(() => serializeState(invalidDowngrade, prior), /varied campaign schedules were unavailable/);
   delete invalidDowngrade.slices.markets.opportunityCalendar!.sequenceVersion;
   assert.throws(() => serializeState(invalidDowngrade, prior), /strategy evidence were unavailable/);

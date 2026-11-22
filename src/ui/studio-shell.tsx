@@ -37,7 +37,7 @@ import { createStudioEditorSubmission, createStudioTaskSession, getActiveStudioT
 import type { StudioCommandAcknowledgement, StudioIntent, StudioPanelId, StudioReturnTarget, StudioScreen, StudioSubmissionContext, StudioTaskEvent, StudioTaskId, StudioTaskOwner } from '../core/studio-tasks';
 import { StudioContextMenu, StudioInspector, StudioResultCard, StudioTaskSurface } from './studio-surfaces';
 import { DevelopmentNavigationProvider, StudioDevelopmentSelectionProvider, StudioCommandReviewProvider, StudioDataSelectionProvider, StudioLaunchSelectionProvider, StudioModelSelectionProvider, StudioStaffingSelectionProvider, StudioTaskActionsProvider, StudioTaskModeProvider, StudioTrainingSelectionProvider } from './studio-interaction-context';
-import type { StudioDataSelection, StudioDevelopmentSelection, StudioTrainingSelection, StudioModelSelection, StudioStaffingSelection, StudioTaskActions } from './studio-interaction-context';
+import type { StudioDataSelection, StudioDevelopmentSelection, StudioTrainingSelection, StudioModelSelection, StudioLaunchSelection, StudioStaffingSelection, StudioTaskActions } from './studio-interaction-context';
 import { StudioCommandReview } from './studio-command-review';
 import { getStudioCommandReviewReason } from './studio-command-flow';
 import { StudioCompanySummary } from './studio-company-summary';
@@ -101,6 +101,7 @@ interface StudioShellProps {
   onApplyPlan: (draft: StudioPlanDraft, sourceHash: string) => { accepted: boolean; message?: string };
   results?: StudioResultsInbox;
   children: ReactNode;
+  decisionControls?: ReactNode;
 }
 
 function Status({ status }: { status: StudioStatus }) {
@@ -109,7 +110,7 @@ function Status({ status }: { status: StudioStatus }) {
 }
 
 /** The scene owns only presentation preferences. All commands, forms and saves remain in FrontierLab. */
-export function StudioShell({ game, paused, speed, canAct, isController, notice, saveMessage, forceSaveOpen, busyMessage, errorMessage, saveKind, onToggleRunning, onStep, onSpeed, plannerEpoch, onPause, onQueue, onApplyPlan, onSubmitTask, results, children }: StudioShellProps) {
+export function StudioShell({ game, paused, speed, canAct, isController, notice, saveMessage, forceSaveOpen, busyMessage, errorMessage, saveKind, onToggleRunning, onStep, onSpeed, plannerEpoch, onPause, onQueue, onApplyPlan, onSubmitTask, results, children, decisionControls }: StudioShellProps) {
   const studio = useMemo(() => getStudioView(game, CONTENT), [game]);
   const resultEntries = useMemo(() => selectStudioResults(game), [game]);
   const resultAttention = useMemo(() => {
@@ -139,7 +140,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   const [trainingSelection, setTrainingSelection] = useState<StudioTrainingSelection | null>(null);
   const [developmentSelection, setDevelopmentSelection] = useState<StudioDevelopmentSelection | null>(null);
   const modelWorkspace = useModelWorkspace();
-  const [launchSelection, setLaunchSelection] = useState<StudioModelSelection | null>(null);
+  const [launchSelection, setLaunchSelection] = useState<StudioLaunchSelection | null>(null);
   const [staffingSelection, setStaffingSelection] = useState<StudioStaffingSelection | null>(null);
   const [plannerContext, setPlannerContext] = useState<{ title: string; reason: string }>();
   const [researchSelection, setResearchSelection] = useState<{ intentId: number; researchId: string } | null>(null);
@@ -166,6 +167,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   const inspectorRef = useRef<HTMLElement>(null);
   const shellRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLElement>(null);
+  const chromeRef = useRef<HTMLDivElement>(null);
   const sidebarRef = useRef<HTMLDivElement>(null);
   const menuReturnFocusRef = useRef<HTMLElement | null>(null);
   const returnFocusRef = useRef<HTMLElement | null>(null);
@@ -186,6 +188,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     const header = headerRef.current;
     const shell = shellRef.current;
     const sidebar = sidebarRef.current;
+    const chrome = chromeRef.current;
     const documentRoot = document.documentElement;
     if (!header || !shell || !sidebar || typeof ResizeObserver === 'undefined') return;
     const syncHeader = () => {
@@ -193,6 +196,14 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
       if (height > 0) {
         shell.style.setProperty('--studio-measured-header-height', `${height}px`);
         documentRoot.style.setProperty('--studio-measured-header-height', `${height}px`);
+      }
+      // Compact headers are fixed and therefore absent from the chrome's flow
+      // height. Keep both the header and decision feedback above a docked page.
+      const fixedHeaderHeight = window.getComputedStyle(header).position === 'fixed' ? height : 0;
+      const chromeHeight = chrome ? Math.ceil(chrome.getBoundingClientRect().height) + fixedHeaderHeight : height;
+      if (chromeHeight > 0) {
+        shell.style.setProperty('--studio-measured-chrome-height', `${chromeHeight}px`);
+        documentRoot.style.setProperty('--studio-measured-chrome-height', `${chromeHeight}px`);
       }
       const sidebarHeight = Math.ceil(sidebar.getBoundingClientRect().height);
       if (sidebarHeight > 0) {
@@ -208,6 +219,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     const observer = new ResizeObserver(syncHeader);
     observer.observe(header);
     observer.observe(sidebar);
+    if (chrome) observer.observe(chrome);
     window.addEventListener('resize', syncHeader);
     window.visualViewport?.addEventListener('resize', syncHeader);
     window.visualViewport?.addEventListener('scroll', syncHeader);
@@ -217,6 +229,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
       window.visualViewport?.removeEventListener('resize', syncHeader);
       window.visualViewport?.removeEventListener('scroll', syncHeader);
       documentRoot.style.removeProperty('--studio-measured-header-height');
+      documentRoot.style.removeProperty('--studio-measured-chrome-height');
       documentRoot.style.removeProperty('--studio-measured-sidebar-height');
     };
   }, [mode]);
@@ -720,6 +733,17 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     openTask('launch-basic-chat', { kind: 'first-launch', candidateId: modelId, ...(reportId ? { reportId } : {}) });
   }
 
+  function openProductForModel(kind: 'developer-api' | 'business-docs', modelId: string, reportId?: string) {
+    if (forceSaveOpen || busy || inFlight.current || task?.phase === 'submitting') return;
+    const ownModel = game.slices.models.versions[modelId]?.companyId === game.playerCompanyId;
+    setLaunchSelection({ intentId: nextIntentId.current++, productKind: kind, modelId: ownModel ? modelId : null,
+      ...(reportId ? { reportId } : {}), ...(!ownModel ? { unavailableReason: 'This project model is unavailable. Choose another model explicitly.' } : {}) });
+    onPause(); dispatchTask({ type: 'close' });
+    if (taskSession.detour) dispatchTask({ type: 'clearDetour' });
+    const destination = kind === 'developer-api' ? 'developer-api' : 'business-commitments';
+    openPanel(destination); revealClassicPanel(destination);
+  }
+
   function followJourney(action: StudioJourneyAction) {
     switch (action.kind) {
       case 'prepare': prepareSelectedData(action.packetId); break;
@@ -810,7 +834,8 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   // policy when another task opens, the clock changes or a hidden form is kept.
   const reviewHandler = useRef<(payload: CommandPayload, label: string, quotedState?: GameState) => boolean>(() => false);
   reviewHandler.current = (payload, _label, quotedState) => {
-    const ownerTask = payload.kind === 'start_model_research' || payload.kind === 'set_model_research_paused' ? 'architecture-research'
+    const ownerTask = payload.kind === 'start_research_experiment' ? (panel === 'applied-research' ? 'architecture-research' : 'research-method')
+      : payload.kind === 'start_model_research' || payload.kind === 'set_model_research_paused' ? 'architecture-research'
       : task?.task ?? (panel ? taskForPanel(panel) : screen === 'research' ? 'research-method' : null);
     if (mode !== 'studio' || !ownerTask || ownerTask === 'plan-week') return false;
     if (forceSaveOpen || busy || !canAct || inFlight.current || task?.phase === 'submitting') return true;
@@ -852,12 +877,13 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     openDataLibrary: () => developmentHandlers.current.openDataLibrary(),
   }), []);
 
-  const actionHandlers = useRef<StudioTaskActions>({ prepareData: prepareSelectedData, evaluateModel: modelId => openTask('evaluate-model', { kind: 'model', modelId }), launchBasicChat, reviewReport: reportId => openEntity({ kind: 'report', reportId }), reviewResources: openPlanner, hireStaff, assignStaff, openTask: openNamedTask, openResearch: openResearchMethod, openModelDesigner, delegateTraining, editTraining });
-  actionHandlers.current = { prepareData: prepareSelectedData, evaluateModel: modelId => openTask('evaluate-model', { kind: 'model', modelId }), launchBasicChat, reviewReport: reportId => openEntity({ kind: 'report', reportId }), reviewResources: openPlanner, hireStaff, assignStaff, openTask: openNamedTask, openResearch: openResearchMethod, openModelDesigner, delegateTraining, editTraining };
+  const actionHandlers = useRef<StudioTaskActions>({ prepareData: prepareSelectedData, evaluateModel: modelId => openTask('evaluate-model', { kind: 'model', modelId }), launchBasicChat, openProductForModel, reviewReport: reportId => openEntity({ kind: 'report', reportId }), reviewResources: openPlanner, hireStaff, assignStaff, openTask: openNamedTask, openResearch: openResearchMethod, openModelDesigner, delegateTraining, editTraining });
+  actionHandlers.current = { prepareData: prepareSelectedData, evaluateModel: modelId => openTask('evaluate-model', { kind: 'model', modelId }), launchBasicChat, openProductForModel, reviewReport: reportId => openEntity({ kind: 'report', reportId }), reviewResources: openPlanner, hireStaff, assignStaff, openTask: openNamedTask, openResearch: openResearchMethod, openModelDesigner, delegateTraining, editTraining };
   const taskActions = useMemo<StudioTaskActions>(() => ({
     prepareData: packetId => actionHandlers.current.prepareData(packetId),
     evaluateModel: modelId => actionHandlers.current.evaluateModel(modelId),
     launchBasicChat: (modelId, reportId) => actionHandlers.current.launchBasicChat(modelId, reportId),
+    openProductForModel: (kind, modelId, reportId) => actionHandlers.current.openProductForModel?.(kind, modelId, reportId),
     reviewReport: reportId => actionHandlers.current.reviewReport?.(reportId),
     reviewResources: () => actionHandlers.current.reviewResources(),
     hireStaff: (role, reason) => actionHandlers.current.hireStaff(role, reason),
@@ -969,7 +995,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
 
   return <StudioWorkbenchProvider value={workbenchVisibility}><StudioCommandReviewProvider value={mode === 'studio' ? reviewCommand : null}><main id="lab" ref={shellRef} className={'lab-shell ' + (mode === 'studio' ? 'studio-mode' : 'classic-mode') + (reducedMotion ? ' reduced-motion' : '')} data-studio-panel={panel ?? ''} data-screen={screen} data-project-tab={projectTab} data-task-modal={surfaceModal || undefined} onClickCapture={followLink}>
     <div className="studio-classic-entry"><button type="button" onClick={() => setMode('studio')}><LayoutGrid size={15} /> Open Studio</button><span>The same company, in a new light.</span><button type="button" className="studio-results-toggle" onClick={openResults} disabled={forceSaveOpen || busy} aria-label={'Open Results, ' + (results?.unreadCount ?? 0) + ' unreviewed'}><Inbox size={16} />Results<strong>{results?.unreadCount ?? 0}</strong></button></div>
-    <div className="studio-only studio-chrome">
+    <div className="studio-only studio-chrome" ref={chromeRef}>
       <a className="skip-link" href={'#' + skipTarget}>{skipTarget === 'studio-workstations' ? 'Skip to workstations' : skipTarget === 'studio-project-board' ? 'Skip to projects' : 'Skip to workbench'}</a>
       <header className="studio-header" ref={headerRef}>
         <button className="studio-brand" type="button" onClick={() => selectScreen('studio')} aria-label="Frontier Lab studio home"><span className="studio-brand-symbol"><FlaskConical size={24} strokeWidth={1.7} /></span><span><strong>Frontier Lab<span className="studio-brand-dot">.</span></strong><small>THE STUDIO ERA</small></span></button>
@@ -984,6 +1010,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
         </div>
       </div>
       <div className="studio-status-line" role="status" aria-live="polite" aria-atomic="true"><span><span className="studio-status-dot" />{busyMessage || notice}</span>{s.queuedCount > 0 && <button type="button" onClick={viewQueuedDecision} disabled={forceSaveOpen || busy}>{s.queuedCount} queued for W{game.week + 1}<ChevronRight size={13} /></button>}</div>
+      {decisionControls}
       {(errorMessage || commandError) && <p className="error-message studio-operation-error" role="alert">{commandError || errorMessage}</p>}
       {navigationMessage && <p className="studio-task-navigation-note" role="status">{navigationMessage}</p>}
       {completion && <div className="studio-result-announcement" role="status" aria-live="polite"><CheckCircle2 size={17} aria-hidden="true" /><span>{completion}</span><button type="button" onClick={openResults} disabled={forceSaveOpen || busy}>View results<ChevronRight size={14} /></button></div>}

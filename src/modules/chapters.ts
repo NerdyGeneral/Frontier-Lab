@@ -4,6 +4,7 @@ import { CHAPTERS } from '../content/strategic-variety';
 import { isCapabilitySuite } from './evaluation-classification';
 import { hasCompletedModelTraining } from './campaign-progress';
 import { productRoutingPolicy } from './product-strategy';
+import { assessConnectedChapter } from './company-progression';
 
 export const CHAPTER_COMMANDS = ['select_chapter'] as const;
 export interface ChapterAssessment {
@@ -12,6 +13,14 @@ export interface ChapterAssessment {
   proof: ChapterProof | null;
 }
 export function assessChapter(state: Readonly<GameState>, id: ChapterId): ChapterAssessment {
+  // The connected-company panel uses its richer background proof directly. Keep this legacy view's proof shape intact.
+  if (state.slices.campaign.progression) {
+    const assessment = assessConnectedChapter(state, id);
+    return { productName: assessment.productName, criteria: assessment.criteria, proof: null };
+  }
+  return assessLegacyChapter(state, id);
+}
+function assessLegacyChapter(state: Readonly<GameState>, id: ChapterId): ChapterAssessment {
   const owner = state.playerCompanyId, company = state.slices.company.companies[owner];
   const previous = state.slices.campaign.chapters?.active === id ? state.slices.campaign.chapters.progress.at(-1) : undefined;
   const candidates = Object.values(state.slices.products.offers).filter(p => p.companyId === owner).map(product => {
@@ -64,11 +73,13 @@ export function validateChapterCommand(state: Readonly<GameState>, command: Game
   if (chapters?.completed[p.chapterId]) return { code: 'NO_IMPROVEMENT', message: 'This chapter is already earned permanently. Choose another goal.' };
   if (chapters?.active === p.chapterId || state.queuedCommands.some(other => other.id !== command.id && other.companyId === command.companyId && other.payload.kind === p.kind)) return { code: 'ALREADY_ACTIVE', message: 'This chapter is already selected or a chapter change is queued.' };
 }
-export function quoteChapterCommand(command: GameCommand): CommandQuote {
+export function quoteChapterCommand(command: GameCommand, state?: Readonly<GameState>): CommandQuote {
   const p = command.payload;
   if (p.kind !== 'select_chapter') throw new Error('Expected a chapter choice.');
   const chapter = CHAPTERS[p.chapterId];
-  return { upfrontCostCents: 0, weeklyCostDeltaCents: 0, summary: `Focus on “${chapter.title}” from next week. Meet its requirements for ${chapter.weeks} ${chapter.weeks === 1 ? 'week' : 'consecutive weeks'}. Completion is recorded automatically and remains earned after changing goals.` };
+  return { upfrontCostCents: 0, weeklyCostDeltaCents: 0, summary: state?.slices.campaign.progression
+    ? `Pin “${chapter.title}” as your next goal. Every chapter keeps tracking in the background. Changing this focus or improving a qualifying model preserves the company's progress.`
+    : `Focus on “${chapter.title}” from next week. Meet its requirements for ${chapter.weeks} ${chapter.weeks === 1 ? 'week' : 'consecutive weeks'}. Completion is recorded automatically and remains earned after changing goals.` };
 }
 export function applyChapterCommand(state: Readonly<GameState>, command: GameCommand): DomainResult {
   const p = command.payload;
@@ -81,7 +92,7 @@ export function advanceChapters(campaign: GameState['slices']['campaign'], state
   const chapters = campaign.chapters, id = chapters?.active;
   if (!chapters || !id || chapters.completed[id] || state.week < chapters.selectedWeek) return [];
   if (chapters.progress.at(-1)?.week === state.week) return [];
-  const assessment = assessChapter(state, id), previous = chapters.progress.at(-1);
+  const assessment = assessLegacyChapter(state, id), previous = chapters.progress.at(-1);
   if (!assessment.proof) { chapters.streak = 0; chapters.progress = []; return []; }
   const continued = !!previous && previous.week === state.week - 1 && previous.productId === assessment.proof.productId && previous.modelId === assessment.proof.modelId;
   chapters.progress = [...(continued ? chapters.progress : []), assessment.proof].slice(-CHAPTERS[id].weeks);

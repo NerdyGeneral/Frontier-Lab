@@ -1,0 +1,59 @@
+'use client';
+
+import { useId, useState } from 'react';
+import type { ResearchProgramId } from '../contracts/company-progression';
+import { RESEARCH_PROGRAMS, RESEARCH_PROGRAM_IDS, RESEARCH_PROGRAM_STAGES } from '../content/company-progression';
+import { formatMoney, formatUnits } from '../core/math';
+import { createResearchExperimentTerms, getResearchProgramLevel, researchExperimentBaseline, researchExperimentChecks, researchProgramGate } from '../modules/research-programs';
+import { formatWorkPoints } from '../modules/workforce-points';
+import { ActionControl, Metric, Metrics, Section } from './components';
+import type { PanelProps } from './panels';
+
+export function ResearchProgramsPanel({ game, canAct, onQueue }: Pick<PanelProps, 'game' | 'canAct' | 'onQueue'>) {
+  const uid = useId().replaceAll(':', '');
+  const [selected, setSelected] = useState<ResearchProgramId>('efficient-systems');
+  const [modelChoice, setModelChoice] = useState('');
+  const progression = game.slices.campaign.progression;
+  if (!progression) return null;
+  const experiments = Object.values(progression.experiments), active = experiments.find(experiment => experiment.status === 'running');
+  const level = getResearchProgramLevel(game, selected), planningLevel = getResearchProgramLevel(game, selected, game.week + 1), stage = Math.min(4, planningLevel + 1);
+  const definition = RESEARCH_PROGRAMS[selected], terms = createResearchExperimentTerms(game, selected, stage, game.week + 1);
+  const models = Object.values(game.slices.models.versions).filter(model => model.companyId === game.playerCompanyId && researchExperimentBaseline(game, model.id));
+  const ranked = models.map(model => ({ model, checks: researchExperimentChecks(model, selected, terms) }))
+    .sort((a, b) => b.checks.filter(check => check.passed).length - a.checks.filter(check => check.passed).length || a.model.name.localeCompare(b.model.name));
+  const chosen = ranked.find(row => row.model.id === modelChoice) ?? ranked[0];
+  const reason = researchProgramGate(game, selected, chosen?.model.id ?? '', game.week + 1);
+  const history = experiments.filter(experiment => experiment.programId === selected).sort((a, b) => b.startedWeek - a.startedWeek);
+  const latest = history.find(experiment => experiment.status === 'complete');
+  return <Section title="Systems research programs" id={'systems-research-programs-' + uid}>
+    <p className="small-note">Develop a useful system, then fund an independent experiment against published operating constraints. Every passed stage earns accreditation for matching products and opens a harder workload. Staff and compute come from your existing research allocation.</p>
+    <div className="guide-actions" role="group" aria-label="Choose a systems research program">{RESEARCH_PROGRAM_IDS.map(id => <button key={id} type="button" aria-pressed={id === selected} onClick={() => { setSelected(id); setModelChoice(''); }}>{RESEARCH_PROGRAMS[id].name} · {getResearchProgramLevel(game, id)}/4</button>)}</div>
+    <h3>{definition.name}</h3>
+    <p className="small-note">{definition.description}</p>
+    <p className="small-note"><strong>Earned benefit:</strong> {definition.reward} Current accreditation: {level * 2}%.</p>
+    <ol className="milestone-steps" aria-label="Research program stages">{RESEARCH_PROGRAM_STAGES.map((name, index) => <li key={name} className={level > index ? 'done' : ''}>{level > index ? '✓ ' : ''}{name}</li>)}</ol>
+    {active && <article className="project-row" aria-label="Active systems experiment">
+      <div className="project-heading"><strong>{RESEARCH_PROGRAMS[active.programId].name} · {RESEARCH_PROGRAM_STAGES[active.terms.stage - 1]}</strong><span>In progress</span></div>
+      <p className="small-note">{game.slices.models.versions[active.modelId]?.name}. Frozen model, evaluation and workload. {active.lastBottleneck || 'Funded work is advancing.'}</p>
+      <label className="small-note" htmlFor={'program-compute-' + uid}>Research compute · {formatUnits(active.completedWork)} / {formatUnits(active.terms.requiredWork)} CUw</label>
+      <progress id={'program-compute-' + uid} value={active.completedWork} max={active.terms.requiredWork} />
+      <label className="small-note" htmlFor={'program-staff-' + uid}>Research work · {formatWorkPoints(active.completedStaff)} / {formatWorkPoints(active.terms.requiredStaff)} points</label>
+      <progress id={'program-staff-' + uid} value={active.completedStaff} max={active.terms.requiredStaff} />
+      <p className="guide-actions"><a href="#planner">Plan people and compute</a></p>
+    </article>}
+    {planningLevel < 4 && <article className="system-application" aria-label="Next systems experiment">
+      <h4>Next experiment · {RESEARCH_PROGRAM_STAGES[stage - 1]}</h4>
+      <Metrics><Metric label="Entry fee">{formatMoney(terms.feeCents)}</Metric><Metric label="Research compute">{formatUnits(terms.requiredWork)} CUw</Metric><Metric label="Research work">{formatWorkPoints(terms.requiredStaff)} points</Metric><Metric label="Concurrent sessions">{terms.concurrentSessions}</Metric></Metrics>
+      <label className="line-control wide-select" htmlFor={'program-model-' + uid}>Evaluated candidate<select id={'program-model-' + uid} value={chosen?.model.id ?? ''} disabled={!canAct || !models.length} onChange={event => setModelChoice(event.target.value)}>{!models.length && <option value="">Train and evaluate a model first</option>}{ranked.map(({ model, checks }) => <option key={model.id} value={model.id}>{model.name} · {checks.filter(check => check.passed).length}/{checks.length} constraints</option>)}</select></label>
+      {chosen && <ul className="campaign-criteria" aria-label="Published experiment constraints">{chosen.checks.map(check => <li key={check.id}><span aria-hidden="true">{check.passed ? '✓' : '·'}</span> <strong>{check.label}</strong><span>{check.detail}</span></li>)}</ul>}
+      {chosen && chosen.checks.some(check => !check.passed) && <p className="bottleneck">This candidate misses published constraints. A completed failing experiment keeps its evidence but earns no accreditation. Improve the model or choose another candidate before funding.</p>}
+      {reason && <p className="bottleneck">{reason}</p>}
+      {chosen && <ActionControl game={game} payload={{ kind: 'start_research_experiment', programId: selected, modelId: chosen.model.id }} label={'Fund experiment · ' + formatMoney(terms.feeCents)} canAct={canAct} onQueue={onQueue} extraDisabled={!!reason} />}
+      <p className="small-note">The entry fee includes your world grant and earned company benefits. Payroll and physical compute still cost money. Finish both meters; the result and next stage become available the following week.</p>
+    </article>}
+    {level === 4 && <p className="campaign-achievement">All four stages earned. This program’s full accreditation remains with the company when you release new models.</p>}
+    {latest && <article className="project-row" aria-label="Latest experiment evidence"><div className="project-heading"><strong>Latest paid evidence · {RESEARCH_PROGRAM_STAGES[latest.terms.stage - 1]}</strong><span>{latest.passed ? 'Passed' : 'Constraints unmet'} · Week {latest.completedWeek}</span></div><p className="small-note">{game.slices.models.versions[latest.modelId]?.name} · {formatUnits(latest.physicalWork)} physical CUw and {formatWorkPoints(latest.completedStaff)} Research points delivered. {latest.availableWeek! > game.week ? `Available in Week ${latest.availableWeek}.` : 'Saved with the exact model and paid baseline evaluation.'}</p>
+      <details className="inline-details"><summary>Inspect experiment evidence and previous attempts</summary>{history.map(experiment => <div key={experiment.id}><p className="small-note"><strong>{RESEARCH_PROGRAM_STAGES[experiment.terms.stage - 1]} · {game.slices.models.versions[experiment.modelId]?.name}</strong> · {experiment.status === 'running' ? 'Running' : experiment.passed ? 'Passed' : 'Constraints unmet'}</p><ul className="small-note">{researchExperimentChecks(game.slices.models.versions[experiment.modelId], experiment.programId, experiment.terms).map(check => <li key={check.id}>{check.passed ? '✓' : '·'} {check.label}: {check.detail}</li>)}</ul></div>)}</details>
+    </article>}
+  </Section>;
+}

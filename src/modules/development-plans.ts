@@ -1,13 +1,17 @@
 import type { CommandPayload, CommandQuote, DomainResult, GameCommand, GameContent, GameState, Rejection } from '../contracts/types';
-import type { DevelopmentPlan, DevelopmentPlanSpec, DevelopmentPlanStep } from '../contracts/development-plans';
-import { DEVELOPMENT_PLAN_LIMIT } from '../contracts/development-plans';
+import type { DevelopmentPlan, DevelopmentPlanArchive, DevelopmentPlanSpec, DevelopmentPlanStep } from '../contracts/development-plans';
+import { DEVELOPMENT_PLAN_LIMIT, DEVELOPMENT_PLAN_RETAINED } from '../contracts/development-plans';
+import { developmentObjectiveChallenge } from '../contracts/development-objectives';
 import { canonicalStateHash } from '../core/canonical';
+import { hasConnectedCompanyRules } from '../core/connected-company-version';
 import { formatMoney } from '../core/math';
 import { getWeeklyBaseCost, reservedCash } from '../core/selectors';
 import { evaluationSuite } from './lab-evaluation';
 import { getTrainingPreview, packetOwnedBy, validateTrainingOptions } from './lab-planner';
 import { preparationTerms } from './lab-data';
 import { hasResearch } from './research';
+import { developmentArchiveProofId, developmentObjectiveProofId, developmentObjectiveIssue, developmentPortfolioIssue, developmentResponsibilityIssue } from './development-projects';
+export { developmentFeasibility, developmentLeadOptions, developmentLeadName, developmentCapacityShare, unfinishedDevelopmentPlans, pinDevelopmentGoal, limitDevelopmentRequests } from './development-projects';
 
 export const developmentPacketIds = (spec: DevelopmentPlanSpec) => [...new Set([spec.training.packetId, ...(spec.training.packetIds ?? [])])];
 export const activeDevelopmentPlan = (state: Readonly<GameState>) => Object.values(state.slices.models.developmentPlans ?? {}).find(p => p.companyId === state.playerCompanyId && !['review', 'cancelled'].includes(p.status));
@@ -40,6 +44,10 @@ export function developmentStageAdmission(state: Readonly<GameState>, command: G
   const plan = developmentPlanForCommand(state, command.id);
   if (!plan) return;
   if (plan.status !== 'running') return reject('The development plan is stopped. Its unstarted stage was not charged.', 'NOT_READY');
+  if (hasConnectedCompanyRules(state.contentVersion)) {
+    const responsibility = developmentResponsibilityIssue(state, plan, plan.companyId);
+    if (responsibility) return reject(responsibility, 'NOT_READY');
+  }
   if (state.queuedCommands.some(other => other.companyId === plan.companyId && ('planId' in other.payload && other.payload.planId === plan.id)
     && (other.payload.kind === 'cancel_development_plan' || other.payload.kind === 'set_development_plan_paused' && other.payload.paused))) return reject('Your queued pause or cancellation takes priority over the next development stage.', 'NOT_READY');
   if (state.week > plan.deadlineWeek) return reject('The development deadline has been reached. Extend the plan to continue.', 'NOT_READY');
@@ -55,9 +63,15 @@ export function validateDevelopmentCommand(state: Readonly<GameState>, command: 
   if (p.kind === 'start_development_plan') {
     const plans = Object.values(state.slices.models.developmentPlans ?? {});
     if (command.companyId !== state.playerCompanyId) return reject('Delegated plans are available for your lab.');
-    if (plans.length >= DEVELOPMENT_PLAN_LIMIT) return reject('This campaign has reached its saved development-plan limit. Manual development remains available.');
-    if (plans.some(plan => plan.companyId === command.companyId && !['review', 'cancelled'].includes(plan.status))
+    if (hasConnectedCompanyRules(state.contentVersion)) {
+      const responsibility = developmentPortfolioIssue(state, p, command); if (responsibility) return reject(responsibility, 'NOT_READY');
+      const objective = developmentObjectiveIssue(state, p, content); if (objective) return reject(objective, 'NOT_READY');
+    } else {
+      if (p.objective || p.leadStaffId !== undefined || p.capacityShareBps !== undefined) return reject('Upgrade this campaign before assigning project objectives and team responsibility.');
+      if (plans.length >= DEVELOPMENT_PLAN_LIMIT) return reject('This historical campaign has reached its saved plan limit. Upgrade the campaign to archive finished plans.');
+      if (plans.some(plan => plan.companyId === command.companyId && !['review', 'cancelled'].includes(plan.status))
       || state.queuedCommands.some(other => other.id !== command.id && other.companyId === command.companyId && other.payload.kind === p.kind)) return reject('Finish or stop the current development plan before starting another.', 'ALREADY_ACTIVE');
+    }
     // The command's fixed boundary keeps the same advertised window at submission and commit.
     if (p.deadlineWeek < command.issuedForWeek + 2 || p.deadlineWeek > command.issuedForWeek + 519) return reject('Choose a deadline 3 to 520 weeks from now.');
     for (const id of developmentPacketIds(p)) {
@@ -66,7 +80,7 @@ export function validateDevelopmentCommand(state: Readonly<GameState>, command: 
     }
     const suite = evaluationSuite(p.suiteId);
     if (!suite || (suite.requiredResearch && !hasResearch(state, command.companyId, suite.requiredResearch))) return reject('Unlock the selected evaluation before delegating this plan.', 'NOT_READY');
-    if (!['basic-conversation-1', 'expanded-capabilities-1', 'advanced-capabilities-1', 'behavior-cases-1'].includes(p.suiteId)) return reject('Use a capability or behavior evaluation for the connected plan. Challenge and independent tests stay available after review.');
+    if (!['basic-conversation-1', 'expanded-capabilities-1', 'advanced-capabilities-1', 'behavior-cases-1'].includes(p.suiteId)) return reject('Choose a capability or behavior baseline. A bound systems objective adds its paid challenge automatically.');
     const prepared = developmentPreviewState(state, p);
     const invalid = validateTrainingOptions(prepared, command.companyId, p.training, content); if (invalid) return invalid;
     const quote = developmentQuote(state, p, content);
@@ -82,13 +96,19 @@ export function validateDevelopmentCommand(state: Readonly<GameState>, command: 
   if (p.kind === 'revise_development_plan') {
     if (p.deadlineWeek < command.issuedForWeek + 1 || p.deadlineWeek > command.issuedForWeek + 519) return reject('Choose a future deadline within 520 weeks.');
     if (p.feeBudgetCents < developmentFeeSpent(state, plan)) return reject('The revised fee budget must cover fees already paid.');
+    if (hasConnectedCompanyRules(state.contentVersion)) {
+      const issue = developmentPortfolioIssue(state, { ...plan, ...p }, command, plan.id); if (issue) return reject(issue, 'NOT_READY');
+    } else if (p.leadStaffId !== undefined || p.capacityShareBps !== undefined) return reject('Upgrade this campaign before changing project responsibility.');
   }
   if (p.kind === 'set_development_plan_paused' && !p.paused && plan.deadlineWeek < command.issuedForWeek) return reject('Extend the deadline before resuming the plan.', 'NOT_READY');
+  if (p.kind === 'set_development_plan_paused' && !p.paused && hasConnectedCompanyRules(state.contentVersion)) {
+    const issue = developmentResponsibilityIssue(state, plan, command.companyId); if (issue) return reject(issue, 'NOT_READY');
+  }
 }
 export function quoteDevelopmentCommand(state: Readonly<GameState>, command: GameCommand, content: GameContent): CommandQuote {
   const p = command.payload;
   return { upfrontCostCents: 0, weeklyCostDeltaCents: 0, summary: p.kind === 'start_development_plan'
-    ? `Delegate preparation, training and ${evaluationSuite(p.suiteId)?.name}. Up to ${formatMoney(p.feeBudgetCents)} in project fees, ${formatMoney(p.cashReserveCents)} cash reserve, deadline Week ${p.deadlineWeek}. Rent, salaries and metered work continue separately. Review the result before release.`
+    ? `Delegate preparation, training and ${evaluationSuite(p.suiteId)?.name}${developmentObjectiveChallenge(p.objective) ? ', followed by the objective’s paid systems challenge' : ''}. Up to ${formatMoney(p.feeBudgetCents)} in project fees, ${formatMoney(p.cashReserveCents)} cash reserve, deadline Week ${p.deadlineWeek}. Rent, salaries and metered work continue separately. Review the result before release or customer delivery.`
     : p.kind === 'cancel_development_plan' ? 'Stop future handoffs and pause unfinished work. Keep every completed dataset, model and report.'
     : p.kind === 'revise_development_plan' ? 'Update the limits and resume this development plan with its saved work.'
     : p.kind === 'set_development_plan_paused' && p.paused ? 'Pause the plan and its current work. Weekly operating bills continue.' : 'Resume the plan from its saved stage.' };
@@ -103,22 +123,46 @@ export function setDevelopmentJobsPaused(state: GameState, plan: DevelopmentPlan
 }
 export function applyDevelopmentCommand(state: Readonly<GameState>, command: GameCommand): DomainResult {
   const next = structuredClone(state), models = next.slices.models;
+  const facts: NonNullable<DomainResult['facts']> = [];
   models.developmentPlans ??= {};
   const p = command.payload;
   if (p.kind === 'start_development_plan') {
+    if (hasConnectedCompanyRules(state.contentVersion) && Object.keys(models.developmentPlans).length >= DEVELOPMENT_PLAN_LIMIT) {
+      const settled = Object.values(models.developmentPlans).filter(plan => ['review', 'cancelled'].includes(plan.status)
+        && !plan.steps.some(step => next.queuedCommands.some(queued => queued.id === step.commandId)))
+        .sort((a, b) => a.createdWeek - b.createdWeek || a.id.localeCompare(b.id));
+      while (Object.keys(models.developmentPlans).length > DEVELOPMENT_PLAN_RETAINED && settled.length) {
+        const old = settled.shift()!;
+        const archive: DevelopmentPlanArchive = { id: old.id, companyId: old.companyId, name: old.name, createdWeek: old.createdWeek,
+          endedWeek: old.completedWeek ?? old.decisionWeek!, archivedWeek: state.week, status: old.status as 'review' | 'cancelled',
+          feeSpentCents: developmentFeeSpent(state, old), stageCommandIds: old.steps.filter(step => state.commandReceipts[step.commandId]?.status === 'accepted').map(step => step.commandId),
+          ...(old.objective ? { objective: structuredClone(old.objective) } : {}), ...(old.leadStaffId !== undefined ? { leadStaffId: old.leadStaffId } : {}),
+          ...(old.capacityShareBps !== undefined ? { capacityShareBps: old.capacityShareBps } : {}), ...(old.modelId ? { modelId: old.modelId } : {}),
+          ...(old.reportId ? { reportId: old.reportId } : {}), ...(old.challengeReportId ? { challengeReportId: old.challengeReportId } : {}) };
+        (models.developmentPlanArchive ??= {})[old.id] = archive;
+        facts.push({ id: developmentArchiveProofId(archive), companyId: old.companyId, week: state.week, sourceId: old.id, category: 'operating', kind: 'expense', amountCents: 0, label: 'Completed development project archived with paid evidence' });
+        delete models.developmentPlans[old.id];
+      }
+    }
     const { kind: _, ...spec } = p;
     const id = 'development-' + command.id;
     models.developmentPlans[id] = { ...structuredClone(spec), id, companyId: command.companyId, createdWeek: state.week,
       status: 'running', stage: 'prepare', steps: [], message: 'Preparing the selected data, then training and evaluation. A decision is required before release.' };
+    if (p.objective) facts.push({ id: developmentObjectiveProofId(models.developmentPlans[id]), companyId: command.companyId, week: state.week, sourceId: id,
+      category: 'operating', kind: 'expense', amountCents: 0, label: 'Development objective and design authorized' });
   } else if ('planId' in p) {
     const plan = models.developmentPlans[p.planId]!;
-    if (p.kind === 'revise_development_plan') { plan.feeBudgetCents = p.feeBudgetCents; plan.cashReserveCents = p.cashReserveCents; plan.deadlineWeek = p.deadlineWeek; plan.status = 'running'; }
+    if (p.kind === 'revise_development_plan') {
+      plan.feeBudgetCents = p.feeBudgetCents; plan.cashReserveCents = p.cashReserveCents; plan.deadlineWeek = p.deadlineWeek; plan.status = 'running';
+      if (p.leadStaffId !== undefined) plan.leadStaffId = p.leadStaffId;
+      if (p.capacityShareBps !== undefined) plan.capacityShareBps = p.capacityShareBps;
+    }
     if (p.kind === 'set_development_plan_paused') plan.status = p.paused ? 'paused' : 'running';
     if (p.kind === 'cancel_development_plan') { plan.status = 'cancelled'; plan.decisionWeek = state.week; }
     plan.message = plan.status === 'cancelled' ? 'Plan stopped. Completed outputs and paid work are preserved.' : plan.status === 'paused' ? 'Paused by you. Change the limits or resume when ready.' : 'Resumed with saved progress and current limits.';
     setDevelopmentJobsPaused(next, plan, plan.status !== 'running');
   }
-  return { updates: { models, data: next.slices.data }, messages: [{ companyId: command.companyId, category: 'project', message: p.kind === 'start_development_plan' ? `Development plan “${p.name.trim()}” authorized. Routine handoffs will run within its limits.` : 'Development plan updated; existing outputs are preserved.' }] };
+  return { updates: { models, data: next.slices.data }, ...(facts.length ? { facts } : {}), messages: [{ companyId: command.companyId, category: 'project', message: p.kind === 'start_development_plan' ? `Development plan “${p.name.trim()}” authorized. Routine handoffs will run within its limits.` : 'Development plan updated; existing outputs are preserved.' }] };
 }
 
 /** Runs only on the engine's private candidate, after settlement. Ordinary command admission remains authoritative. */
@@ -131,11 +175,19 @@ export function advanceDevelopmentPlans(state: GameState, content: GameContent, 
     if (pending) continue;
     const evaluationStep = latest('evaluate');
     const evaluation = evaluationStep && state.slices.models.evaluationRuns['evaluation-' + evaluationStep.commandId];
-    if (evaluation?.status === 'complete' && evaluation.reportId) {
+    const challengeSuite = developmentObjectiveChallenge(plan.objective), challengeStep = latest('challenge');
+    const challenge = challengeStep && state.slices.models.evaluationRuns['evaluation-' + challengeStep.commandId];
+    if (evaluation?.status === 'complete' && evaluation.reportId && (!challengeSuite || challenge?.status === 'complete' && challenge.reportId)) {
       plan.status = 'review'; plan.stage = 'review'; plan.modelId = evaluation.modelId; plan.reportId = evaluation.reportId;
-      plan.completedWeek = state.slices.models.reports[evaluation.reportId].week; plan.decisionWeek = state.week;
-      plan.message = 'Evaluation is ready. Review the evidence, then release the model or choose an improvement.'; announce(`${plan.name}: ${plan.message}`); continue;
+      if (challenge?.reportId) plan.challengeReportId = challenge.reportId;
+      plan.completedWeek = state.slices.models.reports[challenge?.reportId ?? evaluation.reportId].week; plan.decisionWeek = state.week;
+      plan.message = challenge?.reportId ? state.slices.models.reports[challenge.reportId].challenge?.passed
+        ? plan.objective?.kind === 'renewable-brief' ? 'The paid systems challenge passed. Review the pinned customer terms, rights and capacity before committing delivery.' : 'The objective’s paid systems challenge is complete. Review the result and choose the next use for this model.'
+        : 'The paid challenge found unmet workloads. Review the evidence and improve this exact model before customer delivery.'
+        : 'Evaluation is ready. Review the evidence, then release the model or choose an improvement.';
+      announce(`${plan.name}: ${plan.message}`); continue;
     }
+    if (hasConnectedCompanyRules(state.contentVersion)) { const issue = developmentResponsibilityIssue(state, plan, plan.companyId); if (issue) { block(issue); continue; } }
     if (state.week >= plan.deadlineWeek) { block('The deadline has arrived. Extend it to continue from saved progress.'); continue; }
     if (state.slices.company.companies[plan.companyId].cashCents - reservedCash(state, plan.companyId) - getWeeklyBaseCost(state, content, plan.companyId) < plan.cashReserveCents) {
       block('Known weekly bills would threaten the cash reserve. Review the plan limits or operating costs.'); continue;
@@ -156,6 +208,12 @@ export function advanceDevelopmentPlans(state: GameState, content: GameContent, 
     };
     const rejected = plan.steps.find(step => state.commandReceipts[step.commandId]?.status === 'rejected' && latest(step.key) === step);
     if (rejected && rejected.issuedWeek === state.week) { block(state.commandReceipts[rejected.commandId].reason?.message ?? 'The next stage was rejected; no fee was charged.'); continue; }
+    if (evaluation?.status === 'complete' && evaluation.reportId && challengeSuite) {
+      plan.stage = 'challenge'; plan.modelId = evaluation.modelId;
+      if (!challenge) queue('challenge', { kind: 'evaluate_model', modelId: evaluation.modelId, suiteId: challengeSuite });
+      else { plan.message = challenge.lastBottleneck || 'Running the paid systems challenge for the saved objective.'; if (challenge.status === 'paused') block('The paid challenge was paused. Resume this plan to continue.'); }
+      continue;
+    }
     const rawId = developmentPacketIds(plan).find(id => !state.slices.data.packets[id]?.prepared);
     if (rawId) {
       plan.stage = 'prepare';

@@ -80,7 +80,7 @@ function isolateTask(host: HTMLElement, docked = false): () => void {
         if (docked && sibling.matches('.studio-chrome')) {
           parents.add(sibling);
           for (const child of Array.from(sibling.children)) {
-            if (child instanceof HTMLElement && !child.matches('.studio-header, .studio-sidebar, .skip-link')) conceal(child);
+            if (child instanceof HTMLElement && !child.matches('.studio-header, .studio-sidebar, .studio-status-line, .decision-clock-controls, .studio-operation-error, .skip-link')) conceal(child);
           }
         } else conceal(sibling);
       }
@@ -91,7 +91,8 @@ function isolateTask(host: HTMLElement, docked = false): () => void {
     }
   };
   isolate();
-  // A late status/error sibling must not create an interactive hole in the backdrop.
+  // Retained workspace siblings stay isolated; the shared clock, stop reason,
+  // error and navigation controls remain reachable on a docked task page.
   const observer = new MutationObserver(isolate);
   for (const parent of parents) observer.observe(parent, { childList: true });
   return () => {

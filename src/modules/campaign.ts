@@ -3,14 +3,25 @@ import { applyBriefCommand, quoteBriefCommand, reserveBrief, settleBrief, valida
 import { advanceCampaignProgress, captureCampaignWeek } from './campaign-progress';
 import { CHAPTER_COMMANDS, advanceChapters, applyChapterCommand, quoteChapterCommand, validateChapterCommand } from './chapters';
 import { activeSystemsBrief, applySystemsBriefCommand, quoteSystemsBriefCommand, reserveSystemsBrief, settleSystemsBrief, validateSystemsBriefCommand } from './systems-briefs';
+import { advanceCompanyAmbitions, advanceConnectedChapters, initializeCompanyProgression } from './company-progression';
+import { RESEARCH_PROGRAM_COMMANDS, advanceResearchExperiments, applyResearchProgramCommand, quoteResearchProgramCommand, researchExperimentRequests, validateResearchProgramCommand } from './research-programs';
 export { getCampaignView } from './campaign-progress';
 
 export function createCampaignModule(): DomainModule {
-  return { id: 'campaign', owns: ['campaign'], commandKinds: ['accept_customer_brief', 'accept_systems_brief', ...CHAPTER_COMMANDS],
-    validateCommand: (state, command, content) => command.payload.kind === 'select_chapter' ? validateChapterCommand(state, command) : command.payload.kind === 'accept_systems_brief' ? validateSystemsBriefCommand(state, command, content) : validateBriefCommand(state, command, content),
-    quoteCommand: (state, command, content) => command.payload.kind === 'select_chapter' ? quoteChapterCommand(command) : command.payload.kind === 'accept_systems_brief' ? quoteSystemsBriefCommand(state, command) : quoteBriefCommand(state, command, content),
-    applyCommand: (state, command, content) => command.payload.kind === 'select_chapter' ? applyChapterCommand(state, command) : command.payload.kind === 'accept_systems_brief' ? applySystemsBriefCommand(state, command) : applyBriefCommand(state, command, content),
-    handlers: { reserve: state => activeSystemsBrief(state) ? reserveSystemsBrief(state) : reserveBrief(state),
+  return { id: 'campaign', owns: ['campaign'], commandKinds: ['accept_customer_brief', 'accept_systems_brief', ...CHAPTER_COMMANDS, ...RESEARCH_PROGRAM_COMMANDS],
+    validateCommand: (state, command, content) => command.payload.kind === 'start_research_experiment' ? validateResearchProgramCommand(state, command) : command.payload.kind === 'select_chapter' ? validateChapterCommand(state, command) : command.payload.kind === 'accept_systems_brief' ? validateSystemsBriefCommand(state, command, content) : validateBriefCommand(state, command, content),
+    quoteCommand: (state, command, content) => command.payload.kind === 'start_research_experiment' ? quoteResearchProgramCommand(state, command) : command.payload.kind === 'select_chapter' ? quoteChapterCommand(command, state) : command.payload.kind === 'accept_systems_brief' ? quoteSystemsBriefCommand(state, command) : quoteBriefCommand(state, command, content),
+    applyCommand: (state, command, content) => command.payload.kind === 'start_research_experiment' ? applyResearchProgramCommand(state, command) : command.payload.kind === 'select_chapter' ? applyChapterCommand(state, command) : command.payload.kind === 'accept_systems_brief' ? applySystemsBriefCommand(state, command) : applyBriefCommand(state, command, content),
+    handlers: { commit: state => {
+      if (state.slices.campaign.progression) return {};
+      const campaign = structuredClone(state.slices.campaign);
+      const view = { ...state, slices: { ...state.slices, campaign } };
+      initializeCompanyProgression(view);
+      return campaign.progression ? { updates: { campaign }, messages: [{ category: 'project' as const, message: 'Your company can now pursue background chapters, specialist ambitions and paid systems research. Earlier paid work and achievements remain available.' }] } : {};
+    }, reserve: state => {
+      const brief = activeSystemsBrief(state) ? reserveSystemsBrief(state) : reserveBrief(state);
+      return { ...brief, workRequests: [...(brief.workRequests ?? []), ...researchExperimentRequests(state)] };
+    }, resolve: advanceResearchExperiments,
       settle: (state, context) => activeSystemsBrief(state) ? settleSystemsBrief(state, context) : settleBrief(state, context), plan(state, context) {
     const campaign = structuredClone(state.slices.campaign);
     const conditions: [string, boolean, string][] = [
@@ -36,6 +47,10 @@ export function createCampaignModule(): DomainModule {
     for (const [id, achieved, message] of conditions) if (achieved && !campaign.milestones.includes(id)) { campaign.milestones.push(id); messages.push({ category: 'project', message }); }
     messages.push(...advanceCampaignProgress(campaign, captureCampaignWeek(state, context.content)));
     messages.push(...advanceChapters(campaign, state));
+    if (campaign.progression) {
+      messages.push(...advanceConnectedChapters(campaign, state));
+      messages.push(...advanceCompanyAmbitions(campaign, state, context.content));
+    }
     return { updates: { campaign }, messages };
   } } };
 }

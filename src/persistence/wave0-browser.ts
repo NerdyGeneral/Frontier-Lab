@@ -35,6 +35,7 @@ const ORIGINAL_CONTENT_033_KEY = 'frontier-lab.content033.original';
 const ORIGINAL_CONTENT_034_KEY = 'frontier-lab.content034.original';
 const ORIGINAL_CONTENT_035_KEY = 'frontier-lab.content035.original';
 const ORIGINAL_CONTENT_036_KEY = 'frontier-lab.content036.original';
+const ORIGINAL_CONTENT_037_KEY = 'frontier-lab.content037.original';
 const ORIGINAL_CONTENT_029_KEY = 'frontier-lab.content029.original';
 const PREVIOUS_KEY = 'frontier-lab.previous.snapshot';
 let sessionTail: Promise<void> = Promise.resolve();
@@ -58,9 +59,9 @@ function validatePreviousPrimary(storage: Storage, text: string): PrimaryValidat
 export type SessionMode = 'acquiring' | 'owner' | 'observer' | 'memory';
 export type StoredSnapshot =
   | { kind: 'empty' }
-  | { kind: 'loaded'; state: GameState; migratedFrom?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 22 | 24 | 27 | 28 | 29 | 30 | 33 | 34 | 35 | 36 }
+  | { kind: 'loaded'; state: GameState; migratedFrom?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 22 | 24 | 27 | 28 | 29 | 30 | 33 | 34 | 35 | 36 | 37 }
   | { kind: 'invalid' | 'unavailable'; message: string };
-export type RecoveryKind = 'stored' | 'wave0' | 'wave1' | 'wave2' | 'wave3' | 'wave4' | 'wave5' | 'wave6' | 'wave7' | 'wave8' | 'wave9' | 'wave10' | 'wave11' | 'wave12' | 'wave13' | 'wave14' | 'wave15' | 'wave16' | 'wave17' | 'wave18' | 'wave19' | 'wave21' | 'content023' | 'content026' | 'content027' | 'content028' | 'content029' | 'content033' | 'content034' | 'content035' | 'content036' | 'previous';
+export type RecoveryKind = 'stored' | 'wave0' | 'wave1' | 'wave2' | 'wave3' | 'wave4' | 'wave5' | 'wave6' | 'wave7' | 'wave8' | 'wave9' | 'wave10' | 'wave11' | 'wave12' | 'wave13' | 'wave14' | 'wave15' | 'wave16' | 'wave17' | 'wave18' | 'wave19' | 'wave21' | 'content023' | 'content026' | 'content027' | 'content028' | 'content029' | 'content033' | 'content034' | 'content035' | 'content036' | 'content037' | 'previous';
 export interface RecoveryOption { kind: RecoveryKind; label: string; filename: string }
 const RECOVERY_OPTIONS: readonly RecoveryOption[] = [
   { kind: 'stored', label: 'Export untouched stored save', filename: 'frontier-lab-stored-save.json' },
@@ -91,12 +92,13 @@ const RECOVERY_OPTIONS: readonly RecoveryOption[] = [
   { kind: 'content028', label: 'Export original 0.28 content save', filename: 'frontier-lab-content028-original.json' },
   { kind: 'content034', label: 'Export original 0.34 content save', filename: 'frontier-lab-content034-original.json' },
   { kind: 'content035', label: 'Export original 0.35 content save', filename: 'frontier-lab-content035-original.json' },
+  { kind: 'content037', label: 'Export original 0.37 content save', filename: 'frontier-lab-content037-original.json' },
   { kind: 'content036', label: 'Export original 0.36 content save', filename: 'frontier-lab-content036-original.json' },
   { kind: 'content033', label: 'Export original 0.33 content save', filename: 'frontier-lab-content033-original.json' },
   { kind: 'content029', label: 'Export original 0.29 content save', filename: 'frontier-lab-content029-original.json' },
   { kind: 'previous', label: 'Export previous saved run', filename: 'frontier-lab-previous-save.json' },
 ];
-const RECOVERY_KEYS: Record<RecoveryKind, string> = { stored: SAVE_KEY, wave0: ORIGINAL_V1_KEY, wave1: ORIGINAL_V2_KEY, wave2: ORIGINAL_V3_KEY, wave3: ORIGINAL_V4_KEY, wave4: ORIGINAL_WAVE4_KEY, wave5: ORIGINAL_WAVE5_KEY, wave6: ORIGINAL_WAVE6_KEY, wave7: ORIGINAL_WAVE7_KEY, wave8: ORIGINAL_WAVE8_KEY, wave9: ORIGINAL_WAVE9_KEY, wave10: ORIGINAL_WAVE10_KEY, wave11: ORIGINAL_WAVE11_KEY, wave12: ORIGINAL_WAVE12_KEY, wave13: ORIGINAL_WAVE13_KEY, wave14: ORIGINAL_WAVE14_KEY, wave15: ORIGINAL_WAVE15_KEY, wave16: ORIGINAL_WAVE16_KEY, wave17: ORIGINAL_WAVE17_KEY, wave18: ORIGINAL_WAVE18_KEY, wave19: ORIGINAL_WAVE19_KEY, wave21: ORIGINAL_WAVE21_KEY, content023: ORIGINAL_CONTENT_023_KEY, content026: ORIGINAL_CONTENT_026_KEY, content027: ORIGINAL_CONTENT_027_KEY, content028: ORIGINAL_CONTENT_028_KEY, content029: ORIGINAL_CONTENT_029_KEY, content033: ORIGINAL_CONTENT_033_KEY, content034: ORIGINAL_CONTENT_034_KEY, content035: ORIGINAL_CONTENT_035_KEY, content036: ORIGINAL_CONTENT_036_KEY, previous: PREVIOUS_KEY };
+const RECOVERY_KEYS: Record<RecoveryKind, string> = { stored: SAVE_KEY, wave0: ORIGINAL_V1_KEY, wave1: ORIGINAL_V2_KEY, wave2: ORIGINAL_V3_KEY, wave3: ORIGINAL_V4_KEY, wave4: ORIGINAL_WAVE4_KEY, wave5: ORIGINAL_WAVE5_KEY, wave6: ORIGINAL_WAVE6_KEY, wave7: ORIGINAL_WAVE7_KEY, wave8: ORIGINAL_WAVE8_KEY, wave9: ORIGINAL_WAVE9_KEY, wave10: ORIGINAL_WAVE10_KEY, wave11: ORIGINAL_WAVE11_KEY, wave12: ORIGINAL_WAVE12_KEY, wave13: ORIGINAL_WAVE13_KEY, wave14: ORIGINAL_WAVE14_KEY, wave15: ORIGINAL_WAVE15_KEY, wave16: ORIGINAL_WAVE16_KEY, wave17: ORIGINAL_WAVE17_KEY, wave18: ORIGINAL_WAVE18_KEY, wave19: ORIGINAL_WAVE19_KEY, wave21: ORIGINAL_WAVE21_KEY, content023: ORIGINAL_CONTENT_023_KEY, content026: ORIGINAL_CONTENT_026_KEY, content027: ORIGINAL_CONTENT_027_KEY, content028: ORIGINAL_CONTENT_028_KEY, content029: ORIGINAL_CONTENT_029_KEY, content033: ORIGINAL_CONTENT_033_KEY, content034: ORIGINAL_CONTENT_034_KEY, content035: ORIGINAL_CONTENT_035_KEY, content036: ORIGINAL_CONTENT_036_KEY, content037: ORIGINAL_CONTENT_037_KEY, previous: PREVIOUS_KEY };
 const ARCHIVE_KEYS = Object.values(RECOVERY_KEYS).filter(key => key !== SAVE_KEY);
 
 function preserveRecoveryArchive(storage: Storage, key: string, text: string): void {
@@ -185,7 +187,8 @@ export function writeBrowserSnapshotWithBytes(state: GameState, options: { repla
         : prior.ok && prior.migratedFrom === 33 ? ORIGINAL_CONTENT_033_KEY
         : prior.ok && prior.migratedFrom === 34 ? ORIGINAL_CONTENT_034_KEY
         : prior.ok && prior.migratedFrom === 35 ? ORIGINAL_CONTENT_035_KEY
-        : prior.ok && prior.migratedFrom === 36 ? ORIGINAL_CONTENT_036_KEY : null;
+        : prior.ok && prior.migratedFrom === 36 ? ORIGINAL_CONTENT_036_KEY
+        : prior.ok && prior.migratedFrom === 37 ? ORIGINAL_CONTENT_037_KEY : null;
       if (originalKey !== null && storage.getItem(originalKey) === null) {
         preserveRecoveryArchive(storage, originalKey, previous);
       }

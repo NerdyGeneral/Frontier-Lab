@@ -22,6 +22,7 @@ import { AI_SYSTEM_RESEARCH, AI_SYSTEM_RESEARCH_GROUPS, AI_SYSTEM_RESEARCH_IDS }
 import { useModelWorkspace } from './model-workspace-context';
 import { developmentGoalName, developmentGoalResearch } from './development-goals';
 import { ModelResearchPanel } from './model-research-panel';
+import { ResearchProgramsPanel } from './research-programs-panel';
 import { getModelResearchLevel } from '../modules/model-research';
 import { humanizeDesignRequirement } from './model-design-insights';
 
@@ -452,6 +453,7 @@ export function StudioResearchTree({ game, canAct, onQueue, onOpenPanel, onOpenM
     {developmentGoal && <div className="research-development-goal"><Compass size={16} aria-hidden="true" /><span>Working toward <strong>{developmentGoalName(developmentGoal)}</strong>. Relevant discoveries and prerequisites appear first.</span><StudioResearchDesignerShortcut onOpenDesigner={onOpenDesigner} onOpenPanel={onOpenPanel} /></div>}
     {scope === 'customization' && <div className="research-tree-customization-intro"><p>Choose how your model learns, responds and uses hardware. Select a discovery to see its tradeoff.</p><StudioResearchDesignerShortcut onOpenDesigner={onOpenDesigner} onOpenPanel={onOpenPanel} /></div>}
 
+    {scope === 'all' && <ResearchProgramsPanel game={game} canAct={canAct} onQueue={onQueue} />}
     {scope === 'all' && <details className="research-tree-architecture-program"><summary><span>Architecture program<strong>Level {getModelResearchLevel(game, game.playerCompanyId)}</strong></span><small>Repeatable research · unlock families and improve future designs</small></summary><ModelResearchPanel game={game} canAct={canAct} onQueue={onQueue} /></details>}
 
     <section className="research-available-now" aria-labelledby={uniqueId + '-available-title'}>

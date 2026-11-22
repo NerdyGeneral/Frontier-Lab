@@ -11,6 +11,7 @@ import { modelExecutionHints } from './model-runtime';
 import { behaviorMeter, executionErrorBps, requestMeter } from './product-models';
 import { meteredBill } from './products';
 import type { productDemand } from './products';
+import { blendWorkloadMeasures, getProductWorkloadMeasure, workloadErrorBps } from './product-workloads';
 
 export type CanaryDemand = ReturnType<typeof productDemand>;
 export interface CanaryTrafficPlan {
@@ -67,8 +68,8 @@ export function addCanaryOutcomes(rows: readonly CanaryOutcomes[]): CanaryOutcom
 /** Deterministic balanced counts for actual completed requests. The fixed
  * source/product/segment key excludes command IDs, names, weeks and RNG draws. */
 export function observedCanaryOutcomes(model: ModelVersion, features: CanaryRelease['features'], segmentId: CanarySegmentReceipt['segmentId'],
-  count: number, evidenceKey: string): { technicalErrorBps: number; outcomes: CanaryOutcomes } {
-  const technicalErrorBps = executionErrorBps(model, SEGMENT_BY_ID[segmentId], features), behavior = behaviorMeter(model, technicalErrorBps);
+  count: number, evidenceKey: string, workload?: CanaryRelease['configuration']['workload']): { technicalErrorBps: number; outcomes: CanaryOutcomes } {
+  const technicalErrorBps = workloadErrorBps(executionErrorBps(model, SEGMENT_BY_ID[segmentId], features), getProductWorkloadMeasure(model, workload)), behavior = behaviorMeter(model, technicalErrorBps);
   const falseRefusalBps = Math.min(10000 - technicalErrorBps, behavior.falseRefusalBps);
   const usefulBps = 10000 - technicalErrorBps - falseRefusalBps;
   const offset = parseInt(hashText(`${evidenceKey}:${segmentId}:outcome`), 16) % 10000;
@@ -94,7 +95,7 @@ function cohort(state: Readonly<GameState>, plan: CanaryTrafficPlan, arm: 'incum
   const requestedRequests = counts.reduce((sum, value) => sum + value, 0), executedRequests = Math.min(requestedRequests, Math.floor(effective / meter.work));
   const split = splitExecutedRequests(counts, executedRequests);
   const segments = plan.segments.map((row, index) => ({ segmentId: row.segmentId, accounts: row.accounts,
-    requestedRequests: counts[index], executedRequests: split[index], ...observedCanaryOutcomes(model, plan.canary.features, row.segmentId, split[index], plan.canary.evidenceKey) }));
+    requestedRequests: counts[index], executedRequests: split[index], ...observedCanaryOutcomes(model, plan.canary.features, row.segmentId, split[index], plan.canary.evidenceKey, plan.canary.configuration.workload) }));
   const outcomes = addCanaryOutcomes(segments.map(row => row.outcomes));
   const pool = grant ? getComputePools(state, plan.canary.companyId, ctx.content, ctx.resources.staffGrants).find(item => item.id === grant.poolId) : undefined;
   const rateCentsPerCUw = pool ? pool.ownership === 'cloud' ? ctx.content.opening.rentCentsPerCUWeek : getPoolWorkCostRate(pool, { category: 'serving' }) : 0;
@@ -120,6 +121,13 @@ export function canaryFulfillment(receipt: Pick<CanaryUsageReceipt, 'eligibleReq
   const numerator = (BigInt(receipt.incumbent.effectiveWorkCUw) * BigInt(candidateWorkPerRequest)
     + BigInt(receipt.candidate.effectiveWorkCUw) * BigInt(sourceWorkPerRequest)) * BigInt(10000);
   return Number(numerator / (BigInt(receipt.eligibleRequests) * BigInt(sourceWorkPerRequest) * BigInt(candidateWorkPerRequest)));
+}
+
+export function canaryWorkloadMeasure(state: Readonly<GameState>, canary: CanaryRelease, receipt: CanaryUsageReceipt) {
+  const source = getProductWorkloadMeasure(state.slices.models.versions[canary.sourceModelId], canary.configuration.workload);
+  if (!source || !receipt.candidate.executedRequests) return source;
+  const candidate = getProductWorkloadMeasure(state.slices.models.versions[canary.candidateModelId], canary.configuration.workload)!;
+  return blendWorkloadMeasures(source, candidate, mulDiv(receipt.candidate.executedRequests, 10000, receipt.incumbent.executedRequests + receipt.candidate.executedRequests));
 }
 
 /** One combined usage record goes through the existing product invoice writer.
@@ -160,7 +168,8 @@ export function executeCanaryUsage(state: Readonly<GameState>, product: ProductO
       errorBps: count ? mulDiv(errors, 10000, count) : 0 };
   });
   const trialOwned = incumbent.ownership === 'owned' ? mulDiv(receipt.trialPhysicalWorkCUw, incumbent.rateCentsPerCUw, U) : 0;
-  return { canary: receipt, week: ctx.week, productId: product.id, paidAccounts: demand.accounts, trialAccounts: demand.trialAccounts,
+  const workload = canaryWorkloadMeasure(state, plan.canary, receipt);
+  return { ...(workload ? { workload } : {}), canary: receipt, week: ctx.week, productId: product.id, paidAccounts: demand.accounts, trialAccounts: demand.trialAccounts,
     requestedWork: plan.sourcePaidWork + plan.candidateWork + demand.trialWork, executedWork: sourceEffective + candidate.effectiveWorkCUw,
     paidRequestedWork: plan.sourcePaidWork + plan.candidateWork, paidExecutedWork: sourcePaid + candidate.effectiveWorkCUw,
     trialRequestedWork: demand.trialWork, trialExecutedWork: trialExecuted,

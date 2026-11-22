@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../core/connected-company-version';
 'use client';
 
 import { CUSTOMER_BRIEFS } from '../content/customer-briefs';
@@ -30,7 +31,7 @@ export function CustomerBriefsPanel(props: PanelProps) {
   const closed = Object.values(records).filter(b => b.status !== 'active').sort((a, b) => b.finishedWeek! - a.finishedWeek!);
   const earned = game.slices.company.companies[game.playerCompanyId].earnedRevenueCents > 0;
   const offers = OPTIONAL_BRIEF_IDS.filter(id => records[id]?.status !== 'completed'
-    && (!isSpecialistBrief(id) || [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(game.contentVersion)));
+    && (!isSpecialistBrief(id) || [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(game.contentVersion)));
   function activeCard(brief: CustomerBrief) {
     const def = CUSTOMER_BRIEFS[brief.id], target = briefTargetText(game, brief.id, brief), next = deliveryLink(brief, props);
     return <article className="project-row campaign-route" aria-label="Active customer brief">

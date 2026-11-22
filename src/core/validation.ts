@@ -1,3 +1,5 @@
+import { validateCompanyProgressionState } from './company-progression-validation';
+import { CONNECTED_COMPANY_CONTENT_VERSION, containsConnectedCompanyFeatures } from './connected-company-version';
 import { assertSystemsBriefsState } from './systems-brief-validation';
 import { AI_SYSTEMS_CONTENT_VERSION, containsAISystemsFeatures } from './ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION, containsGameplayPolishFeatures } from './gameplay-polish-version';
@@ -73,12 +75,13 @@ export function assertSerializableStateValue(v: unknown, depth = 0): void {
 export function validateState(state: GameState, content: GameContent): Rejection[] {
   try {
     record(state, 'State'); assertSerializableStateValue(state);
-    if (content.version !== AI_SYSTEMS_CONTENT_VERSION && containsAISystemsFeatures(state)) fail('AI Systems records were unavailable in this historical build.');
-    if (![GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && containsGameplayPolishFeatures(state)) fail('Specialist commissions and varied campaign schedules were unavailable in this historical build.');
-    if (![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && containsModelCustomizationFeatures(state)) fail('Model customization and its research were unavailable in this historical build.');
-    if (![STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && containsStrategyFeatures(state)) fail('Development plans and strategy evidence were unavailable in this historical build.');
-    if (![MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && containsModelDesignFeatures(state)) fail('Custom model designs, advanced skills and architecture iterations were unavailable in this historical build.');
-    if (![WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) {
+    if (content.version !== CONNECTED_COMPANY_CONTENT_VERSION && containsConnectedCompanyFeatures(state)) fail('Connected Company records were unavailable in this historical build.');
+    if (![AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) && containsAISystemsFeatures(state)) fail('AI Systems records were unavailable in this historical build.');
+    if (![GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) && containsGameplayPolishFeatures(state)) fail('Specialist commissions and varied campaign schedules were unavailable in this historical build.');
+    if (![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) && containsModelCustomizationFeatures(state)) fail('Model customization and its research were unavailable in this historical build.');
+    if (![STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) && containsStrategyFeatures(state)) fail('Development plans and strategy evidence were unavailable in this historical build.');
+    if (![MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) && containsModelDesignFeatures(state)) fail('Custom model designs, advanced skills and architecture iterations were unavailable in this historical build.');
+    if (![WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version)) {
       const designedRecipe = (id?: string) => DESIGN_RECIPES.some(recipe => recipe.id === id);
       const usesDesignResearch = (id: string) => DESIGN_RESEARCH_IDS.includes(id);
       const research = state.slices.research;
@@ -90,9 +93,9 @@ export function validateState(state: GameState, content: GameContent): Rejection
         fail('These model design discoveries and workspaces were unavailable in this historical build.');
       }
     }
-    if (![CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && containsCampusFeatures(state)) fail('Campus profiles and successor silicon were unavailable in this historical build.');
-    if (![SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && containsSyntheticFeatures(state)) fail('Synthetic methods and receipts were unavailable in this historical build.');
-    if (![STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && containsStudioReleaseFeatures(state)) fail('Release telemetry and private appliances were unavailable in this historical build.');
+    if (![CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) && containsCampusFeatures(state)) fail('Campus profiles and successor silicon were unavailable in this historical build.');
+    if (![SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) && containsSyntheticFeatures(state)) fail('Synthetic methods and receipts were unavailable in this historical build.');
+    if (![STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) && containsStudioReleaseFeatures(state)) fail('Release telemetry and private appliances were unavailable in this historical build.');
     if (state.schemaVersion !== SCHEMA_VERSION || state.contentVersion !== content.version) return [{ code: 'INVALID_VERSION', message: 'This snapshot uses an unsupported schema or content version.' }];
     integer(state.week, 'Week'); integer(state.revision, 'Revision'); integer(state.nextId, 'ID counter');
     if (state.nextId < 1 || state.week > 1000000) fail('Week or ID counter is outside supported limits.');
@@ -195,6 +198,7 @@ export function validateState(state: GameState, content: GameContent): Rejection
     assertWave3CommerceState(state, content);
     assertWave4CampaignState(state, content);
     assertSystemsBriefsState(state);
+    validateCompanyProgressionState(state, content);
     assertWave4HardwareState(state, content);
     assertWave4ResearchState(state, content);
     assertWave8RetrofitsState(state, content);

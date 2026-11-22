@@ -55,7 +55,7 @@ function session(t: TestContext) {
   let paused = true;
   const closure = {
     readyRef: { current: true }, sessionRef: { current: 'owner' }, writeBlockedRef: { current: false }, saveFailedRef: { current: false },
-    choosingOriginRef: { current: true }, transferRef: { current: false },
+    choosingOriginRef: { current: true }, transferRef: { current: false }, decisionRunRef: { current: null },
     taskGateRef: { current: { busy: false, cancel: () => false } },
     gameRef: { current: createInitialState(CONTENT, 'release') },
     writeBrowserSnapshotWithBytes, browserRecoveryOptions,
@@ -182,4 +182,39 @@ test('a weekly result outside supported save capacity is not committed', t => {
   assert.equal(s.closure.gameRef.current, previous);
   assert.equal(s.closure.runningRef.current, false);
   assert.match(message, /remains at Week 0.*download this save/);
+});
+
+test('portable replacement blocks competing replacements while workspace binding is pending', async t => {
+  const s = session(t), next = createInitialState(CONTENT, 'release', 'consultancy');
+  let finish!: (result: boolean) => void, committed = 0;
+  const wait = new Promise<boolean>(resolve => { finish = resolve; });
+  const replace = bindCallback('replaceRun', { ...s.closure, isController: true,
+    setTransferBusy: () => {}, replaceResultsTimeline: () => {}, replaceModelWorkspace: () => {},
+    restoreModelWorkspace: () => wait,
+    commit: (value: typeof next) => { committed++; s.closure.gameRef.current = value; },
+    setPanelEpoch: () => {}, setWriteBlocked: () => {}, setChoosingOrigin: () => {}, setPendingImport: () => {},
+    setResetOpen: () => {}, setDecisionStop: () => {}, setMigrationNotice: () => {},
+  });
+  const pending = replace(next, 'Imported', undefined, { manual: null, delegated: null, blueprints: [] });
+  assert.equal(s.closure.transferRef.current, true);
+  await replace(createInitialState(), 'Must not replace');
+  assert.equal(committed, 0);
+  finish(true); await pending;
+  assert.equal(committed, 1); assert.equal(s.closure.gameRef.current, next);
+  assert.equal(s.closure.transferRef.current, false);
+});
+
+test('a delayed imported workspace cannot complete after its session is cleaned up', async t => {
+  const s = session(t), next = createInitialState(CONTENT, 'release', 'consultancy');
+  let finish!: (result: boolean) => void;
+  const wait = new Promise<boolean>(resolve => { finish = resolve; });
+  const replace = bindCallback('replaceRun', { ...s.closure, isController: true,
+    setTransferBusy: () => {}, replaceResultsTimeline: () => {}, replaceModelWorkspace: () => {}, restoreModelWorkspace: () => wait,
+    commit: () => assert.fail('A cleaned-up session cannot commit an imported company'),
+  });
+  const pending = replace(next, 'Imported', undefined, { manual: null, delegated: null, blueprints: [] });
+  s.closure.readyRef.current = false;
+  finish(true); await pending;
+  assert.notEqual(s.closure.gameRef.current, next);
+  assert.equal(s.closure.transferRef.current, false);
 });

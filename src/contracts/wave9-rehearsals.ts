@@ -9,6 +9,7 @@ export type Wave9RehearsalCommand =
 
 /** Settings are captured once; changes can make old evidence stale without rewriting it. */
 export interface ReleaseConfiguration {
+  workload?: import('./product-workloads').ProductWorkloadReceipt;
   /** Balanced remains omitted so historical configuration fingerprints are stable. */
   routingPolicy?: RoutingPolicy;
   guardrail?: RuntimeGuardrailConfiguration;

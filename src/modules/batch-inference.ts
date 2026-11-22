@@ -111,10 +111,10 @@ export function validateBatchCommand(state: Readonly<GameState>, command: GameCo
     if (p.kind === 'cancel_batch_job') return;
     if (typeof p.paused !== 'boolean') return reject('INVALID_COMMAND', 'Choose whether this batch order should be paused.');
     if ((job.status === 'paused') === p.paused) return reject('ALREADY_ACTIVE', 'This batch order already has that operating state.');
-    if (!p.paused && company.arrearsCents) return reject('ARREARS', 'Resolve unpaid expenses before resuming batch execution.');
+    if (!p.paused && company.arrearsCents) return reject('ARREARS', 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.');
     return;
   }
-  if (company.arrearsCents) return reject('ARREARS', 'Resolve unpaid expenses before installing a scheduler or accepting more batch work.');
+  if (company.arrearsCents) return reject('ARREARS', 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.');
   if (p.kind === 'install_batch_scheduler') {
     if (!batchResearchReady(state, command.companyId)) return reject('NOT_READY', 'Complete Enterprise operations (R12) before implementing a batch scheduler.');
     if (batchScheduler(state, command.companyId) || state.queuedCommands.some(item => item.id !== command.id && item.companyId === command.companyId && item.payload.kind === 'install_batch_scheduler')) return reject('ALREADY_ACTIVE', 'Your company already has a batch scheduler or a queued installation.');

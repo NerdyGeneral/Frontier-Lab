@@ -104,7 +104,7 @@ export function systemRollout(state: Readonly<GameState>, companyId: string, met
 export function systemApplied(state: Readonly<GameState>, companyId: string, method: SystemRolloutKind): boolean { return systemRollout(state, companyId, method)?.status === 'active'; }
 export function validateSystemApplication(state: Readonly<GameState>, command: GameCommand): Rejection | undefined {
   const p = command.payload;
-  if (state.slices.company.companies[command.companyId]?.arrearsCents) return error('Resolve unpaid expenses before configuring applications.', 'ARREARS');
+  if (state.slices.company.companies[command.companyId]?.arrearsCents) return error('This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.', 'ARREARS');
   if (p.kind === 'start_system_rollout') {
     const rule = SYSTEM_RULES[p.method];
     if (!rule || !known(state, command.companyId, rule.research)) return error('Complete the required research before paying for its rollout.');

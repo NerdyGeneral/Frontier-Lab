@@ -8,7 +8,7 @@ import { getQualifiedReleaseRehearsal, releaseCandidateReason, releaseConfigurat
 
 export const PREPARED_RELEASE_COMMANDS = ['start_prepared_release', 'set_prepared_release_paused', 'discard_prepared_release', 'promote_prepared_release', 'start_release_rollback'] as const;
 const pendingStatuses = ['preparing', 'ready', 'scheduled'];
-const configCommands = ['upgrade_product', 'set_product_features', 'set_product_strategy', 'set_consumer_sessions', 'set_product_terms', 'install_retrieval', 'install_product_efficiency', 'set_product_efficiency_enabled', 'install_runtime_guardrail', 'set_runtime_guardrail_enabled'];
+const configCommands = ['configure_product_offer', 'retire_product', 'upgrade_product', 'set_product_features', 'set_product_strategy', 'set_consumer_sessions', 'set_product_terms', 'install_retrieval', 'install_product_efficiency', 'set_product_efficiency_enabled', 'install_runtime_guardrail', 'set_runtime_guardrail_enabled'];
 const failure = (message: string, code: Rejection['code'] = 'NOT_READY'): Rejection => ({ code, message });
 const isReleaseCommand = (command: GameCommand): command is GameCommand & { payload: PreparedReleaseCommand } => (PREPARED_RELEASE_COMMANDS as readonly string[]).includes(command.payload.kind);
 const workFor = (release: PreparedRelease): ReleasePreparationWork & { status: string } => release.rollback && pendingStatuses.includes(release.rollback.status) ? release.rollback : release;

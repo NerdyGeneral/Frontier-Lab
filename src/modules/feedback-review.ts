@@ -51,7 +51,7 @@ export function validateFeedbackReviewCommand(state: Readonly<GameState>, comman
   const p = command.payload, company = state.slices.company.companies[command.companyId];
   if (!company) return reject('UNKNOWN_COMPANY', 'This company does not exist.');
   if (p.kind === 'start_feedback_review') {
-    if (company.arrearsCents) return reject('ARREARS', 'Resolve unpaid bills before starting feedback review.');
+    if (company.arrearsCents) return reject('ARREARS', 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.');
     if (p.mode !== 'quick' && p.mode !== 'verified') return reject('INVALID_COMMAND', 'Choose quick or verified feedback review.');
     const study = getReviewableFeedbackStudy(state, command.companyId, p.studyId);
     if (!study) return reject('NOT_READY', 'Close an owned customer-feedback study with collected cases and wait for its following weekly boundary.');

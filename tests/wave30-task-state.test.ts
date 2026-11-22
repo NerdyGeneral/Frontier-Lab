@@ -43,7 +43,7 @@ test('W30-T01: named task registry maps each task to one retained owner and reje
   assert.deepEqual(Object.entries(STUDIO_TASKS).filter(([, task]) => task.owner === 'product').map(([id]) => id), ['launch-basic-chat', 'manage-basic-chat']);
   assert.deepEqual(Object.entries(STUDIO_TASKS).filter(([, task]) => task.owner === 'research').map(([id]) => id), ['research-method', 'architecture-research']);
   assert.deepEqual(STUDIO_TASKS['architecture-research'], { owner: 'research', title: 'Architecture research', pauseOnEntry: true });
-  assert.deepEqual(STUDIO_TASKS['development-plan'], { owner: 'development-plans', title: 'Plan model development', pauseOnEntry: true });
+  assert.deepEqual(STUDIO_TASKS['development-plan'], { owner: 'development-plans', title: 'Develop a model · delegated', pauseOnEntry: true });
   assert.deepEqual(STUDIO_TASKS['model-challenge'], { owner: 'model-challenges', title: 'Run a research challenge', pauseOnEntry: true });
   for (const [id, task] of Object.entries(STUDIO_TASKS)) {
     assert.ok(task.title.trim());

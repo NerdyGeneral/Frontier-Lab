@@ -1,6 +1,9 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { DEFAULT_DECISION_CLOCK_POLICY, decisionCashGuard, decisionStartGuard, nextDecisionStop } from '../core/decision-clock';
+import type { DecisionClockPolicy, DecisionStop } from '../core/decision-clock';
+import { DecisionClockControls } from './decision-clock-controls';
 import { withPassiveWorkforce } from '../modules/workforce';
 import type { ChangeEvent } from 'react';
 import { CAMPAIGN_ORIGINS } from '../content/campaign-origins';
@@ -11,7 +14,7 @@ import type { CommandPayload, DiagnosticResult, GameState } from '../contracts/t
 import {
   advanceWeek, BrowserClock, canonicalStateHash, createInitialState,
   deserializeState, formatMoney, getGameView, runDiagnostics,
-  serializeState, submitCommand, MAX_SNAPSHOT_BYTES, SnapshotTooLargeError, assertSnapshotCapacity,
+  submitCommand, SnapshotTooLargeError, assertSnapshotCapacity,
 } from '../core/index';
 import {
   browserRecoveryOptions, openBrowserSession, readBrowserRecovery,
@@ -42,11 +45,13 @@ import type { SnapshotResult } from '../core/snapshot';
 import { StudioWorkbenchPanel } from './studio-workbench-context';
 import { useStudioResults } from './use-studio-results';
 import { ModelWorkspaceProvider, useModelWorkspaceController } from './model-workspace-context';
+import { deserializePortableSave, serializePortableSave, MAX_PORTABLE_SAVE_BYTES } from '../persistence/portable-save';
+import type { ModelWorkspaceData } from '../persistence/model-workspace';
 
 type MigrationSource = NonNullable<Extract<SnapshotResult, { ok: true }>['migratedFrom']>;
 
 type SaveStatus = { kind: 'waiting' | 'saved' | 'failed' | 'memory'; message: string };
-type PendingImport = { state: GameState; recovery?: true; migratedFrom?: MigrationSource };
+type PendingImport = { state: GameState; workspace?: ModelWorkspaceData; recovery?: true; migratedFrom?: MigrationSource };
 type OperationKind = 'week' | 'command' | 'diagnostics';
 const MILESTONES = [['dataReady', 'Prepare'], ['trained', 'Train'], ['evaluated', 'Evaluate'], ['deployed', 'Deploy'], ['firstSale', 'First sale']] as const;
 
@@ -67,10 +72,14 @@ export default function FrontierLab() {
   const { inbox: resultsInbox, openSession: openResultsSession, observe: observeResults,
     saved: saveResultsBinding, replace: replaceResultsTimeline, suspend: suspendResults } = useStudioResults();
   const { workspace: modelWorkspace, open: openModelWorkspace, saved: saveModelWorkspace,
-    replace: replaceModelWorkspace, suspend: suspendModelWorkspace } = useModelWorkspaceController();
+    replace: replaceModelWorkspace, suspend: suspendModelWorkspace, restoreData: restoreModelWorkspace } = useModelWorkspaceController();
   const [panelEpoch, setPanelEpoch] = useState(0);
   const [paused, setPaused] = useState(true);
   const runningRef = useRef(false);
+  const [decisionPolicy, setDecisionPolicy] = useState<DecisionClockPolicy>({ ...DEFAULT_DECISION_CLOCK_POLICY });
+  const [decisionRunActive, setDecisionRunActive] = useState(false);
+  const [decisionStop, setDecisionStop] = useState<DecisionStop | null>(null);
+  const decisionRunRef = useRef<{ policy: DecisionClockPolicy; startedWeek: number } | null>(null);
   const [speed, setSpeed] = useState<1 | 2 | 5>(1);
   const clockRef = useRef<BrowserClock | null>(null);
   const [sessionMode, setSessionMode] = useState<SessionMode>('acquiring');
@@ -119,6 +128,8 @@ export default function FrontierLab() {
   }, [observeResults]);
 
   const pause = useCallback((message?: string) => {
+    decisionRunRef.current = null;
+    setDecisionRunActive(false);
     if (operationKindRef.current === 'week' && taskGateRef.current.cancel()) {
       operationKindRef.current = null;
       setBusyMessage('');
@@ -260,6 +271,8 @@ export default function FrontierLab() {
       return;
     }
     if (manual) { pause(); clockRef.current?.reset(performance.now()); }
+    const decisionGuard = decisionRunRef.current && decisionCashGuard(previous, decisionRunRef.current.policy, CONTENT);
+    if (decisionGuard) { setDecisionStop(decisionGuard); pause(decisionGuard.reason); return; }
     runPaintTask('week', 'Playing Week ' + (previous.week + 1) + '…', (current) => {
       const result = advanceWeek(current, CONTENT);
       if (!result.accepted) {
@@ -283,7 +296,10 @@ export default function FrontierLab() {
       else if (firstSale) setNotice('Your first sale! A customer has paid to use your product.');
       else if (manual) setNotice('Week ' + result.state.week + ' finished. The game is paused.');
       const planDecision = Object.values(result.state.slices.models.developmentPlans ?? {}).find(plan => ['review', 'blocked'].includes(plan.status) && current.slices.models.developmentPlans?.[plan.id]?.status !== plan.status);
-      if (planDecision) pause(planDecision.name + ': ' + planDecision.message);
+      const decisionRun = decisionRunRef.current;
+      const stop = decisionRun && nextDecisionStop(current, result.state, decisionRun.policy, decisionRun.startedWeek);
+      if (stop) { setDecisionStop(stop); pause(stop.reason); }
+      else if (planDecision) pause(planDecision.name + ': ' + planDecision.message);
       if (result.state.slices.company.companies[result.state.playerCompanyId].arrearsCents > 0) {
         pause('Your company ran out of money to pay its bills. You can review this run, download its save, or start a new lab.');
       }
@@ -326,6 +342,23 @@ export default function FrontierLab() {
     clockRef.current?.setPaused(false);
     setPaused(false);
     setNotice('The game is running. Cloud rent and staff wages are charged each week.');
+  }
+
+  function runToDecision() {
+    if (!canAct || taskGateRef.current.busy) return;
+    if (runningRef.current) { pause('The lab is paused.'); return; }
+    const guard = decisionStartGuard(gameRef.current, decisionPolicy, CONTENT);
+    if (guard) { setDecisionStop(guard); pause(guard.reason); return; }
+    toggleRunning();
+    if (runningRef.current) {
+      decisionRunRef.current = { policy: { ...decisionPolicy }, startedWeek: gameRef.current.week };
+      setDecisionRunActive(true); setDecisionStop(null);
+      setNotice('Advancing until a selected decision, with weekly spending and the cash guard active.');
+    }
+  }
+  function updateDecisionPolicy(policy: DecisionClockPolicy) {
+    if (decisionRunRef.current) pause('Stop rules changed. Review them, then start the next decision run.');
+    setDecisionPolicy(policy);
   }
 
   function changeSpeed(next: 1 | 2 | 5) { if (taskGateRef.current.busy) return; setSpeed(next); clockRef.current?.setSpeed(next); }
@@ -379,11 +412,11 @@ export default function FrontierLab() {
   }
 
   function exportSnapshot() {
-    if (taskGateRef.current.busy || transferRef.current) return;
+    if (taskGateRef.current.busy || transferRef.current || !modelWorkspace.ready) return;
     try {
-      downloadText(serializeState(gameRef.current, CONTENT), 'frontier-lab-week-' + String(gameRef.current.week).padStart(4, '0') + '.json');
-      setNotice('Save downloaded, including your planned actions.');
-    } catch (error) { setError(error instanceof SnapshotTooLargeError ? error.message : 'The save could not be downloaded. Your current lab is still open.'); }
+      downloadText(serializePortableSave(gameRef.current, modelWorkspace, CONTENT), 'frontier-lab-week-' + String(gameRef.current.week).padStart(4, '0') + '.json');
+      setNotice('Save downloaded, including planned actions, model drafts, goals, and named blueprints.');
+    } catch (error) { setError(error instanceof Error ? error.message : 'The save could not be downloaded. Your current lab is still open.'); }
   }
 
   function exportRecovery(kind: RecoveryKind) {
@@ -424,17 +457,18 @@ export default function FrontierLab() {
     clockRef.current?.reset(performance.now());
     transferRef.current = true; setTransferBusy(true);
     try {
-      if (file.size > MAX_SNAPSHOT_BYTES) { setError('That save file is larger than the 2 MB import limit. Large campaigns use compressed save files. Your current lab is safe.'); return; }
-      const result = deserializeState(await file.text(), CONTENT);
+      if (file.size > MAX_PORTABLE_SAVE_BYTES) { setError('That save file is larger than the 3 MB import limit. Large campaigns use compressed save files. Your current lab is safe.'); return; }
+      const result = deserializePortableSave(await file.text(), CONTENT);
       if (!result.ok) { setError('Import rejected: ' + result.error + ' Your current lab is unchanged.'); return; }
       setError(''); setResetOpen(false);
-      setPendingImport({ state: withPassiveWorkforce(result.state), ...(result.migratedFrom ? { migratedFrom: result.migratedFrom } : {}) });
+      setPendingImport({ state: withPassiveWorkforce(result.state), ...(result.workspace ? { workspace: result.workspace } : {}), ...(result.migratedFrom ? { migratedFrom: result.migratedFrom } : {}) });
     } catch { setError('That save file could not be read. Your current lab is safe.'); }
     finally { transferRef.current = false; setTransferBusy(false); }
   }
 
-  function replaceRun(next: GameState, message: string, migratedFrom?: MigrationSource) {
-    if (!isController || transferRef.current || taskGateRef.current.busy) return;
+  async function replaceRun(next: GameState, message: string, migratedFrom?: MigrationSource, workspace?: ModelWorkspaceData) {
+    if (!isController || !['owner', 'memory'].includes(sessionRef.current) || transferRef.current || taskGateRef.current.busy) return;
+    const replacementMode = sessionRef.current, replacedGame = gameRef.current;
     pause(); clockRef.current?.reset(performance.now());
     let savedBytes: string | undefined;
     if (sessionRef.current === 'owner') {
@@ -448,14 +482,21 @@ export default function FrontierLab() {
       }
       savedBytes = result.savedBytes;
     }
+    transferRef.current = true; setTransferBusy(true);
     replaceResultsTimeline({ game: next, mode: sessionRef.current, savedBytes });
     replaceModelWorkspace({ game: next, mode: sessionRef.current, savedBytes });
+    let restoredWorkspace = true;
+    try { if (workspace) restoredWorkspace = await restoreModelWorkspace(workspace); }
+    catch { restoredWorkspace = false; }
+    finally { transferRef.current = false; setTransferBusy(false); }
+    if (!readyRef.current || sessionRef.current !== replacementMode || gameRef.current !== replacedGame) return;
     saveFailedRef.current = false;
     commit(next); setPanelEpoch(epoch => epoch + 1);
     if (sessionRef.current === 'owner') setSaveStatus({ kind: 'saved', message: 'Saved in this browser · Week ' + next.week });
     writeBlockedRef.current = false; setWriteBlocked(false);
     choosingOriginRef.current = false;
-    setChoosingOrigin(false); setPendingImport(null); setResetOpen(false); setError(''); setNotice(message);
+    setChoosingOrigin(false); setPendingImport(null); setResetOpen(false); setDecisionStop(null);
+    setError(restoredWorkspace ? '' : 'The company loaded, but its planning workspace could not be restored. Keep the downloaded file and retry loading it.'); setNotice(message);
     setMigrationNotice(migratedFrom ?? null); setRecoveries(browserRecoveryOptions());
   }
 
@@ -479,6 +520,7 @@ export default function FrontierLab() {
   }
 
   const panelProps = { game, view, canAct, onQueue: queue };
+  const decisionControls = <DecisionClockControls game={game} policy={decisionPolicy} active={decisionRunActive} canAct={canAct} stop={decisionStop} onStart={runToDecision} onChange={updateDecisionPolicy} />;
   const sections = getGameSectionVisibility(game, view);
   const nextLink = milestoneLink(view, Object.keys(game.slices.campaign.endings).length > 0);
   const currentWave = CONTENT.roadmap.find(wave => wave.status === 'current');
@@ -490,12 +532,13 @@ export default function FrontierLab() {
       <input className="visually-hidden" ref={fileInputRef} type="file" accept=".json,application/json" aria-label="Choose a lab save file" tabIndex={-1} onChange={chooseImport} />
     </CampaignOriginPicker>
   </main>;
-  return <ModelWorkspaceProvider value={modelWorkspace}><StudioShell key={panelEpoch} results={resultsInbox} game={game} paused={paused} speed={speed} canAct={canAct} isController={isController} notice={notice} busyMessage={busyMessage} errorMessage={error} saveKind={saveStatus.kind} saveMessage={saveStatus.message} forceSaveOpen={!!pendingImport || resetOpen || writeBlocked} onToggleRunning={toggleRunning} onStep={() => step(true)} onSpeed={changeSpeed} plannerEpoch={panelEpoch} onPause={() => pause('The lab is paused while you plan next week.')} onApplyPlan={applyStudioPlan} onQueue={queue} onSubmitTask={submitTaskCommand}>
+  return <ModelWorkspaceProvider value={modelWorkspace}><StudioShell decisionControls={decisionControls} key={panelEpoch} results={resultsInbox} game={game} paused={paused} speed={speed} canAct={canAct} isController={isController} notice={notice} busyMessage={busyMessage} errorMessage={error} saveKind={saveStatus.kind} saveMessage={saveStatus.message} forceSaveOpen={!!pendingImport || resetOpen || writeBlocked} onToggleRunning={toggleRunning} onStep={() => step(true)} onSpeed={changeSpeed} plannerEpoch={panelEpoch} onPause={() => pause('The lab is paused while you plan next week.')} onApplyPlan={applyStudioPlan} onQueue={queue} onSubmitTask={submitTaskCommand}>
     <a className="skip-link" href="#business">Skip to company</a>
     <header className="lab-header">
       <div className="identity"><h1>Frontier Lab</h1><span className="build-tag">{currentWave ? 'Wave ' + currentWave.wave + ' · ' + currentWave.title : 'Company simulation'}</span></div>
       <div className="clock" aria-label="Simulation clock" aria-busy={!!busyMessage}><span className="week-number">Week {game.week}</span><span className="clock-status">{busyMessage || (paused ? 'Paused' : 'Running')}</span><button type="button" onClick={toggleRunning} disabled={!canAct}>{paused ? 'Resume' : 'Pause'}</button><span className="speed-controls" role="group" aria-label="Simulation speed">{([1, 2, 5] as const).map(value => <button type="button" key={value} aria-pressed={speed === value} onClick={() => changeSpeed(value)} disabled={!isController || !!busyMessage}>{value}×</button>)}</span><button type="button" onClick={() => step(true)} disabled={!canAct}>Next week</button></div>
     </header>
+    {decisionControls}
     <section className="milestone-bar" aria-label="Next milestone"><div><strong>{view.nextMilestone.title}</strong><p>{view.nextMilestone.detail} <a href={nextLink.href}>{nextLink.label}</a>.</p></div><ol className="milestone-steps">{MILESTONES.map(([key, label]) => <li key={key} className={view.progress[key] ? 'done' : ''}><span aria-hidden="true">{view.progress[key] ? '✓' : '·'}</span> {label}<span className="visually-hidden">{view.progress[key] ? ', complete' : ', incomplete'}</span></li>)}</ol></section>
     <div className="notice" role="status" aria-live="polite">{busyMessage || notice}</div>
     {error && <p className="error-message classic-operation-error" role="alert">{error}</p>}
@@ -516,7 +559,7 @@ export default function FrontierLab() {
     </section>}
     <div className="main-columns" key={panelEpoch}>
       <div className="lab-column"><StudioWorkbenchPanel panelId="business"><BusinessPanel {...panelProps} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="people"><PeoplePanel {...panelProps} /></StudioWorkbenchPanel>{sections.market && <StudioWorkbenchPanel panelId="market"><MarketPanel {...panelProps} /></StudioWorkbenchPanel>}{sections.campaign && <StudioWorkbenchPanel panelId="campaign"><CampaignPanel {...panelProps} /></StudioWorkbenchPanel>}{sections.agents && <StudioWorkbenchPanel panelId="agents"><AgentsPanel {...panelProps} /></StudioWorkbenchPanel>}</div>
-      <div className="lab-column"><StudioWorkbenchPanel panelId="data"><DataPanel {...panelProps} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="development-plans"><DevelopmentPlansPanel game={game} canAct={canAct} onQueue={queue} paused={paused} onRun={() => { if (paused) toggleRunning(); }} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="model-challenges"><ModelChallengesPanel game={game} canAct={canAct} onQueue={queue} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="lab-projects"><LabPanel {...panelProps} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="models"><ModelsPanel {...panelProps} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="synthetic-data"><SyntheticDataPanel game={game} canAct={canAct} onQueue={queue} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="model-corpus-compare"><ModelCorpusComparison game={game} /></StudioWorkbenchPanel>{sections.research && <StudioWorkbenchPanel panelId="research"><ResearchPanel {...panelProps} /></StudioWorkbenchPanel>}{sections.appliedResearch && <StudioWorkbenchPanel panelId="applied-research"><AppliedResearchPanel {...panelProps} /></StudioWorkbenchPanel>}</div>
+      <div className="lab-column"><StudioWorkbenchPanel panelId="data"><DataPanel {...panelProps} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="development-plans"><DevelopmentPlansPanel game={game} canAct={canAct} onQueue={queue} paused={paused} onRun={runToDecision} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="model-challenges"><ModelChallengesPanel game={game} canAct={canAct} onQueue={queue} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="lab-projects"><LabPanel {...panelProps} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="models"><ModelsPanel {...panelProps} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="synthetic-data"><SyntheticDataPanel game={game} canAct={canAct} onQueue={queue} /></StudioWorkbenchPanel><StudioWorkbenchPanel panelId="model-corpus-compare"><ModelCorpusComparison game={game} /></StudioWorkbenchPanel>{sections.research && <StudioWorkbenchPanel panelId="research"><ResearchPanel {...panelProps} /></StudioWorkbenchPanel>}{sections.appliedResearch && <StudioWorkbenchPanel panelId="applied-research"><AppliedResearchPanel {...panelProps} /></StudioWorkbenchPanel>}</div>
       <div className="lab-column compute-column"><StudioWorkbenchPanel panelId="compute"><ComputePanel {...panelProps} /></StudioWorkbenchPanel>{sections.capacityForecast && <StudioWorkbenchPanel panelId="compute-costs"><ComputeCostsPanel {...panelProps} /></StudioWorkbenchPanel>}{sections.capacityForecast && <StudioWorkbenchPanel panelId="capacity-forecast"><CapacityForecastPanel {...panelProps} /></StudioWorkbenchPanel>}<StudioWorkbenchPanel panelId="product"><ProductPanel {...panelProps} /></StudioWorkbenchPanel>{sections.developerApi && <StudioWorkbenchPanel panelId="developer-api"><DeveloperApiPanel {...panelProps} /></StudioWorkbenchPanel>}<StudioWorkbenchPanel panelId="customer-briefs"><CustomerBriefsPanel {...panelProps} /></StudioWorkbenchPanel>{sections.businessCommitments && <StudioWorkbenchPanel panelId="business-commitments"><BusinessCommitmentsPanel {...panelProps} /></StudioWorkbenchPanel>}{sections.infrastructure && <StudioWorkbenchPanel panelId="infrastructure"><InfrastructurePanel {...panelProps} /></StudioWorkbenchPanel>}{sections.chips && <StudioWorkbenchPanel panelId="chips"><ChipsPanel {...panelProps} /></StudioWorkbenchPanel>}</div>
     </div>
     <Section title="Company log" id="company-log" className="log-section">
@@ -530,11 +573,11 @@ export default function FrontierLab() {
       <p className="small-note"><a href="#campus">Open Campus upgrades and next-generation chips</a>.</p>
       <p className="small-note">Your game saves in this browser. Download a save to back it up or move it to another device. The game pauses when you leave this tab, so no time passes while you’re away.</p>
       {recoveries.length > 0 && <details className="inline-details" open={writeBlocked || undefined}><summary>Recovery copies</summary><div className="recovery-options">{recoveries.some(option => option.kind === 'previous') && <button type="button" disabled={!isController || transferBusy || !!busyMessage} onClick={() => reviewRecovery('previous')}>Review previous save</button>}{recoveries.map(option => <button type="button" key={option.kind} onClick={() => exportRecovery(option.kind)} disabled={!!busyMessage || transferBusy}>{option.label}</button>)}</div><p className="small-note">Loading another save or starting a new lab keeps one backup of your previous game. You can download or restore that backup here.</p></details>}
-      {pendingImport && <div className="confirmation" role="group" aria-label={pendingImport.recovery ? 'Confirm previous save restoration' : 'Confirm loading this save'}><p>Replace this run with <strong>{pendingImport.state.slices.company.companies[pendingImport.state.playerCompanyId].name}</strong> at Week {pendingImport.state.week}? Download your current save first if you want a backup.{pendingImport.migratedFrom && ' This file will be upgraded to the current build after you confirm.'}</p><button type="button" onClick={() => replaceRun(pendingImport.state, pendingImport.recovery ? 'Previous save restored. The lab is paused.' : 'Save loaded. The game is paused.', pendingImport.migratedFrom)}>{pendingImport.recovery ? 'Restore previous save' : 'Load this lab'}</button><button type="button" onClick={() => { setPendingImport(null); setNotice(pendingImport.recovery ? 'Restoration cancelled. Your current lab is unchanged.' : 'Import cancelled. Your current lab is unchanged.'); }}>{pendingImport.recovery ? 'Keep current lab' : 'Cancel import'}</button></div>}
+      {pendingImport && <div className="confirmation" role="group" aria-label={pendingImport.recovery ? 'Confirm previous save restoration' : 'Confirm loading this save'}><p>Replace this run with <strong>{pendingImport.state.slices.company.companies[pendingImport.state.playerCompanyId].name}</strong> at Week {pendingImport.state.week}? Download your current save first if you want a backup.{pendingImport.migratedFrom && ' This file will be upgraded to the current build after you confirm.'}</p><button type="button" disabled={transferBusy} onClick={() => replaceRun(pendingImport.state, pendingImport.recovery ? 'Previous save restored. The lab is paused.' : 'Save loaded. The game is paused.', pendingImport.migratedFrom, pendingImport.workspace)}>{pendingImport.recovery ? 'Restore previous save' : 'Load this lab'}</button><button type="button" disabled={transferBusy} onClick={() => { if (transferRef.current) return; setPendingImport(null); setNotice(pendingImport.recovery ? 'Restoration cancelled. Your current lab is unchanged.' : 'Import cancelled. Your current lab is unchanged.'); }}>{pendingImport.recovery ? 'Keep current lab' : 'Cancel import'}</button></div>}
       {resetOpen && <CampaignOriginPicker replacing retainsBackup={sessionMode === 'owner'} onStart={startOrigin} onCancel={() => { setResetOpen(false); setNotice('Your current lab is open and paused.'); }} />}
     </Section>
     <details className="build-details" onToggle={event => setBuildOpen(event.currentTarget.open)}><summary>About this version</summary>{buildOpen && <>
-      <div className="build-columns"><div><h3>What you can do</h3><p className="small-note">Start with a small lab and build an AI company. Prepare data, train models, test their skills and launch products. Hire a team, share your compute between projects and keep enough cash to pay the bills. Compete with rival labs and work toward three company goals.</p><p className="small-note">Grow from Basic Chat into an API, business services, support agents and coding jobs. Choose what agents may do and check their results before delivery. Collect customer feedback with permission, review it and use it in later training. Compare models, practice older skills during new training, and test behavior and safety before release. Try a new model on a small share of live traffic before switching your whole product.</p><p className="small-note">Explore research methods and repeat Architecture research to develop new custom designs. Generate and check synthetic training data, improve model efficiency and plan future capacity. Build data centers, move racks, improve their networks and specialize sites for training or serving. Design chips, test prototypes and choose a foundry; install the finished hardware or sell it to customers. Every project needs time, money and resources. The menus show its requirements before you confirm.</p><p className="small-note">Design your own models with parameter count, sparsity, a seven-skill data mix and a compute budget. The forecast calculates their potential, and prepared data determines what training can earn. Develop reasoning, long-context and multimodal skills, then measure them in a paid test. Architecture research unlocks Edge models at level 1 and Frontier models at level 3; later iterations raise future design potential with diminishing returns. Existing campaigns can continue with their earned models and progress.</p><p className="version-line">Build {CONTENT.buildVersion} · Content {game.contentVersion} · Schema {game.schemaVersion}<br />State <code>{fingerprint}</code></p><button type="button" onClick={checkSimulation} disabled={!hydrated || !!busyMessage || transferBusy}>Run simulation checks</button>{diagnostics && <div className="diagnostic-results"><p><strong>{diagnostics.ok ? 'All checks passed.' : 'Checks need attention.'}</strong> Tested on isolated copies.</p><ul>{diagnostics.checks.map(check => <li key={check.name}><span className="check-result">{check.passed ? 'PASS' : 'FAIL'}</span> <strong>{check.name}</strong><span className="small-note">{check.detail}</span></li>)}</ul></div>}</div><div><h3>Build sequence</h3><ol className="roadmap">{CONTENT.roadmap.map(wave => <li key={wave.wave}><span>Wave {wave.wave}</span><div><strong>{wave.title}</strong> <span className="muted">/ {wave.status === 'current' ? 'this build' : wave.status}</span><p className="small-note">{wave.description}</p></div></li>)}</ol></div></div>
+      <div className="build-columns"><div><h3>What you can do</h3><p className="small-note">Start with a small lab and build an AI company. Prepare data, train models, test their skills and launch products. Hire a team, share your compute between projects and keep enough cash to pay the bills. Compete with rival labs and work toward different company ambitions.</p><p className="small-note">Grow from Basic Chat into an API, business services, support agents and coding jobs. Choose what agents may do and check their results before delivery. Collect customer feedback with permission, review it and use it in later training. Compare models, practice older skills during new training, and test behavior and safety before release. Try a new model on a small share of live traffic before switching your whole product.</p><p className="small-note">Explore research methods and repeat Architecture research to develop new custom designs. Generate and check synthetic training data, improve model efficiency and plan future capacity. Build data centers, move racks, improve their networks and specialize sites for training or serving. Design chips, test prototypes and choose a foundry; install the finished hardware or sell it to customers. Every project needs time, money and resources. The menus show its requirements before you confirm.</p><p className="small-note">Design your own models with parameter count, sparsity, a seven-skill data mix and a compute budget. The forecast calculates their potential, and prepared data determines what training can earn. Develop reasoning, long-context and multimodal skills, then measure them in a paid test. Architecture research unlocks Edge models at level 1 and Frontier models at level 3; later iterations raise future design potential with diminishing returns. Existing campaigns can continue with their earned models and progress.</p><p className="version-line">Build {CONTENT.buildVersion} · Content {game.contentVersion} · Schema {game.schemaVersion}<br />State <code>{fingerprint}</code></p><button type="button" onClick={checkSimulation} disabled={!hydrated || !!busyMessage || transferBusy}>Run simulation checks</button>{diagnostics && <div className="diagnostic-results"><p><strong>{diagnostics.ok ? 'All checks passed.' : 'Checks need attention.'}</strong> Tested on isolated copies.</p><ul>{diagnostics.checks.map(check => <li key={check.name}><span className="check-result">{check.passed ? 'PASS' : 'FAIL'}</span> <strong>{check.name}</strong><span className="small-note">{check.detail}</span></li>)}</ul></div>}</div><div><h3>Build sequence</h3><ol className="roadmap">{CONTENT.roadmap.map(wave => <li key={wave.wave}><span>Wave {wave.wave}</span><div><strong>{wave.title}</strong> <span className="muted">/ {wave.status === 'current' ? 'this build' : wave.status}</span><p className="small-note">{wave.description}</p></div></li>)}</ol></div></div>
     </>}
     </details>
     <footer className="lab-footer"><span>The computers are expensive. The ambition is yours.</span><span>1 game week = {CONTENT.clock.secondsPerWeek} seconds at 1×</span></footer>

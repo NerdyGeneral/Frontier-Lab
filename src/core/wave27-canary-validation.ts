@@ -4,7 +4,7 @@ import { SEGMENT_BY_ID } from '../content/wave2-market';
 import type { GameContent, GameState, WeeklyUsage } from '../contracts/types';
 import { RESOURCE_SCALE as U } from '../contracts/types';
 import type { CanaryRelease, CanaryUsageReceipt } from '../contracts/wave27-canary';
-import { addCanaryOutcomes, canaryFulfillment, canaryRequestId, observedCanaryOutcomes, splitExecutedRequests } from '../modules/canary-traffic';
+import { addCanaryOutcomes, canaryFulfillment, canaryRequestId, canaryWorkloadMeasure, observedCanaryOutcomes, splitExecutedRequests } from '../modules/canary-traffic';
 import { getRackHardware } from '../modules/compute-pools';
 import { requestMeter, segmentForProduct } from '../modules/product-models';
 import { meteredBill } from '../modules/products';
@@ -40,7 +40,7 @@ function assertCohort(state: GameState, canary: CanaryRelease, receipt: CanaryUs
   for (const [index, segment] of row.segments.entries()) {
     for (const value of [segment.accounts, segment.requestedRequests, segment.executedRequests]) checkedInteger(value);
     check(segment.accounts <= SEGMENT_BY_ID[segment.segmentId].population && segment.executedRequests === executed[index], 'Canary segment allocation exceeds its real request population.');
-    const expected = observedCanaryOutcomes(model, canary.features, segment.segmentId, segment.executedRequests, canary.evidenceKey);
+    const expected = observedCanaryOutcomes(model, canary.features, segment.segmentId, segment.executedRequests, canary.evidenceKey, canary.configuration.workload);
     check(segment.technicalErrorBps === expected.technicalErrorBps && same(segment.outcomes, expected.outcomes), 'Canary behavior observations changed their exact model or deterministic paid-request evidence.');
   }
   check(row.requestedRequests === row.segments.reduce((sum, item) => checkedAdd(sum, item.requestedRequests), 0)
@@ -128,6 +128,7 @@ export function assertCanaryUsage(state: GameState, usage: WeeklyUsage, content:
   const receipt = usage.canary; check(receipt, 'Canary usage receipt is missing.');
   const canary = state.slices.products.canaryReleases?.[receipt.canaryId]; check(canary, 'Canary usage has no paid release.');
   assertCanaryReceipt(state, canary, receipt, content);
+  check(same(usage.workload ?? null, canaryWorkloadMeasure(state, canary, receipt) ?? null), 'Canary customer-workload metrics differ from actual candidate and incumbent traffic.');
   const source = receipt.incumbent, candidate = receipt.candidate;
   const sourceMeter = requestMeter(state.slices.models.versions[canary.sourceModelId], canary.features), candidateMeter = requestMeter(state.slices.models.versions[canary.candidateModelId], canary.features);
   const samples = source.executedRequests + candidate.executedRequests, outcomes = addCanaryOutcomes([source.outcomes, candidate.outcomes]);

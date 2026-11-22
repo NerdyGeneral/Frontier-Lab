@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from './connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from './gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from './model-customization-version';
@@ -34,7 +35,7 @@ export function assertWave27ApplianceState(state: GameState, content: GameConten
   const { products, company, compute } = state.slices, orders = products.privateApplianceOrders;
   const cedarContract = products.commercialContracts[privateApplianceContractId()];
   if (Object.hasOwn(products, 'privateApplianceOrders')) {
-    check([STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version), 'Private appliances are unavailable in this content version.');
+    check([STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version), 'Private appliances are unavailable in this content version.');
     record(orders, 'Private appliance orders');
     check(Object.keys(orders!).every(key => key === BUYER.id), 'The finite private appliance buyer was expanded.');
   }
@@ -137,7 +138,7 @@ export function assertWave27ApplianceState(state: GameState, content: GameConten
     check(occupied <= capacity, 'Private appliance and other foundry bookings exceed the shared production line.');
   }
   const queued = state.queuedCommands.filter(command => command.payload.kind === 'accept_private_appliance_order');
-  check(queued.length <= 1 && (!queued.length || [STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && !orders?.[BUYER.id]), 'Private appliance order is duplicated or unavailable in this build.');
+  check(queued.length <= 1 && (!queued.length || [STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) && !orders?.[BUYER.id]), 'Private appliance order is duplicated or unavailable in this build.');
   for (const command of queued) assertWave27ApplianceCommand(command.payload);
   for (const foundry of Object.keys(CHIP_FOUNDRIES) as ChipFoundry[]) {
     const capacity = CHIP_FOUNDRIES[foundry].rackSlots; if (capacity === null) continue;

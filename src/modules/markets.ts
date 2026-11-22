@@ -16,6 +16,11 @@ import { EVIDENCE_LINKS } from '../content/wave6-evidence';
 import { evidenceGoodForTrust, evidenceWithheldBps } from './retrieval-evidence';
 import { audienceAcquisitionBps } from './product-strategy';
 import { marketOpportunityDemandMultiplierBps } from './market-opportunities';
+import { hasConnectedCompanyRules } from '../core/connected-company-version';
+import { workloadAcquisitionBps, workloadChurnReliefBps, workloadErrorToleranceBps } from './product-workloads';
+import { clientRelationshipAcquisitionBps } from './systems-client-relationships';
+import { getCompanyWorld } from './company-progression';
+import { getResearchProgramLevel } from './research-programs';
 
 export { MARKET_SEGMENTS } from '../content/wave2-market';
 const clamp = (n: number, min = 0, max = 10000) => Math.max(min, Math.min(max, n));
@@ -30,13 +35,23 @@ function billFit(product: ProductOffer, price: number, segment: SegmentDefinitio
   return Math.min(15000, mulDiv(segment.referencePriceCents, 10000, Math.max(1, expectedProductBill(product, price, meter))));
 }
 export function offerEligible(state: Readonly<GameState>, product: ProductOffer, segment: SegmentDefinition, content: GameContent): boolean {
-  if (product.status !== 'active' || state.slices.company.companies[product.companyId].arrearsCents || !segmentForProduct(product.kind).some(s => s.id === segment.id)) return false;
+  if (product.retiredWeek !== undefined || product.status !== 'active' || state.slices.company.companies[product.companyId].arrearsCents || !segmentForProduct(product.kind).some(s => s.id === segment.id)) return false;
   const d = productDemand(state, product, content, state.week), s = d.model.capabilityBps;
   const bonus = (d.features.deepReasoning ? 1000 : 0) + (d.features.extendedContext && (segment.market !== 'consumer' || segment.id === 'professional') ? 500 : 0) + (segment.market === 'business' ? d.documentBonusBps : 0);
   if (s.conversation + bonus < segment.minConversationBps || s.documents + bonus < segment.minDocumentsBps || s.coding + bonus < segment.minCodingBps || d.model.reliabilityBps < segment.minReliabilityBps) return false;
-  if (segment.market === 'consumer' && executionErrorBps(d.model, segment, d.features) > segment.errorToleranceBps) return false;
+  if (segment.market === 'consumer' && (d.workload ? d.segments.find(row => row.segmentId === segment.id)!.errorBps : executionErrorBps(d.model, segment, d.features)) > workloadErrorToleranceBps(segment, product.workload)) return false;
   if (segment.market === 'business') return (state.slices.research.completedByCompany[product.companyId] ?? []).some(id => id === 'R6' || id === 'R12') && getWorkforce(state, product.companyId, state.week).capacity.commercial >= RESOURCE_SCALE / 4 && (state.slices.products.lastUsage[product.id]?.fulfillmentBps ?? 10000) >= 9800;
   return true;
+}
+export function getProductDemandAccess(state: Readonly<GameState>, product: ProductOffer) {
+  if (!product.workload || !hasConnectedCompanyRules(state.contentVersion)) return { relationshipBps: 10000, researchBps: 10000, worldBps: 10000, originBps: 10000, totalBps: 10000 };
+  const workload = product.workload.id;
+  const program = workload === 'responsive' || workload === 'local' ? 'efficient-systems' : workload === 'continuity' ? 'persistent-systems' : workload === 'verified' ? 'verified-systems' : null;
+  const relationshipBps = clientRelationshipAcquisitionBps(state, product.companyId, workload);
+  const researchBps = 10000 + (program && product.companyId === state.playerCompanyId ? Math.min(4, getResearchProgramLevel(state, program)) * 200 : 0);
+  const world = getCompanyWorld(state), worldBps = world?.favoredWorkload === workload ? world.acquisitionBps : 10000;
+  const originBps = product.companyId === state.playerCompanyId && state.slices.campaign.origin === 'consultancy' && relationshipBps > 10000 ? 10300 : 10000;
+  return { relationshipBps, researchBps, worldBps, originBps, totalBps: mulDiv(mulDiv(mulDiv(relationshipBps, researchBps, 10000), worldBps, 10000), originBps, 10000) };
 }
 function conversionRate(state: Readonly<GameState>, market: MarketsSlice, p: ProductOffer, segment: SegmentDefinition, content: GameContent, service = 10000): number {
   const d = productDemand(state, p, content, state.week);
@@ -52,6 +67,10 @@ function conversionRate(state: Readonly<GameState>, market: MarketsSlice, p: Pro
     fulfillmentBps: state.slices.products.lastUsage[p.id]?.fulfillmentBps ?? 10000,
   }), 10000);
   if (d.features.memory && segment.market === 'consumer' && segment.id !== 'casual') rate = mulDiv(rate, 10500, 10000);
+  if (d.workload) {
+    rate = mulDiv(rate, workloadAcquisitionBps(segment, d.workload), 10000);
+    rate = mulDiv(rate, getProductDemandAccess(state, p).totalBps, 10000);
+  }
   return clamp(rate, 500, 8000);
 }
 /** Compare only published terms and observed service. Qualification is checked separately. */
@@ -78,10 +97,11 @@ export function getMarketView(state: GameState, content: GameContent) {
     const trials = state.slices.markets.trials.filter(c => (c.segmentId ?? 'regular') === segment.id);
     const paying = cohorts.reduce((n, c) => n + c.count, 0), trialCount = trials.reduce((n, c) => n + c.count, 0);
     const committed = segment.market === 'business' ? commercialOrganizationCount(state) : 0;
-    const contenders = offers.filter(product => offerEligible(state, product, segment, content))
+    const publicContenders = offers.filter(product => offerEligible(state, product, segment, content))
       .map(product => ({ companyId: product.companyId, name: state.slices.company.companies[product.companyId].name,
         score: shortlistWeight(state, market, product, segment, content) }))
       .sort((a, b) => b.score - a.score || a.companyId.localeCompare(b.companyId));
+    const contenders = publicContenders.filter((contender, index) => publicContenders.findIndex(other => other.companyId === contender.companyId) === index);
     const opportunityMultiplierBps = marketOpportunityDemandMultiplierBps(state, segment.id);
     return { ...segment, opportunityMultiplierBps, effectiveShoppingBps: mulDiv(segment.shoppingBps, opportunityMultiplierBps, 10000), contenders, paying, trials: trialCount, committed, returning: state.slices.markets.returnedNextWeek[segment.id] ?? 0, outside: Math.max(0, segment.population - paying - trialCount - committed - (state.slices.markets.returnedNextWeek[segment.id] ?? 0)), yours: cohorts.filter(c => c.companyId === state.playerCompanyId).reduce((n, c) => n + c.count, 0), eligible: contenders.some(offer => offer.companyId === state.playerCompanyId) };
   });
@@ -111,7 +131,7 @@ export function createMarketsModule(content: GameContent): DomainModule {
         const market = structuredClone(state.slices.markets), messages: { category: 'market'; message: string; companyId: string }[] = [];
         market.lastGained = 0; market.lastLost = 0; market.lastTrialCount = 0; market.returnedNextWeek = {};
         const returned = (segment: string, count: number) => { market.returnedNextWeek[segment] = (market.returnedNextWeek[segment] ?? 0) + count; };
-        const offers = Object.values(state.slices.products.offers).sort((a, b) => a.id.localeCompare(b.id));
+        const offers = Object.values(state.slices.products.offers).filter(offer => offer.retiredWeek === undefined).sort((a, b) => a.id.localeCompare(b.id));
         const trustObservations: Record<string, { good: boolean; calibrated: boolean }> = {};
         for (const p of offers) {
           const d = productDemand(state, p, content, ctx.week), u = state.slices.products.lastUsage[p.id];
@@ -138,10 +158,11 @@ export function createMarketsModule(content: GameContent): DomainModule {
           for (const segment of segmentForProduct(p.kind)) {
             const cohorts = market.cohorts.filter(c => c.productId === p.id && c.activeWeek <= ctx.week && (c.segmentId ?? 'regular') === segment.id);
             const accounts = cohorts.reduce((n, c) => n + c.count, 0), c = carry(market, p.companyId, segment.id);
-            const sessionRow = u.consumerSessions || u.canary ? u.segments?.find(row => row.segmentId === segment.id) : undefined;
-            const excess = clamp((sessionRow?.errorBps ?? executionErrorBps(d.model, segment, d.features, d.documentBonusBps)) - segment.errorToleranceBps);
+            const sessionRow = u.consumerSessions || u.canary || u.workload ? u.segments?.find(row => row.segmentId === segment.id) : undefined;
+            const tolerance = workloadErrorToleranceBps(segment, p.workload);
+            const excess = clamp((sessionRow?.errorBps ?? executionErrorBps(d.model, segment, d.features, d.documentBonusBps)) - tolerance);
             const overprice = clamp(mulDiv(d.contract.weeklyPriceCents, 10000, segment.referencePriceCents) - 10000);
-            const confidentExcess = Math.max(0, (u.behavior?.confidentErrorBps ?? Math.min(u.errorBps, BASE_BEHAVIOR.confidentErrorBps)) - Math.floor(segment.errorToleranceBps / 2));
+            const confidentExcess = Math.max(0, (u.behavior?.confidentErrorBps ?? Math.min(u.errorBps, BASE_BEHAVIOR.confidentErrorBps)) - Math.floor(tolerance / 2));
             const refusalExcess = Math.max(0, (u.behavior?.falseRefusalBps ?? BASE_BEHAVIOR.falseRefusalBps) - 500);
             // Fictional retention rule: confident errors and needless refusals create distinct friction.
             const behaviorFriction = mulDiv(400, confidentExcess, 10000) + mulDiv(200, refusalExcess, 10000)
@@ -154,7 +175,7 @@ export function createMarketsModule(content: GameContent): DomainModule {
                 const renewal = cohort.renewalWeek ?? (cohort.activeWeek + 12);
                 let count = cohort.count;
                 if (breachWeeks >= 2 || renewal <= ctx.week) {
-                  const good = d.model.capabilityBps.documents >= 5500 && d.model.reliabilityBps >= 9000 && d.contract.weeklyPriceCents <= mulDiv(segment.referencePriceCents, 12500, 10000);
+                  const good = d.model.capabilityBps.documents >= 5500 && d.model.reliabilityBps >= 9000 && d.contract.weeklyPriceCents <= mulDiv(segment.referencePriceCents, 12500, 10000) && (!u.workload || u.workload.fitBps >= 9500);
                   let competitivePressure = 0;
                   if (state.slices.campaign.rules === 'release' && breachWeeks < 2) {
                     const own = shortlistWeight(state, market, p, segment, content);
@@ -162,14 +183,15 @@ export function createMarketsModule(content: GameContent): DomainModule {
                       .reduce((best, other) => Math.max(best, shortlistWeight(state, market, other, segment, content)), own);
                     competitivePressure = Math.min(1000, Math.floor((bestAlternative - own) / 2));
                   }
-                  const renewalRate = breachWeeks >= 2 ? 0 : clamp((good ? 9000 : 6000) - Math.min(3000, mulDiv(unmet + excess, 3000, 10000) + behaviorFriction) - competitivePressure);
+                  const continuity = u.workload?.id === 'continuity' && u.workload.fitBps === 10000 ? 500 : 0;
+                  const renewalRate = breachWeeks >= 2 ? 0 : clamp((good ? 9000 : 6000) + continuity - Math.min(3000, mulDiv(unmet + excess, 3000, 10000) + behaviorFriction) - competitivePressure);
                   const numerator = count * (10000 - renewalRate) + c.churn, churn = Math.min(count, Math.floor(numerator / 10000)); c.churn = numerator % 10000; count -= churn; lost += churn;
                 }
                 if (count > 0) retained.push({ ...cohort, count, breachWeeks, renewalWeek: renewal <= ctx.week ? ctx.week + 12 : renewal });
               }
             } else {
               const baseChurn = d.features.memory && segment.market === 'consumer' && segment.id !== 'casual' ? mulDiv(segment.churnBps, 7500, 10000) : segment.churnBps;
-              const churnBps = Math.min(2500, baseChurn - sessionChurnRelief(u, segment, baseChurn) + mulDiv(600, unmet, 10000) + mulDiv(400, excess, 10000) + mulDiv(200, overprice, 10000) + mulDiv(600, lowAllowance, 10000) + behaviorFriction);
+              const churnBps = Math.max(0, Math.min(2500, baseChurn - sessionChurnRelief(u, segment, baseChurn) - workloadChurnReliefBps(baseChurn, u.workload) + mulDiv(600, unmet, 10000) + mulDiv(400, excess, 10000) + mulDiv(200, overprice, 10000) + mulDiv(600, lowAllowance, 10000) + behaviorFriction));
               const numerator = accounts * churnBps + c.churn; lost = Math.min(accounts, Math.floor(numerator / 10000)); c.churn = numerator % 10000;
               if (accounts > lost) {
                 const history = settledSessionHistory(sessionRow, accounts - lost, u);
@@ -184,7 +206,8 @@ export function createMarketsModule(content: GameContent): DomainModule {
           market.cohorts = retained;
           if (d.accounts > 0) {
             const observation = trustObservations[p.companyId] ??= { good: true, calibrated: true };
-            observation.good &&= u.fulfillmentBps >= 9800 && u.errorBps <= 1800 && evidenceGoodForTrust(u.evidence);
+            const promisedErrorTolerance = u.workload?.id === 'verified' ? 2000 : 1800;
+            observation.good &&= u.fulfillmentBps >= 9800 && u.errorBps <= promisedErrorTolerance && (!u.workload || u.workload.fitBps >= 9500) && evidenceGoodForTrust(u.evidence);
             observation.calibrated &&= (u.canary ? u.behavior?.confidentErrorBps ?? BASE_BEHAVIOR.confidentErrorBps
               : d.model.behavior?.confidentErrorBps ?? BASE_BEHAVIOR.confidentErrorBps) < BASE_BEHAVIOR.confidentErrorBps;
           }
@@ -200,7 +223,8 @@ export function createMarketsModule(content: GameContent): DomainModule {
           const granted = ctx.resources.staffGrants.find(g => g.requestId === 'acquire-company:' + p.companyId)?.grants.find(g => g.role === 'commercial')?.staffWeeks ?? 0;
           const activeCount = offers.filter(o => o.companyId === p.companyId && o.status === 'active').length || 1;
           const commercial = Math.floor(granted / activeCount), c = carry(market, p.companyId, 'reach:' + p.kind);
-          const base = p.kind === 'basic-chat' ? 20 * RESOURCE_SCALE : p.kind === 'developer-api' ? 3 * RESOURCE_SCALE : RESOURCE_SCALE / 4;
+          const sameKind = hasConnectedCompanyRules(state.contentVersion) ? offers.filter(o => o.companyId === p.companyId && o.kind === p.kind && o.status === 'active').length || 1 : 1;
+          const base = Math.floor((p.kind === 'basic-chat' ? 20 * RESOURCE_SCALE : p.kind === 'developer-api' ? 3 * RESOURCE_SCALE : RESOURCE_SCALE / 4) / sameKind);
           const perFte = p.kind === 'basic-chat' ? 15 * RESOURCE_SCALE : p.kind === 'developer-api' ? 3 * RESOURCE_SCALE : RESOURCE_SCALE / 2;
           const numerator = base + mulDiv(commercial, perFte, RESOURCE_SCALE) + c.reach;
           reach[p.id] = Math.floor(numerator / RESOURCE_SCALE); c.reach = numerator % RESOURCE_SCALE;
@@ -238,6 +262,13 @@ export function createMarketsModule(content: GameContent): DomainModule {
           const available = outside(segment), numerator = available * shoppingBps + (market.shopperCarry[segment.id] ?? 0);
           let shoppers = Math.floor(numerator / 10000); market.shopperCarry[segment.id] = numerator % 10000;
           const eligible = offers.filter(p => offerEligible(state, p, segment, content)).map(p => ({ p, weight: shortlistWeight(state, market, p, segment, content) }));
+          if (hasConnectedCompanyRules(state.contentVersion)) {
+            // One company earns one competitive share. Its offers split that
+            // share; cloning the same product cannot manufacture new shoppers.
+            const groups = new Map<string, { total: number; best: number }>();
+            for (const item of eligible) { const group = groups.get(item.p.companyId) ?? { total: 0, best: 0 }; group.total += item.weight; group.best = Math.max(group.best, item.weight); groups.set(item.p.companyId, group); }
+            for (const item of eligible) { const group = groups.get(item.p.companyId)!; item.weight = Math.max(1, mulDiv(item.weight, group.best, group.total)); }
+          }
           if (state.slices.campaign.rules === 'release') eligible.sort((a, b) => b.weight - a.weight || a.p.id.localeCompare(b.p.id));
           // Reallocate leftover shares only among offers with remaining reach and capacity.
           for (let round = 0; shoppers > 0 && round < eligible.length + 1; round++) {

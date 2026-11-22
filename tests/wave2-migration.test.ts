@@ -77,7 +77,10 @@ test('W2-S03: a large legacy cohort is split across finite segments without dele
 test('W2-S04: changed checksums, fake legacy headers and invalid old references cannot bypass migration validation', () => {
   const broken = envelope(); broken.state.week += 1;
   const result = deserializeState(JSON.stringify(broken)); assert.equal(result.ok, false); if (!result.ok) assert.match(result.error, /checksum/);
-  const fake = createInitialState(); fake.schemaVersion = 2; fake.contentVersion = '0.2.0';
+  const newerContent = { ...CONTENT, version: '0.36.0', buildVersion: '0.36.0' };
+  const fake = createInitialState(newerContent);
+  assert.deepEqual(validateState(fake, newerContent), [], 'Isolate the historical calendar feature before changing its headers.');
+  fake.schemaVersion = 2; fake.contentVersion = '0.2.0'; fake.buildVersion = '0.2.0';
   const rejected = deserializeState(JSON.stringify({ format: 'frontier-lab', schemaVersion: 2, contentVersion: '0.2.0', state: fake, checksum: canonicalStateHash(fake) }));
   assert.equal(rejected.ok, false); if (!rejected.ok) assert.match(rejected.error, /Specialist commissions and varied campaign schedules do not belong to this historical save version/);
   const orphan = envelope(); orphan.state.slices.markets.cohorts[0].productId = 'missing'; orphan.checksum = canonicalStateHash(orphan.state);

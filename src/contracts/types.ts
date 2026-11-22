@@ -52,6 +52,8 @@ export type WorkCategory = 'serving' | 'development' | 'research';
 export type ReasonCode = 'INVALID_COMMAND' | 'INVALID_NAME' | 'INVALID_ALLOCATION' | 'CAPACITY_EXCEEDED' | 'UNKNOWN_COMPANY' | 'DUPLICATE_COMMAND' | 'INVALID_STATE' | 'INVALID_CONTENT' | 'INVALID_VERSION' | 'INSUFFICIENT_FUNDS' | 'ARREARS' | 'QUEUE_FULL' | 'FOREIGN_SLICE_WRITE' | 'DUPLICATE_MODULE' | 'INVALID_FACT' | 'INVARIANT_FAILED' | 'NOT_READY' | 'MISSING_STAFF' | 'MISSING_MEMORY' | 'ALREADY_ACTIVE' | 'NO_IMPROVEMENT';
 export interface Rejection { code: ReasonCode; message: string }
 export type CommandPayload =
+  | import('./company-progression').ResearchProgramCommand
+  | import('./product-workloads').ProductPortfolioCommand
   | import('./systems-briefs').SystemsBriefCommand
   | import('./development-plans').DevelopmentPlanCommand
   | import('./strategic-variety').StrategicVarietyCommand
@@ -92,7 +94,7 @@ export type CommandPayload =
   | { kind: 'start_training'; modelDesign?: import('./model-design').ModelDesignSpec; baseModelId: string; packetId: string; recipeId?: string; packetIds?: string[]; profile?: TrainingProfile; workspace?: TrainingWorkspace; continueFromParent?: true; automatedCheckpoints?: boolean; teacherModelId?: string; teacherDomain?: keyof CapabilityScores; architecture?: 'dense' | 'sparse'; asAdapter?: boolean; replay?: ReplayTrainingChoice; curriculum?: TrainingCurriculumChoice }
   | { kind: 'evaluate_model'; modelId: string; suiteId?: EvaluationSuiteId }
   | { kind: 'set_job_paused'; jobId: string; paused: boolean }
-  | { kind: 'deploy_product'; modelId: string; priceCents: number; allowance: number; productKind?: ProductKind; features?: ProductFeatures }
+  | { kind: 'deploy_product'; modelId: string; priceCents: number; allowance: number; productKind?: ProductKind; features?: ProductFeatures; workload?: import('./product-workloads').ProductWorkloadId; name?: string }
   | { kind: 'set_product_terms'; productId: string; priceCents: number; allowance: number }
   | { kind: 'set_product_paused'; productId: string; paused: boolean };
 export interface GameCommand { id: string; companyId: CompanyId; issuedForWeek: number; payload: CommandPayload; reservedCents?: number }

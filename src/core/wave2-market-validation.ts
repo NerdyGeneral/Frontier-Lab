@@ -4,12 +4,15 @@ import { MARKET_SEGMENTS, SEGMENT_BY_ID } from '../content/wave2-market';
 import { checkedAdd, checkedInteger, mulDiv } from './math';
 import { canonicalStateHash } from './canonical';
 import { routedModel } from '../modules/product-efficiency';
-import { SESSION_PROFILES, sessionExchanges, sessionInputTokens, settledSessionHistory } from '../modules/consumer-sessions';
-import { productBehaviorMeter, meteredBill, productRequestMeter, segmentForProduct } from '../modules/products';
+import { SESSION_PROFILES, sessionExchanges, sessionInputTokens, sessionQuality, settledSessionHistory } from '../modules/consumer-sessions';
+import { productBehaviorMeter, meteredBill, productRequestMeter, productWorkloadMeasure, featureConfig, executionErrorBps, segmentForProduct } from '../modules/products';
 import { assertEvidenceCheckUsage } from '../modules/retrieval-evidence';
 import { assertRuntimeGuardrailUsage } from './wave12-guardrails-validation';
-import { commercialOrganizationCount } from '../modules/business';
+import { commercialOrganizationCount, retrievalDocumentBonus } from '../modules/business';
 import { assertCanaryUsage } from './wave27-canary-validation';
+import { hasConnectedCompanyRules } from './connected-company-version';
+import { assertProductWorkloadReceipt, workloadErrorBps, activePortfolio, productRetirementObligationReason } from '../modules/product-workloads';
+import { PRODUCT_KIND_LIMIT, PRODUCT_PORTFOLIO_LIMIT } from '../content/product-workloads';
 const check = (condition: unknown, message: string): void => { if (!condition) throw new Error(message); };
 const same = (a: unknown, b: unknown): boolean => canonicalStateHash(a) === canonicalStateHash(b);
 function record(value: unknown, name: string): void { check(!!value && typeof value === 'object' && !Array.isArray(value), name + ' must be a record.'); }
@@ -22,6 +25,13 @@ export function assertWave2MarketState(state: GameState, content: GameContent): 
   const { company, models, products, markets } = state.slices;
   const ownCompany = (id: string) => check(Object.hasOwn(company.companies, id), 'Market record has an unknown company.');
   for (const product of Object.values(products.offers)) {
+    if (product.workload) { assertProductWorkloadReceipt(product.workload, state); check(product.workload.selectedWeek >= product.createdWeek, 'Customer workload predates its offer.'); }
+    if (product.retiredWeek !== undefined) {
+      checkedInteger(product.retiredWeek);
+      check(hasConnectedCompanyRules(state.contentVersion) && product.retiredWeek >= product.createdWeek && product.retiredWeek <= state.week && product.status === 'paused'
+        && !markets.cohorts.some(cohort => cohort.productId === product.id) && !markets.trials.some(trial => trial.productId === product.id), 'A retired offer still serves customers or has an invalid retirement date.');
+      check(!productRetirementObligationReason(state, product.id), 'A retired offer abandoned a paid customer commitment or unfinished installation.');
+    }
     if (Object.hasOwn(product, 'sessionProfile')) check(product.kind === 'basic-chat' && Object.hasOwn(SESSION_PROFILES, product.sessionProfile ?? ''), 'Persistent sessions require an authored Basic Chat profile.');
     if (product.features !== undefined) {
       check(Object.keys(product.features).sort().join() === ['deepReasoning', 'extendedContext', 'memory'].sort().join()
@@ -36,6 +46,11 @@ export function assertWave2MarketState(state: GameState, content: GameContent): 
     if (!deployment.scenarioStart) check(deployment.requiredStaff === content.firstSale.deploymentStaff, 'Deployment rollout staff requirement was changed.');
     if (deployment.status === 'ready') check(state.scheduled.some(item => item.kind === 'model_release' && item.targetId === deployment.modelId && item.companyId === deployment.companyId && item.dueWeek === deployment.readyWeek), 'A ready deployment has no matching future release boundary.');
   }
+  if (hasConnectedCompanyRules(state.contentVersion)) for (const companyId of Object.keys(company.companies)) {
+    const live = activePortfolio(state, companyId);
+    check(live.length <= PRODUCT_PORTFOLIO_LIMIT && ['basic-chat', 'developer-api', 'business-docs'].every(kind => live.filter(product => product.kind === kind).length <= PRODUCT_KIND_LIMIT), 'Public offers exceed the shared company portfolio limit.');
+    check(new Set(live.map(product => product.name.toLowerCase())).size === live.length, 'Live product offers have duplicate names.');
+  }
   for (const contract of Object.values(products.contracts)) {
     if (contract.tokenBillRemainder !== undefined) { fraction(contract.tokenBillRemainder, 1_000_000); check(products.offers[contract.productId]?.kind === 'developer-api', 'Only token contracts can carry token billing fractions.'); }
   }
@@ -43,6 +58,15 @@ export function assertWave2MarketState(state: GameState, content: GameContent): 
     if (usage.canary) { assertCanaryUsage(state, usage, content); continue; }
     const product = products.offers[usage.productId], contract = products.contracts[product.contractId];
     const currentModel = models.versions[products.deployments[product.deploymentId].modelId];
+    if (usage.workload || product.workload && usage.week === state.week) {
+      check(product.workload && hasConnectedCompanyRules(state.contentVersion), 'Customer workload usage has no accepted offer promise.');
+      const measured = productWorkloadMeasure(state, product);
+      if (usage.week === state.week) check(same(usage.workload, measured), 'Customer workload metrics changed after service.');
+      if (usage.workload) {
+        for (const value of [usage.workload.retentionBps, usage.workload.verifiedCompletionBps, usage.workload.routingQualityBps, usage.workload.fitBps]) bps(value);
+        checkedInteger(usage.workload.latencyBps); checkedInteger(usage.workload.memoryMU);
+      }
+    }
     assertEvidenceCheckUsage(state, usage, usage.week === state.week ? productRequestMeter(state, product, currentModel).work : undefined);
     assertRuntimeGuardrailUsage(state, usage, usage.week === state.week ? productRequestMeter(state, product, currentModel).work : undefined);
     const sessions = usage.consumerSessions;
@@ -102,6 +126,17 @@ export function assertWave2MarketState(state: GameState, content: GameContent): 
             : row.accounts * Math.min(SEGMENT_BY_ID[row.segmentId].exchanges, contract.allowance);
           check(row.requestedExchanges === expected
             && row.requestedWork === row.requestedExchanges * meter.work, 'Feature or family costs disappeared from requested usage.');
+          if (usage.workload) {
+            const model = routedModel(state, product, currentModel);
+            const baseline = executionErrorBps(model, SEGMENT_BY_ID[row.segmentId], featureConfig(product), retrievalDocumentBonus(state, product.id));
+            const error = Math.max(0, workloadErrorBps(baseline, usage.workload) - (sessions ? sessionQuality(sessions.profile, row.accounts, row.sessionHistory!) : 0));
+            check(row.errorBps === error, 'Customer outcomes lost their actual retention, verification or latency tradeoff.');
+          }
+        }
+        if (usage.workload && usage.segments) {
+          const expectedError = usage.paidAccounts ? Math.floor(usage.segments.reduce((sum, row) => sum + row.accounts * row.errorBps, 0) / usage.paidAccounts)
+            : workloadErrorBps(executionErrorBps(routedModel(state, product, currentModel), segmentForProduct(product.kind)[0], featureConfig(product), retrievalDocumentBonus(state, product.id)), usage.workload);
+          check(usage.errorBps === expectedError, 'Public workload outcome summary differs from its delivered segments.');
         }
       }
       if (product.kind === 'developer-api') {

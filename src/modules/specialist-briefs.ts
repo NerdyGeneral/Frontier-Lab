@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../core/connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { SPECIALIST_BRIEF_IDS, type BriefBinding, type CustomerBrief, type SpecialistBriefId } from '../contracts/customer-briefs';
 import type { EvaluationReport, GameState, ModelVersion, WorkRequest } from '../contracts/types';
@@ -60,7 +61,7 @@ export function getSpecialistBriefCandidate(state: Readonly<GameState>, id: Spec
 }
 
 export function specialistBriefBinding(state: Readonly<GameState>, id: SpecialistBriefId): BriefBinding | string {
-  if (![GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion)) return 'Upgrade this saved campaign before accepting a specialist commission.';
+  if (![GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion)) return 'Upgrade this saved campaign before accepting a specialist commission.';
   return getSpecialistBriefCandidate(state, id) ?? 'Build an owned model that meets this client’s listed quality and resource limits, then complete its required paid tests. Saved paid reports can be reused.';
 }
 

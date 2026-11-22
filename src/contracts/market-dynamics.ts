@@ -24,6 +24,8 @@ export type RivalCampaignKind = 'value-expansion' | 'quality-leadership' | 'ente
 export type RivalTactic = 'efficiency' | 'reliability' | 'reach';
 /** Intent and its frozen baseline. It never awards work, money or customers. */
 export interface RivalCampaign {
+  /** 0.38: an announced operating architecture; every step remains an ordinary paid command. */
+  systems?: { version: 1; focus: 'local' | 'continuity' | 'verified' };
   tactics?: { version: 1; focus: RivalTactic };
   id: string;
   kind: RivalCampaignKind;

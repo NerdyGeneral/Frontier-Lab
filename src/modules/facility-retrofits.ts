@@ -40,7 +40,7 @@ export function getActiveFacilityRetrofitEffects(state: Readonly<GameState>, com
 export function validateFacilityRetrofitCommand(state: Readonly<GameState>, command: GameCommand, _content: GameContent = CONTENT): Rejection | undefined {
   const p = command.payload, company = state.slices.company.companies[command.companyId];
   if (!company) return reject('UNKNOWN_COMPANY', 'This company does not exist.');
-  if (company.arrearsCents > 0) return reject('ARREARS', 'Resolve unpaid bills before changing a site retrofit.');
+  if (company.arrearsCents > 0) return reject('ARREARS', 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.');
   if (p.kind === 'start_facility_retrofit') {
     if (!FACILITY_RETROFITS.some(item => item.kind === p.retrofitKind)) return reject('INVALID_COMMAND', 'Choose a power feed extension or a cooling loop expansion.');
     if (!facilityRetrofitResearchReady(state, command.companyId)) return reject('NOT_READY', 'Research Enterprise operations (R12) before commissioning site extensions.');

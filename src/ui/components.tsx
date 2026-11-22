@@ -32,6 +32,9 @@ export function Metric({ label, children, className = '' }: { label: string; chi
 
 export function commandLabel(payload: CommandPayload): string {
   switch (payload.kind) {
+    case 'start_research_experiment': return 'Fund research experiment';
+    case 'configure_product_offer': return 'Update product name and workload';
+    case 'retire_product': return 'Retire empty product';
     case 'start_development_plan': return 'Start development plan';
     case 'set_development_plan_paused': return payload.paused ? 'Pause development plan' : 'Resume development plan';
     case 'revise_development_plan': return 'Save limits and resume development';

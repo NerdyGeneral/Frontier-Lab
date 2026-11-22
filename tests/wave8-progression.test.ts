@@ -55,8 +55,12 @@ test('W8-N01: an earned company funds physical expansion, moves its existing rac
   run.mark('Existing colocation rack commissioned in the owned facility');
 
   run.founder('commercial');
-  run.queue({ kind: 'allocate_compute', serving: 100 * U, development: 6 * U, research: 6 * U }); run.step();
-  run.queue({ kind: 'set_cloud_capacity', cu: 56 * U }); run.step(3);
+  const reducedCloudCU = 56 * U, developmentCU = 6 * U, researchCU = 6 * U;
+  // Use all remaining paid capacity after the rental reduction. Customer demand
+  // changes with rival activity; the former fixed 100-CU limit left 8 CU idle.
+  const servingCU = reducedCloudCU + run.fleet.ownedCU - developmentCU - researchCU;
+  run.queue({ kind: 'allocate_compute', serving: servingCU, development: developmentCU, research: researchCU }); run.step();
+  run.queue({ kind: 'set_cloud_capacity', cu: reducedCloudCU }); run.step(3);
   const finalReport = getComputeCostView(run.state).latest!, totals = finalReport.totals;
   assert.equal(totals.cloudRentCents, 1_120_000);
   assert.ok(totals.cloudRentCents < baseline.totals.cloudRentCents);

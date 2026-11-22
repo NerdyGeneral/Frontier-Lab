@@ -2,6 +2,10 @@ import type { CapabilityDomain, EvaluationSuiteId, TrainingProfile } from '../co
 import type { TrainingWorkspace } from '../contracts/wave2-lab';
 import type { ModelDesignSpec } from '../contracts/model-design';
 import type { DevelopmentTrainingOrder } from '../contracts/development-plans';
+import type { DevelopmentGoal } from '../contracts/development-objectives';
+import { isDevelopmentGoal } from '../contracts/development-objectives';
+export type { DevelopmentGoal } from '../contracts/development-objectives';
+export { isDevelopmentGoal } from '../contracts/development-objectives';
 import type { ReplayTrainingChoice } from '../contracts/wave15-replay';
 import type { TrainingCurriculumChoice } from '../contracts/wave17-curriculum';
 import { assertCommandShape } from '../core/command-shape';
@@ -23,14 +27,11 @@ export interface DelegatedTrainingDraft {
   name: string; baseId: string; selected: string[]; method: string; profile: TrainingProfile;
   teacherId: string; teacherDomain: CapabilityDomain; design: ModelDesignSpec; suiteId: EvaluationSuiteId;
   budget: string; reserve: string; duration: string;
+  leadStaffId?: string; capacityShareBps?: number;
   /** A manual handoff preserves every advanced option until explicitly edited. */
   importedTraining: DevelopmentTrainingOrder | null;
 }
-export interface ModelBlueprint { id: string; name: string; training: DevelopmentTrainingOrder; suiteId?: EvaluationSuiteId }
-export type DevelopmentGoal =
-  | { kind: 'purpose'; id: 'balanced' | 'support' | 'coding' | 'analyst' | 'visual' }
-  | { kind: 'system-challenge'; id: 'systems-cost-1' | 'systems-memory-1' | 'systems-retention-1' | 'systems-verification-1' }
-  | { kind: 'renewable-brief'; id: 'efficient-experts' | 'bounded-memory' | 'continuity-desk' | 'verified-analysis' };
+export interface ModelBlueprint { id: string; name: string; training: DevelopmentTrainingOrder; suiteId?: EvaluationSuiteId; objective?: DevelopmentGoal }
 export interface ModelWorkspaceData {
   manual: ManualTrainingDraft | null; delegated: DelegatedTrainingDraft | null; blueprints: ModelBlueprint[];
   /** A planning objective shared by manual work, delegated work and research.
@@ -64,12 +65,6 @@ function curriculum(v: unknown): v is TrainingCurriculumChoice {
     && (v.shareBps as number) >= 0 && (v.shareBps as number) <= 10000 && Array.isArray(v.tracks) && v.tracks.length === 2
     && v.tracks.every(t => object(t) && exact(t, ['domain', 'packetIds']) && oneOf(t.domain, domains) && ids(t.packetIds));
 }
-export function isDevelopmentGoal(value: unknown): value is DevelopmentGoal {
-  if (!object(value) || !exact(value, ['kind', 'id'])) return false;
-  return value.kind === 'purpose' && oneOf(value.id, ['balanced', 'support', 'coding', 'analyst', 'visual'])
-    || value.kind === 'system-challenge' && oneOf(value.id, ['systems-cost-1', 'systems-memory-1', 'systems-retention-1', 'systems-verification-1'])
-    || value.kind === 'renewable-brief' && oneOf(value.id, ['efficient-experts', 'bounded-memory', 'continuity-desk', 'verified-analysis']);
-}
 export function isTrainingBlueprintOrder(value: unknown): value is DevelopmentTrainingOrder {
   if (!object(value) || value.kind !== 'start_training'
     || Object.keys(value).some(k => !['kind','baseModelId','packetId','packetIds','recipeId','modelDesign','profile','workspace','continueFromParent','automatedCheckpoints','teacherModelId','teacherDomain','architecture','asAdapter','replay','curriculum'].includes(k))) return false;
@@ -85,11 +80,33 @@ export function isManualTrainingDraft(v: unknown): v is ManualTrainingDraft {
     && oneOf(v.architecture, ['dense','sparse']) && text(v.teacherId) && oneOf(v.teacherDomain, domains) && oneOf(v.trainingView, ['guided','advanced']);
 }
 export function isDelegatedTrainingDraft(v: unknown): v is DelegatedTrainingDraft {
-  return object(v) && exact(v, ['name','baseId','selected','method','profile','teacherId','teacherDomain','design','suiteId','budget','reserve','duration','importedTraining'])
+  return object(v) && exact(v, ['name','baseId','selected','method','profile','teacherId','teacherDomain','design','suiteId','budget','reserve','duration','importedTraining', ...['leadStaffId','capacityShareBps'].filter(key => Object.hasOwn(v,key))])
     && text(v.name,60) && text(v.baseId) && ids(v.selected) && text(v.method) && oneOf(v.profile, ['stable','balanced','ambitious'])
     && text(v.teacherId) && oneOf(v.teacherDomain, domains) && design(v.design) && oneOf(v.suiteId, suites)
     && text(v.budget,40) && text(v.reserve,40) && text(v.duration,40)
+    && (v.leadStaffId === undefined || text(v.leadStaffId) && !!v.leadStaffId)
+    && (v.capacityShareBps === undefined || Number.isSafeInteger(v.capacityShareBps) && (v.capacityShareBps as number) >= 1000 && (v.capacityShareBps as number) <= 10000 && (v.capacityShareBps as number) % 500 === 0)
     && (v.importedTraining === null || isTrainingBlueprintOrder(v.importedTraining));
+}
+/** Pure, version-independent metadata validation for portable save envelopes.
+ * It admits no commands or assets; loaded drafts still face normal admission. */
+export function isModelWorkspaceData(value: unknown): value is ModelWorkspaceData {
+  if (!object(value) || !exact(value, ['manual', 'delegated', 'blueprints', ...(Object.hasOwn(value, 'developmentGoal') ? ['developmentGoal'] : [])])
+    || (value.developmentGoal !== undefined && value.developmentGoal !== null && !isDevelopmentGoal(value.developmentGoal))
+    || (value.manual !== null && !isManualTrainingDraft(value.manual)) || (value.delegated !== null && !isDelegatedTrainingDraft(value.delegated))
+    || !Array.isArray(value.blueprints) || value.blueprints.length > BLUEPRINT_LIMIT) return false;
+  const seen = new Set<string>();
+  for (const b of value.blueprints) {
+    if (!object(b) || !exact(b, ['id','name','training', ...['suiteId','objective'].filter(key => Object.hasOwn(b,key))])
+      || !text(b.id) || !b.id || seen.has(b.id) || !text(b.name,48) || !b.name.trim() || !isTrainingBlueprintOrder(b.training)
+      || (b.suiteId !== undefined && !oneOf(b.suiteId,suites)) || (b.objective !== undefined && !isDevelopmentGoal(b.objective))) return false;
+    seen.add(b.id);
+  }
+  try { return new TextEncoder().encode(JSON.stringify(value)).length <= MODEL_WORKSPACE_LIMIT; } catch { return false; }
+}
+export function modelWorkspaceDataForExport(value: ModelWorkspaceData): ModelWorkspaceData {
+  const { manual, delegated, blueprints, developmentGoal } = value;
+  return structuredClone({ manual, delegated, blueprints, ...(developmentGoal !== undefined ? { developmentGoal } : {}) });
 }
 export function parseModelWorkspace(textValue: string | null): Envelope | null {
   if (!textValue || new TextEncoder().encode(textValue).length > MODEL_WORKSPACE_LIMIT) return null;
@@ -99,17 +116,7 @@ export function parseModelWorkspace(textValue: string | null): Envelope | null {
       || typeof v.timelineToken !== 'string' || !/^[a-f0-9]{32}$/.test(v.timelineToken) || !object(v.binding)
       || !exact(v.binding,['algorithm','digest','byteLength']) || v.binding.algorithm !== 'SHA-256'
       || typeof v.binding.digest !== 'string' || !/^[a-f0-9]{64}$/.test(v.binding.digest) || !Number.isSafeInteger(v.binding.byteLength) || (v.binding.byteLength as number) < 1
-      || !object(v.data) || !exact(v.data,['manual','delegated','blueprints', ...(Object.hasOwn(v.data, 'developmentGoal') ? ['developmentGoal'] : [])])
-      || (v.data.developmentGoal !== undefined && v.data.developmentGoal !== null && !isDevelopmentGoal(v.data.developmentGoal))
-      || (v.data.manual !== null && !isManualTrainingDraft(v.data.manual)) || (v.data.delegated !== null && !isDelegatedTrainingDraft(v.data.delegated))
-      || !Array.isArray(v.data.blueprints) || v.data.blueprints.length > BLUEPRINT_LIMIT) return null;
-    const seen = new Set<string>();
-    for (const b of v.data.blueprints) {
-      if (!object(b) || !exact(b, ['id','name','training', ...(Object.hasOwn(b,'suiteId') ? ['suiteId'] : [])])
-        || !text(b.id) || !b.id || seen.has(b.id) || !text(b.name,48) || !b.name.trim() || !isTrainingBlueprintOrder(b.training)
-        || (b.suiteId !== undefined && !oneOf(b.suiteId,suites))) return null;
-      seen.add(b.id);
-    }
+      || !isModelWorkspaceData(v.data)) return null;
     return v as unknown as Envelope;
   } catch { return null; }
 }
@@ -192,13 +199,20 @@ export class ModelWorkspaceController {
     if (JSON.stringify(this.state.developmentGoal) === JSON.stringify(goal)) return;
     this.publish({ developmentGoal: goal && structuredClone(goal) }); this.persist();
   };
+  restoreData = async (data: unknown): Promise<boolean> => {
+    const session = this.session;
+    if (!isModelWorkspaceData(data)) return false;
+    await this.initialization;
+    if (session !== this.session || !this.state.ready || !['owner','memory'].includes(this.mode)) return false;
+    this.publish({ ...modelWorkspaceDataForExport(data), epoch: this.state.epoch + 1 }); this.persist(); return true;
+  };
   saveBlueprint = (name: string, training: DevelopmentTrainingOrder, suiteId?: EvaluationSuiteId): string | null => {
     if (!this.state.ready || !['owner','memory'].includes(this.mode)) return 'Wait for this lab to finish opening.';
     if (!text(name,48) || !name.trim()) return 'Give the blueprint a name of 1–48 characters.';
     if (!isTrainingBlueprintOrder(training) || (suiteId && !oneOf(suiteId,suites))) return 'Complete the model and data choices before saving a blueprint.';
     const existing = this.state.blueprints.find(b => b.name.toLowerCase() === name.trim().toLowerCase());
     if (!existing && this.state.blueprints.length >= BLUEPRINT_LIMIT) return 'You have 12 blueprints. Reuse an existing name to replace one.';
-    const blueprint: ModelBlueprint = { id: existing?.id ?? 'blueprint-' + this.state.blueprints.length + '-' + this.state.epoch, name: name.trim(), training: structuredClone(training), ...(suiteId ? { suiteId } : {}) };
+    const blueprint: ModelBlueprint = { id: existing?.id ?? 'blueprint-' + this.state.blueprints.length + '-' + this.state.epoch, name: name.trim(), training: structuredClone(training), ...(suiteId ? { suiteId } : {}), ...(this.state.developmentGoal ? { objective: structuredClone(this.state.developmentGoal) } : {}) };
     this.publish({ blueprints: existing ? this.state.blueprints.map(b => b.id === existing.id ? blueprint : b) : [...this.state.blueprints, blueprint] }); this.persist(); return null;
   };
 }

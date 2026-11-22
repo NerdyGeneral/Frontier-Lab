@@ -28,8 +28,9 @@ test('STR-UI01: chapter choices are available from the opening and explain autom
   }
   assert.ok(sectionAncestors.includes('campaign'), 'The chapter board must be a descendant of the selected campaign workspace, not a hidden sibling.');
   visiblyMounted(html, 'company-chapter');
-  assert.match(html, /Your first paying product/); assert.match(html, /Focus on this chapter/);
-  assert.match(html, /records qualifying weeks automatically/);
+  assert.match(html, /Your first paying product/); assert.match(html, /Pin this goal/);
+  assert.match(html, /Every chapter tracks your results in the background/);
+  assert.match(html, /Qualifying model replacements/);
   assert.equal(canonicalStateHash(game), before);
 });
 

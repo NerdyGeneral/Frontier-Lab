@@ -82,7 +82,8 @@ test('manual and delegated views expose the same remembered objective, with all 
   }
   const html = renderToStaticMarkup(<CustomerBriefsPanel game={game} view={getGameView(game)} canAct onQueue={noAction} />);
   for (const label of ['Expert service desk', 'Local knowledge assistant', 'Case continuity service', 'Verified analysis desk']) assert.ok(html.includes(label));
-  assert.match(plain(html), /New clients every 12 weeks/); assert.match(plain(html), /two consecutive service weeks/);
+  assert.match(plain(html), /New offers every 12 weeks/); assert.match(plain(html), /2 consecutive delivery weeks/);
+  assert.match(plain(html), /successful pilot earns repeat work/); assert.match(html, /aria-label="Client relationships"/);
   assert.match(html, /data-studio-review="accept_systems_brief"/); assert.equal(canonicalStateHash(game), before);
   const offer = getSystemsBriefOffers(game)[0], payload = { kind: 'accept_systems_brief' as const, offerId: offer.id, modelId: CONTENT.seedModel.id };
   assert.equal(getStudioCommandReviewReason(payload), undefined, 'A visible commission quote does not need a duplicate confirmation.');

@@ -164,7 +164,7 @@ export function validateAssuranceCommand(state: Readonly<GameState>, command: Ga
     if (!contract || contract.companyId !== command.companyId || !assuranceLive(contract) || contract.termEndsWeek !== null && contract.termEndsWeek <= state.week) return reject('NOT_READY', 'Choose one of your live assured API commitments before its calendar expiry.');
     if (state.queuedCommands.some(other => other.id !== command.id && (other.payload.kind === 'requalify_assurance_contract' || other.payload.kind === 'cancel_assurance_contract') && other.payload.contractId === contract.id)) return reject('ALREADY_ACTIVE', 'This commitment already has a queued qualification or cancellation choice.');
     if (p.kind === 'cancel_assurance_contract') return;
-    if (company.arrearsCents) return reject('ARREARS', 'Resolve unpaid expenses before accepting a new qualification.');
+    if (company.arrearsCents) return reject('ARREARS', 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.');
     if (contract.qualifications.length >= RULES.maximumQualifications) return reject('CAPACITY_EXCEEDED', 'This term retains at most four exact qualification versions.');
     const reason = productQualificationRejection(state, contract.productId, command.companyId, ASSURANCE_BY_ID[contract.buyerId], content); if (reason) return reason;
     const current = activeRuntimeGuardrail(state, contract.productId)!;
@@ -172,7 +172,7 @@ export function validateAssuranceCommand(state: Readonly<GameState>, command: Ga
     const candidate = structuredClone(contract); candidate.qualifications.push(qualificationFor(state, contract.productId, contract.qualifications.length + 1, command.id));
     return capacityRejection(state, command, content, admission, candidate, contract.id);
   }
-  if (company.arrearsCents) return reject('ARREARS', 'Resolve unpaid expenses before signing another service commitment.');
+  if (company.arrearsCents) return reject('ARREARS', 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.');
   if (!assuranceResearchReady(state, command.companyId)) return reject('NOT_READY', 'Complete R12 Enterprise Commitments and runtime guardrail research before signing assured API work.');
   const buyer = ASSURANCE_BY_ID[p.buyerId]; if (!buyer) return reject('INVALID_COMMAND', 'Choose one of the two authored assurance buyers.');
   const history = records(state.slices.products), previous = history.filter(item => item.buyerId === buyer.id);

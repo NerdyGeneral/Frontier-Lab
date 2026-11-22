@@ -15,6 +15,7 @@ import { inheritedModelRights, modelExecutionHints, modelWorkBps } from './model
 import { behaviorMeter, eligibleModel, executionErrorBps, requestMeter, segmentForProduct } from './product-models';
 import { releaseGuardrailConfiguration } from './runtime-guardrails';
 import { productRoutingPolicy } from './product-strategy';
+import { getProductWorkloadMeasure, workloadErrorBps } from './product-workloads';
 
 export const RELEASE_REHEARSAL_COMMANDS = ['start_release_rehearsal', 'set_release_rehearsal_paused'] as const;
 const reject = (code: Rejection['code'], message: string): Rejection => ({ code, message });
@@ -34,6 +35,7 @@ export function releaseConfiguration(state: Readonly<GameState>, productId: stri
   const modelId = state.slices.products.deployments[product.deploymentId]?.modelId;
   const guardrail = releaseGuardrailConfiguration(state, productId);
   return { productKind: product.kind, features: { ...(product.features ?? DEFAULT_FEATURES) }, contractId: product.contractId,
+    ...(product.workload ? { workload: structuredClone(product.workload) } : {}),
     ...(productRoutingPolicy(product) !== 'balanced' ? { routingPolicy: productRoutingPolicy(product) } : {}),
     ...(guardrail ? { guardrail } : {}),
     allowance: state.slices.products.contracts[product.contractId].allowance,
@@ -63,7 +65,7 @@ export function releaseCandidateReason(state: Readonly<GameState>, companyId: st
   const policyRejection = policyReleaseRejection(state, candidateId); if (policyRejection) return policyRejection;
   const company = state.slices.company.companies[companyId], product = state.slices.products.offers[productId];
   if (!company) return reject('UNKNOWN_COMPANY', 'This company does not exist.');
-  if (company.arrearsCents > 0) return reject('ARREARS', 'Resolve unpaid bills before starting release work.');
+  if (company.arrearsCents > 0) return reject('ARREARS', 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.');
   if (!facilityRetrofitResearchReady(state, companyId)) return reject('NOT_READY', 'Research Enterprise operations (R12) to compare and prepare model releases.');
   if (!product || product.companyId !== companyId || product.status === 'deploying') return reject('NOT_READY', 'Choose one of your deployed products, active or paused.');
   const deployment = state.slices.products.deployments[product.deploymentId], candidate = state.slices.models.versions[candidateId];
@@ -89,7 +91,7 @@ export function releaseRehearsalOutcomes(model: ModelVersion, configuration: Rel
   let technicalTotal = 0;
   for (let index = 0; index < RULES.cases; index++) {
     const segment = configuration.productKind === 'basic-chat' ? segments[index % segments.length] : segments[0];
-    const technicalError = executionErrorBps(model, segment, configuration.features), behavior = behaviorMeter(model, technicalError);
+    const technicalError = workloadErrorBps(executionErrorBps(model, segment, configuration.features), getProductWorkloadMeasure(model, configuration.workload)), behavior = behaviorMeter(model, technicalError);
     const falseRefusal = Math.min(10000 - technicalError, behavior.falseRefusalBps), useful = 10000 - technicalError - falseRefusal;
     const draw = parseInt(hashText(`${evidenceKey}:case:${index + 1}`), 16) % 10000;
     if (draw < useful) result.useful += 1;

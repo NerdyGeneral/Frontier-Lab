@@ -5,6 +5,7 @@ import type { CommandPayload, GameState, StaffRole } from '../contracts/types';
 import type { StudioTaskId } from '../core/studio-tasks';
 import type { ModelBlueprint } from '../persistence/model-workspace';
 import type { DevelopmentTrainingOrder } from '../contracts/development-plans';
+import type { ProductKind } from '../contracts/wave2-market';
 
 /** The active task selects a presentation within an existing retained owner.
  * It never owns editable values or replaces the form's draft. */
@@ -65,7 +66,8 @@ const TrainingSelectionContext = createContext<StudioTrainingSelection | null>(n
 export const StudioTrainingSelectionProvider = TrainingSelectionContext.Provider;
 export function useStudioTrainingSelection() { return useContext(TrainingSelectionContext); }
 
-const LaunchSelectionContext = createContext<StudioModelSelection | null>(null);
+export interface StudioLaunchSelection extends StudioModelSelection { productKind?: ProductKind }
+const LaunchSelectionContext = createContext<StudioLaunchSelection | null>(null);
 export const StudioLaunchSelectionProvider = LaunchSelectionContext.Provider;
 export function useStudioLaunchSelection() { return useContext(LaunchSelectionContext); }
 
@@ -89,6 +91,7 @@ export interface StudioTaskActions {
   prepareData: (packetId: string) => void;
   evaluateModel: (modelId: string) => void;
   launchBasicChat: (modelId: string, reportId?: string) => void;
+  openProductForModel?: (kind: 'developer-api' | 'business-docs', modelId: string, reportId?: string) => void;
   reviewReport?: (reportId: string) => void;
   reviewResources: () => void;
   hireStaff: (role?: StaffRole, reason?: string) => void;

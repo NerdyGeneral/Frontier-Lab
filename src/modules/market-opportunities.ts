@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../core/connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import type { GameState, MarketSegmentId } from '../contracts/types';
 import type { MarketOpportunityWindow } from '../contracts/market-dynamics';
@@ -8,7 +9,7 @@ import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version
 /** Called only for a new game or a validated upgrade. Historical absent fields stay neutral. */
 export function initializeMarketOpportunities(state: GameState): void {
   state.slices.markets.opportunityCalendar ??= { startedWeek: state.week,
-    ...([GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion) ? { sequenceVersion: 2 as const } : {}) };
+    ...([GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion) ? { sequenceVersion: 2 as const } : {}) };
 }
 
 export function marketOpportunityAt(state: Readonly<GameState>, index: number, week = state.week): MarketOpportunityWindow | null {

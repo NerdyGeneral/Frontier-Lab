@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../core/connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from '../core/model-customization-version';
@@ -323,7 +324,7 @@ export function validateTrainingOptions(state: Readonly<GameState>, companyId: s
     // New custom plans use the same audited-synthetic boundary as ordinary
     // training. Historical commands and already-paid design receipts keep their
     // original behavior; this guard is admission-only, never a saved-run rewrite.
-    if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion)) {
+    if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion)) {
       const syntheticReason = validateSyntheticTraining(state, companyId, options); if (syntheticReason) return syntheticReason;
     }
     const invalid = validateCustomTrainingOptions(state, companyId, options, content); if (invalid) return invalid;

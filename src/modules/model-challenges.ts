@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../core/connected-company-version';
 import type { EvaluationCase, EvaluationReport, GameState, ModelVersion, Rejection } from '../contracts/types';
 import type { ModelChallengeAdmission, ModelChallengeReceipt, ModelChallengeTier } from '../contracts/model-challenges';
 import { CHALLENGE_SKILLS, CHALLENGE_SKILL_NAMES, MODEL_CHALLENGES, modelChallengeCaseDefinition, modelChallengeDefinition } from '../content/model-challenges';
@@ -34,7 +35,7 @@ export function getModelChallengeAchievements(state: Readonly<GameState>, compan
 export function validateModelChallengeAdmission(state: Readonly<GameState>, companyId: string, modelId: string, suiteId: string | undefined, atWeek = state.week): Rejection | undefined {
   const tier = modelChallengeDefinition(suiteId); if (!tier) return;
   const reject = (message: string): Rejection => ({ code: 'NOT_READY', message });
-  if (tier.format && state.contentVersion !== AI_SYSTEMS_CONTENT_VERSION) return reject('Upgrade this campaign before entering systems workload challenges.');
+  if (tier.format && ![AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion)) return reject('Upgrade this campaign before entering systems workload challenges.');
   const model = state.slices.models.versions[modelId];
   if (!model || model.companyId !== companyId || (model.createdWeek ?? 0) > atWeek) return reject('Choose an owned, available model for this challenge.');
   const foundedWithMethod = companyId === state.playerCompanyId && CAMPAIGN_ORIGINS[state.slices.campaign.origin ?? 'garage'].knowledge.includes(tier.requiredResearch);

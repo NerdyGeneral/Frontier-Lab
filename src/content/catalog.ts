@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../core/connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { AI_SYSTEM_RESEARCH } from './ai-systems';
 import { DESIGN_RESEARCH } from './model-designs';
@@ -13,8 +14,8 @@ import type { GameContent } from '../contracts/types';
  * research fees below exclude wages, compute, and later application work.
  */
 export const CONTENT: GameContent = {
-  version: AI_SYSTEMS_CONTENT_VERSION,
-  buildVersion: '0.37.0',
+  version: CONNECTED_COMPANY_CONTENT_VERSION,
+  buildVersion: '0.38.0',
   infrastructure: INFRASTRUCTURE_CONTENT,
   title: 'Frontier Lab',
   opening: {

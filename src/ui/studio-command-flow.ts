@@ -6,6 +6,8 @@ import type { CommandPayload } from '../contracts/types';
  * to repeat an already visible quote. */
 export function getStudioCommandReviewReason(payload: CommandPayload): string | undefined {
   switch (payload.kind) {
+    case 'retire_product':
+      return 'This empty offer will be retired permanently. Its invoice history stays available, and the portfolio slot becomes free.';
     case 'specialize_staff':
       return 'This career specialty is permanent for this employee.';
     case 'dismiss_staff':

@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION, hasConnectedCompanyRules } from '../core/connected-company-version';
 import type { SystemsBriefId, SystemsBriefOrder, SystemsBriefTerms } from '../contracts/systems-briefs';
 import type { DomainResult, GameCommand, GameContent, GameState, ModelVersion, ModuleContext, Rejection, WorkRequest } from '../contracts/types';
 import { RESOURCE_SCALE as U } from '../contracts/types';
@@ -9,6 +10,7 @@ import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { getSystemsModelMeasures, isPaidChallengeReport, modelChallengeFingerprint } from './model-challenges';
 import { inheritedModelRights, modelExecutionHints } from './model-runtime';
 import { policyReleaseRejection } from './policy-holdouts';
+import { getSystemsClientRelationships } from './systems-client-relationships';
 
 export function getSystemsBriefOrders(state: Readonly<GameState>): SystemsBriefOrder[] {
   return Object.values(state.slices.campaign.systemsBriefs ?? {}).sort((a, b) => b.startedWeek - a.startedWeek || a.id.localeCompare(b.id));
@@ -38,6 +40,47 @@ export function createSystemsBriefTerms(seed: string, briefId: SystemsBriefId, w
   if (briefId === 'verified-analysis') Object.assign(terms, { minimumScores: { reasoning: 5500, tools: 5000 }, reliabilityBps: 8800,
     minVerifiedBps: 7400 + scale * 200, maxLatencyBps: 40000, maxServingCUwPer1000: 2 * U });
   return terms;
+}
+
+/** Snapshot relationships when the market window opens, so a plan never changes
+ * its price, customer, challenge or delivery commitment during development. */
+export function createConnectedSystemsBriefTerms(state: Readonly<GameState>, briefId: SystemsBriefId, windowIndex: number): SystemsBriefTerms {
+  const terms = createSystemsBriefTerms(state.seed, briefId, windowIndex);
+  if (!hasConnectedCompanyRules(state.contentVersion)) return terms;
+  const relationship = getSystemsClientRelationships(state, terms.opensWeek).find(item => item.briefId === briefId)!;
+  const level = relationship.tier === 'partner' ? 2 : relationship.tier === 'repeat' ? 1 : 0;
+  return { ...terms, version: 2, client: relationship.client ?? terms.client,
+    relationship: { tier: relationship.tier, priorOrderIds: [...relationship.priorOrderIds] },
+    feeCents: Math.round(terms.feeCents * [1, 2, 3.5][level]), requestsPerWeek: Math.round(terms.requestsPerWeek * [1, 1.5, 2.25][level]),
+    concurrentSessions: [25, 32, 40][level], deadlineWeeks: 6 + level * 2, qualifyingWeeks: 2 + level,
+    minRetentionBps: terms.minRetentionBps === null ? null : terms.minRetentionBps + level * 100,
+    minVerifiedBps: terms.minVerifiedBps === null ? null : terms.minVerifiedBps + level * 100 };
+}
+
+export function isCanonicalSystemsBriefTerms(state: Readonly<GameState>, terms: SystemsBriefTerms): boolean {
+  try {
+    if (!terms || !systemsBriefDefinition(terms.briefId) || !Number.isSafeInteger(terms.windowIndex) || terms.windowIndex < 0 || terms.windowIndex > 100000) return false;
+    const expected = terms.version === 1 ? createSystemsBriefTerms(state.seed, terms.briefId, terms.windowIndex)
+      : terms.version === 2 && hasConnectedCompanyRules(state.contentVersion) ? createConnectedSystemsBriefTerms(state, terms.briefId, terms.windowIndex) : null;
+    return !!expected && canonicalStateHash(terms) === canonicalStateHash(expected);
+  } catch { return false; }
+}
+
+export function snapshotSystemsBriefOffer(state: Readonly<GameState>, offerId: string): SystemsBriefTerms | null {
+  const windowIndex = Math.floor(state.week / SYSTEMS_BRIEF_WINDOW_WEEKS);
+  return SYSTEMS_BRIEFS.map(def => createConnectedSystemsBriefTerms(state, def.id, windowIndex)).find(offer => offer.id === offerId) ?? null;
+}
+
+export function systemsBriefOfferAvailability(state: Readonly<GameState>, terms: SystemsBriefTerms, modelId?: string, atWeek = state.week + 1): string | null {
+  if (![AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion)) return 'Upgrade this campaign to open systems commissions.';
+  if (!isCanonicalSystemsBriefTerms(state, terms) || hasConnectedCompanyRules(state.contentVersion) && terms.version !== 2) return 'The saved offer terms are no longer offered. Review the current customer offer explicitly.';
+  if (atWeek < terms.opensWeek || atWeek > terms.acceptUntilWeek) return 'The saved offer acceptance window has closed. Choose a new offer; this plan keeps its original goal.';
+  const orders = getSystemsBriefOrders(state);
+  if (orders.length >= SYSTEMS_BRIEF_ORDER_LIMIT) return 'This campaign has filled its systems commission archive.';
+  if (orders.some(order => order.terms.windowIndex === terms.windowIndex)) return 'A commission has already been chosen for this market window.';
+  if (activeSystemsBrief(state) || Object.values(state.slices.campaign.customerBriefs ?? {}).some(order => order.status === 'active')) return 'Finish the active customer commission first.';
+  if (state.slices.company.companies[state.playerCompanyId].earnedRevenueCents <= 0) return 'Make your first customer sale to receive commissions.';
+  return modelId ? modelRejection(state, modelId, terms, atWeek - 1, CONTENT) : null;
 }
 
 export function systemsBriefRequirementText(terms: SystemsBriefTerms): string[] {
@@ -102,10 +145,10 @@ export function getSystemsBriefOffers(state: Readonly<GameState>): SystemsBriefO
   const scheduled = state.queuedCommands.some(command => command.companyId === state.playerCompanyId && ['accept_customer_brief', 'accept_systems_brief'].includes(command.payload.kind));
   const taken = orders.some(order => order.terms.windowIndex === windowIndex);
   return SYSTEMS_BRIEFS.map(def => {
-    const terms = createSystemsBriefTerms(state.seed, def.id, windowIndex);
+    const terms = createConnectedSystemsBriefTerms(state, def.id, windowIndex);
     const model = Object.values(state.slices.models.versions).filter(candidate => !modelRejection(state, candidate.id, terms, state.week, CONTENT))
       .sort((a, b) => getSystemsModelMeasures(a).servingCUwPer1000 - getSystemsModelMeasures(b).servingCUwPer1000 || a.residentMU - b.residentMU || a.id.localeCompare(b.id))[0];
-    const missing = state.contentVersion !== AI_SYSTEMS_CONTENT_VERSION ? 'Upgrade this campaign to open systems commissions.'
+    const missing = ![AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion) ? 'Upgrade this campaign to open systems commissions.'
       : state.slices.company.companies[state.playerCompanyId].earnedRevenueCents <= 0 ? 'Make your first customer sale to receive commissions.'
       : orders.length >= SYSTEMS_BRIEF_ORDER_LIMIT ? 'This campaign has filled its systems commission archive.'
       : taken ? 'You have chosen a commission for this window. New offers arrive next window.'
@@ -121,11 +164,13 @@ export function validateSystemsBriefCommand(state: Readonly<GameState>, command:
   const payload = command.payload;
   const reject = (message: string, code: Rejection['code'] = 'NOT_READY'): Rejection => ({ code, message });
   if (payload.kind !== 'accept_systems_brief' || command.companyId !== state.playerCompanyId
-    || Object.keys(payload).sort().join() !== 'kind,modelId,offerId') return reject('Choose a systems commission and its delivery model.', 'INVALID_COMMAND');
-  if (state.contentVersion !== AI_SYSTEMS_CONTENT_VERSION) return reject('Upgrade this campaign to open systems commissions.');
+    || !['kind,modelId,offerId', 'kind,modelId,offerId,terms'].includes(Object.keys(payload).sort().join())) return reject('Choose a systems commission and its delivery model.', 'INVALID_COMMAND');
+  if (![AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion)) return reject('Upgrade this campaign to open systems commissions.');
   const week = command.issuedForWeek, windowIndex = Math.floor((week - 1) / SYSTEMS_BRIEF_WINDOW_WEEKS);
-  const terms = SYSTEMS_BRIEFS.map(def => createSystemsBriefTerms(state.seed, def.id, windowIndex)).find(offer => offer.id === payload.offerId);
+  const terms = payload.terms ?? SYSTEMS_BRIEFS.map(def => createConnectedSystemsBriefTerms(state, def.id, windowIndex)).find(offer => offer.id === payload.offerId);
   if (!terms || week < terms.opensWeek || week > terms.acceptUntilWeek) return reject('That offer is no longer accepting commissions. Choose a current offer.');
+  if (terms.id !== payload.offerId || terms.windowIndex !== windowIndex || !isCanonicalSystemsBriefTerms(state, terms)
+    || hasConnectedCompanyRules(state.contentVersion) && terms.version !== 2) return reject('The pinned customer terms do not match this offer. Review a current offer explicitly.', 'INVALID_COMMAND');
   const orders = getSystemsBriefOrders(state);
   if (orders.length >= SYSTEMS_BRIEF_ORDER_LIMIT) return reject('This campaign has filled its systems commission archive.');
   if (orders.some(order => order.terms.windowIndex === windowIndex)) return reject('Choose only one systems commission per market window.', 'ALREADY_ACTIVE');
@@ -140,7 +185,7 @@ export function validateSystemsBriefCommand(state: Readonly<GameState>, command:
 export function quoteSystemsBriefCommand(state: Readonly<GameState>, command: GameCommand) {
   if (command.payload.kind !== 'accept_systems_brief') throw new Error('Choose a systems commission.');
   const payload = command.payload;
-  const terms = SYSTEMS_BRIEFS.map(def => createSystemsBriefTerms(state.seed, def.id, Math.floor((command.issuedForWeek - 1) / SYSTEMS_BRIEF_WINDOW_WEEKS)))
+  const terms = payload.terms ?? SYSTEMS_BRIEFS.map(def => createConnectedSystemsBriefTerms(state, def.id, Math.floor((command.issuedForWeek - 1) / SYSTEMS_BRIEF_WINDOW_WEEKS)))
     .find(offer => offer.id === payload.offerId)!;
   const model = state.slices.models.versions[command.payload.modelId], metrics = model && getSystemsModelMeasures(model);
   return { upfrontCostCents: 0, weeklyCostDeltaCents: 0,
@@ -157,7 +202,7 @@ export function systemsBriefProofId(state: Readonly<GameState>, order: SystemsBr
 export function applySystemsBriefCommand(state: Readonly<GameState>, command: GameCommand): DomainResult {
   if (command.payload.kind !== 'accept_systems_brief') return {};
   const payload = command.payload;
-  const terms = SYSTEMS_BRIEFS.map(def => createSystemsBriefTerms(state.seed, def.id, Math.floor((command.issuedForWeek - 1) / SYSTEMS_BRIEF_WINDOW_WEEKS)))
+  const terms = payload.terms ?? SYSTEMS_BRIEFS.map(def => createConnectedSystemsBriefTerms(state, def.id, Math.floor((command.issuedForWeek - 1) / SYSTEMS_BRIEF_WINDOW_WEEKS)))
     .find(offer => offer.id === payload.offerId)!;
   const report = systemsBriefReport(state, command.payload.modelId, terms, command.issuedForWeek - 1)!;
   const order: SystemsBriefOrder = { id: terms.id, briefId: terms.briefId, terms, commandId: command.id, modelId: command.payload.modelId,
@@ -198,7 +243,10 @@ export function settleSystemsBrief(state: Readonly<GameState>, context: ModuleCo
     order.status = 'completed'; order.finishedWeek = context.week;
     (result.facts ??= []).push({ id: systemsBriefPaymentId(state.playerCompanyId, order.id), companyId: state.playerCompanyId, week: context.week,
       sourceId: order.id, category: 'revenue', kind: 'receipt', amountCents: order.terms.feeCents, label: systemsBriefDefinition(order.briefId)!.title + ' · delivered systems commission' });
-    result.messages = [{ category: 'delivery', message: `${order.terms.client} received the completed commission and paid ${formatMoney(order.terms.feeCents)}. New offers arrive in Week ${(order.terms.windowIndex + 1) * SYSTEMS_BRIEF_WINDOW_WEEKS + 1}.` }];
+    const reward = order.terms.version === 2 ? order.terms.relationship?.tier === 'pilot'
+      ? ' Your successful pilot earns repeat-work access and 12% more acquisition weight for the matching public workload.'
+      : ' This delivery builds a partner relationship: larger follow-on commitments and 25% more acquisition weight for the matching public workload.' : '';
+    result.messages = [{ category: 'delivery', message: `${order.terms.client} received the completed commission and paid ${formatMoney(order.terms.feeCents)}.${reward} New offers arrive in Week ${(order.terms.windowIndex + 1) * SYSTEMS_BRIEF_WINDOW_WEEKS + 1}.` }];
   } else if (context.week >= order.deadlineWeek) {
     order.status = 'expired'; order.finishedWeek = context.week;
     result.messages = [{ category: 'project', message: `${systemsBriefDefinition(order.briefId)!.title} expired without a delivery fee. A new commission window opens in Week ${(order.terms.windowIndex + 1) * SYSTEMS_BRIEF_WINDOW_WEEKS + 1}.` }];

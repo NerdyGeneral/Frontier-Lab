@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from './connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import type { CustomerBrief } from '../contracts/customer-briefs';
 import type { GameState } from '../contracts/types';
@@ -10,7 +11,7 @@ import { isPaidBriefReport, isSpecialistBrief, specialistBriefProofId, specialis
 function check(value: unknown, message: string): asserts value { if (!value) throw new Error(message); }
 
 export function assertSpecialistBrief(state: GameState, brief: CustomerBrief): void {
-  check(isSpecialistBrief(brief.id) && [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion), 'Specialist commissions require the current gameplay rules.');
+  check(isSpecialistBrief(brief.id) && [GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion), 'Specialist commissions require the current gameplay rules.');
   const receipt = brief.specialist;
   check(receipt && typeof receipt === 'object' && !Array.isArray(receipt)
     && Object.keys(receipt).sort().join() === 'advancedReportId,capabilityReportId,deliveryWeeks,version' && receipt.version === 1,

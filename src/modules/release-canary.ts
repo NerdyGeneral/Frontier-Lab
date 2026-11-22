@@ -19,7 +19,7 @@ const records = (state: Readonly<GameState>) => Object.values(state.slices.produ
 const open = (item: CanaryRelease) => item.status === 'scheduled' || item.status === 'collecting';
 const isCommand = (command: GameCommand): command is GameCommand & { payload: CanaryCommand } => (CANARY_COMMANDS as readonly string[]).includes(command.payload.kind);
 const conflictingKinds = ['start_release_canary', 'stop_release_canary', 'promote_prepared_release', 'discard_prepared_release', 'start_release_rollback',
-  'upgrade_product', 'set_product_features', 'set_product_strategy', 'set_product_terms', 'set_consumer_sessions', 'install_retrieval', 'install_product_efficiency',
+  'configure_product_offer', 'retire_product', 'upgrade_product', 'set_product_features', 'set_product_strategy', 'set_product_terms', 'set_consumer_sessions', 'install_retrieval', 'install_product_efficiency',
   'set_product_efficiency_enabled', 'install_runtime_guardrail', 'set_runtime_guardrail_enabled'];
 
 export function canaryConfigurationFingerprint(state: Readonly<GameState>, productId: string): string {

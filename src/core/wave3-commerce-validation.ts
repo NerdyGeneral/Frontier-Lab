@@ -1,9 +1,11 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from './connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from './ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from './gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from './model-customization-version';
 import { STRATEGY_CONTENT_VERSION } from './strategy-version';
 import { FAMILY_SERVING_MULTIPLIER } from '../modules/model-design';
 import { aiSystemSessionMemory } from '../modules/ai-systems';
+import { assertProductWorkloadReceipt, getProductWorkloadMeasure, workloadPrivatePrice, workloadErrorBps } from '../modules/product-workloads';
 import { MODEL_DESIGN_CONTENT_VERSION } from '../contracts/model-design';
 import { WORKFORCE_POINTS_CONTENT_VERSION } from '../content/wave29';
 import { CAMPUS_CONTENT_VERSION } from '../content/wave28';
@@ -14,7 +16,7 @@ import { RESOURCE_SCALE as U } from '../contracts/types';
 import { BUSINESS_BY_ID, BUSINESS_CUSTOMERS, COMMERCE_RULES as RULES } from '../content/wave3-commerce';
 import { PRIVATE_APPLIANCE_BUYER } from '../content/wave27-appliance';
 import { STUDIO_RELEASE_CONTENT_VERSION } from '../content/wave27';
-import { businessCredits, getModelCommerceRights, modelHasCommercialEvaluation, outsideBusinessOrganizations, retrievalEvidence } from '../modules/business';
+import { businessCredits, commercialWorkloadProofId, getModelCommerceRights, modelHasCommercialEvaluation, outsideBusinessOrganizations, retrievalEvidence } from '../modules/business';
 import { canonicalStateHash } from './canonical';
 import { checkedAdd, checkedInteger, mulDiv } from './math';
 
@@ -33,7 +35,7 @@ export function assertWave3CommerceState(state: GameState, content: GameContent)
   record(products.retrievalInstalls, 'Retrieval installations'); record(products.commercialContracts, 'Commercial contracts');
   check(Array.isArray(products.commercialInvoices) && products.commercialInvoices.length <= RULES.invoiceHistoryLimit, 'Commercial invoice history is missing or unbounded.');
   check(Object.keys(products.retrievalInstalls).length <= Object.keys(products.offers).length, 'Retrieval indexes outnumber their products.');
-  check(Object.keys(products.commercialContracts).length <= BUSINESS_CUSTOMERS.length + ([STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) ? 1 : 0), 'The finite customer board was expanded.');
+  check(Object.keys(products.commercialContracts).length <= BUSINESS_CUSTOMERS.length + ([STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) ? 1 : 0), 'The finite customer board was expanded.');
   const past = (week: number) => { checkedInteger(week); check(week <= state.week, 'Commercial activity comes from a future week.'); };
   const ownCompany = (companyId: string) => check(Object.hasOwn(company.companies, companyId), 'Commercial record has an unknown company.');
   const evidence = (snapshot: RetrievalEvidence, companyId: string) => {
@@ -76,10 +78,16 @@ export function assertWave3CommerceState(state: GameState, content: GameContent)
   for (const [key, contract] of Object.entries(products.commercialContracts)) {
     record(contract, 'Commercial contract');
     const customer = BUSINESS_BY_ID[contract.customerId];
-    if (contract.customerId === PRIVATE_APPLIANCE_BUYER.id) check([STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) && products.privateApplianceOrders?.[PRIVATE_APPLIANCE_BUYER.id]?.contractId === key, 'Cedar Records requires its paid, qualified appliance order.');
+    if (contract.customerId === PRIVATE_APPLIANCE_BUYER.id) check([STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) && products.privateApplianceOrders?.[PRIVATE_APPLIANCE_BUYER.id]?.contractId === key, 'Cedar Records requires its paid, qualified appliance order.');
     check(customer && key === 'business:' + customer.id && contract.id === key && customer.kinds.includes(contract.contractKind), 'Commercial contract has an unknown, duplicate or incompatible customer.');
     ownCompany(contract.companyId); id(contract.modelId); id(contract.setupFactId); note(contract.lastBottleneck); past(contract.signedWeek);
     const model = models.versions[contract.modelId], hosted = contract.contractKind === 'private-hosted';
+    const workloadProofs = Object.keys(company.postedFacts).filter(id => id.startsWith(`business-workload:${contract.companyId}:${contract.id}:${contract.generation}:`));
+    check(workloadProofs.length === (contract.workload ? 1 : 0), 'Private workload promise was removed or duplicated after acceptance.');
+    if (contract.workload) {
+      assertProductWorkloadReceipt(contract.workload, state); check(contract.workload.selectedWeek === contract.signedWeek, 'Private workload changed after its accepted contract.');
+      check(getProductWorkloadMeasure(model, contract.workload)?.fitBps === 10000 && company.postedFacts[commercialWorkloadProofId(contract)] === true, 'Private workload or premium fee lost its qualified, fixed acceptance proof.');
+    }
     check(model && model.companyId === contract.companyId && modelHasCommercialEvaluation(state, contract.modelId)
       && model.capabilityBps[customer.domain] >= customer.minimumScoreBps && model.reliabilityBps >= customer.minimumReliabilityBps, 'Commercial delivery lost its evaluated fixed model or customer quality gate.');
     check((state.slices.research.completedByCompany[contract.companyId] ?? []).includes('R12'), 'Commercial commitment was signed without R12.');
@@ -91,7 +99,7 @@ export function assertWave3CommerceState(state: GameState, content: GameContent)
     check(contract.generation > 0 && contract.generation <= state.week + 1, 'Commercial contract generation is invalid.');
     check(contract.setupFactId.startsWith('business-setup:') && company.postedFacts[contract.setupFactId], 'Commercial delivery has no posted setup expense.');
     check(contract.setupFeeCents === (hosted ? customer.hostedSetupCents : customer.licenseSetupCents)
-      && contract.weeklyPriceCents === (hosted ? customer.hostedWeeklyCents : customer.licenseWeeklyCents), 'Commercial setup cost or fixed weekly fee was changed.');
+      && contract.weeklyPriceCents === workloadPrivatePrice(hosted ? customer.hostedWeeklyCents : customer.licenseWeeklyCents, contract.workload), 'Commercial setup cost or fixed weekly fee was changed.');
     const setup = company.ledger.find(entry => entry.id === contract.setupFactId);
     if (setup) check(setup.companyId === contract.companyId && setup.sourceId === contract.id && setup.kind === 'expense' && setup.category === 'operating' && setup.amountCents === contract.setupFeeCents && setup.week === contract.signedWeek, 'Commercial setup proof differs from its expense ledger.');
     check(contract.requiredDeliveryStaff === (hosted ? RULES.privateDeploymentStaff : RULES.licenseDeliveryStaff)
@@ -131,6 +139,8 @@ export function assertWave3CommerceState(state: GameState, content: GameContent)
     }
     if (contract.lastUsage !== null) {
       const usage = contract.lastUsage; record(usage, 'Commercial usage'); past(usage.week); note(usage.explanation);
+      const workload = getProductWorkloadMeasure(model, contract.workload);
+      check(same(usage.workload ?? null, workload ?? null), 'Private workload outcomes differ from the accepted model and promise.');
       check(contract.termStartedWeek !== null && usage.week >= contract.termStartedWeek && usage.week < contract.termEndsWeek!
         && contract.termWeeksServed === usage.week - contract.termStartedWeek + 1, 'Commercial usage has a missing, extra or out-of-term service week.');
       if (contract.status === 'active') check(usage.week === state.week, 'Active commercial service has no current execution.');
@@ -144,11 +154,17 @@ export function assertWave3CommerceState(state: GameState, content: GameContent)
         && usage.dataStaffGranted <= usage.dataStaffRequired && usage.supportStaffGranted <= usage.supportStaffRequired, 'Commercial service exceeded actual requested work or staff.');
       check(usage.fulfillmentBps === (hosted ? proportion(usage.executedWorkCUw, usage.requestedWorkCUw) : 10000)
         && usage.freshnessBps === proportion(usage.dataStaffGranted, usage.dataStaffRequired)
-        && usage.serviceBps === Math.min(usage.fulfillmentBps, usage.freshnessBps, proportion(usage.supportStaffGranted, usage.supportStaffRequired)), 'Commercial SLA service is disconnected from executed work, data or support.');
+        && usage.serviceBps === Math.min(usage.fulfillmentBps, usage.freshnessBps, proportion(usage.supportStaffGranted, usage.supportStaffRequired), workload?.fitBps ?? 10000), 'Commercial SLA service is disconnected from executed work, data, support or its operating promise.');
       check(usage.grossCents === contract.weeklyPriceCents && usage.creditsCents === businessCredits(usage.grossCents, usage.serviceBps, customer.slaBps)
         && usage.billedCents + usage.creditsCents === usage.grossCents, 'Commercial credits or revenue differ from actual delivered service.');
       if (hosted) {
         bps(usage.technicalErrorBps!);
+        if (workload) {
+          const bonus = mulDiv(contract.evidence!.documentBonusBps, usage.freshnessBps, 10000);
+          const score = Math.min(9500, mulDiv(model.capabilityBps.documents, 8000, 10000) + mulDiv(model.capabilityBps.conversation, 2000, 10000) + bonus);
+          const probability = (difficulty: number) => mulDiv(Math.max(500, Math.min(9800, 5000 + score - difficulty)), model.reliabilityBps, 10000);
+          check(usage.technicalErrorBps === workloadErrorBps(10000 - mulDiv(probability(0), 7000, 10000) - mulDiv(probability(2000), 3000, 10000), workload), 'Private answer outcomes lost their measured customer workload.');
+        }
         check(usage.inputTokens === mulDiv(usage.executedWorkCUw, contract.inputTokensPerRequest, contract.workPerRequestCUw)
           && usage.outputTokens === mulDiv(usage.executedWorkCUw, contract.outputTokensPerRequest, contract.workPerRequestCUw)
           && (usage.executedWorkCUw > 0 || usage.physicalWorkCUw === 0), 'Private tokens or GPU costs were created without real execution.');
@@ -164,16 +180,23 @@ export function assertWave3CommerceState(state: GameState, content: GameContent)
   for (const invoice of products.commercialInvoices) {
     record(invoice, 'Commercial invoice'); id(invoice.id); id(invoice.contractId); id(invoice.modelId); ownCompany(invoice.companyId); past(invoice.week);
     const customer = BUSINESS_BY_ID[invoice.customerId], current = products.commercialContracts[invoice.contractId];
+    if (invoice.workload) {
+      assertProductWorkloadReceipt(invoice.workload, state); check(invoice.workload.selectedWeek <= invoice.week, 'Invoice workload was chosen after delivery.');
+      check(company.postedFacts[commercialWorkloadProofId({ id: invoice.contractId, companyId: invoice.companyId, modelId: invoice.modelId,
+        generation: invoice.generation, workload: invoice.workload, weeklyPriceCents: invoice.grossCents })] === true, 'Invoice changed its frozen premium-workload agreement.');
+    }
+    check(Object.keys(company.postedFacts).some(id => id.startsWith(`business-workload:${invoice.companyId}:${invoice.contractId}:${invoice.generation}:`)) === !!invoice.workload, 'Invoice dropped its accepted customer workload.');
     check(customer && invoice.contractId === 'business:' + customer.id && current && customer.kinds.includes(invoice.contractKind)
       && models.versions[invoice.modelId]?.companyId === invoice.companyId, 'Commercial invoice lost its finite buyer, model or company.');
     for (const number of [invoice.generation, invoice.termIndex, invoice.grossCents, invoice.creditsCents, invoice.amountCents]) checkedInteger(number); bps(invoice.serviceBps);
     check(invoice.generation > 0 && invoice.generation <= current.generation && invoice.termIndex > 0
       && invoice.id === `business-invoice:${invoice.contractId}:${invoice.generation}:${invoice.week}`
       && !invoiceIds.has(invoice.id) && company.postedFacts[invoice.id], 'Commercial invoice is duplicated, fabricated or unposted.'); invoiceIds.add(invoice.id);
-    check(invoice.grossCents === (invoice.contractKind === 'private-hosted' ? customer.hostedWeeklyCents : customer.licenseWeeklyCents)
+    check(invoice.grossCents === workloadPrivatePrice(invoice.contractKind === 'private-hosted' ? customer.hostedWeeklyCents : customer.licenseWeeklyCents, invoice.workload)
       && invoice.creditsCents === businessCredits(invoice.grossCents, invoice.serviceBps, customer.slaBps)
       && invoice.creditsCents + invoice.amountCents === invoice.grossCents, 'Commercial invoice does not reconcile its fixed fee and SLA credits.');
     if (invoice.generation === current.generation) {
+      check(same(invoice.workload ?? null, current.workload ?? null), 'Invoice changed the accepted customer workload.');
       check(invoice.companyId === current.companyId && invoice.modelId === current.modelId && invoice.contractKind === current.contractKind
         && invoice.termIndex <= current.termIndex && invoice.week >= current.readyWeek! + (invoice.termIndex - 1) * customer.termWeeks
         && invoice.week < current.readyWeek! + invoice.termIndex * customer.termWeeks, 'Invoice changed its fixed model, license mode, owner or term.');

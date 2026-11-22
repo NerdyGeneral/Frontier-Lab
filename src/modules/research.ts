@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../core/connected-company-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
 import { AI_SYSTEMS_CONTENT_VERSION, isAISystemsResearch } from '../core/ai-systems-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION, isModelCustomizationResearch } from '../core/model-customization-version';
@@ -70,9 +71,9 @@ function validate(state: Readonly<GameState>, command: GameCommand, content: Gam
   if ((MODEL_RESEARCH_COMMANDS as readonly string[]).includes(p.kind)) return validateModelResearch(state, command);
   if ((SYSTEM_APPLICATION_COMMANDS as readonly string[]).includes(p.kind)) return validateSystemApplication(state, command);
   if (p.kind === 'start_research') {
-    if (isModelCustomizationResearch(p.researchId) && ![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) return { code: 'NOT_READY', message: 'This model design discovery is unavailable in this historical build.' };
-    if (isAISystemsResearch(p.researchId) && content.version !== AI_SYSTEMS_CONTENT_VERSION) return { code: 'NOT_READY', message: 'AI systems research is unavailable in this historical build.' };
-    if (company.arrearsCents) return { code: 'ARREARS', message: 'Resolve unpaid expenses before starting research.' };
+    if (isModelCustomizationResearch(p.researchId) && ![MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version)) return { code: 'NOT_READY', message: 'This model design discovery is unavailable in this historical build.' };
+    if (isAISystemsResearch(p.researchId) && ![AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version)) return { code: 'NOT_READY', message: 'AI systems research is unavailable in this historical build.' };
+    if (company.arrearsCents) return { code: 'ARREARS', message: 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.' };
     const definition = content.research.find(item => item.id === p.researchId);
     if (!definition || !implemented.has(definition.id)) return { code: 'NOT_READY', message: 'This discovery is not available yet.' };
     if (hasResearch(state, command.companyId, definition.id)) return { code: 'NO_IMPROVEMENT', message: 'You already know this method. Put it to work in a data, training, or testing project.' };

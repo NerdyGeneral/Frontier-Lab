@@ -185,7 +185,7 @@ export function validateRuntimeGuardrail(state: Readonly<GameState>, command: Ga
   if (p.kind !== 'install_runtime_guardrail' && p.kind !== 'set_runtime_guardrail_enabled') return reject('INVALID_COMMAND', 'Choose an implemented runtime guardrail action.');
   const company = state.slices.company.companies[command.companyId], product = state.slices.products.offers[p.productId];
   if (!company) return reject('UNKNOWN_COMPANY', 'This company does not exist.');
-  if (company.arrearsCents) return reject('ARREARS', 'Resolve unpaid expenses before changing runtime guardrails.');
+  if (company.arrearsCents) return reject('ARREARS', 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.');
   if (!product || product.companyId !== command.companyId || !['basic-chat', 'developer-api'].includes(product.kind) || product.status === 'deploying'
     || state.slices.products.deployments[product.deploymentId]?.status !== 'active') return reject('NOT_READY', 'Choose one of your deployed Chat or developer API products. Other delivery channels retain their existing obligations.');
   const current = currentRuntimeGuardrail(state, p.productId);

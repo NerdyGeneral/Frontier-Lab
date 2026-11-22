@@ -1,3 +1,4 @@
+import { CONNECTED_COMPANY_CONTENT_VERSION } from '../core/connected-company-version';
 import { AI_SYSTEMS_CONTENT_VERSION } from '../core/ai-systems-version';
 import { GAMEPLAY_POLISH_CONTENT_VERSION } from '../core/gameplay-polish-version';
 import { MODEL_CUSTOMIZATION_CONTENT_VERSION } from '../core/model-customization-version';
@@ -112,7 +113,7 @@ function rackCommitments(state: Readonly<GameState>, command: GameCommand, locat
 export function validateChipCommand(state: Readonly<GameState>, command: GameCommand, content: GameContent): Rejection | undefined {
   const p = command.payload;
   if (p.kind === 'start_chip_successor') {
-    if (![CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version)) return reject('INVALID_COMMAND', 'Second-generation silicon is unavailable in this content version.');
+    if (![CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version)) return reject('INVALID_COMMAND', 'Second-generation silicon is unavailable in this content version.');
     if (Object.keys(p).sort().join() !== 'improvement,kind,name,parentDesignId' || !['memory', 'throughput'].includes(p.improvement)
       || typeof p.parentDesignId !== 'string' || !p.parentDesignId || p.parentDesignId.length > 160) return reject('INVALID_COMMAND', 'Choose an original chip design, then upgrade its memory or speed.');
     if (typeof p.name !== 'string' || !p.name.trim() || p.name.trim().length > 48 || /[\u0000-\u001f\u007f]/.test(p.name)) return reject('INVALID_NAME', 'Use a chip name between 1 and 48 characters.');
@@ -161,7 +162,7 @@ export function validateChipCommand(state: Readonly<GameState>, command: GameCom
     if (design.status !== 'validated' || design.qualifiedYieldBps === null) return reject('NOT_READY', 'Validate a compatible prototype before ordering production.');
     if (![1, 2, 4].includes(p.racks)) return reject('INVALID_COMMAND', 'Order a batch of one, two, or four rack slots.');
     if (Object.hasOwn(p, 'foundry')) {
-      if (![SILICON_CONTENT_VERSION, SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) || !isChipFoundry(p.foundry)) return reject('INVALID_COMMAND', 'Choose a supported production foundry.');
+      if (![SILICON_CONTENT_VERSION, SYNTHETIC_CONTENT_VERSION, STUDIO_RELEASE_CONTENT_VERSION, CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) || !isChipFoundry(p.foundry)) return reject('INVALID_COMMAND', 'Choose a supported production foundry.');
       const available = availableFoundrySlots(state, p.foundry, command.id);
       if (available !== null && available < p.racks) return reject('CAPACITY_EXCEEDED', 'The foundry has too many other orders to fit this batch.');
     }
@@ -471,7 +472,7 @@ export function chipPaybackForecast(state: Readonly<GameState>, design: ChipDesi
   const multiplier = design.spec.target === 'inference' ? v.servingBps : v.trainingBps;
   const effective = mulDiv(physical, multiplier, 10_000);
   const infraWage = content.staff.find(role => role.id === 'infrastructure')!.weeklyCents;
-  const primaryOutput = (role: StaffRole) => [WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion) ? getStaffPointProfile(role)[role] : U;
+  const primaryOutput = (role: StaffRole) => [WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion) ? getStaffPointProfile(role)[role] : U;
   const extensions = location === 'colocation' ? null : getActiveFacilityRetrofitEffects(state, design.companyId, location);
   const operatingStaff = location === 'colocation' ? racks * c.colocationStaffPerRack : c.siteBaseStaff + mulDiv(usefulCU, c.siteStaffPer16CU, 16 * U) + extensions!.operatingStaff;
   const fixed = location === 'colocation' ? racks * c.colocationCentsPerRackWeek : c.siteFixedCentsPerWeek + mulDiv(usefulCU, c.ownedMaintenanceCentsPerCUWeek, U) + extensions!.weeklyCents;
@@ -491,7 +492,7 @@ export function chipPaybackForecast(state: Readonly<GameState>, design: ChipDesi
       `${u / 100}% average use for compatible ${design.spec.architecture} ${design.spec.target} jobs that fit the available memory.`,
       design.qualifiedYieldBps === null ? 'Before prototype testing, this estimate assumes 75% yield. The prototype reveals the design’s fixed production yield.' : `Uses ${CHIP_FOUNDRIES[foundry].name} at ${yieldBps / 100}% batch yield.`,
       'Includes design and prototype fees, minimum engineering pay, this production batch, and the staff and upkeep needed to run it.',
-      ...([WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(state.contentVersion) ? ['Staff costs estimate the share of specialist pay needed for the required points at 30 specialty points per week. Actual employees receive their full weekly salary; secondary points are not credited in this estimate.'] : []),
+      ...([WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(state.contentVersion) ? ['Staff costs estimate the share of specialist pay needed for the required points at 30 specialty points per week. Actual employees receive their full weekly salary; secondary points are not credited in this estimate.'] : []),
       location === 'colocation' ? 'Uses rented rack-space costs. Excludes onboarding, research fees, cloud rent for simulations, installation pay, and costs while waiting for delivery.' : 'Includes the site’s full weekly overhead. Excludes site construction, onboarding, research fees, cloud rent for simulations, installation pay, and costs while waiting for delivery.',
       ...(extensions?.weeklyCents ? ['Includes upkeep and staff for existing power and cooling upgrades. Their purchase costs were already paid and are excluded from this chip investment.'] : []),
       ...(Object.values(state.slices.compute.facilitySpecializations ?? {}).some(profile => profile.facilityId === location && profile.status === 'active')
@@ -516,7 +517,7 @@ export function getChipView(state: Readonly<GameState>, companyId = state.player
   const queuedSuccessors = state.queuedCommands.filter(command => command.companyId === companyId && command.payload.kind === 'start_chip_successor');
   const successors = designs.filter(design => design.successor);
   const remaining = Math.max(0, GEN2_SILICON_RULES.maxSuccessorsPerCompany - successors.length - queuedSuccessors.length);
-  const reason = ![CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION].includes(content.version) ? 'Second-generation silicon is unavailable in this build.'
+  const reason = ![CAMPUS_CONTENT_VERSION, WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version) ? 'Second-generation silicon is unavailable in this build.'
     : !completed(state, companyId, GEN2_SILICON_RULES.requiredResearch) ? 'Complete S6 Second-generation silicon.'
       : !hasShippedChipBuyerOrder(state, companyId) ? 'Deliver a chip order to a customer and receive payment.' : null;
   const successor = { unlocked: reason === null, reason, remaining, parents: designs.filter(design => !design.successor).map(parent => {

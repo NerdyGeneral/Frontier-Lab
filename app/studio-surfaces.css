@@ -252,7 +252,7 @@
 .studio-task-surface[data-mode="dialog"][data-presentation="docked"] {
   position: fixed;
   z-index: 14;
-  inset: var(--studio-measured-header-height, var(--studio-header-height, 76px)) 0 0 var(--studio-nav-width, 0px);
+  inset: var(--studio-measured-chrome-height, var(--studio-measured-header-height, var(--studio-header-height, 76px))) 0 0 var(--studio-nav-width, 0px);
   height: auto;
   display: block;
   padding: 16px 20px 20px;
@@ -298,7 +298,7 @@
 }
 @media (max-width: 1179px), (max-height: 699px) {
   .studio-task-surface[data-mode="dialog"][data-presentation="docked"] {
-    inset: calc(var(--studio-visual-viewport-top, 0px) + var(--studio-measured-header-height, 172px)) 0
+    inset: calc(var(--studio-visual-viewport-top, 0px) + var(--studio-measured-chrome-height, var(--studio-measured-header-height, 172px))) 0
       calc(var(--studio-visual-viewport-bottom, 0px) + var(--studio-measured-sidebar-height, 112px)) 0;
     padding: 0;
   }

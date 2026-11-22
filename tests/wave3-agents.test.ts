@@ -15,8 +15,9 @@ import { createPlayerOnlyState } from './fixtures/player-only';
 const config = (overrides: Partial<AgentConfiguration> = {}): AgentConfiguration => ({ mode: 'draft', verification: 'basic', tools: ['read_ticket', 'search_docs', 'send_reply', 'issue_credit'], maxSteps: 24, maxRetries: 0, workBudget: 8 * U, ...overrides });
 const researchIds = ['R1', 'R2', 'R5', 'R6', 'R9', 'R10', 'R11'];
 /** A qualified scenario fixture; real weekly engine, resource owners and company ledger execute every job. */
-function scenario(behavior: ModelBehavior = { confidentErrorBps: 1000, falseRefusalBps: 700 }, reliability = 9600, content: GameContent = CONTENT): GameState {
-  const first = advanceWeek(createPlayerOnlyState(content), content); assert.ok(first.accepted, first.reason?.message);
+function scenario(behavior: ModelBehavior = { confidentErrorBps: 1000, falseRefusalBps: 700 }, reliability = 9600, content: GameContent = CONTENT, seed = content.opening.seed): GameState {
+  const seededContent = { ...content, opening: { ...content.opening, seed } };
+  const first = advanceWeek(createPlayerOnlyState(seededContent), seededContent); assert.ok(first.accepted, first.reason?.message);
   const state = first.state, companyId = state.playerCompanyId;
   state.slices.company.companies[companyId].cashCents = 100_000_000;
   state.slices.company.founderAssignments[companyId] = { research: 0, ml: 0, data: 0, infrastructure: 0, commercial: U, hardware: 0 };
@@ -39,10 +40,11 @@ function snapshotModel(state: GameState): AgentModelSnapshot {
   const model = state.slices.models.versions[CONTENT.seedModel.id];
   return { id: model.id, name: model.name, family: model.family, residentMU: model.residentMU, capabilityBps: { ...model.capabilityBps }, reliabilityBps: model.reliabilityBps, behavior: { ...model.behavior! }, reportId: model.evaluationReportId! };
 }
-function chooseEvidence(state: GameState, configuration: AgentConfiguration, predicate: (job: Pick<AgentJob, 'model' | 'configuration' | 'terms' | 'evidenceKey'>) => boolean, template = AGENT_ORDERS[0]): void {
+function chooseEvidence(state: GameState, configuration: AgentConfiguration, predicate: (job: Pick<AgentJob, 'model' | 'configuration' | 'terms' | 'evidenceKey'>) => boolean, template = AGENT_ORDERS[0]): GameState {
+  assert.equal(state.week, 1, 'Choose the authored evidence before starting paid agent work.');
   for (let i = 0; i < 100000; i++) {
     const seed = 'agent-case-seed-' + i, probe = { model: snapshotModel(state), configuration, terms: template, evidenceKey: agentEvidenceKey(seed, state.playerCompanyId, template.id, Math.floor((state.week + 1) / 4)) };
-    if (predicate(probe)) { state.seed = seed; return; }
+    if (predicate(probe)) return scenario(probe.model.behavior, probe.model.reliabilityBps, CONTENT, seed);
   }
   assert.fail('Find a deterministic authored test case.');
 }
@@ -62,14 +64,14 @@ function until(state: GameState, id: string, predicate: (job: AgentJob) => boole
 function approve(state: GameState, id: string): GameState { return step(send(state, { kind: 'review_agent_job', jobId: id, decision: 'approve' })); }
 function successful(mode: AgentConfiguration['mode'] = 'draft', verification: AgentConfiguration['verification'] = 'basic'): { state: GameState; id: string } {
   let state = scenario(); const configuration = config({ mode, verification });
-  chooseEvidence(state, configuration, job => agentExpectedDraft(job, 0) === 'useful' && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)));
+  state = chooseEvidence(state, configuration, job => agentExpectedDraft(job, 0) === 'useful' && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)));
   const accepted = start(state, configuration); state = accepted.state;
   if (mode !== 'bounded') { state = until(state, accepted.id, job => job.status === 'awaiting-approval'); state = approve(state, accepted.id); }
   state = until(state, accepted.id, isAgentTerminal); return { state, id: accepted.id };
 }
 
 test('W3-A01: intake preview freezes evidence, research, model, terms and baseline resource budgets', () => {
-  let state = scenario(); const c = config(); chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful');
+  let state = scenario(); const c = config(); state = chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful');
   const view = getAgentView(state, state.playerCompanyId); assert.equal(view.models.length, 1); assert.equal(view.orders.length, 3); assert.equal(view.orders[0].id, 'support-replies@0');
   const estimate = getAgentWorkflowEstimate(AGENT_ORDERS[0], view.models[0], c); assert.equal(estimate.steps, 5); assert.equal(estimate.work, 660_000_000); assert.equal(estimate.staff, U / 4);
   const preview = previewCommand(state, { kind: 'start_agent_job', orderId: view.orders[0].id, modelId: view.models[0].id, ...c }); assert.equal(preview.accepted, true); assert.equal(preview.upfrontCostCents, 2500);
@@ -92,7 +94,7 @@ test('W3-A02: zero serving allocation and insufficient connected memory produce 
 });
 
 test('W3-A03: partial compute meters actual tokens, calls and shared physical use; pause/save/replay preserves work', () => {
-  let state = scenario(); const c = config(); chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful');
+  let state = scenario(); const c = config(); state = chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful');
   state.slices.compute.fleets[state.playerCompanyId].allocation.serving = U / 10;
   const accepted = start(state, c); state = accepted.state; const partial = structuredClone(state.slices.agents.jobs[accepted.id]);
   assert.ok(partial.stageWork > 0 && partial.stageWork < U / 5); assert.ok(partial.inputTokens > 0 && partial.inputTokens < 5000);
@@ -108,7 +110,7 @@ test('W3-A03: partial compute meters actual tokens, calls and shared physical us
 });
 
 test('W3-A04: human approval alone is not paid staff review, draft delivery or revenue', () => {
-  let state = scenario(); const c = config(); chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful');
+  let state = scenario(); const c = config(); state = chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful');
   state.slices.company.founderAssignments[state.playerCompanyId].commercial = 0;
   const accepted = start(state, c); state = until(accepted.state, accepted.id, job => job.status === 'awaiting-approval');
   assert.equal(state.slices.agents.jobs[accepted.id].claimedComplete, true); assert.equal(state.slices.agents.invoices.length, 0);
@@ -121,7 +123,7 @@ test('W3-A04: human approval alone is not paid staff review, draft delivery or r
 
 test('W3-A05: approved actions get one receipt, require paid audit and bill only once after accepted outcome', () => {
   let state = scenario(); const c = config({ mode: 'approval', verification: 'independent' });
-  chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful'); const accepted = start(state, c);
+  state = chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful'); const accepted = start(state, c);
   state = until(accepted.state, accepted.id, job => job.status === 'awaiting-approval'); state = approve(state, accepted.id);
   assert.equal(state.slices.agents.jobs[accepted.id].actionApplied, false); assert.equal(state.slices.agents.invoices.length, 0);
   state = step(state); let job = state.slices.agents.jobs[accepted.id]; assert.equal(job.actionApplied, true); assert.equal(job.stage, 'audit'); assert.equal(job.verifiedOutcome, false); assert.equal(job.billedCents, 0);
@@ -145,7 +147,7 @@ test('W3-A07: missing allowlist and bounded out-of-scope proposals block before 
   let state = scenario(); const c = config({ tools: ['send_reply'] }); const accepted = start(state, c); state = step(accepted.state);
   let job = state.slices.agents.jobs[accepted.id]; assert.equal(job.status, 'failed'); assert.equal(job.permissionBlocks, 1); assert.equal(job.toolCalls, 0); assert.equal(job.spentWork, U / 5); assert.equal(job.actionApplied, false);
   state = scenario({ confidentErrorBps: 8000, falseRefusalBps: 0 }, 6000); const bounded = config({ mode: 'bounded', verification: 'independent' });
-  chooseEvidence(state, bounded, probe => agentExpectedPlan(probe, 0).some(tool => !probe.terms.readTools.includes(tool)));
+  state = chooseEvidence(state, bounded, probe => agentExpectedPlan(probe, 0).some(tool => !probe.terms.readTools.includes(tool)));
   const planned = start(state, bounded); state = until(planned.state, planned.id, isAgentTerminal); job = state.slices.agents.jobs[planned.id];
   assert.equal(job.permissionBlocks, 1); assert.equal(job.actionApplied, false); assert.equal(job.receiptId, null); assert.equal(job.billedCents, 0); assert.equal(job.toolCalls, 10);
   assert.ok(job.plannedTools.includes('issue_credit')); assert.ok(job.configuration.tools.includes('issue_credit'), 'Even an allowlisted write is blocked in the wrong stage and customer scope.');
@@ -153,7 +155,7 @@ test('W3-A07: missing allowlist and bounded out-of-scope proposals block before 
 
 test('W3-A08: a confident claim and missed checker are not a successful customer outcome', () => {
   let state = scenario({ confidentErrorBps: 8000, falseRefusalBps: 0 }, 6000); const c = config({ mode: 'bounded', verification: 'independent' });
-  chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'confident-error' && agentExpectedCheck(job, 0) && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)));
+  state = chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'confident-error' && agentExpectedCheck(job, 0) && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)));
   const accepted = start(state, c); state = until(accepted.state, accepted.id, job => job.stage === 'audit');
   let job = state.slices.agents.jobs[accepted.id]; assert.equal(job.claimedComplete, true); assert.equal(job.checkerPassed, true); assert.equal(job.actionApplied, true); assert.equal(job.billedCents, 0);
   state = step(state); job = state.slices.agents.jobs[accepted.id]; assert.equal(job.status, 'failed'); assert.equal(job.verifiedOutcome, false); assert.equal(job.billedCents, 0); assert.equal(job.penaltyCents, AGENT_ORDERS[0].failurePenaltyCents);
@@ -163,7 +165,7 @@ test('W3-A08: a confident claim and missed checker are not a successful customer
 
 test('W3-A09: refusal and clarification retries consume new calls and stay within retry bounds', () => {
   let state = scenario({ confidentErrorBps: 1000, falseRefusalBps: 6000 }, 6000); const c = config({ maxRetries: 1 });
-  chooseEvidence(state, c, job => ['false-refusal', 'clarification'].includes(agentExpectedDraft(job, 0)) && !agentExpectedCheck(job, 1));
+  state = chooseEvidence(state, c, job => ['false-refusal', 'clarification'].includes(agentExpectedDraft(job, 0)) && !agentExpectedCheck(job, 1));
   const accepted = start(state, c); state = until(accepted.state, accepted.id, isAgentTerminal); const job = state.slices.agents.jobs[accepted.id];
   assert.equal(job.status, 'failed'); assert.equal(job.retries, 1); assert.equal(job.attempt, 1); assert.equal(job.modelCalls, 40); assert.equal(job.checkerRuns, 20); assert.equal(job.toolCalls, 20); assert.equal(job.spentWork, 2 * 660_000_000); assert.equal(job.billedCents, 0);
   assert.ok(job.history.some(h => /refused|clarification/.test(h.note)));
@@ -171,7 +173,7 @@ test('W3-A09: refusal and clarification retries consume new calls and stay withi
 
 test('W3-A10: step and work budgets prevent an unauditable action before side effects', () => {
   for (const bounds of [{ maxSteps: 6, workBudget: 8 * U }, { maxSteps: 24, workBudget: 800_000_000 }]) {
-    let state = scenario(); const c = config({ mode: 'approval', verification: 'independent', ...bounds }); chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful');
+    let state = scenario(); const c = config({ mode: 'approval', verification: 'independent', ...bounds }); state = chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful');
     const accepted = start(state, c); state = until(accepted.state, accepted.id, job => job.status === 'awaiting-approval'); state = approve(state, accepted.id); state = until(state, accepted.id, isAgentTerminal);
     const job = state.slices.agents.jobs[accepted.id]; assert.equal(job.status, 'failed'); assert.equal(job.actionApplied, false); assert.equal(job.receiptId, null); assert.equal(job.billedCents, 0); assert.ok(job.lastBottleneck.includes('mandatory'));
   }
@@ -180,7 +182,7 @@ test('W3-A10: step and work budgets prevent an unauditable action before side ef
 });
 
 test('W3-A11: pause after an action preserves the unpaid audit obligation and cannot cancel it', () => {
-  let state = scenario(); const c = config({ mode: 'bounded', verification: 'independent' }); chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful' && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)));
+  let state = scenario(); const c = config({ mode: 'bounded', verification: 'independent' }); state = chooseEvidence(state, c, job => agentExpectedDraft(job, 0) === 'useful' && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)));
   const accepted = start(state, c); state = until(accepted.state, accepted.id, job => job.stage === 'audit'); const spent = state.slices.agents.jobs[accepted.id].spentWork;
   state = step(send(state, { kind: 'set_agent_job_paused', jobId: accepted.id, paused: true })); state = step(state);
   assert.equal(state.slices.agents.jobs[accepted.id].spentWork, spent); assert.equal(state.slices.agents.jobs[accepted.id].invoiceId, null); assert.equal(submitCommand(state, { kind: 'cancel_agent_job', jobId: accepted.id }).accepted, false);
@@ -280,8 +282,8 @@ test('W19: coding qualification, scoped permissions and independent checks are e
 
 test('W19: a coding job pays for sandbox and approval, persists mid-run and invoices only after audit', () => {
   const configuration = codingConfig();
-  const initial = scenario();
-  chooseEvidence(initial, configuration, job => agentExpectedDraft(job, 0) === 'useful', CODING_AGENT_ORDER);
+  let initial = scenario();
+  initial = chooseEvidence(initial, configuration, job => agentExpectedDraft(job, 0) === 'useful', CODING_AGENT_ORDER);
   const accepted = start(initial, configuration, CODING_AGENT_ORDER);
   const id = accepted.id;
   let state = until(accepted.state, id, job => job.stage === 'sandbox');
@@ -314,8 +316,8 @@ test('W19: a coding job pays for sandbox and approval, persists mid-run and invo
 
 test('W19: a planner cannot publish during evidence gathering even with delivery permission', () => {
   const configuration = codingConfig({ mode: 'bounded' });
-  const state = scenario({ confidentErrorBps: 3000, falseRefusalBps: 700 });
-  chooseEvidence(state, configuration, job => agentExpectedPlan(job, 0).includes('publish_patch'), CODING_AGENT_ORDER);
+  let state = scenario({ confidentErrorBps: 3000, falseRefusalBps: 700 });
+  state = chooseEvidence(state, configuration, job => agentExpectedPlan(job, 0).includes('publish_patch'), CODING_AGENT_ORDER);
   const accepted = start(state, configuration, CODING_AGENT_ORDER);
   const finished = until(accepted.state, accepted.id, isAgentTerminal);
   const job = finished.slices.agents.jobs[accepted.id];
@@ -330,8 +332,8 @@ test('W19: a planner cannot publish during evidence gathering even with delivery
 
 test('W19: a patch that games smoke tests can be rejected by the customer audit and incur one penalty', () => {
   const configuration = codingConfig({ mode: 'bounded' });
-  const state = scenario({ confidentErrorBps: 3000, falseRefusalBps: 700 });
-  chooseEvidence(state, configuration, job => agentExpectedDraft(job, 0) === 'confident-error' && agentExpectedCheck(job, 0)
+  let state = scenario({ confidentErrorBps: 3000, falseRefusalBps: 700 });
+  state = chooseEvidence(state, configuration, job => agentExpectedDraft(job, 0) === 'confident-error' && agentExpectedCheck(job, 0)
     && agentExpectedPlan(job, 0).every(tool => job.terms.readTools.includes(tool)), CODING_AGENT_ORDER);
   const accepted = start(state, configuration, CODING_AGENT_ORDER);
   const finished = until(accepted.state, accepted.id, isAgentTerminal);
@@ -351,8 +353,8 @@ test('W19: a patch that games smoke tests can be rejected by the customer audit 
 test('W19: sandbox permission and budget limits halt work without inventing tests or billing', () => {
   for (const overrides of [{ tools: agentOrderTools(CODING_AGENT_ORDER).filter(tool => tool !== 'run_sandbox_tests') }, { workBudget: 3 * U }]) {
     const configuration = codingConfig(overrides);
-    const initial = scenario();
-    chooseEvidence(initial, configuration, job => agentExpectedDraft(job, 0) === 'useful', CODING_AGENT_ORDER);
+    let initial = scenario();
+    initial = chooseEvidence(initial, configuration, job => agentExpectedDraft(job, 0) === 'useful', CODING_AGENT_ORDER);
     const accepted = start(initial, configuration, CODING_AGENT_ORDER);
     const finished = until(accepted.state, accepted.id, isAgentTerminal);
     const job = finished.slices.agents.jobs[accepted.id];
@@ -377,11 +379,17 @@ test('W19: a Wave 17 snapshot preserves its paid state, gains an announced marke
     ...initial, slices: { ...initial.slices, markets: { ...initial.slices.markets, opportunityCalendar: { startedWeek: initial.week, sequenceVersion: 2 as const } } },
   });
   const configuration = codingConfig();
-  const accepted = start(scenario(), configuration, CODING_AGENT_ORDER).state;
+  const codingEra = { ...CONTENT, version: '0.19.0', buildVersion: '0.19.0' };
+  const codingState = scenario(undefined, undefined, codingEra);
+  const queued = submitCommand(codingState, { kind: 'start_agent_job', orderId: CODING_AGENT_ORDER.id + '@0', modelId: CONTENT.seedModel.id, ...configuration }, codingEra);
+  assert.ok(queued.accepted, queued.reason?.message);
+  const tick = advanceWeek(queued.state, codingEra); assert.ok(tick.accepted, tick.reason?.message);
+  const accepted = tick.state;
   const forged = { ...structuredClone(accepted), contentVersion: previous.version, buildVersion: previous.buildVersion };
   // Isolate the coding-work guard from the independently tested calendar-version guard.
   delete forged.slices.markets.opportunityCalendar;
-  const result2 = deserializeState(serializeState(forged, previous));
+  const result2 = deserializeState(JSON.stringify({ format: 'frontier-lab', schemaVersion: forged.schemaVersion,
+    contentVersion: previous.version, checksum: canonicalStateHash(forged), state: forged }));
   assert.ok(!result2.ok);
   assert.match(result2.error, /unavailable/);
 });

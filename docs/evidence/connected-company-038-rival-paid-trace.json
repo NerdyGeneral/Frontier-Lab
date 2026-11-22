@@ -1,0 +1,47 @@
+{
+  "contentVersion": "0.38.0",
+  "week": 281,
+  "minimumCashCents": 2430776,
+  "maxArrearsCents": 0,
+  "cashCents": 10855206,
+  "cloudCU": 13,
+  "reductions": [
+    {
+      "week": 62,
+      "fromCU": 12,
+      "toCU": 10
+    },
+    {
+      "week": 74,
+      "fromCU": 10,
+      "toCU": 9
+    }
+  ],
+  "training": [
+    {
+      "id": "training-rival-command-490",
+      "recipeId": "custom-model-foundation",
+      "status": "complete",
+      "startedWeek": 119,
+      "completedWeek": 281,
+      "requiredWork": 640,
+      "completedWork": 640,
+      "physicalWork": 640,
+      "system": {
+        "version": 1,
+        "kind": "stateful",
+        "stateSlots": 256,
+        "memory": "selective",
+        "repair": true
+      }
+    }
+  ],
+  "license": [
+    {
+      "signedWeek": 37,
+      "status": "active",
+      "termIndex": 21,
+      "lifetimeBilledCents": 7290000
+    }
+  ]
+}

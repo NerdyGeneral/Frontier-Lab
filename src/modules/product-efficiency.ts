@@ -82,7 +82,7 @@ export function validateProductEfficiency(state: Readonly<GameState>, command: G
   if (p.kind !== 'install_product_efficiency' && p.kind !== 'set_product_efficiency_enabled') return { code: 'INVALID_COMMAND', message: 'Choose a supported product-efficiency action.' };
   const product = state.slices.products.offers[p.productId], rule = EFFICIENCY_RULES[p.method];
   if (!product || product.companyId !== command.companyId || product.status === 'deploying' || !rule) return { code: 'NOT_READY', message: 'Choose one of your deployed public products and an authored efficiency method.' };
-  if (state.slices.company.companies[command.companyId].arrearsCents) return { code: 'ARREARS', message: 'Resolve unpaid expenses before changing efficiency installations.' };
+  if (state.slices.company.companies[command.companyId].arrearsCents) return { code: 'ARREARS', message: 'This lab has unpaid bills and cannot continue. Inspect or export this run, or start a new lab.' };
   if (p.kind === 'set_product_efficiency_enabled') {
     const installation = efficiencyInstall(state, product.id, p.method);
     if (!installation || installation.status !== 'active' || typeof p.enabled !== 'boolean') return { code: 'NOT_READY', message: 'Finish this installation before changing its operating state.' };

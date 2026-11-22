@@ -3,11 +3,14 @@ import type { SystemsChallengeSuiteId } from './model-challenges';
 
 export const SYSTEMS_BRIEF_IDS = ['efficient-experts', 'bounded-memory', 'continuity-desk', 'verified-analysis'] as const;
 export type SystemsBriefId = typeof SYSTEMS_BRIEF_IDS[number];
-export type SystemsBriefCommand = { kind: 'accept_systems_brief'; offerId: string; modelId: string };
+export type SystemsBriefCommand = { kind: 'accept_systems_brief'; offerId: string; modelId: string; terms?: SystemsBriefTerms };
+export type SystemsClientTier = 'pilot' | 'repeat' | 'partner';
+export interface SystemsClientRelationshipReceipt { tier: SystemsClientTier; priorOrderIds: string[] }
 
 /** Fixed when accepted. New rules must use another version instead of repricing old orders. */
 export interface SystemsBriefTerms {
-  version: 1;
+  version: 1 | 2;
+  relationship?: SystemsClientRelationshipReceipt;
   id: string;
   briefId: SystemsBriefId;
   windowIndex: number;

@@ -4,6 +4,8 @@ import { MARKET_OPPORTUNITY_RULES, RIVAL_CAMPAIGN_RULES, RIVAL_TACTIC_RULES } fr
 import { SEGMENT_BY_ID } from '../content/wave2-market';
 import { formatMoney } from '../core/math';
 import { getMarketOpportunityView } from '../modules/market-opportunities';
+import { RIVAL_SYSTEMS_RULES } from '../modules/rival-systems';
+import { CompanyWorldPanel } from './company-progression-panel';
 
 export interface MarketDynamicsPanelProps {
   game: GameState;
@@ -18,6 +20,7 @@ export function MarketDynamicsPanel({ game, onNavigate }: MarketDynamicsPanelPro
   const responsePanel: StudioPanelId = opportunity?.segmentIds.includes('developers') ? 'developer-api'
     : opportunity?.segmentIds.includes('business') ? 'business-commitments' : 'product';
   return <section className="market-dynamics-panel" aria-labelledby="market-opportunities-heading">
+    <CompanyWorldPanel game={game} />
     <h3 id="market-opportunities-heading">Market opportunities</h3>
     <p className="small-note">Buying windows are announced {MARKET_OPPORTUNITY_RULES.noticeWeeks} weeks ahead. You can prepare for one or keep your current strategy; participation is automatic for eligible offers.</p>
     {opportunity ? <article className="market-opportunity-card">
@@ -35,9 +38,10 @@ export function MarketDynamicsPanel({ game, onNavigate }: MarketDynamicsPanelPro
       const tactic = campaign?.tactics ? RIVAL_TACTIC_RULES[campaign.tactics.focus] : null;
       return <article className="rival-campaign-card" key={rival.companyId}>
         <div className="asset-summary"><strong>{game.slices.company.companies[rival.companyId].name}</strong><span>{rival.withdrawn ? 'Operations suspended' : campaign?.status === 'protecting-cash' ? 'Protecting cash' : campaign?.status === 'completed' ? 'Objective reached' : 'In progress'}</span></div>
-        <h4>{definition?.name ?? 'Preparing a strategy'}</h4>
+        <h4>{campaign?.systems ? RIVAL_SYSTEMS_RULES[campaign.systems.focus].name : definition?.name ?? 'Preparing a strategy'}</h4>
         {campaign && <p className="small-note">{SEGMENT_BY_ID[campaign.targetSegment].name} · Review in Week {campaign.reviewWeek}{campaign.priceTargetCents !== null ? ` · Reference bill target ${formatMoney(campaign.priceTargetCents)}` : ''}</p>}
-        {definition && <p className="small-note">{definition.description}</p>}
+        {definition && <p className="small-note"><strong>{definition.name}.</strong> {definition.description}</p>}
+        {campaign?.systems && <p className="small-note">{RIVAL_SYSTEMS_RULES[campaign.systems.focus].description}</p>}
         {tactic && <p className="small-note"><strong>Approach: {tactic.name}.</strong> {tactic.description}</p>}
         <p className="small-note">{campaign?.lastDecision ?? rival.publicActivity}</p>
       </article>;

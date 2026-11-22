@@ -145,7 +145,8 @@ test('a paid systems commission consumes real capacity, pays once, preserves ter
   assert.equal(run.state.slices.company.ledger.filter(fact => fact.id === paymentId).length, 1);
   const next = openOffer(run); assert.notEqual(next.id, offer.id);
   assert.equal(previewCommand(run.state, { kind: 'accept_systems_brief', offerId: offer.id, modelId: paidModelId }).accepted, false);
-  run.queue({ kind: 'accept_systems_brief', offerId: next.id, modelId: paidModelId }); run.step(2);
+  assert.equal(next.relationship?.tier, 'repeat'); assert.equal(next.qualifyingWeeks, 3);
+  run.queue({ kind: 'accept_systems_brief', offerId: next.id, modelId: paidModelId }); run.step(next.qualifyingWeeks);
   assert.equal(getSystemsBriefOrders(run.state).filter(order => order.status === 'completed').length, 2);
   assert.deepEqual(validateState(run.state), []);
 });

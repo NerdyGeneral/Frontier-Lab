@@ -29,6 +29,9 @@ import { AssuredApiPanel } from './assured-api-panel';
 import { BatchInferencePanel } from './batch-inference-panel';
 import { useStudioLaunchSelection, useStudioTaskActions, useStudioTaskMode } from './studio-interaction-context';
 import { StudioDecisionLayout } from './studio-decision-layout';
+import { hasConnectedCompanyRules } from '../core/connected-company-version';
+import type { ProductWorkloadId } from '../contracts/product-workloads';
+import { ProductPortfolioPicker, ProductWorkloadControls, ProductWorkloadPicker, RetireProductControl } from './product-workload-controls';
 
 type ProductDetails = ReturnType<typeof getProductView>;
 type PlayerProductKind = Extract<ProductKind, 'basic-chat' | 'developer-api'>;
@@ -43,11 +46,13 @@ function TermsForm({ game, canAct, onQueue, kind, current }: PanelProps & { kind
   const launchSelection = useStudioLaunchSelection();
   const taskActions = useStudioTaskActions();
   const focusedLaunch = useStudioTaskMode() === 'launch-basic-chat' && !isApi && !current;
-  const selection = !isApi && !current ? launchSelection : null;
+  const selection = !current && (launchSelection?.productKind ?? 'basic-chat') === kind ? launchSelection : null;
   const candidates = ownEvaluatedModels(game);
   const [price, setPrice] = useState(String((current?.contract.weeklyPriceCents ?? (isApi ? SEGMENT_BY_ID.developers.referencePriceCents : CONTENT.firstSale.defaultPriceCents)) / 100));
   const [allowance, setAllowance] = useState(String(current?.contract.allowance ?? (isApi ? SEGMENT_BY_ID.developers.exchanges : CONTENT.firstSale.defaultAllowance)));
   const [modelId, setModelId] = useState(candidates[candidates.length - 1]?.id ?? '');
+  const [offerName, setOfferName] = useState('');
+  const [workload, setWorkload] = useState<ProductWorkloadId>('general');
   const [appliedIntent, setAppliedIntent] = useState<number | null>(null);
   const [explicitSelection, setExplicitSelection] = useState(false);
   const [reportId, setReportId] = useState<string | undefined>();
@@ -56,17 +61,17 @@ function TermsForm({ game, canAct, onQueue, kind, current }: PanelProps & { kind
   const requestedId = incoming ? selection.modelId : modelId;
   const requestedReportId = incoming ? selection.reportId : reportId;
   const model = candidates.find(item => item.id === requestedId)
-    ?? (!isApi && (incoming || explicitSelection) ? undefined : candidates[candidates.length - 1]);
+    ?? (incoming || explicitSelection ? undefined : candidates[candidates.length - 1]);
   const reports = model ? Object.values(game.slices.models.reports).filter(report => report.companyId === game.playerCompanyId
     && report.modelId === model.id && isCapabilitySuite(report.suiteId)) : [];
   // An explicit report is evidence for this exact handoff. Missing, unrelated or
   // non-capability evidence cannot silently become a different report.
   const report = requestedReportId ? reports.find(item => item.id === requestedReportId)
     : reports.find(item => item.basicChatEligible) ?? reports[0];
-  const problem = !current && !isApi ? (incoming ? selection.unavailableReason : selectionProblem)
+  const problem = !current ? (incoming ? selection.unavailableReason : selectionProblem)
     ?? (!model && (incoming || explicitSelection) ? 'This model is unavailable or has not passed a separate capability test. Choose another model for launch.' : undefined)
     ?? (requestedReportId && !report ? 'This capability report is missing or belongs to another model. Choose a model to review its launch test results.' : undefined)
-    ?? (requestedReportId && report && !report.basicChatEligible ? 'This report does not meet the Basic Chat launch requirements. Choose a model and review its latest qualifying results.' : undefined)
+    ?? (!isApi && requestedReportId && report && !report.basicChatEligible ? 'This report does not meet the Basic Chat launch requirements. Choose a model and review its latest qualifying results.' : undefined)
     : undefined;
   useEffect(() => {
     if (!incoming) return;
@@ -80,7 +85,8 @@ function TermsForm({ game, canAct, onQueue, kind, current }: PanelProps & { kind
   const cents = parseFixed(price, 2), limit = parseWhole(allowance);
   const payload: CommandPayload | null = cents === null || limit === null ? null : current
     ? { kind: 'set_product_terms', productId: current.product.id, priceCents: cents, allowance: limit }
-    : model && !problem ? { kind: 'deploy_product', productKind: kind, modelId: model.id, priceCents: cents, allowance: limit, features: { ...DEFAULT_FEATURES } } : null;
+    : model && !problem ? { kind: 'deploy_product', productKind: kind, modelId: model.id, priceCents: cents, allowance: limit, features: { ...DEFAULT_FEATURES },
+      ...(hasConnectedCompanyRules(game.contentVersion) ? { workload, ...(offerName.trim() ? { name: offerName.trim() } : {}) } : {}) } : null;
   return <div className="product-terms">
     <StudioDecisionLayout focused={focusedLaunch} className="studio-launch-task" summaryLabel="Launch cost and requirements" summary={<>
     {!current && !isApi && model && <div className="studio-journey-callout">
@@ -96,6 +102,8 @@ function TermsForm({ game, canAct, onQueue, kind, current }: PanelProps & { kind
     </>}>
     {problem && <p className="bottleneck" role="status">{problem}</p>}
     {!current && <label className="line-control wide-select" htmlFor={kind + '-deploy-model'}>{isApi ? 'Model' : problem ? 'Choose a model to launch' : 'Launch model'}<select id={kind + '-deploy-model'} value={problem ? '' : model?.id ?? ''} onChange={event => chooseModel(event.target.value)} disabled={!canAct || !candidates.length}>{(!model || problem) && <option value="">{candidates.length ? 'Choose a tested model' : 'Evaluate a model first'}</option>}{candidates.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>}
+    {!current && hasConnectedCompanyRules(game.contentVersion) && <><label className="line-control" htmlFor={kind + '-offer-name'}>Offer name<input id={kind + '-offer-name'} maxLength={48} value={offerName} placeholder={productName(kind)} onChange={event => setOfferName(event.target.value)} disabled={!canAct} /></label>
+      <ProductWorkloadPicker game={game} value={workload} onChange={setWorkload} modelId={model?.id} id={kind + '-new-workload'} disabled={!canAct} /></>}
     <label className="line-control" htmlFor={kind + '-price'}>{isApi ? 'Reference bill / 600 requests' : 'Price / account / week'}<span className="unit-input"><span>$</span><input id={kind + '-price'} type="number" inputMode="decimal" min="1" max={isApi ? 1000 : 100} step="0.25" value={price} onChange={event => setPrice(event.target.value)} disabled={!canAct} /></span></label>
     <label className="line-control" htmlFor={kind + '-allowance'}>{isApi ? 'Request limit / account / week' : 'Included exchanges'}<input id={kind + '-allowance'} type="number" inputMode="numeric" min="25" max={isApi ? 5000 : 500} step="25" value={allowance} onChange={event => setAllowance(event.target.value)} disabled={!canAct} /></label>
     <p className="small-note">{isApi ? 'The reference bill sets input and output token rates. Bill only executed paid tokens; internal reasoning is billed at the output rate. Unserved requests create no charge.' : 'The weekly subscription includes exchanges up to the allowance. Unserved work receives proportional credits. Price and allowance affect conversion and retention.'}</p>
@@ -149,9 +157,22 @@ function ConsumerSessions({ game, canAct, onQueue, current }: PanelProps & { cur
 export function ReplaceModel({ game, canAct, onQueue, current }: PanelProps & { current: ProductDetails }) {
   const candidates = ownEvaluatedModels(game);
   const [modelId, setModelId] = useState(current.model.id);
-  const model = candidates.find(item => item.id === modelId) ?? candidates[0];
-  return <div><label className="line-control wide-select" htmlFor={current.product.id + '-replacement'}>Replacement model<select id={current.product.id + '-replacement'} value={model?.id ?? ''} onChange={event => setModelId(event.target.value)} disabled={!canAct || !candidates.length}>{candidates.map(item => <option key={item.id} value={item.id}>{item.name} · {item.family}</option>)}</select></label>
-    <ActionControl game={game} payload={model ? { kind: 'upgrade_product', productId: current.product.id, modelId: model.id } : null} label="Deploy replacement model" canAct={canAct} onQueue={onQueue} extraDisabled={model?.id === current.model.id} />
+  const launch = useStudioLaunchSelection(), selection = (launch?.productKind ?? 'basic-chat') === current.product.kind ? launch : null;
+  const [appliedIntent, setAppliedIntent] = useState<number | null>(null), [explicitSelection, setExplicitSelection] = useState(false);
+  const [reportId, setReportId] = useState<string | undefined>(), [selectionProblem, setSelectionProblem] = useState<string | undefined>();
+  const incoming = !!selection && selection.intentId !== appliedIntent, requestedId = incoming ? selection.modelId : modelId;
+  const requestedReport = incoming ? selection.reportId : reportId;
+  const model = candidates.find(item => item.id === requestedId) ?? (incoming || explicitSelection ? undefined : candidates[0]);
+  const report = requestedReport ? game.slices.models.reports[requestedReport] : undefined;
+  const problem = (incoming ? selection.unavailableReason : selectionProblem)
+    ?? (!model && (incoming || explicitSelection) ? 'The chosen replacement is unavailable or has not completed its capability evaluation. Choose a model explicitly.' : undefined)
+    ?? (requestedReport && (!report || report.modelId !== model?.id || report.companyId !== game.playerCompanyId || !isCapabilitySuite(report.suiteId)) ? 'The selected report does not belong to this tested model. Choose a replacement explicitly.' : undefined);
+  useEffect(() => {
+    if (!incoming) return;
+    setModelId(selection.modelId ?? ''); setReportId(selection.reportId); setSelectionProblem(selection.unavailableReason); setExplicitSelection(true); setAppliedIntent(selection.intentId);
+  }, [incoming, selection]);
+  return <div>{problem && <p className="bottleneck" role="status">{problem}</p>}<label className="line-control wide-select" htmlFor={current.product.id + '-replacement'}>Replacement model<select id={current.product.id + '-replacement'} value={model?.id ?? ''} onChange={event => { setModelId(event.target.value); setReportId(undefined); setSelectionProblem(undefined); setExplicitSelection(true); }} disabled={!canAct || !candidates.length}>{!model && <option value="">Choose a tested replacement</option>}{candidates.map(item => <option key={item.id} value={item.id}>{item.name} · {item.family}</option>)}</select></label>
+    <ActionControl game={game} payload={model && !problem ? { kind: 'upgrade_product', productId: current.product.id, modelId: model.id } : null} label="Deploy replacement model" canAct={canAct} onQueue={onQueue} extraDisabled={model?.id === current.model.id} emptyReason={problem} />
     <p className="small-note">Deployment takes 20 Design points and pauses service until the replacement is ready. Subscriptions receive service credits during the gap.</p>
   </div>;
 }
@@ -160,16 +181,36 @@ function ProductSection(props: PanelProps & { kind: PlayerProductKind }) {
   const { game, view, canAct, onQueue, kind } = props;
   const launchSelection = useStudioLaunchSelection();
   const taskMode = useStudioTaskMode();
-  const product = Object.values(game.slices.products.offers).find(item => item.companyId === game.playerCompanyId && item.kind === kind);
+  const [selectedOfferId, setSelectedOfferId] = useState('');
+  const [consumedLaunchIntent, setConsumedLaunchIntent] = useState<number | null>(null);
+  const products = Object.values(game.slices.products.offers).filter(item => item.companyId === game.playerCompanyId && item.kind === kind);
+  const selectedLiveProduct = products.find(item => item.id === selectedOfferId && item.retiredWeek === undefined) ?? products.find(item => item.retiredWeek === undefined);
+  const matchingLaunch = !!launchSelection && (launchSelection.productKind ?? 'basic-chat') === kind;
+  const incomingLaunch = matchingLaunch && launchSelection.intentId !== consumedLaunchIntent;
+  const handoffOfferId = selectedLiveProduct?.id ?? 'new';
+  useEffect(() => {
+    if (incomingLaunch) {
+      setSelectedOfferId(handoffOfferId); setConsumedLaunchIntent(launchSelection.intentId);
+    }
+  }, [incomingLaunch, handoffOfferId, launchSelection]);
+  const effectiveOfferId = incomingLaunch ? handoffOfferId : selectedOfferId;
+  const product = effectiveOfferId === 'new' ? undefined : products.find(item => item.id === effectiveOfferId) ?? products.find(item => item.retiredWeek === undefined) ?? products[0];
   const current = product ? getProductView(game, product.id, CONTENT) : undefined;
   const deployment = product ? game.slices.products.deployments[product.deploymentId] : undefined;
   const usage = current?.usage;
   const isApi = kind === 'developer-api';
   const focusedFirstLaunch = taskMode === 'launch-basic-chat' && !isApi && !current;
   const invoices = game.slices.products.invoices.filter(invoice => invoice.productId === product?.id && invoice.companyId === game.playerCompanyId);
+  if (product?.retiredWeek !== undefined && current) return <Section title={productName(kind)} id={isApi ? 'developer-api' : 'product'}>
+    <ProductPortfolioPicker game={game} kind={kind} value={product.id} onChange={setSelectedOfferId} />
+    <h4>{product.name} · Retired Week {product.retiredWeek}</h4><p className="small-note">{current.model.name}. This archived offer has no remaining customers. Its model, terms and {invoices.length} recent invoices remain available for review.</p>
+    <Metrics><Metric label="Last weekly revenue">{formatMoney(current.usage?.billedCents ?? 0)}</Metric><Metric label="Last subscription price">{formatMoney(current.contract.weeklyPriceCents)}</Metric></Metrics>
+  </Section>;
   return <Section title={productName(kind)} id={isApi ? 'developer-api' : 'product'}>
+    <ProductPortfolioPicker game={game} kind={kind} value={product?.id ?? 'new'} onChange={setSelectedOfferId} />
     {current && product ? <>
-      <p className="small-heading">{current.model.name}<span className="status-inline">{product.status === 'deploying' ? 'Deploying' : product.status === 'paused' ? 'Paused' : 'Live'}</span></p>
+      <p className="small-heading">{product.name} · {current.model.name}<span className="status-inline">{product.status === 'deploying' ? 'Deploying' : product.status === 'paused' ? 'Paused' : 'Live'}</span></p>
+      <ProductWorkloadControls key={product.id + '-workload-controls'} {...props} product={product} />
       {product.status === 'deploying' && deployment && <div className="deployment-status"><Metrics><Metric label="Design deployment work">{formatWorkPoints(deployment.completedStaff)} / {formatWorkPoints(deployment.requiredStaff)} points</Metric>{deployment.readyWeek !== null && <Metric label="Activates">Week {deployment.readyWeek}</Metric>}</Metrics>{deployment.lastBottleneck && <p className="bottleneck">{deployment.lastBottleneck}</p>}</div>}
       <Metrics><Metric label={isApi ? 'Developer accounts / next week' : 'Subscribed accounts / next week'}>{count(current.accounts)}</Metric><Metric label="Trials / next week">{count(current.trialAccounts)}</Metric><Metric label={isApi ? 'Reference bill / 600 requests' : 'Current subscription'}>{formatMoney(current.contract.weeklyPriceCents)}{isApi ? '' : ' / week'}</Metric><Metric label={isApi ? 'Request limit' : 'Included exchanges'}>{current.contract.allowance} / account</Metric></Metrics>
       {product.status !== 'deploying' && <ProductStrategyControls {...props} productId={product.id} key={product.id + '-strategy'} />}
@@ -180,14 +221,14 @@ function ProductSection(props: PanelProps & { kind: PlayerProductKind }) {
       <details className="inline-details"><summary>Price and allowance</summary><TermsForm key={product.id + '-terms'} {...props} current={current} /></details>
       <details className="inline-details"><summary>Conversation and reasoning options</summary><FeatureForm key={product.id + '-features'} {...props} current={current} /></details>
       {!isApi && product.status !== 'deploying' && <ConsumerSessions key={product.id + ':' + (product.sessionProfile ?? 'off')} {...props} current={current} />}
-      <details className="inline-details"><summary>Replace the live model</summary><ReplaceModel key={product.id + '-replacement'} {...props} current={current} /></details>
+      <details className="inline-details" open={matchingLaunch || undefined}><summary>Replace the live model</summary><ReplaceModel key={product.id + '-replacement'} {...props} current={current} /></details>
       <ReleaseOperationsControls {...props} productId={product.id} />
       <RuntimeGuardrailsPanel {...props} productId={product.id} />
       {isApi && <AssuredApiPanel {...props} productId={product.id} />}
       {isApi && <BatchInferencePanel {...props} productId={product.id} />}
       {(feedbackResearchReady(game, game.playerCompanyId) || Object.values(game.slices.data.feedbackStudies ?? {}).some(study => study.productId === product.id)) && <details className="inline-details"><summary>Customer feedback</summary><FeedbackPanel {...props} productId={product.id} /><FeedbackReviewPanel {...props} productId={product.id} /></details>}
       <ProductEfficiencyControls {...props} productId={product.id} />
-      {product.status !== 'deploying' && <details className="inline-details"><summary>Pause or resume service</summary><p className="small-note">Pausing stops service and acquisition. Cloud, payroll, and installed hardware bills continue.</p><ActionControl game={game} payload={{ kind: 'set_product_paused', productId: product.id, paused: product.status !== 'paused' }} label={product.status === 'paused' ? 'Resume ' + productName(kind) : 'Pause ' + productName(kind)} canAct={canAct} onQueue={onQueue} /></details>}
+      {product.status !== 'deploying' && <details className="inline-details"><summary>Pause, resume or retire this offer</summary><p className="small-note">Pausing stops service and acquisition. Cloud, payroll, and installed hardware bills continue.</p><ActionControl game={game} payload={{ kind: 'set_product_paused', productId: product.id, paused: product.status !== 'paused' }} label={product.status === 'paused' ? 'Resume ' + product.name : 'Pause ' + product.name} canAct={canAct} onQueue={onQueue} /><RetireProductControl {...props} product={product} /></details>}
       <details className="inline-details"><summary>Recent invoices</summary>{invoices.length ? <div className="table-scroll"><table className="compact-table"><thead><tr><th>Week</th><th>Accounts</th><th>Credits</th><th>Net bill</th></tr></thead><tbody>{invoices.slice(-6).reverse().map(invoice => <tr key={invoice.id}><td>{invoice.week}</td><td>{invoice.accounts}</td><td>{formatMoney(invoice.creditsCents)}</td><td>{formatMoney(invoice.amountCents)}</td></tr>)}</tbody></table></div> : <p className="small-note">Invoices begin when converted accounts enter a paid week.</p>}</details>
     </> : <>
       {!isApi && <div className="studio-first-launch-overview" hidden={focusedFirstLaunch}><Metrics><Metric label="Waiting for first access">{game.slices.markets.waitlistRemaining}</Metric><Metric label="Subscribed accounts">0</Metric></Metrics></div>}

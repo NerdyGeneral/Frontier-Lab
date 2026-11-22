@@ -1,0 +1,180 @@
+{
+  "release": "0.38.0",
+  "recordedAtUtc": "2026-11-22T21:31:11.381279+00:00",
+  "sourceBaselines": {
+    "sitesCommit": "2f356feb390fe26be5e7e13f76150821741cf0d7",
+    "githubCommit": "4254ec154cf7bba0a2d72ffd7cf2f5c515fab8d2",
+    "sharedTree": "61ef5e55af0a19aca036e6692568fe3cb5b9170c"
+  },
+  "automatedGates": [
+    {
+      "command": "node scripts/test-wave0.mjs",
+      "scope": "Complete pure-engine acceptance suite: 147 test files. One expansion scenario needed to allocate its remaining purchased compute after changed customer demand; production engine code and the 100% service requirement were unchanged.",
+      "result": "resolved_by_final_targeted_rerun",
+      "counts": {
+        "tests": 1035,
+        "pass": 1034,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "5cbedd23bb54f31ed168ef8a472050cfcd5564b569375795f5409714d8d42a65"
+    },
+    {
+      "command": "node --import tsx --test --test-reporter=spec tests/*.test.tsx src/ui/*.test.tsx",
+      "scope": "Complete UI suite before the two additional asynchronous import cases.",
+      "result": "passed",
+      "counts": {
+        "tests": 221,
+        "pass": 221,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "b82b03d5137892fda722f5a9ec1447d67aae12055c51559168d882b0abfebebf"
+    },
+    {
+      "command": "node --import tsx --test --test-reporter=spec tests/campaign-saving-ui.test.tsx tests/studio-command-flow-ui.test.tsx tests/wave30-surfaces.test.tsx",
+      "scope": "Final shell, task surface and save-import regressions, including both additional asynchronous import cases.",
+      "result": "passed",
+      "counts": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "60563df662d798c1a3f5f19971590bf42219a1313f542a9687bc4c06cd7598cb"
+    },
+    {
+      "command": "node scripts/test-wave0.mjs decision-clock",
+      "scope": "Final decision-clock thresholds, queues, recurring costs, deadlines and public/private/assured service observation.",
+      "result": "passed",
+      "counts": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "7afe586dd04853abd79ccd0f3e3e9b32d2c5af8bed6f17fd82409eb7b5cfd7f9"
+    },
+    {
+      "command": "node scripts/test-wave0.mjs model-customization-migration studio-menu-catalog wave1-migration wave2-migration wave3-migration wave4-migration wave30-task-state wave6-forecast",
+      "scope": "Focused historical migration, navigation and terminal-state regressions; overlaps the final full engine suite.",
+      "result": "passed",
+      "counts": {
+        "tests": 56,
+        "pass": 56,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "aa63ea2aa1c2ae049e02bdf5980b38f66ce5f98d7fdfc55bbc818a6267213222"
+    },
+    {
+      "command": "node scripts/test-wave0.mjs wave3-agents wave7-agents",
+      "scope": "Paid agent, coding and recovery replay fixtures initialized with their intended seeds; overlaps the final full engine suite.",
+      "result": "passed",
+      "counts": {
+        "tests": 33,
+        "pass": 33,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "1e61098d980170abba322d661b9ad14a623a19c1165d43d9843aa8de312d6a32"
+    },
+    {
+      "command": "node scripts/test-wave0.mjs economy-recovery gameplay-markets wave21-release rival-systems",
+      "scope": "Paid rival recovery and research, finite markets, affordability and the original player ending routes; overlaps the final full engine suite.",
+      "result": "passed",
+      "counts": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "c0278fa795476ecbb7f7fd28e011bbf17a7e0bf2fbf82e6e2bd20db0bbf5519e"
+    },
+    {
+      "command": "node scripts/test-wave0.mjs wave8-progression wave8-costs wave6-forecast",
+      "scope": "Final expansion-scenario correction with the same paid cloud bill and 100% service requirement, plus cost conservation and capacity forecasts. Only the fixture allocation changed; production source stayed identical to the full run.",
+      "result": "passed",
+      "counts": {
+        "tests": 21,
+        "pass": 21,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "b02a96e6d54349a7d7f14a22227cdee2ee96aa69092d7aaa8ac9dbf6dbebd432"
+    }
+  ],
+  "testAccounting": "Focused reruns overlap the full suites and must not be added to them as unique test cases. The final full engine run passed 1034 of 1035 cases; the remaining expansion case passed in the final targeted rerun after its fixture allocated the full paid serving capacity. All 1035 unique engine cases are therefore verified without rewriting the original run result.",
+  "typecheck": {
+    "command": "node node_modules/typescript/bin/tsc --noEmit",
+    "result": "passed"
+  },
+  "productionBuild": {
+    "command": "node <Sites plugin>/scripts/build-site.mjs",
+    "result": "passed",
+    "logSha256": "11c485450e21b89bfaa85a3027f7ed12cd3336691da767dd1207a87a2ba47b25",
+    "notes": "The bundler emitted its nonblocking large-chunk and route-classification notices. Publication also runs the supported build helper and aborts on failure."
+  },
+  "saveCompatibility": {
+    "fixture": "tests/fixtures/connected-037-paid-published.json",
+    "sha256": "4ca0d168b826c37e889306d1b73ea54d564ed23b98c1ab9c2605a9ff664f0611",
+    "originalVersion": "0.37.0",
+    "originalWeek": 771,
+    "checks": [
+      "Metadata-only migration of genuine paid historical state",
+      "Original browser save bytes archived before primary overwrite",
+      "Ordinary reload and next-week validation",
+      "New records rejected under historical headers",
+      "Portable planning workspace integrity and bounded shape",
+      "Asynchronous import cannot commit after session cleanup or accept a competing replacement"
+    ]
+  },
+  "browserCoverage": {
+    "environment": "Disposable managed preview campaign",
+    "viewport": {
+      "width": 1363,
+      "height": 936
+    },
+    "productionCampaignResetImportedOrAdvanced": false,
+    "observed": [
+      "One desktop workspace scroller; document remains at scrollTop 0",
+      "Header, navigation and clock remain outside the long design form",
+      "Cash-reserve stop and direct finance link",
+      "Objective, lead, share and forecast controls",
+      "Direct scheduling without an extra review popup",
+      "Paid delegated prepare/train/evaluate sequence",
+      "Market-window stop and later final project review at Week 10",
+      "Balanced objective and paid 16/20 result retained",
+      "Exact Conversation 1 candidate handed to Basic Chat setup",
+      "Visible offer creation, naming and all five workload options"
+    ],
+    "limits": [
+      "A browser URL-policy restriction prevented refreshing the local preview after the final chrome-height/inert adjustments; no workaround was used.",
+      "Latest chrome adjustments have targeted automated coverage.",
+      "No fresh on-device phone playthrough was performed.",
+      "Any subsequent production browser verification occurs after this source record is committed and is reported separately."
+    ]
+  },
+  "paidRivalTrace": {
+    "file": "docs/evidence/connected-company-038-rival-paid-trace.json",
+    "sha256": "b314502fc9b9da12ee78ff223d945dc2c9ed67a8065387bf0f81b011d671bd6a",
+    "scope": "Automated ordinary-engine trace of the final current-version policy; separate from the formal test totals."
+  },
+  "publication": "This record is committed with the release source before publication. The deployment and GitHub branch must be verified against that exact committed tree."
+}
