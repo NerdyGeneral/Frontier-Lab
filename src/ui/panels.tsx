@@ -34,7 +34,7 @@ export function BusinessPanel({ game, view, canAct, onQueue }: PanelProps) {
       <Metric label="Cash change / last week">{formatMoney(company.lastWeek.cashChangeCents)}</Metric>
     </Metrics>
     <p className="next-bill">Base costs: <strong>{formatMoney(view.weeklyBaseCostCents)} / week</strong></p>
-    <p className="small-note">Runway at the current pace: <strong>{view.runwayWeeks === null ? 'Self-funding' : view.runwayWeeks.toFixed(1) + ' weeks'}</strong>. New projects and hires change this forecast.</p>
+    <p className="small-note">Runway at the current pace: <strong>{view.runwayWeeks === null ? 'Recurring income covers current costs' : view.runwayWeeks.toFixed(1) + ' weeks'}</strong>. Uses last week’s recurring service revenue; one-time payments increase cash without counting as ongoing income. New projects and hires change this forecast.</p>
     <details className="inline-details"><summary>Base cost breakdown</summary>
       <Metrics><Metric label="Reserved cloud">{formatMoney(view.cloudRentCents)} / week</Metric><Metric label="Employee payroll">{formatMoney(view.payrollCents)} / week</Metric>{ownedBaseCost > 0 && <Metric label="Owned hardware and facilities">{formatMoney(ownedBaseCost)} / week</Metric>}<Metric label="Founder and overhead">{formatMoney(CONTENT.opening.overheadCentsPerWeek)} / week</Metric></Metrics>
       <p className="small-note">Cloud rent includes energy and is paid even when idle. Payroll includes onboarding and idle weeks. Owned GPU work adds variable operating costs to these fixed bills.</p>

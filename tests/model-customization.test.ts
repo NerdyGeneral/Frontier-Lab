@@ -42,7 +42,7 @@ test('absent choices rebuild authentic historical plans exactly; neutral choices
   assert.ok(historicalRuns.length > 0, 'The authentic archived company contains a paid custom run.');
   for (const run of historicalRuns) {
     const rebuilt = buildCustomTrainingPlan(decoded.state, run.companyId, { baseModelId: run.baseModelId, packetId: run.packetId,
-      packetIds: run.plan!.corpus.packetIds, recipeId: run.recipeId, modelDesign: run.plan!.modelDesign!.spec }, CONTENT, run.startedWeek);
+      packetIds: run.plan!.corpus.packetIds, recipeId: run.recipeId, modelDesign: run.plan!.modelDesign!.spec }, CONTENT, run.startedWeek, run.plan!.foundationRights ?? null);
     assert.deepEqual(rebuilt.plan, run.plan);
     assert.equal(rebuilt.requiredWork, run.requiredWork); assert.equal(rebuilt.requiredMemory, run.requiredMemory);
   }

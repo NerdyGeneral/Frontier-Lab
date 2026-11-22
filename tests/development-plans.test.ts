@@ -10,6 +10,7 @@ import { assertDevelopmentPlansState } from '../src/core/development-plan-valida
 import { getWeeklyBaseCost } from '../src/core/selectors';
 import { DEFAULT_MODEL_DESIGN } from '../src/modules/model-design';
 import { developmentFeeSpent, developmentQuote } from '../src/modules/development-plans';
+import { getTrainingPreview } from '../src/modules/lab-planner';
 import { createCompanyModule } from '../src/modules/company';
 import { createComputeModule } from '../src/modules/compute';
 import { createLabModule } from '../src/modules/lab';
@@ -72,6 +73,35 @@ test('connected plan performs paid preparation, training and evaluation once, th
   assert.equal(record.completedWeek, game.slices.models.reports[record.reportId!].week);
   assert.deepEqual(game.slices.products.offers, {}, 'Delegation stops before any release decision.');
   const unchanged = structuredClone(record); game = step(step(game)); assert.deepEqual(plan(game), unchanged); assert.deepEqual(reload(game), game);
+});
+
+test('a completed custom design is rejected before a delegated plan consumes a week or active slot', () => {
+  let game = initial(true); const chosen = spec(game);
+  game = until(queue(game, chosen.training, 'completed-design'), state => state.slices.models.trainingRuns['training-completed-design']?.status === 'complete');
+  game = reload(game);
+  const repeat = { ...chosen, deadlineWeek: game.week + 40,
+    training: { ...chosen.training, modelDesign: { ...chosen.training.modelDesign!, name: 'Renamed repeat' } } };
+  assert.equal(getTrainingPreview(game, game.playerCompanyId, repeat.training).reason?.code, 'NO_IMPROVEMENT');
+  assert.equal(developmentQuote(game, repeat, CONTENT).training.reason?.code, 'NO_IMPROVEMENT');
+  const direct = submitCommand(game, repeat.training), delegated = submitCommand(game, { kind: 'start_development_plan', ...repeat });
+  assert.equal(direct.reason?.code, 'NO_IMPROVEMENT'); assert.equal(delegated.reason?.code, 'NO_IMPROVEMENT');
+  assert.equal(delegated.accepted, false); assert.equal(delegated.state, game);
+  assert.deepEqual(game.slices.models.developmentPlans ?? {}, {});
+});
+
+test('a queued custom design blocks direct and delegated duplicates but does not reject its own commit', () => {
+  let game = initial(true); const chosen = spec(game, 96 * U);
+  game = queue(game, chosen.training, 'queued-design');
+  assert.equal(getTrainingPreview(game, game.playerCompanyId, chosen.training).reason?.code, 'ALREADY_ACTIVE');
+  assert.equal(submitCommand(game, chosen.training).reason?.code, 'ALREADY_ACTIVE');
+  const delegated = submitCommand(game, { kind: 'start_development_plan', ...chosen });
+  assert.equal(delegated.accepted, false); assert.equal(delegated.reason?.code, 'ALREADY_ACTIVE'); assert.equal(delegated.state, game);
+  game = step(reload(game));
+  assert.equal(game.commandReceipts['queued-design'].status, 'accepted');
+  assert.equal(game.slices.models.trainingRuns['training-queued-design'].status, 'running');
+  assert.equal(submitCommand(game, { kind: 'start_development_plan', ...chosen }).reason?.code, 'ALREADY_ACTIVE');
+  assert.equal(game.slices.company.ledger.filter(fact => fact.id === 'training-queued-design:setup').length, 1);
+  assert.deepEqual(reload(game), game);
 });
 
 test('the advertised minimum deadline survives admission and permits the last evaluation week', () => {

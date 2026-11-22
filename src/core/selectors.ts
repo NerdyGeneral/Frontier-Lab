@@ -14,6 +14,16 @@ export function reservedCash(state: GameState, companyId = state.playerCompanyId
 export function getWeeklyBaseCost(state: GameState, content: GameContent = CONTENT, companyId = state.playerCompanyId): number {
   return checkedAdd(checkedAdd(mulDiv(state.slices.compute.fleets[companyId].cloudCU, content.opening.rentCentsPerCUWeek, RESOURCE_SCALE), content.opening.overheadCentsPerWeek), checkedAdd(getPayrollCents(state, companyId, content), getInfrastructureBaseCost(state, companyId, content)));
 }
+/** Last week's delivered recurring service, after credits. Briefs, agent jobs,
+ * batch deliveries and hardware/appliance sales remain cash receipts, but their
+ * one-time payments cannot fund every future week. Invoice histories also keep
+ * this estimate independent of the company ledger's bounded display history. */
+export function getRecentRecurringRevenueCents(state: Readonly<GameState>, companyId = state.playerCompanyId): number {
+  const products = state.slices.products;
+  return [...products.invoices, ...products.commercialInvoices, ...(products.assuranceInvoices ?? [])]
+    .filter(invoice => invoice.companyId === companyId && invoice.week === state.week)
+    .reduce((total, invoice) => checkedAdd(total, invoice.amountCents), 0);
+}
 export function trainingRunProgress(run: TrainingRun) {
   const design = run.plan?.preparationRequired ?? 0;
   const teacher = run.plan?.teacher?.requiredWork ?? 0;
@@ -69,7 +79,7 @@ export function getGameView(state: GameState, content: GameContent = CONTENT): G
     : { title: 'Serve trials and earn the first bill', detail: 'Keep serving compute available. Trials consume real work, and converted subscribers begin using and paying for the service the next week.' };
   const weeklyBaseCostCents = getWeeklyBaseCost(state, content), payrollCents = getPayrollCents(state, id, content);
   const committed = reservedCash(state), availableCashCents = Math.max(0, company.cashCents - committed);
-  const projectedIncome = company.lastWeek.revenueCents;
+  const projectedIncome = getRecentRecurringRevenueCents(state, id);
   const recentVariableCost = state.slices.company.ledger.filter(entry => entry.companyId === id && entry.week === state.week && entry.sourceId === 'owned-gpu-work' && entry.kind === 'expense').reduce((sum, entry) => checkedAdd(sum, entry.amountCents), 0);
   const deficit = weeklyBaseCostCents + recentVariableCost - projectedIncome;
   const training = Object.values(state.slices.models.trainingRuns).find(r => r.companyId === id && r.status === 'running');

@@ -1,6 +1,6 @@
 export { createInitialState, submitCommand, previewCommand, advanceWeek, validateState, runDiagnostics } from './engine';
 export { createDefaultModules } from './foundation-modules';
-export { serializeState, deserializeState, MAX_SNAPSHOT_BYTES, SnapshotTooLargeError } from './snapshot';
+export { serializeState, deserializeState, assertSnapshotCapacity, MAX_SNAPSHOT_BYTES, MAX_DECODED_SNAPSHOT_BYTES, SnapshotTooLargeError } from './snapshot';
 export { BrowserClock } from './clock';
 export { canonicalStateHash, canonicalStringify } from './canonical';
 export { drawNamed } from './random';

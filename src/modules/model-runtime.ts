@@ -14,7 +14,7 @@ export function hasCapabilityEvaluation(state: Readonly<GameState>, modelId: str
   const model = state.slices.models.versions[modelId];
   return !!model && Object.values(state.slices.models.reports).some(report => report.modelId === model.id && report.companyId === model.companyId && report.heldOut && isCapabilitySuite(report.suiteId));
 }
-/** Rights intersect along the whole ancestry DAG, including a distillation teacher. */
+/** Rights intersect through training ancestry and teachers; independent foundations start a new lineage. */
 export function inheritedModelRights(state: Readonly<GameState>, modelId: string, content: GameContent): { hosted: boolean; weights: boolean } {
   const visit = (id: string, path: ReadonlySet<string>): { hosted: boolean; weights: boolean } => {
     if (path.has(id)) return { hosted: false, weights: false };
@@ -29,7 +29,11 @@ export function inheritedModelRights(state: Readonly<GameState>, modelId: string
     }
     const run = model.trainingRunId ? state.slices.models.trainingRuns[model.trainingRunId] : undefined;
     if (!run || run.companyId !== model.companyId) return { hosted: false, weights: false };
-    const inherited = visit(run.baseModelId, next), rights = run.plan?.corpus.rights ?? run.evidence.rights;
+    // Historical runs retain their paid license semantics and captured release identities.
+    // A new foundation's selected base is only a comparison reference, not training input.
+    const inherited = run.plan?.kind === 'foundation' && run.plan.foundationRights === 'independent'
+      ? { hosted: true, weights: true } : visit(run.baseModelId, next);
+    const rights = run.plan?.corpus.rights ?? run.evidence.rights;
     const teacher = run.plan?.teacher ? visit(run.plan.teacher.modelId, next) : { hosted: true, weights: true };
     const replay = run.plan?.replay?.corpus.rights ?? { hosted: true, weights: true };
     const curriculum = run.plan?.curriculum?.tracks ?? [];

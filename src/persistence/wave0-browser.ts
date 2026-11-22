@@ -1,7 +1,7 @@
 import { CONTENT } from '../content/catalog';
 import { deserializeState, serializeState, SnapshotTooLargeError } from '../core/index';
 import type { GameState } from '../contracts/types';
-import { decodeRecoveryArchive, RecoveryArchiveError, writeRecoveryArchive } from './recovery-codec';
+import { compactRecoveryArchives, decodeRecoveryArchive, isRecoveryQuotaError, RecoveryArchiveError, writeRecoveryArchive } from './recovery-codec';
 export { RecoveryArchiveError } from './recovery-codec';
 
 const SAVE_KEY = 'frontier-lab.wave0.snapshot';
@@ -95,6 +95,20 @@ const RECOVERY_OPTIONS: readonly RecoveryOption[] = [
   { kind: 'previous', label: 'Export previous saved run', filename: 'frontier-lab-previous-save.json' },
 ];
 const RECOVERY_KEYS: Record<RecoveryKind, string> = { stored: SAVE_KEY, wave0: ORIGINAL_V1_KEY, wave1: ORIGINAL_V2_KEY, wave2: ORIGINAL_V3_KEY, wave3: ORIGINAL_V4_KEY, wave4: ORIGINAL_WAVE4_KEY, wave5: ORIGINAL_WAVE5_KEY, wave6: ORIGINAL_WAVE6_KEY, wave7: ORIGINAL_WAVE7_KEY, wave8: ORIGINAL_WAVE8_KEY, wave9: ORIGINAL_WAVE9_KEY, wave10: ORIGINAL_WAVE10_KEY, wave11: ORIGINAL_WAVE11_KEY, wave12: ORIGINAL_WAVE12_KEY, wave13: ORIGINAL_WAVE13_KEY, wave14: ORIGINAL_WAVE14_KEY, wave15: ORIGINAL_WAVE15_KEY, wave16: ORIGINAL_WAVE16_KEY, wave17: ORIGINAL_WAVE17_KEY, wave18: ORIGINAL_WAVE18_KEY, wave19: ORIGINAL_WAVE19_KEY, wave21: ORIGINAL_WAVE21_KEY, content023: ORIGINAL_CONTENT_023_KEY, content026: ORIGINAL_CONTENT_026_KEY, content027: ORIGINAL_CONTENT_027_KEY, content028: ORIGINAL_CONTENT_028_KEY, content029: ORIGINAL_CONTENT_029_KEY, content033: ORIGINAL_CONTENT_033_KEY, content034: ORIGINAL_CONTENT_034_KEY, content035: ORIGINAL_CONTENT_035_KEY, previous: PREVIOUS_KEY };
+const ARCHIVE_KEYS = Object.values(RECOVERY_KEYS).filter(key => key !== SAVE_KEY);
+
+function preserveRecoveryArchive(storage: Storage, key: string, text: string): void {
+  const existing = storage.getItem(key);
+  if (existing !== null) {
+    try { if (decodeRecoveryArchive(existing) === text) return; }
+    catch (error) { if (!(error instanceof RecoveryArchiveError)) throw error; }
+  }
+  try { writeRecoveryArchive(storage, key, text); }
+  catch (error) {
+    if (!isRecoveryQuotaError(error) || !compactRecoveryArchives(storage, ARCHIVE_KEYS.filter(archiveKey => archiveKey !== key))) throw error;
+    writeRecoveryArchive(storage, key, text);
+  }
+}
 
 export type StoredSnapshotWithBytes = Exclude<StoredSnapshot, { kind: 'loaded' }>
   | (Extract<StoredSnapshot, { kind: 'loaded' }> & { savedBytes: string });
@@ -131,7 +145,7 @@ export function browserSnapshotMatches(savedBytes: string): boolean {
 export function writeBrowserSnapshotWithBytes(state: GameState, options: { replace?: boolean } = {}): SnapshotWriteWithBytesResult {
   try {
     // Every supplied state still receives complete serialization/validation.
-    const next = serializeState(state, CONTENT);
+    let next = serializeState(state, CONTENT);
     const storage = window.localStorage, previous = storage.getItem(SAVE_KEY);
     if (previous !== null) {
       const prior = validatePreviousPrimary(storage, previous);
@@ -170,11 +184,28 @@ export function writeBrowserSnapshotWithBytes(state: GameState, options: { repla
         : prior.ok && prior.migratedFrom === 34 ? ORIGINAL_CONTENT_034_KEY
         : prior.ok && prior.migratedFrom === 35 ? ORIGINAL_CONTENT_035_KEY : null;
       if (originalKey !== null && storage.getItem(originalKey) === null) {
-        writeRecoveryArchive(storage, originalKey, previous);
+        preserveRecoveryArchive(storage, originalKey, previous);
       }
-      if (options.replace && previous !== next) writeRecoveryArchive(storage, PREVIOUS_KEY, previous);
+      if (options.replace && previous !== next) preserveRecoveryArchive(storage, PREVIOUS_KEY, previous);
     } else primaryValidation.delete(storage);
-    storage.setItem(SAVE_KEY, next);
+    try { storage.setItem(SAVE_KEY, next); }
+    catch (error) {
+      if (!isRecoveryQuotaError(error)) throw error;
+      // Leave the old primary in place until setItem succeeds. A compressed
+      // primary often suffices without touching any existing recovery copies.
+      const packed = serializeState(state, CONTENT, { compress: true });
+      if (packed !== next) {
+        next = packed;
+        try { storage.setItem(SAVE_KEY, next); }
+        catch (packedError) {
+          if (!isRecoveryQuotaError(packedError) || !compactRecoveryArchives(storage, ARCHIVE_KEYS)) throw packedError;
+          storage.setItem(SAVE_KEY, next);
+        }
+      } else {
+        if (!compactRecoveryArchives(storage, ARCHIVE_KEYS)) throw error;
+        storage.setItem(SAVE_KEY, next);
+      }
+    }
     // A failed archive or primary write must never prime the proposed bytes.
     rememberPrimary(storage, next, { ok: true });
     return { ok: true, savedBytes: next };

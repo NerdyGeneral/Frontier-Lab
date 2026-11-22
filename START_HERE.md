@@ -1,4 +1,4 @@
-# Frontier Lab 0.36 — source checkout
+# Frontier Lab 0.36.1 — source checkout
 
 This repository contains the complete source, game artwork, dependency lockfile,
 test fixtures, and verification notes for the published Frontier Lab game.
@@ -15,17 +15,18 @@ Generated builds and installed dependencies are created locally.
 For a production preview, run `npm run build` followed by `npm start`.
 Build again after changing the source. The repository README covers testing
 and the game architecture. The latest regression and compatibility evidence
-is in [the 0.36 QA notes](docs/GAMEPLAY_POLISH_QA.md).
+is in [the 0.36.1 fix notes](docs/BUGFIX_0.36.1.md).
 
 ## Bring an existing game with you
 
 On the hosted site, open Save and download your game. In the local copy,
 open Save and choose Load save to import the downloaded JSON. A campaign
-lives in the browser that played it and is exported separately.
+lives in the browser that played it and is exported separately. Large campaigns
+are compressed automatically inside the JSON save file; load these with
+Frontier Lab 0.36.1 or newer.
 
 Published game: https://frontier-lab.nerdygeneral.chatgpt.site/
 
-Imported from Sites version 47, build/content 0.36.0.
-Published source commit: c86f32cac61b0c0f31efeffcbd950ebc94f680e4.
-This import updates this getting-started document for a clean GitHub clone;
-the game code, assets, and tests match that published source.
+Build 0.36.1 fixes the reviewed saving and gameplay issues while preserving
+content version 0.36.0 and schema 5. Existing paid foundations keep their saved
+licenses; newly trained foundations start an independent license lineage.

@@ -9,7 +9,7 @@ import { checkedAdd, formatUnits, mulDiv } from '../core/math';
 import { DATA_COMMANDS, applyDataCommand, quoteDataCommand, validateDataCommand } from './lab-data';
 import { SYNTHETIC_COMMANDS, advanceSyntheticJobs, applySyntheticCommand, commitSyntheticJobs, quoteSyntheticCommand, resolveSyntheticJobs, syntheticRequests, validateSyntheticCommand } from './synthetic-data';
 import { BASIC_SUITE, createEvaluationReport, evaluationSuite } from './lab-evaluation';
-import { BASE_BEHAVIOR, DOMAINS, buildTrainingPlan, corpusFromPackets, expectedTrainingOutcome, existingRunTrainingIdentity, getTrainingPreview, trainingImprovementRejection, validateTrainingOptions } from './lab-planner';
+import { BASE_BEHAVIOR, DOMAINS, buildTrainingPlan, corpusFromPackets, expectedTrainingOutcome, getTrainingPreview, trainingImprovementRejection, validateTrainingOptions } from './lab-planner';
 import { hasResearch } from './research';
 import { MODEL_APPLICATION_COMMANDS, advanceModelApplications, applyModelApplication, modelApplicationRequests, quoteModelApplication, resolveModelApplications, trainingSupervision, validateModelApplication } from './applied-research';
 import { modelExecutionHints } from './model-runtime';
@@ -62,16 +62,8 @@ function validateLabCommand(state: Readonly<GameState>, command: GameCommand, co
   if ((SYNTHETIC_COMMANDS as readonly string[]).includes(p.kind)) return validateSyntheticCommand(state, command, content);
   if (p.kind === 'create_model_variant') return validateModelApplication(state, command);
   if (p.kind === 'start_training') {
-    const invalid = validateTrainingOptions(state, command.companyId, p, content); if (invalid) return invalid;
+    const invalid = validateTrainingOptions(state, command.companyId, p, content, command.id); if (invalid) return invalid;
     const run = newRun(state, command, content), base = state.slices.models.versions[p.baseModelId];
-    const previous = Object.values(state.slices.models.trainingRuns).find(other => other.companyId === command.companyId && existingRunTrainingIdentity(state, other, content) === run.plan!.identity);
-    if (previous) return rejection(previous.status === 'complete' ? 'NO_IMPROVEMENT' : 'ALREADY_ACTIVE', previous.status === 'complete'
-      ? 'You already have a model from this training plan. Repeating or renaming the same plan will not improve it or change its result.'
-      : 'This training plan is already in progress. Resume it to continue from its saved progress.');
-    if (queued(state, command, other => {
-      if (other.payload.kind !== 'start_training') return false;
-      return buildTrainingPlan(state, command.companyId, other.payload, content).plan.identity === run.plan!.identity;
-    })) return rejection('ALREADY_ACTIVE', 'This training plan is already queued.');
     const outcome = expectedTrainingOutcome(run, run.requiredWork, content);
     return trainingImprovementRejection(base, outcome, run.plan!.kind);
   }

@@ -11,7 +11,7 @@ import type { CommandPayload, DiagnosticResult, GameState } from '../contracts/t
 import {
   advanceWeek, BrowserClock, canonicalStateHash, createInitialState,
   deserializeState, formatMoney, getGameView, runDiagnostics,
-  serializeState, submitCommand, MAX_SNAPSHOT_BYTES, SnapshotTooLargeError,
+  serializeState, submitCommand, MAX_SNAPSHOT_BYTES, SnapshotTooLargeError, assertSnapshotCapacity,
 } from '../core/index';
 import {
   browserRecoveryOptions, openBrowserSession, readBrowserRecovery,
@@ -80,6 +80,7 @@ export default function FrontierLab() {
   const readyRef = useRef(false);
   const [writeBlocked, setWriteBlocked] = useState(false);
   const writeBlockedRef = useRef(false);
+  const saveFailedRef = useRef(false);
   const [saveStatus, setSaveStatus] = useState<SaveStatus>({ kind: 'waiting', message: 'Opening this lab…' });
   const [recoveries, setRecoveries] = useState<RecoveryOption[]>([]);
   const [migrationNotice, setMigrationNotice] = useState<MigrationSource | null>(null);
@@ -87,6 +88,7 @@ export default function FrontierLab() {
   const [error, setError] = useState('');
   const [diagnostics, setDiagnostics] = useState<DiagnosticResult | null>(null);
   const [choosingOrigin, setChoosingOrigin] = useState(false);
+  const choosingOriginRef = useRef(false);
   const [resetOpen, setResetOpen] = useState(false);
   const [pendingImport, setPendingImport] = useState<PendingImport | null>(null);
   const [transferBusy, setTransferBusy] = useState(false);
@@ -111,7 +113,7 @@ export default function FrontierLab() {
     observeResults(next);
     setGame(next);
     setDiagnostics(null);
-    if (sessionRef.current === 'owner' && !writeBlockedRef.current) {
+    if (sessionRef.current === 'owner' && !writeBlockedRef.current && !saveFailedRef.current) {
       setSaveStatus({ kind: 'waiting', message: sameWeek ? 'Saving your plan · Week ' + next.week + '…' : 'Saving Week ' + next.week + '…' });
     }
   }, [observeResults]);
@@ -126,6 +128,24 @@ export default function FrontierLab() {
     setPaused(true);
     if (message) setNotice(message);
   }, []);
+
+  const persistCurrentGame = useCallback((expected?: GameState) => {
+    if (!readyRef.current || sessionRef.current !== 'owner' || writeBlockedRef.current
+      || choosingOriginRef.current || transferRef.current || taskGateRef.current.busy
+      || expected && expected !== gameRef.current) return;
+    const current = gameRef.current;
+    const result = writeBrowserSnapshotWithBytes(current);
+    saveFailedRef.current = !result.ok;
+    if (result.ok) {
+      void saveResultsBinding(result.savedBytes);
+      void saveModelWorkspace(result.savedBytes);
+    } else {
+      pause('Autosave could not finish, so the lab is paused. Download your save or retry saving before resuming.');
+    }
+    setSaveStatus(result.ok ? { kind: 'saved', message: 'Saved in this browser · Week ' + current.week } : { kind: 'failed', message: result.error });
+    setRecoveries(browserRecoveryOptions(!result.ok));
+    return result;
+  }, [pause, saveResultsBinding, saveModelWorkspace]);
 
   const runPaintTask = useCallback((kind: OperationKind, message: string, operation: (state: GameState) => void, controllerRequired = true, onAborted?: (reason: string) => void) => {
     if (!readyRef.current || taskGateRef.current.busy || transferRef.current
@@ -177,6 +197,7 @@ export default function FrontierLab() {
     const close = openBrowserSession((mode) => {
       pause();
       const saved = readBrowserSnapshotWithBytes();
+      saveFailedRef.current = false;
       const effectiveMode = mode === 'owner' && saved.kind === 'unavailable' ? 'memory' : mode;
       const opened = saved.kind === 'loaded' ? withPassiveWorkforce(saved.state) : gameRef.current;
       openResultsSession({ game: opened, mode: effectiveMode,
@@ -189,7 +210,8 @@ export default function FrontierLab() {
         setMigrationNotice(saved.migratedFrom ?? null);
         setNotice('Your saved lab is open and paused. No time passed while you were away.');
       }
-      setChoosingOrigin((saved.kind === 'empty' || saved.kind === 'unavailable') && effectiveMode !== 'observer');
+      choosingOriginRef.current = (saved.kind === 'empty' || saved.kind === 'unavailable') && effectiveMode !== 'observer';
+      setChoosingOrigin(choosingOriginRef.current);
       const blocked = saved.kind === 'invalid';
       writeBlockedRef.current = blocked;
       setWriteBlocked(blocked);
@@ -224,17 +246,14 @@ export default function FrontierLab() {
   useEffect(() => {
     if (!hydrated || sessionMode !== 'owner' || writeBlocked || choosingOrigin || busyMessage) return;
     const timer = window.setTimeout(() => {
-      if (sessionRef.current !== 'owner' || !readyRef.current || writeBlockedRef.current || gameRef.current !== game) return;
-      const result = writeBrowserSnapshotWithBytes(game);
-      if (result.ok) { void saveResultsBinding(result.savedBytes); void saveModelWorkspace(result.savedBytes); }
-      setSaveStatus(result.ok ? { kind: 'saved', message: 'Saved in this browser · Week ' + game.week } : { kind: 'failed', message: result.error });
-      setRecoveries(browserRecoveryOptions(!result.ok));
+      persistCurrentGame(game);
     }, 200);
     return () => window.clearTimeout(timer);
-  }, [game, hydrated, sessionMode, writeBlocked, choosingOrigin, busyMessage, saveResultsBinding, saveModelWorkspace]);
+  }, [game, hydrated, sessionMode, writeBlocked, choosingOrigin, busyMessage, persistCurrentGame]);
 
   const step = useCallback((manual = false) => {
     if (!readyRef.current || !['owner', 'memory'].includes(sessionRef.current) || writeBlockedRef.current || transferRef.current || taskGateRef.current.busy) return;
+    if (sessionRef.current === 'owner' && saveFailedRef.current && !persistCurrentGame()?.ok) return;
     const previous = gameRef.current;
     if (previous.slices.company.companies[previous.playerCompanyId].arrearsCents > 0) {
       pause('Time is stopped because the company has unpaid bills.');
@@ -246,6 +265,14 @@ export default function FrontierLab() {
       if (!result.accepted) {
         pause();
         setError(result.reason?.message ?? 'This week could not finish. Your lab is still at the start of the week.');
+        return;
+      }
+      try { assertSnapshotCapacity(result.state, CONTENT); }
+      catch (error) {
+        pause();
+        setError(error instanceof SnapshotTooLargeError
+          ? 'The next week would exceed the supported save capacity. Your lab remains at Week ' + current.week + '; download this save before changing the plan.'
+          : 'The next week could not be checked for saving. Your current lab is unchanged.');
         return;
       }
       const firstSale = !getGameView(current, CONTENT).progress.firstSale && getGameView(result.state, CONTENT).progress.firstSale;
@@ -261,7 +288,7 @@ export default function FrontierLab() {
         pause('Your company ran out of money to pay its bills. You can review this run, download its save, or start a new lab.');
       }
     });
-  }, [commit, pause, runPaintTask]);
+  }, [commit, pause, runPaintTask, persistCurrentGame]);
 
   useEffect(() => { stepRef.current = step; }, [step]);
 
@@ -276,11 +303,7 @@ export default function FrontierLab() {
         const cancelled = taskGateRef.current.cancel();
         if (cancelled) { operationKindRef.current = null; setBusyMessage(''); }
         pause(cancelled ? 'The pending action was cancelled when this page was hidden. Review the lab before resuming.' : runningRef.current ? 'The lab paused when this page was hidden. Resume when you are ready.' : undefined);
-        if (readyRef.current && sessionRef.current === 'owner' && !writeBlockedRef.current) {
-          const result = writeBrowserSnapshotWithBytes(gameRef.current);
-          if (result.ok) { void saveResultsBinding(result.savedBytes); void saveModelWorkspace(result.savedBytes); }
-          if (!result.ok) setSaveStatus({ kind: 'failed', message: result.error });
-        }
+        persistCurrentGame();
       }
       clock.reset(performance.now());
     };
@@ -291,11 +314,12 @@ export default function FrontierLab() {
       clock.dispose();
       clockRef.current = null;
     };
-  }, [pause, saveResultsBinding, saveModelWorkspace]);
+  }, [pause, persistCurrentGame]);
 
   function toggleRunning() {
     if (!canAct || taskGateRef.current.busy) return;
     if (runningRef.current) { pause('The lab is paused.'); return; }
+    if (sessionRef.current === 'owner' && saveFailedRef.current && !persistCurrentGame()?.ok) return;
     setError('');
     runningRef.current = true;
     clockRef.current?.reset(performance.now());
@@ -400,7 +424,7 @@ export default function FrontierLab() {
     clockRef.current?.reset(performance.now());
     transferRef.current = true; setTransferBusy(true);
     try {
-      if (file.size > MAX_SNAPSHOT_BYTES) { setError('That save is larger than the 2 MB limit. Your current lab is safe.'); return; }
+      if (file.size > MAX_SNAPSHOT_BYTES) { setError('That save file is larger than the 2 MB import limit. Large campaigns use compressed save files. Your current lab is safe.'); return; }
       const result = deserializeState(await file.text(), CONTENT);
       if (!result.ok) { setError('Import rejected: ' + result.error + ' Your current lab is unchanged.'); return; }
       setError(''); setResetOpen(false);
@@ -416,6 +440,7 @@ export default function FrontierLab() {
     if (sessionRef.current === 'owner') {
       const result = writeBrowserSnapshotWithBytes(next, { replace: true });
       if (!result.ok) {
+        saveFailedRef.current = true;
         setSaveStatus({ kind: 'failed', message: result.error });
         setError('The new save could not be stored, so your current lab is still open. Download a backup and try again when browser storage works.');
         setRecoveries(browserRecoveryOptions(true));
@@ -425,9 +450,11 @@ export default function FrontierLab() {
     }
     replaceResultsTimeline({ game: next, mode: sessionRef.current, savedBytes });
     replaceModelWorkspace({ game: next, mode: sessionRef.current, savedBytes });
+    saveFailedRef.current = false;
     commit(next); setPanelEpoch(epoch => epoch + 1);
     if (sessionRef.current === 'owner') setSaveStatus({ kind: 'saved', message: 'Saved in this browser · Week ' + next.week });
     writeBlockedRef.current = false; setWriteBlocked(false);
+    choosingOriginRef.current = false;
     setChoosingOrigin(false); setPendingImport(null); setResetOpen(false); setError(''); setNotice(message);
     setMigrationNotice(migratedFrom ?? null); setRecoveries(browserRecoveryOptions());
   }
@@ -438,11 +465,7 @@ export default function FrontierLab() {
   }
 
   function retrySave() {
-    if (choosingOrigin || sessionRef.current !== 'owner' || writeBlockedRef.current || taskGateRef.current.busy || transferRef.current) return;
-    const result = writeBrowserSnapshotWithBytes(gameRef.current);
-    if (result.ok) { void saveResultsBinding(result.savedBytes); void saveModelWorkspace(result.savedBytes); }
-    setSaveStatus(result.ok ? { kind: 'saved', message: 'Saved in this browser · Week ' + gameRef.current.week } : { kind: 'failed', message: result.error });
-    setRecoveries(browserRecoveryOptions(!result.ok));
+    persistCurrentGame();
   }
 
   function checkSimulation() {

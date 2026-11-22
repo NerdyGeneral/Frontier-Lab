@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { canonicalStateHash, createInitialState, deserializeState, serializeState, validateState, MAX_SNAPSHOT_BYTES, SnapshotTooLargeError } from '../src/core/index';
+import { canonicalStateHash, createInitialState, deserializeState, serializeState, validateState, MAX_SNAPSHOT_BYTES } from '../src/core/index';
 import {
   browserRecoveryOptions, readBrowserRecovery,
   readBrowserSnapshot, writeBrowserSnapshot,
@@ -926,7 +926,7 @@ test('unavailable storage and invalid live states fail without promising a saved
   });
 });
 
-test('UTF-8 snapshot limits match import and prevent an oversized autosave from replacing the usable run', () => {
+test('UTF-8 input remains bounded while larger legal histories autosave and export losslessly with compression', () => {
   const storage = new MemoryStorage(), state = createInitialState(), original = serializeState(state);
   storage.seed(PRIMARY, original);
   for (let i = 0; i < 700; i++) {
@@ -943,14 +943,17 @@ test('UTF-8 snapshot limits match import and prevent an oversized autosave from 
   assert.equal(imported.ok, false);
   if (imported.ok) throw new Error('Expected the UTF-8 byte limit to reject import');
   assert.match(imported.error, /2 MB/);
-  assert.throws(() => serializeState(state), SnapshotTooLargeError);
+  const compressed = serializeState(state);
+  assert.equal(JSON.parse(compressed).format, 'frontier-lab-compressed');
+  assert.ok(Buffer.byteLength(compressed) < MAX_SNAPSHOT_BYTES);
+  const restored = deserializeState(compressed); assert.ok(restored.ok, restored.ok ? '' : restored.error);
+  assert.deepEqual(restored.state, state);
   inBrowser(storage, () => {
     const result = writeBrowserSnapshot(state);
-    assert.equal(result.ok, false);
-    if (result.ok) throw new Error('Expected an oversized save to be rejected');
-    assert.match(result.error, /2 MB save limit/);
-    assert.equal(storage.getItem(PRIMARY), original);
-    assert.deepEqual(storage.writes, []);
-    assert.equal(readBrowserSnapshot().kind, 'loaded');
+    assert.deepEqual(result, { ok: true });
+    assert.equal(storage.getItem(PRIMARY), compressed);
+    assert.deepEqual(storage.writes, [PRIMARY]);
+    const reopened = readBrowserSnapshot(); assert.equal(reopened.kind, 'loaded');
+    if (reopened.kind === 'loaded') assert.deepEqual(reopened.state, state);
   });
 });

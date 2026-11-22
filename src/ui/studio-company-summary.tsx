@@ -29,7 +29,7 @@ export function StudioCompanySummary({ summary, disabled = false, onOpenPanel }:
       compactLabel: 'Runway', compactValue: summary.runwayWeeks === null ? 'Costs covered' : summary.runwayWeeks.toLocaleString('en-US'),
       compactUnit: summary.runwayWeeks === null ? '' : summary.runwayWeeks === 1 ? 'week' : 'weeks',
       detail: 'At current pace', action: 'View finances',
-      help: 'This estimate uses available cash, current base costs, recent GPU running costs and last week’s revenue. New spending and hires can change it.',
+      help: 'This estimate uses available cash, current base costs, recent GPU running costs and last week’s recurring service revenue. One-time payments increase cash but do not count as ongoing income. New spending and hires can change it.',
     },
     {
       id: 'team', label: 'Team', Icon: Users, panel: 'people',

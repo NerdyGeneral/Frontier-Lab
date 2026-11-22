@@ -19,29 +19,84 @@ import { migrateWave23State, migrateWave26State, migrateWave27State, migrateWave
 import { CONTENT } from '../content/catalog';
 import { canonicalStateHash } from './canonical';
 import { validateState } from './validation';
+import { gzipSync } from 'fflate';
+import { decodeBase64, encodeBase64, gunzipBounded } from './bounded-gzip';
 import { LEGACY_CONTENT_VERSION, LEGACY_SCHEMA_VERSION, migrateWave0State, migrateWave1State, migrateWave2State, migrateWave3State, migrateWave4State, migrateWave5State, migrateWave6State, migrateWave7State, migrateWave8State, migrateWave9State, migrateWave10State, migrateWave11State, migrateWave12State, migrateWave13State, migrateWave14State, migrateWave15State, migrateWave16State, migrateWave17State, migrateWave18State, migrateWave19State, migrateWave21State, WAVE1_CONTENT_VERSION, WAVE2_CONTENT_VERSION, WAVE3_CONTENT_VERSION, WAVE4_CONTENT_VERSION, WAVE5_CONTENT_VERSION, WAVE6_CONTENT_VERSION, WAVE7_CONTENT_VERSION, WAVE8_CONTENT_VERSION, WAVE9_CONTENT_VERSION, WAVE10_CONTENT_VERSION, WAVE11_CONTENT_VERSION, WAVE12_CONTENT_VERSION, WAVE13_CONTENT_VERSION, WAVE14_CONTENT_VERSION, WAVE15_CONTENT_VERSION, WAVE16_CONTENT_VERSION, WAVE17_CONTENT_VERSION, WAVE18_CONTENT_VERSION, WAVE19_CONTENT_VERSION } from './migration';
 
 export type SnapshotResult = { ok: true; state: GameState; migratedFrom?: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 22 | 24 | 27 | 28 | 29 | 30 | 33 | 34 | 35 } | { ok: false; error: string };
 export const MAX_SNAPSHOT_BYTES = 2_000_000;
+export const MAX_DECODED_SNAPSHOT_BYTES = 32 * 1024 * 1024;
+const COMPRESSED_FORMAT = 'frontier-lab-compressed';
+const snapshotEncoder = new TextEncoder();
 export class SnapshotTooLargeError extends Error {
-  constructor() { super('This lab exceeds the 2 MB save limit. The previous saved copy is unchanged.'); this.name = 'SnapshotTooLargeError'; }
+  constructor(bound: 'encoded' | 'decoded' = 'encoded') {
+    super(bound === 'decoded'
+      ? 'This lab exceeds the 32 MiB decoded save limit. The previous saved copy is unchanged.'
+      : 'This lab cannot fit within the 2 MB compressed save-file limit. The previous saved copy is unchanged.');
+    this.name = 'SnapshotTooLargeError';
+  }
 }
 
-export function serializeState(state: GameState, content: GameContent = CONTENT): string {
+function snapshotEnvelope(state: GameState, content: GameContent, checksum: string) {
+  return { format: 'frontier-lab', schemaVersion: SCHEMA_VERSION, contentVersion: content.version, checksum, state };
+}
+
+function decodedSnapshotBytes(compact: string): Uint8Array {
+  if (compact.length > MAX_DECODED_SNAPSHOT_BYTES) throw new SnapshotTooLargeError('decoded');
+  const bytes = snapshotEncoder.encode(compact);
+  if (bytes.byteLength > MAX_DECODED_SNAPSHOT_BYTES) throw new SnapshotTooLargeError('decoded');
+  return bytes;
+}
+
+function compressedSnapshot(bytes: Uint8Array): string {
+  const payload = encodeBase64(gzipSync(bytes, { level: 6, mtime: 0 }));
+  const packed = JSON.stringify({ format: COMPRESSED_FORMAT, version: 1, encoding: 'gzip-base64', decodedBytes: bytes.byteLength, payload });
+  // All wrapper fields and base64 are ASCII, so code units equal UTF-8 bytes.
+  if (packed.length > MAX_SNAPSHOT_BYTES) throw new SnapshotTooLargeError();
+  return packed;
+}
+
+/** A capacity check for an already validated engine result. It does not replace
+ * validation when a state is saved. Ordinary weeks need only a compact size pass. */
+export function assertSnapshotCapacity(state: GameState, content: GameContent = CONTENT): void {
+  const envelope = snapshotEnvelope(state, content, '00000000');
+  const bytes = decodedSnapshotBytes(JSON.stringify(envelope));
+  if (bytes.byteLength <= MAX_SNAPSHOT_BYTES) return;
+  // The checksum has a fixed width, but its real bytes matter to compressed size.
+  envelope.checksum = canonicalStateHash(state);
+  compressedSnapshot(decodedSnapshotBytes(JSON.stringify(envelope)));
+}
+
+export function serializeState(state: GameState, content: GameContent = CONTENT, options: { compress?: boolean } = {}): string {
   const invalid = validateState(state, content); if (invalid.length) throw new Error(invalid[0].message);
-  const envelope = { format: 'frontier-lab', schemaVersion: SCHEMA_VERSION, contentVersion: content.version, checksum: canonicalStateHash(state), state };
-  const encoder = new TextEncoder(), text = JSON.stringify(envelope, null, 2);
-  // Preserve existing save bytes while they fit. Larger legal histories can omit
-  // formatting whitespace without losing evidence or increasing the import bound.
-  if (encoder.encode(text).byteLength <= MAX_SNAPSHOT_BYTES) return text;
-  const compact = JSON.stringify(envelope);
-  if (encoder.encode(compact).byteLength > MAX_SNAPSHOT_BYTES) throw new SnapshotTooLargeError();
-  return compact;
+  const envelope = snapshotEnvelope(state, content, canonicalStateHash(state));
+  const compact = JSON.stringify(envelope), bytes = decodedSnapshotBytes(compact);
+  if (bytes.byteLength > MAX_SNAPSHOT_BYTES) return compressedSnapshot(bytes);
+  // Keep every existing small save byte-for-byte, including its whitespace.
+  const pretty = JSON.stringify(envelope, null, 2);
+  const text = snapshotEncoder.encode(pretty).byteLength <= MAX_SNAPSHOT_BYTES ? pretty : compact;
+  if (!options.compress) return text;
+  // A quota retry may also compress a small save. Incompressible small inputs
+  // remain valid ordinary JSON instead of acquiring a stricter size limit.
+  try {
+    const packed = compressedSnapshot(bytes);
+    return packed.length < snapshotEncoder.encode(text).byteLength ? packed : text;
+  } catch (error) {
+    if (!(error instanceof SnapshotTooLargeError)) throw error;
+    return text;
+  }
 }
 export function deserializeState(text: string, content: GameContent = CONTENT): SnapshotResult {
   try {
     if (typeof text !== 'string' || text.length > MAX_SNAPSHOT_BYTES || new TextEncoder().encode(text).byteLength > MAX_SNAPSHOT_BYTES) return { ok: false, error: 'Choose a Frontier Lab snapshot smaller than 2 MB.' };
-    const data = JSON.parse(text);
+    let data = JSON.parse(text);
+    if (data?.format === COMPRESSED_FORMAT) {
+      if (data.version !== 1 || data.encoding !== 'gzip-base64' || typeof data.payload !== 'string' || Object.keys(data).length !== 5) return { ok: false, error: 'This compressed snapshot format is not supported by this build.' };
+      if (!Number.isSafeInteger(data.decodedBytes) || data.decodedBytes < 1 || data.decodedBytes > MAX_DECODED_SNAPSHOT_BYTES) return { ok: false, error: 'This compressed snapshot exceeds the 32 MiB decoded save limit or declares an invalid length.' };
+      const compressed = decodeBase64(data.payload, MAX_SNAPSHOT_BYTES);
+      const unpacked = gunzipBounded(compressed, data.decodedBytes, MAX_DECODED_SNAPSHOT_BYTES);
+      data = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(unpacked));
+    }
     if (data?.format !== 'frontier-lab') return { ok: false, error: 'This snapshot format is not supported by this build.' };
     // Verify the original state before migration can add or replace any field.
     if (typeof data.checksum !== 'string' || canonicalStateHash(data.state) !== data.checksum) return { ok: false, error: 'The snapshot checksum does not match. Your current company has not changed.' };

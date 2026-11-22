@@ -119,18 +119,21 @@ function anchorModel(state: Readonly<GameState>, model: ModelVersion): ModelVers
 function nominalRecipe(options: TrainingOptions, content: GameContent): TrainingRecipe {
   return TRAINING_RECIPES.find(recipe => recipe.id === (options.recipeId ?? content.firstTraining.id)) ?? TRAINING_RECIPES[0];
 }
-export function ordinaryTrainingIdentity(state: Readonly<GameState>, companyId: string, options: TrainingOptions, recipe: TrainingRecipe, corpus: CorpusEvidence): string {
+export function ordinaryTrainingIdentity(state: Readonly<GameState>, companyId: string, options: TrainingOptions, recipe: TrainingRecipe, corpus: CorpusEvidence,
+  foundationRights?: TrainingPlan['foundationRights']): string {
   const base = state.slices.models.versions[options.baseModelId];
   return 'training-identity-' + canonicalStateHash({
     companyId, lineage: recipe.kind === 'foundation' ? recipe.family : (base ? lineageId(state, base) : options.baseModelId),
+    ...(recipe.kind === 'foundation' && foundationRights ? { foundationRights } : {}),
     recipe: recipe.id, evidence: corpus.fingerprint,
     targetTier: options.profile === 'ambitious' && ['adaptation', 'foundation'].includes(recipe.kind) ? 'ambitious' : 'standard',
     ...((options.architecture ?? (recipe.kind === 'foundation' ? 'dense' : base?.architecture)) === 'sparse' ? { architecture: 'sparse' } : {}),
     ...(recipe.kind === 'distillation' ? { teacher: options.teacherModelId, domain: options.teacherDomain } : {}),
   });
 }
-export function trainingIdentity(state: Readonly<GameState>, companyId: string, options: TrainingOptions, recipe: TrainingRecipe, corpus: CorpusEvidence): string {
-  const ordinary = ordinaryTrainingIdentity(state, companyId, options, recipe, corpus);
+export function trainingIdentity(state: Readonly<GameState>, companyId: string, options: TrainingOptions, recipe: TrainingRecipe, corpus: CorpusEvidence,
+  foundationRights?: TrainingPlan['foundationRights']): string {
+  const ordinary = ordinaryTrainingIdentity(state, companyId, options, recipe, corpus, foundationRights);
   if (options.replay !== undefined && !replayChoiceRejection(options.replay))
     return replayAdmissionIdentity(ordinary, options.replay, getCorpusEvidence(state, companyId, options.replay.packetIds));
   if (options.curriculum !== undefined && !curriculumChoiceRejection(options.curriculum))
@@ -144,10 +147,21 @@ export function existingRunTrainingIdentity(state: Readonly<GameState>, run: Tra
   const recipe = TRAINING_RECIPES.find(item => item.id === run.recipeId) ?? TRAINING_RECIPES.find(item => item.id === content.firstTraining.id) ?? TRAINING_RECIPES[0];
   return trainingIdentity(state, run.companyId, { baseModelId: run.baseModelId, packetId: run.packetId, recipeId: run.recipeId }, recipe, corpusFromPackets([evidence]));
 }
+/** Preview, direct admission and delegated plans share the same existing/queued identity boundary. */
+function trainingIdentityRejection(state: Readonly<GameState>, companyId: string, identity: string, content: GameContent, commandId?: string): Rejection | undefined {
+  const previous = Object.values(state.slices.models.trainingRuns).find(run => run.companyId === companyId && existingRunTrainingIdentity(state, run, content) === identity);
+  if (previous) return { code: previous.status === 'complete' ? 'NO_IMPROVEMENT' : 'ALREADY_ACTIVE', message: previous.status === 'complete'
+    ? 'You already have a model from this training plan. Repeating or renaming the same plan will not improve it or change its result.'
+    : 'This training plan is already in progress. Resume it to continue from its saved progress.' };
+  if (state.queuedCommands.some(other => other.id !== commandId && other.companyId === companyId && other.payload.kind === 'start_training'
+    && buildTrainingPlan(state, companyId, other.payload, content).plan.identity === identity))
+    return { code: 'ALREADY_ACTIVE', message: 'This training plan is already queued.' };
+}
 export interface PlannedTraining { plan: TrainingPlan; recipe: TrainingRecipe; requiredWork: number; requiredMemory: number; anchorScores: CapabilityScores; anchorReliabilityBps: number; evidence: DataPacket }
 export function buildTrainingPlan(state: Readonly<GameState>, companyId: string, options: TrainingOptions, content: GameContent = CONTENT, saveAdjustments = false): PlannedTraining {
   if (options.modelDesign) return buildCustomTrainingPlan(state, companyId, options, content);
   const recipe = nominalRecipe(options, content), base = state.slices.models.versions[options.baseModelId] ?? content.seedModel;
+  const foundationRights = recipe.kind === 'foundation' ? 'independent' as const : undefined;
   const corpus = getCorpusEvidence(state, companyId, options.packetIds?.length ? options.packetIds : [options.packetId]);
   const family = recipe.family ?? base.family;
   const inheritsDesign = !!base.modelDesign && !['foundation', 'distillation'].includes(recipe.kind);
@@ -176,7 +190,7 @@ export function buildTrainingPlan(state: Readonly<GameState>, companyId: string,
   // policy source has no authored repeated-processing discount.
   const deduplication = recipe.kind === 'policy' ? undefined : trainingDeduplicationReceipt(corpus.packetIds.map(id => state.slices.data.packets[id]), requiredWork);
   if (deduplication) requiredWork -= deduplication.savedWorkCUw;
-  const ordinaryIdentity = ordinaryTrainingIdentity(state, companyId, options, recipe, corpus);
+  const ordinaryIdentity = ordinaryTrainingIdentity(state, companyId, options, recipe, corpus, foundationRights);
   const replay = options.replay !== undefined && !replayChoiceRejection(options.replay)
     ? createTrainingReplayReceipt(state, base, options.replay, getCorpusEvidence(state, companyId, options.replay.packetIds), ordinaryIdentity, nominalFocusWorkCUw, requiredWork) : null;
   if (replay) requiredWork = checkedAdd(requiredWork, replay.replayWorkCUw);
@@ -187,7 +201,7 @@ export function buildTrainingPlan(state: Readonly<GameState>, companyId: string,
   const checkpoints = options.automatedCheckpoints && hasResearch(state, companyId, 'R3')
     ? Array.from({ length: 10 }, (_, index) => ({ atBps: (index + 1) * 1000, overheadWork: [4, 9].includes(index) ? 0 : U / 4 }))
     : [{ atBps: 5000, overheadWork: 0 }, { atBps: 10000, overheadWork: 0 }];
-  const identity = trainingIdentity(state, companyId, options, recipe, corpus), savedAdjustments = zeros();
+  const identity = trainingIdentity(state, companyId, options, recipe, corpus, foundationRights), savedAdjustments = zeros();
   for (const domain of DOMAINS) {
     if (trainedProperties) targets[domain] = Math.min(design.ceilings[domain], targets[domain] + profileData.targetBonusBps);
     if (trainedProperties && options.profile && saveAdjustments) {
@@ -203,6 +217,7 @@ export function buildTrainingPlan(state: Readonly<GameState>, companyId: string,
   const adapter = options.asAdapter ? getAdapterTrainingReceipt(state, companyId, base.id) : undefined;
   const planner = recipe.kind === 'planning' ? plannerTarget(base.planner) : recipe.kind !== 'foundation' && base.planner ? structuredClone(base.planner) : undefined;
   const plan: TrainingPlan = {
+    ...(foundationRights ? { foundationRights } : {}),
     recipeName: recipe.name, kind: recipe.kind, profile, profileApplied: trainedProperties && !!options.profile, family, architecture, residentMU: adapter ? adapter.baseResidentMU + adapter.adapterMemoryMU : inheritsDesign ? base.residentMU : architecture === 'sparse' ? mulDiv(design.residentMU, SPARSE_DESIGN.residentMemoryBps, 10000) : design.residentMU,
     ...(teacher ? { teacher: { modelId: teacher.id, domain: teacherDomain, scoreBps: teacher.capabilityBps[teacherDomain], studentAnchorBps: foundationAnchor[teacherDomain], requiredWork: mulDiv(4 * U * FAMILY_SERVING_MULTIPLIER[teacher.family], modelWorkBps(teacher), 10000), residentMU: teacher.residentMU, rights: inheritedModelRights(state, teacher.id, content) } } : {}),
     lineageId: recipe.kind === 'foundation' ? 'foundation-' + identity : (lineageId(state, base) ?? base.id), identity, corpus,
@@ -298,7 +313,7 @@ export function trainingBaseUnavailableReason(state: Readonly<GameState>, modelI
     ?? validateAdapterTrainingOption(state, owner, modelId, 'adaptation', false)?.message;
 }
 
-export function validateTrainingOptions(state: Readonly<GameState>, companyId: string, options: TrainingOptions, content: GameContent = CONTENT): Rejection | undefined {
+export function validateTrainingOptions(state: Readonly<GameState>, companyId: string, options: TrainingOptions, content: GameContent = CONTENT, commandId?: string): Rejection | undefined {
   if (options.replay !== undefined && options.curriculum !== undefined) return { code: 'INVALID_COMMAND', message: 'Choose one-skill replay or a two-skill curriculum for this run, not both.' };
   const base = state.slices.models.versions[options.baseModelId];
   const baseProblem = trainingBaseRejection(state, companyId, base, content);
@@ -310,7 +325,8 @@ export function validateTrainingOptions(state: Readonly<GameState>, companyId: s
     if ([STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION].includes(state.contentVersion)) {
       const syntheticReason = validateSyntheticTraining(state, companyId, options); if (syntheticReason) return syntheticReason;
     }
-    return validateCustomTrainingOptions(state, companyId, options, content);
+    const invalid = validateCustomTrainingOptions(state, companyId, options, content); if (invalid) return invalid;
+    return trainingIdentityRejection(state, companyId, buildCustomTrainingPlan(state, companyId, options, content).plan.identity, content, commandId);
   }
   const recipe = TRAINING_RECIPES.find(item => item.id === (options.recipeId ?? content.firstTraining.id));
   if (!recipe) return { code: 'INVALID_COMMAND', message: 'Choose an available training method.' };
@@ -375,12 +391,8 @@ export function validateTrainingOptions(state: Readonly<GameState>, companyId: s
   }
   if (['behavior', 'calibration', 'planning'].includes(recipe.kind) && !corpus.behaviorUnits) return { code: 'NOT_READY', message: 'Select prepared behavior cases for this recipe.' };
   if (recipe.kind === 'policy' && !policyEvidenceFromPackets(corpus.packetIds.map(id => state.slices.data.packets[id])).distinctPairs) return { code: 'NOT_READY', message: 'Choose prepared Policy contrast pairs. Ordinary behavior cases and customer feedback do not include the required allow/refuse labels.' };
-  const identity = trainingIdentity(state, companyId, options, recipe, corpus);
-  const previous = Object.values(state.slices.models.trainingRuns).find(run => run.companyId === companyId && existingRunTrainingIdentity(state, run, content) === identity);
-  if (previous) return { code: previous.status === 'complete' ? 'NO_IMPROVEMENT' : 'ALREADY_ACTIVE', message: previous.status === 'complete'
-    ? 'You already have a model from this training plan. Repeating the plan will not improve it or change its result.'
-    : 'This model already has training in progress. Resume the run if it is paused.' };
-  return;
+  const identity = trainingIdentity(state, companyId, options, recipe, corpus, recipe.kind === 'foundation' ? 'independent' : undefined);
+  return trainingIdentityRejection(state, companyId, identity, content, commandId);
 }
 export function trainingImprovementRejection(base: ModelVersion, outcome: ReturnType<typeof expectedTrainingOutcome>, kind: TrainingRecipe['kind']): Rejection | undefined {
   // Foundations are independently initialized; the comparison model cannot

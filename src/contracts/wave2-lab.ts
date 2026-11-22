@@ -56,6 +56,8 @@ export interface CorpusEvidence {
 export interface TrainingPlan {
   modelDesign?: import('./model-design').ModelDesignReceipt;
   advanced?: AdvancedTrainingReceipt;
+  /** New foundations use only their own evidence rights. Absent on historical paid runs. */
+  foundationRights?: 'independent';
   /** Frozen parent scores for a continued adaptation. Omitted on historical runs. */
   parentScores?: { capabilityBps: CapabilityScores; reliabilityBps: number };
   workspace?: TrainingWorkspace;

@@ -140,6 +140,7 @@ export function assertWave2LabState(state: GameState, content: GameContent): voi
       continue;
     }
     const plan = run.plan; record(plan, 'Frozen training plan');
+    check(plan.foundationRights === undefined || (plan.kind === 'foundation' && plan.foundationRights === 'independent'), 'Only a new foundation can start an independent rights lineage.');
     assertSyntheticTraining(state, run);
     check(plan.recipeName === recipe!.name && plan.kind === recipe!.kind && ['dense', 'sparse'].includes(plan.architecture), 'Training recipe or architecture changed after admission.');
     check(Object.hasOwn(FAMILY_DESIGNS, plan.family) && (recipe!.family ? plan.family === recipe!.family : plan.family === base.family), 'A specialization changed model size.');
@@ -213,8 +214,8 @@ export function assertWave2LabState(state: GameState, content: GameContent): voi
       architecture: plan.architecture, ...(plan.teacher ? { teacherModelId: plan.teacher.modelId, teacherDomain: plan.teacher.domain } : {}),
       ...(plan.replay ? { replay: { domain: plan.replay.domain, shareBps: plan.replay.shareBps, packetIds: plan.replay.corpus.packetIds } } : {}),
       ...(plan.curriculum ? { curriculum: { shareBps: plan.curriculum.shareBps, tracks: plan.curriculum.tracks.map(track => ({ domain: track.domain, packetIds: track.corpus.packetIds })) as import('../contracts/wave17-curriculum').TrainingCurriculumChoice['tracks'] } } : {}) };
-    const ordinaryIdentity = ordinaryTrainingIdentity(state, run.companyId, identityOptions, recipe!, corpus);
-    const identity = trainingIdentity(state, run.companyId, identityOptions, recipe!, corpus);
+    const ordinaryIdentity = ordinaryTrainingIdentity(state, run.companyId, identityOptions, recipe!, corpus, plan.foundationRights);
+    const identity = trainingIdentity(state, run.companyId, identityOptions, recipe!, corpus, plan.foundationRights);
     assertTrainingCurriculum(state, run, ordinaryIdentity, nominalFocusWorkCUw, focusWorkCUw, content);
     if (plan.curriculum === undefined) assertTrainingReplay(state, run, ordinaryIdentity, nominalFocusWorkCUw, focusWorkCUw, content);
     check(plan.identity === identity && !trainingIdentities.has(plan.identity), 'Training identity was changed or repeated to reroll an outcome.'); trainingIdentities.add(plan.identity);

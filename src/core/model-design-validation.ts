@@ -9,9 +9,10 @@ const same = (a: unknown, b: unknown): boolean => canonicalStateHash(a) === cano
 export function assertCustomTrainingRun(state: GameState, run: TrainingRun, content: GameContent, identities: Set<string>): void {
   const plan = run.plan, spec = plan?.modelDesign?.spec;
   check(plan && spec && isCustomTrainingRecipe(run.recipeId) && !modelDesignShapeRejection(spec), 'Custom training needs a valid immutable model design.');
+  check(plan!.foundationRights === undefined || (plan!.kind === 'foundation' && plan!.foundationRights === 'independent'), 'Only a new foundation can start an independent rights lineage.');
   check(run.recipeId === `custom-model-${spec!.mode}` && !modelDesignRejection(state, run.companyId, run.baseModelId, spec!, run.startedWeek), 'Custom training used an unavailable model design or unearned research.');
   const expected = buildCustomTrainingPlan(state, run.companyId, { baseModelId: run.baseModelId, packetId: run.packetId,
-    packetIds: plan!.corpus.packetIds, recipeId: run.recipeId, modelDesign: spec }, content, run.startedWeek);
+    packetIds: plan!.corpus.packetIds, recipeId: run.recipeId, modelDesign: spec }, content, run.startedWeek, plan!.foundationRights ?? null);
   check(same(plan, expected.plan), 'Custom model targets, architecture, evidence or research changed after admission.');
   check(run.requiredWork === expected.requiredWork && run.requiredMemory === expected.requiredMemory
     && same(run.anchorScores, expected.anchorScores) && run.anchorReliabilityBps === expected.anchorReliabilityBps

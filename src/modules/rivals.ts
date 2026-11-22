@@ -232,8 +232,12 @@ function planRivalCampaigns(state: Readonly<GameState>, ctx: ModuleContext): Dom
     if (needsCapacity && plannedCapacity <= fleet.cloudCU + fleet.ownedCU) {
       const remaining = fleet.cloudCU + fleet.ownedCU - desiredServing;
       const research = campaign.tactics ? Math.max(minimumResearch, Math.min(fleet.allocation.research, remaining - minimumDevelopment)) : Math.min(fleet.allocation.research, remaining);
+      // Preserve the engineering budget, including a floor for already-paid
+      // work. Filling every spare CU would undo a cash-recovery trim before
+      // the following plan can release its idle cloud reservation.
+      const development = campaign.tactics ? Math.max(minimumDevelopment, Math.min(fleet.allocation.development, remaining - research)) : Math.max(0, remaining - research);
       if (desiredServing > fleet.allocation.serving || campaign.tactics && (fleet.allocation.research < minimumResearch || fleet.allocation.development < minimumDevelopment))
-        propose({ kind: 'allocate_compute', serving: desiredServing, research, development: Math.max(0, remaining - research) }, campaign.tactics
+        propose({ kind: 'allocate_compute', serving: desiredServing, research, development }, campaign.tactics
           ? 'Reserved serving headroom while retaining a small funded engineering budget.' : 'Moved existing capacity to protect customer service.');
     }
     if (!action && (campaign.tactics ? failing || needsCapacity && plannedCapacity > fleet.cloudCU + fleet.ownedCU : failing || desiredServing > fleet.cloudCU + fleet.ownedCU) && fleet.cloudCU < ctx.content.firstSale.maxCloudCU)

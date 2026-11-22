@@ -8,7 +8,7 @@ import type { CommandPayload, GameState } from '../src/contracts/types';
 import { RESOURCE_SCALE as U } from '../src/contracts/types';
 import { advanceWeek, submitCommand } from '../src/core/engine';
 import { canonicalStateHash } from '../src/core/canonical';
-import { deserializeState, serializeState, MAX_SNAPSHOT_BYTES, SnapshotTooLargeError } from '../src/core/snapshot';
+import { deserializeState, serializeState, MAX_SNAPSHOT_BYTES } from '../src/core/snapshot';
 import { validateState } from '../src/core/validation';
 import { getComputeCostView } from '../src/modules/compute-costs';
 import { getReviewableFeedbackStudy } from '../src/modules/feedback';
@@ -214,8 +214,12 @@ test('W12-N01: an earned company audits two profiles, pays recurring GPU costs, 
   assert.deepEqual(validateState(oversized, CONTENT), []);
   const oversizedCompact = JSON.stringify(envelopeFor(oversized));
   assert.ok(Buffer.byteLength(oversizedCompact) > MAX_SNAPSHOT_BYTES);
-  assert.throws(() => serializeState(oversized), SnapshotTooLargeError);
-  assert.equal(deserializeState(oversizedCompact).ok, false, 'Compacting must not enlarge the accepted UTF-8 input boundary.');
+  const compressedSave = serializeState(oversized);
+  assert.equal(JSON.parse(compressedSave).format, 'frontier-lab-compressed');
+  assert.ok(Buffer.byteLength(compressedSave) < MAX_SNAPSHOT_BYTES);
+  const largerHistory = deserializeState(compressedSave); assert.ok(largerHistory.ok, largerHistory.ok ? '' : largerHistory.error);
+  assert.deepEqual(largerHistory.state, oversized);
+  assert.equal(deserializeState(oversizedCompact).ok, false, 'Compression must not enlarge the accepted UTF-8 transport boundary.');
 
   const primaryKey = 'frontier-lab.wave0.snapshot', priorRaw = readFileSync(join(__dirname, 'fixtures/wave11-snapshot.json'), 'utf8');
   const stored = new Map<string, string>([[primaryKey, priorRaw]]), writes: string[] = [];
@@ -233,10 +237,11 @@ test('W12-N01: an earned company audits two profiles, pays recurring GPU costs, 
     const reopened = readBrowserSnapshot(); assert.equal(reopened.kind, 'loaded');
     if (reopened.kind !== 'loaded') throw new Error('Expected the compacted legal history to reopen.');
     assert.deepEqual(reopened.state, saveBranch.state); assert.equal(reopened.migratedFrom, undefined);
-    const rejected = writeBrowserSnapshot(oversized); assert.equal(rejected.ok, false);
-    if (rejected.ok) throw new Error('Expected a truly oversized save to fail.');
-    assert.match(rejected.error, /2 MB save limit/); assert.equal(stored.get(primaryKey), compactSave);
-    assert.deepEqual(writes, ['frontier-lab.wave11.original', primaryKey], 'Oversized attempts must preserve the last usable compacted save.');
+    assert.deepEqual(writeBrowserSnapshot(oversized), { ok: true }); assert.equal(stored.get(primaryKey), compressedSave);
+    const continued = readBrowserSnapshot(); assert.equal(continued.kind, 'loaded');
+    if (continued.kind === 'loaded') assert.deepEqual(continued.state, oversized);
+    assert.equal(readBrowserRecovery('wave11')!.text, priorRaw);
+    assert.deepEqual(writes, ['frontier-lab.wave11.original', primaryKey, primaryKey], 'Larger histories remain recoverable without discarding prior evidence.');
   } finally {
     if (previousWindow) Object.defineProperty(globalThis, 'window', previousWindow);
     else Reflect.deleteProperty(globalThis, 'window');
@@ -249,6 +254,6 @@ test('W12-N01: an earned company audits two profiles, pays recurring GPU costs, 
         'Existing pretty saves retain identical bytes; legal larger histories compact without losing any evidence',
         'Every compact save reopens and reserializes byte-for-byte within the unchanged two-megabyte UTF-8 limit',
         'Browser writes archive the exact prior original before storing compact current history',
-        'Truly oversized UTF-8 histories remain rejected and cannot replace the last usable save'] }, null, 2) + '\n');
+        'Larger UTF-8 histories compress losslessly while the two-megabyte transport bound remains enforced'] }, null, 2) + '\n');
   }
 });

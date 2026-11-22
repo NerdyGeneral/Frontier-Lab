@@ -20,12 +20,14 @@ function rootModel(state: Readonly<GameState>, model: ModelVersion): ModelVersio
   }
   return current;
 }
-export function buildCustomTrainingPlan(state: Readonly<GameState>, companyId: string, options: TrainingOptions, content: GameContent, atWeek = state.week): PlannedTraining {
+export function buildCustomTrainingPlan(state: Readonly<GameState>, companyId: string, options: TrainingOptions, content: GameContent, atWeek = state.week,
+  foundationRights: TrainingPlan['foundationRights'] | null = 'independent'): PlannedTraining {
   const base = state.slices.models.versions[options.baseModelId] ?? content.seedModel;
   const spec = structuredClone(modelDesignShapeRejection(options.modelDesign) ? getModelDesignForBase(base) : options.modelDesign!);
   const packetIds = options.packetIds?.length ? options.packetIds : [options.packetId];
   const forecast = getModelDesignForecast(state, companyId, options.baseModelId, packetIds, spec, atWeek);
   const corpus = getCorpusEvidence(state, companyId, packetIds), foundation = spec.mode === 'foundation';
+  const independentFoundation = foundation && foundationRights === 'independent';
   const root = rootModel(state, base);
   const customization = forecast.customization ? structuredClone(forecast.customization) : undefined;
   if (customization) {
@@ -46,11 +48,13 @@ export function buildCustomTrainingPlan(state: Readonly<GameState>, companyId: s
   const divisor = Object.values(spec.dataMix).reduce((a, b) => gcd(a, b), 0) || 1;
   engineeringChoices.dataMix = Object.fromEntries(Object.entries(spec.dataMix).map(([key, value]) => [key, value / divisor])) as typeof spec.dataMix;
   const identity = 'custom-design-' + canonicalStateHash({ companyId, lineage: foundation ? spec.family : lineageId(state, base),
+    ...(independentFoundation ? { foundationRights: 'independent' } : {}),
     spec: engineeringChoices, researchLevel: forecast.researchLevel, ...(forecast.researchFocus ? { researchFocus: forecast.researchFocus } : {}), corpus: corpus.fingerprint, advancedCorpus: advanced.corpus.fingerprint });
   const foundationAnchor: CapabilityScores = foundation ? { conversation: 2000, documents: 2000, coding: 1000, tools: 1000 }
     : structuredClone(base.foundationAnchor ?? root.capabilityBps);
   const plan: TrainingPlan = {
     modelDesign: receipt, advanced,
+    ...(independentFoundation ? { foundationRights: 'independent' as const } : {}),
     recipeName: spec.name.trim(), kind: spec.mode, profile: 'balanced', profileApplied: false,
     family: spec.family, architecture: spec.sparsityBps ? 'sparse' : 'dense', residentMU: forecast.residentMU,
     lineageId: foundation ? 'foundation-' + identity : (lineageId(state, base) ?? base.id), identity, corpus,
