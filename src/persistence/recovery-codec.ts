@@ -1,10 +1,13 @@
 import { gzipSync, strFromU8, strToU8 } from 'fflate';
 import { hashText } from '../core/canonical';
 import { decodeBase64, encodeBase64, gunzipBounded } from '../core/bounded-gzip';
+import { MAX_PORTABLE_SAVE_BYTES } from './portable-save';
 
 const MARKER = 'FRONTIER-LAB-RECOVERY:';
 export const RECOVERY_ARCHIVE_PREFIX = MARKER + 'GZIP:1\n';
-const MAX_TEXT_UNITS = 2_000_000;
+// Previous-run recovery can include the same bounded planning metadata as a
+// downloaded portable save. Historical engine-only archives remain unchanged.
+const MAX_TEXT_UNITS = MAX_PORTABLE_SAVE_BYTES;
 const MAX_JSON_BYTES = MAX_TEXT_UNITS * 6 + 2;
 
 export class RecoveryArchiveError extends Error {

@@ -1,0 +1,81 @@
+{
+  "title": "Frontier Lab live browser gameplay check",
+  "date": "2026-11-22",
+  "observedBuild": "0.38.2",
+  "url": "https://frontier-lab.nerdygeneral.chatgpt.site/",
+  "method": "Actual UI controls in a fresh random Garage campaign; no injected game state, fabricated resources, or localStorage edits.",
+  "originalSaveProtected": "Exported before starting the test campaign. Restoration is a post-publication step.",
+  "checkpoints": [
+    {
+      "week": 0,
+      "cash": 48000,
+      "action": "Fresh Garage campaign after exporting original save"
+    },
+    {
+      "week": 0,
+      "cash": 48000,
+      "reserved": 1000,
+      "action": "Preparation scheduled once; duplicate action disabled"
+    },
+    {
+      "week": 1,
+      "cash": 46000,
+      "action": "Preparation 20/40 points, one $1000 fee and $1000 weekly cost"
+    },
+    {
+      "week": 2,
+      "cash": 45000,
+      "action": "Data ready; training draft preserved through capacity review; Development4 CU queued"
+    },
+    {
+      "week": 3,
+      "cash": 44000,
+      "action": "Training4/12 CUw and identical progress after autosave/reload"
+    },
+    {
+      "week": 5,
+      "cash": 42000,
+      "action": "Next decision at5x stopped exactly on training completion; Conversation47.18 from40, reliability86 from70,12CUw"
+    },
+    {
+      "week": 6,
+      "cash": 41000,
+      "action": "Basic conversation evaluated exact Conversation1; launch eligibility met"
+    },
+    {
+      "week": 7,
+      "cash": 40000,
+      "action": "QA Gameplay Chat deployment 100% but activates Week8; serving2/development2queued correctly"
+    },
+    {
+      "week": 10,
+      "cash": 37060,
+      "action": "First paid product chapter;5 accounts billed$12 each=$60;11 nextweeksubscribers;100%requests completed"
+    },
+    {
+      "week": 11,
+      "cash": 36192,
+      "action": "11accounts billed$132;cash delta -$868=$132-$1000;17nextweeksubscribers;100%requests completed;all5in-game diagnosticspass"
+    }
+  ],
+  "diagnostics": {
+    "passed": 5,
+    "checks": [
+      "Catalog and current state validation",
+      "Deterministic 20-week replay",
+      "Once-only rent and overhead over 20 weeks",
+      "Read-only forecast preservation of money, commands and randomness",
+      "Atomic rejection of invalid allocations"
+    ]
+  },
+  "testWorkspace": {
+    "developmentGoal": "Coding partner",
+    "manualDraft": "QA Restore Draft",
+    "blueprint": "QA Recovery Blueprint"
+  },
+  "verificationLimits": [
+    "Manual play reached Week 11, not the three late-game endings.",
+    "Next decision advanced from Week 7 to the first paid-product chapter at Week 10; it did not stop at activation in Week 8.",
+    "Live verification of the new recovery fix follows publication of build 0.38.3 and is reported separately."
+  ]
+}

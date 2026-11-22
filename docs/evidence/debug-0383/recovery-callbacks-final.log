@@ -1,0 +1,27 @@
+✔ Next decision adopts guarded stop rules during continuous play and its stop control pauses the run (89.070107ms)
+✔ an unstarted origin picker stays unsaved when the page is hidden; a started origin can persist (50.490506ms)
+✔ failed autosave pauses play, cannot resume through a failed retry, and can resume after saving recovers (149.651138ms)
+✔ lifecycle saves cannot overwrite another session, a blocked original, or a busy transfer (18.62889ms)
+✔ a delayed autosave from a replaced campaign cannot write or rebind stale state (24.027128ms)
+✔ a weekly result outside supported save capacity is not committed (87.206137ms)
+✔ portable replacement blocks competing replacements while workspace binding is pending (24.359043ms)
+✔ a delayed imported workspace cannot complete after its session is cleaned up (23.156029ms)
+✔ previous-run review and restore retain paid work, queued decisions and the exact planning workspace (145.181665ms)
+✔ previous-run review accepts historical engine-only backups without borrowing current drafts (173.617371ms)
+✔ replacement backs up the latest live planning edits even when their browser sidecar cannot be written (127.425301ms)
+✔ replacement flushes queued engine changes before binding their previous-run planning backup (104.005164ms)
+✔ a failed pre-replacement save preserves the current company, previous backup and all live drafts (91.119496ms)
+✔ starting the first origin saves it without requiring a previous-run save receipt (66.119696ms)
+✔ confirmed replacement of a blocked original preserves its exact bytes without attaching the displayed drafts (50.389622ms)
+✔ memory-only replacement restores imported drafts without writing browser primary or recovery data (49.026902ms)
+✔ a stale callback from an observer, stopped session or busy operation cannot replace the saved lab (71.695642ms)
+✔ failed archive write preserves the current company and planning workspace during replacement (63.348589ms)
+✔ failed primary write preserves the current company and planning workspace during replacement (72.556512ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3887.335928

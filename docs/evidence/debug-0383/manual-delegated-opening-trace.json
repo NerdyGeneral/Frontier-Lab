@@ -1,0 +1,1749 @@
+[
+  {
+    "mode": "manual",
+    "initial": {
+      "cashCents": 4800000,
+      "workforce": {
+        "capacity": {
+          "research": 0,
+          "ml": 0,
+          "data": 0,
+          "infrastructure": 0,
+          "commercial": 0,
+          "hardware": 0
+        },
+        "granted": {
+          "research": 0,
+          "ml": 0,
+          "data": 0,
+          "infrastructure": 0,
+          "commercial": 0,
+          "hardware": 0
+        },
+        "ready": 0,
+        "onboarding": 0
+      }
+    },
+    "commands": [
+      {
+        "week": 0,
+        "payload": {
+          "kind": "prepare_data",
+          "packetId": "starter-public"
+        },
+        "commandId": "gameplay-manual-1",
+        "reservedCashCents": 100000
+      },
+      {
+        "week": 0,
+        "payload": {
+          "kind": "allocate_compute",
+          "serving": 0,
+          "development": 4000000000,
+          "research": 0
+        },
+        "commandId": "gameplay-manual-2",
+        "reservedCashCents": 100000
+      },
+      {
+        "week": 2,
+        "payload": {
+          "kind": "start_training",
+          "baseModelId": "seed-0",
+          "packetId": "starter-public"
+        },
+        "commandId": "gameplay-manual-3",
+        "reservedCashCents": 0
+      },
+      {
+        "week": 5,
+        "payload": {
+          "kind": "evaluate_model",
+          "modelId": "model-gameplay-manual-3"
+        },
+        "commandId": "gameplay-manual-4",
+        "reservedCashCents": 0
+      },
+      {
+        "week": 6,
+        "payload": {
+          "kind": "deploy_product",
+          "productKind": "basic-chat",
+          "modelId": "model-gameplay-manual-3",
+          "priceCents": 1200,
+          "allowance": 100,
+          "features": {
+            "memory": false,
+            "extendedContext": false,
+            "deepReasoning": false
+          },
+          "workload": "general"
+        },
+        "commandId": "gameplay-manual-5",
+        "reservedCashCents": 0
+      },
+      {
+        "week": 6,
+        "payload": {
+          "kind": "allocate_compute",
+          "serving": 2000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "commandId": "gameplay-manual-6",
+        "reservedCashCents": 0
+      }
+    ],
+    "weeks": [
+      {
+        "week": 1,
+        "cashCents": 4600000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 200000,
+          "cashChangeCents": -200000
+        },
+        "progress": {
+          "dataReady": false,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "prepare",
+          "status": "working",
+          "title": "Preparing Starter public sample",
+          "detail": "20 / 40 Data points",
+          "projectId": "preparation-gameplay-manual-1",
+          "progressBps": 5000,
+          "packetId": "starter-public",
+          "primary": {
+            "label": "View this project",
+            "action": {
+              "kind": "project",
+              "projectId": "preparation-gameplay-manual-1"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "working",
+            "progressBps": 5000
+          }
+        ]
+      },
+      {
+        "week": 2,
+        "cashCents": 4500000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "train",
+          "status": "ready",
+          "title": "Starter public sample is ready for training",
+          "detail": "Choose what to train, pick a method, and check the model, data and cost before starting.",
+          "packetId": "starter-public",
+          "primary": {
+            "label": "Train with this dataset",
+            "action": {
+              "kind": "train",
+              "packetId": "starter-public"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 3,
+        "cashCents": 4400000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "train",
+          "status": "working",
+          "title": "Conversation adaptation in progress",
+          "detail": "Train new version · 4 / 12 development CUw",
+          "projectId": "training-gameplay-manual-3",
+          "progressBps": 3333,
+          "packetId": "starter-public",
+          "candidateId": "model-gameplay-manual-3",
+          "primary": {
+            "label": "View this project",
+            "action": {
+              "kind": "project",
+              "projectId": "training-gameplay-manual-3"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "training-gameplay-manual-3",
+            "status": "working",
+            "progressBps": 3333
+          },
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 4,
+        "cashCents": 4300000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "train",
+          "status": "working",
+          "title": "Conversation adaptation in progress",
+          "detail": "Train new version · 8 / 12 development CUw · checkpoint saved",
+          "projectId": "training-gameplay-manual-3",
+          "progressBps": 6666,
+          "packetId": "starter-public",
+          "candidateId": "model-gameplay-manual-3",
+          "primary": {
+            "label": "View this project",
+            "action": {
+              "kind": "project",
+              "projectId": "training-gameplay-manual-3"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "training-gameplay-manual-3",
+            "status": "working",
+            "progressBps": 6666
+          },
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 5,
+        "cashCents": 4200000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "evaluate",
+          "status": "ready",
+          "title": "Test Conversation 1",
+          "detail": "Reliability 70 → 86 compared with Seed 0. Run a held-out test to see how this version performs on unfamiliar examples.",
+          "candidateId": "model-gameplay-manual-3",
+          "primary": {
+            "label": "Test this model",
+            "action": {
+              "kind": "evaluate",
+              "modelId": "model-gameplay-manual-3"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "training-gameplay-manual-3",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 6,
+        "cashCents": 4100000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "launch",
+          "status": "ready",
+          "title": "Conversation 1 passed the Basic Chat skill requirements",
+          "detail": "Set a price and chat allowance, then check the launch costs. Serving is set to 0 CU, so customers cannot try Basic Chat. Set Serving above 0 CU in the compute planner. If your GPUs are fully allocated, move some capacity from Development or Research.",
+          "candidateId": "model-gameplay-manual-3",
+          "reportId": "report-evaluation-gameplay-manual-4",
+          "primary": {
+            "label": "Prepare Basic Chat",
+            "action": {
+              "kind": "launch",
+              "modelId": "model-gameplay-manual-3",
+              "reportId": "report-evaluation-gameplay-manual-4"
+            }
+          },
+          "secondary": {
+            "label": "View this report",
+            "action": {
+              "kind": "report",
+              "reportId": "report-evaluation-gameplay-manual-4"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "evaluation-gameplay-manual-4",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-gameplay-manual-3",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 7,
+        "cashCents": 4000000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "launch",
+          "status": "waiting",
+          "title": "Basic Chat is ready to open",
+          "detail": "Basic Chat opens in Week 8. Your first sale comes when a customer pays to use it.",
+          "candidateId": "model-gameplay-manual-3",
+          "projectId": "deployment:gameplay-manual-5",
+          "progressBps": 10000,
+          "primary": {
+            "label": "View Basic Chat",
+            "action": {
+              "kind": "product"
+            }
+          },
+          "secondary": {
+            "label": "Review people and compute",
+            "action": {
+              "kind": "resources"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "deployment:gameplay-manual-5",
+            "status": "waiting",
+            "progressBps": 10000
+          },
+          {
+            "id": "evaluation-gameplay-manual-4",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-gameplay-manual-3",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 8,
+        "cashCents": 3900000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": true,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "deployed",
+          "status": "complete",
+          "title": "Basic Chat is live",
+          "detail": "Basic Chat is open. Leave enough compute for free trials. Customers who subscribe can start paying in a later week.",
+          "candidateId": "model-gameplay-manual-3",
+          "projectId": "deployment:gameplay-manual-5",
+          "progressBps": 10000,
+          "primary": {
+            "label": "View Basic Chat",
+            "action": {
+              "kind": "product"
+            }
+          },
+          "secondary": {
+            "label": "Review people and compute",
+            "action": {
+              "kind": "resources"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "deployment:gameplay-manual-5",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "evaluation-gameplay-manual-4",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-gameplay-manual-3",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 9,
+        "cashCents": 3800000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": true,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "deployed",
+          "status": "complete",
+          "title": "Basic Chat is live",
+          "detail": "Basic Chat is open. Leave enough compute for free trials. Customers who subscribe can start paying in a later week.",
+          "candidateId": "model-gameplay-manual-3",
+          "projectId": "deployment:gameplay-manual-5",
+          "progressBps": 10000,
+          "primary": {
+            "label": "View Basic Chat",
+            "action": {
+              "kind": "product"
+            }
+          },
+          "secondary": {
+            "label": "Review people and compute",
+            "action": {
+              "kind": "resources"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "deployment:gameplay-manual-5",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "evaluation-gameplay-manual-4",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-gameplay-manual-3",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 10,
+        "cashCents": 3718000,
+        "earnedRevenueCents": 18000,
+        "lastWeek": {
+          "revenueCents": 18000,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -82000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": true,
+          "firstSale": true
+        },
+        "journey": {
+          "stage": "sale",
+          "status": "complete",
+          "title": "Your first sale!",
+          "detail": "A customer has paid to use your product. Keep an eye on demand, compute and service quality as your lab grows.",
+          "candidateId": "model-gameplay-manual-3",
+          "projectId": "deployment:gameplay-manual-5",
+          "progressBps": 10000,
+          "primary": {
+            "label": "View Basic Chat",
+            "action": {
+              "kind": "product"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "deployment:gameplay-manual-5",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "evaluation-gameplay-manual-4",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-gameplay-manual-3",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 11,
+        "cashCents": 3651600,
+        "earnedRevenueCents": 51600,
+        "lastWeek": {
+          "revenueCents": 33600,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -66400
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": true,
+          "firstSale": true
+        },
+        "journey": {
+          "stage": "sale",
+          "status": "complete",
+          "title": "Your first sale!",
+          "detail": "A customer has paid to use your product. Keep an eye on demand, compute and service quality as your lab grows.",
+          "candidateId": "model-gameplay-manual-3",
+          "projectId": "deployment:gameplay-manual-5",
+          "progressBps": 10000,
+          "primary": {
+            "label": "View Basic Chat",
+            "action": {
+              "kind": "product"
+            }
+          }
+        },
+        "plans": [],
+        "projects": [
+          {
+            "id": "deployment:gameplay-manual-5",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "evaluation-gameplay-manual-4",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-gameplay-manual-3",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-gameplay-manual-1",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      }
+    ],
+    "saveRoundtrips": 17,
+    "completedModel": {
+      "id": "model-gameplay-manual-3",
+      "scores": {
+        "conversation": 4800,
+        "documents": 3056,
+        "coding": 2000,
+        "tools": 2080
+      },
+      "reliabilityBps": 8600,
+      "week": 6
+    },
+    "results": [
+      {
+        "kind": "deployment",
+        "week": 8,
+        "sourceId": "deployment:gameplay-manual-5",
+        "title": "Product activated",
+        "action": {
+          "label": "View this deployment",
+          "target": {
+            "kind": "product",
+            "productId": "product:gameplay-manual-5",
+            "deploymentId": "deployment:gameplay-manual-5",
+            "modelId": "model-gameplay-manual-3"
+          }
+        }
+      },
+      {
+        "kind": "evaluation",
+        "week": 6,
+        "sourceId": "report-evaluation-gameplay-manual-4",
+        "title": "Evaluation complete",
+        "action": {
+          "label": "Review this report",
+          "target": {
+            "kind": "intent",
+            "intent": {
+              "kind": "report",
+              "reportId": "report-evaluation-gameplay-manual-4"
+            }
+          }
+        }
+      },
+      {
+        "kind": "training",
+        "week": 5,
+        "sourceId": "training-gameplay-manual-3",
+        "title": "Training complete",
+        "action": {
+          "label": "Test this model",
+          "target": {
+            "kind": "intent",
+            "intent": {
+              "kind": "training-result",
+              "runId": "training-gameplay-manual-3"
+            }
+          }
+        }
+      },
+      {
+        "kind": "data",
+        "week": 2,
+        "sourceId": "preparation-gameplay-manual-1",
+        "title": "Data preparation complete",
+        "action": {
+          "label": "Train with this dataset",
+          "target": {
+            "kind": "intent",
+            "intent": {
+              "kind": "training-data",
+              "packetId": "starter-public"
+            }
+          }
+        }
+      }
+    ]
+  },
+  {
+    "mode": "delegated",
+    "initial": {
+      "cashCents": 4800000,
+      "workforce": {
+        "capacity": {
+          "research": 0,
+          "ml": 0,
+          "data": 0,
+          "infrastructure": 0,
+          "commercial": 0,
+          "hardware": 0
+        },
+        "granted": {
+          "research": 0,
+          "ml": 0,
+          "data": 0,
+          "infrastructure": 0,
+          "commercial": 0,
+          "hardware": 0
+        },
+        "ready": 0,
+        "onboarding": 0
+      }
+    },
+    "commands": [
+      {
+        "week": 0,
+        "payload": {
+          "kind": "start_development_plan",
+          "name": "Opening delegated test",
+          "training": {
+            "kind": "start_training",
+            "baseModelId": "seed-0",
+            "packetId": "starter-public",
+            "packetIds": [
+              "starter-public"
+            ],
+            "recipeId": "compact-conversation-adaptation",
+            "profile": "balanced"
+          },
+          "suiteId": "basic-conversation-1",
+          "feeBudgetCents": 500000,
+          "cashReserveCents": 500000,
+          "deadlineWeek": 32,
+          "leadStaffId": "founder",
+          "capacityShareBps": 10000
+        },
+        "commandId": "gameplay-delegated-1",
+        "reservedCashCents": 0
+      },
+      {
+        "week": 10,
+        "payload": {
+          "kind": "deploy_product",
+          "productKind": "basic-chat",
+          "modelId": "model-development-stage-15",
+          "priceCents": 1200,
+          "allowance": 100,
+          "features": {
+            "memory": false,
+            "extendedContext": false,
+            "deepReasoning": false
+          },
+          "workload": "general"
+        },
+        "commandId": "gameplay-delegated-2",
+        "reservedCashCents": 0
+      },
+      {
+        "week": 10,
+        "payload": {
+          "kind": "allocate_compute",
+          "serving": 2000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "commandId": "gameplay-delegated-3",
+        "reservedCashCents": 0
+      }
+    ],
+    "weeks": [
+      {
+        "week": 1,
+        "cashCents": 4700000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": false,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "prepare",
+          "status": "queued",
+          "title": "Data preparation queued for Week 2",
+          "detail": "Your plan is queued. Work can start next week once its requirements are checked. Resume the game or advance one week when you’re ready.",
+          "packetId": "starter-public",
+          "primary": {
+            "label": "Review people and compute",
+            "action": {
+              "kind": "resources"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "running",
+            "stage": "prepare:starter-public"
+          }
+        ],
+        "projects": []
+      },
+      {
+        "week": 2,
+        "cashCents": 4500000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 200000,
+          "cashChangeCents": -200000
+        },
+        "progress": {
+          "dataReady": false,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "prepare",
+          "status": "working",
+          "title": "Preparing Starter public sample",
+          "detail": "20 / 40 Data points",
+          "projectId": "preparation-development-stage-9",
+          "progressBps": 5000,
+          "packetId": "starter-public",
+          "primary": {
+            "label": "View this project",
+            "action": {
+              "kind": "project",
+              "projectId": "preparation-development-stage-9"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "running",
+            "stage": "prepare:starter-public"
+          }
+        ],
+        "projects": [
+          {
+            "id": "preparation-development-stage-9",
+            "status": "working",
+            "progressBps": 5000
+          }
+        ]
+      },
+      {
+        "week": 3,
+        "cashCents": 4400000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "train",
+          "status": "queued",
+          "title": "Training queued for Week 4",
+          "detail": "Conversation adaptation from Seed 0 will use Starter public sample. Advance to Week 4 to start. Follow the run in Projects.",
+          "packetId": "starter-public",
+          "primary": {
+            "label": "Review people and compute",
+            "action": {
+              "kind": "resources"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "running",
+            "stage": "train"
+          }
+        ],
+        "projects": [
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 4,
+        "cashCents": 4300000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "train",
+          "status": "working",
+          "title": "Conversation adaptation in progress",
+          "detail": "Train new version · 2 / 12 development CUw",
+          "projectId": "training-development-stage-15",
+          "progressBps": 1666,
+          "packetId": "starter-public",
+          "candidateId": "model-development-stage-15",
+          "primary": {
+            "label": "View this project",
+            "action": {
+              "kind": "project",
+              "projectId": "training-development-stage-15"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "running",
+            "stage": "train"
+          }
+        ],
+        "projects": [
+          {
+            "id": "training-development-stage-15",
+            "status": "working",
+            "progressBps": 1666
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 5,
+        "cashCents": 4200000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "train",
+          "status": "working",
+          "title": "Conversation adaptation in progress",
+          "detail": "Train new version · 4 / 12 development CUw",
+          "projectId": "training-development-stage-15",
+          "progressBps": 3333,
+          "packetId": "starter-public",
+          "candidateId": "model-development-stage-15",
+          "primary": {
+            "label": "View this project",
+            "action": {
+              "kind": "project",
+              "projectId": "training-development-stage-15"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "running",
+            "stage": "train"
+          }
+        ],
+        "projects": [
+          {
+            "id": "training-development-stage-15",
+            "status": "working",
+            "progressBps": 3333
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 6,
+        "cashCents": 4100000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "train",
+          "status": "working",
+          "title": "Conversation adaptation in progress",
+          "detail": "Train new version · 6 / 12 development CUw · checkpoint saved",
+          "projectId": "training-development-stage-15",
+          "progressBps": 5000,
+          "packetId": "starter-public",
+          "candidateId": "model-development-stage-15",
+          "primary": {
+            "label": "View this project",
+            "action": {
+              "kind": "project",
+              "projectId": "training-development-stage-15"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "running",
+            "stage": "train"
+          }
+        ],
+        "projects": [
+          {
+            "id": "training-development-stage-15",
+            "status": "working",
+            "progressBps": 5000
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 7,
+        "cashCents": 4000000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "train",
+          "status": "working",
+          "title": "Conversation adaptation in progress",
+          "detail": "Train new version · 8 / 12 development CUw · checkpoint saved",
+          "projectId": "training-development-stage-15",
+          "progressBps": 6666,
+          "packetId": "starter-public",
+          "candidateId": "model-development-stage-15",
+          "primary": {
+            "label": "View this project",
+            "action": {
+              "kind": "project",
+              "projectId": "training-development-stage-15"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "running",
+            "stage": "train"
+          }
+        ],
+        "projects": [
+          {
+            "id": "training-development-stage-15",
+            "status": "working",
+            "progressBps": 6666
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 8,
+        "cashCents": 3900000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": false,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "train",
+          "status": "working",
+          "title": "Conversation adaptation in progress",
+          "detail": "Train new version · 10 / 12 development CUw · checkpoint saved",
+          "projectId": "training-development-stage-15",
+          "progressBps": 8333,
+          "packetId": "starter-public",
+          "candidateId": "model-development-stage-15",
+          "primary": {
+            "label": "View this project",
+            "action": {
+              "kind": "project",
+              "projectId": "training-development-stage-15"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "running",
+            "stage": "train"
+          }
+        ],
+        "projects": [
+          {
+            "id": "training-development-stage-15",
+            "status": "working",
+            "progressBps": 8333
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 9,
+        "cashCents": 3800000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": false,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "evaluate",
+          "status": "queued",
+          "title": "Evaluation queued for Week 10",
+          "detail": "Your plan is queued. Work can start next week once its requirements are checked. Resume the game or advance one week when you’re ready.",
+          "candidateId": "model-development-stage-15",
+          "primary": {
+            "label": "Review people and compute",
+            "action": {
+              "kind": "resources"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "running",
+            "stage": "evaluate"
+          }
+        ],
+        "projects": [
+          {
+            "id": "training-development-stage-15",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 10,
+        "cashCents": 3700000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "launch",
+          "status": "ready",
+          "title": "Conversation 1 passed the Basic Chat skill requirements",
+          "detail": "Set a price and chat allowance, then check the launch costs. Serving is set to 0 CU, so customers cannot try Basic Chat. Set Serving above 0 CU in the compute planner. If your GPUs are fully allocated, move some capacity from Development or Research.",
+          "candidateId": "model-development-stage-15",
+          "reportId": "report-evaluation-development-stage-33",
+          "primary": {
+            "label": "Prepare Basic Chat",
+            "action": {
+              "kind": "launch",
+              "modelId": "model-development-stage-15",
+              "reportId": "report-evaluation-development-stage-33"
+            }
+          },
+          "secondary": {
+            "label": "View this report",
+            "action": {
+              "kind": "report",
+              "reportId": "report-evaluation-development-stage-33"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "review",
+            "stage": "evaluate",
+            "completedWeek": 10,
+            "reportId": "report-evaluation-development-stage-33"
+          }
+        ],
+        "projects": [
+          {
+            "id": "evaluation-development-stage-33",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-development-stage-15",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 11,
+        "cashCents": 3600000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": false,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "launch",
+          "status": "waiting",
+          "title": "Basic Chat is ready to open",
+          "detail": "Basic Chat opens in Week 12. Your first sale comes when a customer pays to use it.",
+          "candidateId": "model-development-stage-15",
+          "projectId": "deployment:gameplay-delegated-2",
+          "progressBps": 10000,
+          "primary": {
+            "label": "View Basic Chat",
+            "action": {
+              "kind": "product"
+            }
+          },
+          "secondary": {
+            "label": "Review people and compute",
+            "action": {
+              "kind": "resources"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "review",
+            "stage": "evaluate",
+            "completedWeek": 10,
+            "reportId": "report-evaluation-development-stage-33"
+          }
+        ],
+        "projects": [
+          {
+            "id": "deployment:gameplay-delegated-2",
+            "status": "waiting",
+            "progressBps": 10000
+          },
+          {
+            "id": "evaluation-development-stage-33",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-development-stage-15",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 12,
+        "cashCents": 3500000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": true,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "deployed",
+          "status": "complete",
+          "title": "Basic Chat is live",
+          "detail": "Basic Chat is open. Leave enough compute for free trials. Customers who subscribe can start paying in a later week.",
+          "candidateId": "model-development-stage-15",
+          "projectId": "deployment:gameplay-delegated-2",
+          "progressBps": 10000,
+          "primary": {
+            "label": "View Basic Chat",
+            "action": {
+              "kind": "product"
+            }
+          },
+          "secondary": {
+            "label": "Review people and compute",
+            "action": {
+              "kind": "resources"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "review",
+            "stage": "evaluate",
+            "completedWeek": 10,
+            "reportId": "report-evaluation-development-stage-33"
+          }
+        ],
+        "projects": [
+          {
+            "id": "deployment:gameplay-delegated-2",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "evaluation-development-stage-33",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-development-stage-15",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 13,
+        "cashCents": 3400000,
+        "earnedRevenueCents": 0,
+        "lastWeek": {
+          "revenueCents": 0,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -100000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": true,
+          "firstSale": false
+        },
+        "journey": {
+          "stage": "deployed",
+          "status": "complete",
+          "title": "Basic Chat is live",
+          "detail": "Basic Chat is open. Leave enough compute for free trials. Customers who subscribe can start paying in a later week.",
+          "candidateId": "model-development-stage-15",
+          "projectId": "deployment:gameplay-delegated-2",
+          "progressBps": 10000,
+          "primary": {
+            "label": "View Basic Chat",
+            "action": {
+              "kind": "product"
+            }
+          },
+          "secondary": {
+            "label": "Review people and compute",
+            "action": {
+              "kind": "resources"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "review",
+            "stage": "evaluate",
+            "completedWeek": 10,
+            "reportId": "report-evaluation-development-stage-33"
+          }
+        ],
+        "projects": [
+          {
+            "id": "deployment:gameplay-delegated-2",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "evaluation-development-stage-33",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-development-stage-15",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 14,
+        "cashCents": 3306000,
+        "earnedRevenueCents": 6000,
+        "lastWeek": {
+          "revenueCents": 6000,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -94000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": true,
+          "firstSale": true
+        },
+        "journey": {
+          "stage": "sale",
+          "status": "complete",
+          "title": "Your first sale!",
+          "detail": "A customer has paid to use your product. Keep an eye on demand, compute and service quality as your lab grows.",
+          "candidateId": "model-development-stage-15",
+          "projectId": "deployment:gameplay-delegated-2",
+          "progressBps": 10000,
+          "primary": {
+            "label": "View Basic Chat",
+            "action": {
+              "kind": "product"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "review",
+            "stage": "evaluate",
+            "completedWeek": 10,
+            "reportId": "report-evaluation-development-stage-33"
+          }
+        ],
+        "projects": [
+          {
+            "id": "deployment:gameplay-delegated-2",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "evaluation-development-stage-33",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-development-stage-15",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      },
+      {
+        "week": 15,
+        "cashCents": 3218000,
+        "earnedRevenueCents": 18000,
+        "lastWeek": {
+          "revenueCents": 12000,
+          "operatingExpenseCents": 100000,
+          "cashChangeCents": -88000
+        },
+        "progress": {
+          "dataReady": true,
+          "trained": true,
+          "evaluated": true,
+          "deployed": true,
+          "firstSale": true
+        },
+        "journey": {
+          "stage": "sale",
+          "status": "complete",
+          "title": "Your first sale!",
+          "detail": "A customer has paid to use your product. Keep an eye on demand, compute and service quality as your lab grows.",
+          "candidateId": "model-development-stage-15",
+          "projectId": "deployment:gameplay-delegated-2",
+          "progressBps": 10000,
+          "primary": {
+            "label": "View Basic Chat",
+            "action": {
+              "kind": "product"
+            }
+          }
+        },
+        "plans": [
+          {
+            "id": "development-gameplay-delegated-1",
+            "status": "review",
+            "stage": "evaluate",
+            "completedWeek": 10,
+            "reportId": "report-evaluation-development-stage-33"
+          }
+        ],
+        "projects": [
+          {
+            "id": "deployment:gameplay-delegated-2",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "evaluation-development-stage-33",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "training-development-stage-15",
+            "status": "complete",
+            "progressBps": 10000
+          },
+          {
+            "id": "preparation-development-stage-9",
+            "status": "complete",
+            "progressBps": 10000
+          }
+        ]
+      }
+    ],
+    "saveRoundtrips": 18,
+    "completedModel": {
+      "id": "model-development-stage-15",
+      "scores": {
+        "conversation": 4610,
+        "documents": 3062,
+        "coding": 2013,
+        "tools": 2136
+      },
+      "reliabilityBps": 8600,
+      "week": 10
+    },
+    "results": [
+      {
+        "kind": "deployment",
+        "week": 12,
+        "sourceId": "deployment:gameplay-delegated-2",
+        "title": "Product activated",
+        "action": {
+          "label": "View this deployment",
+          "target": {
+            "kind": "product",
+            "productId": "product:gameplay-delegated-2",
+            "deploymentId": "deployment:gameplay-delegated-2",
+            "modelId": "model-development-stage-15"
+          }
+        }
+      },
+      {
+        "kind": "evaluation",
+        "week": 10,
+        "sourceId": "report-evaluation-development-stage-33",
+        "title": "Development plan ready for review",
+        "action": {
+          "label": "Review this report",
+          "target": {
+            "kind": "intent",
+            "intent": {
+              "kind": "report",
+              "reportId": "report-evaluation-development-stage-33"
+            }
+          }
+        }
+      },
+      {
+        "kind": "training",
+        "week": 9,
+        "sourceId": "training-development-stage-15",
+        "title": "Training complete",
+        "action": {
+          "label": "Test this model",
+          "target": {
+            "kind": "intent",
+            "intent": {
+              "kind": "training-result",
+              "runId": "training-development-stage-15"
+            }
+          }
+        }
+      },
+      {
+        "kind": "data",
+        "week": 3,
+        "sourceId": "preparation-development-stage-9",
+        "title": "Data preparation complete",
+        "action": {
+          "label": "Train with this dataset",
+          "target": {
+            "kind": "intent",
+            "intent": {
+              "kind": "training-data",
+              "packetId": "starter-public"
+            }
+          }
+        }
+      }
+    ]
+  }
+]

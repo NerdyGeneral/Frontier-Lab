@@ -1,0 +1,468 @@
+{
+  "release": "0.38.3",
+  "contentVersion": "0.38.0",
+  "saveSchema": 5,
+  "recordedAtUtc": "2026-11-22T23:34:38.281444+00:00",
+  "verificationStage": "Prepublication source verification complete; publication and live 0.38.3 recovery check pending and reported separately.",
+  "sourceBaseline": {
+    "build": "0.38.2",
+    "sitesCommit": "cbe6ef5798ce1a881fe334135a68f0169f8f77ae",
+    "cleanAtFullEngineStart": true
+  },
+  "finalSourceFingerprint": {
+    "scope": "All files under src, scripts and tests, sorted by path; SHA-256 of compact sorted-key JSON entries containing path and SHA-256. Excludes documentation and build output.",
+    "fileCount": 663,
+    "sha256": "2148c076ec8d3d46502284d8dda752cadcbfd13b6cad3713f7a26a98db6f6c95"
+  },
+  "confirmedDefect": {
+    "area": "Previous-run recovery",
+    "behavior": "Replacing a lab archived its engine snapshot but omitted the separately stored planning workspace. Recovery therefore lost the saved development goal, manual/delegated drafts and blueprints.",
+    "fix": "Archive a portable envelope containing the exact previous saved snapshot and validated matching planning metadata; restore both through the portable-save decoder. Persist the live company first and abort replacement when that save or required archive fails."
+  },
+  "integrityReview": {
+    "result": "No concrete blocker found in independent read-only review of the four changed production implementation files.",
+    "files": [
+      "src/persistence/portable-save.ts",
+      "src/persistence/recovery-codec.ts",
+      "src/persistence/wave0-browser.ts",
+      "src/ui/FrontierLab.tsx"
+    ],
+    "binding": "Live metadata requires the exact successful saved-byte receipt. Stored sidecars require matching SHA-256, byte length and player company. Foreign, stale or malformed metadata is not attached to another lab.",
+    "validation": "Core state validation remains separate from strict planning-data validation. Portable integrity covers snapshot and workspace; historical snapshot contents are not rewritten while creating the archive.",
+    "bounds": {
+      "maximumRecoveryTextUnits": 3000000,
+      "maximumOuterDecodedJsonBytes": 18000002,
+      "innerSnapshotDecodedByteLimit": 33554432,
+      "note": "Finite output size, expected length, gzip CRC and canonical single-member validation remain enforced."
+    },
+    "failurePreservation": "Stale live receipts, invalid planning data, failed current-save writes and failed archive writes stop before replacing the primary. Existing raw historical/corrupt recovery copies remain supported."
+  },
+  "automatedGates": [
+    {
+      "id": "engine-baseline-0382",
+      "status": "passed",
+      "command": "node scripts/test-wave0.mjs",
+      "workingDirectory": "/workspace/sites/frontier-lab/.sites-checkout",
+      "scope": "Complete engine suite copied from clean 0.38.2 at startup, BEFORE the new persistence patch. It does not certify all engine cases on 0.38.3.",
+      "exitCode": 0,
+      "counts": {
+        "tests": 1046,
+        "pass": 1046,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 522130.996637
+      },
+      "evidence": {
+        "path": "docs/evidence/debug-0383/engine-baseline-0382.log",
+        "bytes": 130349,
+        "sha256": "e84b9a2270aba29ecf869bd3d6ddc31f8df01b39c9f54e58935d4af05640f5c0"
+      }
+    },
+    {
+      "id": "persistence-0383",
+      "status": "passed",
+      "command": "node scripts/test-wave0.mjs wave1-persistence wave29-persistence-cache snapshot-capacity saved-snapshot-hash model-workspace connected-company-save campaign-origins wave30c-results-persistence gameplay-polish-migration ai-systems-migration previous-save-workspace",
+      "workingDirectory": "/workspace/sites/frontier-lab/.sites-checkout",
+      "scope": "Selected core persistence, capacity, metadata, origins, historical migration and new previous-workspace regressions on the patch. Run preceded the test-only documents-to-analyst purpose correction; the complete corrected eight-case file passed its later rerun. Production unchanged.",
+      "exitCode": 0,
+      "counts": {
+        "tests": 129,
+        "pass": 129,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 32994.25998
+      },
+      "evidence": {
+        "path": "docs/evidence/debug-0383/persistence-final.log",
+        "bytes": 14509,
+        "sha256": "c8cdd324f785f0a20c6e4a2cacebeb5da7d83f12a92d0629872db1bd3e0fa20f"
+      }
+    },
+    {
+      "id": "ui-0383",
+      "status": "passed",
+      "command": "node --import tsx --test --test-reporter=spec tests/*.test.tsx src/ui/*.test.tsx",
+      "workingDirectory": "/workspace/sites/frontier-lab/.sites-checkout",
+      "scope": "Complete UI execution, including actual replacement/recovery callbacks. The corrected callback file also passed the final focused rerun after a test-only purpose correction; production unchanged.",
+      "exitCode": 0,
+      "counts": {
+        "tests": 259,
+        "pass": 259,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 67958.01025
+      },
+      "evidence": {
+        "path": "docs/evidence/debug-0383/ui-final.log",
+        "bytes": 29458,
+        "sha256": "742592ac3c845d1e727a8e873e8366e1302d84113f4a0385e4bc5266b41f4497"
+      }
+    },
+    {
+      "id": "callbacks-corrected-fixture",
+      "status": "passed",
+      "command": "node --import tsx --test --test-reporter=spec tests/campaign-saving-ui.test.tsx",
+      "workingDirectory": "/workspace/sites/frontier-lab/.sites-checkout",
+      "scope": "Final actual React callback suite after correcting the test-only purpose value to analyst. These 19 cases are already included in the complete UI scope, not additional unique tests.",
+      "exitCode": 0,
+      "counts": {
+        "tests": 19,
+        "pass": 19,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 3887.335928
+      },
+      "evidence": {
+        "path": "docs/evidence/debug-0383/recovery-callbacks-final.log",
+        "bytes": 2213,
+        "sha256": "7eb14e53d5dcb02350ce211248cdcc5a4ad87255fe7164ad8bd07f636bc91ec7"
+      }
+    },
+    {
+      "id": "previous-workspace-corrected-fixture",
+      "status": "passed",
+      "command": "node scripts/test-wave0.mjs previous-save-workspace",
+      "workingDirectory": "/workspace/sites/frontier-lab/.sites-checkout",
+      "scope": "Complete corrected new previous-workspace regression file. These eight cases are already included in the 129-case core persistence scope, not additional unique tests.",
+      "exitCode": 0,
+      "counts": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 5643.659126
+      },
+      "evidence": {
+        "path": "docs/evidence/debug-0383/previous-workspace-final.log",
+        "bytes": 1038,
+        "sha256": "efa4c8719bc7ab10adeb38cb6b39d43f3c0115fb704904c6b5fd49eb464f6145"
+      }
+    }
+  ],
+  "testAccounting": "The 1,046-case engine run is a clean 0.38.2 baseline. The patch has 129 selected core cases and 259 UI cases passing, with overlapping final reruns of 8 and 19 after test-only fixture corrections. Do not sum these into a unique 0.38.3 test total. The three-origin diagnostic, nine paired continuation checks and manual/delegated traces are separate diagnostic scenarios, not node:test case counts.",
+  "testFixtureCorrection": "Initial TypeScript checking identified an unsupported purpose value documents in two new fixtures. Both were corrected to the supported analyst purpose. Final TypeScript and the complete affected files then passed; no production code changed for this correction.",
+  "typecheck": {
+    "status": "passed",
+    "command": "node node_modules/typescript/bin/tsc --noEmit",
+    "scope": "Final source and corrected test fixtures. Successful check has an empty log.",
+    "exitCode": 0,
+    "evidence": {
+      "path": "docs/evidence/debug-0383/typecheck-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "productionBuild": {
+    "status": "passed",
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.7/scripts/build-site.mjs",
+    "scope": "Isolated production build after test processes exited.",
+    "exitCode": 0,
+    "evidence": {
+      "path": "docs/evidence/debug-0383/build-final.log",
+      "bytes": 1767,
+      "sha256": "be62338eb285f48f16c04a09257324c40ab9d9f75b96c3d05433343a7e646278"
+    },
+    "notices": [
+      "Client chunk larger than 500 kB",
+      "vinext cannot statically classify the route; no fatal build error"
+    ]
+  },
+  "whitespaceCheck": {
+    "command": "git diff --check",
+    "status": "passed",
+    "reportedBy": "root",
+    "scope": "Final production/test patch before this documentation addition; documentation whitespace checked separately before handoff."
+  },
+  "gameplayEvidence": {
+    "naturalEndings": {
+      "build": "0.38.2",
+      "source": "tests/wave21-release.test.ts",
+      "seed": "frontier-lab-wave-0",
+      "origin": "garage",
+      "rules": "release",
+      "independentFreshCampaigns": true,
+      "results": [
+        {
+          "route": "platform",
+          "earnedWeek": 203,
+          "test": "W21-R01",
+          "scope": "Paid consumer and developer services without a business product"
+        },
+        {
+          "route": "specialist",
+          "earnedWeek": 208,
+          "test": "W21-R02",
+          "scope": "Contested buyer, licensed weights delivery and renewals"
+        },
+        {
+          "route": "frontier",
+          "earnedWeek": 214,
+          "test": "W21-R03",
+          "scope": "Earned cash funds hardware, research, training and a held-out frontier release"
+        }
+      ],
+      "method": "Ordinary accepted commands and weekly simulation; cash thresholds wait for earned funds, with no minted resources or forced progress. Repeated paid training/evaluation and end-state reload/continuation checks are in the campaigns.",
+      "evidence": {
+        "path": "docs/evidence/debug-0383/engine-baseline-0382.log",
+        "bytes": 130349,
+        "sha256": "e84b9a2270aba29ecf869bd3d6ddc31f8df01b39c9f54e58935d4af05640f5c0"
+      }
+    },
+    "threeOriginOpening": {
+      "build": "0.38.2",
+      "command": "node --import tsx /tmp/frontier-gameplay-opening.mts",
+      "method": "Ordinary commands, paid work and actual weekly simulation through the first paying-service chapter. No direct resource/progress mutation. Same deliberately simple sequence, not an optimal route.",
+      "scenarios": 3,
+      "pairedSaveContinuationChecks": 9,
+      "checkpointWeeks": [
+        3,
+        5,
+        10
+      ],
+      "parity": "Canonical restored state equals the source; independently advanced original/restored next-week canonical states also match at each checkpoint.",
+      "results": [
+        {
+          "origin": "garage",
+          "seed": "frontier-lab-wave-0",
+          "initialCashCents": 4800000,
+          "preparationWeek": 2,
+          "trainingStartedWeek": 3,
+          "trainingCompletedWeek": 5,
+          "evaluationWeek": 6,
+          "liveDeploymentWeek": 8,
+          "firstRevenueWeek": 10,
+          "firstPayingServiceChapterWeek": 10,
+          "finalWeek": 10,
+          "finalCashCents": 3838000,
+          "minimumCashCents": 3838000,
+          "arrearsCents": 0
+        },
+        {
+          "origin": "university",
+          "seed": "frontier-lab-wave-0:university",
+          "initialCashCents": 3000000,
+          "preparationWeek": 1,
+          "trainingStartedWeek": 3,
+          "trainingCompletedWeek": 5,
+          "evaluationWeek": 6,
+          "liveDeploymentWeek": 8,
+          "firstRevenueWeek": 10,
+          "firstPayingServiceChapterWeek": 10,
+          "finalWeek": 10,
+          "finalCashCents": 1338000,
+          "minimumCashCents": 1338000,
+          "arrearsCents": 0
+        },
+        {
+          "origin": "consultancy",
+          "seed": "frontier-lab-wave-0:consultancy",
+          "initialCashCents": 3600000,
+          "preparationWeek": 2,
+          "trainingStartedWeek": 3,
+          "trainingCompletedWeek": 5,
+          "evaluationWeek": 6,
+          "liveDeploymentWeek": 8,
+          "firstRevenueWeek": 8,
+          "firstPayingServiceChapterWeek": 10,
+          "finalWeek": 10,
+          "finalCashCents": 3138000,
+          "minimumCashCents": 2590000,
+          "arrearsCents": 0
+        }
+      ],
+      "consultancyNote": "Week 8 first revenue is the earned $8,000 pilot. The paying-service chapter is Week 10 for all origins.",
+      "evidence": {
+        "path": "docs/evidence/debug-0383/opening-scenarios.json",
+        "bytes": 5062,
+        "sha256": "65af8a5eea47963e8156d0c5b606f1eb491cefa3f55fb2faa8971c18101c2729"
+      },
+      "log": {
+        "path": "docs/evidence/debug-0383/opening-scenarios.log",
+        "bytes": 3191,
+        "sha256": "f5cc5ec3262b4ddbcb97a1129381b9ce711e9a65e669b49050f8e2e76658f05d"
+      },
+      "originalDiagnosticSource": {
+        "path": "docs/evidence/debug-0383/opening-scenarios.mts",
+        "bytes": 5372,
+        "sha256": "c90449dcc42d8d51450a4de16a8cb4a30b7756ba4ab05f28dac638fca2a23b7b"
+      }
+    },
+    "manualDelegatedTrace": {
+      "build": "0.38.2",
+      "baselineCommit": "cbe6ef5798ce1a881fe334135a68f0169f8f77ae",
+      "origin": "garage",
+      "seed": "frontier-lab-wave-0",
+      "rules": "release",
+      "provenance": "One-off Node/tsx engine diagnostic by review_ui before the persistence patch. The stdin/heredoc generator was not retained; no exact reproducible command body is claimed.",
+      "manual": {
+        "preparationWeek": 2,
+        "trainingWeek": 5,
+        "evaluationWeek": 6,
+        "liveWeek": 8,
+        "firstSaleWeek": 10,
+        "finalWeek": 11,
+        "saveRoundtrips": 17
+      },
+      "delegated": {
+        "preparationWeek": 3,
+        "trainingWeek": 9,
+        "evaluationWeek": 10,
+        "liveWeek": 12,
+        "firstSaleWeek": 14,
+        "finalWeek": 15,
+        "saveRoundtrips": 18
+      },
+      "roundtripScope": "35 successful serialize/deserialize canonical-state equality checks followed by play from decoded state. Not literal-byte equality and not separate next-week branch parity; those stronger paired continuation checks belong to the three-origin diagnostic.",
+      "evidence": {
+        "path": "docs/evidence/debug-0383/manual-delegated-opening-trace.json",
+        "bytes": 49767,
+        "sha256": "66ac60ccc39c3c4201a849b029467bb4a9f8905977e77d23731fe6cbf22c3f92"
+      }
+    },
+    "advancedSystems": {
+      "buildTested": "0.38.2",
+      "test": "tests/ai-systems-progression.test.ts",
+      "helper": "tests/fixtures/ai-systems-playthrough.ts",
+      "fixture": "tests/fixtures/systems-036-active-published.json",
+      "startWeek": 574,
+      "fixtureBuild": "0.36.1",
+      "fixtureContent": "0.36.0",
+      "seed": "frontier-lab-wave-0",
+      "origin": "garage (legacy save has no explicit origin field)",
+      "scope": "Authentic mature campaign continuation paying for research prerequisites, architecture levels 1/2 and four trained/evaluated candidates across expert networks, persistent-state models and adaptive reasoning. Earns all four new challenges and four two-week paid client outcomes, with positive cash, no arrears, state validation and reload equality.",
+      "freshFinalWeek": null,
+      "limit": "The current test does not emit its final week. An older recorded Week 763 is not presented as a fresh result. This is not one uninterrupted new-origin-to-advanced-system run."
+    }
+  },
+  "browserVerification": {
+    "baseline0382": {
+      "status": "passed within stated scope",
+      "evidence": {
+        "path": "docs/evidence/debug-0383/browser-0382-gameplay.json",
+        "bytes": 2789,
+        "sha256": "127043a9886a4ba1db42ec376ce204b4590115e6f640d0be8d95edbea29fc5b1"
+      },
+      "testCreatedPortableSave": {
+        "path": "docs/evidence/debug-0383/browser-gameplay-week11.portable.json",
+        "bytes": 21696,
+        "sha256": "5125aaa8ba8ad5008587349dd79199f40dfec41a8a4725571ece1be1befb1ea1"
+      },
+      "scope": "Actual public UI in a fresh random Garage lab through Week 11, active-training reload, first paid service, capacity/billing and all five in-game diagnostics. Test-created saved goal/draft/blueprint retained. No manual late-game completion claimed."
+    },
+    "release0383": {
+      "status": "pending postpublication",
+      "scope": "Live previous-run recovery of the saved test goal, draft, blueprint and paid game state after deployment. Reported separately."
+    },
+    "originalUserSave": {
+      "status": "Exported privately before testing; restoration follows publication.",
+      "retainedInRepository": false
+    },
+    "testSaveFinalDecoderCheck": {
+      "status": "passed",
+      "reportedBy": "root",
+      "scope": "The test-created Week 11 portable save decodes successfully using final 0.38.3 production code before publication. This is not the live-browser recovery check.",
+      "engineCanonicalHash": "ebd7dd60",
+      "workspaceCanonicalHash": "5d624bfd",
+      "blueprints": 1,
+      "goal": "coding"
+    }
+  },
+  "compatibility": {
+    "contentVersionChanged": false,
+    "saveSchemaChanged": false,
+    "newDependencies": false,
+    "legacyEngineOnlyRecovery": "Supported, preserving historical original bytes.",
+    "paidProgress": "Existing paid game state validated and retained; planning metadata cannot grant work or authorize commands."
+  },
+  "verificationLimits": [
+    "The complete engine suite was not rerun after the persistence patch; focused core, full UI, final typecheck and production build cover the final patch.",
+    "Many engine cases are synthetic validation/unit checks; only identified command-driven campaigns support natural gameplay claims.",
+    "University and Consultancy were played through Week 10, not all late-game endings.",
+    "The advanced systems test starts from an authentic mature Week 574 save; its final week is not freshly logged.",
+    "Program progression tests earn the first Efficient systems accreditation and verify later gating; they do not demonstrate every stage of every program naturally completed.",
+    "The 20 custom-seed checks cover starting worlds/experiment terms, not 20 full campaigns.",
+    "Browser gameplay reached Week 11; no full manual late-game or physical phone-device playthrough is claimed.",
+    "The prior lint backlog remains outside this debug pass; no fresh repository-wide lint count is claimed."
+  ],
+  "publication": {
+    "status": "pending",
+    "liveReleaseVerification": "pending; separately reported after deployment"
+  },
+  "retainedArtifacts": [
+    {
+      "path": "docs/evidence/debug-0383/browser-0382-gameplay.json",
+      "bytes": 2789,
+      "sha256": "127043a9886a4ba1db42ec376ce204b4590115e6f640d0be8d95edbea29fc5b1"
+    },
+    {
+      "path": "docs/evidence/debug-0383/browser-gameplay-week11.portable.json",
+      "bytes": 21696,
+      "sha256": "5125aaa8ba8ad5008587349dd79199f40dfec41a8a4725571ece1be1befb1ea1"
+    },
+    {
+      "path": "docs/evidence/debug-0383/build-final.log",
+      "bytes": 1767,
+      "sha256": "be62338eb285f48f16c04a09257324c40ab9d9f75b96c3d05433343a7e646278"
+    },
+    {
+      "path": "docs/evidence/debug-0383/engine-baseline-0382.log",
+      "bytes": 130349,
+      "sha256": "e84b9a2270aba29ecf869bd3d6ddc31f8df01b39c9f54e58935d4af05640f5c0"
+    },
+    {
+      "path": "docs/evidence/debug-0383/manual-delegated-opening-trace.json",
+      "bytes": 49767,
+      "sha256": "66ac60ccc39c3c4201a849b029467bb4a9f8905977e77d23731fe6cbf22c3f92"
+    },
+    {
+      "path": "docs/evidence/debug-0383/opening-scenarios.json",
+      "bytes": 5062,
+      "sha256": "65af8a5eea47963e8156d0c5b606f1eb491cefa3f55fb2faa8971c18101c2729"
+    },
+    {
+      "path": "docs/evidence/debug-0383/opening-scenarios.log",
+      "bytes": 3191,
+      "sha256": "f5cc5ec3262b4ddbcb97a1129381b9ce711e9a65e669b49050f8e2e76658f05d"
+    },
+    {
+      "path": "docs/evidence/debug-0383/opening-scenarios.mts",
+      "bytes": 5372,
+      "sha256": "c90449dcc42d8d51450a4de16a8cb4a30b7756ba4ab05f28dac638fca2a23b7b"
+    },
+    {
+      "path": "docs/evidence/debug-0383/persistence-final.log",
+      "bytes": 14509,
+      "sha256": "c8cdd324f785f0a20c6e4a2cacebeb5da7d83f12a92d0629872db1bd3e0fa20f"
+    },
+    {
+      "path": "docs/evidence/debug-0383/previous-workspace-final.log",
+      "bytes": 1038,
+      "sha256": "efa4c8719bc7ab10adeb38cb6b39d43f3c0115fb704904c6b5fd49eb464f6145"
+    },
+    {
+      "path": "docs/evidence/debug-0383/recovery-callbacks-final.log",
+      "bytes": 2213,
+      "sha256": "7eb14e53d5dcb02350ce211248cdcc5a4ad87255fe7164ad8bd07f636bc91ec7"
+    },
+    {
+      "path": "docs/evidence/debug-0383/typecheck-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/debug-0383/ui-final.log",
+      "bytes": 29458,
+      "sha256": "742592ac3c845d1e727a8e873e8366e1302d84113f4a0385e4bc5266b41f4497"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-# Frontier Lab 0.37.0 — source checkout
+# Frontier Lab 0.38.3 — source checkout
 
 This repository contains the complete source, game artwork, dependency lockfile,
 test fixtures, and verification notes for the published Frontier Lab game.
@@ -15,7 +15,7 @@ Generated builds and installed dependencies are created locally.
 For a production preview, run `npm run build` followed by `npm start`.
 Build again after changing the source. The repository README covers testing
 and the game architecture. The latest regression and compatibility evidence
-is in [the AI Systems release notes](docs/AI_SYSTEMS_0.37.0.md).
+is in [the gameplay debug report](docs/DEBUG_0.38.3.md).
 
 ## Bring an existing game with you
 
@@ -27,8 +27,8 @@ Frontier Lab 0.36.1 or newer.
 
 Published game: https://frontier-lab.nerdygeneral.chatgpt.site/
 
-Build/content 0.37.0 adds three AI operating designs, twelve discoveries,
-four systems challenges and renewable customer briefs. Open Projects → Develop
-a model to choose an objective and keep it through research and delegation.
-Schema remains 5. Existing paid models and active work retain their original
-results and licenses; new systems require new paid foundations.
+Build 0.38.3 preserves planning drafts, objectives and named blueprints in new
+automatic previous-save recoveries. Content remains 0.38.0 and schema remains 5.
+The connected research, development, products and company systems remain
+available. Existing paid models and active work retain their original results
+and licenses; new systems require new paid foundations.

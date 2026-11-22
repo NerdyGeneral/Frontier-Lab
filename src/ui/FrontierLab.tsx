@@ -437,10 +437,11 @@ export default function FrontierLab() {
     try {
       const copy = readBrowserRecovery(kind);
       if (!copy) { setError('That recovery copy is unavailable.'); return; }
-      const result = deserializeState(copy.text, CONTENT);
+      const result = deserializePortableSave(copy.text, CONTENT);
       if (!result.ok) { setError('Recovery could not open: ' + result.error); return; }
       setError(''); setResetOpen(false);
-      setPendingImport({ state: withPassiveWorkforce(result.state), migratedFrom: result.migratedFrom, recovery: true });
+      setPendingImport({ state: withPassiveWorkforce(result.state), migratedFrom: result.migratedFrom, recovery: true,
+        ...(result.workspace ? { workspace: result.workspace } : {}) });
     } catch (error) { setError(error instanceof RecoveryArchiveError ? error.message : 'Recovery could not be read. Existing saves were not changed.'); }
   }
 
@@ -474,7 +475,16 @@ export default function FrontierLab() {
     pause(); clockRef.current?.reset(performance.now());
     let savedBytes: string | undefined;
     if (sessionRef.current === 'owner') {
-      const result = writeBrowserSnapshotWithBytes(next, { replace: true });
+      let previousWorkspace: { savedBytes: string; data: ModelWorkspaceData } | undefined;
+      if (modelWorkspace.ready && !writeBlockedRef.current && !choosingOriginRef.current) {
+        const current = persistCurrentGame();
+        if (!current?.ok) {
+          setError('Your current lab could not be saved for recovery, so it is still open. Download a save or retry saving before replacing it.');
+          return;
+        }
+        previousWorkspace = { savedBytes: current.savedBytes, data: modelWorkspace };
+      }
+      const result = writeBrowserSnapshotWithBytes(next, { replace: true, ...(previousWorkspace ? { previousWorkspace } : {}) });
       if (!result.ok) {
         saveFailedRef.current = true;
         setSaveStatus({ kind: 'failed', message: result.error });

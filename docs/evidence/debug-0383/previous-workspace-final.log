@@ -1,0 +1,16 @@
+✔ previous recovery retains paid progress, queued work, both drafts, goals and blueprints from an exact bound sidecar (556.241696ms)
+✔ foreign, mismatched, or malformed sidecars never become another campaign’s recovery metadata (426.048367ms)
+✔ live metadata survives an immediate replacement after its sidecar storage fails (71.364008ms)
+✔ stale receipts and invalid planning data abort before replacing either primary or previous backup (115.12361ms)
+✔ quota compression preserves a complete portable recovery and archive failure leaves both old saves untouched (124.128499ms)
+✔ same-byte replacement still backs up planning data before a new workspace timeline clears it (45.613918ms)
+✔ historical and corrupt engine-only recovery remain compatible and preserve original bytes (3904.348874ms)
+✔ recovery compression accepts portable-size text without relaxing its finite expansion bound (125.45202ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 5643.659126

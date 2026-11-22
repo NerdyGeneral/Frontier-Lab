@@ -9,16 +9,27 @@ import type { ModelWorkspaceData } from './model-workspace';
 export const MAX_PORTABLE_SAVE_BYTES = 3_000_000;
 export type PortableSaveResult = SnapshotResult extends infer T ? T extends { ok: true } ? T & { workspace?: ModelWorkspaceData } : T : never;
 
-/** The game remains an ordinary, independently validated save. Planning metadata
- * travels beside it and cannot authorize work or change paid engine receipts. */
-export function serializePortableSave(game: GameState, workspace: ModelWorkspaceData, content: GameContent = CONTENT): string {
+function portableEnvelope(snapshot: unknown, workspace: ModelWorkspaceData): string {
   const data = modelWorkspaceDataForExport(workspace);
   if (!isModelWorkspaceData(data)) throw new Error('Your planning workspace could not be checked for export.');
-  const snapshot: unknown = JSON.parse(serializeState(game, content, { compress: true }));
   const payload = { snapshot, workspace: data };
   const text = JSON.stringify({ format: 'frontier-lab-workspace', version: 1, checksum: canonicalStateHash(payload), ...payload });
   if (new TextEncoder().encode(text).length > MAX_PORTABLE_SAVE_BYTES) throw new Error('This game and planning workspace exceed the 3 MB portable save limit.');
   return text;
+}
+
+/** The game remains an ordinary, independently validated save. Planning metadata
+ * travels beside it and cannot authorize work or change paid engine receipts. */
+export function serializePortableSave(game: GameState, workspace: ModelWorkspaceData, content: GameContent = CONTENT): string {
+  return portableEnvelope(JSON.parse(serializeState(game, content, { compress: true })), workspace);
+}
+
+/** Wrap the actual previous primary, retaining its original version and receipts.
+ * Recovery does not rewrite a historical snapshot before the player restores it. */
+export function serializePortableSaveFromSnapshot(snapshot: string, workspace: ModelWorkspaceData, content: GameContent = CONTENT): string {
+  const checked = deserializeState(snapshot, content);
+  if (!checked.ok) throw new Error('The previous lab could not be checked for backup: ' + checked.error);
+  return portableEnvelope(JSON.parse(snapshot), workspace);
 }
 
 export function deserializePortableSave(text: string, content: GameContent = CONTENT): PortableSaveResult {

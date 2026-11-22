@@ -2,6 +2,10 @@ import { CONTENT } from '../content/catalog';
 import { deserializeState, serializeState, SnapshotTooLargeError } from '../core/index';
 import type { GameState } from '../contracts/types';
 import { compactRecoveryArchives, decodeRecoveryArchive, isRecoveryQuotaError, RecoveryArchiveError, writeRecoveryArchive } from './recovery-codec';
+import { MODEL_WORKSPACE_KEY, parseModelWorkspace } from './model-workspace';
+import type { ModelWorkspaceData } from './model-workspace';
+import { serializePortableSaveFromSnapshot } from './portable-save';
+import { hashSavedSnapshotSync } from './saved-snapshot-hash';
 export { RecoveryArchiveError } from './recovery-codec';
 
 const SAVE_KEY = 'frontier-lab.wave0.snapshot';
@@ -118,6 +122,33 @@ export type StoredSnapshotWithBytes = Exclude<StoredSnapshot, { kind: 'loaded' }
   | (Extract<StoredSnapshot, { kind: 'loaded' }> & { savedBytes: string });
 export type SnapshotWriteResult = { ok: true } | { ok: false; error: string };
 export type SnapshotWriteWithBytesResult = { ok: true; savedBytes: string } | { ok: false; error: string };
+export interface SnapshotWriteOptions {
+  replace?: boolean;
+  /** Live planning edits may be newer than their sidecar after a storage error.
+   * They can accompany only this exact successful primary-save receipt. */
+  previousWorkspace?: { savedBytes: string; data: ModelWorkspaceData };
+}
+
+function previousRunArchive(storage: Storage, previous: string, valid: boolean, live?: SnapshotWriteOptions['previousWorkspace']): string {
+  let workspace: ModelWorkspaceData | undefined;
+  if (live) {
+    if (!valid || live.savedBytes !== previous) throw new RecoveryArchiveError('The previous lab changed before its backup was ready. Your stored lab and recovery copy are unchanged. Try again after saving.');
+    workspace = live.data;
+  } else if (valid) {
+    let stored: ReturnType<typeof parseModelWorkspace> = null;
+    try { stored = parseModelWorkspace(storage.getItem(MODEL_WORKSPACE_KEY)); } catch { /* An unavailable optional sidecar cannot replace or corrupt the engine backup. */ }
+    if (stored) {
+      const binding = hashSavedSnapshotSync(previous);
+      if (stored.binding.digest === binding.digest && stored.binding.byteLength === binding.byteLength) {
+        const checked = deserializeState(previous, CONTENT);
+        if (checked.ok && stored.playerId === checked.state.playerCompanyId) workspace = stored.data;
+      }
+    }
+  }
+  if (workspace === undefined) return previous;
+  try { return serializePortableSaveFromSnapshot(previous, workspace, CONTENT); }
+  catch (error) { throw new RecoveryArchiveError('The previous lab and its planning workspace could not be backed up. ' + (error instanceof Error ? error.message : 'Download a save before trying again.')); }
+}
 
 /** The additive receipt exposes only bytes actually validated on read or written
  * successfully. UI sidecars may hash them without altering snapshot contents. */
@@ -146,16 +177,20 @@ export function browserSnapshotMatches(savedBytes: string): boolean {
   catch { return false; }
 }
 
-export function writeBrowserSnapshotWithBytes(state: GameState, options: { replace?: boolean } = {}): SnapshotWriteWithBytesResult {
+export function writeBrowserSnapshotWithBytes(state: GameState, options: SnapshotWriteOptions = {}): SnapshotWriteWithBytesResult {
   try {
     // Every supplied state still receives complete serialization/validation.
     let next = serializeState(state, CONTENT);
     const storage = window.localStorage, previous = storage.getItem(SAVE_KEY);
+    if (options.previousWorkspace && (!options.replace || previous === null)) throw new RecoveryArchiveError('The planning backup does not match a previous saved lab. Your stored lab and recovery copy are unchanged.');
     if (previous !== null) {
       const prior = validatePreviousPrimary(storage, previous);
       if (!prior.ok && !options.replace) {
         return { ok: false, error: 'The stored save failed validation. Its original bytes are untouched. Export it, or confirm an import or new lab before replacing it.' };
       }
+      // Prepare the entire backup before writing either recovery key or primary.
+      // Invalid or oversized planning data must abort replacement, not disappear.
+      const previousArchive = options.replace ? previousRunArchive(storage, previous, prior.ok, options.previousWorkspace) : previous;
       // Archive an original before any upgraded write. If the archive fails,
       // the primary snapshot is not touched, and the UI can still export.
       const originalKey = prior.ok && prior.migratedFrom === 1 ? ORIGINAL_V1_KEY
@@ -192,7 +227,7 @@ export function writeBrowserSnapshotWithBytes(state: GameState, options: { repla
       if (originalKey !== null && storage.getItem(originalKey) === null) {
         preserveRecoveryArchive(storage, originalKey, previous);
       }
-      if (options.replace && previous !== next) preserveRecoveryArchive(storage, PREVIOUS_KEY, previous);
+      if (options.replace && (previous !== next || previousArchive !== previous)) preserveRecoveryArchive(storage, PREVIOUS_KEY, previousArchive);
     } else primaryValidation.delete(storage);
     try { storage.setItem(SAVE_KEY, next); }
     catch (error) {
@@ -220,7 +255,7 @@ export function writeBrowserSnapshotWithBytes(state: GameState, options: { repla
   }
 }
 
-export function writeBrowserSnapshot(state: GameState, options: { replace?: boolean } = {}): SnapshotWriteResult {
+export function writeBrowserSnapshot(state: GameState, options: SnapshotWriteOptions = {}): SnapshotWriteResult {
   const result = writeBrowserSnapshotWithBytes(state, options);
   return result.ok ? { ok: true } : result;
 }

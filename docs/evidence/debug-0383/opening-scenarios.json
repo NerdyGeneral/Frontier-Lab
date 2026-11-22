@@ -1,0 +1,195 @@
+{
+  "build": "0.38.2",
+  "content": "0.38.0",
+  "directStateMutation": false,
+  "cases": [
+    {
+      "opening": {
+        "seed": "frontier-lab-wave-0",
+        "week": 0,
+        "cashCents": 4800000,
+        "origin": "garage"
+      },
+      "finalWeek": 10,
+      "preparationWeek": 2,
+      "trainingStartedWeek": 3,
+      "trainingCompletedWeek": 5,
+      "paidTrainingCUw": 12,
+      "evaluationWeek": 6,
+      "deploymentReadyWeek": 8,
+      "firstRevenueWeek": 10,
+      "chapterWeek": 10,
+      "earnedRevenueCents": 18000,
+      "cashCents": 3838000,
+      "minimumCashCents": 3838000,
+      "arrearsCents": 0,
+      "paidExpenseCents": 680000,
+      "pilot": null,
+      "commands": 12,
+      "commandKinds": [
+        "prepare_data",
+        "allocate_compute",
+        "assign_founder",
+        "start_training",
+        "evaluate_model",
+        "deploy_product",
+        "set_cloud_capacity"
+      ],
+      "reloads": [
+        {
+          "label": "paid training in progress",
+          "week": 3,
+          "queuedCommands": 0,
+          "activeTraining": 1,
+          "checksum": "1b1597ff",
+          "nextWeekChecksum": "1520fc99"
+        },
+        {
+          "label": "paid evaluation queued",
+          "week": 5,
+          "queuedCommands": 2,
+          "activeTraining": 0,
+          "checksum": "e1531f50",
+          "nextWeekChecksum": "2817815a"
+        },
+        {
+          "label": "first paying service",
+          "week": 10,
+          "queuedCommands": 3,
+          "activeTraining": 0,
+          "checksum": "3f882a14",
+          "nextWeekChecksum": "c9ef2754"
+        }
+      ]
+    },
+    {
+      "opening": {
+        "seed": "frontier-lab-wave-0:university",
+        "week": 0,
+        "cashCents": 3000000,
+        "origin": "university"
+      },
+      "finalWeek": 10,
+      "preparationWeek": 1,
+      "trainingStartedWeek": 3,
+      "trainingCompletedWeek": 5,
+      "paidTrainingCUw": 12,
+      "evaluationWeek": 6,
+      "deploymentReadyWeek": 8,
+      "firstRevenueWeek": 10,
+      "chapterWeek": 10,
+      "earnedRevenueCents": 18000,
+      "cashCents": 1338000,
+      "minimumCashCents": 1338000,
+      "arrearsCents": 0,
+      "paidExpenseCents": 1070000,
+      "pilot": null,
+      "commands": 12,
+      "commandKinds": [
+        "prepare_data",
+        "allocate_compute",
+        "assign_founder",
+        "start_training",
+        "evaluate_model",
+        "deploy_product",
+        "set_cloud_capacity"
+      ],
+      "reloads": [
+        {
+          "label": "paid training in progress",
+          "week": 3,
+          "queuedCommands": 0,
+          "activeTraining": 1,
+          "checksum": "33d1476b",
+          "nextWeekChecksum": "1d341ac5"
+        },
+        {
+          "label": "paid evaluation queued",
+          "week": 5,
+          "queuedCommands": 2,
+          "activeTraining": 0,
+          "checksum": "4239db39",
+          "nextWeekChecksum": "b5c3025b"
+        },
+        {
+          "label": "first paying service",
+          "week": 10,
+          "queuedCommands": 2,
+          "activeTraining": 0,
+          "checksum": "24bf3ae3",
+          "nextWeekChecksum": "13c2260e"
+        }
+      ]
+    },
+    {
+      "opening": {
+        "seed": "frontier-lab-wave-0:consultancy",
+        "week": 0,
+        "cashCents": 3600000,
+        "origin": "consultancy"
+      },
+      "finalWeek": 10,
+      "preparationWeek": 2,
+      "trainingStartedWeek": 3,
+      "trainingCompletedWeek": 5,
+      "paidTrainingCUw": 12,
+      "evaluationWeek": 6,
+      "deploymentReadyWeek": 8,
+      "firstRevenueWeek": 8,
+      "chapterWeek": 10,
+      "earnedRevenueCents": 818000,
+      "cashCents": 3138000,
+      "minimumCashCents": 2590000,
+      "arrearsCents": 0,
+      "paidExpenseCents": 790000,
+      "pilot": {
+        "targetId": null,
+        "contractGeneration": 0,
+        "baselineCostCents": 0,
+        "id": "consultancy-pilot",
+        "startedWeek": 0,
+        "deadlineWeek": 8,
+        "finishedWeek": 8,
+        "status": "completed",
+        "qualifyingWeeks": 1,
+        "feedback": "The tested Basic Chat pilot is live."
+      },
+      "commands": 12,
+      "commandKinds": [
+        "prepare_data",
+        "allocate_compute",
+        "assign_founder",
+        "start_training",
+        "evaluate_model",
+        "deploy_product",
+        "set_cloud_capacity"
+      ],
+      "reloads": [
+        {
+          "label": "paid training in progress",
+          "week": 3,
+          "queuedCommands": 0,
+          "activeTraining": 1,
+          "checksum": "713cf4e5",
+          "nextWeekChecksum": "af71cd1b"
+        },
+        {
+          "label": "paid evaluation queued",
+          "week": 5,
+          "queuedCommands": 2,
+          "activeTraining": 0,
+          "checksum": "828b6589",
+          "nextWeekChecksum": "479f4077"
+        },
+        {
+          "label": "first paying service",
+          "week": 10,
+          "queuedCommands": 2,
+          "activeTraining": 0,
+          "checksum": "e7ef8221",
+          "nextWeekChecksum": "5cdd31d5"
+        }
+      ]
+    }
+  ]
+}
