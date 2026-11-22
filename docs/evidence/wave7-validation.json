@@ -1,0 +1,43 @@
+{
+  "contentVersion": "0.8.0",
+  "schemaVersion": 5,
+  "validatedOn": "2026-11-07",
+  "acceptance": {
+    "command": "npm test",
+    "passed": 308,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 44473.470518
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0
+  },
+  "whitespace": {
+    "command": "git diff --check",
+    "exitCode": 0
+  },
+  "compatibility": {
+    "publishedCommit": "870fd3792f162542740c53d7df154d52f8917c5f",
+    "fixtureWeek": 269,
+    "fixtureChecksum": "4246bec5",
+    "weeksCompared": 12,
+    "comparison": "Full canonical state hash after normalizing content/build headers to 0.7.0"
+  },
+  "browser": {
+    "environment": "Managed preview, Chrome",
+    "checks": [
+      "Imported the naturally earned Week 326 company through the UI.",
+      "Inspected planner holdout results and the expanded adapter memory bank.",
+      "Queued a paid recovery, advanced two weeks, and observed the audited outcome and one new $350 invoice.",
+      "Reloaded the Week 328 company and verified persistence of the completed recovery and total $700 agent receipts.",
+      "Verified adapter training forecasts 9 CUw and 4.5 MU; planner training forecasts 16 CUw and 4 MU with the adapter option disabled.",
+      "Restored the original Week 16 preview company through UI import and verified paused state and $16,364 cash."
+    ],
+    "screenshots": [
+      "docs/images/frontier-lab-wave7-holdouts.png",
+      "docs/images/frontier-lab-wave7-adapters.png",
+      "docs/images/frontier-lab-wave7-recovery.png"
+    ]
+  }
+}

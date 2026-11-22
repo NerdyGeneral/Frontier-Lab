@@ -1,0 +1,74 @@
+✔ W29-U01: unvisited Studio workbenches do not execute heavy children or add DOM wrappers (9.98201ms)
+✖ W29-U02: the selected real Data panel retains its direct-child section, quote and current state (3.591577ms)
+✔ W29-U03: Classic renders every legacy section once and excludes Studio-only duplicate workbenches (9.618048ms)
+✔ W29-U04: standalone selection renders one workbench with the props supplied for that render (4.106183ms)
+✖ W29-U05: the actual initial Studio Shell defers legacy, planner and research preview work (1.182982ms)
+✖ W29-U06: pending Shell feedback stays outside the inspector and disables every clock action (1.12625ms)
+✖ W29-U07: action buttons describe the unique accepted, blocked, incomplete and queued quote in one render (1.668471ms)
+✔ W29-U08: memo policy skips hidden prop churn but allows active changes and epoch replacement (0.276175ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 4
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2003.193842
+
+✖ failing tests:
+
+test at tests/wave29-workbench-ui.test.tsx:1:2271
+✖ W29-U02: the selected real Data panel retains its direct-child section, quote and current state (3.591577ms)
+  Error: roadmap[28].status: must be one of current roadmap[29].wave: The roadmap contains waves 0 through 28 roadmap[29].status: must be one of complete roadmap: must include each wave from 0 through 28 exactly once
+      at createInitialState (/workspace/sites/frontier-lab/.sites-checkout/src/core/engine.ts:22:69)
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/wave29-workbench-ui.test.tsx:36:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave29-workbench-ui.test.tsx:1:5452
+✖ W29-U05: the actual initial Studio Shell defers legacy, planner and research preview work (1.182982ms)
+  Error: roadmap[28].status: must be one of current roadmap[29].wave: The roadmap contains waves 0 through 28 roadmap[29].status: must be one of complete roadmap: must include each wave from 0 through 28 exactly once
+      at createInitialState (/workspace/sites/frontier-lab/.sites-checkout/src/core/engine.ts:22:69)
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/wave29-workbench-ui.test.tsx:87:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave29-workbench-ui.test.tsx:1:6448
+✖ W29-U06: pending Shell feedback stays outside the inspector and disables every clock action (1.12625ms)
+  Error: roadmap[28].status: must be one of current roadmap[29].wave: The roadmap contains waves 0 through 28 roadmap[29].status: must be one of complete roadmap: must include each wave from 0 through 28 exactly once
+      at createInitialState (/workspace/sites/frontier-lab/.sites-checkout/src/core/engine.ts:22:69)
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/wave29-workbench-ui.test.tsx:106:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave29-workbench-ui.test.tsx:1:7960
+✖ W29-U07: action buttons describe the unique accepted, blocked, incomplete and queued quote in one render (1.668471ms)
+  Error: roadmap[28].status: must be one of current roadmap[29].wave: The roadmap contains waves 0 through 28 roadmap[29].status: must be one of complete roadmap: must include each wave from 0 through 28 exactly once
+      at createInitialState (/workspace/sites/frontier-lab/.sites-checkout/src/core/engine.ts:22:69)
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/wave29-workbench-ui.test.tsx:126:16)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }

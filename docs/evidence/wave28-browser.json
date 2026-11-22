@@ -1,0 +1,93 @@
+{
+  "wave": 28,
+  "previewOrigin": "http://127.0.0.1:4173/",
+  "method": "Visible browser controls, native keyboard input, ordinary snapshot imports/exports. No hidden application state or browser storage injection.",
+  "facility": {
+    "result": "PASS",
+    "evidence": "wave28-facility-browser-oracle.json",
+    "week": 593,
+    "checksum": "c046a694",
+    "exactBytesAndStateMatch": true
+  },
+  "silicon": {
+    "result": "PASS",
+    "qualifiedWeek": 603,
+    "qualificationSurvivedReload": true,
+    "productionQuotedCents": 1232000,
+    "foundry": "standard",
+    "racks": 1,
+    "location": "colocation",
+    "week": 612,
+    "checksum": "627fa28e",
+    "exactBytesAndStateMatch": true,
+    "evidence": "wave28-silicon-browser-oracle.json",
+    "uiPayloadReplay": "wave28-silicon-ui-oracle.json",
+    "installedRackScreenshot": "docs/images/wave28-silicon-installed.png"
+  },
+  "responsive": {
+    "documentWidth": 337,
+    "documentScrollWidth": 337,
+    "viewportHeight": 234,
+    "method": "Chrome400percent zoom; CSS-width check, not a mobile-device emulation.",
+    "inputsFontSize": "16px",
+    "comparisonTableWidth": 247,
+    "tableContainerWidth": 247,
+    "tableContainerOverflowX": "auto",
+    "nativeKeyboard": {
+      "sequence": "Shift+Tab then Tab from the successor-name area",
+      "focusedType": "radio",
+      "top": 64.4765625,
+      "bottom": 81.4765625,
+      "fixedNavTop": 165.25,
+      "outline": "3px",
+      "visibleAboveNavigation": true
+    },
+    "fix": "Narrow Studio document scroll-padding-bottom80px plus safe-area inset and8px interactive scroll margin.",
+    "screenshot": "docs/images/wave28-campus-narrow-focus.png"
+  },
+  "limits": [
+    "Targeted manual browser acceptance, not an exhaustive device or accessibility certification.",
+    "Advanced-company synchronous simulation and save validation still have noticeable latency."
+  ],
+  "remaining": [],
+  "classic": {
+    "result": "PASS",
+    "week": 610,
+    "singleCampusWorkspace": true,
+    "tabsOperational": true,
+    "sameQualifiedSuccessor": true,
+    "directJumpLink": "#campus",
+    "jumpTargetTop": 0.125,
+    "campusWidth": 1124,
+    "documentWidth": 1348,
+    "documentScrollWidth": 1348,
+    "screenshot": "docs/images/wave28-campus-classic.png"
+  },
+  "originalRestoration": {
+    "result": "PASS",
+    "evidence": "wave28-original-restoration.json",
+    "week": 556,
+    "exactBytesAndStateMatch": true,
+    "queuedActionsPreserved": 1
+  },
+  "console": {
+    "capturedWarningErrorEntries": 168,
+    "browserExtensionEntries": 168,
+    "applicationWarningErrorEntries": 0,
+    "scope": "Captured live-preview console; browser metadata extension errors excluded by source URL."
+  },
+  "wide": {
+    "documentWidth": 1348,
+    "documentScrollWidth": 1348,
+    "installedRackVisible": true,
+    "ownedCU": 71,
+    "installedSuccessorCU": 7,
+    "installedSuccessorMU": 35
+  },
+  "reducedMotion": {
+    "buttonPressed": true,
+    "scope": "Existing preference retained through the browser journeys and restoration."
+  },
+  "result": "PASS",
+  "publicationScope": "Native Sites publication follows this local acceptance; deployment status is reported separately."
+}

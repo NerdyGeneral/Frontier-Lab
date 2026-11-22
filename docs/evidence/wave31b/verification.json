@@ -1,0 +1,1324 @@
+{
+  "schema": "frontier-lab.qa.wave31b.v1",
+  "recorded": "2026-11-10",
+  "wave": "31B",
+  "candidate_build": "0.31.1",
+  "status": "Historical 0.31.1 automated checks, scoped browser journeys, final native 400% review wrapping and keyboard-footer acceptance, and original-save byte restoration passed. The work is included in combined build 0.32.0 without a separate 0.31.1 deployment; current validation, build and publication belong to the Wave 32 record.",
+  "scope": {
+    "included": [
+      "Named task selection and exact original action binding",
+      "Shared two-column decision presentation for training, evaluation, first Basic Chat launch, staffing and compute",
+      "Retained owner drafts, helper return, close/reopen, review retirement and acknowledgement identity",
+      "Recorded desktop/short/narrow viewport behavior"
+    ],
+    "limits": [
+      "This record predates the user-authorized workforce productivity changes. Old simulation parity applies to candidate 0.31.1 only and does not apply to combined build 0.32.0.",
+      "This is scoped Wave 31B acceptance, not a full Wave 31D workspace refit.",
+      "The full historical economy/gameplay suite was not rerun.",
+      "No universal reduction in scrolling or runtime performance improvement is claimed.",
+      "Browser geometry applies to the selected recorded states and viewports only."
+    ]
+  },
+  "baseline": {
+    "published_site_version": 36,
+    "build": "0.31.0",
+    "commit": "3658d92e5156b9983d77261447eb0670b64262b6",
+    "git_tree": "01edec62bc0d64ac63ea2518a61e6e6b0c1ced88",
+    "clean_at_capture": true,
+    "snapshot_sha256": "0e3739b65d21fc3e22b4dfbceab716238262adce714ba040b4b3cadcc5a24e98",
+    "snapshot_bytes": 2856056,
+    "snapshot_files": 484,
+    "protected_roots": [
+      "src/core/",
+      "src/modules/",
+      "src/contracts/",
+      "src/persistence/",
+      "src/content/"
+    ],
+    "protected_files_count": 206,
+    "protected_aggregate_sha256": "94bc593dd6c39350020b51b3e51888a824474da1c976b5d3fe6c401ea4ef23e7"
+  },
+  "protected_source_audit": {
+    "baseline_commit": "3658d92e5156b9983d77261447eb0670b64262b6",
+    "baseline_build": "0.31.0",
+    "candidate_build": "0.31.1",
+    "protected_files_count": 205,
+    "unchanged_bytes_count": 204,
+    "changed_protected_files": [
+      "src/content/catalog.ts"
+    ],
+    "added_files": [],
+    "removed_files": [],
+    "normalization": "Only src/content/catalog.ts buildVersion: '0.31.1' replaced with the baseline '0.31.0' for source comparison.",
+    "baseline_aggregate_sha256": "de8c3fac49c20bdab172f3e02859f33f71cebc4de00899725af47d38dea8ce47",
+    "current_raw_aggregate_sha256": "a1b6ad4da07d2986ae7510c8f1d25c306d0b7766b94cc119d621caeaa4e679d7",
+    "current_normalized_aggregate_sha256": "de8c3fac49c20bdab172f3e02859f33f71cebc4de00899725af47d38dea8ce47",
+    "simulation_sources_equal_except_build_version": true,
+    "presentation_exception": {
+      "file": "src/core/studio-tasks.ts",
+      "baseline_sha256": "c0077bf1dfa99441dc7f6384b355108f8ac0314c3e1436648c3940e2a09dd080",
+      "current_sha256": "7ff380f39f226250182e0312f0837dcafa68ce0343c6b2d7819dadf18f00763b",
+      "only_four_approved_aliases": true,
+      "reducer_and_other_task_code_unchanged": true,
+      "aliases": [
+        "hire-staff",
+        "assign-staff",
+        "allocate-compute",
+        "rent-compute"
+      ]
+    },
+    "record_scope": "Historical pre-workforce-points candidate 0.31.1 only; not proof of 0.32.0 validation or economy parity."
+  },
+  "post_browser_source_recheck": {
+    "protected_files_count": 205,
+    "all_raw_source_hashes_match_final_gate": true,
+    "current_raw_aggregate_sha256": "a1b6ad4da07d2986ae7510c8f1d25c306d0b7766b94cc119d621caeaa4e679d7",
+    "studio_tasks_sha256": "7ff380f39f226250182e0312f0837dcafa68ce0343c6b2d7819dadf18f00763b",
+    "studio_tasks_matches_four_aliases_only_audit": true,
+    "added_files": [],
+    "removed_files": [],
+    "prior_audit": "source-audit-final.json",
+    "record_scope": "Historical pre-workforce-points candidate 0.31.1 only; not proof of 0.32.0 validation or economy parity."
+  },
+  "automated": {
+    "lifecycle": {
+      "unique_tests": 109,
+      "passed": 109,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "composition": {
+        "existing": 101,
+        "new_named_task_cases": 8
+      },
+      "command": [
+        "node",
+        "scripts/test-wave0.mjs",
+        "wave30-task-state",
+        "wave30-submission",
+        "wave29-browser-task",
+        "clock",
+        "wave30b-task-state",
+        "wave30b-journey",
+        "wave30c-results",
+        "wave29-persistence-cache",
+        "wave30c-results-persistence",
+        "wave30d-navigation",
+        "wave31b-task-navigation"
+      ],
+      "log_sha256": "5ac4bc79495067cd78bc4d4135de74dce70c345069504147198621c645234447"
+    },
+    "ui": {
+      "unique_tests": 127,
+      "passed": 127,
+      "failed": 0,
+      "existing_integrated": {
+        "tests": 117,
+        "passed": 117,
+        "command": [
+          "node",
+          "scripts/check-wave30e-ui.mjs",
+          "tests/wave31-data-ui.test.tsx"
+        ],
+        "observation": "Recorded successful integration run on the candidate"
+      },
+      "new_named_menu_suite": {
+        "tests": 10,
+        "passed": 10,
+        "command": [
+          "node",
+          "--import",
+          "tsx",
+          "--test",
+          "--test-reporter=spec",
+          "tests/wave31b-menu-ui.test.tsx"
+        ]
+      },
+      "after_browser_presentation_rerun": {
+        "command": [
+          "node",
+          "--import",
+          "tsx",
+          "--test",
+          "--test-reporter=spec",
+          "tests/wave30c-staffing-ui.test.tsx",
+          "tests/wave31b-menu-ui.test.tsx"
+        ],
+        "exit_code": 0,
+        "duration_seconds": 1.507,
+        "log": "staffing-after-browser.log",
+        "tests": 22,
+        "pass": 22,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "overlaps_unique_total": true,
+        "additional_unique_tests": 0,
+        "log_sha256": "ec59cc035b422667ccc198d5870b4a8a7e48b0e59d758f7a95b25b5af2c8f608"
+      },
+      "method_limit": "Rendered component/helper checks establish semantics, selected values and disabled controls. Mounted browser checks establish interaction and layout."
+    },
+    "typescript": {
+      "command": [
+        "node",
+        "node_modules/typescript/bin/tsc",
+        "--noEmit"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 19.483,
+      "log": "typecheck-after-browser.log",
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "new_test_files": [
+      "tests/wave31b-task-navigation.test.ts",
+      "tests/wave31b-menu-ui.test.tsx"
+    ],
+    "record_scope": "Historical pre-workforce-points candidate 0.31.1 only; not proof of 0.32.0 validation or economy parity."
+  },
+  "replay": {
+    "baselineCommit": "3658d92e5156b9983d77261447eb0670b64262b6",
+    "currentBuild": "0.31.1",
+    "baselineBuild": "0.31.0",
+    "method": "Baseline normalizes each fixture once, then both implementations import the identical serialized bytes. Full command results, states, serialized saves and final browser-storage writes are compared. The additive saved-byte receipt is checked against the exact primary snapshot. No browser UI is involved.",
+    "normalization": "Only the newly created company buildVersion header is normalized for the initial-state comparison. Subsequent full results, states, saves and browser-storage bytes use identical imported fixture headers and are compared without normalization.",
+    "newCompanyEqualExceptBuildVersion": true,
+    "checkpoints": [
+      {
+        "scenario": "opening-first-sale",
+        "label": "identical imported baseline",
+        "week": 0,
+        "cashCents": 4800000,
+        "queuedCount": 0,
+        "checksum": "eab0db54",
+        "serializedBytes": 41840,
+        "sha256": "3c9986e17d1435e5b0606f844ebc029a989ffb69c9902d36a6512e3cb17389d1"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "reject training on unprepared data",
+        "accepted": false,
+        "rejectionReason": "You must own and fully prepare every selected dataset.",
+        "week": 0,
+        "cashCents": 4800000,
+        "queuedCount": 0,
+        "checksum": "eab0db54",
+        "serializedBytes": 41840,
+        "sha256": "3c9986e17d1435e5b0606f844ebc029a989ffb69c9902d36a6512e3cb17389d1"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "prepare starter data",
+        "accepted": true,
+        "commandId": "command-2",
+        "week": 0,
+        "cashCents": 4800000,
+        "queuedCount": 1,
+        "checksum": "91743baf",
+        "serializedBytes": 42320,
+        "sha256": "257b5cc88ccd857d6185377714c5c3f242d91b98b1925b841e31c928179df29e"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "hire ML engineer",
+        "accepted": true,
+        "commandId": "command-4",
+        "week": 0,
+        "cashCents": 4800000,
+        "queuedCount": 2,
+        "checksum": "d93b0197",
+        "serializedBytes": 42759,
+        "sha256": "e58807aecabd3c98f10fa4e461f459dd14eb67f3f0c3e0eb6d8a31fce94041bd"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "allocate development compute",
+        "accepted": true,
+        "commandId": "command-6",
+        "week": 0,
+        "cashCents": 4800000,
+        "queuedCount": 3,
+        "checksum": "c012f72b",
+        "serializedBytes": 43327,
+        "sha256": "3b85689aa3acbdff9ea1c71aab9b88f5da703313ccf373a75a8e716e49249eb2"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "preparation/onboarding 1",
+        "accepted": true,
+        "week": 1,
+        "cashCents": 4420000,
+        "queuedCount": 0,
+        "checksum": "4362c542",
+        "serializedBytes": 71819,
+        "sha256": "c74e555429c20571edd8266c6b5507f0dffcfaad749d3cbb3cb1fcda3eaeb4de"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "preparation/onboarding 2",
+        "accepted": true,
+        "week": 2,
+        "cashCents": 4290000,
+        "queuedCount": 0,
+        "checksum": "28304152",
+        "serializedBytes": 88022,
+        "sha256": "c2ccfd92fce3f31a707a928e4d6c43fcb509aee2a08a96e25c04c7ae9f05ba49"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "assign founder to research",
+        "accepted": true,
+        "commandId": "command-15",
+        "week": 2,
+        "cashCents": 4290000,
+        "queuedCount": 1,
+        "checksum": "4fc4c96a",
+        "serializedBytes": 88641,
+        "sha256": "0654833504f9fe1476dfc9bb9d463421915dbd263a63f92ea34aab23273a22ff"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "train exact starter candidate",
+        "accepted": true,
+        "commandId": "command-17",
+        "week": 2,
+        "cashCents": 4290000,
+        "queuedCount": 2,
+        "checksum": "9ded1752",
+        "serializedBytes": 89217,
+        "sha256": "47a1d7e5e7cc9f81534d9fe50d7d1d6d39d77adb72b242a7037a3b01e42fb3aa"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "training 1",
+        "accepted": true,
+        "week": 3,
+        "cashCents": 4160000,
+        "queuedCount": 0,
+        "checksum": "05b81891",
+        "serializedBytes": 108473,
+        "sha256": "c7c6f52a7b866fa02e7c5bdda1b13446c209d15e7afae244c5bb8cb45315659f"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "training 2",
+        "accepted": true,
+        "week": 4,
+        "cashCents": 4030000,
+        "queuedCount": 1,
+        "checksum": "48fdc750",
+        "serializedBytes": 124492,
+        "sha256": "1257a65124755dcaf16b9d6124b06b791f452eac8c6bd02079da0cc3d4b700f9"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "training 3",
+        "accepted": true,
+        "week": 5,
+        "cashCents": 3900000,
+        "queuedCount": 0,
+        "checksum": "21862ed6",
+        "serializedBytes": 142106,
+        "sha256": "1b533ec94bfe9da8e4c250de441bf7e2e26186547aaf3449b08b2e33cc012c50"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "evaluate exact output",
+        "accepted": true,
+        "commandId": "command-29",
+        "week": 5,
+        "cashCents": 3900000,
+        "queuedCount": 1,
+        "checksum": "0cbeafbe",
+        "serializedBytes": 142615,
+        "sha256": "8237c2ecb56ed1d3d9b2001fa798ff681341748001b1b96f411850cdeef266ed"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "evaluation",
+        "accepted": true,
+        "week": 6,
+        "cashCents": 3770000,
+        "queuedCount": 1,
+        "checksum": "03fe69e4",
+        "serializedBytes": 167152,
+        "sha256": "b2585c480177387128fd0cb6fe2d18e541d423e7a6dfc3e825058618e25d2f93"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "deploy Basic Chat",
+        "accepted": true,
+        "commandId": "command-36",
+        "week": 6,
+        "cashCents": 3770000,
+        "queuedCount": 2,
+        "checksum": "eb908d4e",
+        "serializedBytes": 167652,
+        "sha256": "63a1099b970146fda707df89fc33ab74daf74b0ae751f296473510fbd8fbd193"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "allocate serving compute",
+        "accepted": true,
+        "commandId": "command-38",
+        "week": 6,
+        "cashCents": 3770000,
+        "queuedCount": 3,
+        "checksum": "4ce414e1",
+        "serializedBytes": 168222,
+        "sha256": "5d3639a2ff165de0c3bdd6d4246c1a2795096e74c266bd3bcaac02cb016b593a"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "deployment through first billing 1",
+        "accepted": true,
+        "week": 7,
+        "cashCents": 3640000,
+        "queuedCount": 0,
+        "checksum": "f4c93c6e",
+        "serializedBytes": 188075,
+        "sha256": "49fc7adf02d22c1fbcd78d7749205590ac98fdb372c34a0e9ea34551fd24a450"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "deployment through first billing 2",
+        "accepted": true,
+        "week": 8,
+        "cashCents": 3510000,
+        "queuedCount": 2,
+        "checksum": "fca78c60",
+        "serializedBytes": 198624,
+        "sha256": "af86eea08f94029c72e6648c8d3df0f888586196fa8350fd09dbd3d18a177c8c"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "deployment through first billing 3",
+        "accepted": true,
+        "week": 9,
+        "cashCents": 3380000,
+        "queuedCount": 0,
+        "checksum": "a49ac7bf",
+        "serializedBytes": 202507,
+        "sha256": "09c54ab762496524759d3224af0e5727cc9a23ca831f16f8baf55588c9269fd1"
+      },
+      {
+        "scenario": "opening-first-sale",
+        "label": "deployment through first billing 4",
+        "accepted": true,
+        "week": 10,
+        "cashCents": 3260800,
+        "queuedCount": 0,
+        "checksum": "4cc69e7f",
+        "serializedBytes": 207747,
+        "sha256": "1c7d64dddce6a93973637e67c52d266a8885b8977ea7cd6ddff1c3283d95504a"
+      },
+      {
+        "scenario": "advanced-commercial-company",
+        "label": "identical imported baseline",
+        "week": 553,
+        "cashCents": 610337840,
+        "queuedCount": 0,
+        "checksum": "965bca64",
+        "serializedBytes": 1461888,
+        "sha256": "3b9c99187edb3ca76a4ecf2b50f72edc83bacfe614e44ec2621d9cf9278025cf"
+      },
+      {
+        "scenario": "advanced-commercial-company",
+        "label": "reject missing research",
+        "accepted": false,
+        "rejectionReason": "This discovery is not available yet.",
+        "week": 553,
+        "cashCents": 610337840,
+        "queuedCount": 0,
+        "checksum": "965bca64",
+        "serializedBytes": 1461888,
+        "sha256": "3b9c99187edb3ca76a4ecf2b50f72edc83bacfe614e44ec2621d9cf9278025cf"
+      },
+      {
+        "scenario": "advanced-commercial-company",
+        "label": "hire data employee",
+        "accepted": true,
+        "commandId": "command-3150",
+        "week": 553,
+        "cashCents": 610337840,
+        "queuedCount": 1,
+        "checksum": "e81c83b5",
+        "serializedBytes": 1462028,
+        "sha256": "11a4d6546e9e2b116b543961195cf1fd7d0226397bd76cac90fd6b5785508114"
+      },
+      {
+        "scenario": "advanced-commercial-company",
+        "label": "rebalance shared capacity",
+        "accepted": true,
+        "commandId": "command-3152",
+        "week": 553,
+        "cashCents": 610337840,
+        "queuedCount": 2,
+        "checksum": "b0065299",
+        "serializedBytes": 1462245,
+        "sha256": "8e34835925855caf7d3c5a8df2a5e98ce0eff0d37b1d970c37f60242bfb3c11e"
+      },
+      {
+        "scenario": "advanced-commercial-company",
+        "label": "reject terms change while a prepared release owns the exact Chat product",
+        "accepted": false,
+        "rejectionReason": "Finish or discard this product\u2019s prepared release before changing its model, terms, features, session history, retrieval, efficiency, or runtime guardrail settings.",
+        "week": 553,
+        "cashCents": 610337840,
+        "queuedCount": 2,
+        "checksum": "b0065299",
+        "serializedBytes": 1462245,
+        "sha256": "8e34835925855caf7d3c5a8df2a5e98ce0eff0d37b1d970c37f60242bfb3c11e"
+      },
+      {
+        "scenario": "advanced-commercial-company",
+        "label": "advanced settlement 1",
+        "accepted": true,
+        "week": 554,
+        "cashCents": 611674275,
+        "queuedCount": 0,
+        "checksum": "4d3de8d7",
+        "serializedBytes": 1458949,
+        "sha256": "554a947869c1d46f8e7b08f49c0077704f509a059a5ca66677cf4b898e1e255d"
+      },
+      {
+        "scenario": "advanced-commercial-company",
+        "label": "advanced settlement 2",
+        "accepted": true,
+        "week": 555,
+        "cashCents": 613140511,
+        "queuedCount": 0,
+        "checksum": "cb94254f",
+        "serializedBytes": 1458567,
+        "sha256": "fd5e2415dffd211db3ddaf7e85eee2f1bd89084056ca7c16ba8e9303ff7ff619"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "label": "identical imported baseline",
+        "week": 0,
+        "cashCents": 4800000,
+        "queuedCount": 0,
+        "checksum": "eab0db54",
+        "serializedBytes": 41840,
+        "sha256": "3c9986e17d1435e5b0606f844ebc029a989ffb69c9902d36a6512e3cb17389d1"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "label": "hire ML for focused staffing",
+        "accepted": true,
+        "commandId": "command-2",
+        "week": 0,
+        "cashCents": 4800000,
+        "queuedCount": 1,
+        "checksum": "64037502",
+        "serializedBytes": 42283,
+        "sha256": "e5e5899cb626ec4672e30673c6f51036c1e6808b4cab179ce9c1458dfff5f2f4"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "label": "hire boundary and payroll before readiness",
+        "accepted": true,
+        "week": 1,
+        "cashCents": 4520000,
+        "queuedCount": 0,
+        "checksum": "ad794281",
+        "serializedBytes": 69614,
+        "sha256": "14cbdf4e5d8b3e7803b44f930a686922ccc1da608111783028ba92a149f3149e"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "label": "assign onboarding employee half FTE",
+        "accepted": true,
+        "commandId": "command-6",
+        "week": 1,
+        "cashCents": 4520000,
+        "queuedCount": 1,
+        "checksum": "ded1299a",
+        "serializedBytes": 70101,
+        "sha256": "12ee550139b2c61d90a05bfbe30cb09999d07fa2356b3b97e0c6e39d46f60fad"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "label": "split founder research and data",
+        "accepted": true,
+        "commandId": "command-8",
+        "week": 1,
+        "cashCents": 4520000,
+        "queuedCount": 2,
+        "checksum": "d778c81e",
+        "serializedBytes": 70722,
+        "sha256": "13b2a421b134655de9bdf9586193ee42e09c7e155acacf89f5a0852392ba3d49"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "label": "assignment boundary before onboarding completes",
+        "accepted": true,
+        "week": 2,
+        "cashCents": 4390000,
+        "queuedCount": 0,
+        "checksum": "2ecdedc3",
+        "serializedBytes": 86412,
+        "sha256": "c086e1aa457026707ffbcc7ceed1b0dafcb64ea99669d7399b481ba83307acde"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "label": "employee reaches recorded ready week",
+        "accepted": true,
+        "week": 3,
+        "cashCents": 4260000,
+        "queuedCount": 0,
+        "checksum": "c59e0d2b",
+        "serializedBytes": 100897,
+        "sha256": "2d50b35e890e34c1a0863f26fac4300a7133ac95fe74764434a5e8a307c30a0c"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "label": "reject missing employee assignment",
+        "accepted": false,
+        "rejectionReason": "That employee does not belong to this company.",
+        "week": 3,
+        "cashCents": 4260000,
+        "queuedCount": 0,
+        "checksum": "c59e0d2b",
+        "serializedBytes": 100897,
+        "sha256": "2d50b35e890e34c1a0863f26fac4300a7133ac95fe74764434a5e8a307c30a0c"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "label": "atomic people and compute plan",
+        "accepted": true,
+        "commandId": "command-15",
+        "week": 3,
+        "cashCents": 4260000,
+        "queuedCount": 1,
+        "checksum": "51415415",
+        "serializedBytes": 102082,
+        "sha256": "36aac4aa3b3efdb37cc2abce6035997f46f3da9ce8f6b42dcc712ad13747141f"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "label": "atomic plan settlement",
+        "accepted": true,
+        "week": 4,
+        "cashCents": 4050000,
+        "queuedCount": 1,
+        "checksum": "5d122cd0",
+        "serializedBytes": 116712,
+        "sha256": "d06318eee708482901300e3b754258b601952e24ef34cc7c61a0598cc44d10a3"
+      }
+    ],
+    "fixtures": [
+      {
+        "name": "opening-first-sale",
+        "source": "Baseline-created opening serialized before either implementation imports it",
+        "bytes": 41840,
+        "sha256": "3c9986e17d1435e5b0606f844ebc029a989ffb69c9902d36a6512e3cb17389d1",
+        "week": 0,
+        "retainedBuildHeader": "0.31.0"
+      },
+      {
+        "name": "advanced-commercial-company",
+        "source": {
+          "path": "tests/fixtures/wave27-canary-published.json",
+          "sourceSha256": "8fbb318b6f1d0a7adf44a97f773992e36d6eb80523cbeb8c92a9334017daf1ac",
+          "normalization": "Baseline migration once; shared content 0.28.0 snapshot imported by both implementations"
+        },
+        "bytes": 1461888,
+        "sha256": "3b9c99187edb3ca76a4ecf2b50f72edc83bacfe614e44ec2621d9cf9278025cf",
+        "week": 553,
+        "retainedBuildHeader": "0.31.0"
+      },
+      {
+        "name": "focused-staffing-and-resources",
+        "source": "Baseline-created opening; ordinary hires, founder/employee assignments and one atomic people/compute plan",
+        "bytes": 41840,
+        "sha256": "3c9986e17d1435e5b0606f844ebc029a989ffb69c9902d36a6512e3cb17389d1",
+        "week": 0,
+        "retainedBuildHeader": "0.31.0"
+      }
+    ],
+    "persistence": [
+      {
+        "scenario": "opening-first-sale",
+        "writesCompared": 3,
+        "legacyWritesCompared": 2,
+        "additiveReceiptWritesCompared": 1,
+        "keys": [
+          {
+            "key": "frontier-lab.wave0.snapshot",
+            "bytes": 207747,
+            "sha256": "1c7d64dddce6a93973637e67c52d266a8885b8977ea7cd6ddff1c3283d95504a"
+          }
+        ]
+      },
+      {
+        "scenario": "advanced-commercial-company",
+        "writesCompared": 3,
+        "legacyWritesCompared": 2,
+        "additiveReceiptWritesCompared": 1,
+        "keys": [
+          {
+            "key": "frontier-lab.wave0.snapshot",
+            "bytes": 1458567,
+            "sha256": "fd5e2415dffd211db3ddaf7e85eee2f1bd89084056ca7c16ba8e9303ff7ff619"
+          }
+        ]
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "writesCompared": 3,
+        "legacyWritesCompared": 2,
+        "additiveReceiptWritesCompared": 1,
+        "keys": [
+          {
+            "key": "frontier-lab.wave0.snapshot",
+            "bytes": 116712,
+            "sha256": "d06318eee708482901300e3b754258b601952e24ef34cc7c61a0598cc44d10a3"
+          }
+        ]
+      }
+    ],
+    "savedByteReceipts": [
+      {
+        "scenario": "opening-first-sale",
+        "bytes": 207747,
+        "sha256": "1c7d64dddce6a93973637e67c52d266a8885b8977ea7cd6ddff1c3283d95504a"
+      },
+      {
+        "scenario": "advanced-commercial-company",
+        "bytes": 1458567,
+        "sha256": "fd5e2415dffd211db3ddaf7e85eee2f1bd89084056ca7c16ba8e9303ff7ff619"
+      },
+      {
+        "scenario": "focused-staffing-and-resources",
+        "bytes": 116712,
+        "sha256": "d06318eee708482901300e3b754258b601952e24ef34cc7c61a0598cc44d10a3"
+      }
+    ],
+    "allEqual": true,
+    "checkpoint_count": 37,
+    "fixture_count": 3,
+    "persistence_comparisons": 9,
+    "saved_byte_receipt_count": 3,
+    "expected_current_build": "0.31.1",
+    "harness_sha256": "1cb940322c5bd756f44b7fcc772225e51ae0db64cb51593751ad8ce1fc282c8c",
+    "evidence_sha256": "4292197611c11f2ca3f7e12ae85260fcb02fbbaf8a92871f7bdf2797439ad478",
+    "record_scope": "Historical pre-workforce-points candidate 0.31.1 only; not proof of 0.32.0 validation or economy parity."
+  },
+  "browser": {
+    "method": "Observed interaction with the actual game UI in Chrome; dimensions are reported CSS pixels.",
+    "state_integrity": {
+      "draft_navigation_byte_equal": true,
+      "draft_fixture_sha256": "c2ccfd92fce3f31a707a928e4d6c43fcb509aee2a08a96e25c04c7ae9f05ba49",
+      "after_navigation_sha256": "c2ccfd92fce3f31a707a928e4d6c43fcb509aee2a08a96e25c04c7ae9f05ba49",
+      "double_confirm_added_commands": 1,
+      "double_confirm_payloads": [
+        {
+          "kind": "prepare_data",
+          "packetId": "starter-public"
+        }
+      ],
+      "week_unchanged": true
+    },
+    "journeys": [
+      {
+        "task": "prepare-data",
+        "result": "Double confirmation scheduled exactly one starter-public preparation command; the game week did not advance."
+      },
+      {
+        "task": "train-model",
+        "result": "The selected document-adaptation method, seed-0 base, starter-public data and balanced profile survived planner \u2192 hire \u2192 assign \u2192 return, close/reopen, and the observed 1920 \u00d7 1080, 1366 \u00d7 650 and 720 \u00d7 850 viewport changes."
+      },
+      {
+        "task": "hire-staff / assign-staff",
+        "result": "Hire role data and founder assignment 0.5 ML / 0.5 data remained selected across named mode swaps."
+      },
+      {
+        "task": "allocate-compute / rent-compute",
+        "result": "Allocation draft 0 serving / 3 development / 1 research CU and rental draft 6 CU survived switching between named actions. The original Studio return was preserved."
+      },
+      {
+        "task": "exact disabled action binding",
+        "result": "An empty development allocation kept the disabled allocation primary. A blocked 2-CU rental kept the disabled rental primary. Neither changed to another command."
+      },
+      {
+        "task": "evaluate-model",
+        "result": "Exact candidate model-command-17 and basic-conversation-1 were selected. Changing to locked expanded-capabilities-1 kept the same model and disabled evaluation primary."
+      },
+      {
+        "task": "launch-basic-chat",
+        "result": "Exact candidate model-command-17, report-evaluation-command-29, displayed price 15 and allowance 120 survived a resource detour and return."
+      },
+      {
+        "task": "dismiss and return",
+        "result": "Escape and the original return destination behaved correctly in the recorded journeys."
+      }
+    ],
+    "settled_or_appropriate_layout_samples": [
+      {
+        "label": "assignment-compact-1440x900",
+        "title": "Assign time",
+        "viewport": {
+          "height": 900,
+          "scrollWidth": 1440,
+          "width": 1440
+        },
+        "inputs": [
+          {
+            "id": "staffing-person",
+            "value": "founder"
+          },
+          {
+            "id": "founder-research",
+            "value": "0"
+          },
+          {
+            "id": "founder-ml",
+            "value": "0.5"
+          },
+          {
+            "id": "founder-data",
+            "value": "0.5"
+          },
+          {
+            "id": "founder-infrastructure",
+            "value": "0"
+          },
+          {
+            "id": "founder-commercial",
+            "value": "0"
+          }
+        ],
+        "body": {
+          "clientHeight": 615,
+          "clientWidth": 1083,
+          "scrollHeight": 938,
+          "scrollWidth": 1083
+        },
+        "footer": {
+          "bottom": 875,
+          "top": 802
+        },
+        "grid": "529.562px 481.438px",
+        "primary": [
+          {
+            "disabled": false,
+            "text": "Review assignment"
+          }
+        ]
+      },
+      {
+        "label": "training-1366x650-settled",
+        "title": "Train a model",
+        "viewport": {
+          "height": 650,
+          "scrollWidth": 1366,
+          "width": 1366
+        },
+        "inputs": [
+          {
+            "id": "training-recipe",
+            "value": "document-adaptation"
+          },
+          {
+            "id": "training-base",
+            "value": "seed-0"
+          },
+          {
+            "id": "training-data",
+            "value": "starter-public"
+          },
+          {
+            "id": "training-profile",
+            "value": "balanced"
+          }
+        ],
+        "body": {
+          "clientHeight": 365,
+          "clientWidth": 1083,
+          "scrollHeight": 569,
+          "scrollWidth": 1083
+        },
+        "footer": {
+          "bottom": 625,
+          "top": 552
+        },
+        "grid": "529.562px 481.438px",
+        "primary": [
+          {
+            "disabled": false,
+            "text": "Review: Start training"
+          }
+        ]
+      },
+      {
+        "label": "training-720x850-stacked",
+        "title": "Train a model",
+        "viewport": {
+          "height": 850,
+          "scrollWidth": 720,
+          "width": 720
+        },
+        "inputs": [
+          {
+            "id": "training-recipe",
+            "value": "document-adaptation"
+          },
+          {
+            "id": "training-base",
+            "value": "seed-0"
+          },
+          {
+            "id": "training-data",
+            "value": "starter-public"
+          },
+          {
+            "id": "training-profile",
+            "value": "balanced"
+          }
+        ],
+        "body": {
+          "clientHeight": 597,
+          "clientWidth": 671,
+          "scrollHeight": 1081,
+          "scrollWidth": 671
+        },
+        "footer": {
+          "bottom": 833,
+          "top": 764
+        },
+        "grid": "639px",
+        "primary": [
+          {
+            "disabled": false,
+            "text": "Review: Start training"
+          }
+        ]
+      },
+      {
+        "label": "allocation-retained-after-rental",
+        "title": "Allocate compute",
+        "viewport": {
+          "height": 900,
+          "scrollWidth": 1440,
+          "width": 1440
+        },
+        "inputs": [
+          {
+            "id": "allocate-serving",
+            "value": "0"
+          },
+          {
+            "id": "allocate-development",
+            "value": "3"
+          },
+          {
+            "id": "allocate-research",
+            "value": "1"
+          }
+        ],
+        "body": {
+          "clientHeight": 615,
+          "clientWidth": 1083,
+          "scrollHeight": 882,
+          "scrollWidth": 1083
+        },
+        "footer": {
+          "bottom": 875,
+          "top": 802
+        },
+        "grid": "529.562px 481.438px",
+        "primary": [
+          {
+            "disabled": false,
+            "text": "Review: Set compute allocation"
+          }
+        ]
+      },
+      {
+        "label": "compute-review-1440x900",
+        "title": "Review: Change compute allocation",
+        "viewport": {
+          "height": 900,
+          "scrollWidth": 1440,
+          "width": 1440
+        },
+        "inputs": [],
+        "body": {
+          "clientHeight": 344,
+          "clientWidth": 1083,
+          "scrollHeight": 344,
+          "scrollWidth": 1083
+        },
+        "footer": {
+          "bottom": 739.46875,
+          "top": 666.46875
+        },
+        "grid": "529.562px 481.438px",
+        "primary": [
+          {
+            "disabled": false,
+            "text": "Confirm for Week 3"
+          }
+        ]
+      },
+      {
+        "label": "evaluation-1440x900",
+        "title": "Evaluate a model",
+        "viewport": {
+          "height": 900,
+          "scrollWidth": 1440,
+          "width": 1440
+        },
+        "inputs": [
+          {
+            "id": "inspect-model",
+            "value": "model-command-17"
+          },
+          {
+            "id": "evaluation-suite",
+            "value": "basic-conversation-1"
+          }
+        ],
+        "body": {
+          "clientHeight": 453,
+          "clientWidth": 1083,
+          "scrollHeight": 453,
+          "scrollWidth": 1083
+        },
+        "footer": {
+          "bottom": 793.5625,
+          "top": 720.5625
+        },
+        "grid": "529.562px 481.438px",
+        "primary": [
+          {
+            "disabled": false,
+            "text": "Review: Evaluate model"
+          }
+        ]
+      },
+      {
+        "label": "launch-1440x900-retained",
+        "title": "Launch Basic Chat",
+        "viewport": {
+          "height": 900,
+          "scrollWidth": 1440,
+          "width": 1440
+        },
+        "inputs": [
+          {
+            "id": "basic-chat-deploy-model",
+            "value": "model-command-17"
+          },
+          {
+            "id": "basic-chat-price",
+            "value": "15"
+          },
+          {
+            "id": "basic-chat-allowance",
+            "value": "120"
+          }
+        ],
+        "body": {
+          "clientHeight": 615,
+          "clientWidth": 1083,
+          "scrollHeight": 721,
+          "scrollWidth": 1083
+        },
+        "footer": {
+          "bottom": 875,
+          "top": 802
+        },
+        "grid": "529.562px 481.438px",
+        "primary": [
+          {
+            "disabled": false,
+            "text": "Review: Deploy Basic Chat"
+          }
+        ]
+      }
+    ],
+    "state_only_samples": [
+      {
+        "label": "hire-draft-after-assignment-switch",
+        "title": "Hire staff",
+        "viewport": {
+          "height": 900,
+          "scrollWidth": 1440,
+          "width": 1440
+        },
+        "inputs": [
+          {
+            "id": "hire-role",
+            "value": "data"
+          }
+        ]
+      },
+      {
+        "label": "training-1920x1080-retained",
+        "title": "Train a model",
+        "viewport": {
+          "height": 1080,
+          "scrollWidth": 1920,
+          "width": 1920
+        },
+        "inputs": [
+          {
+            "id": "training-recipe",
+            "value": "document-adaptation"
+          },
+          {
+            "id": "training-base",
+            "value": "seed-0"
+          },
+          {
+            "id": "training-data",
+            "value": "starter-public"
+          },
+          {
+            "id": "training-profile",
+            "value": "balanced"
+          }
+        ]
+      },
+      {
+        "label": "training-after-close-reopen",
+        "title": "Train a model",
+        "viewport": {
+          "height": 850,
+          "scrollWidth": 720,
+          "width": 720
+        },
+        "inputs": [
+          {
+            "id": "training-recipe",
+            "value": "document-adaptation"
+          },
+          {
+            "id": "training-base",
+            "value": "seed-0"
+          },
+          {
+            "id": "training-data",
+            "value": "starter-public"
+          },
+          {
+            "id": "training-profile",
+            "value": "balanced"
+          }
+        ],
+        "primary": [
+          {
+            "disabled": false,
+            "text": "Review: Start training"
+          }
+        ]
+      },
+      {
+        "label": "allocation-incomplete-keeps-binding",
+        "title": "Allocate compute",
+        "viewport": {
+          "height": 900,
+          "scrollWidth": 1440,
+          "width": 1440
+        },
+        "inputs": [
+          {
+            "id": "allocate-serving",
+            "value": "0"
+          },
+          {
+            "id": "allocate-development",
+            "value": ""
+          },
+          {
+            "id": "allocate-research",
+            "value": "0"
+          }
+        ],
+        "primary": [
+          {
+            "disabled": true,
+            "text": "Review: Set compute allocation"
+          }
+        ]
+      },
+      {
+        "label": "rental-blocked-keeps-binding",
+        "title": "Rent or release compute",
+        "viewport": {
+          "height": 900,
+          "scrollWidth": 1440,
+          "width": 1440
+        },
+        "inputs": [
+          {
+            "id": "cloud-total",
+            "value": "2"
+          }
+        ],
+        "primary": [
+          {
+            "disabled": true,
+            "text": "Review: Change cloud capacity"
+          }
+        ]
+      },
+      {
+        "label": "evaluation-locked-keeps-binding",
+        "title": "Evaluate a model",
+        "viewport": {
+          "height": 900,
+          "scrollWidth": 1440,
+          "width": 1440
+        },
+        "inputs": [
+          {
+            "id": "inspect-model",
+            "value": "model-command-17"
+          },
+          {
+            "id": "evaluation-suite",
+            "value": "expanded-capabilities-1"
+          }
+        ],
+        "primary": [
+          {
+            "disabled": true,
+            "text": "Review: Evaluate model"
+          }
+        ]
+      }
+    ],
+    "measurement_curation": {
+      "excluded_transient_resize_sample": "training-1366x650-retained",
+      "wide_sample_limit": "training-1920x1080-retained may precede layout settling. Only its observed viewport and named draft values are retained; its body/grid/footer dimensions are omitted.",
+      "omitted_fields": [
+        "focused DOM text",
+        "anonymous input records"
+      ],
+      "other_omissions": "Earlier staffing geometry, initial training geometry and redundant draft captures are omitted in favor of the later compact or settled samples. Empty bootstrap primary samples are not treated as action-binding failures or final measurements.",
+      "native_zoom_curation": "Native zoom samples are copied in the separate curated receipt with original source SHA256. Anonymous input records are omitted. The earlier 400-percent-keyboard-confirm-visible overflow diagnostic is retained as superseded, not accepted as final."
+    },
+    "evidence_inputs": {
+      "browser-state-verification.json": "751eeb30d609dc95e91efb5a745cbbae5e20bb585d00111f19fd137c04f55cf3",
+      "browser-measurements.json": "f1985cb3c62506436a981052715f3499876db1b45c7f4e8784cadf74e4f85214",
+      "native-zoom-checks.json": "66b958c0f11b8c81eebd60d6544da5eeb28412dad8cddd639b46a9e5373f8e0d",
+      "original-save-restoration.json": "ec5039713ca94d9f3af7236ea8f93a812c0d96b84924da374ee258cd65510864"
+    },
+    "record_scope": "Historical pre-workforce-points candidate 0.31.1 only; not proof of 0.32.0 validation or economy parity."
+  },
+  "release": {
+    "production_build": {
+      "status": "superseded_by_combined_release",
+      "candidate_build": "0.31.1",
+      "combined_build": "0.32.0",
+      "note": "No final combined-build result is recorded here. Use the Wave 32 release record for current source validation and the production build."
+    },
+    "original_save_restoration": {
+      "status": "passed_historical_31b",
+      "candidate_build": "0.31.1",
+      "payload_included": false,
+      "receipt": "original-save-restoration.json",
+      "source_path": "/workspace/shared/frontier-wave31b/original-save-restoration.json",
+      "source_sha256": "ec5039713ca94d9f3af7236ea8f93a812c0d96b84924da374ee258cd65510864",
+      "copied_receipt_sha256": "ec5039713ca94d9f3af7236ea8f93a812c0d96b84924da374ee258cd65510864",
+      "observed": {
+        "originalSha256": "2e4dd272a8fb14d5640dcac03e6a4148c606ad862b6bb4fa7e8368e62a5a4fbc",
+        "restoredSha256": "2e4dd272a8fb14d5640dcac03e6a4148c606ad862b6bb4fa7e8368e62a5a4fbc",
+        "originalBytes": 41831,
+        "restoredBytes": 41831,
+        "byteExact": true
+      },
+      "note": "Original browser save restoration matched byte for byte during the historical 31B session. This is not verification of the later 0.32.0 content migration or original-content recovery export."
+    },
+    "publication": {
+      "status": "no_separate_31b_deployment",
+      "separately_deployed": false,
+      "included_in_build": "0.32.0",
+      "combined_release_record": "../../WAVE32_WORKFORCE_POINTS.md",
+      "note": "This historical evidence does not establish that combined build 0.32.0 has been deployed."
+    },
+    "screenshots": {
+      "status": "selected_historical_captures_copied",
+      "scope": "Historical pre-points UI. Desktop captures include QA viewport controls; not current 0.32.0 browser acceptance.",
+      "files": [
+        {
+          "path": "training-1440x900.png",
+          "source_path": "/workspace/shared/frontier-wave31b/training-1440x900.png",
+          "sha256": "808cf9ade2a76c2534bdbb0f8a21cc6fa8374bc7ae6b2e0e66618b4af92fab8d",
+          "copied_byte_exact": true
+        },
+        {
+          "path": "review-1440x900.png",
+          "source_path": "/workspace/shared/frontier-wave31b/review-1440x900.png",
+          "sha256": "30cc1ece0b1ba7edfa5ae724960775848550eb9d12c9493a29cfe897e46ca259",
+          "copied_byte_exact": true
+        },
+        {
+          "path": "review-zoom-400-wrapped.png",
+          "source_path": "/workspace/shared/frontier-wave31b/review-zoom-400-wrapped.png",
+          "sha256": "81c5a3d8e7ddd4368a2a62d49d23cba99a9fddb6a468900fdae613925009d71c",
+          "copied_byte_exact": true
+        }
+      ]
+    },
+    "native_zoom_acceptance": {
+      "status": "passed_historical_31b",
+      "candidate_build": "0.31.1",
+      "receipt": "native-zoom-checks.json",
+      "source_path": "/workspace/shared/frontier-wave31b/native-zoom-checks.json",
+      "source_sha256": "66b958c0f11b8c81eebd60d6544da5eeb28412dad8cddd639b46a9e5373f8e0d",
+      "curated_receipt_sha256": "77492b3a962d0804362ece43acef4e440c5f5272a5229f727b7fc11a36de8f6c",
+      "final_label": "400-percent-review-final",
+      "native_zoom_percent": 400,
+      "final_sample": {
+        "label": "400-percent-review-final",
+        "body": {
+          "clientHeight": 1218,
+          "clientWidth": 337,
+          "scrollHeight": 1218,
+          "scrollWidth": 337
+        },
+        "footer": {
+          "bottom": 233.90234375,
+          "top": 92.30859375
+        },
+        "grid": "minmax(0px, 1fr)",
+        "inputs": [],
+        "primary": [
+          {
+            "disabled": false,
+            "text": "Confirm for Week 7"
+          }
+        ],
+        "short": "true",
+        "viewport": {
+          "height": 234,
+          "scrollWidth": 340,
+          "width": 340
+        }
+      },
+      "horizontal_overflow_measured": false,
+      "keyboard_reached_footer_within_viewport": true,
+      "superseded_diagnostic": {
+        "label": "400-percent-keyboard-confirm-visible",
+        "body_client_width": 337,
+        "body_scroll_width": 515,
+        "note": "Pre-correction overflow is retained in the receipt for provenance and is not treated as final acceptance."
+      },
+      "note": "The corrected review wraps at 400%. Keyboard navigation brought the footer within the 234 CSS-pixel viewport. Short-mode vertical scrolling remains necessary; the footer was below the viewport before navigation. These results apply only to the historical pre-points candidate.",
+      "confirmation_execution_established": false
+    }
+  },
+  "payload_policy": "No private fixture save, player save bytes, secrets, or bootstrap focused DOM text is included. Hashes and selected test-input identities are verification metadata.",
+  "historical_scope": {
+    "record_type": "historical_pre_workforce_points_acceptance",
+    "candidate_build": "0.31.1",
+    "included_in_build": "0.32.0",
+    "separately_deployed": false,
+    "note": "User-authorized workforce productivity changes followed this recorded 31B candidate. The 31B work is included in combined build 0.32.0 without a separate 0.31.1 deployment. Historical source protection, economy parity, browser geometry and save restoration do not establish current 0.32.0 validation.",
+    "combined_release_record": "../../WAVE32_WORKFORCE_POINTS.md"
+  }
+}

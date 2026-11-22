@@ -1,0 +1,14 @@
+✔ W17-C01: two replay budgets fund separate skill floors without changing ordinary targets, profile draws or preview state (16639.858326ms)
+✔ W17-C02: admission requires two distinct non-focus sources, paid research and exact prior evidence, with no adapter or one-skill stacking (1351.318764ms)
+✔ W17-C03: independent paid cleanup discounts each role once while aliases, reordered tracks and caller mutation cannot create a fresh attempt (5292.881625ms)
+✔ W17-C04: real ML and development grants fund checkpoints, partial floors, pause and exact continuation without automatic release (51839.652576ms)
+✔ W17-C05: each replay corpus constrains distribution rights through later paid descendants and exact evaluation remains separate (19650.238574ms)
+✔ W17-C06: checksum-correct imports cannot forge curriculum costs, evidence, chronology, identity, paid work or model outcomes (18991.053116ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 114625.581086

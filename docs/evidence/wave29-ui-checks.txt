@@ -1,0 +1,16 @@
+✔ W29-U01: unvisited Studio workbenches do not execute heavy children or add DOM wrappers (11.217144ms)
+✔ W29-U02: the selected real Data panel retains its direct-child section, quote and current state (77.830649ms)
+✔ W29-U03: Classic renders every legacy section once and excludes Studio-only duplicate workbenches (7.222573ms)
+✔ W29-U04: standalone selection renders one workbench with the props supplied for that render (1.573612ms)
+✔ W29-U05: the actual initial Studio Shell defers legacy, planner and research preview work (56.831289ms)
+✔ W29-U06: pending Shell feedback stays outside the inspector and disables every clock action (35.744506ms)
+✔ W29-U07: action buttons describe the unique accepted, blocked, incomplete and queued quote in one render (26.961151ms)
+✔ W29-U08: memo policy skips hidden prop churn but allows active changes and epoch replacement (0.255424ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2413.433347

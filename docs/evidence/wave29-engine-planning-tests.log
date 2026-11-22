@@ -1,0 +1,27 @@
+✔ W25-P01: a real first-sale company fixes assigned ML capacity while preserving live service (1161.378643ms)
+✔ W25-P02: disconnected pools explain a memory-stranded job despite enough aggregate memory (19095.177965ms)
+✔ W25-P03: repeated previews are pure and exact boundary cash, grants and reload continuation agree (539.097926ms)
+✔ W25-P04: invalid combined plans never leave partial hires, assignments, cash or queue changes (61.547852ms)
+✔ W25-P05: commit revalidation rolls the complete group back when an earlier queued product resume changes memory needs (391.232985ms)
+✔ W25-P06: capacity growth and shrink use existing validators in a valid atomic order (180.767198ms)
+✔ W25-P07: queued staffing decisions and stale reviews cannot be overwritten or duplicated (207.560963ms)
+✔ W25-P08: shape bounds, complete fee reservations and omitted employee assignments stay authoritative (109.139679ms)
+✔ W25-P09: actual onboarding boundaries and unpaid next-week bills remain visible (150.726021ms)
+✔ W25-P10: old snapshots retain their schema and selector purity while planning remains available (1486.884335ms)
+✔ W29-E01: current cash and queued identity are revalidated after every public call, including a retained unaffordable quote (115.500833ms)
+✔ W29-E02: a paid Studio transaction keeps its exact quote, one recruitment fee and reload continuation (165.356197ms)
+✔ W29-E03: later handlers see replaced slices, commands, receipts, events and random draws from the same tick (25.870459ms)
+✔ W29-E04: cached durable views and fresh coordinator/context fields reject attempted writes and preserve rollback identity (104.494814ms)
+✔ W29-E05: both full validation boundaries still reject invalid caller state and invalid final module output (21.233618ms)
+✔ W29-E06: a single authoritative commit quote still detects a mismatched charge and rolls back the whole week (21.131214ms)
+✔ W29-E07: a failed later Studio child discards earlier hiring and fees while the ordinary week settles (138.812776ms)
+✔ W29-E08: legacy extra Map, Set and Date fields retain per-handler copy isolation despite Object.freeze (208.650454ms)
+✔ W29-E09: command validation cannot alter exotic fields seen by its quote or command application (100.619755ms)
+ℹ tests 19
+ℹ suites 0
+ℹ pass 19
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 23812.119007

@@ -1,0 +1,556 @@
+{
+  "outcome": "pass",
+  "description": "Live browser W550→553 canary journey compared with the ordinary-engine default-command-ID oracle. No state edits or injected resources.",
+  "actualFile": "/workspace/shared/frontier-lab/wave27-canary-browser-actual.json",
+  "expectedFile": "/workspace/shared/frontier-lab/wave27-canary-browser-restored.json",
+  "startingFile": "/workspace/shared/frontier-lab/wave27-canary-beforeCanary.json",
+  "serialization": {
+    "actualBytes": 1461888,
+    "expectedBytes": 1461888,
+    "maximumBytes": 2000000,
+    "byteForByteEqual": true,
+    "envelopeDeepEqual": true,
+    "actualSha256": "8fbb318b6f1d0a7adf44a97f773992e36d6eb80523cbeb8c92a9334017daf1ac",
+    "expectedSha256": "8fbb318b6f1d0a7adf44a97f773992e36d6eb80523cbeb8c92a9334017daf1ac",
+    "actualChecksum": "9f0a4cc6",
+    "expectedChecksum": "9f0a4cc6",
+    "actualCanonicalStateHash": "9f0a4cc6",
+    "schemaVersion": 5,
+    "contentVersion": "0.27.0",
+    "buildVersion": "0.27.0"
+  },
+  "checks": {
+    "actualChecksumMatchesState": true,
+    "expectedChecksumMatchesState": true,
+    "actualChecksumMatchesExpected": true,
+    "expectedHashIsKnownOracle": true,
+    "fullStateDeepEqual": true,
+    "canonicalStateHashEqual": true,
+    "validCurrentSave": true,
+    "withinSnapshotByteLimit": true,
+    "exactRestoredWeek": true,
+    "exactRestoredCashCents": true,
+    "regressionStopped": true,
+    "oneRetainedObservation": true,
+    "paidDisjointCohorts": true,
+    "incumbentDeploymentRetained": true,
+    "incumbentModelRetained": true,
+    "restoredRoutingBoundaryReached": true,
+    "currentUsageHasNoCanary": true,
+    "currentGrantsHaveNoCandidate": true,
+    "nextRequestsHaveOnlyIncumbent": true,
+    "oneInvoiceEachWeek": true,
+    "exactInvoiceAmounts": true,
+    "oneLedgerReceiptEachWeek": true,
+    "oneCanarySetupFee": true,
+    "randomStreamsUnchangedFromOracle": true
+  },
+  "validation": {
+    "deserialized": true,
+    "errors": []
+  },
+  "state": {
+    "week": 553,
+    "cashCents": 610337840,
+    "queuedCommands": 0,
+    "sourceModelId": "model-natural-business-command-159",
+    "currentModelId": "model-natural-business-command-159",
+    "sourceDeploymentId": "deployment:wave27-canary-regression-ready-command-1",
+    "currentDeploymentId": "deployment:wave27-canary-regression-ready-command-1"
+  },
+  "canary": {
+    "id": "canary:command-3134",
+    "status": "stopped",
+    "stopCode": "regression",
+    "startedWeek": 551,
+    "availableWeek": 552,
+    "stoppedWeek": 552,
+    "restoredRoutingWeek": 553,
+    "shareBps": 1000,
+    "sampleFloor": 100,
+    "budgetCUw": 4000000000,
+    "consumedWorkCUw": 1534000000,
+    "observations": 1,
+    "assessment": {
+      "candidateSamples": 7670,
+      "incumbentSamples": 69030,
+      "sufficient": true,
+      "candidateUsefulBps": 7728,
+      "incumbentUsefulBps": 8394,
+      "candidateConfidentErrorBps": 1000,
+      "incumbentConfidentErrorBps": 524,
+      "candidateFalseRefusalBps": 698,
+      "incumbentFalseRefusalBps": 699,
+      "costRatioBps": 1704
+    },
+    "receipt": {
+      "protocol": "release-canary-1",
+      "canaryId": "canary:command-3134",
+      "week": 552,
+      "evidenceKey": "3ee621df",
+      "shareBps": 1000,
+      "eligibleRequests": 76700,
+      "candidateBudgetBeforeCUw": 4000000000,
+      "incumbent": {
+        "modelId": "model-natural-business-command-159",
+        "requestId": "serve:product:natural-business-command-8",
+        "requestedRequests": 69030,
+        "executedRequests": 69030,
+        "requestedWorkCUw": 27612000000,
+        "effectiveWorkCUw": 27612000000,
+        "physicalWorkCUw": 27612000000,
+        "requiredMemoryMU": 27580000000,
+        "grantedMemoryMU": 27580000000,
+        "poolId": "general-cloud",
+        "hardwareId": "general",
+        "ownership": "cloud",
+        "multiplierBps": 10000,
+        "rateCentsPerCUw": 20000,
+        "attributedComputeCents": 552240,
+        "ownedVariableCostCents": 0,
+        "inputTokens": 34515000,
+        "outputTokens": 6903000,
+        "internalTokens": 0,
+        "fulfillmentBps": 10000,
+        "errorBps": 905,
+        "confidentErrorBps": 524,
+        "falseRefusalBps": 699,
+        "outcomes": {
+          "useful": 57945,
+          "confidentError": 3624,
+          "falseRefusal": 4831,
+          "clarification": 2630
+        },
+        "segments": [
+          {
+            "segmentId": "casual",
+            "accounts": 376,
+            "requestedRequests": 16920,
+            "executedRequests": 16920,
+            "technicalErrorBps": 906,
+            "outcomes": {
+              "useful": 14203,
+              "falseRefusal": 1184,
+              "confidentError": 888,
+              "clarification": 645
+            }
+          },
+          {
+            "segmentId": "regular",
+            "accounts": 579,
+            "requestedRequests": 52110,
+            "executedRequests": 52110,
+            "technicalErrorBps": 906,
+            "outcomes": {
+              "useful": 43742,
+              "falseRefusal": 3647,
+              "confidentError": 2736,
+              "clarification": 1985
+            }
+          },
+          {
+            "segmentId": "heavy",
+            "accounts": 0,
+            "requestedRequests": 0,
+            "executedRequests": 0,
+            "technicalErrorBps": 906,
+            "outcomes": {
+              "useful": 0,
+              "falseRefusal": 0,
+              "confidentError": 0,
+              "clarification": 0
+            }
+          },
+          {
+            "segmentId": "professional",
+            "accounts": 0,
+            "requestedRequests": 0,
+            "executedRequests": 0,
+            "technicalErrorBps": 906,
+            "outcomes": {
+              "useful": 0,
+              "falseRefusal": 0,
+              "confidentError": 0,
+              "clarification": 0
+            }
+          }
+        ]
+      },
+      "candidate": {
+        "modelId": "model-natural-business-command-4",
+        "requestId": "canary-serve:canary:command-3134",
+        "requestedRequests": 7670,
+        "executedRequests": 7670,
+        "requestedWorkCUw": 1534000000,
+        "effectiveWorkCUw": 1534000000,
+        "physicalWorkCUw": 1394545455,
+        "requiredMemoryMU": 21100000000,
+        "grantedMemoryMU": 21100000000,
+        "poolId": "owned:facility-wave8-scale-command-3:training",
+        "hardwareId": "training",
+        "ownership": "owned",
+        "multiplierBps": 11000,
+        "rateCentsPerCUw": 7500,
+        "attributedComputeCents": 10459,
+        "ownedVariableCostCents": 10459,
+        "inputTokens": 3835000,
+        "outputTokens": 767000,
+        "internalTokens": 0,
+        "fulfillmentBps": 10000,
+        "errorBps": 1572,
+        "confidentErrorBps": 1000,
+        "falseRefusalBps": 698,
+        "outcomes": {
+          "useful": 5928,
+          "confidentError": 767,
+          "falseRefusal": 536,
+          "clarification": 439
+        },
+        "segments": [
+          {
+            "segmentId": "casual",
+            "accounts": 376,
+            "requestedRequests": 1880,
+            "executedRequests": 1880,
+            "technicalErrorBps": 1572,
+            "outcomes": {
+              "useful": 1453,
+              "falseRefusal": 131,
+              "confidentError": 188,
+              "clarification": 108
+            }
+          },
+          {
+            "segmentId": "regular",
+            "accounts": 579,
+            "requestedRequests": 5790,
+            "executedRequests": 5790,
+            "technicalErrorBps": 1572,
+            "outcomes": {
+              "useful": 4475,
+              "falseRefusal": 405,
+              "confidentError": 579,
+              "clarification": 331
+            }
+          },
+          {
+            "segmentId": "heavy",
+            "accounts": 0,
+            "requestedRequests": 0,
+            "executedRequests": 0,
+            "technicalErrorBps": 2432,
+            "outcomes": {
+              "useful": 0,
+              "falseRefusal": 0,
+              "confidentError": 0,
+              "clarification": 0
+            }
+          },
+          {
+            "segmentId": "professional",
+            "accounts": 0,
+            "requestedRequests": 0,
+            "executedRequests": 0,
+            "technicalErrorBps": 3722,
+            "outcomes": {
+              "useful": 0,
+              "falseRefusal": 0,
+              "confidentError": 0,
+              "clarification": 0
+            }
+          }
+        ]
+      },
+      "trialRequestedWorkCUw": 240000000,
+      "trialExecutedWorkCUw": 240000000,
+      "trialPhysicalWorkCUw": 240000000,
+      "sourceRequestedWorkCUw": 27852000000,
+      "sourceEffectiveWorkCUw": 27852000000,
+      "sourcePhysicalWorkCUw": 27852000000,
+      "trialCompletedIds": [
+        "trial-3385",
+        "trial-3387"
+      ],
+      "paidAccounts": 955,
+      "trialAccounts": 24,
+      "grossBillCents": 1146000,
+      "creditsCents": 0,
+      "billedCents": 1146000,
+      "billCarryIn": 0,
+      "billCarryOut": 0
+    },
+    "incident": {
+      "id": "canary-incident:canary:command-3134",
+      "week": 552,
+      "code": "regression",
+      "severity": "major",
+      "productId": "product:natural-business-command-8",
+      "modelId": "model-natural-business-command-4",
+      "deploymentId": "deployment:wave27-canary-regression-ready-command-1",
+      "candidateSamples": 7670,
+      "incumbentSamples": 69030,
+      "sampleFloor": 100,
+      "message": "Canary regression in useful answers. The incumbent receives all new requests next week; the existing invoice settles this week’s actual work once.",
+      "restoredRoutingWeek": 553
+    }
+  },
+  "restoredRouting": {
+    "currentUsage": {
+      "week": 553,
+      "productId": "product:natural-business-command-8",
+      "paidAccounts": 958,
+      "trialAccounts": 23,
+      "requestedWork": 30850000000,
+      "executedWork": 30850000000,
+      "paidRequestedWork": 30620000000,
+      "paidExecutedWork": 30620000000,
+      "trialRequestedWork": 230000000,
+      "trialExecutedWork": 230000000,
+      "exchanges": 77125,
+      "fulfillmentBps": 10000,
+      "errorBps": 906,
+      "behavior": {
+        "confidentErrorBps": 525,
+        "falseRefusalBps": 700
+      },
+      "trialCompletedIds": [
+        "trial-3389",
+        "trial-3391",
+        "trial-3392"
+      ],
+      "grossBillCents": 1149600,
+      "creditsCents": 0,
+      "billedCents": 1149600,
+      "segments": [
+        {
+          "segmentId": "casual",
+          "accounts": 385,
+          "requestedExchanges": 19250,
+          "requestedWork": 7700000000,
+          "errorBps": 906
+        },
+        {
+          "segmentId": "regular",
+          "accounts": 573,
+          "requestedExchanges": 57300,
+          "requestedWork": 22920000000,
+          "errorBps": 906
+        },
+        {
+          "segmentId": "heavy",
+          "accounts": 0,
+          "requestedExchanges": 0,
+          "requestedWork": 0,
+          "errorBps": 906
+        },
+        {
+          "segmentId": "professional",
+          "accounts": 0,
+          "requestedExchanges": 0,
+          "requestedWork": 0,
+          "errorBps": 906
+        }
+      ],
+      "tokens": {
+        "inputTokens": 38275000,
+        "outputTokens": 7655000,
+        "internalTokens": 0,
+        "inputPriceCentsPerMillion": 2000,
+        "outputPriceCentsPerMillion": 10000,
+        "billCarryIn": 0,
+        "billCarryOut": 0,
+        "physicalWork": 30850000000,
+        "ownedVariableCostCents": 0
+      }
+    },
+    "sourceGrant": {
+      "requestId": "serve:product:natural-business-command-8",
+      "requestedWork": 30850000000,
+      "grantedWork": 30850000000,
+      "reason": ""
+    },
+    "nextWeekProductRequests": [
+      {
+        "id": "serve:product:natural-business-command-8",
+        "companyId": "company-player",
+        "taskId": "product:natural-business-command-8",
+        "category": "serving",
+        "normalizedWorkCUw": 30900000000,
+        "memoryMU": 27680000000,
+        "modelArchitecture": "dense",
+        "modelFamily": "medium",
+        "workloadKind": "inference",
+        "priority": 0,
+        "poolId": "auto",
+        "headroomBps": 1000
+      }
+    ]
+  },
+  "invoices": [
+    {
+      "week": 552,
+      "count": 1,
+      "rows": [
+        {
+          "id": "invoice:product:natural-business-command-8:552",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-8",
+          "contractId": "contract:natural-business-command-8",
+          "week": 552,
+          "accounts": 955,
+          "grossCents": 1146000,
+          "creditsCents": 0,
+          "amountCents": 1146000,
+          "billing": "subscription",
+          "inputTokens": 38350000,
+          "outputTokens": 7670000
+        }
+      ],
+      "postedFacts": [
+        {
+          "id": "invoice:product:natural-business-command-8:552",
+          "posted": true
+        }
+      ],
+      "ledger": [
+        {
+          "id": "invoice:product:natural-business-command-8:552",
+          "companyId": "company-player",
+          "week": 552,
+          "sourceId": "contract:natural-business-command-8",
+          "category": "revenue",
+          "amountCents": 1146000,
+          "label": "Basic Chat: 955 accounts, after service credits",
+          "kind": "receipt",
+          "paidCents": 1146000,
+          "unpaidCents": 0
+        }
+      ]
+    },
+    {
+      "week": 553,
+      "count": 1,
+      "rows": [
+        {
+          "id": "invoice:product:natural-business-command-8:553",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-8",
+          "contractId": "contract:natural-business-command-8",
+          "week": 553,
+          "accounts": 958,
+          "grossCents": 1149600,
+          "creditsCents": 0,
+          "amountCents": 1149600,
+          "billing": "subscription",
+          "inputTokens": 38275000,
+          "outputTokens": 7655000
+        }
+      ],
+      "postedFacts": [
+        {
+          "id": "invoice:product:natural-business-command-8:553",
+          "posted": true
+        }
+      ],
+      "ledger": [
+        {
+          "id": "invoice:product:natural-business-command-8:553",
+          "companyId": "company-player",
+          "week": 553,
+          "sourceId": "contract:natural-business-command-8",
+          "category": "revenue",
+          "amountCents": 1149600,
+          "label": "Basic Chat: 958 accounts, after service credits",
+          "kind": "receipt",
+          "paidCents": 1149600,
+          "unpaidCents": 0
+        }
+      ]
+    }
+  ],
+  "computeCostAttribution": [
+    {
+      "week": 552,
+      "target": {
+        "id": "product:product:natural-business-command-8",
+        "kind": "public-product",
+        "sourceId": "product:natural-business-command-8",
+        "contractId": "contract:natural-business-command-8",
+        "name": "Basic Chat",
+        "requestIds": [
+          "canary-serve:canary:command-3134",
+          "serve:product:natural-business-command-8"
+        ],
+        "revenueFactIds": [
+          "invoice:product:natural-business-command-8:552"
+        ]
+      },
+      "workloads": [
+        {
+          "requestId": "canary-serve:canary:command-3134",
+          "targetId": "product:product:natural-business-command-8",
+          "category": "serving",
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "requestedWorkCUw": 1534000000,
+          "effectiveWorkCUw": 1534000000,
+          "physicalWorkCUw": 1394545455,
+          "reservedCUw": 1534000001,
+          "headroomCUw": 139454546,
+          "chargedMemoryMU": 21100000000,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 10459,
+          "attributedComputeCents": 10459
+        },
+        {
+          "requestId": "serve:product:natural-business-command-8",
+          "targetId": "product:product:natural-business-command-8",
+          "category": "serving",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 27852000000,
+          "effectiveWorkCUw": 27852000000,
+          "physicalWorkCUw": 27852000000,
+          "reservedCUw": 30637200000,
+          "headroomCUw": 2785200000,
+          "chargedMemoryMU": 27580000000,
+          "cloudRentCents": 612744,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 612744
+        }
+      ]
+    },
+    {
+      "week": 553,
+      "target": {
+        "id": "product:product:natural-business-command-8",
+        "kind": "public-product",
+        "sourceId": "product:natural-business-command-8",
+        "contractId": "contract:natural-business-command-8",
+        "name": "Basic Chat",
+        "requestIds": [
+          "serve:product:natural-business-command-8"
+        ],
+        "revenueFactIds": [
+          "invoice:product:natural-business-command-8:553"
+        ]
+      },
+      "workloads": [
+        {
+          "requestId": "serve:product:natural-business-command-8",
+          "targetId": "product:product:natural-business-command-8",
+          "category": "serving",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 30850000000,
+          "effectiveWorkCUw": 30850000000,
+          "physicalWorkCUw": 30850000000,
+          "reservedCUw": 33935000000,
+          "headroomCUw": 3085000000,
+          "chargedMemoryMU": 27620000000,
+          "cloudRentCents": 678700,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 678700
+        }
+      ]
+    }
+  ],
+  "differences": []
+}

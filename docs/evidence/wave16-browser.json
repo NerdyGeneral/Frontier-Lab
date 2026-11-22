@@ -1,0 +1,201 @@
+{
+  "wave": 16,
+  "contentVersion": "0.17.0",
+  "previewUrl": "http://127.0.0.1:4173/",
+  "method": "Visible browser controls on managed Sites preview; ordinary earned Week 535 import; no direct browser state writes.",
+  "initialLab": {
+    "week": 0,
+    "checksum": "5a788c49",
+    "bytes": 41803,
+    "sha256": "a4ae70db1a0b9fbc71b42fa9431e9cddfa2817bc604d08bcf007f2ef5cd704fc"
+  },
+  "capacityComparison": {
+    "week": 535,
+    "cloudCU": 80,
+    "servingCU": 144,
+    "weeklyCloudRentCents": 1600000,
+    "weeklyChangeCents": -320000,
+    "window": [
+      536,
+      539
+    ],
+    "explicitCloud": {
+      "completedRequests": 12832,
+      "invoiceCents": 208520,
+      "creditCents": 441480
+    },
+    "selectedOwnedPool": {
+      "poolId": "owned:colocation:training",
+      "completedRequests": 40000,
+      "completionWeek": 538,
+      "invoiceCents": 650000,
+      "futurePhysicalCUw": 23.636363637,
+      "futureOwnedVariableCentsEstimate": 177272
+    }
+  },
+  "actions": [
+    {
+      "atWeek": 535,
+      "command": "set_batch_capacity",
+      "cloudCU": 80,
+      "servingCU": 144
+    },
+    {
+      "atWeek": 535,
+      "command": "accept_batch_job",
+      "orderId": "archive-tagging",
+      "modelId": "model-wave15-natural-command-9",
+      "weeklyWorkCapCUw": 16,
+      "poolId": "owned:colocation:training"
+    },
+    {
+      "atWeek": 536,
+      "action": "Export, reload while paused, and export again. Bytes identical; no time advanced.",
+      "snapshot": {
+        "week": 536,
+        "checksum": "d60e7088",
+        "bytes": 1455549,
+        "sha256": "54e65d745261abc0f9ba1e794c074dc499c4f2534a43392264a34b28ce9b7000"
+      }
+    },
+    {
+      "atWeek": 536,
+      "command": "set_batch_job_placement",
+      "poolId": "auto"
+    },
+    {
+      "atWeek": 537,
+      "action": "Step to Week 538 and inspect final invoice, physical-work receipts, and placement history."
+    }
+  ],
+  "completedLab": {
+    "week": 538,
+    "checksum": "dcf7400d",
+    "bytes": 1459377,
+    "sha256": "b15e4f6f1fa3b352424a6aa4461eb8eb16b0b6ebebb4ff15173b730f1ff9e5e3"
+  },
+  "order": {
+    "id": "batch:command-3041",
+    "status": "completed",
+    "acceptedWeek": 536,
+    "deadlineWeek": 539,
+    "terminalWeek": 538,
+    "completedRequests": 40000,
+    "modelWorkCUw": 26.0,
+    "physicalCUw": 23.636363637,
+    "commercialStaffWeeks": 0.75,
+    "placementHistory": [
+      {
+        "commandId": "command-3041",
+        "week": 536,
+        "poolId": "owned:colocation:training"
+      },
+      {
+        "commandId": "command-3049",
+        "week": 537,
+        "poolId": "auto"
+      }
+    ],
+    "usageHistory": [
+      {
+        "week": 536,
+        "paused": false,
+        "remainingBefore": 26000000000,
+        "requestedWorkCUw": 16000000000,
+        "executedWorkCUw": 8800000000,
+        "physicalWorkCUw": 8000000000,
+        "poolId": "owned:colocation:training",
+        "receiptKey": "50973b79",
+        "memoryMU": 2250000000,
+        "staffRequired": 250000000,
+        "staffGranted": 250000000,
+        "supervisedLimitCUw": 16000000000,
+        "completedWorkBefore": 0,
+        "completedWorkAfter": 8800000000,
+        "completedRequestsBefore": 0,
+        "completedRequestsAfter": 13538,
+        "completedRequests": 13538,
+        "inputTokens": 27076000,
+        "outputTokens": 3384500,
+        "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+      },
+      {
+        "week": 537,
+        "paused": false,
+        "remainingBefore": 17200000000,
+        "requestedWorkCUw": 16000000000,
+        "executedWorkCUw": 13684000000,
+        "physicalWorkCUw": 12440000000,
+        "poolId": "owned:facility-wave8-scale-command-3:training",
+        "receiptKey": "50973b79",
+        "memoryMU": 2250000000,
+        "staffRequired": 250000000,
+        "staffGranted": 250000000,
+        "supervisedLimitCUw": 16000000000,
+        "completedWorkBefore": 8800000000,
+        "completedWorkAfter": 22484000000,
+        "completedRequestsBefore": 13538,
+        "completedRequestsAfter": 34590,
+        "completedRequests": 21052,
+        "inputTokens": 42104000,
+        "outputTokens": 5263000,
+        "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+      },
+      {
+        "week": 538,
+        "paused": false,
+        "remainingBefore": 3516000000,
+        "requestedWorkCUw": 3516000000,
+        "executedWorkCUw": 3516000000,
+        "physicalWorkCUw": 3196363637,
+        "poolId": "owned:colocation:training",
+        "receiptKey": "50973b79",
+        "memoryMU": 2250000000,
+        "staffRequired": 250000000,
+        "staffGranted": 250000000,
+        "supervisedLimitCUw": 3516000000,
+        "completedWorkBefore": 22484000000,
+        "completedWorkAfter": 26000000000,
+        "completedRequestsBefore": 34590,
+        "completedRequestsAfter": 40000,
+        "completedRequests": 5410,
+        "inputTokens": 10820000,
+        "outputTokens": 1352500,
+        "explanation": "The requested batch work executed after ordinary workloads."
+      }
+    ],
+    "invoice": {
+      "id": "batch-invoice:batch:command-3041",
+      "jobId": "batch:command-3041",
+      "companyId": "company-player",
+      "productId": "product:natural-business-command-67",
+      "orderId": "archive-tagging",
+      "week": 538,
+      "reason": "completed",
+      "modelId": "model-wave15-natural-command-9",
+      "modelFingerprint": "33775861",
+      "requestedRequests": 40000,
+      "completedRequests": 40000,
+      "inputTokens": 80000000,
+      "outputTokens": 10000000,
+      "grossCents": 650000,
+      "creditsCents": 0,
+      "amountCents": 650000
+    }
+  },
+  "originalLabRestored": {
+    "exactBytes": true,
+    "week": 0,
+    "checksum": "5a788c49",
+    "bytes": 41803,
+    "sha256": "a4ae70db1a0b9fbc71b42fa9431e9cddfa2817bc604d08bcf007f2ef5cd704fc"
+  },
+  "applicationWarningsAndErrors": [],
+  "automationNote": "Some browser input calls reported protocol timeouts after the requested action completed. Each was checked against resulting UI state before continuing; no duplicate commands were issued. Captured extension-only metadata errors were excluded from application logs.",
+  "screenshots": [
+    "../images/frontier-lab-wave16-planning.png",
+    "../images/frontier-lab-wave16-planning-detail.png",
+    "../images/frontier-lab-wave16-completed.png",
+    "../images/frontier-lab-wave16-completed-detail.png"
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "wave": 29,
+  "buildVersion": "0.29.0",
+  "contentVersion": "0.28.0",
+  "schemaVersion": 5,
+  "previewUrl": "http://127.0.0.1:4173/#campus",
+  "method": "Visible controls only in the managed Chrome preview. Game snapshots entered through file selection and confirmation; exports used the game download button. No browser state injection or hidden-state reads.",
+  "initialOriginal": {
+    "week": 556,
+    "queuedForWeek": 557,
+    "queuedPlayerActions": 1,
+    "bytes": 1525373,
+    "sha256": "9db19cc7651f709865398a287e84eef9262158624bcc2efa3df2d18c11da0bf0",
+    "exactlyMatchesPriorOriginal": true,
+    "originalAdvanced": false
+  },
+  "advancedReplay": {
+    "sourceSnapshot": "wave28-silicon-browser-actual.json",
+    "sourceWeek": 612,
+    "command": {
+      "kind": "allocate_compute",
+      "serving": 160000000000,
+      "development": 9000000000,
+      "research": 8000000000
+    },
+    "commandId": "command-3409",
+    "inputMethod": "One visible Queue allocation click followed by rapid native double-click on Step week. Only one boundary settled.",
+    "week": 613,
+    "checksum": "bc84a4ff",
+    "revision": 1015,
+    "nextId": 3416,
+    "cashCents": 686800443,
+    "bytes": 1465122,
+    "sha256": "5f0e28199e891dcbcf1a6a51210b793ea0f5fcc59011dc2bd7b464be241357da",
+    "exactStateAndByteMatch": true,
+    "referenceSourceCommit": "6b82a6dd08e2d2ab7b78bd066a0cd043167dec38",
+    "referenceCreatedBeforeActualExportRead": true
+  },
+  "lifecycleChecks": [
+    {
+      "check": "Unsubmitted Compute draft survives workstation navigation",
+      "observed": "Development changed from8 to9; visited People and reopened Compute with9 still in the field. Repeated on final source with11 after W614;11 remained.",
+      "passed": true
+    },
+    {
+      "check": "Hidden workbench reopens with current game and action availability",
+      "observed": "After W613 settled on the Research screen, reopened Compute table shows development9 and last serving work112.4328; Queue allocation enabled. Existing unsent form values remain drafts.",
+      "passed": true
+    },
+    {
+      "check": "Research search retained",
+      "observed": "Entered silicon, visited Studio/Compute and reopened Research with silicon still in the search box.",
+      "passed": true
+    },
+    {
+      "check": "Classic single live instance",
+      "observed": "Classic has one Compute region and retains development draft10.",
+      "passed": true
+    },
+    {
+      "check": "Company replacement resets local drafts",
+      "observed": "After restoring original W556 through visible import/confirmation, development draft is8, not the test company draft11.",
+      "passed": true
+    },
+    {
+      "check": "Campus hash opens Campus",
+      "observed": "Initial and HMR reloads at #campus select Campus inspector. Final explicit reload observation was blocked separately.",
+      "passed": true
+    },
+    {
+      "check": "Persistent operation error outside inspector",
+      "observed": "Ordinary invalid snapshot import reports unsupported format; navigation to Research Tree keeps the alert visible above Research workspace.",
+      "passed": true,
+      "screenshot": "docs/images/wave29-research-error.png"
+    },
+    {
+      "check": "Import stops running time before selection",
+      "observed": "Pressed Resume at W613, then Import snapshot; before supplying the file, status says The lab is paused while you choose a snapshot. Week remains613.",
+      "passed": true
+    },
+    {
+      "check": "Same-week save truthfulness",
+      "observed": "Queued the second test allocation at W613; status observed Saving decisions \u00b7 Week613\u2026 then Saved in this browser \u00b7 Week613.",
+      "passed": true
+    },
+    {
+      "check": "Painted weekly feedback",
+      "observed": "Settling Week614\u2026 and Working visible before state changed; Run, Step and speed controls disabled. Completion says Week614 settled. The lab remains paused. followed by Saved in this browser \u00b7 Week614.",
+      "passed": true,
+      "screenshot": "docs/images/wave29-settling-feedback.png"
+    },
+    {
+      "check": "Action quote description",
+      "observed": "Visible Hire employee control has a generated aria-describedby target. Focused SSR checks separately verify unique existing targets for accepted, blocked, incomplete and queued actions.",
+      "passed": true
+    }
+  ],
+  "restoration": {
+    "performedThroughUi": true,
+    "confirmedSavedWeek": 556,
+    "paused": true,
+    "queuedPlayerActions": 1,
+    "queuedForWeek": 557,
+    "originalAdvanced": false,
+    "draftResetConfirmed": true,
+    "postRestoreReloadRequested": true,
+    "postReloadExportVerified": false,
+    "limitation": "The browser URL policy denied further page observation immediately after the final reload. No alternate browser surface or workaround was attempted. The original was visibly restored, paused and saved before that reload; exact bytes after that final reload are not claimed."
+  },
+  "limitations": [
+    "Wide desktop UI reviewed. This wave does not claim a new narrow-screen or full accessibility certification.",
+    "Native screenshots and DOM state prove observed transitions, not a browser performance benchmark.",
+    "Synchronous simulation and validation still occupy the main thread after the busy state is painted."
+  ]
+}

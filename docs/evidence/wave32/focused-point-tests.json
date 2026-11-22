@@ -1,0 +1,167 @@
+{
+  "recordedAt": "2026-11-10T21:00:41.358989+00:00",
+  "referenceHead": "3658d92e5156b9983d77261447eb0670b64262b6",
+  "release": {
+    "buildVersion": "0.32.0",
+    "contentVersion": "0.29.0",
+    "schemaVersion": 5
+  },
+  "scope": "Focused Wave32 workforce-point engine and UI regression evidence on the working candidate",
+  "tests": {
+    "command": "node --import tsx --test --test-reporter=spec tests/wave32-work-points.test.ts tests/wave32-work-points-ui.test.tsx",
+    "exitCode": 0,
+    "passed": 26,
+    "failed": 0,
+    "engineCount": 17,
+    "uiCount": 9,
+    "durationMs": 24833.013232,
+    "engineCases": [
+      "W32-P01: the six specialist profiles and displayed labels match the authored point contract",
+      "W32-P02: readiness and saved employee fractions scale every profile component exactly",
+      "W32-P03: the founder still shares twenty points and cannot create Hardware output",
+      "W32-P04: workforce totals include owned secondary output and exclude foreign employees",
+      "W32-P05: paid onboarding, assignment changes and dismissal affect actual weekly output at their boundaries",
+      "W32-P06: actual preparation gains thirty specialist points versus twenty founder points and does not bank idle output",
+      "W32-P07: a researcher\u2019s secondary Data points advance the real preparation job",
+      "W32-P08: real research consumes specialist points independently of its compute meter and following-week unlock",
+      "W32-P09: specialist Design points increase actual training supervision once while GPUs remain an independent limit",
+      "W32-P10: simultaneous requests share each specialty budget without cross-role borrowing or double grants",
+      "W32-P11: an owner that grants the same specialist output twice rolls back the entire week",
+      "W32-P12: point-based planning previews stay pure and match the actual changed output after one boundary",
+      "W32-P13: authentic 0.28 progress and queued assignments migrate without changing any saved economic field",
+      "W32-P14: save/reload preserves future point grants and progress without replaying work or recruitment",
+      "W32-P15: a real mature company preserves paid history and continues deterministically with the new matrix",
+      "W32-P16: the first point-version save archives exact 0.28 bytes and write failures preserve the old company",
+      "W32-P17: two paid Design specialists can meet foundation Research admission through secondary output"
+    ],
+    "uiCases": [
+      "W32-U01: every hire card displays its actual specialty and two secondary weekly outputs",
+      "W32-U02: founder point choices preserve saved fractions and the shared twenty-point limit",
+      "W32-U03: real paid onboarding displays zero current output until the actual ready week",
+      "W32-U04: fractional current and proposed employee output remain distinct without changing payroll",
+      "W32-U05: assignment review projects next week without falsely showing an onboarding employee as ready now",
+      "W32-U06: selecting an older employee keeps that person\u2019s point profile and one review summary",
+      "W32-U07: invalid founder and employee output stays blocked without inventing a valid point preview",
+      "W32-U08: observers can read employee output but cannot submit a point change or hire",
+      "W32-U09: the team table adds secondary output to the founder and separates allocation from completed work"
+    ],
+    "log": "/workspace/scratch/c2fbe80d9628/qa-wave32/new-work-points-tests.log",
+    "logSha256": "8ed6228fe7bf44d9c35524540fba46b67563a4c675674b2749f5da69713be75d"
+  },
+  "typecheck": {
+    "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+    "exitCode": 0,
+    "observation": "Completed after both new test files were present; no production or test type errors."
+  },
+  "observations": {
+    "unitsPerTwentyPoints": 1000000000,
+    "founderPointsPerWeek": 20,
+    "fullSpecialistTotalPoints": 45,
+    "specialistProfilePoints": {
+      "research": {
+        "research": 30,
+        "ml": 10,
+        "data": 5
+      },
+      "ml": {
+        "ml": 30,
+        "research": 10,
+        "data": 5
+      },
+      "data": {
+        "data": 30,
+        "ml": 10,
+        "research": 5
+      },
+      "infrastructure": {
+        "infrastructure": 30,
+        "ml": 10,
+        "data": 5
+      },
+      "commercial": {
+        "commercial": 30,
+        "ml": 10,
+        "research": 5
+      },
+      "hardware": {
+        "hardware": 30,
+        "ml": 10,
+        "research": 5
+      }
+    },
+    "dataPreparation": {
+      "founderFirstWeekPoints": 20,
+      "dataSpecialistFirstWeekPoints": 30,
+      "researcherSecondaryFirstWeekPoints": 5,
+      "requiredTotalPoints": 40,
+      "unusedOutputIsBanked": false
+    },
+    "research": {
+      "founderStaffPoints": 20,
+      "researcherStaffPoints": 30,
+      "zeroGpuStillAllowsIndependentStaffMeter": true,
+      "unlockRequiresFollowingBoundary": true
+    },
+    "training": {
+      "founderUsefulCUWeeksAt8CU": 4,
+      "mlSpecialistUsefulCUWeeksAt8CU": 6,
+      "mlSpecialistUsefulCUWeeksAt4CU": 4,
+      "mlSpecialistUsefulCUWeeksAt0CU": 0,
+      "allocatedSupervisionIsNotCompletedGpuWork": true
+    },
+    "foundationAdmission": {
+      "twoReadyMlSpecialistsResearchPoints": 20,
+      "lowerAllowedAllocationResearchPoints": 17.5,
+      "lowerAllocationRejected": true,
+      "firstDesignWeekPoints": 20,
+      "paidMatureFixtureUsed": true
+    },
+    "persistence": {
+      "legacyContent": "0.28.0",
+      "migrationOnlyChangesVersionMetadata": true,
+      "partialProgressAndQueuedCommandsPreserved": true,
+      "currentReloadMatchesUninterruptedWeeks": 4,
+      "matureReloadMatchesUninterruptedWeeks": 5,
+      "matureFixtureWeek": 579,
+      "exactLegacyRecoveryArchive": "frontier-lab.content028.original",
+      "archiveAndPrimaryWriteFailuresPreserveOriginalPrimary": true
+    },
+    "ui": {
+      "allSixProfilesShown": true,
+      "savedFractionValuesRetained": true,
+      "readinessCurrentVsNextWeekDistinguished": true,
+      "quarterMlProfile": {
+        "ml": 7.5,
+        "research": 2.5,
+        "data": 1.25
+      },
+      "halfMlProposal": {
+        "ml": 15,
+        "research": 5,
+        "data": 2.5
+      },
+      "salaryUnchangedByOutputLevel": true,
+      "observerAndInvalidActionsBlocked": true
+    }
+  },
+  "inputSha256": {
+    "tests/wave32-work-points.test.ts": "1461e7c41ed07b22482ca926ea82e173fd2aa4f6a521bafedf08ec013ebd7f3b",
+    "tests/wave32-work-points-ui.test.tsx": "705dd5f253bf1e1ce8165cf5fff4e1fef90541bb7759a714834bd93ff75276ab",
+    "tests/fixtures/wave27-appliance-published.json": "a8bdcb00861bb8223f3303aff0611a0a9a129a2590a3f6c97508f4394a68b780",
+    "src/content/wave29.ts": "992609dc05eb9a2b42bd0ad6472d33bd3ecf50a0894e678f92d4458c977518cd",
+    "src/modules/workforce-points.ts": "f611fe0069320b3d6da9e778cd0845bc7bdbcebbce16797f91c24d28db227c4b",
+    "src/modules/workforce.ts": "132242ee8f464f37239f73ef6fea4f0f842e6218bc45c13c28dea0df81d476a1",
+    "src/modules/lab-planner.ts": "5bf73c1b1b07f319bc86126ee3d47ac2ca9236482c1b6460d79be107e25979ee",
+    "src/core/snapshot.ts": "1fb6b36f66ede4599cf74a628561230f73084249a361b035c826cc94d8cb6f2d",
+    "src/core/migration.ts": "3b471f58596e199c26d6f8c7fe827d2930fceef35353d23b2d6bdedf31008ef4",
+    "src/persistence/wave0-browser.ts": "3106f18c24a1f966c13282b2e9a67b4985da4fa0c00fd1a5824b7515ebf849e2",
+    "src/ui/studio-staffing.tsx": "ddd8fc6a7158b58a12cc15bd082b07aea6ed6b3331e05e2441dcccb274eec236"
+  },
+  "limits": [
+    "This is targeted regression coverage, not a full economy or every-feature campaign run.",
+    "Prior Wave31B counts and old/new future parity remain the pre-mechanics baseline; they are not counted as current Wave32 verification.",
+    "Affected existing engine regressions are owned and reported separately by source_review.",
+    "Browser interaction, screenshots, final restore, production build and publication are owned and reported separately by the root agent.",
+    "Only repository-owned test fixtures are referenced; this record contains no private save payloads."
+  ]
+}

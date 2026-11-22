@@ -1,0 +1,62 @@
+✔ W27-C01 paid regression canary observes disjoint traffic, restores the incumbent and invoices once (67545.850041ms)
+✔ W27-C02 queue and stopped-save reloads preserve exact continuation and duplicate commands cannot charge again (12804.25391ms)
+✖ W27-C03 explicit protocol limits and both queued command orders reject stale full rollout (243.798853ms)
+✔ W27-C04 sufficient nonregressing evidence permits the existing paid handover and retained-source rollback (40968.352973ms)
+✔ W27-C05 compressed API candidate keeps its paid policy/runtime identity and shares one executed-token carry (22491.767789ms)
+✔ W27-C06 actual work respects its hard allowance and eight insufficient samples never unlock rollout (28684.634883ms)
+✖ W27-C07 loss of connected memory stops actual zero-grant traffic without rejecting the settlement (8028.683247ms)
+✔ W27-C08 checksummed imports reject stopped-canary resurrection, fabricated qualification and changed cohort billing (6164.991761ms)
+✔ W27-C09 pure release views and frozen paid identities preserve state, RNG and canonical reload ordering (1182.630625ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 7
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 188757.623281
+
+✖ failing tests:
+
+test at tests/wave27-canary.test.js:90:25
+✖ W27-C03 explicit protocol limits and both queued command orders reject stale full rollout (243.798853ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-jdqv9w/tests/wave27-canary.test.js:99:26)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave27-canary.test.js:178:25
+✖ W27-C07 loss of connected memory stops actual zero-grant traffic without rejecting the settlement (8028.683247ms)
+  AssertionError [ERR_ASSERTION]: Active products need 12.25 MU for model weights in a compatible pool. Keep enough usable memory or pause the product first.
+  
+  false !== true
+  
+      at queue (/tmp/frontier-lab-wave0-jdqv9w/tests/wave27-canary.test.js:23:114)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-jdqv9w/tests/wave27-canary.test.js:186:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

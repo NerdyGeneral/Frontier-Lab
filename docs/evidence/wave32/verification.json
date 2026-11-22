@@ -1,0 +1,253 @@
+{
+  "recordedAt": "2026-11-10T21:07:11.882921+00:00",
+  "baselineSourceCommit": "3658d92e5156b9983d77261447eb0670b64262b6",
+  "release": {
+    "buildVersion": "0.32.0",
+    "contentVersion": "0.29.0",
+    "schemaVersion": 5,
+    "status": "Validated and built candidate; publication is recorded in Sites saved-version/deployment metadata."
+  },
+  "scope": "Point mechanics and affected UI/engine regressions, not a claim of every historical economy test. Prior31B parity applies only to its historical pre-points candidate.",
+  "automated": {
+    "distinctTestsPassed": 371,
+    "failed": 0,
+    "skipped": 0,
+    "groups": {
+      "affectedExistingCore": 109,
+      "taskLifecycle": 109,
+      "integratedUI": 136,
+      "newPointEngine": 17
+    },
+    "newPointUIIncludedInIntegratedUI": 9,
+    "focusedCombinedPointRun": 26,
+    "postNamePresentationChangeFocusedUI": 26,
+    "counting": "Focused runs overlap the distinct group count and are not added again."
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "log": "typecheck.log"
+  },
+  "productionBuild": {
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.6/scripts/build-site.mjs",
+    "exitCode": 0,
+    "log": "production-build.log"
+  },
+  "browser": {
+    "method": "Mounted localhost preview via native Chrome and documented UI controls; states exported through Download save only. No console-created game state.",
+    "onboarding": {
+      "hiredWeek": 1,
+      "readyWeek": 3,
+      "onboardingOutputPoints": 0,
+      "salaryDollarsPerWeek": 450,
+      "readyResearchPoints": 30,
+      "readyDesignPoints": 10,
+      "readyDataPoints": 5
+    },
+    "observedWeeklyProgress": [
+      {
+        "week": 3,
+        "data": {
+          "completedPoints": 25.0,
+          "requiredPoints": 40.0,
+          "status": "running"
+        },
+        "research": {
+          "completedPoints": 30.0,
+          "requiredPoints": 40.0,
+          "completedCUw": 2.0,
+          "requiredCUw": 2.0,
+          "status": "running",
+          "availableWeek": null
+        },
+        "teamCapacityPoints": {
+          "research": 30.0,
+          "ml": 10.0,
+          "data": 25.0,
+          "infrastructure": 0.0,
+          "commercial": 0.0,
+          "hardware": 0.0
+        },
+        "teamGrantedPoints": {
+          "research": 30.0,
+          "ml": 0.0,
+          "data": 25.0,
+          "infrastructure": 0.0,
+          "commercial": 0.0,
+          "hardware": 0.0
+        }
+      },
+      {
+        "week": 4,
+        "data": {
+          "completedPoints": 40.0,
+          "requiredPoints": 40.0,
+          "status": "complete"
+        },
+        "research": {
+          "completedPoints": 40.0,
+          "requiredPoints": 40.0,
+          "completedCUw": 2.0,
+          "requiredCUw": 2.0,
+          "status": "complete",
+          "availableWeek": 5
+        },
+        "teamCapacityPoints": {
+          "research": 30.0,
+          "ml": 10.0,
+          "data": 25.0,
+          "infrastructure": 0.0,
+          "commercial": 0.0,
+          "hardware": 0.0
+        },
+        "teamGrantedPoints": {
+          "research": 10.0,
+          "ml": 0.0,
+          "data": 15.0,
+          "infrastructure": 0.0,
+          "commercial": 0.0,
+          "hardware": 0.0
+        }
+      }
+    ],
+    "partialOutputReview": {
+      "currentPercent": 100,
+      "proposedPercent": 50,
+      "research": [
+        30,
+        15
+      ],
+      "design": [
+        10,
+        5
+      ],
+      "data": [
+        5,
+        2.5
+      ],
+      "salaryDollarsPerWeek": 450,
+      "confirmed": false
+    },
+    "draftRetention": {
+      "founderDesignFocusSurvivesHireDetour": true,
+      "advancedFounderSplit": {
+        "design": 10,
+        "data": 10
+      },
+      "employeePartialDraftRetained": true,
+      "week3BeforeAndAfterDraftsByteIdentical": true,
+      "week3Sha256": "f508df8fae5984d61f9a642de8a171004e2868513d70b22521a82a5d8e80cac9"
+    },
+    "layout": {
+      "desktopViewport": [
+        1363,
+        936
+      ],
+      "nativeZoomPercentages": [
+        200,
+        400
+      ],
+      "400PercentViewport": [
+        340,
+        234
+      ],
+      "400PercentDialogWidthAndScrollWidth": [
+        337,
+        337
+      ],
+      "400PercentWideChildren": 0,
+      "400PercentConfirmKeyboardReachable": true,
+      "confirmationExecutedDuringZoomCheck": false,
+      "verticalScrollingRequired": true,
+      "receipt": "zoom-checks.json"
+    }
+  },
+  "saveRestoration": {
+    "method": "UI import of untouched original0.28 snapshot, followed by UI export under0.29",
+    "originalBytes": 41831,
+    "originalSha256": "2e4dd272a8fb14d5640dcac03e6a4148c606ad862b6bb4fa7e8368e62a5a4fbc",
+    "startingMigratedBytes": 41831,
+    "startingMigratedSha256": "6578bdb1f2166ad1b73bf39024fa29877ebd7596efe921e6752e6aeee41f04bb",
+    "restoredBytes": 41831,
+    "restoredSha256": "6578bdb1f2166ad1b73bf39024fa29877ebd7596efe921e6752e6aeee41f04bb",
+    "restoredByteIdenticalToStartingMigrated": true,
+    "onlyMigrationChangedPaths": [
+      ".checksum",
+      ".contentVersion",
+      ".state.buildVersion",
+      ".state.contentVersion"
+    ],
+    "restoredWeek": 0,
+    "savePayloadsIncludedInRepository": false
+  },
+  "evidence": {
+    "existing-core.log": {
+      "sha256": "38a33b06aa2ab35f248888ca45e4e7548179a3b7951182a78b3f292e125c8ae9",
+      "bytes": 13208
+    },
+    "lifecycle.log": {
+      "sha256": "1f6f7fb19efe2b8642124d36e20e6271e507600322e43fd9e871eb590d6ec079",
+      "bytes": 12787
+    },
+    "integrated-ui.log": {
+      "sha256": "c1f907b22529549e30b86484102d8fac03fd4ef43dbb69f253f10bff5f73e90e",
+      "bytes": 15409
+    },
+    "new-point-tests.log": {
+      "sha256": "8ed6228fe7bf44d9c35524540fba46b67563a4c675674b2749f5da69713be75d",
+      "bytes": 3149
+    },
+    "employee-review-ui.log": {
+      "sha256": "ce0e723a263b7c7bb56c902f87e0f39b5c18d034909ed6b4cd69c45b48f50b57",
+      "bytes": 3047
+    },
+    "production-build.log": {
+      "sha256": "ff8bb9e138e4f097fe49a1f6441d8d253513e6e408c4022df6b713e6fdb79f45",
+      "bytes": 2029
+    },
+    "typecheck.log": {
+      "sha256": "1494c271b28dafd35d7db4c197049853fca7c9b4fc14984411129d3d9caf7da9",
+      "bytes": 148
+    },
+    "researcher-hire.png": {
+      "sha256": "1f19af27a49a2fec9ccfd85f50a941632af044c22853b727482c378984384f92",
+      "bytes": 104322
+    },
+    "researcher-onboarding.png": {
+      "sha256": "29a5fc1d9afc46e43b4d96c9aa41a77e4610b610c76e0b82ba2d1b0d2ea9c89b",
+      "bytes": 98671
+    },
+    "researcher-ready.png": {
+      "sha256": "bcaf83be7431b85dde6fe586975a67dc09f433373bcab21915f76e6a15b57804",
+      "bytes": 100500
+    },
+    "week3-project-progress.png": {
+      "sha256": "b9290ae01731d8cecf332d54b1179004b0f528768688ee5552838a421b60c06e",
+      "bytes": 92748
+    },
+    "week4-completion.png": {
+      "sha256": "7e620a101bb9cf9bf7aa8fde3375851b2cc88198c3362990ee81777b03658686",
+      "bytes": 95998
+    },
+    "founder-split.png": {
+      "sha256": "3f51c1d6f9738d685f01a91d1ce8cbfab5b034818e43c321f296eb25d226d2e8",
+      "bytes": 96059
+    },
+    "review-zoom-200.png": {
+      "sha256": "0b5c624c542e7121dd682b2af1c5ab6fbe047eb15a92a5a666047d0b1555b654",
+      "bytes": 30053
+    },
+    "review-zoom-400.png": {
+      "sha256": "25bdbbb369f3f9a7b56bde9d53e04e0979e361327ec393bd07abb624f8ca558c",
+      "bytes": 12567
+    },
+    "zoom-checks.json": {
+      "sha256": "863562dc36d6783bd13e6f5002055da44f2512c9a36235007a3241b540196ec2",
+      "bytes": 1369
+    },
+    "focused-point-tests.json": {
+      "sha256": "f454a35a126f250316bffe4b4ee5f150bc488f4b049e710f5e907440b1b34be0",
+      "bytes": 8140
+    }
+  }
+}

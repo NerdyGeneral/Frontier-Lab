@@ -1,0 +1,262 @@
+{
+  "wave": 27,
+  "contentVersion": "0.27.0",
+  "saveSchema": 5,
+  "method": "Visible UI actions in managed Chrome; ordinary command-derived gameplay snapshots. Layout checked with native desktop zoom, not mobile emulation.",
+  "checks": [
+    {
+      "stage": "appliance shipment and first installation grant",
+      "week": 576,
+      "text": "PRIVATE APPLIANCE DELIVERY\nA package with a paper trail\n\nCalibration curriculum 8 · Cedar document appliance\n\nInstalling\nFabrication paid\n, complete\nWeek 570\nDirect shipment\n, complete\nWeek 576\nDelivery work\n1 / 2 ML weeks\nBuyer acceptance\nAfter installation\nBundle settlement\nOn acceptance\nMeasured hardware\n14 usable CU\n87.5% fabrication yield\nResident memory\n9 / 56 MU\nBuyer workload / capacity\n13.2 / 23.1 CUw / week\nPaid ML delivery work\n1 / 2 staff-weeks\n\nLast actual delivery grant: 1 ML staff-weeks in Week 576. 1 delivery grants are retained with this order.\n\nInstallation allocation\n\nCurrent lab capacity: 2 ML FTE for shared delivery and development work. Completed grants, shipment and acceptance are recorded separately.\n\nAssign delivery staff\nInspect commitments\nFrozen configuration & delivery evidence"
+    },
+    {
+      "stage": "appliance installation complete; no acceptance yet",
+      "week": 577,
+      "text": "PRIVATE APPLIANCE DELIVERY\nA package with a paper trail\n\nCalibration curriculum 8 · Cedar document appliance\n\nAwaiting acceptance\nFabrication paid\n, complete\nWeek 570\nDirect shipment\n, complete\nWeek 576\nDelivery work\n, complete\n2 / 2 ML weeks\nBuyer acceptance\nAfter installation\nBundle settlement\nOn acceptance\nMeasured hardware\n14 usable CU\n87.5% fabrication yield\nResident memory\n9 / 56 MU\nBuyer workload / capacity\n13.2 / 23.1 CUw / week\nPaid ML delivery work\n2 / 2 staff-weeks\n\nLast actual delivery grant: 1 ML staff-weeks in Week 577. 2 delivery grants are retained with this order.\n\nDelivery work complete\n\nInstallation is complete. Buyer acceptance and the separate service term begin at the following weekly boundary.\n\nCurrent lab capacity: 2 ML FTE for shared delivery and development work. Completed grants, shipment and acceptance are recorded separately.\n\nAssign delivery staff\nInspect commitments\nFrozen configuration & delivery evidence"
+    },
+    {
+      "stage": "appliance accepted and first service invoice",
+      "week": 578,
+      "text": "Bundle & service receipts\n\nThe equipment receipt and recurring support term remain separate.\n\n$38,000 bundle settled\n\nOne acceptance receipt · Week 578\nprivate-appliance:cedar-records:bundle-receipt\n\nFabrication commitment\n$22,400\nDelivery setup\n$1,000\nLicense & support price\n$300 / week\nSupport obligation\n0.25 Commercial FTE / week\nService term\nWeek 578–590\nSupport active\nService billed / credits\n$300 / $0\nWeek 578 support evidence\n\n0.25 / 0.25 Commercial staff-weeks granted; 100% service; $300 billed after $0 credits. Fixed weights delivered; support available. The customer pays for and operates its own inference compute.\n\nSaved service invoices (1)"
+    },
+    {
+      "stage": "appliance second service week",
+      "week": 579,
+      "text": "Bundle & service receipts\n\nThe equipment receipt and recurring support term remain separate.\n\n$38,000 bundle settled\n\nOne acceptance receipt · Week 578\nprivate-appliance:cedar-records:bundle-receipt\n\nFabrication commitment\n$22,400\nDelivery setup\n$1,000\nLicense & support price\n$300 / week\nSupport obligation\n0.25 Commercial FTE / week\nService term\nWeek 578–590\nSupport active\nService billed / credits\n$600 / $0\nWeek 579 support evidence\n\n0.25 / 0.25 Commercial staff-weeks granted; 100% service; $300 billed after $0 credits. Fixed weights delivered; support available. The customer pays for and operates its own inference compute.\n\nSaved service invoices (2)"
+    },
+    {
+      "stage": "canary paid setup scheduled; no candidate work yet",
+      "week": 551,
+      "text": "Keep a clear path from evidence to release.\n\nCompare a prepared candidate on real traffic, or qualify a fixed package for one private buyer. Every decision uses the saved model, capacity and paid-work evidence.\n\nPublic rollout\nPrivate appliance\nPublic product\nChoose a public product\nBasic Chat · Chat\nDeveloper API · Developer API\nBusiness Documents · Business documents\nProduct active\nWeek 551\nLIVE RELEASE EVIDENCE\nCalibration curriculum 8\nConversation 1\n\nStarted Week 551 · 10% metered cohort · 4 CUw budget\n\nScheduled\nScheduled candidate share\n10%\nAvailable from Week 552\nCandidate work remaining\n4 CUw\n0 CUw used\nCompleted cohort samples\n0 candidate\n0 incumbent · floor 100 each\nInsufficient sample to qualify\n\nPaid telemetry is ready. The fixed candidate cohort begins at the following weekly boundary.\n\nCumulative gate assessment · sample incomplete\n\nNo cohort has settled yet. The first eligible observation can begin from Week 552; actual sample depends on paid demand and allocated serving capacity.\n\nFrozen release identity & configuration\nCOMPARE · PREPARE · HAND OVER\nAn evaluated release bundle\n\nThe current deployment keeps serving while preparation uses paid ML staff and development compute.\n\nBundle ready\nCandidate\nConversation 1\nIncumbent deployment\nCalibration curriculum 8\ndeployment:wave27-canary-regression-ready-command-1\nDevelopment compute\n2 / 2 CUw\nML preparation\n2 / 2 staff-weeks\nSeparate preparation memory\n2.02 MU\nActual physical GPU work\n1.1111 CUw\nAvailable from Week 550\n\nLast actual grant, Week 549: 1 / 1 development CUw, 1 ML staff-weeks and 2.02 MU in owned:colocation:training.\n\nChoose a metered canary below, or use the prepared handover. The exact action gate checks the saved source, candidate and product configuration.\n\nQueue prepared handover\n\nKeep full rollout paused until both cohorts meet the sample floor and the canary qualifies.\n\nDiscard this preparation\nProduct setup & protection\nModel evidence\nSaved preparation & rehearsal history\nIncident desk\n\nScope, evidence and the immediate routing decision.\n\nNo recorded stop incident\n\nThe configured 10% candidate cohort begins in Week 552. No experimental requests have settled yet. You can stop it explicitly; the next boundary keeps all paid traffic on the incumbent and retains any collected evidence.\n\nStop canary & restore incumbent\n\nStop experimental traffic at the next command boundary and send all public requests to the incumbent. Retain observed outcomes and the original invoice history.\n\nRoom to release\n\nShared capacity before the next allocation boundary.\n\nAssigned ML staff\n2 FTE\nInfrastructure staff\n2 FTE\nServing ceiling\n160 CUw / week\nDevelopment ceiling\n8 CUw / week\n\nPreparation uses development work and ML review. Live cohorts use serving work and separate resident memory. These ceilings do not promise a grant; existing customers and signed commitments share the same pools.\n\nConnected pools (3)\nAllocate compute\nAssign staff"
+    },
+    {
+      "stage": "canary observed regression; restoration scheduled",
+      "week": 552,
+      "text": "Keep a clear path from evidence to release.\n\nCompare a prepared candidate on real traffic, or qualify a fixed package for one private buyer. Every decision uses the saved model, capacity and paid-work evidence.\n\nPublic rollout\nPrivate appliance\nPublic product\nChoose a public product\nBasic Chat · Chat\nDeveloper API · Developer API\nBusiness Documents · Business documents\nProduct active\nWeek 552\nLIVE RELEASE EVIDENCE\nCalibration curriculum 8\nConversation 1\n\nStarted Week 551 · 10% metered cohort · 4 CUw budget\n\nStopped\nNext-boundary canary share\n0%\nIncumbent only from Week 553\nCandidate work remaining\n2.466 CUw\n1.534 CUw used\nCompleted cohort samples\n7,670 candidate\n69,030 incumbent · floor 100 each\nCandidate traffic stopped\n\nCanary regression in useful answers. The incumbent receives all new requests next week; the existing invoice settles this week’s actual work once.\n\nCumulative gate assessment · sample floor reached\nCohort observation\nLatest observation · Week 552\nWeek 552\nWeek 552 · disjoint paid requests\nMeasure\tIncumbent\nCalibration curriculum 8\n\tCandidate\nConversation 1\n\nExecuted / requested\t69,030 / 69,030\t7,670 / 7,670\nFulfillment\t100%\t100%\nUseful answers\t57,945\t5,928\nConfident errors\t3,624\t767\nFalse refusals\t4,831\t536\nClarifications\t2,630\t439\nTechnical error\t9.05%\t15.72%\nGranted / requested work\t27.612 / 27.612 CUw\t1.534 / 1.534 CUw\nActual physical GPU work\t27.612 CUw\t1.3945 CUw\nGranted / required memory\t27.58 / 27.58 MU\t21.1 / 21.1 MU\nAttributed compute cost\t$5,522.40\t$104.59\n\nObserved behavior counts are conditional on completed cohort requests. Compare their denominators; the cohorts have different sizes. Compute cost is attributed from actual hardware grants and is already part of ordinary costs.\n\nIncumbent connected pool\nGeneral cloud\nCandidate connected pool\nTraining GPU · Site 1\nOne product bill · saved receipt\n$11,460\n$11,460 gross less $0 service credits\nRetained invoice · invoice:product:natural-business-command-8:552\nUnchanged incumbent trials\n0.24 / 0.24 CUw\nToken and segment evidence\nFrozen release identity & configuration\nCOMPARE · PREPARE · HAND OVER\nAn evaluated release bundle\n\nThe current deployment keeps serving while preparation uses paid ML staff and development compute.\n\nBundle ready\nCandidate\nConversation 1\nIncumbent deployment\nCalibration curriculum 8\ndeployment:wave27-canary-regression-ready-command-1\nDevelopment compute\n2 / 2 CUw\nML preparation\n2 / 2 staff-weeks\nSeparate preparation memory\n2.02 MU\nActual physical GPU work\n1.1111 CUw\nAvailable from Week 550\n\nLast actual grant, Week 549: 1 / 1 development CUw, 1 ML staff-weeks and 2.02 MU in owned:colocation:training.\n\nChoose a metered canary below, or use the prepared handover. The exact action gate checks the saved source, candidate and product configuration.\n\nQueue prepared handover\n\nThis canary stopped. Keep the incumbent and discard this bundle before preparing another candidate.\n\nDiscard this preparation\nProduct setup & protection\nModel evidence\nSaved preparation & rehearsal history\nGRADUAL RELEASE\nA small, metered canary\n\nSend a deterministic slice of eligible paid requests to the prepared candidate. Trials stay on the incumbent.\n\nS3 discovered\nPrepared candidate\nChoose the prepared release to meter\nConversation 1 · check gate\nCandidate traffic\n1% of eligible paid requests\n5% of eligible paid requests\n10% of eligible paid requests\nThe remaining requests stay on the incumbent.\nMinimum cohort sample\n100–10,000 completed requests per cohort.\nCandidate work budget (CUw)\nHard cumulative limit; up to 32 CUw.\nIncumbent · 90%\nCandidate · 10%\n$1,000 setup · ordinary serving costs\n\nThe CUw budget limits candidate work; it is not a cash deposit. Both cohorts share serving capacity and settle under one existing product invoice. Model, routing, memory and protection settings are bound to the chosen release.\n\nThe stop rule freezes candidate traffic on material regression, a severe incident, exhausted headroom or budget, or stale configuration. At least the chosen sample floor is required in both cohorts. Qualification returns traffic to the incumbent while you decide whether to promote.\n\nAuthored release gates\nStart metered canary\n\nChoose a prepared release and valid whole-request sample and decimal CUw budget to check the exact start gate.\n\nIncident desk\n\nScope, evidence and the immediate routing decision.\n\nMajor stop · Week 552\nIncumbent only from Week 553\n\nCanary regression in useful answers. The incumbent receives all new requests next week; the existing invoice settles this week’s actual work once.\n\nAffected model\nConversation 1\nmodel-natural-business-command-4\nScope\nBasic Chat\nDeployment deployment:wave27-canary-regression-ready-command-1\nEvidence quality\nSample floor reached\n7,670 candidate / 69,030 incumbent\nRouting restoration\nScheduled Week 553\n\nThe stop is recorded and terminal for this canary. Existing paid service settles through its ordinary invoice and credits.\n\nInspect affected model evidence\nRoom to release\n\nShared capacity before the next allocation boundary.\n\nAssigned ML staff\n2 FTE\nInfrastructure staff\n2 FTE\nServing ceiling\n160 CUw / week\nDevelopment ceiling\n8 CUw / week\n\nPreparation uses development work and ML review. Live cohorts use serving work and separate resident memory. These ceilings do not promise a grant; existing customers and signed commitments share the same pools.\n\nConnected pools (3)\nAllocate compute\nAssign staff"
+    },
+    {
+      "stage": "canary next-boundary incumbent routing restored",
+      "week": 553,
+      "text": "Incident desk\n\nScope, evidence and the immediate routing decision.\n\nMajor stop · Week 552\nIncumbent routing restored\n\nCanary regression in useful answers. The incumbent receives all new requests next week; the existing invoice settles this week’s actual work once.\n\nAffected model\nConversation 1\nmodel-natural-business-command-4\nScope\nBasic Chat\nDeployment deployment:wave27-canary-regression-ready-command-1\nEvidence quality\nSample floor reached\n7,670 candidate / 69,030 incumbent\nRouting restoration\nCompleted Week 553\n\nThe stop is recorded and terminal for this canary. Existing paid service settles through its ordinary invoice and credits.\n\nInspect affected model evidence"
+    },
+    {
+      "stage": "desktop layout and keyboard focus",
+      "layout": {
+        "documentWidth": 1348,
+        "focus": {
+          "outlineStyle": "solid",
+          "outlineWidth": "3px",
+          "tag": "BUTTON",
+          "text": "Private appliance"
+        },
+        "height": 936,
+        "pageOverflow": false,
+        "visibleInputs": [
+          {
+            "fontSize": "12px",
+            "id": "release-product",
+            "left": 143,
+            "right": 593
+          },
+          {
+            "fontSize": "12px",
+            "id": "canary-observation-canary:command-3134",
+            "left": 164,
+            "right": 614
+          },
+          {
+            "fontSize": "12px",
+            "id": "release-canary-bundle",
+            "left": 164,
+            "right": 838.53125
+          },
+          {
+            "fontSize": "12px",
+            "id": "release-canary-share",
+            "left": 164,
+            "right": 379.5
+          },
+          {
+            "fontSize": "12px",
+            "id": "release-canary-samples",
+            "left": 393.5,
+            "right": 609.015625
+          },
+          {
+            "fontSize": "12px",
+            "id": "release-canary-budget",
+            "left": 623.015625,
+            "right": 838.53125
+          }
+        ],
+        "width": 1363
+      }
+    },
+    {
+      "stage": "175 percent desktop zoom",
+      "layout": {
+        "columns": "669.143px",
+        "documentWidth": 770,
+        "height": 535,
+        "offscreenInputs": [],
+        "pageOverflow": false,
+        "width": 779
+      }
+    },
+    {
+      "stage": "400 percent desktop zoom",
+      "layout": {
+        "columns": "279px",
+        "documentWidth": 337,
+        "height": 234,
+        "inputs": [
+          {
+            "fontSize": "16px",
+            "id": "release-product",
+            "left": 29,
+            "right": 308
+          },
+          {
+            "fontSize": "16px",
+            "id": "canary-observation-canary:command-3134",
+            "left": 44,
+            "right": 293
+          },
+          {
+            "fontSize": "16px",
+            "id": "release-canary-bundle",
+            "left": 44,
+            "right": 293
+          },
+          {
+            "fontSize": "16px",
+            "id": "release-canary-share",
+            "left": 44,
+            "right": 293
+          },
+          {
+            "fontSize": "16px",
+            "id": "release-canary-samples",
+            "left": 44,
+            "right": 293
+          },
+          {
+            "fontSize": "16px",
+            "id": "release-canary-budget",
+            "left": 44,
+            "right": 293
+          }
+        ],
+        "pageOverflow": false,
+        "tables": [
+          {
+            "client": 247,
+            "scroll": 247
+          },
+          {
+            "client": 247,
+            "scroll": 247
+          },
+          {
+            "client": 247,
+            "scroll": 247
+          },
+          {
+            "client": 247,
+            "scroll": 247
+          },
+          {
+            "client": 247,
+            "scroll": 247
+          },
+          {
+            "client": 247,
+            "scroll": 247
+          },
+          {
+            "client": 247,
+            "scroll": 247
+          }
+        ],
+        "width": 340
+      }
+    },
+    {
+      "stage": "400 percent appliance form",
+      "layout": {
+        "documentWidth": 337,
+        "inputs": [
+          {
+            "fontSize": "16px",
+            "id": "appliance-model",
+            "left": 44,
+            "right": 293
+          },
+          {
+            "fontSize": "16px",
+            "id": "appliance-design",
+            "left": 44,
+            "right": 293
+          },
+          {
+            "fontSize": "16px",
+            "id": "appliance-foundry",
+            "left": 44,
+            "right": 293
+          }
+        ],
+        "pageOverflow": false,
+        "width": 340
+      }
+    },
+    {
+      "stage": "Business Documents product setup link",
+      "result": {
+        "commitmentsPresent": true,
+        "heading": "Business customers",
+        "overflow": false
+      }
+    },
+    {
+      "stage": "Classic compatibility",
+      "result": {
+        "applianceAnchor": true,
+        "pageOverflow": false,
+        "publicAnchor": true,
+        "publicRolloutCount": 1,
+        "release": "Keep a clear path from evidence to release.\n\nCompare a prepared candidate on real traffic, or qualify a fixed package for one private buyer. Every decision uses the saved model, capacity and paid-work evidence.\n\nPublic rollout\nPrivate appliance\nPublic product\nChoose a public product\nBasic Chat · Chat\nDeveloper API · Developer API\nBusiness Documents · Business documents\nProduct active\nWeek 553\nCOMPARE · PREPARE · HAND OVER\nAn evaluated release bundle\n\nThe current deployment keeps serving while preparation uses paid ML staff and development compute.\n\nR12 discovered\nCandidate model\nChoose the exact model revision\nSeed 0 · needs evaluation\nConversation 1 · 50% checkpoint · needs evaluation\nConve",
+        "releasePresent": true
+      }
+    },
+    {
+      "stage": "Final release UI",
+      "width": 1363,
+      "week": 553,
+      "originalIncumbentRestored": true,
+      "stopDecisionDated": true,
+      "keyboardFocusVerified": true,
+      "consoleSince": "2026-11-09T18:38:03.519Z",
+      "console": [],
+      "excludedExtensionMessages": 94
+    },
+    {
+      "stage": "Original preview restored",
+      "week": 556,
+      "cash": 6155197.86,
+      "paused": true,
+      "queuedFor557": 1,
+      "stepped": false,
+      "export": "wave27-original-preview-restored.json"
+    }
+  ],
+  "screenshots": [
+    "wave27-canary-restored.png",
+    "wave27-release-full.png",
+    "wave27-appliance-accepted.png",
+    "wave27-narrow.png",
+    "wave27-classic.png"
+  ],
+  "applicationConsoleErrorsAndWarnings": 0,
+  "excludedExtensionMessages": 94,
+  "originalPreviewRestoration": "Export comparison is recorded in wave27-preview-restoration.json"
+}

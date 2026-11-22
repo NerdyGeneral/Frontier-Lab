@@ -1,0 +1,1636 @@
+{
+  "sourceCommit": "d55f5e167eb20ad635d2be3663f7fac5c96b1b64",
+  "sourceContent": "0.9.0",
+  "naturalProgression": {
+    "suite": "tests/wave8-progression.test.ts",
+    "inputFixture": "tests/fixtures/wave7-snapshot.json",
+    "inputCommit": "8fb429ad34c58da2ff323edd030220143a336982",
+    "inputWeek": 326,
+    "inputChecksum": "a3923526",
+    "completedCampaignChecksum": "b70a084d",
+    "commands": [
+      {
+        "week": 326,
+        "id": "wave8-scale-command-1",
+        "payload": {
+          "kind": "hire_staff",
+          "role": "infrastructure"
+        }
+      },
+      {
+        "week": 329,
+        "id": "wave8-scale-command-2",
+        "payload": {
+          "kind": "assign_founder",
+          "allocations": {
+            "research": 0,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 1000000000,
+            "commercial": 0,
+            "hardware": 0
+          }
+        }
+      },
+      {
+        "week": 329,
+        "id": "wave8-scale-command-3",
+        "payload": {
+          "kind": "start_facility"
+        }
+      },
+      {
+        "week": 330,
+        "id": "wave8-scale-command-4",
+        "payload": {
+          "kind": "order_rack",
+          "hardwareId": "training",
+          "location": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 330,
+        "id": "wave8-scale-command-5",
+        "payload": {
+          "kind": "order_rack",
+          "hardwareId": "training",
+          "location": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 330,
+        "id": "wave8-scale-command-6",
+        "payload": {
+          "kind": "order_rack",
+          "hardwareId": "training",
+          "location": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 330,
+        "id": "wave8-scale-command-7",
+        "payload": {
+          "kind": "order_rack",
+          "hardwareId": "training",
+          "location": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 330,
+        "id": "wave8-scale-command-8",
+        "payload": {
+          "kind": "order_rack",
+          "hardwareId": "training",
+          "location": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 330,
+        "id": "wave8-scale-command-9",
+        "payload": {
+          "kind": "order_rack",
+          "hardwareId": "training",
+          "location": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 330,
+        "id": "wave8-scale-command-10",
+        "payload": {
+          "kind": "order_rack",
+          "hardwareId": "training",
+          "location": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 330,
+        "id": "wave8-scale-command-11",
+        "payload": {
+          "kind": "order_rack",
+          "hardwareId": "training",
+          "location": "colocation"
+        }
+      },
+      {
+        "week": 331,
+        "id": "wave8-scale-command-12",
+        "payload": {
+          "kind": "fund_facility_stage",
+          "facilityId": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 333,
+        "id": "wave8-scale-command-13",
+        "payload": {
+          "kind": "fund_facility_stage",
+          "facilityId": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 337,
+        "id": "wave8-scale-command-14",
+        "payload": {
+          "kind": "install_rack",
+          "rackId": "rack-wave8-scale-command-4"
+        }
+      },
+      {
+        "week": 337,
+        "id": "wave8-scale-command-15",
+        "payload": {
+          "kind": "install_rack",
+          "rackId": "rack-wave8-scale-command-5"
+        }
+      },
+      {
+        "week": 337,
+        "id": "wave8-scale-command-16",
+        "payload": {
+          "kind": "install_rack",
+          "rackId": "rack-wave8-scale-command-6"
+        }
+      },
+      {
+        "week": 337,
+        "id": "wave8-scale-command-17",
+        "payload": {
+          "kind": "install_rack",
+          "rackId": "rack-wave8-scale-command-7"
+        }
+      },
+      {
+        "week": 337,
+        "id": "wave8-scale-command-18",
+        "payload": {
+          "kind": "install_rack",
+          "rackId": "rack-wave8-scale-command-8"
+        }
+      },
+      {
+        "week": 337,
+        "id": "wave8-scale-command-19",
+        "payload": {
+          "kind": "install_rack",
+          "rackId": "rack-wave8-scale-command-9"
+        }
+      },
+      {
+        "week": 337,
+        "id": "wave8-scale-command-20",
+        "payload": {
+          "kind": "install_rack",
+          "rackId": "rack-wave8-scale-command-10"
+        }
+      },
+      {
+        "week": 337,
+        "id": "wave8-scale-command-21",
+        "payload": {
+          "kind": "install_rack",
+          "rackId": "rack-wave8-scale-command-11"
+        }
+      },
+      {
+        "week": 339,
+        "id": "wave8-scale-command-22",
+        "payload": {
+          "kind": "fund_facility_stage",
+          "facilityId": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 345,
+        "id": "wave8-scale-command-23",
+        "payload": {
+          "kind": "fund_facility_stage",
+          "facilityId": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 347,
+        "id": "wave8-scale-command-24",
+        "payload": {
+          "kind": "fund_facility_stage",
+          "facilityId": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 350,
+        "id": "wave8-natural-command-1",
+        "payload": {
+          "kind": "start_system_rollout",
+          "method": "cost-accounting"
+        }
+      },
+      {
+        "week": 352,
+        "id": "wave8-natural-command-2",
+        "payload": {
+          "kind": "start_facility_retrofit",
+          "facilityId": "facility-wave8-scale-command-3",
+          "retrofitKind": "power-feed"
+        }
+      },
+      {
+        "week": 357,
+        "id": "wave8-natural-command-3",
+        "payload": {
+          "kind": "start_facility_retrofit",
+          "facilityId": "facility-wave8-scale-command-3",
+          "retrofitKind": "cooling-loop"
+        }
+      },
+      {
+        "week": 361,
+        "id": "wave8-natural-command-4",
+        "payload": {
+          "kind": "start_rack_relocation",
+          "rackId": "rack-wave8-scale-command-11",
+          "destination": "facility-wave8-scale-command-3"
+        }
+      },
+      {
+        "week": 366,
+        "id": "wave8-natural-command-5",
+        "payload": {
+          "kind": "assign_founder",
+          "allocations": {
+            "research": 0,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 0,
+            "commercial": 1000000000,
+            "hardware": 0
+          }
+        }
+      },
+      {
+        "week": 366,
+        "id": "wave8-natural-command-6",
+        "payload": {
+          "kind": "allocate_compute",
+          "serving": 100000000000,
+          "development": 6000000000,
+          "research": 6000000000
+        }
+      },
+      {
+        "week": 367,
+        "id": "wave8-natural-command-7",
+        "payload": {
+          "kind": "set_cloud_capacity",
+          "cu": 56000000000
+        }
+      }
+    ]
+  },
+  "startingChecksum": "b70a084d",
+  "startingWeek": 370,
+  "commands": [
+    {
+      "week": 370,
+      "id": "wave8-oracle-outbound-1",
+      "payload": {
+        "kind": "start_rack_relocation",
+        "rackId": "rack-wave8-scale-command-11",
+        "destination": "colocation"
+      }
+    }
+  ],
+  "fixtureWeek": 371,
+  "checksum": "d4ca620e",
+  "movingRackId": "rack-wave8-scale-command-11",
+  "siteId": "facility-wave8-scale-command-3",
+  "relocationId": "rack-relocation:wave8-oracle-outbound-1",
+  "originalRack": {
+    "id": "rack-wave8-scale-command-11",
+    "companyId": "company-player",
+    "hardwareId": "training",
+    "location": "facility-wave8-scale-command-3",
+    "status": "installed",
+    "orderedWeek": 331,
+    "arrivalWeek": 337,
+    "installationStartedWeek": 338,
+    "completedInstallStaff": 1000000000,
+    "readyWeek": 339,
+    "installedWeek": 339,
+    "purchaseCents": 3200000,
+    "lastBottleneck": "",
+    "purchaseLocation": "colocation"
+  },
+  "originalCostReport": {
+    "week": 370,
+    "hash": "f793d8d8"
+  },
+  "weeks": [
+    {
+      "week": 372,
+      "hash": "dd70abbe",
+      "cashCents": 275986119,
+      "revenueCents": 3895600,
+      "expenseCents": 1897762,
+      "trustBps": 9955,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "moving",
+        "stageIndex": 1,
+        "readyWeek": null,
+        "completedWeek": null,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 1,
+            "completedStaff": 0,
+            "completedWeek": null
+          },
+          {
+            "startedWeek": null,
+            "elapsedWeeks": 0,
+            "completedStaff": 0,
+            "completedWeek": null
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "parked",
+        "location": "facility-wave8-scale-command-3",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 66000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 64000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 372,
+        "reportHash": "ebcbac38",
+        "historyWeeks": [
+          372,
+          371,
+          370,
+          369,
+          368,
+          367,
+          366,
+          365
+        ],
+        "priorWeekRetained": true,
+        "priorReportHash": "f793d8d8",
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 66000,
+          "ownedVariableCents": 341762,
+          "attributedCloudRentCents": 996600,
+          "attributedOwnedVariableCents": 341761,
+          "attributedComputeCents": 1338361,
+          "unallocatedCloudCents": 123400,
+          "sharedCarryCents": 1,
+          "sharedComputeCents": 189401,
+          "totalComputeCents": 1527762,
+          "companyRevenueCents": 3895600,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1897762,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1997838
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 2,
+          "lifetimeBilledCents": 4250000
+        }
+      ]
+    },
+    {
+      "week": 373,
+      "hash": "748be404",
+      "cashCents": 277972285,
+      "revenueCents": 3884200,
+      "expenseCents": 1898034,
+      "trustBps": 9965,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "moving",
+        "stageIndex": 2,
+        "readyWeek": null,
+        "completedWeek": null,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": null,
+            "elapsedWeeks": 0,
+            "completedStaff": 0,
+            "completedWeek": null
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "parked",
+        "location": "facility-wave8-scale-command-3",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 66000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 64000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 373,
+        "reportHash": "739c857b",
+        "historyWeeks": [
+          373,
+          372,
+          371,
+          370,
+          369,
+          368,
+          367,
+          366
+        ],
+        "priorWeekRetained": true,
+        "priorReportHash": "f793d8d8",
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 66000,
+          "ownedVariableCents": 342034,
+          "attributedCloudRentCents": 993300,
+          "attributedOwnedVariableCents": 342034,
+          "attributedComputeCents": 1335334,
+          "unallocatedCloudCents": 126700,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 192700,
+          "totalComputeCents": 1528034,
+          "companyRevenueCents": 3884200,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1898034,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1986166
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 3,
+          "lifetimeBilledCents": 4275000
+        }
+      ]
+    },
+    {
+      "week": 374,
+      "hash": "03b1c7c5",
+      "cashCents": 279978251,
+      "revenueCents": 3904000,
+      "expenseCents": 1898034,
+      "trustBps": 9975,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "moving",
+        "stageIndex": 2,
+        "readyWeek": null,
+        "completedWeek": null,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": 374,
+            "elapsedWeeks": 1,
+            "completedStaff": 650000000,
+            "completedWeek": null
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "parked",
+        "location": "facility-wave8-scale-command-3",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 66000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 64000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 374,
+        "reportHash": "9d71ad0b",
+        "historyWeeks": [
+          374,
+          373,
+          372,
+          371,
+          370,
+          369,
+          368,
+          367
+        ],
+        "priorWeekRetained": true,
+        "priorReportHash": "f793d8d8",
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 66000,
+          "ownedVariableCents": 342034,
+          "attributedCloudRentCents": 996600,
+          "attributedOwnedVariableCents": 342034,
+          "attributedComputeCents": 1338634,
+          "unallocatedCloudCents": 123400,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 189400,
+          "totalComputeCents": 1528034,
+          "companyRevenueCents": 3904000,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1898034,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 2005966
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 4,
+          "lifetimeBilledCents": 4300000
+        }
+      ]
+    },
+    {
+      "week": 375,
+      "hash": "0246c112",
+      "cashCents": 281961192,
+      "revenueCents": 3880600,
+      "expenseCents": 1897659,
+      "trustBps": 9985,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "ready",
+        "stageIndex": 3,
+        "readyWeek": 376,
+        "completedWeek": null,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": 374,
+            "elapsedWeeks": 1,
+            "completedStaff": 750000000,
+            "completedWeek": 375
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "parked",
+        "location": "facility-wave8-scale-command-3",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 66000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 64000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 375,
+        "reportHash": "d2371253",
+        "historyWeeks": [
+          375,
+          374,
+          373,
+          372,
+          371,
+          370,
+          369,
+          368
+        ],
+        "priorWeekRetained": true,
+        "priorReportHash": "f793d8d8",
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 66000,
+          "ownedVariableCents": 341659,
+          "attributedCloudRentCents": 994950,
+          "attributedOwnedVariableCents": 341659,
+          "attributedComputeCents": 1336609,
+          "unallocatedCloudCents": 125050,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 191050,
+          "totalComputeCents": 1527659,
+          "companyRevenueCents": 3880600,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1897659,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1982941
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 5,
+          "lifetimeBilledCents": 4325000
+        }
+      ]
+    },
+    {
+      "week": 376,
+      "hash": "5177e639",
+      "cashCents": 283916478,
+      "revenueCents": 3855400,
+      "expenseCents": 1900114,
+      "trustBps": 9995,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "complete",
+        "stageIndex": 3,
+        "readyWeek": 376,
+        "completedWeek": 376,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": 374,
+            "elapsedWeeks": 1,
+            "completedStaff": 750000000,
+            "completedWeek": 375
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "installed",
+        "location": "colocation",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 78000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        },
+        {
+          "id": "owned:colocation:training",
+          "ownership": "owned",
+          "location": "colocation",
+          "nominalCU": 8000000000,
+          "capacityCU": 8000000000,
+          "memoryMU": 16000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 376,
+        "reportHash": "d9bcbece",
+        "historyWeeks": [
+          376,
+          375,
+          374,
+          373,
+          372,
+          371,
+          370,
+          369
+        ],
+        "priorWeekRetained": true,
+        "priorReportHash": "f793d8d8",
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 332114,
+          "attributedCloudRentCents": 993300,
+          "attributedOwnedVariableCents": 332113,
+          "attributedComputeCents": 1325413,
+          "unallocatedCloudCents": 126700,
+          "sharedCarryCents": 1,
+          "sharedComputeCents": 204701,
+          "totalComputeCents": 1530114,
+          "companyRevenueCents": 3855400,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1900114,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1955286
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 6,
+          "lifetimeBilledCents": 4350000
+        }
+      ]
+    },
+    {
+      "week": 377,
+      "hash": "d32063da",
+      "cashCents": 285876544,
+      "revenueCents": 3856600,
+      "expenseCents": 1896534,
+      "trustBps": 10000,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "complete",
+        "stageIndex": 3,
+        "readyWeek": 376,
+        "completedWeek": 376,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": 374,
+            "elapsedWeeks": 1,
+            "completedStaff": 750000000,
+            "completedWeek": 375
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "installed",
+        "location": "colocation",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 78000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        },
+        {
+          "id": "owned:colocation:training",
+          "ownership": "owned",
+          "location": "colocation",
+          "nominalCU": 8000000000,
+          "capacityCU": 8000000000,
+          "memoryMU": 16000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 377,
+        "reportHash": "6454a2f7",
+        "historyWeeks": [
+          377,
+          376,
+          375,
+          374,
+          373,
+          372,
+          371,
+          370
+        ],
+        "priorWeekRetained": true,
+        "priorReportHash": "f793d8d8",
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 328534,
+          "attributedCloudRentCents": 996600,
+          "attributedOwnedVariableCents": 328534,
+          "attributedComputeCents": 1325134,
+          "unallocatedCloudCents": 123400,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 201400,
+          "totalComputeCents": 1526534,
+          "companyRevenueCents": 3856600,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1896534,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1960066
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 7,
+          "lifetimeBilledCents": 4375000
+        }
+      ]
+    },
+    {
+      "week": 378,
+      "hash": "acf157a1",
+      "cashCents": 287855797,
+      "revenueCents": 3876400,
+      "expenseCents": 1897147,
+      "trustBps": 10000,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "complete",
+        "stageIndex": 3,
+        "readyWeek": 376,
+        "completedWeek": 376,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": 374,
+            "elapsedWeeks": 1,
+            "completedStaff": 750000000,
+            "completedWeek": 375
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "installed",
+        "location": "colocation",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 78000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        },
+        {
+          "id": "owned:colocation:training",
+          "ownership": "owned",
+          "location": "colocation",
+          "nominalCU": 8000000000,
+          "capacityCU": 8000000000,
+          "memoryMU": 16000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 378,
+        "reportHash": "9fa70542",
+        "historyWeeks": [
+          378,
+          377,
+          376,
+          375,
+          374,
+          373,
+          372,
+          371
+        ],
+        "priorWeekRetained": false,
+        "priorReportHash": null,
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 329147,
+          "attributedCloudRentCents": 999900,
+          "attributedOwnedVariableCents": 329147,
+          "attributedComputeCents": 1329047,
+          "unallocatedCloudCents": 120100,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 198100,
+          "totalComputeCents": 1527147,
+          "companyRevenueCents": 3876400,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1897147,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1979253
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 8,
+          "lifetimeBilledCents": 4400000
+        }
+      ]
+    },
+    {
+      "week": 379,
+      "hash": "d5f93f22",
+      "cashCents": 289835035,
+      "revenueCents": 3880000,
+      "expenseCents": 1900762,
+      "trustBps": 10000,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "complete",
+        "stageIndex": 3,
+        "readyWeek": 376,
+        "completedWeek": 376,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": 374,
+            "elapsedWeeks": 1,
+            "completedStaff": 750000000,
+            "completedWeek": 375
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "installed",
+        "location": "colocation",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 78000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        },
+        {
+          "id": "owned:colocation:training",
+          "ownership": "owned",
+          "location": "colocation",
+          "nominalCU": 8000000000,
+          "capacityCU": 8000000000,
+          "memoryMU": 16000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 379,
+        "reportHash": "598ea328",
+        "historyWeeks": [
+          379,
+          378,
+          377,
+          376,
+          375,
+          374,
+          373,
+          372
+        ],
+        "priorWeekRetained": false,
+        "priorReportHash": null,
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 332762,
+          "attributedCloudRentCents": 1003200,
+          "attributedOwnedVariableCents": 332761,
+          "attributedComputeCents": 1335961,
+          "unallocatedCloudCents": 116800,
+          "sharedCarryCents": 1,
+          "sharedComputeCents": 194801,
+          "totalComputeCents": 1530762,
+          "companyRevenueCents": 3880000,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1900762,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1979238
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 9,
+          "lifetimeBilledCents": 4425000
+        }
+      ]
+    },
+    {
+      "week": 380,
+      "hash": "764f5149",
+      "cashCents": 291828294,
+      "revenueCents": 3901077,
+      "expenseCents": 1907818,
+      "trustBps": 9975,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "complete",
+        "stageIndex": 3,
+        "readyWeek": 376,
+        "completedWeek": 376,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": 374,
+            "elapsedWeeks": 1,
+            "completedStaff": 750000000,
+            "completedWeek": 375
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "installed",
+        "location": "colocation",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 78000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        },
+        {
+          "id": "owned:colocation:training",
+          "ownership": "owned",
+          "location": "colocation",
+          "nominalCU": 8000000000,
+          "capacityCU": 8000000000,
+          "memoryMU": 16000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 380,
+        "reportHash": "360fe1ff",
+        "historyWeeks": [
+          380,
+          379,
+          378,
+          377,
+          376,
+          375,
+          374,
+          373
+        ],
+        "priorWeekRetained": false,
+        "priorReportHash": null,
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 339818,
+          "attributedCloudRentCents": 1003200,
+          "attributedOwnedVariableCents": 339818,
+          "attributedComputeCents": 1343018,
+          "unallocatedCloudCents": 116800,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 194800,
+          "totalComputeCents": 1537818,
+          "companyRevenueCents": 3901077,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1907818,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1993259
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 10,
+          "lifetimeBilledCents": 4450000
+        }
+      ]
+    },
+    {
+      "week": 381,
+      "hash": "b99cf1eb",
+      "cashCents": 293814064,
+      "revenueCents": 3895600,
+      "expenseCents": 1909830,
+      "trustBps": 9985,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "complete",
+        "stageIndex": 3,
+        "readyWeek": 376,
+        "completedWeek": 376,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": 374,
+            "elapsedWeeks": 1,
+            "completedStaff": 750000000,
+            "completedWeek": 375
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "installed",
+        "location": "colocation",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 78000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        },
+        {
+          "id": "owned:colocation:training",
+          "ownership": "owned",
+          "location": "colocation",
+          "nominalCU": 8000000000,
+          "capacityCU": 8000000000,
+          "memoryMU": 16000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 381,
+        "reportHash": "65c840f3",
+        "historyWeeks": [
+          381,
+          380,
+          379,
+          378,
+          377,
+          376,
+          375,
+          374
+        ],
+        "priorWeekRetained": false,
+        "priorReportHash": null,
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 341830,
+          "attributedCloudRentCents": 996600,
+          "attributedOwnedVariableCents": 341829,
+          "attributedComputeCents": 1338429,
+          "unallocatedCloudCents": 123400,
+          "sharedCarryCents": 1,
+          "sharedComputeCents": 201401,
+          "totalComputeCents": 1539830,
+          "companyRevenueCents": 3895600,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1909830,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1985770
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 11,
+          "lifetimeBilledCents": 4475000
+        }
+      ]
+    },
+    {
+      "week": 382,
+      "hash": "f28ff426",
+      "cashCents": 295790221,
+      "revenueCents": 3886600,
+      "expenseCents": 1910443,
+      "trustBps": 9995,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "complete",
+        "stageIndex": 3,
+        "readyWeek": 376,
+        "completedWeek": 376,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": 374,
+            "elapsedWeeks": 1,
+            "completedStaff": 750000000,
+            "completedWeek": 375
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "installed",
+        "location": "colocation",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 78000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        },
+        {
+          "id": "owned:colocation:training",
+          "ownership": "owned",
+          "location": "colocation",
+          "nominalCU": 8000000000,
+          "capacityCU": 8000000000,
+          "memoryMU": 16000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 382,
+        "reportHash": "8e33bdf1",
+        "historyWeeks": [
+          382,
+          381,
+          380,
+          379,
+          378,
+          377,
+          376,
+          375
+        ],
+        "priorWeekRetained": false,
+        "priorReportHash": null,
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 342443,
+          "attributedCloudRentCents": 994950,
+          "attributedOwnedVariableCents": 342443,
+          "attributedComputeCents": 1337393,
+          "unallocatedCloudCents": 125050,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 203050,
+          "totalComputeCents": 1540443,
+          "companyRevenueCents": 3886600,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1910443,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1976157
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 15,
+          "termWeeksServed": 12,
+          "lifetimeBilledCents": 4500000
+        }
+      ]
+    },
+    {
+      "week": 383,
+      "hash": "8353b885",
+      "cashCents": 297765724,
+      "revenueCents": 3876400,
+      "expenseCents": 1900897,
+      "trustBps": 10000,
+      "relocation": {
+        "id": "rack-relocation:wave8-oracle-outbound-1",
+        "status": "complete",
+        "stageIndex": 3,
+        "readyWeek": 376,
+        "completedWeek": 376,
+        "stages": [
+          {
+            "startedWeek": 371,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 371
+          },
+          {
+            "startedWeek": 372,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 373
+          },
+          {
+            "startedWeek": 374,
+            "elapsedWeeks": 1,
+            "completedStaff": 750000000,
+            "completedWeek": 375
+          }
+        ],
+        "rackId": "rack-wave8-scale-command-11",
+        "rackStatus": "installed",
+        "location": "colocation",
+        "purchaseLocation": "colocation",
+        "purchaseCents": 3200000,
+        "installedWeek": 339,
+        "fixedInfrastructureCents": 78000
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "variableCentsPerCUw": 7500
+        },
+        {
+          "id": "owned:colocation:training",
+          "ownership": "owned",
+          "location": "colocation",
+          "nominalCU": 8000000000,
+          "capacityCU": 8000000000,
+          "memoryMU": 16000000000,
+          "variableCentsPerCUw": 7500
+        }
+      ],
+      "costs": {
+        "week": 383,
+        "reportHash": "87180599",
+        "historyWeeks": [
+          383,
+          382,
+          381,
+          380,
+          379,
+          378,
+          377,
+          376
+        ],
+        "priorWeekRetained": false,
+        "priorReportHash": null,
+        "totals": {
+          "cloudRentCents": 1120000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 332897,
+          "attributedCloudRentCents": 999900,
+          "attributedOwnedVariableCents": 332897,
+          "attributedComputeCents": 1332797,
+          "unallocatedCloudCents": 120100,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 198100,
+          "totalComputeCents": 1530897,
+          "companyRevenueCents": 3876400,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 1900897,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1975503
+        }
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 16,
+          "termWeeksServed": 1,
+          "lifetimeBilledCents": 4525000
+        }
+      ]
+    }
+  ]
+}

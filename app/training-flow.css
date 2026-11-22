@@ -1,0 +1,86 @@
+/* Keep all four stages in reading order. On wide training dialogs the forecast
+   shares the viewport with the player's choices. */
+.training-builder .training-form-start {
+  display: grid;
+  gap: 1rem;
+}
+.training-builder .training-step {
+  min-width: 0;
+  padding: 0 0 1rem;
+  border-bottom: 1px solid var(--fl-line);
+}
+.training-builder .training-step-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+.training-builder .training-step-title {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  margin: 0 0 .5rem;
+  color: var(--fl-text);
+  font-size: 1.075rem;
+  line-height: 1.4;
+}
+.training-builder .training-step-header .training-step-title { margin-bottom: 0; }
+.training-step-number {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 1px solid var(--fl-control-border);
+  color: var(--fl-accent);
+  border-radius: 50%;
+  font-size: .875rem;
+  font-variant-numeric: tabular-nums;
+}
+.training-goal-choices {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 8.6rem), 1fr));
+  gap: .4rem;
+  margin: .7rem 0 .8rem;
+}
+.training-builder .training-goal-choices button {
+  display: flex;
+  align-items: center;
+  gap: .45rem;
+  padding: .48rem .58rem;
+  min-height: 2.65rem;
+  text-align: left;
+  white-space: normal;
+  line-height: 1.25;
+  font-size: .875rem;
+  color: var(--fl-text);
+  background: var(--fl-panel);
+  border: 1px solid var(--fl-control-border);
+  border-radius: .45rem;
+}
+.training-goal-choices button small { display: block; margin-top: .14rem; color: var(--fl-muted); font-size: .75rem; }
+.training-goal-choices button svg { flex: none; color: var(--fl-muted); }
+.training-builder .training-goal-choices button[aria-pressed="true"] {
+  color: var(--fl-accent);
+  border-color: var(--fl-accent);
+  background: color-mix(in srgb, var(--fl-accent) 9%, var(--fl-panel));
+}
+.training-goal-choices button[aria-pressed="true"] svg { color: currentColor; }
+.training-builder .training-packet { padding: .55rem .75rem; margin: .7rem 0 .25rem; border-left: 3px solid var(--fl-accent); background: var(--fl-panel); }
+.training-builder .training-source-note { margin: .25rem 0; font-size: .875rem; color: var(--fl-accent); }
+.training-builder .training-packet.is-unprepared { border-left-color: var(--fl-warn, #dfa459); }
+.training-builder .training-packet .small-note { margin: .25rem 0; }
+.training-builder .training-text-action { display: inline-block; padding: .3rem 0; min-height: 2rem; font-size: .9rem; font-weight: 600; text-align: left; text-decoration: underline; text-underline-offset: .2em; color: var(--fl-accent); border: 0; background: none; }
+.training-builder .training-text-action + .training-text-action { margin-left: .75rem; }
+.training-builder .training-forecast-context { font-size: .9rem; color: var(--fl-muted); margin: .3rem 0 .8rem; overflow-wrap: anywhere; }
+.training-builder .training-outlook { color: var(--fl-text); font-size: 1rem; line-height: 1.5; }
+.training-builder .training-run-cost { margin: 1rem 0 .5rem; padding-top: .6rem; border-top: 1px solid var(--fl-line); }
+.training-builder .training-run-cost dl { margin: 0; }
+.training-builder .studio-decision-summary { min-width: 0; }
+.training-builder .training-mix { margin-bottom: .4rem; }
+.training-builder .training-technical > summary { overflow-wrap: anywhere; }
+.training-builder .studio-training-view { flex: none; }
+@media (max-width: 620px) {
+  .training-builder .training-step-header { align-items: start; flex-direction: column; }
+}

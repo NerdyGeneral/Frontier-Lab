@@ -1,0 +1,14 @@
+{
+  "result": "PASS",
+  "packageVersion": "0.27.0",
+  "projectId": "appgprj_6aee557bdf488191ad2acf02d3520cf6",
+  "saveSchema": 5,
+  "typecheck": "npm run typecheck",
+  "build": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+  "builtAt": "2026-11-09T19:00:05.042Z",
+  "nodeVersion": "v24.22.1",
+  "workerEntrypoint": "dist/server/index.js",
+  "workerBytes": 197061,
+  "clientAssetCount": 19,
+  "clientJavaScriptBytes": 2107590
+}

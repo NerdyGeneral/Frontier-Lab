@@ -1,0 +1,41 @@
+✔ W0-C01: opening catalog and initial state preserve the authored values (49.300196ms)
+✔ W0-C02: catalog has sixteen core programs, thirteen applied projects and two synthetic programs (0.664162ms)
+✔ W0-C03: catalog validation rejects duplicate IDs, missing references and prerequisite cycles (18.865819ms)
+✔ W0-C04: content validation rejects negative prices and impossible opening allocation (2.267607ms)
+✔ W0-E01: one settled week charges $800 rental and $200 overhead with no invented work or revenue (205.841423ms)
+✔ W0-E02: ten weeks retain $38,000 before any hiring or revenue systems exist (306.452465ms)
+✔ W0-E03: a real shortfall records unpaid bills without negative cash and blocks optional commands (28.427427ms)
+✔ W0-E04: phase order is explicit and stable (21.590296ms)
+✔ W0-E05: a release scheduled by resolve is unavailable until the next weekly commit (45.745153ms)
+✔ W0-E06: delivery records inventory once without creating usable or rented capacity (43.891895ms)
+✔ W0-E07: duplicate economic facts settle once (20.660058ms)
+✔ W0-E08: forbidden cross-domain writes reject the entire tick (12.321905ms)
+✔ W0-E09: exceptions and direct snapshot mutation cannot partly commit a week (24.482029ms)
+✔ W0-E10: duplicate registrations and invalid economic facts fail atomically (44.079385ms)
+✔ W0-E11: an unsafe owned-slice update aborts before settlement can hide it (6.848113ms)
+✔ W0-E12: a scheduled model release must belong to the model owner (24.788218ms)
+✔ W0-E13: all reserve requests precede owner grants and execution sees the complete grants (24.161126ms)
+✔ W0-A01: a queued command applies at the next boundary rather than on submission (32.161876ms)
+✔ W0-A02: duplicate pending and committed command IDs never create a second action (17.205646ms)
+✔ W0-A03: allocations are capacity ceilings, preserve rental cost, and perform no fabricated work (68.898138ms)
+✔ W0-A04: invalid or overcommitted commands spend no resources and consume no IDs or draws (39.03932ms)
+✔ W0-A05: repeated forecasts and diagnostics are read-only (3893.788847ms)
+✔ W0-A06: command admission rejects exhausted safe counters without changing state (15.273391ms)
+✔ W0-R01: a hundred-command replay produces identical intermediate and final state (2044.379688ms)
+✔ W0-R02: named random streams replay, survive snapshots, and remain independent (3.962214ms)
+✔ W0-R03: module draws persist and replay only when their entire tick commits (92.452204ms)
+✔ W0-N01: work at token scale remains exact and safe (1.4926ms)
+✔ W0-N02: fractional operating amounts accumulate rather than vanishing each step (0.415877ms)
+✔ W0-N03: checked addition rejects unsafe operands even when the sum is safe (0.479468ms)
+✔ W0-S01: snapshot roundtrip preserves commands, schedules, draws, and the next exact week (48.612485ms)
+✔ W0-S02: bad JSON and a changed payload are rejected without replacing the current state (2.95465ms)
+✔ W0-S03: incompatible versions and unsafe or impossible state fail validation (7.707164ms)
+✔ W0-S04: imports reject malformed reports and incomplete model maps even with a matching checksum (22.668201ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8218.764719

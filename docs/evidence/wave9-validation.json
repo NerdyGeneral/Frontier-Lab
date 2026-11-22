@@ -1,0 +1,56 @@
+{
+  "wave": 9,
+  "contentVersion": "0.10.0",
+  "buildVersion": "0.10.0",
+  "schemaVersion": 5,
+  "checks": {
+    "typecheck": {
+      "command": "npm run typecheck",
+      "result": "passed"
+    },
+    "acceptance": {
+      "command": "node scripts/test-wave0.mjs",
+      "tests": 377,
+      "passed": 377,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 70270.665228
+    },
+    "productionBuild": {
+      "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+      "result": "passed",
+      "warnings": [
+        "Client bundle size advisory over 500 kB"
+      ]
+    },
+    "naturalProgression": {
+      "file": "wave9-progression.json",
+      "fromWeek": 371,
+      "toWeek": 389,
+      "commands": 9,
+      "checksum": "4dff9002",
+      "snapshotBytes": 1392923
+    },
+    "browser": {
+      "file": "wave9-browser.json",
+      "fromWeek": 378,
+      "toWeek": 389,
+      "exactReloadBytes": true,
+      "checksum": "b69b5bf0",
+      "snapshotBytes": 1392505,
+      "originalPreviewRestored": true
+    },
+    "compatibility": {
+      "sourceCommit": "d55f5e167eb20ad635d2be3663f7fac5c96b1b64",
+      "fixtureChecksum": "d4ca620e",
+      "matchedFutureWeeks": 12,
+      "lastPublishedOutcomeHash": "8353b885"
+    }
+  },
+  "notes": [
+    "Seven new rehearsal checks, eight preparation/rollback checks and one earned progression check run inside the full suite",
+    "Browser actions use ordinary UI commands and import/export; no direct browser-state mutation",
+    "Post-QA wording clarifies that handover cannot be chosen before the bundle availability boundary; production build includes this display-only correction",
+    "Publication provenance is recorded by the saved Sites version and its exact pushed source commit"
+  ]
+}

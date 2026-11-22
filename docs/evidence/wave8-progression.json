@@ -1,0 +1,2029 @@
+{
+  "sourceCommit": "8fb429ad34c58da2ff323edd030220143a336982",
+  "originalWeek": 326,
+  "originalChecksum": "a3923526",
+  "finalWeek": 370,
+  "finalHash": "b70a084d",
+  "snapshotBytes": 1332420,
+  "cashCents": 272132550,
+  "minimumCashCents": 235563968,
+  "commands": [
+    {
+      "week": 326,
+      "id": "wave8-scale-command-1",
+      "payload": {
+        "kind": "hire_staff",
+        "role": "infrastructure"
+      }
+    },
+    {
+      "week": 329,
+      "id": "wave8-scale-command-2",
+      "payload": {
+        "kind": "assign_founder",
+        "allocations": {
+          "research": 0,
+          "ml": 0,
+          "data": 0,
+          "infrastructure": 1000000000,
+          "commercial": 0,
+          "hardware": 0
+        }
+      }
+    },
+    {
+      "week": 329,
+      "id": "wave8-scale-command-3",
+      "payload": {
+        "kind": "start_facility"
+      }
+    },
+    {
+      "week": 330,
+      "id": "wave8-scale-command-4",
+      "payload": {
+        "kind": "order_rack",
+        "hardwareId": "training",
+        "location": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 330,
+      "id": "wave8-scale-command-5",
+      "payload": {
+        "kind": "order_rack",
+        "hardwareId": "training",
+        "location": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 330,
+      "id": "wave8-scale-command-6",
+      "payload": {
+        "kind": "order_rack",
+        "hardwareId": "training",
+        "location": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 330,
+      "id": "wave8-scale-command-7",
+      "payload": {
+        "kind": "order_rack",
+        "hardwareId": "training",
+        "location": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 330,
+      "id": "wave8-scale-command-8",
+      "payload": {
+        "kind": "order_rack",
+        "hardwareId": "training",
+        "location": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 330,
+      "id": "wave8-scale-command-9",
+      "payload": {
+        "kind": "order_rack",
+        "hardwareId": "training",
+        "location": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 330,
+      "id": "wave8-scale-command-10",
+      "payload": {
+        "kind": "order_rack",
+        "hardwareId": "training",
+        "location": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 330,
+      "id": "wave8-scale-command-11",
+      "payload": {
+        "kind": "order_rack",
+        "hardwareId": "training",
+        "location": "colocation"
+      }
+    },
+    {
+      "week": 331,
+      "id": "wave8-scale-command-12",
+      "payload": {
+        "kind": "fund_facility_stage",
+        "facilityId": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 333,
+      "id": "wave8-scale-command-13",
+      "payload": {
+        "kind": "fund_facility_stage",
+        "facilityId": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 337,
+      "id": "wave8-scale-command-14",
+      "payload": {
+        "kind": "install_rack",
+        "rackId": "rack-wave8-scale-command-4"
+      }
+    },
+    {
+      "week": 337,
+      "id": "wave8-scale-command-15",
+      "payload": {
+        "kind": "install_rack",
+        "rackId": "rack-wave8-scale-command-5"
+      }
+    },
+    {
+      "week": 337,
+      "id": "wave8-scale-command-16",
+      "payload": {
+        "kind": "install_rack",
+        "rackId": "rack-wave8-scale-command-6"
+      }
+    },
+    {
+      "week": 337,
+      "id": "wave8-scale-command-17",
+      "payload": {
+        "kind": "install_rack",
+        "rackId": "rack-wave8-scale-command-7"
+      }
+    },
+    {
+      "week": 337,
+      "id": "wave8-scale-command-18",
+      "payload": {
+        "kind": "install_rack",
+        "rackId": "rack-wave8-scale-command-8"
+      }
+    },
+    {
+      "week": 337,
+      "id": "wave8-scale-command-19",
+      "payload": {
+        "kind": "install_rack",
+        "rackId": "rack-wave8-scale-command-9"
+      }
+    },
+    {
+      "week": 337,
+      "id": "wave8-scale-command-20",
+      "payload": {
+        "kind": "install_rack",
+        "rackId": "rack-wave8-scale-command-10"
+      }
+    },
+    {
+      "week": 337,
+      "id": "wave8-scale-command-21",
+      "payload": {
+        "kind": "install_rack",
+        "rackId": "rack-wave8-scale-command-11"
+      }
+    },
+    {
+      "week": 339,
+      "id": "wave8-scale-command-22",
+      "payload": {
+        "kind": "fund_facility_stage",
+        "facilityId": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 345,
+      "id": "wave8-scale-command-23",
+      "payload": {
+        "kind": "fund_facility_stage",
+        "facilityId": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 347,
+      "id": "wave8-scale-command-24",
+      "payload": {
+        "kind": "fund_facility_stage",
+        "facilityId": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 350,
+      "id": "wave8-natural-command-1",
+      "payload": {
+        "kind": "start_system_rollout",
+        "method": "cost-accounting"
+      }
+    },
+    {
+      "week": 352,
+      "id": "wave8-natural-command-2",
+      "payload": {
+        "kind": "start_facility_retrofit",
+        "facilityId": "facility-wave8-scale-command-3",
+        "retrofitKind": "power-feed"
+      }
+    },
+    {
+      "week": 357,
+      "id": "wave8-natural-command-3",
+      "payload": {
+        "kind": "start_facility_retrofit",
+        "facilityId": "facility-wave8-scale-command-3",
+        "retrofitKind": "cooling-loop"
+      }
+    },
+    {
+      "week": 361,
+      "id": "wave8-natural-command-4",
+      "payload": {
+        "kind": "start_rack_relocation",
+        "rackId": "rack-wave8-scale-command-11",
+        "destination": "facility-wave8-scale-command-3"
+      }
+    },
+    {
+      "week": 366,
+      "id": "wave8-natural-command-5",
+      "payload": {
+        "kind": "assign_founder",
+        "allocations": {
+          "research": 0,
+          "ml": 0,
+          "data": 0,
+          "infrastructure": 0,
+          "commercial": 1000000000,
+          "hardware": 0
+        }
+      }
+    },
+    {
+      "week": 366,
+      "id": "wave8-natural-command-6",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 100000000000,
+        "development": 6000000000,
+        "research": 6000000000
+      }
+    },
+    {
+      "week": 367,
+      "id": "wave8-natural-command-7",
+      "payload": {
+        "kind": "set_cloud_capacity",
+        "cu": 56000000000
+      }
+    }
+  ],
+  "milestones": [
+    {
+      "label": "Published Wave 7 company",
+      "week": 326,
+      "cashCents": 256079968,
+      "revenueCents": 3714400,
+      "expenseCents": 2575000,
+      "consumers": 939,
+      "developers": 139,
+      "businesses": 16,
+      "trustBps": 10000
+    },
+    {
+      "label": "Seven installed training racks in owned site and one in colocation",
+      "week": 350,
+      "cashCents": 253650893,
+      "revenueCents": 3803200,
+      "expenseCents": 2883875,
+      "consumers": 935,
+      "developers": 147,
+      "businesses": 16,
+      "trustBps": 10000
+    },
+    {
+      "label": "Settled costs recorded before site extensions",
+      "week": 352,
+      "cashCents": 255518152,
+      "revenueCents": 3830800,
+      "expenseCents": 2897375,
+      "consumers": 933,
+      "developers": 148,
+      "businesses": 17,
+      "trustBps": 10000
+    },
+    {
+      "label": "Both site envelopes commissioned; existing racks fully usable",
+      "week": 361,
+      "cashCents": 260937720,
+      "revenueCents": 3898600,
+      "expenseCents": 3020182,
+      "consumers": 928,
+      "developers": 151,
+      "businesses": 16,
+      "trustBps": 10000
+    },
+    {
+      "label": "Existing colocation rack commissioned in the owned facility",
+      "week": 366,
+      "cashCents": 265253113,
+      "revenueCents": 3925000,
+      "expenseCents": 3011012,
+      "consumers": 925,
+      "developers": 152,
+      "businesses": 18,
+      "trustBps": 10000
+    },
+    {
+      "label": "Cloud reservation reduced; actual owned work and all expenses reconciled",
+      "week": 370,
+      "cashCents": 272132550,
+      "revenueCents": 3877600,
+      "expenseCents": 1888454,
+      "consumers": 901,
+      "developers": 152,
+      "businesses": 18,
+      "trustBps": 9970
+    }
+  ],
+  "siteId": "facility-wave8-scale-command-3",
+  "movingRackId": "rack-wave8-scale-command-11",
+  "powerId": "facility-retrofit-wave8-natural-command-2",
+  "coolingId": "facility-retrofit-wave8-natural-command-3",
+  "relocationId": "rack-relocation:wave8-natural-command-4",
+  "capacity": {
+    "beforeSiteCU": 39.999999984,
+    "afterPowerCU": 39.999999984,
+    "afterBothCU": 56,
+    "finalSiteCU": 64,
+    "finalSiteMU": 128,
+    "finalSlotsCU": 64,
+    "finalEnvelope": {
+      "powerDemand": 102400000000,
+      "coolingDemand": 102400000000,
+      "powerLimit": 112000000000,
+      "coolingLimit": 112000000000,
+      "powerCoverage": 1000000000,
+      "coolingCoverage": 1000000000
+    }
+  },
+  "relocation": {
+    "originalRack": {
+      "id": "rack-wave8-scale-command-11",
+      "companyId": "company-player",
+      "hardwareId": "training",
+      "location": "colocation",
+      "status": "installed",
+      "orderedWeek": 331,
+      "arrivalWeek": 337,
+      "installationStartedWeek": 338,
+      "completedInstallStaff": 1000000000,
+      "readyWeek": 339,
+      "installedWeek": 339,
+      "purchaseCents": 3200000,
+      "lastBottleneck": ""
+    },
+    "movedRack": {
+      "id": "rack-wave8-scale-command-11",
+      "companyId": "company-player",
+      "hardwareId": "training",
+      "location": "facility-wave8-scale-command-3",
+      "status": "installed",
+      "orderedWeek": 331,
+      "arrivalWeek": 337,
+      "installationStartedWeek": 338,
+      "completedInstallStaff": 1000000000,
+      "readyWeek": 339,
+      "installedWeek": 339,
+      "purchaseCents": 3200000,
+      "lastBottleneck": "",
+      "purchaseLocation": "colocation"
+    },
+    "receipt": {
+      "id": "rack-relocation:wave8-natural-command-4",
+      "companyId": "company-player",
+      "rackId": "rack-wave8-scale-command-11",
+      "sourceLocation": "colocation",
+      "destination": "facility-wave8-scale-command-3",
+      "restoreStatus": "installed",
+      "status": "complete",
+      "paused": false,
+      "startedWeek": 362,
+      "readyWeek": 366,
+      "completedWeek": 366,
+      "stageIndex": 3,
+      "stages": [
+        {
+          "startedWeek": 362,
+          "elapsedWeeks": 1,
+          "completedStaff": 250000000,
+          "completedWeek": 362
+        },
+        {
+          "startedWeek": 363,
+          "elapsedWeeks": 2,
+          "completedStaff": 0,
+          "completedWeek": 364
+        },
+        {
+          "startedWeek": 365,
+          "elapsedWeeks": 1,
+          "completedStaff": 750000000,
+          "completedWeek": 365
+        }
+      ],
+      "paidCents": 150000,
+      "paymentId": "rack-relocation-capital:rack-relocation:wave8-natural-command-4",
+      "hardwareId": "training",
+      "usableCU": 8000000000,
+      "purchaseCents": 3200000,
+      "originalInstalledWeek": 339,
+      "lastBottleneck": ""
+    },
+    "fixedBeforeCents": 78000,
+    "fixedAfterCents": 66000
+  },
+  "costs": {
+    "baseline": {
+      "protocol": "compute-costs-1",
+      "id": "compute-cost:company-player:352",
+      "companyId": "company-player",
+      "week": 352,
+      "rolloutId": "system-rollout:wave8-natural-command-1",
+      "cloudRentCentsPerCUWeek": 20000,
+      "pools": [
+        {
+          "id": "general-cloud",
+          "companyId": "company-player",
+          "name": "General cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "hardwareId": "general",
+          "nominalCU": 112000000000,
+          "capacityCU": 112000000000,
+          "memoryMU": 224000000000,
+          "rackCount": 1,
+          "singleRackCU": 112000000000,
+          "singleRackMemoryMU": 224000000000,
+          "trainingBps": 10000,
+          "servingBps": 10000,
+          "variableCentsPerCUw": 0,
+          "staffCoverageBps": 10000,
+          "powerCoverageBps": 10000,
+          "coolingCoverageBps": 10000,
+          "bottleneck": ""
+        },
+        {
+          "id": "owned:colocation:training",
+          "companyId": "company-player",
+          "name": "Training GPU · Colocation",
+          "ownership": "owned",
+          "location": "colocation",
+          "hardwareId": "training",
+          "nominalCU": 8000000000,
+          "capacityCU": 8000000000,
+          "memoryMU": 16000000000,
+          "rackCount": 1,
+          "singleRackCU": 8000000000,
+          "singleRackMemoryMU": 16000000000,
+          "trainingBps": 18000,
+          "servingBps": 11000,
+          "variableCentsPerCUw": 7500,
+          "staffCoverageBps": 10000,
+          "powerCoverageBps": 10000,
+          "coolingCoverageBps": 10000,
+          "bottleneck": ""
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "companyId": "company-player",
+          "name": "Training GPU · Site 1",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "hardwareId": "training",
+          "nominalCU": 56000000000,
+          "capacityCU": 39999999984,
+          "memoryMU": 79999999968,
+          "rackCount": 7,
+          "singleRackCU": 5714285712,
+          "singleRackMemoryMU": 11428571424,
+          "trainingBps": 18000,
+          "servingBps": 11000,
+          "variableCentsPerCUw": 7500,
+          "staffCoverageBps": 10000,
+          "powerCoverageBps": 7142,
+          "coolingCoverageBps": 7142,
+          "bottleneck": "The site power envelope limits active capacity. Park equipment or use another site."
+        }
+      ],
+      "resources": {
+        "requests": [
+          {
+            "id": "infrastructure:company-player:operations",
+            "companyId": "company-player",
+            "taskId": "infrastructure-operations",
+            "category": "development",
+            "normalizedWorkCUw": 0,
+            "memoryMU": 0,
+            "poolId": "auto",
+            "priority": 0,
+            "staffDemand": [
+              {
+                "role": "infrastructure",
+                "staffWeeks": 1375000000
+              }
+            ]
+          },
+          {
+            "id": "retrieval-upkeep:retrieval:product:natural-business-command-163",
+            "companyId": "company-player",
+            "taskId": "retrieval:product:natural-business-command-163",
+            "category": "development",
+            "normalizedWorkCUw": 0,
+            "memoryMU": 0,
+            "priority": 5,
+            "poolId": "auto",
+            "staffDemand": [
+              {
+                "role": "data",
+                "staffWeeks": 1700000000
+              }
+            ]
+          },
+          {
+            "id": "business-support:business:vector-studio",
+            "companyId": "company-player",
+            "taskId": "business:vector-studio",
+            "category": "development",
+            "normalizedWorkCUw": 0,
+            "memoryMU": 0,
+            "priority": 0,
+            "poolId": "auto",
+            "staffDemand": [
+              {
+                "role": "commercial",
+                "staffWeeks": 250000000
+              }
+            ]
+          },
+          {
+            "id": "serve:product:natural-business-command-8",
+            "companyId": "company-player",
+            "taskId": "product:natural-business-command-8",
+            "category": "serving",
+            "normalizedWorkCUw": 15230000000,
+            "memoryMU": 21410000000,
+            "modelArchitecture": "dense",
+            "modelFamily": "compact",
+            "workloadKind": "inference",
+            "priority": 0,
+            "poolId": "auto",
+            "headroomBps": 1000,
+            "sharedAdapterMemory": {
+              "baseModelId": "seed-0",
+              "modelId": "model-wave7-natural-command-13",
+              "baseMemoryMU": 2000000000,
+              "adapterMemoryMU": 250000000
+            }
+          },
+          {
+            "id": "serve:product:natural-business-command-67",
+            "companyId": "company-player",
+            "taskId": "product:natural-business-command-67",
+            "category": "serving",
+            "normalizedWorkCUw": 44325000000,
+            "memoryMU": 14250000000,
+            "modelArchitecture": "dense",
+            "modelFamily": "compact",
+            "workloadKind": "inference",
+            "priority": 0,
+            "poolId": "auto",
+            "headroomBps": 1000,
+            "sharedAdapterMemory": {
+              "baseModelId": "seed-0",
+              "modelId": "model-wave7-natural-command-14",
+              "baseMemoryMU": 2000000000,
+              "adapterMemoryMU": 250000000
+            }
+          },
+          {
+            "id": "serve:product:natural-business-command-163",
+            "companyId": "company-player",
+            "taskId": "product:natural-business-command-163",
+            "category": "serving",
+            "normalizedWorkCUw": 32175000000,
+            "memoryMU": 9340000000,
+            "modelArchitecture": "dense",
+            "modelFamily": "medium",
+            "workloadKind": "inference",
+            "priority": 0,
+            "poolId": "auto",
+            "headroomBps": 1000
+          },
+          {
+            "id": "acquire-company:company-player",
+            "companyId": "company-player",
+            "taskId": "company-player",
+            "category": "serving",
+            "normalizedWorkCUw": 0,
+            "memoryMU": 0,
+            "priority": 70,
+            "poolId": "auto",
+            "staffDemand": [
+              {
+                "role": "commercial",
+                "staffWeeks": 1000000000
+              }
+            ]
+          }
+        ],
+        "computeGrants": [
+          {
+            "requestId": "business-support:business:vector-studio",
+            "physicalCUw": 0,
+            "hardwareEffectiveCUw": 0,
+            "memoryMU": 0,
+            "poolId": "general-cloud"
+          },
+          {
+            "requestId": "infrastructure:company-player:operations",
+            "physicalCUw": 0,
+            "hardwareEffectiveCUw": 0,
+            "memoryMU": 0,
+            "poolId": "general-cloud"
+          },
+          {
+            "requestId": "serve:product:natural-business-command-163",
+            "physicalCUw": 29250000000,
+            "hardwareEffectiveCUw": 32175000000,
+            "memoryMU": 9340000000,
+            "poolId": "owned:facility-wave8-scale-command-3:training"
+          },
+          {
+            "requestId": "serve:product:natural-business-command-67",
+            "physicalCUw": 44325000000,
+            "hardwareEffectiveCUw": 44325000000,
+            "memoryMU": 14250000000,
+            "sharedMemoryMU": 0,
+            "poolId": "general-cloud"
+          },
+          {
+            "requestId": "serve:product:natural-business-command-8",
+            "physicalCUw": 15230000000,
+            "hardwareEffectiveCUw": 15230000000,
+            "memoryMU": 21410000000,
+            "sharedMemoryMU": 2000000000,
+            "poolId": "general-cloud"
+          },
+          {
+            "requestId": "retrieval-upkeep:retrieval:product:natural-business-command-163",
+            "physicalCUw": 0,
+            "hardwareEffectiveCUw": 0,
+            "memoryMU": 0,
+            "poolId": "general-cloud"
+          },
+          {
+            "requestId": "acquire-company:company-player",
+            "physicalCUw": 0,
+            "hardwareEffectiveCUw": 0,
+            "memoryMU": 0,
+            "poolId": "general-cloud"
+          }
+        ],
+        "staffGrants": [
+          {
+            "requestId": "business-support:business:vector-studio",
+            "grants": [
+              {
+                "role": "commercial",
+                "staffWeeks": 250000000
+              }
+            ]
+          },
+          {
+            "requestId": "infrastructure:company-player:operations",
+            "grants": [
+              {
+                "role": "infrastructure",
+                "staffWeeks": 1375000000
+              }
+            ]
+          },
+          {
+            "requestId": "retrieval-upkeep:retrieval:product:natural-business-command-163",
+            "grants": [
+              {
+                "role": "data",
+                "staffWeeks": 1700000000
+              }
+            ]
+          },
+          {
+            "requestId": "acquire-company:company-player",
+            "grants": [
+              {
+                "role": "commercial",
+                "staffWeeks": 750000000
+              }
+            ]
+          }
+        ]
+      },
+      "ledgerFacts": [
+        {
+          "id": "business-invoice:business:vector-studio:1:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "business:vector-studio",
+          "category": "revenue",
+          "amountCents": 25000,
+          "label": "Vector Studio: fixed-model license and support after credits",
+          "kind": "receipt"
+        },
+        {
+          "id": "company-player:cloud-rent:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "general-cloud-reservation",
+          "category": "rent",
+          "amountCents": 2240000,
+          "label": "Reserved general GPU capacity (energy included)",
+          "kind": "expense"
+        },
+        {
+          "id": "company-player:overhead:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "founder-and-basic-overhead",
+          "category": "overhead",
+          "amountCents": 20000,
+          "label": "Founder draw and basic overhead",
+          "kind": "expense"
+        },
+        {
+          "id": "company-player:owned-fixed:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "owned-infrastructure",
+          "category": "operating",
+          "amountCents": 68000,
+          "label": "Installed rack and commissioned site upkeep",
+          "kind": "expense"
+        },
+        {
+          "id": "company-player:owned-variable:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "owned-gpu-work",
+          "category": "operating",
+          "amountCents": 219375,
+          "label": "Actual owned GPU work (physical CUw)",
+          "kind": "expense"
+        },
+        {
+          "id": "invoice:product:natural-business-command-163:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "contract:natural-business-command-163",
+          "category": "revenue",
+          "amountCents": 480000,
+          "label": "Business Documents: 16 accounts, after service credits",
+          "kind": "receipt"
+        },
+        {
+          "id": "invoice:product:natural-business-command-67:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "contract:natural-business-command-67",
+          "category": "revenue",
+          "amountCents": 2205000,
+          "label": "Developer API: 147 accounts, executed token bill",
+          "kind": "receipt"
+        },
+        {
+          "id": "invoice:product:natural-business-command-8:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "contract:natural-business-command-8",
+          "category": "revenue",
+          "amountCents": 1120800,
+          "label": "Basic Chat: 934 accounts, after service credits",
+          "kind": "receipt"
+        },
+        {
+          "id": "staff:command-1507:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:command-1507",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:command-1509:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:command-1509",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:command-1511:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:command-1511",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:command-1513:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:command-1513",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:command-1515:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:command-1515",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-26:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:natural-business-command-26",
+          "category": "operating",
+          "amountCents": 30000,
+          "label": "ML engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-27:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:natural-business-command-27",
+          "category": "operating",
+          "amountCents": 30000,
+          "label": "ML engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-28:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:natural-business-command-28",
+          "category": "operating",
+          "amountCents": 45000,
+          "label": "Researcher salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-31:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:natural-business-command-31",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-32:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:natural-business-command-32",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Product / commercial salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-95:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:natural-business-command-95",
+          "category": "operating",
+          "amountCents": 35000,
+          "label": "Infrastructure engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:wave8-scale-command-1:payroll:352",
+          "companyId": "company-player",
+          "week": 352,
+          "sourceId": "staff:wave8-scale-command-1",
+          "category": "operating",
+          "amountCents": 35000,
+          "label": "Infrastructure engineer salary",
+          "kind": "expense"
+        }
+      ],
+      "variableCostCarryIn": 666670000,
+      "variableCostCarryOut": 666670000,
+      "targets": [
+        {
+          "id": "business:business:vector-studio",
+          "kind": "weight-license",
+          "sourceId": "business:vector-studio",
+          "commercialGeneration": 1,
+          "commercialSignedWeek": 201,
+          "name": "Vector Studio · weight license",
+          "requestIds": [
+            "business-support:business:vector-studio"
+          ],
+          "revenueFactIds": [
+            "business-invoice:business:vector-studio:1:352"
+          ]
+        },
+        {
+          "id": "internal:development",
+          "kind": "internal",
+          "sourceId": "development",
+          "category": "development",
+          "name": "Development work",
+          "requestIds": [
+            "infrastructure:company-player:operations",
+            "retrieval-upkeep:retrieval:product:natural-business-command-163"
+          ],
+          "revenueFactIds": []
+        },
+        {
+          "id": "internal:serving",
+          "kind": "internal",
+          "sourceId": "serving",
+          "category": "serving",
+          "name": "Internal serving work",
+          "requestIds": [
+            "acquire-company:company-player"
+          ],
+          "revenueFactIds": []
+        },
+        {
+          "id": "product:product:natural-business-command-163",
+          "kind": "public-product",
+          "sourceId": "product:natural-business-command-163",
+          "contractId": "contract:natural-business-command-163",
+          "name": "Business Documents",
+          "requestIds": [
+            "serve:product:natural-business-command-163"
+          ],
+          "revenueFactIds": [
+            "invoice:product:natural-business-command-163:352"
+          ]
+        },
+        {
+          "id": "product:product:natural-business-command-67",
+          "kind": "public-product",
+          "sourceId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "name": "Developer API",
+          "requestIds": [
+            "serve:product:natural-business-command-67"
+          ],
+          "revenueFactIds": [
+            "invoice:product:natural-business-command-67:352"
+          ]
+        },
+        {
+          "id": "product:product:natural-business-command-8",
+          "kind": "public-product",
+          "sourceId": "product:natural-business-command-8",
+          "contractId": "contract:natural-business-command-8",
+          "name": "Basic Chat",
+          "requestIds": [
+            "serve:product:natural-business-command-8"
+          ],
+          "revenueFactIds": [
+            "invoice:product:natural-business-command-8:352"
+          ]
+        }
+      ],
+      "workloads": [
+        {
+          "requestId": "acquire-company:company-player",
+          "targetId": "internal:serving",
+          "category": "serving",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 0,
+          "effectiveWorkCUw": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0,
+          "headroomCUw": 0,
+          "chargedMemoryMU": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0
+        },
+        {
+          "requestId": "business-support:business:vector-studio",
+          "targetId": "business:business:vector-studio",
+          "category": "development",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 0,
+          "effectiveWorkCUw": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0,
+          "headroomCUw": 0,
+          "chargedMemoryMU": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0
+        },
+        {
+          "requestId": "infrastructure:company-player:operations",
+          "targetId": "internal:development",
+          "category": "development",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 0,
+          "effectiveWorkCUw": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0,
+          "headroomCUw": 0,
+          "chargedMemoryMU": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0
+        },
+        {
+          "requestId": "retrieval-upkeep:retrieval:product:natural-business-command-163",
+          "targetId": "internal:development",
+          "category": "development",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 0,
+          "effectiveWorkCUw": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0,
+          "headroomCUw": 0,
+          "chargedMemoryMU": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0
+        },
+        {
+          "requestId": "serve:product:natural-business-command-163",
+          "targetId": "product:product:natural-business-command-163",
+          "category": "serving",
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "requestedWorkCUw": 32175000000,
+          "effectiveWorkCUw": 32175000000,
+          "physicalWorkCUw": 29250000000,
+          "reservedCUw": 32175000000,
+          "headroomCUw": 2925000000,
+          "chargedMemoryMU": 9340000000,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 219375,
+          "attributedComputeCents": 219375
+        },
+        {
+          "requestId": "serve:product:natural-business-command-67",
+          "targetId": "product:product:natural-business-command-67",
+          "category": "serving",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 44325000000,
+          "effectiveWorkCUw": 44325000000,
+          "physicalWorkCUw": 44325000000,
+          "reservedCUw": 48757500000,
+          "headroomCUw": 4432500000,
+          "chargedMemoryMU": 14250000000,
+          "cloudRentCents": 975150,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 975150
+        },
+        {
+          "requestId": "serve:product:natural-business-command-8",
+          "targetId": "product:product:natural-business-command-8",
+          "category": "serving",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 15230000000,
+          "effectiveWorkCUw": 15230000000,
+          "physicalWorkCUw": 15230000000,
+          "reservedCUw": 16753000000,
+          "headroomCUw": 1523000000,
+          "chargedMemoryMU": 19410000000,
+          "cloudRentCents": 335060,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 335060
+        }
+      ],
+      "poolUsage": [
+        {
+          "poolId": "general-cloud",
+          "physicalWorkCUw": 59555000000,
+          "reservedCUw": 65510500000,
+          "headroomCUw": 5955500000,
+          "unusedCapacityCU": 46489500000,
+          "unavailableCapacityCU": 0,
+          "chargedMemoryMU": 33660000000,
+          "attributedCloudRentCents": 1310210,
+          "attributedOwnedVariableCents": 0
+        },
+        {
+          "poolId": "owned:colocation:training",
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0,
+          "headroomCUw": 0,
+          "unusedCapacityCU": 8000000000,
+          "unavailableCapacityCU": 0,
+          "chargedMemoryMU": 0,
+          "attributedCloudRentCents": 0,
+          "attributedOwnedVariableCents": 0
+        },
+        {
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "physicalWorkCUw": 29250000000,
+          "reservedCUw": 32175000000,
+          "headroomCUw": 2925000000,
+          "unusedCapacityCU": 7824999984,
+          "unavailableCapacityCU": 16000000016,
+          "chargedMemoryMU": 9340000000,
+          "attributedCloudRentCents": 0,
+          "attributedOwnedVariableCents": 219375
+        }
+      ],
+      "activities": [
+        {
+          "targetId": "business:business:vector-studio",
+          "revenueCents": 25000,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0,
+          "contributionCents": 25000,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0
+        },
+        {
+          "targetId": "internal:development",
+          "revenueCents": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0,
+          "contributionCents": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0
+        },
+        {
+          "targetId": "internal:serving",
+          "revenueCents": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0,
+          "contributionCents": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0
+        },
+        {
+          "targetId": "product:product:natural-business-command-163",
+          "revenueCents": 480000,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 219375,
+          "attributedComputeCents": 219375,
+          "contributionCents": 260625,
+          "physicalWorkCUw": 29250000000,
+          "reservedCUw": 32175000000
+        },
+        {
+          "targetId": "product:product:natural-business-command-67",
+          "revenueCents": 2205000,
+          "cloudRentCents": 975150,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 975150,
+          "contributionCents": 1229850,
+          "physicalWorkCUw": 44325000000,
+          "reservedCUw": 48757500000
+        },
+        {
+          "targetId": "product:product:natural-business-command-8",
+          "revenueCents": 1120800,
+          "cloudRentCents": 335060,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 335060,
+          "contributionCents": 785740,
+          "physicalWorkCUw": 15230000000,
+          "reservedCUw": 16753000000
+        }
+      ],
+      "totals": {
+        "cloudRentCents": 2240000,
+        "ownedFixedCents": 68000,
+        "ownedVariableCents": 219375,
+        "attributedCloudRentCents": 1310210,
+        "attributedOwnedVariableCents": 219375,
+        "attributedComputeCents": 1529585,
+        "unallocatedCloudCents": 929790,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 997790,
+        "totalComputeCents": 2527375,
+        "companyRevenueCents": 3830800,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2897375,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 933425
+      }
+    },
+    "final": {
+      "protocol": "compute-costs-1",
+      "id": "compute-cost:company-player:370",
+      "companyId": "company-player",
+      "week": 370,
+      "rolloutId": "system-rollout:wave8-natural-command-1",
+      "cloudRentCentsPerCUWeek": 20000,
+      "pools": [
+        {
+          "id": "general-cloud",
+          "companyId": "company-player",
+          "name": "General cloud",
+          "ownership": "cloud",
+          "location": "cloud",
+          "hardwareId": "general",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "rackCount": 1,
+          "singleRackCU": 56000000000,
+          "singleRackMemoryMU": 112000000000,
+          "trainingBps": 10000,
+          "servingBps": 10000,
+          "variableCentsPerCUw": 0,
+          "staffCoverageBps": 10000,
+          "powerCoverageBps": 10000,
+          "coolingCoverageBps": 10000,
+          "bottleneck": ""
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "companyId": "company-player",
+          "name": "Training GPU · Site 1",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "hardwareId": "training",
+          "nominalCU": 64000000000,
+          "capacityCU": 64000000000,
+          "memoryMU": 128000000000,
+          "rackCount": 8,
+          "singleRackCU": 8000000000,
+          "singleRackMemoryMU": 16000000000,
+          "trainingBps": 18000,
+          "servingBps": 11000,
+          "variableCentsPerCUw": 7500,
+          "staffCoverageBps": 10000,
+          "powerCoverageBps": 10000,
+          "coolingCoverageBps": 10000,
+          "bottleneck": ""
+        }
+      ],
+      "resources": {
+        "requests": [
+          {
+            "id": "infrastructure:company-player:operations",
+            "companyId": "company-player",
+            "taskId": "infrastructure-operations",
+            "category": "development",
+            "normalizedWorkCUw": 0,
+            "memoryMU": 0,
+            "poolId": "auto",
+            "priority": 0,
+            "staffDemand": [
+              {
+                "role": "infrastructure",
+                "staffWeeks": 1350000000
+              }
+            ]
+          },
+          {
+            "id": "retrieval-upkeep:retrieval:product:natural-business-command-163",
+            "companyId": "company-player",
+            "taskId": "retrieval:product:natural-business-command-163",
+            "category": "development",
+            "normalizedWorkCUw": 0,
+            "memoryMU": 0,
+            "priority": 5,
+            "poolId": "auto",
+            "staffDemand": [
+              {
+                "role": "data",
+                "staffWeeks": 1800000000
+              }
+            ]
+          },
+          {
+            "id": "business-support:business:vector-studio",
+            "companyId": "company-player",
+            "taskId": "business:vector-studio",
+            "category": "development",
+            "normalizedWorkCUw": 0,
+            "memoryMU": 0,
+            "priority": 0,
+            "poolId": "auto",
+            "staffDemand": [
+              {
+                "role": "commercial",
+                "staffWeeks": 250000000
+              }
+            ]
+          },
+          {
+            "id": "serve:product:natural-business-command-8",
+            "companyId": "company-player",
+            "taskId": "product:natural-business-command-8",
+            "category": "serving",
+            "normalizedWorkCUw": 14605000000,
+            "memoryMU": 20790000000,
+            "modelArchitecture": "dense",
+            "modelFamily": "compact",
+            "workloadKind": "inference",
+            "priority": 0,
+            "poolId": "auto",
+            "headroomBps": 1000,
+            "sharedAdapterMemory": {
+              "baseModelId": "seed-0",
+              "modelId": "model-wave7-natural-command-13",
+              "baseMemoryMU": 2000000000,
+              "adapterMemoryMU": 250000000
+            }
+          },
+          {
+            "id": "serve:product:natural-business-command-67",
+            "companyId": "company-player",
+            "taskId": "product:natural-business-command-67",
+            "category": "serving",
+            "normalizedWorkCUw": 45525000000,
+            "memoryMU": 14570000000,
+            "modelArchitecture": "dense",
+            "modelFamily": "compact",
+            "workloadKind": "inference",
+            "priority": 0,
+            "poolId": "auto",
+            "headroomBps": 1000,
+            "sharedAdapterMemory": {
+              "baseModelId": "seed-0",
+              "modelId": "model-wave7-natural-command-14",
+              "baseMemoryMU": 2000000000,
+              "adapterMemoryMU": 250000000
+            }
+          },
+          {
+            "id": "serve:product:natural-business-command-163",
+            "companyId": "company-player",
+            "taskId": "product:natural-business-command-163",
+            "category": "serving",
+            "normalizedWorkCUw": 34155000000,
+            "memoryMU": 9360000000,
+            "modelArchitecture": "dense",
+            "modelFamily": "medium",
+            "workloadKind": "inference",
+            "priority": 0,
+            "poolId": "auto",
+            "headroomBps": 1000
+          },
+          {
+            "id": "acquire-company:company-player",
+            "companyId": "company-player",
+            "taskId": "company-player",
+            "category": "serving",
+            "normalizedWorkCUw": 0,
+            "memoryMU": 0,
+            "priority": 70,
+            "poolId": "auto",
+            "staffDemand": [
+              {
+                "role": "commercial",
+                "staffWeeks": 2000000000
+              }
+            ]
+          }
+        ],
+        "computeGrants": [
+          {
+            "requestId": "business-support:business:vector-studio",
+            "physicalCUw": 0,
+            "hardwareEffectiveCUw": 0,
+            "memoryMU": 0,
+            "poolId": "general-cloud"
+          },
+          {
+            "requestId": "infrastructure:company-player:operations",
+            "physicalCUw": 0,
+            "hardwareEffectiveCUw": 0,
+            "memoryMU": 0,
+            "poolId": "general-cloud"
+          },
+          {
+            "requestId": "serve:product:natural-business-command-163",
+            "physicalCUw": 31050000000,
+            "hardwareEffectiveCUw": 34155000000,
+            "memoryMU": 9360000000,
+            "poolId": "owned:facility-wave8-scale-command-3:training"
+          },
+          {
+            "requestId": "serve:product:natural-business-command-67",
+            "physicalCUw": 45525000000,
+            "hardwareEffectiveCUw": 45525000000,
+            "memoryMU": 14570000000,
+            "sharedMemoryMU": 0,
+            "poolId": "general-cloud"
+          },
+          {
+            "requestId": "serve:product:natural-business-command-8",
+            "physicalCUw": 13277272728,
+            "hardwareEffectiveCUw": 14605000000,
+            "memoryMU": 20790000000,
+            "sharedMemoryMU": 0,
+            "poolId": "owned:facility-wave8-scale-command-3:training"
+          },
+          {
+            "requestId": "retrieval-upkeep:retrieval:product:natural-business-command-163",
+            "physicalCUw": 0,
+            "hardwareEffectiveCUw": 0,
+            "memoryMU": 0,
+            "poolId": "general-cloud"
+          },
+          {
+            "requestId": "acquire-company:company-player",
+            "physicalCUw": 0,
+            "hardwareEffectiveCUw": 0,
+            "memoryMU": 0,
+            "poolId": "general-cloud"
+          }
+        ],
+        "staffGrants": [
+          {
+            "requestId": "business-support:business:vector-studio",
+            "grants": [
+              {
+                "role": "commercial",
+                "staffWeeks": 250000000
+              }
+            ]
+          },
+          {
+            "requestId": "infrastructure:company-player:operations",
+            "grants": [
+              {
+                "role": "infrastructure",
+                "staffWeeks": 1350000000
+              }
+            ]
+          },
+          {
+            "requestId": "retrieval-upkeep:retrieval:product:natural-business-command-163",
+            "grants": [
+              {
+                "role": "data",
+                "staffWeeks": 1800000000
+              }
+            ]
+          },
+          {
+            "requestId": "acquire-company:company-player",
+            "grants": [
+              {
+                "role": "commercial",
+                "staffWeeks": 1750000000
+              }
+            ]
+          }
+        ]
+      },
+      "ledgerFacts": [
+        {
+          "id": "business-invoice:business:vector-studio:1:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "business:vector-studio",
+          "category": "revenue",
+          "amountCents": 25000,
+          "label": "Vector Studio: fixed-model license and support after credits",
+          "kind": "receipt"
+        },
+        {
+          "id": "company-player:cloud-rent:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "general-cloud-reservation",
+          "category": "rent",
+          "amountCents": 1120000,
+          "label": "Reserved general GPU capacity (energy included)",
+          "kind": "expense"
+        },
+        {
+          "id": "company-player:overhead:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "founder-and-basic-overhead",
+          "category": "overhead",
+          "amountCents": 20000,
+          "label": "Founder draw and basic overhead",
+          "kind": "expense"
+        },
+        {
+          "id": "company-player:owned-fixed:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "owned-infrastructure",
+          "category": "operating",
+          "amountCents": 66000,
+          "label": "Installed rack and commissioned site upkeep",
+          "kind": "expense"
+        },
+        {
+          "id": "company-player:owned-variable:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "owned-gpu-work",
+          "category": "operating",
+          "amountCents": 332454,
+          "label": "Actual owned GPU work (physical CUw)",
+          "kind": "expense"
+        },
+        {
+          "id": "invoice:product:natural-business-command-163:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "contract:natural-business-command-163",
+          "category": "revenue",
+          "amountCents": 510000,
+          "label": "Business Documents: 17 accounts, after service credits",
+          "kind": "receipt"
+        },
+        {
+          "id": "invoice:product:natural-business-command-67:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "contract:natural-business-command-67",
+          "category": "revenue",
+          "amountCents": 2265000,
+          "label": "Developer API: 151 accounts, executed token bill",
+          "kind": "receipt"
+        },
+        {
+          "id": "invoice:product:natural-business-command-8:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "contract:natural-business-command-8",
+          "category": "revenue",
+          "amountCents": 1077600,
+          "label": "Basic Chat: 898 accounts, after service credits",
+          "kind": "receipt"
+        },
+        {
+          "id": "staff:command-1507:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:command-1507",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:command-1509:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:command-1509",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:command-1511:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:command-1511",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:command-1513:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:command-1513",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:command-1515:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:command-1515",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-26:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:natural-business-command-26",
+          "category": "operating",
+          "amountCents": 30000,
+          "label": "ML engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-27:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:natural-business-command-27",
+          "category": "operating",
+          "amountCents": 30000,
+          "label": "ML engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-28:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:natural-business-command-28",
+          "category": "operating",
+          "amountCents": 45000,
+          "label": "Researcher salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-31:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:natural-business-command-31",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-32:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:natural-business-command-32",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Product / commercial salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:natural-business-command-95:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:natural-business-command-95",
+          "category": "operating",
+          "amountCents": 35000,
+          "label": "Infrastructure engineer salary",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:wave8-scale-command-1:payroll:370",
+          "companyId": "company-player",
+          "week": 370,
+          "sourceId": "staff:wave8-scale-command-1",
+          "category": "operating",
+          "amountCents": 35000,
+          "label": "Infrastructure engineer salary",
+          "kind": "expense"
+        }
+      ],
+      "variableCostCarryIn": 121232500,
+      "variableCostCarryOut": 666692500,
+      "targets": [
+        {
+          "id": "business:business:vector-studio",
+          "kind": "weight-license",
+          "sourceId": "business:vector-studio",
+          "commercialGeneration": 1,
+          "commercialSignedWeek": 201,
+          "name": "Vector Studio · weight license",
+          "requestIds": [
+            "business-support:business:vector-studio"
+          ],
+          "revenueFactIds": [
+            "business-invoice:business:vector-studio:1:370"
+          ]
+        },
+        {
+          "id": "internal:development",
+          "kind": "internal",
+          "sourceId": "development",
+          "category": "development",
+          "name": "Development work",
+          "requestIds": [
+            "infrastructure:company-player:operations",
+            "retrieval-upkeep:retrieval:product:natural-business-command-163"
+          ],
+          "revenueFactIds": []
+        },
+        {
+          "id": "internal:serving",
+          "kind": "internal",
+          "sourceId": "serving",
+          "category": "serving",
+          "name": "Internal serving work",
+          "requestIds": [
+            "acquire-company:company-player"
+          ],
+          "revenueFactIds": []
+        },
+        {
+          "id": "product:product:natural-business-command-163",
+          "kind": "public-product",
+          "sourceId": "product:natural-business-command-163",
+          "contractId": "contract:natural-business-command-163",
+          "name": "Business Documents",
+          "requestIds": [
+            "serve:product:natural-business-command-163"
+          ],
+          "revenueFactIds": [
+            "invoice:product:natural-business-command-163:370"
+          ]
+        },
+        {
+          "id": "product:product:natural-business-command-67",
+          "kind": "public-product",
+          "sourceId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "name": "Developer API",
+          "requestIds": [
+            "serve:product:natural-business-command-67"
+          ],
+          "revenueFactIds": [
+            "invoice:product:natural-business-command-67:370"
+          ]
+        },
+        {
+          "id": "product:product:natural-business-command-8",
+          "kind": "public-product",
+          "sourceId": "product:natural-business-command-8",
+          "contractId": "contract:natural-business-command-8",
+          "name": "Basic Chat",
+          "requestIds": [
+            "serve:product:natural-business-command-8"
+          ],
+          "revenueFactIds": [
+            "invoice:product:natural-business-command-8:370"
+          ]
+        }
+      ],
+      "workloads": [
+        {
+          "requestId": "acquire-company:company-player",
+          "targetId": "internal:serving",
+          "category": "serving",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 0,
+          "effectiveWorkCUw": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0,
+          "headroomCUw": 0,
+          "chargedMemoryMU": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0
+        },
+        {
+          "requestId": "business-support:business:vector-studio",
+          "targetId": "business:business:vector-studio",
+          "category": "development",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 0,
+          "effectiveWorkCUw": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0,
+          "headroomCUw": 0,
+          "chargedMemoryMU": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0
+        },
+        {
+          "requestId": "infrastructure:company-player:operations",
+          "targetId": "internal:development",
+          "category": "development",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 0,
+          "effectiveWorkCUw": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0,
+          "headroomCUw": 0,
+          "chargedMemoryMU": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0
+        },
+        {
+          "requestId": "retrieval-upkeep:retrieval:product:natural-business-command-163",
+          "targetId": "internal:development",
+          "category": "development",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 0,
+          "effectiveWorkCUw": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0,
+          "headroomCUw": 0,
+          "chargedMemoryMU": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0
+        },
+        {
+          "requestId": "serve:product:natural-business-command-163",
+          "targetId": "product:product:natural-business-command-163",
+          "category": "serving",
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "requestedWorkCUw": 34155000000,
+          "effectiveWorkCUw": 34155000000,
+          "physicalWorkCUw": 31050000000,
+          "reservedCUw": 34155000000,
+          "headroomCUw": 3105000000,
+          "chargedMemoryMU": 9360000000,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 232875,
+          "attributedComputeCents": 232875
+        },
+        {
+          "requestId": "serve:product:natural-business-command-67",
+          "targetId": "product:product:natural-business-command-67",
+          "category": "serving",
+          "poolId": "general-cloud",
+          "requestedWorkCUw": 45525000000,
+          "effectiveWorkCUw": 45525000000,
+          "physicalWorkCUw": 45525000000,
+          "reservedCUw": 50077500000,
+          "headroomCUw": 4552500000,
+          "chargedMemoryMU": 14570000000,
+          "cloudRentCents": 1001550,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 1001550
+        },
+        {
+          "requestId": "serve:product:natural-business-command-8",
+          "targetId": "product:product:natural-business-command-8",
+          "category": "serving",
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "requestedWorkCUw": 14605000000,
+          "effectiveWorkCUw": 14605000000,
+          "physicalWorkCUw": 13277272728,
+          "reservedCUw": 14605000001,
+          "headroomCUw": 1327727273,
+          "chargedMemoryMU": 20790000000,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 99579,
+          "attributedComputeCents": 99579
+        }
+      ],
+      "poolUsage": [
+        {
+          "poolId": "general-cloud",
+          "physicalWorkCUw": 45525000000,
+          "reservedCUw": 50077500000,
+          "headroomCUw": 4552500000,
+          "unusedCapacityCU": 5922500000,
+          "unavailableCapacityCU": 0,
+          "chargedMemoryMU": 14570000000,
+          "attributedCloudRentCents": 1001550,
+          "attributedOwnedVariableCents": 0
+        },
+        {
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "physicalWorkCUw": 44327272728,
+          "reservedCUw": 48760000001,
+          "headroomCUw": 4432727273,
+          "unusedCapacityCU": 15239999999,
+          "unavailableCapacityCU": 0,
+          "chargedMemoryMU": 30150000000,
+          "attributedCloudRentCents": 0,
+          "attributedOwnedVariableCents": 332454
+        }
+      ],
+      "activities": [
+        {
+          "targetId": "business:business:vector-studio",
+          "revenueCents": 25000,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0,
+          "contributionCents": 25000,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0
+        },
+        {
+          "targetId": "internal:development",
+          "revenueCents": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0,
+          "contributionCents": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0
+        },
+        {
+          "targetId": "internal:serving",
+          "revenueCents": 0,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 0,
+          "contributionCents": 0,
+          "physicalWorkCUw": 0,
+          "reservedCUw": 0
+        },
+        {
+          "targetId": "product:product:natural-business-command-163",
+          "revenueCents": 510000,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 232875,
+          "attributedComputeCents": 232875,
+          "contributionCents": 277125,
+          "physicalWorkCUw": 31050000000,
+          "reservedCUw": 34155000000
+        },
+        {
+          "targetId": "product:product:natural-business-command-67",
+          "revenueCents": 2265000,
+          "cloudRentCents": 1001550,
+          "ownedVariableCents": 0,
+          "attributedComputeCents": 1001550,
+          "contributionCents": 1263450,
+          "physicalWorkCUw": 45525000000,
+          "reservedCUw": 50077500000
+        },
+        {
+          "targetId": "product:product:natural-business-command-8",
+          "revenueCents": 1077600,
+          "cloudRentCents": 0,
+          "ownedVariableCents": 99579,
+          "attributedComputeCents": 99579,
+          "contributionCents": 978021,
+          "physicalWorkCUw": 13277272728,
+          "reservedCUw": 14605000001
+        }
+      ],
+      "totals": {
+        "cloudRentCents": 1120000,
+        "ownedFixedCents": 66000,
+        "ownedVariableCents": 332454,
+        "attributedCloudRentCents": 1001550,
+        "attributedOwnedVariableCents": 332454,
+        "attributedComputeCents": 1334004,
+        "unallocatedCloudCents": 118450,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 184450,
+        "totalComputeCents": 1518454,
+        "companyRevenueCents": 3877600,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 1888454,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1989146
+      }
+    }
+  },
+  "service": [
+    {
+      "productId": "product:natural-business-command-8",
+      "fulfillmentBps": 10000,
+      "paidAccounts": 898,
+      "billedCents": 1077600
+    },
+    {
+      "productId": "product:natural-business-command-67",
+      "fulfillmentBps": 10000,
+      "paidAccounts": 151,
+      "billedCents": 2265000
+    },
+    {
+      "productId": "product:natural-business-command-163",
+      "fulfillmentBps": 10000,
+      "paidAccounts": 17,
+      "billedCents": 510000
+    }
+  ],
+  "assertions": [
+    "No granted cash, staff, research, data, models or physical assets",
+    "All player commands admitted and committed; no arrears",
+    "Power and cooling act independently on purchased hardware",
+    "Relocation preserves purchase and installation evidence while taking the rack offline",
+    "Historical cost receipts stay immutable after relocation",
+    "Whole-cent assigned and shared costs reconcile to settled expenses",
+    "Customer-hosted inference stays on buyer compute",
+    "Paid public products remain fully served after cloud reduction"
+  ]
+}

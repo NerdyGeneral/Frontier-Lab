@@ -1,0 +1,62 @@
+{
+  "week": 522,
+  "saveBytes": 1427198,
+  "poolComparisons": 4,
+  "horizonWeeks": 6,
+  "forecastMilliseconds": [
+    41.16,
+    36.56,
+    33.55
+  ],
+  "sourceUnchanged": true,
+  "ordinaryCommandApplied": "batch:command-2971",
+  "firstWeekMatches": true,
+  "predicted": {
+    "work": 13182224000,
+    "physical": 11983840000,
+    "requests": 8788,
+    "staff": 250000000,
+    "pool": "owned:facility-wave8-scale-command-3:training"
+  },
+  "actual": {
+    "work": 13182224000,
+    "physical": 11983840000,
+    "requests": 8788,
+    "staff": 250000000,
+    "pool": "owned:facility-wave8-scale-command-3:training"
+  },
+  "scenarios": [
+    {
+      "pool": "Automatic placement",
+      "completed": 52728,
+      "invoice": 1977300,
+      "owned": 539268,
+      "cloudShare": 0,
+      "extraRent": 0
+    },
+    {
+      "pool": "General cloud",
+      "completed": 14175,
+      "invoice": 531562,
+      "owned": 0,
+      "cloudShare": 425256,
+      "extraRent": 0
+    },
+    {
+      "pool": "Training GPU · Colocation",
+      "completed": 35200,
+      "invoice": 1320000,
+      "owned": 360000,
+      "cloudShare": 0,
+      "extraRent": 0
+    },
+    {
+      "pool": "Training GPU · Site 1",
+      "completed": 52728,
+      "invoice": 1977300,
+      "owned": 539268,
+      "cloudShare": 0,
+      "extraRent": 0
+    }
+  ]
+}

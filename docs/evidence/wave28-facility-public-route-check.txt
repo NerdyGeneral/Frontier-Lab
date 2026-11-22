@@ -1,0 +1,9 @@
+✔ W28-F10: reduced cloud exposes real placement limits; a paid existing-rack move lets Chat use the serving profile without starving API (80605.614902ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 1
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82583.719674

@@ -1,0 +1,81 @@
+[
+  {
+    "week": 579,
+    "id": "command-3259",
+    "payload": {
+      "kind": "accept_hardware_order",
+      "buyerId": "vesper-systems",
+      "designId": "chip-26f7c851",
+      "foundry": "standard"
+    }
+  },
+  {
+    "week": 579,
+    "id": "command-3261",
+    "payload": {
+      "kind": "assign_founder",
+      "allocations": {
+        "research": 0,
+        "ml": 0,
+        "data": 0,
+        "infrastructure": 1000000000,
+        "commercial": 0,
+        "hardware": 0
+      }
+    }
+  },
+  {
+    "week": 586,
+    "id": "command-3290",
+    "payload": {
+      "kind": "start_research",
+      "researchId": "S5"
+    }
+  },
+  {
+    "week": 591,
+    "id": "command-3313",
+    "payload": {
+      "kind": "start_research",
+      "researchId": "S6"
+    }
+  },
+  {
+    "week": 596,
+    "id": "command-3333",
+    "payload": {
+      "kind": "start_chip_successor",
+      "parentDesignId": "chip-26f7c851",
+      "name": "Cedar Gen2 Memory",
+      "improvement": "memory"
+    }
+  },
+  {
+    "week": 600,
+    "id": "command-3352",
+    "payload": {
+      "kind": "start_chip_prototype",
+      "designId": "chip-gen2-9de1e523",
+      "modelId": "model-natural-business-command-159"
+    }
+  },
+  {
+    "week": 603,
+    "id": "command-3368",
+    "payload": {
+      "kind": "order_chip_batch",
+      "designId": "chip-gen2-9de1e523",
+      "racks": 1,
+      "location": "colocation",
+      "foundry": "standard"
+    }
+  },
+  {
+    "week": 610,
+    "id": "command-3396",
+    "payload": {
+      "kind": "install_rack",
+      "rackId": "rack-command-3368-1"
+    }
+  }
+]

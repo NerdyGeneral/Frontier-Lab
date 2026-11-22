@@ -1,0 +1,5399 @@
+{
+  "format": "frontier-lab",
+  "schemaVersion": 5,
+  "contentVersion": "0.33.0",
+  "checksum": "e6849aa3",
+  "state": {
+    "schemaVersion": 5,
+    "contentVersion": "0.33.0",
+    "buildVersion": "0.33.1",
+    "revision": 15,
+    "week": 6,
+    "nextId": 41,
+    "seed": "frontier-lab-wave-0:university",
+    "playerCompanyId": "company-player",
+    "random": {},
+    "slices": {
+      "company": {
+        "companies": {
+          "company-player": {
+            "id": "company-player",
+            "name": "Frontier Lab",
+            "cashCents": 934000,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 2,
+            "earnedRevenueCents": 0,
+            "totalOperatingExpenseCents": 2066000,
+            "lastWeek": {
+              "revenueCents": 0,
+              "operatingExpenseCents": 193000,
+              "cashChangeCents": -193000
+            }
+          },
+          "rival-atlas": {
+            "id": "rival-atlas",
+            "name": "Atlas Systems",
+            "cashCents": 17096400,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 6,
+            "earnedRevenueCents": 2336400,
+            "totalOperatingExpenseCents": 3240000,
+            "lastWeek": {
+              "revenueCents": 418800,
+              "operatingExpenseCents": 540000,
+              "cashChangeCents": -121200
+            }
+          },
+          "rival-swift": {
+            "id": "rival-swift",
+            "name": "Swiftworks",
+            "cashCents": 8828727,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 4,
+            "earnedRevenueCents": 1568727,
+            "totalOperatingExpenseCents": 1740000,
+            "lastWeek": {
+              "revenueCents": 276000,
+              "operatingExpenseCents": 290000,
+              "cashChangeCents": -14000
+            }
+          },
+          "rival-harbor": {
+            "id": "rival-harbor",
+            "name": "Harbor AI",
+            "cashCents": 11730000,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 4,
+            "earnedRevenueCents": 1500000,
+            "totalOperatingExpenseCents": 1770000,
+            "lastWeek": {
+              "revenueCents": 270000,
+              "operatingExpenseCents": 295000,
+              "cashChangeCents": -25000
+            }
+          }
+        },
+        "ledger": [
+          {
+            "id": "invoice:rival-atlas-product:1",
+            "companyId": "rival-atlas",
+            "week": 1,
+            "sourceId": "rival-atlas-contract",
+            "category": "revenue",
+            "amountCents": 372000,
+            "label": "Atlas Chat: 310 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 372000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-harbor-product:1",
+            "companyId": "rival-harbor",
+            "week": 1,
+            "sourceId": "rival-harbor-contract",
+            "category": "revenue",
+            "amountCents": 240000,
+            "label": "Harbor Private Docs: 8 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 240000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-swift-product:1",
+            "companyId": "rival-swift",
+            "week": 1,
+            "sourceId": "rival-swift-contract",
+            "category": "revenue",
+            "amountCents": 240000,
+            "label": "Swift API: 40 accounts, executed token bill",
+            "kind": "receipt",
+            "paidCents": 240000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "data-purchase-archive-buy-reasoning",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "data-company-player-advanced-reasoning-1",
+            "category": "operating",
+            "amountCents": 650000,
+            "label": "Reasoning examples purchase",
+            "kind": "expense",
+            "paidCents": 650000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-data:payroll:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "origin-university-data",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-research:payroll:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "origin-university-research",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "preparation-archive-prepare-starter:fee",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "preparation-archive-prepare-starter",
+            "category": "operating",
+            "amountCents": 100000,
+            "label": "Data preparation",
+            "kind": "expense",
+            "paidCents": 100000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-0:payroll:1",
+            "companyId": "rival-atlas",
+            "week": 1,
+            "sourceId": "rival-atlas-staff-0",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-1:payroll:1",
+            "companyId": "rival-atlas",
+            "week": 1,
+            "sourceId": "rival-atlas-staff-1",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-2:payroll:1",
+            "companyId": "rival-atlas",
+            "week": 1,
+            "sourceId": "rival-atlas-staff-2",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-3:payroll:1",
+            "companyId": "rival-atlas",
+            "week": 1,
+            "sourceId": "rival-atlas-staff-3",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-4:payroll:1",
+            "companyId": "rival-atlas",
+            "week": 1,
+            "sourceId": "rival-atlas-staff-4",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-5:payroll:1",
+            "companyId": "rival-atlas",
+            "week": 1,
+            "sourceId": "rival-atlas-staff-5",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:cloud-rent:1",
+            "companyId": "rival-atlas",
+            "week": 1,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 320000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 320000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:overhead:1",
+            "companyId": "rival-atlas",
+            "week": 1,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-0:payroll:1",
+            "companyId": "rival-harbor",
+            "week": 1,
+            "sourceId": "rival-harbor-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-1:payroll:1",
+            "companyId": "rival-harbor",
+            "week": 1,
+            "sourceId": "rival-harbor-staff-1",
+            "category": "operating",
+            "amountCents": 35000,
+            "label": "Infrastructure engineer salary",
+            "kind": "expense",
+            "paidCents": 35000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-2:payroll:1",
+            "companyId": "rival-harbor",
+            "week": 1,
+            "sourceId": "rival-harbor-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-3:payroll:1",
+            "companyId": "rival-harbor",
+            "week": 1,
+            "sourceId": "rival-harbor-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:cloud-rent:1",
+            "companyId": "rival-harbor",
+            "week": 1,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:overhead:1",
+            "companyId": "rival-harbor",
+            "week": 1,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-0:payroll:1",
+            "companyId": "rival-swift",
+            "week": 1,
+            "sourceId": "rival-swift-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-1:payroll:1",
+            "companyId": "rival-swift",
+            "week": 1,
+            "sourceId": "rival-swift-staff-1",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-2:payroll:1",
+            "companyId": "rival-swift",
+            "week": 1,
+            "sourceId": "rival-swift-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-3:payroll:1",
+            "companyId": "rival-swift",
+            "week": 1,
+            "sourceId": "rival-swift-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:cloud-rent:1",
+            "companyId": "rival-swift",
+            "week": 1,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:overhead:1",
+            "companyId": "rival-swift",
+            "week": 1,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-atlas-product:2",
+            "companyId": "rival-atlas",
+            "week": 2,
+            "sourceId": "rival-atlas-contract",
+            "category": "revenue",
+            "amountCents": 367200,
+            "label": "Atlas Chat: 306 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 367200,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-harbor-product:2",
+            "companyId": "rival-harbor",
+            "week": 2,
+            "sourceId": "rival-harbor-contract",
+            "category": "revenue",
+            "amountCents": 240000,
+            "label": "Harbor Private Docs: 8 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 240000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-swift-product:2",
+            "companyId": "rival-swift",
+            "week": 2,
+            "sourceId": "rival-swift-contract",
+            "category": "revenue",
+            "amountCents": 240000,
+            "label": "Swift API: 40 accounts, executed token bill",
+            "kind": "receipt",
+            "paidCents": 240000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "model-research-archive-architecture:fee",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "model-research-archive-architecture",
+            "category": "operating",
+            "amountCents": 250000,
+            "label": "Architecture research level 1",
+            "kind": "expense",
+            "paidCents": 250000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-data:payroll:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "origin-university-data",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-research:payroll:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "origin-university-research",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-0:payroll:2",
+            "companyId": "rival-atlas",
+            "week": 2,
+            "sourceId": "rival-atlas-staff-0",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-1:payroll:2",
+            "companyId": "rival-atlas",
+            "week": 2,
+            "sourceId": "rival-atlas-staff-1",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-2:payroll:2",
+            "companyId": "rival-atlas",
+            "week": 2,
+            "sourceId": "rival-atlas-staff-2",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-3:payroll:2",
+            "companyId": "rival-atlas",
+            "week": 2,
+            "sourceId": "rival-atlas-staff-3",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-4:payroll:2",
+            "companyId": "rival-atlas",
+            "week": 2,
+            "sourceId": "rival-atlas-staff-4",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-5:payroll:2",
+            "companyId": "rival-atlas",
+            "week": 2,
+            "sourceId": "rival-atlas-staff-5",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:cloud-rent:2",
+            "companyId": "rival-atlas",
+            "week": 2,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 320000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 320000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:overhead:2",
+            "companyId": "rival-atlas",
+            "week": 2,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-0:payroll:2",
+            "companyId": "rival-harbor",
+            "week": 2,
+            "sourceId": "rival-harbor-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-1:payroll:2",
+            "companyId": "rival-harbor",
+            "week": 2,
+            "sourceId": "rival-harbor-staff-1",
+            "category": "operating",
+            "amountCents": 35000,
+            "label": "Infrastructure engineer salary",
+            "kind": "expense",
+            "paidCents": 35000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-2:payroll:2",
+            "companyId": "rival-harbor",
+            "week": 2,
+            "sourceId": "rival-harbor-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-3:payroll:2",
+            "companyId": "rival-harbor",
+            "week": 2,
+            "sourceId": "rival-harbor-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:cloud-rent:2",
+            "companyId": "rival-harbor",
+            "week": 2,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:overhead:2",
+            "companyId": "rival-harbor",
+            "week": 2,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-0:payroll:2",
+            "companyId": "rival-swift",
+            "week": 2,
+            "sourceId": "rival-swift-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-1:payroll:2",
+            "companyId": "rival-swift",
+            "week": 2,
+            "sourceId": "rival-swift-staff-1",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-2:payroll:2",
+            "companyId": "rival-swift",
+            "week": 2,
+            "sourceId": "rival-swift-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-3:payroll:2",
+            "companyId": "rival-swift",
+            "week": 2,
+            "sourceId": "rival-swift-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:cloud-rent:2",
+            "companyId": "rival-swift",
+            "week": 2,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:overhead:2",
+            "companyId": "rival-swift",
+            "week": 2,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-atlas-product:3",
+            "companyId": "rival-atlas",
+            "week": 3,
+            "sourceId": "rival-atlas-contract",
+            "category": "revenue",
+            "amountCents": 379200,
+            "label": "Atlas Chat: 316 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 379200,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-harbor-product:3",
+            "companyId": "rival-harbor",
+            "week": 3,
+            "sourceId": "rival-harbor-contract",
+            "category": "revenue",
+            "amountCents": 240000,
+            "label": "Harbor Private Docs: 8 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 240000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-swift-product:3",
+            "companyId": "rival-swift",
+            "week": 3,
+            "sourceId": "rival-swift-contract",
+            "category": "revenue",
+            "amountCents": 258000,
+            "label": "Swift API: 43 accounts, executed token bill",
+            "kind": "receipt",
+            "paidCents": 258000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-data:payroll:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "origin-university-data",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-research:payroll:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "origin-university-research",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-0:payroll:3",
+            "companyId": "rival-atlas",
+            "week": 3,
+            "sourceId": "rival-atlas-staff-0",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-1:payroll:3",
+            "companyId": "rival-atlas",
+            "week": 3,
+            "sourceId": "rival-atlas-staff-1",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-2:payroll:3",
+            "companyId": "rival-atlas",
+            "week": 3,
+            "sourceId": "rival-atlas-staff-2",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-3:payroll:3",
+            "companyId": "rival-atlas",
+            "week": 3,
+            "sourceId": "rival-atlas-staff-3",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-4:payroll:3",
+            "companyId": "rival-atlas",
+            "week": 3,
+            "sourceId": "rival-atlas-staff-4",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-5:payroll:3",
+            "companyId": "rival-atlas",
+            "week": 3,
+            "sourceId": "rival-atlas-staff-5",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:cloud-rent:3",
+            "companyId": "rival-atlas",
+            "week": 3,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 320000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 320000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:overhead:3",
+            "companyId": "rival-atlas",
+            "week": 3,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-0:payroll:3",
+            "companyId": "rival-harbor",
+            "week": 3,
+            "sourceId": "rival-harbor-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-1:payroll:3",
+            "companyId": "rival-harbor",
+            "week": 3,
+            "sourceId": "rival-harbor-staff-1",
+            "category": "operating",
+            "amountCents": 35000,
+            "label": "Infrastructure engineer salary",
+            "kind": "expense",
+            "paidCents": 35000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-2:payroll:3",
+            "companyId": "rival-harbor",
+            "week": 3,
+            "sourceId": "rival-harbor-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-3:payroll:3",
+            "companyId": "rival-harbor",
+            "week": 3,
+            "sourceId": "rival-harbor-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:cloud-rent:3",
+            "companyId": "rival-harbor",
+            "week": 3,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:overhead:3",
+            "companyId": "rival-harbor",
+            "week": 3,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-0:payroll:3",
+            "companyId": "rival-swift",
+            "week": 3,
+            "sourceId": "rival-swift-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-1:payroll:3",
+            "companyId": "rival-swift",
+            "week": 3,
+            "sourceId": "rival-swift-staff-1",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-2:payroll:3",
+            "companyId": "rival-swift",
+            "week": 3,
+            "sourceId": "rival-swift-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-3:payroll:3",
+            "companyId": "rival-swift",
+            "week": 3,
+            "sourceId": "rival-swift-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:cloud-rent:3",
+            "companyId": "rival-swift",
+            "week": 3,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:overhead:3",
+            "companyId": "rival-swift",
+            "week": 3,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-atlas-product:4",
+            "companyId": "rival-atlas",
+            "week": 4,
+            "sourceId": "rival-atlas-contract",
+            "category": "revenue",
+            "amountCents": 393600,
+            "label": "Atlas Chat: 328 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 393600,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-harbor-product:4",
+            "companyId": "rival-harbor",
+            "week": 4,
+            "sourceId": "rival-harbor-contract",
+            "category": "revenue",
+            "amountCents": 240000,
+            "label": "Harbor Private Docs: 8 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 240000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-swift-product:4",
+            "companyId": "rival-swift",
+            "week": 4,
+            "sourceId": "rival-swift-contract",
+            "category": "revenue",
+            "amountCents": 272727,
+            "label": "Swift API: 47 accounts, executed token bill",
+            "kind": "receipt",
+            "paidCents": 272727,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:4",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:4",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-data:payroll:4",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "origin-university-data",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-research:payroll:4",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "origin-university-research",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-0:payroll:4",
+            "companyId": "rival-atlas",
+            "week": 4,
+            "sourceId": "rival-atlas-staff-0",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-1:payroll:4",
+            "companyId": "rival-atlas",
+            "week": 4,
+            "sourceId": "rival-atlas-staff-1",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-2:payroll:4",
+            "companyId": "rival-atlas",
+            "week": 4,
+            "sourceId": "rival-atlas-staff-2",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-3:payroll:4",
+            "companyId": "rival-atlas",
+            "week": 4,
+            "sourceId": "rival-atlas-staff-3",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-4:payroll:4",
+            "companyId": "rival-atlas",
+            "week": 4,
+            "sourceId": "rival-atlas-staff-4",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-5:payroll:4",
+            "companyId": "rival-atlas",
+            "week": 4,
+            "sourceId": "rival-atlas-staff-5",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:cloud-rent:4",
+            "companyId": "rival-atlas",
+            "week": 4,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 320000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 320000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:overhead:4",
+            "companyId": "rival-atlas",
+            "week": 4,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-0:payroll:4",
+            "companyId": "rival-harbor",
+            "week": 4,
+            "sourceId": "rival-harbor-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-1:payroll:4",
+            "companyId": "rival-harbor",
+            "week": 4,
+            "sourceId": "rival-harbor-staff-1",
+            "category": "operating",
+            "amountCents": 35000,
+            "label": "Infrastructure engineer salary",
+            "kind": "expense",
+            "paidCents": 35000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-2:payroll:4",
+            "companyId": "rival-harbor",
+            "week": 4,
+            "sourceId": "rival-harbor-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-3:payroll:4",
+            "companyId": "rival-harbor",
+            "week": 4,
+            "sourceId": "rival-harbor-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:cloud-rent:4",
+            "companyId": "rival-harbor",
+            "week": 4,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:overhead:4",
+            "companyId": "rival-harbor",
+            "week": 4,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-0:payroll:4",
+            "companyId": "rival-swift",
+            "week": 4,
+            "sourceId": "rival-swift-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-1:payroll:4",
+            "companyId": "rival-swift",
+            "week": 4,
+            "sourceId": "rival-swift-staff-1",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-2:payroll:4",
+            "companyId": "rival-swift",
+            "week": 4,
+            "sourceId": "rival-swift-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-3:payroll:4",
+            "companyId": "rival-swift",
+            "week": 4,
+            "sourceId": "rival-swift-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:cloud-rent:4",
+            "companyId": "rival-swift",
+            "week": 4,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:overhead:4",
+            "companyId": "rival-swift",
+            "week": 4,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "training-archive-completed-model:setup",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "training-archive-completed-model",
+            "category": "operating",
+            "amountCents": 23000,
+            "label": "Published reasoning pilot setup",
+            "kind": "expense",
+            "paidCents": 23000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-atlas-product:5",
+            "companyId": "rival-atlas",
+            "week": 5,
+            "sourceId": "rival-atlas-contract",
+            "category": "revenue",
+            "amountCents": 405600,
+            "label": "Atlas Chat: 338 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 405600,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-harbor-product:5",
+            "companyId": "rival-harbor",
+            "week": 5,
+            "sourceId": "rival-harbor-contract",
+            "category": "revenue",
+            "amountCents": 270000,
+            "label": "Harbor Private Docs: 9 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 270000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-swift-product:5",
+            "companyId": "rival-swift",
+            "week": 5,
+            "sourceId": "rival-swift-contract",
+            "category": "revenue",
+            "amountCents": 282000,
+            "label": "Swift API: 47 accounts, executed token bill",
+            "kind": "receipt",
+            "paidCents": 282000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:5",
+            "companyId": "company-player",
+            "week": 5,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:5",
+            "companyId": "company-player",
+            "week": 5,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-data:payroll:5",
+            "companyId": "company-player",
+            "week": 5,
+            "sourceId": "origin-university-data",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-research:payroll:5",
+            "companyId": "company-player",
+            "week": 5,
+            "sourceId": "origin-university-research",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-0:payroll:5",
+            "companyId": "rival-atlas",
+            "week": 5,
+            "sourceId": "rival-atlas-staff-0",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-1:payroll:5",
+            "companyId": "rival-atlas",
+            "week": 5,
+            "sourceId": "rival-atlas-staff-1",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-2:payroll:5",
+            "companyId": "rival-atlas",
+            "week": 5,
+            "sourceId": "rival-atlas-staff-2",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-3:payroll:5",
+            "companyId": "rival-atlas",
+            "week": 5,
+            "sourceId": "rival-atlas-staff-3",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-4:payroll:5",
+            "companyId": "rival-atlas",
+            "week": 5,
+            "sourceId": "rival-atlas-staff-4",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-5:payroll:5",
+            "companyId": "rival-atlas",
+            "week": 5,
+            "sourceId": "rival-atlas-staff-5",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:cloud-rent:5",
+            "companyId": "rival-atlas",
+            "week": 5,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 320000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 320000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:overhead:5",
+            "companyId": "rival-atlas",
+            "week": 5,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-0:payroll:5",
+            "companyId": "rival-harbor",
+            "week": 5,
+            "sourceId": "rival-harbor-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-1:payroll:5",
+            "companyId": "rival-harbor",
+            "week": 5,
+            "sourceId": "rival-harbor-staff-1",
+            "category": "operating",
+            "amountCents": 35000,
+            "label": "Infrastructure engineer salary",
+            "kind": "expense",
+            "paidCents": 35000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-2:payroll:5",
+            "companyId": "rival-harbor",
+            "week": 5,
+            "sourceId": "rival-harbor-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-3:payroll:5",
+            "companyId": "rival-harbor",
+            "week": 5,
+            "sourceId": "rival-harbor-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:cloud-rent:5",
+            "companyId": "rival-harbor",
+            "week": 5,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:overhead:5",
+            "companyId": "rival-harbor",
+            "week": 5,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-0:payroll:5",
+            "companyId": "rival-swift",
+            "week": 5,
+            "sourceId": "rival-swift-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-1:payroll:5",
+            "companyId": "rival-swift",
+            "week": 5,
+            "sourceId": "rival-swift-staff-1",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-2:payroll:5",
+            "companyId": "rival-swift",
+            "week": 5,
+            "sourceId": "rival-swift-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-3:payroll:5",
+            "companyId": "rival-swift",
+            "week": 5,
+            "sourceId": "rival-swift-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:cloud-rent:5",
+            "companyId": "rival-swift",
+            "week": 5,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:overhead:5",
+            "companyId": "rival-swift",
+            "week": 5,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-atlas-product:6",
+            "companyId": "rival-atlas",
+            "week": 6,
+            "sourceId": "rival-atlas-contract",
+            "category": "revenue",
+            "amountCents": 418800,
+            "label": "Atlas Chat: 349 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 418800,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-harbor-product:6",
+            "companyId": "rival-harbor",
+            "week": 6,
+            "sourceId": "rival-harbor-contract",
+            "category": "revenue",
+            "amountCents": 270000,
+            "label": "Harbor Private Docs: 9 accounts, after service credits",
+            "kind": "receipt",
+            "paidCents": 270000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "invoice:rival-swift-product:6",
+            "companyId": "rival-swift",
+            "week": 6,
+            "sourceId": "rival-swift-contract",
+            "category": "revenue",
+            "amountCents": 276000,
+            "label": "Swift API: 46 accounts, executed token bill",
+            "kind": "receipt",
+            "paidCents": 276000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:6",
+            "companyId": "company-player",
+            "week": 6,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:6",
+            "companyId": "company-player",
+            "week": 6,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-data:payroll:6",
+            "companyId": "company-player",
+            "week": 6,
+            "sourceId": "origin-university-data",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "origin-university-research:payroll:6",
+            "companyId": "company-player",
+            "week": 6,
+            "sourceId": "origin-university-research",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-0:payroll:6",
+            "companyId": "rival-atlas",
+            "week": 6,
+            "sourceId": "rival-atlas-staff-0",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-1:payroll:6",
+            "companyId": "rival-atlas",
+            "week": 6,
+            "sourceId": "rival-atlas-staff-1",
+            "category": "operating",
+            "amountCents": 45000,
+            "label": "Researcher salary",
+            "kind": "expense",
+            "paidCents": 45000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-2:payroll:6",
+            "companyId": "rival-atlas",
+            "week": 6,
+            "sourceId": "rival-atlas-staff-2",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-3:payroll:6",
+            "companyId": "rival-atlas",
+            "week": 6,
+            "sourceId": "rival-atlas-staff-3",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-4:payroll:6",
+            "companyId": "rival-atlas",
+            "week": 6,
+            "sourceId": "rival-atlas-staff-4",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas-staff-5:payroll:6",
+            "companyId": "rival-atlas",
+            "week": 6,
+            "sourceId": "rival-atlas-staff-5",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:cloud-rent:6",
+            "companyId": "rival-atlas",
+            "week": 6,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 320000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 320000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-atlas:overhead:6",
+            "companyId": "rival-atlas",
+            "week": 6,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-0:payroll:6",
+            "companyId": "rival-harbor",
+            "week": 6,
+            "sourceId": "rival-harbor-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-1:payroll:6",
+            "companyId": "rival-harbor",
+            "week": 6,
+            "sourceId": "rival-harbor-staff-1",
+            "category": "operating",
+            "amountCents": 35000,
+            "label": "Infrastructure engineer salary",
+            "kind": "expense",
+            "paidCents": 35000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-2:payroll:6",
+            "companyId": "rival-harbor",
+            "week": 6,
+            "sourceId": "rival-harbor-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor-staff-3:payroll:6",
+            "companyId": "rival-harbor",
+            "week": 6,
+            "sourceId": "rival-harbor-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:cloud-rent:6",
+            "companyId": "rival-harbor",
+            "week": 6,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-harbor:overhead:6",
+            "companyId": "rival-harbor",
+            "week": 6,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-0:payroll:6",
+            "companyId": "rival-swift",
+            "week": 6,
+            "sourceId": "rival-swift-staff-0",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-1:payroll:6",
+            "companyId": "rival-swift",
+            "week": 6,
+            "sourceId": "rival-swift-staff-1",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-2:payroll:6",
+            "companyId": "rival-swift",
+            "week": 6,
+            "sourceId": "rival-swift-staff-2",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Data engineer salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift-staff-3:payroll:6",
+            "companyId": "rival-swift",
+            "week": 6,
+            "sourceId": "rival-swift-staff-3",
+            "category": "operating",
+            "amountCents": 25000,
+            "label": "Product / commercial salary",
+            "kind": "expense",
+            "paidCents": 25000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:cloud-rent:6",
+            "companyId": "rival-swift",
+            "week": 6,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 160000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 160000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "rival-swift:overhead:6",
+            "companyId": "rival-swift",
+            "week": 6,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "training-archive-active-model:setup",
+            "companyId": "company-player",
+            "week": 6,
+            "sourceId": "training-archive-active-model",
+            "category": "operating",
+            "amountCents": 23000,
+            "label": "Published ongoing reasoning setup",
+            "kind": "expense",
+            "paidCents": 23000,
+            "unpaidCents": 0
+          }
+        ],
+        "postedFacts": {
+          "invoice:rival-atlas-product:1": true,
+          "invoice:rival-harbor-product:1": true,
+          "invoice:rival-swift-product:1": true,
+          "company-player:cloud-rent:1": true,
+          "company-player:overhead:1": true,
+          "data-purchase-archive-buy-reasoning": true,
+          "origin-university-data:payroll:1": true,
+          "origin-university-research:payroll:1": true,
+          "preparation-archive-prepare-starter:fee": true,
+          "rival-atlas-staff-0:payroll:1": true,
+          "rival-atlas-staff-1:payroll:1": true,
+          "rival-atlas-staff-2:payroll:1": true,
+          "rival-atlas-staff-3:payroll:1": true,
+          "rival-atlas-staff-4:payroll:1": true,
+          "rival-atlas-staff-5:payroll:1": true,
+          "rival-atlas:cloud-rent:1": true,
+          "rival-atlas:overhead:1": true,
+          "rival-harbor-staff-0:payroll:1": true,
+          "rival-harbor-staff-1:payroll:1": true,
+          "rival-harbor-staff-2:payroll:1": true,
+          "rival-harbor-staff-3:payroll:1": true,
+          "rival-harbor:cloud-rent:1": true,
+          "rival-harbor:overhead:1": true,
+          "rival-swift-staff-0:payroll:1": true,
+          "rival-swift-staff-1:payroll:1": true,
+          "rival-swift-staff-2:payroll:1": true,
+          "rival-swift-staff-3:payroll:1": true,
+          "rival-swift:cloud-rent:1": true,
+          "rival-swift:overhead:1": true,
+          "invoice:rival-atlas-product:2": true,
+          "invoice:rival-harbor-product:2": true,
+          "invoice:rival-swift-product:2": true,
+          "company-player:cloud-rent:2": true,
+          "company-player:overhead:2": true,
+          "model-research-archive-architecture:fee": true,
+          "origin-university-data:payroll:2": true,
+          "origin-university-research:payroll:2": true,
+          "rival-atlas-staff-0:payroll:2": true,
+          "rival-atlas-staff-1:payroll:2": true,
+          "rival-atlas-staff-2:payroll:2": true,
+          "rival-atlas-staff-3:payroll:2": true,
+          "rival-atlas-staff-4:payroll:2": true,
+          "rival-atlas-staff-5:payroll:2": true,
+          "rival-atlas:cloud-rent:2": true,
+          "rival-atlas:overhead:2": true,
+          "rival-harbor-staff-0:payroll:2": true,
+          "rival-harbor-staff-1:payroll:2": true,
+          "rival-harbor-staff-2:payroll:2": true,
+          "rival-harbor-staff-3:payroll:2": true,
+          "rival-harbor:cloud-rent:2": true,
+          "rival-harbor:overhead:2": true,
+          "rival-swift-staff-0:payroll:2": true,
+          "rival-swift-staff-1:payroll:2": true,
+          "rival-swift-staff-2:payroll:2": true,
+          "rival-swift-staff-3:payroll:2": true,
+          "rival-swift:cloud-rent:2": true,
+          "rival-swift:overhead:2": true,
+          "invoice:rival-atlas-product:3": true,
+          "invoice:rival-harbor-product:3": true,
+          "invoice:rival-swift-product:3": true,
+          "company-player:cloud-rent:3": true,
+          "company-player:overhead:3": true,
+          "origin-university-data:payroll:3": true,
+          "origin-university-research:payroll:3": true,
+          "rival-atlas-staff-0:payroll:3": true,
+          "rival-atlas-staff-1:payroll:3": true,
+          "rival-atlas-staff-2:payroll:3": true,
+          "rival-atlas-staff-3:payroll:3": true,
+          "rival-atlas-staff-4:payroll:3": true,
+          "rival-atlas-staff-5:payroll:3": true,
+          "rival-atlas:cloud-rent:3": true,
+          "rival-atlas:overhead:3": true,
+          "rival-harbor-staff-0:payroll:3": true,
+          "rival-harbor-staff-1:payroll:3": true,
+          "rival-harbor-staff-2:payroll:3": true,
+          "rival-harbor-staff-3:payroll:3": true,
+          "rival-harbor:cloud-rent:3": true,
+          "rival-harbor:overhead:3": true,
+          "rival-swift-staff-0:payroll:3": true,
+          "rival-swift-staff-1:payroll:3": true,
+          "rival-swift-staff-2:payroll:3": true,
+          "rival-swift-staff-3:payroll:3": true,
+          "rival-swift:cloud-rent:3": true,
+          "rival-swift:overhead:3": true,
+          "invoice:rival-atlas-product:4": true,
+          "invoice:rival-harbor-product:4": true,
+          "invoice:rival-swift-product:4": true,
+          "company-player:cloud-rent:4": true,
+          "company-player:overhead:4": true,
+          "origin-university-data:payroll:4": true,
+          "origin-university-research:payroll:4": true,
+          "rival-atlas-staff-0:payroll:4": true,
+          "rival-atlas-staff-1:payroll:4": true,
+          "rival-atlas-staff-2:payroll:4": true,
+          "rival-atlas-staff-3:payroll:4": true,
+          "rival-atlas-staff-4:payroll:4": true,
+          "rival-atlas-staff-5:payroll:4": true,
+          "rival-atlas:cloud-rent:4": true,
+          "rival-atlas:overhead:4": true,
+          "rival-harbor-staff-0:payroll:4": true,
+          "rival-harbor-staff-1:payroll:4": true,
+          "rival-harbor-staff-2:payroll:4": true,
+          "rival-harbor-staff-3:payroll:4": true,
+          "rival-harbor:cloud-rent:4": true,
+          "rival-harbor:overhead:4": true,
+          "rival-swift-staff-0:payroll:4": true,
+          "rival-swift-staff-1:payroll:4": true,
+          "rival-swift-staff-2:payroll:4": true,
+          "rival-swift-staff-3:payroll:4": true,
+          "rival-swift:cloud-rent:4": true,
+          "rival-swift:overhead:4": true,
+          "training-archive-completed-model:setup": true,
+          "invoice:rival-atlas-product:5": true,
+          "invoice:rival-harbor-product:5": true,
+          "invoice:rival-swift-product:5": true,
+          "company-player:cloud-rent:5": true,
+          "company-player:overhead:5": true,
+          "origin-university-data:payroll:5": true,
+          "origin-university-research:payroll:5": true,
+          "rival-atlas-staff-0:payroll:5": true,
+          "rival-atlas-staff-1:payroll:5": true,
+          "rival-atlas-staff-2:payroll:5": true,
+          "rival-atlas-staff-3:payroll:5": true,
+          "rival-atlas-staff-4:payroll:5": true,
+          "rival-atlas-staff-5:payroll:5": true,
+          "rival-atlas:cloud-rent:5": true,
+          "rival-atlas:overhead:5": true,
+          "rival-harbor-staff-0:payroll:5": true,
+          "rival-harbor-staff-1:payroll:5": true,
+          "rival-harbor-staff-2:payroll:5": true,
+          "rival-harbor-staff-3:payroll:5": true,
+          "rival-harbor:cloud-rent:5": true,
+          "rival-harbor:overhead:5": true,
+          "rival-swift-staff-0:payroll:5": true,
+          "rival-swift-staff-1:payroll:5": true,
+          "rival-swift-staff-2:payroll:5": true,
+          "rival-swift-staff-3:payroll:5": true,
+          "rival-swift:cloud-rent:5": true,
+          "rival-swift:overhead:5": true,
+          "invoice:rival-atlas-product:6": true,
+          "invoice:rival-harbor-product:6": true,
+          "invoice:rival-swift-product:6": true,
+          "company-player:cloud-rent:6": true,
+          "company-player:overhead:6": true,
+          "origin-university-data:payroll:6": true,
+          "origin-university-research:payroll:6": true,
+          "rival-atlas-staff-0:payroll:6": true,
+          "rival-atlas-staff-1:payroll:6": true,
+          "rival-atlas-staff-2:payroll:6": true,
+          "rival-atlas-staff-3:payroll:6": true,
+          "rival-atlas-staff-4:payroll:6": true,
+          "rival-atlas-staff-5:payroll:6": true,
+          "rival-atlas:cloud-rent:6": true,
+          "rival-atlas:overhead:6": true,
+          "rival-harbor-staff-0:payroll:6": true,
+          "rival-harbor-staff-1:payroll:6": true,
+          "rival-harbor-staff-2:payroll:6": true,
+          "rival-harbor-staff-3:payroll:6": true,
+          "rival-harbor:cloud-rent:6": true,
+          "rival-harbor:overhead:6": true,
+          "rival-swift-staff-0:payroll:6": true,
+          "rival-swift-staff-1:payroll:6": true,
+          "rival-swift-staff-2:payroll:6": true,
+          "rival-swift-staff-3:payroll:6": true,
+          "rival-swift:cloud-rent:6": true,
+          "rival-swift:overhead:6": true,
+          "training-archive-active-model:setup": true
+        },
+        "staff": {
+          "rival-atlas-staff-0": {
+            "id": "rival-atlas-staff-0",
+            "companyId": "rival-atlas",
+            "role": "research",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-atlas-staff-1": {
+            "id": "rival-atlas-staff-1",
+            "companyId": "rival-atlas",
+            "role": "research",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-atlas-staff-2": {
+            "id": "rival-atlas-staff-2",
+            "companyId": "rival-atlas",
+            "role": "ml",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-atlas-staff-3": {
+            "id": "rival-atlas-staff-3",
+            "companyId": "rival-atlas",
+            "role": "ml",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-atlas-staff-4": {
+            "id": "rival-atlas-staff-4",
+            "companyId": "rival-atlas",
+            "role": "data",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-atlas-staff-5": {
+            "id": "rival-atlas-staff-5",
+            "companyId": "rival-atlas",
+            "role": "commercial",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-swift-staff-0": {
+            "id": "rival-swift-staff-0",
+            "companyId": "rival-swift",
+            "role": "ml",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-swift-staff-1": {
+            "id": "rival-swift-staff-1",
+            "companyId": "rival-swift",
+            "role": "ml",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-swift-staff-2": {
+            "id": "rival-swift-staff-2",
+            "companyId": "rival-swift",
+            "role": "data",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-swift-staff-3": {
+            "id": "rival-swift-staff-3",
+            "companyId": "rival-swift",
+            "role": "commercial",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-harbor-staff-0": {
+            "id": "rival-harbor-staff-0",
+            "companyId": "rival-harbor",
+            "role": "ml",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-harbor-staff-1": {
+            "id": "rival-harbor-staff-1",
+            "companyId": "rival-harbor",
+            "role": "infrastructure",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-harbor-staff-2": {
+            "id": "rival-harbor-staff-2",
+            "companyId": "rival-harbor",
+            "role": "commercial",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "rival-harbor-staff-3": {
+            "id": "rival-harbor-staff-3",
+            "companyId": "rival-harbor",
+            "role": "commercial",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true
+          },
+          "origin-university-research": {
+            "id": "origin-university-research",
+            "companyId": "company-player",
+            "role": "research",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true,
+            "career": {
+              "experience": 3125000001,
+              "lastEarned": 375000000,
+              "earnedWeek": 6
+            }
+          },
+          "origin-university-data": {
+            "id": "origin-university-data",
+            "companyId": "company-player",
+            "role": "data",
+            "hiredWeek": 0,
+            "readyWeek": 0,
+            "assignedFte": 1000000000,
+            "scenarioStart": true,
+            "career": {
+              "experience": 4374999999,
+              "lastEarned": 375000000,
+              "earnedWeek": 6
+            }
+          }
+        },
+        "founderAssignments": {
+          "company-player": {
+            "research": 0,
+            "ml": 0,
+            "data": 1000000000,
+            "infrastructure": 0,
+            "commercial": 0,
+            "hardware": 0
+          },
+          "rival-atlas": {
+            "research": 1000000000,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 0,
+            "commercial": 0,
+            "hardware": 0
+          },
+          "rival-swift": {
+            "research": 1000000000,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 0,
+            "commercial": 0,
+            "hardware": 0
+          },
+          "rival-harbor": {
+            "research": 1000000000,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 0,
+            "commercial": 0,
+            "hardware": 0
+          }
+        },
+        "lastStaff": {
+          "company-player": {
+            "capacity": {
+              "research": 1750000000,
+              "ml": 2000000000,
+              "data": 1750000000,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            },
+            "granted": {
+              "research": 0,
+              "ml": 2000000000,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            },
+            "founderOutput": {
+              "research": 0,
+              "ml": 1000000000,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            }
+          },
+          "rival-atlas": {
+            "capacity": {
+              "research": 5500000000,
+              "ml": 5000000000,
+              "data": 2500000000,
+              "infrastructure": 0,
+              "commercial": 1500000000,
+              "hardware": 0
+            },
+            "granted": {
+              "research": 0,
+              "ml": 0,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 1500000000,
+              "hardware": 0
+            }
+          },
+          "rival-swift": {
+            "capacity": {
+              "research": 2500000000,
+              "ml": 4000000000,
+              "data": 2000000000,
+              "infrastructure": 0,
+              "commercial": 1500000000,
+              "hardware": 0
+            },
+            "granted": {
+              "research": 0,
+              "ml": 0,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 1500000000,
+              "hardware": 0
+            }
+          },
+          "rival-harbor": {
+            "capacity": {
+              "research": 2000000000,
+              "ml": 3000000000,
+              "data": 500000000,
+              "infrastructure": 1500000000,
+              "commercial": 3000000000,
+              "hardware": 0
+            },
+            "granted": {
+              "research": 0,
+              "ml": 0,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 3000000000,
+              "hardware": 0
+            }
+          }
+        },
+        "passiveWorkforce": true
+      },
+      "compute": {
+        "fleets": {
+          "company-player": {
+            "companyId": "company-player",
+            "cloudCU": 4000000000,
+            "ownedCU": 0,
+            "memoryMU": 8000000000,
+            "occupiedMemoryMU": 4000000000,
+            "allocation": {
+              "serving": 0,
+              "development": 3000000000,
+              "research": 1000000000
+            },
+            "lastWork": {
+              "serving": 0,
+              "development": 3000000000,
+              "research": 1000000000
+            },
+            "reservedCU": 4000000000,
+            "deliveredEquipmentIds": [],
+            "inventory": {},
+            "lastBottleneck": "Development capacity, hardware, and fabric limit progress.",
+            "lastReservedMemoryMU": 4000000000,
+            "lastGrants": [
+              {
+                "requestId": "training-archive-active-model:work",
+                "requestedWork": 96000000000,
+                "grantedWork": 3000000000,
+                "reason": "Development capacity, hardware, and fabric limit progress."
+              },
+              {
+                "requestId": "model-research-archive-architecture:work",
+                "requestedWork": 4000000000,
+                "grantedWork": 1000000000,
+                "reason": "Research capacity, hardware, and fabric limit progress."
+              }
+            ],
+            "variableCostCarry": 0
+          },
+          "rival-atlas": {
+            "companyId": "rival-atlas",
+            "cloudCU": 16000000000,
+            "ownedCU": 0,
+            "memoryMU": 32000000000,
+            "occupiedMemoryMU": 15820000000,
+            "allocation": {
+              "serving": 12000000000,
+              "development": 2000000000,
+              "research": 2000000000
+            },
+            "lastWork": {
+              "serving": 9860000000,
+              "development": 0,
+              "research": 0
+            },
+            "reservedCU": 10846000000,
+            "deliveredEquipmentIds": [],
+            "inventory": {},
+            "lastBottleneck": "",
+            "lastReservedMemoryMU": 15820000000,
+            "lastGrants": [
+              {
+                "requestId": "serve:rival-atlas-product",
+                "requestedWork": 9860000000,
+                "grantedWork": 9860000000,
+                "reason": ""
+              },
+              {
+                "requestId": "acquire-company:rival-atlas",
+                "requestedWork": 0,
+                "grantedWork": 0,
+                "reason": ""
+              }
+            ],
+            "variableCostCarry": 0
+          },
+          "rival-swift": {
+            "companyId": "rival-swift",
+            "cloudCU": 8000000000,
+            "ownedCU": 0,
+            "memoryMU": 16000000000,
+            "occupiedMemoryMU": 3020000000,
+            "allocation": {
+              "serving": 6250000000,
+              "development": 750000000,
+              "research": 1000000000
+            },
+            "lastWork": {
+              "serving": 5670000000,
+              "development": 0,
+              "research": 0
+            },
+            "reservedCU": 6237000000,
+            "deliveredEquipmentIds": [],
+            "inventory": {},
+            "lastBottleneck": "",
+            "lastReservedMemoryMU": 3020000000,
+            "lastGrants": [
+              {
+                "requestId": "serve:rival-swift-product",
+                "requestedWork": 5670000000,
+                "grantedWork": 5670000000,
+                "reason": ""
+              },
+              {
+                "requestId": "acquire-company:rival-swift",
+                "requestedWork": 0,
+                "grantedWork": 0,
+                "reason": ""
+              }
+            ],
+            "variableCostCarry": 0
+          },
+          "rival-harbor": {
+            "companyId": "rival-harbor",
+            "cloudCU": 8000000000,
+            "ownedCU": 0,
+            "memoryMU": 16000000000,
+            "occupiedMemoryMU": 2180000000,
+            "allocation": {
+              "serving": 6000000000,
+              "development": 1000000000,
+              "research": 1000000000
+            },
+            "lastWork": {
+              "serving": 5400000000,
+              "development": 0,
+              "research": 0
+            },
+            "reservedCU": 5940000000,
+            "deliveredEquipmentIds": [],
+            "inventory": {},
+            "lastBottleneck": "",
+            "lastReservedMemoryMU": 2180000000,
+            "lastGrants": [
+              {
+                "requestId": "serve:rival-harbor-product",
+                "requestedWork": 5400000000,
+                "grantedWork": 5400000000,
+                "reason": ""
+              },
+              {
+                "requestId": "acquire-company:rival-harbor",
+                "requestedWork": 0,
+                "grantedWork": 0,
+                "reason": ""
+              }
+            ],
+            "variableCostCarry": 0
+          }
+        },
+        "racks": {},
+        "facilities": {},
+        "chipDesigns": {},
+        "chipBatches": {},
+        "fabricProjects": {},
+        "servingHistory": {
+          "rival-atlas": [
+            {
+              "week": 1,
+              "publicPhysicalCUw": 8940000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 2,
+              "publicPhysicalCUw": 9260000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 3,
+              "publicPhysicalCUw": 9390000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 4,
+              "publicPhysicalCUw": 9560000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 5,
+              "publicPhysicalCUw": 9690000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 6,
+              "publicPhysicalCUw": 9860000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            }
+          ],
+          "rival-harbor": [
+            {
+              "week": 1,
+              "publicPhysicalCUw": 4800000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 2,
+              "publicPhysicalCUw": 4800000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 3,
+              "publicPhysicalCUw": 4950000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 4,
+              "publicPhysicalCUw": 4950000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 5,
+              "publicPhysicalCUw": 5400000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 6,
+              "publicPhysicalCUw": 5400000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            }
+          ],
+          "rival-swift": [
+            {
+              "week": 1,
+              "publicPhysicalCUw": 4800000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 2,
+              "publicPhysicalCUw": 5010000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 3,
+              "publicPhysicalCUw": 5370000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 4,
+              "publicPhysicalCUw": 5454545454,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 5,
+              "publicPhysicalCUw": 5640000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            },
+            {
+              "week": 6,
+              "publicPhysicalCUw": 5670000000,
+              "privatePhysicalCUw": 0,
+              "agentPhysicalCUw": 0
+            }
+          ]
+        }
+      },
+      "models": {
+        "versions": {
+          "seed-0": {
+            "id": "seed-0",
+            "name": "Seed 0",
+            "companyId": "company-player",
+            "family": "compact",
+            "architecture": "dense",
+            "status": "checkpoint",
+            "capabilityBps": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            },
+            "reliabilityBps": 7000,
+            "residentMU": 2000000000,
+            "source": "Your starting model, licensed for commercial use. Its included test report helps you plan your first training run.",
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            }
+          },
+          "rival-atlas-model-1": {
+            "id": "rival-atlas-model-1",
+            "name": "Atlas Systems v1",
+            "companyId": "rival-atlas",
+            "family": "medium",
+            "architecture": "dense",
+            "status": "released",
+            "capabilityBps": {
+              "conversation": 6400,
+              "documents": 5800,
+              "coding": 5000,
+              "tools": 4600
+            },
+            "reliabilityBps": 9200,
+            "residentMU": 8000000000,
+            "source": "Authored competitor starting release",
+            "evaluationReportId": "rival-atlas-baseline-report",
+            "createdWeek": 0,
+            "scenarioStart": true,
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "foundationAnchor": {
+              "conversation": 6400,
+              "documents": 5800,
+              "coding": 5000,
+              "tools": 4600
+            }
+          },
+          "rival-swift-model-1": {
+            "id": "rival-swift-model-1",
+            "name": "Swiftworks v1",
+            "companyId": "rival-swift",
+            "family": "compact",
+            "architecture": "dense",
+            "status": "released",
+            "capabilityBps": {
+              "conversation": 4800,
+              "documents": 4000,
+              "coding": 5800,
+              "tools": 5400
+            },
+            "reliabilityBps": 9000,
+            "residentMU": 2000000000,
+            "source": "Authored competitor starting release",
+            "evaluationReportId": "rival-swift-baseline-report",
+            "createdWeek": 0,
+            "scenarioStart": true,
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "foundationAnchor": {
+              "conversation": 4800,
+              "documents": 4000,
+              "coding": 5800,
+              "tools": 5400
+            }
+          },
+          "rival-harbor-model-1": {
+            "id": "rival-harbor-model-1",
+            "name": "Harbor AI v1",
+            "companyId": "rival-harbor",
+            "family": "compact",
+            "architecture": "dense",
+            "status": "released",
+            "capabilityBps": {
+              "conversation": 6200,
+              "documents": 7200,
+              "coding": 4000,
+              "tools": 5000
+            },
+            "reliabilityBps": 9600,
+            "residentMU": 2000000000,
+            "source": "Authored competitor starting release",
+            "evaluationReportId": "rival-harbor-baseline-report",
+            "createdWeek": 0,
+            "scenarioStart": true,
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "foundationAnchor": {
+              "conversation": 6200,
+              "documents": 7200,
+              "coding": 4000,
+              "tools": 5000
+            }
+          },
+          "checkpoint-training-archive-completed-model": {
+            "id": "checkpoint-training-archive-completed-model",
+            "name": "Published reasoning pilot · 50% checkpoint",
+            "companyId": "company-player",
+            "family": "compact",
+            "architecture": "dense",
+            "modelDesign": {
+              "spec": {
+                "name": "Published reasoning pilot",
+                "mode": "adaptation",
+                "family": "compact",
+                "parameterMillions": 4000,
+                "sparsityBps": 0,
+                "computeBudgetCUw": 4000000000,
+                "dataMix": {
+                  "conversation": 0,
+                  "documents": 0,
+                  "coding": 0,
+                  "tools": 0,
+                  "reasoning": 100,
+                  "longContext": 0,
+                  "multimodal": 0
+                }
+              },
+              "researchLevel": 0,
+              "frontierRating": 268,
+              "servingWorkBps": 10000,
+              "requiredEvidence": 95000000000,
+              "ceilings": {
+                "conversation": 6990,
+                "documents": 6990,
+                "coding": 6990,
+                "tools": 6990
+              },
+              "advancedCeilings": {
+                "reasoning": 6990,
+                "longContext": 6990,
+                "multimodal": 6990
+              }
+            },
+            "status": "checkpoint",
+            "advancedCapabilities": {
+              "reasoning": 1311,
+              "longContext": 0,
+              "multimodal": 0
+            },
+            "capabilityBps": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            },
+            "reliabilityBps": 7990,
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "residentMU": 2000000000,
+            "source": "Published reasoning pilot: 2 of 4 useful CUw. Evaluation is separate.",
+            "parentModelId": "seed-0",
+            "trainingRunId": "training-archive-completed-model",
+            "trainingEvidenceId": "corpus-81218721",
+            "createdWeek": 4,
+            "foundationAnchor": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            }
+          },
+          "model-archive-completed-model": {
+            "id": "model-archive-completed-model",
+            "name": "Published reasoning pilot",
+            "companyId": "company-player",
+            "family": "compact",
+            "architecture": "dense",
+            "modelDesign": {
+              "spec": {
+                "name": "Published reasoning pilot",
+                "mode": "adaptation",
+                "family": "compact",
+                "parameterMillions": 4000,
+                "sparsityBps": 0,
+                "computeBudgetCUw": 4000000000,
+                "dataMix": {
+                  "conversation": 0,
+                  "documents": 0,
+                  "coding": 0,
+                  "tools": 0,
+                  "reasoning": 100,
+                  "longContext": 0,
+                  "multimodal": 0
+                }
+              },
+              "researchLevel": 0,
+              "frontierRating": 268,
+              "servingWorkBps": 10000,
+              "requiredEvidence": 95000000000,
+              "ceilings": {
+                "conversation": 6990,
+                "documents": 6990,
+                "coding": 6990,
+                "tools": 6990
+              },
+              "advancedCeilings": {
+                "reasoning": 6990,
+                "longContext": 6990,
+                "multimodal": 6990
+              }
+            },
+            "status": "checkpoint",
+            "advancedCapabilities": {
+              "reasoning": 2622,
+              "longContext": 0,
+              "multimodal": 0
+            },
+            "capabilityBps": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            },
+            "reliabilityBps": 8980,
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "residentMU": 2000000000,
+            "source": "Published reasoning pilot: 4 of 4 useful CUw. Evaluation is separate.",
+            "parentModelId": "seed-0",
+            "trainingRunId": "training-archive-completed-model",
+            "trainingEvidenceId": "corpus-81218721",
+            "createdWeek": 5,
+            "foundationAnchor": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            }
+          }
+        },
+        "trainingRuns": {
+          "training-archive-completed-model": {
+            "id": "training-archive-completed-model",
+            "companyId": "company-player",
+            "baseModelId": "seed-0",
+            "packetId": "data-company-player-advanced-reasoning-1",
+            "outputModelId": "model-archive-completed-model",
+            "recipeId": "custom-model-adaptation",
+            "startedWeek": 4,
+            "requiredWork": 4000000000,
+            "completedWork": 4000000000,
+            "physicalWork": 4000000000,
+            "requiredMemory": 4000000000,
+            "status": "complete",
+            "checkpointWork": 4000000000,
+            "checkpointModelId": "model-archive-completed-model",
+            "checkpointModelIds": [
+              "checkpoint-training-archive-completed-model",
+              "model-archive-completed-model"
+            ],
+            "anchorScores": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            },
+            "anchorReliabilityBps": 7000,
+            "evidence": {
+              "id": "data-company-player-advanced-reasoning-1",
+              "name": "Reasoning examples",
+              "companyId": "company-player",
+              "catalogId": "advanced-reasoning-1",
+              "sourceIds": [
+                "advanced-reasoning-1"
+              ],
+              "purchaseFactId": "data-purchase-archive-buy-reasoning",
+              "purchasedWeek": 1,
+              "revision": 0,
+              "rawUnits": 200,
+              "readyUnits": 200,
+              "qualityBps": 9000,
+              "coverageBps": {
+                "conversation": 2500,
+                "documents": 2500,
+                "coding": 2500,
+                "tools": 2500
+              },
+              "rights": {
+                "hosted": true,
+                "weights": true,
+                "feedback": false
+              },
+              "behaviorUnits": 100,
+              "broadUnits": 0,
+              "prepared": true
+            },
+            "plan": {
+              "modelDesign": {
+                "spec": {
+                  "name": "Published reasoning pilot",
+                  "mode": "adaptation",
+                  "family": "compact",
+                  "parameterMillions": 4000,
+                  "sparsityBps": 0,
+                  "computeBudgetCUw": 4000000000,
+                  "dataMix": {
+                    "conversation": 0,
+                    "documents": 0,
+                    "coding": 0,
+                    "tools": 0,
+                    "reasoning": 100,
+                    "longContext": 0,
+                    "multimodal": 0
+                  }
+                },
+                "researchLevel": 0,
+                "frontierRating": 268,
+                "servingWorkBps": 10000,
+                "requiredEvidence": 95000000000,
+                "ceilings": {
+                  "conversation": 6990,
+                  "documents": 6990,
+                  "coding": 6990,
+                  "tools": 6990
+                },
+                "advancedCeilings": {
+                  "reasoning": 6990,
+                  "longContext": 6990,
+                  "multimodal": 6990
+                }
+              },
+              "advanced": {
+                "foundation": false,
+                "anchors": {
+                  "reasoning": 0,
+                  "longContext": 0,
+                  "multimodal": 0
+                },
+                "targets": {
+                  "reasoning": 2913,
+                  "longContext": 0,
+                  "multimodal": 0
+                },
+                "ceilings": {
+                  "reasoning": 6990,
+                  "longContext": 6990,
+                  "multimodal": 6990
+                },
+                "corpus": {
+                  "packetIds": [
+                    "data-company-player-advanced-reasoning-1"
+                  ],
+                  "sourceIds": [
+                    "advanced-reasoning-1"
+                  ],
+                  "relevantUnits": {
+                    "reasoning": 200000000000,
+                    "longContext": 20000000000,
+                    "multimodal": 20000000000
+                  },
+                  "qualityBps": {
+                    "reasoning": 9000,
+                    "longContext": 9000,
+                    "multimodal": 9000
+                  },
+                  "fingerprint": "advanced-corpus-65321ce3"
+                },
+                "requiredEvidence": 95000000000
+              },
+              "recipeName": "Published reasoning pilot",
+              "kind": "adaptation",
+              "profile": "balanced",
+              "profileApplied": false,
+              "family": "compact",
+              "architecture": "dense",
+              "residentMU": 2000000000,
+              "lineageId": "seed-0",
+              "identity": "custom-design-4a1b6176",
+              "corpus": {
+                "sourceIds": [
+                  "advanced-reasoning-1"
+                ],
+                "packetIds": [
+                  "data-company-player-advanced-reasoning-1"
+                ],
+                "distinctUnits": 200,
+                "broadUnits": 0,
+                "relevantUnits": {
+                  "conversation": 50000000000,
+                  "documents": 50000000000,
+                  "coding": 50000000000,
+                  "tools": 50000000000
+                },
+                "qualityBps": {
+                  "conversation": 9000,
+                  "documents": 9000,
+                  "coding": 9000,
+                  "tools": 9000
+                },
+                "behaviorUnits": 100,
+                "behaviorQualityBps": 9000,
+                "rights": {
+                  "hosted": true,
+                  "weights": true,
+                  "feedback": false
+                },
+                "fingerprint": "corpus-81218721"
+              },
+              "targets": {
+                "conversation": 4000,
+                "documents": 3000,
+                "coding": 2000,
+                "tools": 2000
+              },
+              "ceilings": {
+                "conversation": 6990,
+                "documents": 6990,
+                "coding": 6990,
+                "tools": 6990
+              },
+              "savedAdjustments": {
+                "conversation": 0,
+                "documents": 0,
+                "coding": 0,
+                "tools": 0
+              },
+              "requiredEvidence": 95000000000,
+              "reliabilityTargetBps": 9200,
+              "behaviorAnchor": {
+                "confidentErrorBps": 1000,
+                "falseRefusalBps": 700
+              },
+              "behaviorTarget": {
+                "confidentErrorBps": 1000,
+                "falseRefusalBps": 700
+              },
+              "preparationRequired": 0,
+              "checkpointOverheadRequired": 0,
+              "checkpoints": [
+                {
+                  "atBps": 5000,
+                  "overheadWork": 0
+                },
+                {
+                  "atBps": 10000,
+                  "overheadWork": 0
+                }
+              ],
+              "methods": [],
+              "foundationAnchor": {
+                "conversation": 4000,
+                "documents": 3000,
+                "coding": 2000,
+                "tools": 2000
+              },
+              "parentScores": {
+                "capabilityBps": {
+                  "conversation": 4000,
+                  "documents": 3000,
+                  "coding": 2000,
+                  "tools": 2000
+                },
+                "reliabilityBps": 7000
+              }
+            },
+            "preparationCompleted": 0,
+            "checkpointOverheadCompleted": 0,
+            "lastProgress": 1000000000,
+            "lastBottleneck": "",
+            "completedWeek": 5
+          },
+          "training-archive-active-model": {
+            "id": "training-archive-active-model",
+            "companyId": "company-player",
+            "baseModelId": "model-archive-completed-model",
+            "packetId": "data-company-player-advanced-reasoning-1",
+            "outputModelId": "model-archive-active-model",
+            "recipeId": "custom-model-adaptation",
+            "startedWeek": 6,
+            "requiredWork": 96000000000,
+            "completedWork": 3000000000,
+            "physicalWork": 3000000000,
+            "requiredMemory": 4000000000,
+            "status": "running",
+            "checkpointWork": 0,
+            "checkpointModelId": null,
+            "checkpointModelIds": [],
+            "anchorScores": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            },
+            "anchorReliabilityBps": 8980,
+            "evidence": {
+              "id": "data-company-player-advanced-reasoning-1",
+              "name": "Reasoning examples",
+              "companyId": "company-player",
+              "catalogId": "advanced-reasoning-1",
+              "sourceIds": [
+                "advanced-reasoning-1"
+              ],
+              "purchaseFactId": "data-purchase-archive-buy-reasoning",
+              "purchasedWeek": 1,
+              "revision": 0,
+              "rawUnits": 200,
+              "readyUnits": 200,
+              "qualityBps": 9000,
+              "coverageBps": {
+                "conversation": 2500,
+                "documents": 2500,
+                "coding": 2500,
+                "tools": 2500
+              },
+              "rights": {
+                "hosted": true,
+                "weights": true,
+                "feedback": false
+              },
+              "behaviorUnits": 100,
+              "broadUnits": 0,
+              "prepared": true
+            },
+            "plan": {
+              "modelDesign": {
+                "spec": {
+                  "name": "Published ongoing reasoning",
+                  "mode": "adaptation",
+                  "family": "compact",
+                  "parameterMillions": 4000,
+                  "sparsityBps": 0,
+                  "computeBudgetCUw": 96000000000,
+                  "dataMix": {
+                    "conversation": 0,
+                    "documents": 0,
+                    "coding": 0,
+                    "tools": 0,
+                    "reasoning": 100,
+                    "longContext": 0,
+                    "multimodal": 0
+                  }
+                },
+                "researchLevel": 0,
+                "frontierRating": 530,
+                "servingWorkBps": 10000,
+                "requiredEvidence": 95000000000,
+                "ceilings": {
+                  "conversation": 6990,
+                  "documents": 6990,
+                  "coding": 6990,
+                  "tools": 6990
+                },
+                "advancedCeilings": {
+                  "reasoning": 6990,
+                  "longContext": 6990,
+                  "multimodal": 6990
+                }
+              },
+              "advanced": {
+                "foundation": false,
+                "anchors": {
+                  "reasoning": 2622,
+                  "longContext": 0,
+                  "multimodal": 0
+                },
+                "targets": {
+                  "reasoning": 6990,
+                  "longContext": 0,
+                  "multimodal": 0
+                },
+                "ceilings": {
+                  "reasoning": 6990,
+                  "longContext": 6990,
+                  "multimodal": 6990
+                },
+                "corpus": {
+                  "packetIds": [
+                    "data-company-player-advanced-reasoning-1"
+                  ],
+                  "sourceIds": [
+                    "advanced-reasoning-1"
+                  ],
+                  "relevantUnits": {
+                    "reasoning": 200000000000,
+                    "longContext": 20000000000,
+                    "multimodal": 20000000000
+                  },
+                  "qualityBps": {
+                    "reasoning": 9000,
+                    "longContext": 9000,
+                    "multimodal": 9000
+                  },
+                  "fingerprint": "advanced-corpus-65321ce3"
+                },
+                "requiredEvidence": 95000000000
+              },
+              "recipeName": "Published ongoing reasoning",
+              "kind": "adaptation",
+              "profile": "balanced",
+              "profileApplied": false,
+              "family": "compact",
+              "architecture": "dense",
+              "residentMU": 2000000000,
+              "lineageId": "seed-0",
+              "identity": "custom-design-762b1833",
+              "corpus": {
+                "sourceIds": [
+                  "advanced-reasoning-1"
+                ],
+                "packetIds": [
+                  "data-company-player-advanced-reasoning-1"
+                ],
+                "distinctUnits": 200,
+                "broadUnits": 0,
+                "relevantUnits": {
+                  "conversation": 50000000000,
+                  "documents": 50000000000,
+                  "coding": 50000000000,
+                  "tools": 50000000000
+                },
+                "qualityBps": {
+                  "conversation": 9000,
+                  "documents": 9000,
+                  "coding": 9000,
+                  "tools": 9000
+                },
+                "behaviorUnits": 100,
+                "behaviorQualityBps": 9000,
+                "rights": {
+                  "hosted": true,
+                  "weights": true,
+                  "feedback": false
+                },
+                "fingerprint": "corpus-81218721"
+              },
+              "targets": {
+                "conversation": 4000,
+                "documents": 3000,
+                "coding": 2000,
+                "tools": 2000
+              },
+              "ceilings": {
+                "conversation": 6990,
+                "documents": 6990,
+                "coding": 6990,
+                "tools": 6990
+              },
+              "savedAdjustments": {
+                "conversation": 0,
+                "documents": 0,
+                "coding": 0,
+                "tools": 0
+              },
+              "requiredEvidence": 95000000000,
+              "reliabilityTargetBps": 9200,
+              "behaviorAnchor": {
+                "confidentErrorBps": 1000,
+                "falseRefusalBps": 700
+              },
+              "behaviorTarget": {
+                "confidentErrorBps": 1000,
+                "falseRefusalBps": 700
+              },
+              "preparationRequired": 0,
+              "checkpointOverheadRequired": 0,
+              "checkpoints": [
+                {
+                  "atBps": 5000,
+                  "overheadWork": 0
+                },
+                {
+                  "atBps": 10000,
+                  "overheadWork": 0
+                }
+              ],
+              "methods": [],
+              "foundationAnchor": {
+                "conversation": 4000,
+                "documents": 3000,
+                "coding": 2000,
+                "tools": 2000
+              },
+              "parentScores": {
+                "capabilityBps": {
+                  "conversation": 4000,
+                  "documents": 3000,
+                  "coding": 2000,
+                  "tools": 2000
+                },
+                "reliabilityBps": 8980
+              }
+            },
+            "preparationCompleted": 0,
+            "checkpointOverheadCompleted": 0,
+            "lastProgress": 3000000000,
+            "lastBottleneck": ""
+          }
+        },
+        "evaluationRuns": {},
+        "reports": {
+          "rival-atlas-baseline-report": {
+            "id": "rival-atlas-baseline-report",
+            "companyId": "rival-atlas",
+            "modelId": "rival-atlas-model-1",
+            "week": 0,
+            "heldOut": true,
+            "scenarioStart": true,
+            "suiteId": "basic-conversation-1",
+            "capabilityBps": {
+              "conversation": 6400,
+              "documents": 5800,
+              "coding": 5000,
+              "tools": 4600
+            },
+            "reliabilityBps": 9200,
+            "cases": [
+              {
+                "id": "rival-atlas-baseline-report-case-0",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-1",
+                "domain": "documents",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-2",
+                "domain": "coding",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-3",
+                "domain": "tools",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-4",
+                "domain": "conversation",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-5",
+                "domain": "documents",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-6",
+                "domain": "coding",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-7",
+                "domain": "tools",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-8",
+                "domain": "conversation",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-9",
+                "domain": "documents",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-10",
+                "domain": "coding",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-11",
+                "domain": "tools",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-12",
+                "domain": "conversation",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-13",
+                "domain": "documents",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-14",
+                "domain": "coding",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-15",
+                "domain": "tools",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-16",
+                "domain": "conversation",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-17",
+                "domain": "documents",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-18",
+                "domain": "coding",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-atlas-baseline-report-case-19",
+                "domain": "tools",
+                "difficultyBps": 4000,
+                "passed": false
+              }
+            ],
+            "passedCases": 16,
+            "basicChatEligible": true
+          },
+          "rival-swift-baseline-report": {
+            "id": "rival-swift-baseline-report",
+            "companyId": "rival-swift",
+            "modelId": "rival-swift-model-1",
+            "week": 0,
+            "heldOut": true,
+            "scenarioStart": true,
+            "suiteId": "basic-conversation-1",
+            "capabilityBps": {
+              "conversation": 4800,
+              "documents": 4000,
+              "coding": 5800,
+              "tools": 5400
+            },
+            "reliabilityBps": 9000,
+            "cases": [
+              {
+                "id": "rival-swift-baseline-report-case-0",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-1",
+                "domain": "documents",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-2",
+                "domain": "coding",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-3",
+                "domain": "tools",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-4",
+                "domain": "conversation",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-swift-baseline-report-case-5",
+                "domain": "documents",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-6",
+                "domain": "coding",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-7",
+                "domain": "tools",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-8",
+                "domain": "conversation",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-9",
+                "domain": "documents",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-swift-baseline-report-case-10",
+                "domain": "coding",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-11",
+                "domain": "tools",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-12",
+                "domain": "conversation",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-13",
+                "domain": "documents",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-14",
+                "domain": "coding",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-swift-baseline-report-case-15",
+                "domain": "tools",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-16",
+                "domain": "conversation",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-17",
+                "domain": "documents",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-18",
+                "domain": "coding",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-swift-baseline-report-case-19",
+                "domain": "tools",
+                "difficultyBps": 4000,
+                "passed": false
+              }
+            ],
+            "passedCases": 16,
+            "basicChatEligible": true
+          },
+          "rival-harbor-baseline-report": {
+            "id": "rival-harbor-baseline-report",
+            "companyId": "rival-harbor",
+            "modelId": "rival-harbor-model-1",
+            "week": 0,
+            "heldOut": true,
+            "scenarioStart": true,
+            "suiteId": "basic-conversation-1",
+            "capabilityBps": {
+              "conversation": 6200,
+              "documents": 7200,
+              "coding": 4000,
+              "tools": 5000
+            },
+            "reliabilityBps": 9600,
+            "cases": [
+              {
+                "id": "rival-harbor-baseline-report-case-0",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-1",
+                "domain": "documents",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-2",
+                "domain": "coding",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-3",
+                "domain": "tools",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-4",
+                "domain": "conversation",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-5",
+                "domain": "documents",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-6",
+                "domain": "coding",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-7",
+                "domain": "tools",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-8",
+                "domain": "conversation",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-9",
+                "domain": "documents",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-10",
+                "domain": "coding",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-11",
+                "domain": "tools",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-12",
+                "domain": "conversation",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-13",
+                "domain": "documents",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-14",
+                "domain": "coding",
+                "difficultyBps": 4000,
+                "passed": false
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-15",
+                "domain": "tools",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-16",
+                "domain": "conversation",
+                "difficultyBps": 1000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-17",
+                "domain": "documents",
+                "difficultyBps": 2000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-18",
+                "domain": "coding",
+                "difficultyBps": 3000,
+                "passed": true
+              },
+              {
+                "id": "rival-harbor-baseline-report-case-19",
+                "domain": "tools",
+                "difficultyBps": 4000,
+                "passed": false
+              }
+            ],
+            "passedCases": 16,
+            "basicChatEligible": true
+          }
+        },
+        "applicationRuns": {}
+      },
+      "data": {
+        "packets": {
+          "starter-public": {
+            "id": "starter-public",
+            "name": "Starter public sample",
+            "rawUnits": 100,
+            "readyUnits": 100,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 10000,
+              "documents": 3500,
+              "coding": 2500,
+              "tools": 2500
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": true,
+            "companyId": "company-player",
+            "catalogId": "starter-public",
+            "sourceIds": [
+              "starter-public"
+            ]
+          },
+          "rival-atlas-starter-data": {
+            "id": "rival-atlas-starter-data",
+            "name": "Atlas Systems starting corpus",
+            "rawUnits": 500,
+            "readyUnits": 500,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 6000,
+              "documents": 6000,
+              "coding": 6000,
+              "tools": 6000
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": true,
+            "companyId": "rival-atlas",
+            "catalogId": "scenario-corpus",
+            "sourceIds": [
+              "rival-atlas-starter-data"
+            ],
+            "broadUnits": 500,
+            "behaviorUnits": 100
+          },
+          "rival-swift-starter-data": {
+            "id": "rival-swift-starter-data",
+            "name": "Swiftworks starting corpus",
+            "rawUnits": 500,
+            "readyUnits": 500,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 6000,
+              "documents": 6000,
+              "coding": 6000,
+              "tools": 6000
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": true,
+            "companyId": "rival-swift",
+            "catalogId": "scenario-corpus",
+            "sourceIds": [
+              "rival-swift-starter-data"
+            ],
+            "broadUnits": 500,
+            "behaviorUnits": 100
+          },
+          "rival-harbor-starter-data": {
+            "id": "rival-harbor-starter-data",
+            "name": "Harbor AI starting corpus",
+            "rawUnits": 500,
+            "readyUnits": 500,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 6000,
+              "documents": 6000,
+              "coding": 6000,
+              "tools": 6000
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": true,
+            "companyId": "rival-harbor",
+            "catalogId": "scenario-corpus",
+            "sourceIds": [
+              "rival-harbor-starter-data"
+            ],
+            "broadUnits": 500,
+            "behaviorUnits": 100
+          },
+          "data-company-player-advanced-reasoning-1": {
+            "id": "data-company-player-advanced-reasoning-1",
+            "name": "Reasoning examples",
+            "companyId": "company-player",
+            "catalogId": "advanced-reasoning-1",
+            "sourceIds": [
+              "advanced-reasoning-1"
+            ],
+            "purchaseFactId": "data-purchase-archive-buy-reasoning",
+            "purchasedWeek": 1,
+            "revision": 0,
+            "rawUnits": 200,
+            "readyUnits": 200,
+            "qualityBps": 9000,
+            "coverageBps": {
+              "conversation": 2500,
+              "documents": 2500,
+              "coding": 2500,
+              "tools": 2500
+            },
+            "advancedCoverageBps": {
+              "reasoning": 10000,
+              "longContext": 1000,
+              "multimodal": 1000
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "behaviorUnits": 100,
+            "broadUnits": 0,
+            "prepared": true
+          }
+        },
+        "preparationJobs": {
+          "preparation-archive-prepare-starter": {
+            "id": "preparation-archive-prepare-starter",
+            "companyId": "company-player",
+            "packetId": "starter-public",
+            "kind": "prepare",
+            "startedWeek": 1,
+            "requiredStaff": 2000000000,
+            "completedStaff": 2000000000,
+            "status": "complete",
+            "lastProgress": 2000000000,
+            "lastBottleneck": "",
+            "completedWeek": 1
+          },
+          "preparation-archive-prepare-reasoning": {
+            "id": "preparation-archive-prepare-reasoning",
+            "companyId": "company-player",
+            "packetId": "data-company-player-advanced-reasoning-1",
+            "kind": "prepare",
+            "startedWeek": 2,
+            "requiredStaff": 3000000000,
+            "completedStaff": 3000000000,
+            "status": "complete",
+            "lastProgress": 250000000,
+            "lastBottleneck": "",
+            "completedWeek": 3
+          }
+        }
+      },
+      "research": {
+        "completed": [
+          "R1",
+          "R2"
+        ],
+        "active": [],
+        "completedByCompany": {
+          "company-player": [
+            "R1",
+            "R2"
+          ],
+          "rival-atlas": [
+            "R1",
+            "R2",
+            "R3",
+            "R4",
+            "R5"
+          ],
+          "rival-swift": [
+            "R1",
+            "R2",
+            "R3",
+            "R4"
+          ],
+          "rival-harbor": [
+            "R1",
+            "R2",
+            "R3",
+            "R5",
+            "R6",
+            "R9",
+            "R10",
+            "R12"
+          ]
+        },
+        "projects": {},
+        "systemRollouts": {},
+        "assistantsByCompany": {},
+        "modelResearch": {
+          "model-research-archive-architecture": {
+            "id": "model-research-archive-architecture",
+            "companyId": "company-player",
+            "level": 1,
+            "startedWeek": 2,
+            "feeCents": 250000,
+            "requiredWork": 8000000000,
+            "completedWork": 5000000000,
+            "physicalWork": 5000000000,
+            "requiredStaff": 2000000000,
+            "completedStaff": 2000000000,
+            "status": "running",
+            "lastProgress": 1000000000,
+            "lastBottleneck": ""
+          }
+        }
+      },
+      "products": {
+        "activeIds": [
+          "rival-atlas-product",
+          "rival-swift-product",
+          "rival-harbor-product"
+        ],
+        "offers": {
+          "rival-atlas-product": {
+            "id": "rival-atlas-product",
+            "companyId": "rival-atlas",
+            "name": "Atlas Chat",
+            "kind": "basic-chat",
+            "features": {
+              "memory": false,
+              "extendedContext": false,
+              "deepReasoning": false
+            },
+            "publicModelId": "rival-atlas-model-1",
+            "deploymentId": "rival-atlas-deployment",
+            "contractId": "rival-atlas-contract",
+            "status": "active",
+            "createdWeek": 0
+          },
+          "rival-swift-product": {
+            "id": "rival-swift-product",
+            "companyId": "rival-swift",
+            "name": "Swift API",
+            "kind": "developer-api",
+            "features": {
+              "memory": false,
+              "extendedContext": false,
+              "deepReasoning": false
+            },
+            "publicModelId": "rival-swift-model-1",
+            "deploymentId": "rival-swift-deployment",
+            "contractId": "rival-swift-contract",
+            "status": "active",
+            "createdWeek": 0
+          },
+          "rival-harbor-product": {
+            "id": "rival-harbor-product",
+            "companyId": "rival-harbor",
+            "name": "Harbor Private Docs",
+            "kind": "business-docs",
+            "features": {
+              "memory": false,
+              "extendedContext": false,
+              "deepReasoning": false
+            },
+            "publicModelId": "rival-harbor-model-1",
+            "deploymentId": "rival-harbor-deployment",
+            "contractId": "rival-harbor-contract",
+            "status": "active",
+            "createdWeek": 0
+          }
+        },
+        "deployments": {
+          "rival-atlas-deployment": {
+            "id": "rival-atlas-deployment",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "modelId": "rival-atlas-model-1",
+            "status": "active",
+            "startedWeek": 0,
+            "requiredStaff": 1000000000,
+            "completedStaff": 1000000000,
+            "readyWeek": 0,
+            "lastBottleneck": "",
+            "scenarioStart": true
+          },
+          "rival-swift-deployment": {
+            "id": "rival-swift-deployment",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "modelId": "rival-swift-model-1",
+            "status": "active",
+            "startedWeek": 0,
+            "requiredStaff": 1000000000,
+            "completedStaff": 1000000000,
+            "readyWeek": 0,
+            "lastBottleneck": "",
+            "scenarioStart": true
+          },
+          "rival-harbor-deployment": {
+            "id": "rival-harbor-deployment",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "modelId": "rival-harbor-model-1",
+            "status": "active",
+            "startedWeek": 0,
+            "requiredStaff": 1000000000,
+            "completedStaff": 1000000000,
+            "readyWeek": 0,
+            "lastBottleneck": "",
+            "scenarioStart": true
+          }
+        },
+        "contracts": {
+          "rival-atlas-contract": {
+            "id": "rival-atlas-contract",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "weeklyPriceCents": 1200,
+            "allowance": 100,
+            "creditBps": 10000,
+            "effectiveWeek": 0
+          },
+          "rival-swift-contract": {
+            "id": "rival-swift-contract",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "weeklyPriceCents": 6000,
+            "allowance": 600,
+            "creditBps": 10000,
+            "effectiveWeek": 0,
+            "tokenBillRemainder": 230000
+          },
+          "rival-harbor-contract": {
+            "id": "rival-harbor-contract",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "weeklyPriceCents": 30000,
+            "allowance": 3000,
+            "creditBps": 10000,
+            "effectiveWeek": 0
+          }
+        },
+        "lastUsage": {
+          "rival-atlas-product": {
+            "week": 6,
+            "productId": "rival-atlas-product",
+            "paidAccounts": 349,
+            "trialAccounts": 42,
+            "requestedWork": 9860000000,
+            "executedWork": 9860000000,
+            "paidRequestedWork": 9440000000,
+            "paidExecutedWork": 9440000000,
+            "trialRequestedWork": 420000000,
+            "trialExecutedWork": 420000000,
+            "exchanges": 24650,
+            "fulfillmentBps": 10000,
+            "errorBps": 1007,
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "trialCompletedIds": [
+              "trial-9"
+            ],
+            "grossBillCents": 418800,
+            "creditsCents": 0,
+            "billedCents": 418800,
+            "segments": [
+              {
+                "segmentId": "casual",
+                "accounts": 226,
+                "requestedExchanges": 11300,
+                "requestedWork": 4520000000,
+                "errorBps": 984
+              },
+              {
+                "segmentId": "regular",
+                "accounts": 83,
+                "requestedExchanges": 8300,
+                "requestedWork": 3320000000,
+                "errorBps": 984
+              },
+              {
+                "segmentId": "heavy",
+                "accounts": 30,
+                "requestedExchanges": 3000,
+                "requestedWork": 1200000000,
+                "errorBps": 984
+              },
+              {
+                "segmentId": "professional",
+                "accounts": 10,
+                "requestedExchanges": 1000,
+                "requestedWork": 400000000,
+                "errorBps": 1812
+              }
+            ],
+            "tokens": {
+              "inputTokens": 11800000,
+              "outputTokens": 2360000,
+              "internalTokens": 0,
+              "inputPriceCentsPerMillion": 2000,
+              "outputPriceCentsPerMillion": 10000,
+              "billCarryIn": 0,
+              "billCarryOut": 0,
+              "physicalWork": 9860000000,
+              "ownedVariableCostCents": 0
+            }
+          },
+          "rival-swift-product": {
+            "week": 6,
+            "productId": "rival-swift-product",
+            "paidAccounts": 46,
+            "trialAccounts": 5,
+            "requestedWork": 5670000000,
+            "executedWork": 5670000000,
+            "paidRequestedWork": 5520000000,
+            "paidExecutedWork": 5520000000,
+            "trialRequestedWork": 150000000,
+            "trialExecutedWork": 150000000,
+            "exchanges": 28350,
+            "fulfillmentBps": 10000,
+            "errorBps": 1793,
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "trialCompletedIds": [
+              "trial-10"
+            ],
+            "grossBillCents": 276000,
+            "creditsCents": 0,
+            "billedCents": 276000,
+            "segments": [
+              {
+                "segmentId": "developers",
+                "accounts": 46,
+                "requestedExchanges": 27600,
+                "requestedWork": 5520000000,
+                "errorBps": 1793
+              }
+            ],
+            "tokens": {
+              "inputTokens": 13800000,
+              "outputTokens": 2760000,
+              "internalTokens": 0,
+              "inputPriceCentsPerMillion": 10000,
+              "outputPriceCentsPerMillion": 50000,
+              "billCarryIn": 230000,
+              "billCarryOut": 230000,
+              "physicalWork": 5670000000,
+              "ownedVariableCostCents": 0
+            }
+          },
+          "rival-harbor-product": {
+            "week": 6,
+            "productId": "rival-harbor-product",
+            "paidAccounts": 9,
+            "trialAccounts": 0,
+            "requestedWork": 5400000000,
+            "executedWork": 5400000000,
+            "paidRequestedWork": 5400000000,
+            "paidExecutedWork": 5400000000,
+            "trialRequestedWork": 0,
+            "trialExecutedWork": 0,
+            "exchanges": 27000,
+            "fulfillmentBps": 10000,
+            "errorBps": 593,
+            "behavior": {
+              "confidentErrorBps": 593,
+              "falseRefusalBps": 700
+            },
+            "trialCompletedIds": [],
+            "grossBillCents": 270000,
+            "creditsCents": 0,
+            "billedCents": 270000,
+            "segments": [
+              {
+                "segmentId": "business",
+                "accounts": 9,
+                "requestedExchanges": 27000,
+                "requestedWork": 5400000000,
+                "errorBps": 593
+              }
+            ],
+            "tokens": {
+              "inputTokens": 13500000,
+              "outputTokens": 2700000,
+              "internalTokens": 0,
+              "inputPriceCentsPerMillion": 50000,
+              "outputPriceCentsPerMillion": 250000,
+              "billCarryIn": 0,
+              "billCarryOut": 0,
+              "physicalWork": 5400000000,
+              "ownedVariableCostCents": 0
+            }
+          }
+        },
+        "invoices": [
+          {
+            "id": "invoice:rival-atlas-product:1",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "week": 1,
+            "accounts": 310,
+            "grossCents": 372000,
+            "creditsCents": 0,
+            "amountCents": 372000,
+            "billing": "subscription",
+            "inputTokens": 11175000,
+            "outputTokens": 2235000
+          },
+          {
+            "id": "invoice:rival-swift-product:1",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "contractId": "rival-swift-contract",
+            "week": 1,
+            "accounts": 40,
+            "grossCents": 240000,
+            "creditsCents": 0,
+            "amountCents": 240000,
+            "billing": "tokens",
+            "inputTokens": 12000000,
+            "outputTokens": 2400000
+          },
+          {
+            "id": "invoice:rival-harbor-product:1",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "contractId": "rival-harbor-contract",
+            "week": 1,
+            "accounts": 8,
+            "grossCents": 240000,
+            "creditsCents": 0,
+            "amountCents": 240000,
+            "billing": "subscription",
+            "inputTokens": 12000000,
+            "outputTokens": 2400000
+          },
+          {
+            "id": "invoice:rival-atlas-product:2",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "week": 2,
+            "accounts": 306,
+            "grossCents": 367200,
+            "creditsCents": 0,
+            "amountCents": 367200,
+            "billing": "subscription",
+            "inputTokens": 11050000,
+            "outputTokens": 2210000
+          },
+          {
+            "id": "invoice:rival-swift-product:2",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "contractId": "rival-swift-contract",
+            "week": 2,
+            "accounts": 40,
+            "grossCents": 240000,
+            "creditsCents": 0,
+            "amountCents": 240000,
+            "billing": "tokens",
+            "inputTokens": 12000000,
+            "outputTokens": 2400000
+          },
+          {
+            "id": "invoice:rival-harbor-product:2",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "contractId": "rival-harbor-contract",
+            "week": 2,
+            "accounts": 8,
+            "grossCents": 240000,
+            "creditsCents": 0,
+            "amountCents": 240000,
+            "billing": "subscription",
+            "inputTokens": 12000000,
+            "outputTokens": 2400000
+          },
+          {
+            "id": "invoice:rival-atlas-product:3",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "week": 3,
+            "accounts": 316,
+            "grossCents": 379200,
+            "creditsCents": 0,
+            "amountCents": 379200,
+            "billing": "subscription",
+            "inputTokens": 11200000,
+            "outputTokens": 2240000
+          },
+          {
+            "id": "invoice:rival-swift-product:3",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "contractId": "rival-swift-contract",
+            "week": 3,
+            "accounts": 43,
+            "grossCents": 258000,
+            "creditsCents": 0,
+            "amountCents": 258000,
+            "billing": "tokens",
+            "inputTokens": 12900000,
+            "outputTokens": 2580000
+          },
+          {
+            "id": "invoice:rival-harbor-product:3",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "contractId": "rival-harbor-contract",
+            "week": 3,
+            "accounts": 8,
+            "grossCents": 240000,
+            "creditsCents": 0,
+            "amountCents": 240000,
+            "billing": "subscription",
+            "inputTokens": 12000000,
+            "outputTokens": 2400000
+          },
+          {
+            "id": "invoice:rival-atlas-product:4",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "week": 4,
+            "accounts": 328,
+            "grossCents": 393600,
+            "creditsCents": 0,
+            "amountCents": 393600,
+            "billing": "subscription",
+            "inputTokens": 11425000,
+            "outputTokens": 2285000
+          },
+          {
+            "id": "invoice:rival-swift-product:4",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "contractId": "rival-swift-contract",
+            "week": 4,
+            "accounts": 47,
+            "grossCents": 272727,
+            "creditsCents": 0,
+            "amountCents": 272727,
+            "billing": "tokens",
+            "inputTokens": 13636363,
+            "outputTokens": 2727272
+          },
+          {
+            "id": "invoice:rival-harbor-product:4",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "contractId": "rival-harbor-contract",
+            "week": 4,
+            "accounts": 8,
+            "grossCents": 240000,
+            "creditsCents": 0,
+            "amountCents": 240000,
+            "billing": "subscription",
+            "inputTokens": 12000000,
+            "outputTokens": 2400000
+          },
+          {
+            "id": "invoice:rival-atlas-product:5",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "week": 5,
+            "accounts": 338,
+            "grossCents": 405600,
+            "creditsCents": 0,
+            "amountCents": 405600,
+            "billing": "subscription",
+            "inputTokens": 11575000,
+            "outputTokens": 2315000
+          },
+          {
+            "id": "invoice:rival-swift-product:5",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "contractId": "rival-swift-contract",
+            "week": 5,
+            "accounts": 47,
+            "grossCents": 282000,
+            "creditsCents": 0,
+            "amountCents": 282000,
+            "billing": "tokens",
+            "inputTokens": 14100000,
+            "outputTokens": 2820000
+          },
+          {
+            "id": "invoice:rival-harbor-product:5",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "contractId": "rival-harbor-contract",
+            "week": 5,
+            "accounts": 9,
+            "grossCents": 270000,
+            "creditsCents": 0,
+            "amountCents": 270000,
+            "billing": "subscription",
+            "inputTokens": 13500000,
+            "outputTokens": 2700000
+          },
+          {
+            "id": "invoice:rival-atlas-product:6",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "week": 6,
+            "accounts": 349,
+            "grossCents": 418800,
+            "creditsCents": 0,
+            "amountCents": 418800,
+            "billing": "subscription",
+            "inputTokens": 11800000,
+            "outputTokens": 2360000
+          },
+          {
+            "id": "invoice:rival-swift-product:6",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "contractId": "rival-swift-contract",
+            "week": 6,
+            "accounts": 46,
+            "grossCents": 276000,
+            "creditsCents": 0,
+            "amountCents": 276000,
+            "billing": "tokens",
+            "inputTokens": 13800000,
+            "outputTokens": 2760000
+          },
+          {
+            "id": "invoice:rival-harbor-product:6",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "contractId": "rival-harbor-contract",
+            "week": 6,
+            "accounts": 9,
+            "grossCents": 270000,
+            "creditsCents": 0,
+            "amountCents": 270000,
+            "billing": "subscription",
+            "inputTokens": 13500000,
+            "outputTokens": 2700000
+          }
+        ],
+        "retrievalInstalls": {},
+        "commercialContracts": {},
+        "commercialInvoices": [],
+        "efficiencyInstalls": {}
+      },
+      "markets": {
+        "companyTrustBps": {
+          "company-player": 5000,
+          "rival-atlas": 5060,
+          "rival-swift": 5025,
+          "rival-harbor": 5060
+        },
+        "carries": {
+          "company-player:regular": {
+            "conversion": 0,
+            "churn": 0,
+            "reach": 0
+          },
+          "rival-atlas:casual": {
+            "conversion": 6809,
+            "churn": 7660,
+            "reach": 0
+          },
+          "rival-atlas:regular": {
+            "conversion": 0,
+            "churn": 5296,
+            "reach": 0
+          },
+          "rival-atlas:heavy": {
+            "conversion": 0,
+            "churn": 4856,
+            "reach": 0
+          },
+          "rival-atlas:professional": {
+            "conversion": 0,
+            "churn": 888,
+            "reach": 0
+          },
+          "rival-harbor:business": {
+            "conversion": 1482,
+            "churn": 0,
+            "reach": 0
+          },
+          "rival-swift:developers": {
+            "conversion": 7952,
+            "churn": 2465,
+            "reach": 0
+          },
+          "rival-atlas:reach:basic-chat": {
+            "conversion": 0,
+            "churn": 0,
+            "reach": 0
+          },
+          "rival-harbor:reach:business-docs": {
+            "conversion": 0,
+            "churn": 0,
+            "reach": 500000000
+          },
+          "rival-swift:reach:developer-api": {
+            "conversion": 0,
+            "churn": 0,
+            "reach": 0
+          }
+        },
+        "shopperCarry": {
+          "casual": 6900,
+          "regular": 6400,
+          "heavy": 8800,
+          "professional": 200,
+          "developers": 3600,
+          "business": 2800
+        },
+        "rivals": {
+          "rival-atlas": {
+            "companyId": "rival-atlas",
+            "style": "frontier",
+            "interval": 8,
+            "reserveWeeks": 16,
+            "nextPlanWeek": 8,
+            "lastPriceWeek": 0,
+            "publicActivity": "Established consumer platform; pursuing model research.",
+            "lastActionWeek": 0,
+            "withdrawn": false
+          },
+          "rival-swift": {
+            "companyId": "rival-swift",
+            "style": "efficient",
+            "interval": 4,
+            "reserveWeeks": 10,
+            "nextPlanWeek": 8,
+            "lastPriceWeek": 0,
+            "publicActivity": "Planning: Reallocated capacity to improve service.",
+            "lastActionWeek": 4,
+            "withdrawn": false
+          },
+          "rival-harbor": {
+            "companyId": "rival-harbor",
+            "style": "enterprise",
+            "interval": 6,
+            "reserveWeeks": 16,
+            "nextPlanWeek": 12,
+            "lastPriceWeek": 0,
+            "publicActivity": "Planning: Investing in evaluation and model research.",
+            "lastActionWeek": 6,
+            "withdrawn": false
+          }
+        },
+        "returnedNextWeek": {
+          "casual": 28,
+          "regular": 1,
+          "heavy": 2,
+          "professional": 1,
+          "business": 0,
+          "developers": 3
+        },
+        "payingConsumers": 0,
+        "waitlistRemaining": 40,
+        "activeRivalIds": [
+          "rival-atlas",
+          "rival-swift",
+          "rival-harbor"
+        ],
+        "trials": [
+          {
+            "id": "trial-11",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "segmentId": "casual",
+            "count": 43,
+            "createdWeek": 6,
+            "activeWeek": 7,
+            "expiresWeek": 8,
+            "workCompleted": 0,
+            "requiredWork": 430000000,
+            "workPerAccount": 10000000
+          }
+        ],
+        "cohorts": [
+          {
+            "id": "renewals:rival-atlas-product:casual",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "segmentId": "casual",
+            "count": 222,
+            "activeWeek": 6
+          },
+          {
+            "id": "cohort:rival-atlas-product:casual:6",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "segmentId": "casual",
+            "count": 18,
+            "activeWeek": 7
+          },
+          {
+            "id": "renewals:rival-atlas-product:regular",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "segmentId": "regular",
+            "count": 82,
+            "activeWeek": 6
+          },
+          {
+            "id": "renewals:rival-atlas-product:heavy",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "segmentId": "heavy",
+            "count": 28,
+            "activeWeek": 6
+          },
+          {
+            "id": "renewals:rival-atlas-product:professional",
+            "companyId": "rival-atlas",
+            "productId": "rival-atlas-product",
+            "contractId": "rival-atlas-contract",
+            "segmentId": "professional",
+            "count": 9,
+            "activeWeek": 6
+          },
+          {
+            "id": "rival-harbor-cohort-business",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "contractId": "rival-harbor-contract",
+            "segmentId": "business",
+            "count": 8,
+            "activeWeek": 0,
+            "renewalWeek": 12,
+            "breachWeeks": 0
+          },
+          {
+            "id": "cohort:rival-harbor-product:business:4",
+            "companyId": "rival-harbor",
+            "productId": "rival-harbor-product",
+            "contractId": "rival-harbor-contract",
+            "segmentId": "business",
+            "count": 1,
+            "activeWeek": 5,
+            "renewalWeek": 17,
+            "breachWeeks": 0
+          },
+          {
+            "id": "renewals:rival-swift-product:developers",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "contractId": "rival-swift-contract",
+            "segmentId": "developers",
+            "count": 46,
+            "activeWeek": 6
+          },
+          {
+            "id": "cohort:rival-swift-product:developers:6",
+            "companyId": "rival-swift",
+            "productId": "rival-swift-product",
+            "contractId": "rival-swift-contract",
+            "segmentId": "developers",
+            "count": 2,
+            "activeWeek": 7
+          }
+        ],
+        "trustBps": 5000,
+        "acquisitionCarry": 0,
+        "conversionCarry": 0,
+        "churnCarry": 0,
+        "reachCarry": 0,
+        "nextTrialId": 12,
+        "lastGained": 0,
+        "lastLost": 0,
+        "lastTrialCount": 0,
+        "lastExplanation": "0 new trials; 0 paid accounts start next week; 0 left. Offers compete on model fit, price, service and trust; reach, serving capacity and memory limit growth."
+      },
+      "agents": {
+        "activeJobIds": [],
+        "jobs": {},
+        "actionReceipts": {},
+        "invoices": [],
+        "claims": {},
+        "totalsByCompany": {}
+      },
+      "campaign": {
+        "milestones": [
+          "company-founded",
+          "starter-data-ready",
+          "first-adaptation"
+        ],
+        "endingStreaks": {
+          "frontier": 0,
+          "platform": 0,
+          "specialist": 0
+        },
+        "history": [
+          {
+            "week": 1,
+            "revenueCents": 0,
+            "operatingExpenseCents": 920000,
+            "cashCents": 2080000,
+            "baseCostCents": 170000,
+            "arrearsCents": 0,
+            "consumerAccounts": 0,
+            "developerAccounts": 0,
+            "businessOrganizations": 0,
+            "paidProductKinds": 0,
+            "serviceBps": 0,
+            "trustBps": 5000,
+            "agentPenaltyCents": 0,
+            "frontierModelId": null,
+            "frontierScoreBps": 0,
+            "frontierReliabilityBps": 0,
+            "frontierBehaviorTested": false,
+            "specialistModelId": null,
+            "specialistScoreBps": 0,
+            "specialistReliabilityBps": 0,
+            "sustainedContracts": 0
+          },
+          {
+            "week": 2,
+            "revenueCents": 0,
+            "operatingExpenseCents": 420000,
+            "cashCents": 1660000,
+            "baseCostCents": 170000,
+            "arrearsCents": 0,
+            "consumerAccounts": 0,
+            "developerAccounts": 0,
+            "businessOrganizations": 0,
+            "paidProductKinds": 0,
+            "serviceBps": 0,
+            "trustBps": 5000,
+            "agentPenaltyCents": 0,
+            "frontierModelId": null,
+            "frontierScoreBps": 0,
+            "frontierReliabilityBps": 0,
+            "frontierBehaviorTested": false,
+            "specialistModelId": null,
+            "specialistScoreBps": 0,
+            "specialistReliabilityBps": 0,
+            "sustainedContracts": 0
+          },
+          {
+            "week": 3,
+            "revenueCents": 0,
+            "operatingExpenseCents": 170000,
+            "cashCents": 1490000,
+            "baseCostCents": 170000,
+            "arrearsCents": 0,
+            "consumerAccounts": 0,
+            "developerAccounts": 0,
+            "businessOrganizations": 0,
+            "paidProductKinds": 0,
+            "serviceBps": 0,
+            "trustBps": 5000,
+            "agentPenaltyCents": 0,
+            "frontierModelId": null,
+            "frontierScoreBps": 0,
+            "frontierReliabilityBps": 0,
+            "frontierBehaviorTested": false,
+            "specialistModelId": null,
+            "specialistScoreBps": 0,
+            "specialistReliabilityBps": 0,
+            "sustainedContracts": 0
+          },
+          {
+            "week": 4,
+            "revenueCents": 0,
+            "operatingExpenseCents": 193000,
+            "cashCents": 1297000,
+            "baseCostCents": 170000,
+            "arrearsCents": 0,
+            "consumerAccounts": 0,
+            "developerAccounts": 0,
+            "businessOrganizations": 0,
+            "paidProductKinds": 0,
+            "serviceBps": 0,
+            "trustBps": 5000,
+            "agentPenaltyCents": 0,
+            "frontierModelId": null,
+            "frontierScoreBps": 0,
+            "frontierReliabilityBps": 0,
+            "frontierBehaviorTested": false,
+            "specialistModelId": null,
+            "specialistScoreBps": 0,
+            "specialistReliabilityBps": 0,
+            "sustainedContracts": 0
+          },
+          {
+            "week": 5,
+            "revenueCents": 0,
+            "operatingExpenseCents": 170000,
+            "cashCents": 1127000,
+            "baseCostCents": 170000,
+            "arrearsCents": 0,
+            "consumerAccounts": 0,
+            "developerAccounts": 0,
+            "businessOrganizations": 0,
+            "paidProductKinds": 0,
+            "serviceBps": 0,
+            "trustBps": 5000,
+            "agentPenaltyCents": 0,
+            "frontierModelId": null,
+            "frontierScoreBps": 0,
+            "frontierReliabilityBps": 0,
+            "frontierBehaviorTested": false,
+            "specialistModelId": null,
+            "specialistScoreBps": 0,
+            "specialistReliabilityBps": 0,
+            "sustainedContracts": 0
+          },
+          {
+            "week": 6,
+            "revenueCents": 0,
+            "operatingExpenseCents": 193000,
+            "cashCents": 934000,
+            "baseCostCents": 170000,
+            "arrearsCents": 0,
+            "consumerAccounts": 0,
+            "developerAccounts": 0,
+            "businessOrganizations": 0,
+            "paidProductKinds": 0,
+            "serviceBps": 0,
+            "trustBps": 5000,
+            "agentPenaltyCents": 0,
+            "frontierModelId": null,
+            "frontierScoreBps": 0,
+            "frontierReliabilityBps": 0,
+            "frontierBehaviorTested": false,
+            "specialistModelId": null,
+            "specialistScoreBps": 0,
+            "specialistReliabilityBps": 0,
+            "sustainedContracts": 0
+          }
+        ],
+        "endings": {},
+        "rules": "release",
+        "origin": "university"
+      }
+    },
+    "queuedCommands": [
+      {
+        "id": "rival-command-36",
+        "companyId": "rival-harbor",
+        "issuedForWeek": 7,
+        "payload": {
+          "kind": "start_research",
+          "researchId": "R1A"
+        },
+        "reservedCents": 150000
+      },
+      {
+        "id": "archive-pending-evaluation",
+        "companyId": "company-player",
+        "issuedForWeek": 7,
+        "payload": {
+          "kind": "evaluate_model",
+          "modelId": "model-archive-completed-model",
+          "suiteId": "advanced-capabilities-1"
+        },
+        "reservedCents": 0
+      },
+      {
+        "id": "archive-pending-data",
+        "companyId": "company-player",
+        "issuedForWeek": 7,
+        "payload": {
+          "kind": "buy_data",
+          "catalogId": "specialist-documents-1"
+        },
+        "reservedCents": 600000
+      }
+    ],
+    "commandReceipts": {
+      "archive-buy-reasoning": {
+        "id": "archive-buy-reasoning",
+        "week": 1,
+        "status": "accepted"
+      },
+      "archive-prepare-starter": {
+        "id": "archive-prepare-starter",
+        "week": 1,
+        "status": "accepted"
+      },
+      "archive-capacity": {
+        "id": "archive-capacity",
+        "week": 1,
+        "status": "accepted"
+      },
+      "archive-prepare-reasoning": {
+        "id": "archive-prepare-reasoning",
+        "week": 2,
+        "status": "accepted"
+      },
+      "archive-architecture": {
+        "id": "archive-architecture",
+        "week": 2,
+        "status": "accepted"
+      },
+      "archive-completed-model": {
+        "id": "archive-completed-model",
+        "week": 4,
+        "status": "accepted"
+      },
+      "rival-command-28": {
+        "id": "rival-command-28",
+        "week": 5,
+        "status": "accepted"
+      },
+      "archive-active-model": {
+        "id": "archive-active-model",
+        "week": 6,
+        "status": "accepted"
+      }
+    },
+    "scheduled": [],
+    "journal": [
+      {
+        "id": "event-1",
+        "week": 0,
+        "category": "system",
+        "message": "Your research team is ready. Evaluation Suite and Data Curation are already unlocked."
+      },
+      {
+        "id": "event-3",
+        "week": 0,
+        "category": "command",
+        "message": "Queued: Buy 200 raw data units at quality 90. Preparation then takes 60 Data points. You pay the purchase fee once."
+      },
+      {
+        "id": "event-5",
+        "week": 0,
+        "category": "command",
+        "message": "Queued: Prepare this dataset with 40 Data points. Pay the fee once, then reuse the prepared data for training."
+      },
+      {
+        "id": "event-7",
+        "week": 0,
+        "category": "command",
+        "message": "Queued: Physical allocation ceilings change next week. Serving headroom fits inside its ceiling; owned pools remain subject to memory, staff, power, and cooling."
+      },
+      {
+        "id": "event-8",
+        "week": 1,
+        "category": "project",
+        "message": "Reasoning examples acquired. Its 200 units need data-staff preparation before training."
+      },
+      {
+        "id": "event-9",
+        "week": 1,
+        "category": "project",
+        "message": "Starter public sample preparation started. Only finished work becomes ready data."
+      },
+      {
+        "id": "event-10",
+        "week": 1,
+        "category": "command",
+        "message": "Compute allocations updated. Serving, development, and research share the same physical fleet."
+      },
+      {
+        "id": "event-11",
+        "week": 1,
+        "category": "project",
+        "message": "Starter public sample is ready: 100 reusable units at quality 80."
+      },
+      {
+        "id": "event-12",
+        "week": 1,
+        "category": "finance",
+        "message": "Week 1 settled: $0 earned revenue and $9,200 expenses."
+      },
+      {
+        "id": "event-13",
+        "week": 1,
+        "category": "project",
+        "message": "Prepared training data is ready."
+      },
+      {
+        "id": "event-15",
+        "week": 1,
+        "category": "command",
+        "message": "Queued: Prepare this dataset with 60 Data points. Pay the fee once, then reuse the prepared data for training."
+      },
+      {
+        "id": "event-17",
+        "week": 1,
+        "category": "command",
+        "message": "Queued: Architecture level 1: 40 Research points and 8 research CUw. Edge models. Both meters must finish; knowledge is available the following week."
+      },
+      {
+        "id": "event-18",
+        "week": 2,
+        "category": "project",
+        "message": "Reasoning examples preparation started. Only finished work becomes ready data."
+      },
+      {
+        "id": "event-19",
+        "week": 2,
+        "category": "project",
+        "message": "Architecture research level 1 started. The entry fee is charged once; staff and compute are paid separately."
+      },
+      {
+        "id": "event-20",
+        "week": 2,
+        "category": "finance",
+        "message": "Week 2 settled: $0 earned revenue and $4,200 expenses."
+      },
+      {
+        "id": "event-21",
+        "week": 3,
+        "category": "project",
+        "message": "Reasoning examples is ready: 200 reusable units at quality 90."
+      },
+      {
+        "id": "event-22",
+        "week": 3,
+        "category": "finance",
+        "message": "Week 3 settled: $0 earned revenue and $1,700 expenses."
+      },
+      {
+        "id": "event-24",
+        "week": 3,
+        "category": "command",
+        "message": "Queued: Published reasoning pilot: 4 development CUw of training work, 4 MU of memory. Your choices and skill targets are set when training starts. GPU rental and salaries continue."
+      },
+      {
+        "id": "event-25",
+        "week": 4,
+        "category": "project",
+        "message": "Published reasoning pilot started with a frozen evidence plan, finite targets and 4 useful CUw."
+      },
+      {
+        "id": "event-26",
+        "week": 4,
+        "category": "project",
+        "message": "Published reasoning pilot · 50% checkpoint saved as an immutable model version."
+      },
+      {
+        "id": "event-27",
+        "week": 4,
+        "category": "finance",
+        "message": "Week 4 settled: $0 earned revenue and $1,930 expenses."
+      },
+      {
+        "id": "event-29",
+        "week": 5,
+        "category": "project",
+        "message": "Published reasoning pilot completed: C 40, D 30, K 20, T 20; reliability 89.8. Evaluate it before release."
+      },
+      {
+        "id": "event-30",
+        "week": 5,
+        "category": "finance",
+        "message": "Week 5 settled: $0 earned revenue and $1,700 expenses."
+      },
+      {
+        "id": "event-31",
+        "week": 5,
+        "category": "project",
+        "message": "Your first adaptation is complete. Evaluate it before selling access."
+      },
+      {
+        "id": "event-33",
+        "week": 5,
+        "category": "command",
+        "message": "Queued: Published ongoing reasoning: 96 development CUw of training work, 4 MU of memory. Your choices and skill targets are set when training starts. GPU rental and salaries continue."
+      },
+      {
+        "id": "event-34",
+        "week": 6,
+        "category": "project",
+        "message": "Published ongoing reasoning started with a frozen evidence plan, finite targets and 96 useful CUw."
+      },
+      {
+        "id": "event-35",
+        "week": 6,
+        "category": "finance",
+        "message": "Week 6 settled: $0 earned revenue and $1,930 expenses."
+      },
+      {
+        "id": "event-38",
+        "week": 6,
+        "category": "command",
+        "message": "Queued: Reasoning, context & multimodal: 60 test cases, 6 development CUw and 40 Research points. Testing measures this model; it does not improve it."
+      },
+      {
+        "id": "event-40",
+        "week": 6,
+        "category": "command",
+        "message": "Queued: Buy 120 raw data units at quality 90. Preparation then takes 40 Data points. You pay the purchase fee once."
+      }
+    ],
+    "lastTick": {
+      "week": 6,
+      "phases": [
+        {
+          "phase": "commit",
+          "facts": 1,
+          "events": 1
+        },
+        {
+          "phase": "reserve",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "execute",
+          "facts": 24,
+          "events": 0
+        },
+        {
+          "phase": "resolve",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "settle",
+          "facts": 3,
+          "events": 1
+        },
+        {
+          "phase": "market",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "plan",
+          "facts": 0,
+          "events": 1
+        }
+      ],
+      "chargedCents": 1318000,
+      "receivedCents": 964800,
+      "scheduledCount": 0
+    }
+  }
+}

@@ -1,0 +1,663 @@
+{
+  "sourceCommit": "8fb429ad34c58da2ff323edd030220143a336982",
+  "sourceContent": "0.8.0",
+  "naturalProgression": {
+    "suite": "tests/wave7-progression.test.ts",
+    "inputFixture": "tests/fixtures/wave6-snapshot.json",
+    "inputCommit": "870fd3792f162542740c53d7df154d52f8917c5f",
+    "inputWeek": 269,
+    "inputChecksum": "4246bec5",
+    "completedCampaignChecksum": "dd80fdc4",
+    "commandsBeforeRecovery": [
+      {
+        "week": 269,
+        "id": "wave7-natural-command-1",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "R4"
+        }
+      },
+      {
+        "week": 272,
+        "id": "wave7-natural-command-2",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "R4B"
+        }
+      },
+      {
+        "week": 274,
+        "id": "wave7-natural-command-3",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "R9A"
+        }
+      },
+      {
+        "week": 276,
+        "id": "wave7-natural-command-4",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "R10A"
+        }
+      },
+      {
+        "week": 279,
+        "id": "wave7-natural-command-5",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "R11"
+        }
+      },
+      {
+        "week": 283,
+        "id": "wave7-natural-command-6",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "R11A"
+        }
+      },
+      {
+        "week": 288,
+        "id": "wave7-natural-command-7",
+        "payload": {
+          "kind": "start_system_rollout",
+          "method": "adapter-bank"
+        }
+      },
+      {
+        "week": 288,
+        "id": "wave7-natural-command-8",
+        "payload": {
+          "kind": "start_system_rollout",
+          "method": "action-receipts"
+        }
+      },
+      {
+        "week": 290,
+        "id": "wave7-natural-command-9",
+        "payload": {
+          "kind": "start_training",
+          "baseModelId": "model-natural-business-command-4",
+          "packetId": "curated-natural-business-command-54",
+          "recipeId": "planner-curriculum"
+        }
+      },
+      {
+        "week": 293,
+        "id": "wave7-natural-command-10",
+        "payload": {
+          "kind": "evaluate_model",
+          "modelId": "model-wave7-natural-command-9",
+          "suiteId": "expanded-capabilities-1"
+        }
+      },
+      {
+        "week": 294,
+        "id": "wave7-natural-command-11",
+        "payload": {
+          "kind": "evaluate_model",
+          "modelId": "model-natural-business-command-4",
+          "suiteId": "independent-holdouts-1"
+        }
+      },
+      {
+        "week": 295,
+        "id": "wave7-natural-command-12",
+        "payload": {
+          "kind": "evaluate_model",
+          "modelId": "model-wave7-natural-command-9",
+          "suiteId": "independent-holdouts-1"
+        }
+      },
+      {
+        "week": 296,
+        "id": "wave7-natural-command-13",
+        "payload": {
+          "kind": "start_training",
+          "baseModelId": "seed-0",
+          "packetId": "starter-public",
+          "packetIds": [
+            "starter-public",
+            "curated-natural-business-command-54"
+          ],
+          "recipeId": "compact-conversation-adaptation",
+          "asAdapter": true
+        }
+      },
+      {
+        "week": 298,
+        "id": "wave7-natural-command-14",
+        "payload": {
+          "kind": "start_training",
+          "baseModelId": "seed-0",
+          "packetId": "curated-natural-business-command-54",
+          "recipeId": "coding-tools-adaptation",
+          "asAdapter": true
+        }
+      },
+      {
+        "week": 304,
+        "id": "wave7-natural-command-15",
+        "payload": {
+          "kind": "evaluate_model",
+          "modelId": "model-wave7-natural-command-13",
+          "suiteId": "expanded-capabilities-1"
+        }
+      },
+      {
+        "week": 305,
+        "id": "wave7-natural-command-16",
+        "payload": {
+          "kind": "evaluate_model",
+          "modelId": "model-wave7-natural-command-14",
+          "suiteId": "expanded-capabilities-1"
+        }
+      },
+      {
+        "week": 306,
+        "id": "wave7-natural-command-17",
+        "payload": {
+          "kind": "upgrade_product",
+          "productId": "product:natural-business-command-8",
+          "modelId": "model-wave7-natural-command-13"
+        }
+      },
+      {
+        "week": 306,
+        "id": "wave7-natural-command-18",
+        "payload": {
+          "kind": "upgrade_product",
+          "productId": "product:natural-business-command-67",
+          "modelId": "model-wave7-natural-command-14"
+        }
+      },
+      {
+        "week": 309,
+        "id": "wave7-natural-command-19",
+        "payload": {
+          "kind": "start_agent_job",
+          "orderId": "support-replies@77",
+          "modelId": "model-natural-business-command-159",
+          "mode": "approval",
+          "verification": "independent",
+          "tools": [
+            "read_ticket",
+            "send_reply"
+          ],
+          "maxSteps": 24,
+          "maxRetries": 2,
+          "workBudget": 32000000000
+        }
+      },
+      {
+        "week": 322,
+        "id": "wave7-natural-command-20",
+        "payload": {
+          "kind": "review_agent_job",
+          "jobId": "agent:0e424a52:support-replies:77",
+          "decision": "approve"
+        }
+      },
+      {
+        "week": 325,
+        "id": "wave7-natural-command-21",
+        "payload": {
+          "kind": "set_agent_job_paused",
+          "jobId": "agent:0e424a52:support-replies:77",
+          "paused": true
+        }
+      }
+    ]
+  },
+  "startingChecksum": "7f92ef7d",
+  "startingWeek": 326,
+  "commands": [
+    {
+      "week": 326,
+      "id": "wave7-oracle-1",
+      "payload": {
+        "kind": "recover_agent_job",
+        "jobId": "agent:0e424a52:support-replies:77",
+        "maxSteps": 24,
+        "workBudget": 32000000000
+      }
+    }
+  ],
+  "fixtureWeek": 326,
+  "checksum": "a3923526",
+  "weeks": [
+    {
+      "week": 327,
+      "hash": "7e2f3931",
+      "cashCents": 257221768,
+      "revenueCents": 3716800,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "running",
+        "stage": "audit",
+        "spentWork": 2900000000,
+        "physicalWork": 2900000000,
+        "steps": 11,
+        "billedCents": 0,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": null,
+        "invoiceCount": 0
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 11,
+          "termWeeksServed": 5,
+          "lifetimeBilledCents": 3125000
+        }
+      ]
+    },
+    {
+      "week": 328,
+      "hash": "02aeefe8",
+      "cashCents": 258402168,
+      "revenueCents": 3755400,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 11,
+          "termWeeksServed": 6,
+          "lifetimeBilledCents": 3150000
+        }
+      ]
+    },
+    {
+      "week": 329,
+      "hash": "e4bb647f",
+      "cashCents": 259563768,
+      "revenueCents": 3736600,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 11,
+          "termWeeksServed": 7,
+          "lifetimeBilledCents": 3175000
+        }
+      ]
+    },
+    {
+      "week": 330,
+      "hash": "3d3f77ff",
+      "cashCents": 260728968,
+      "revenueCents": 3740200,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 11,
+          "termWeeksServed": 8,
+          "lifetimeBilledCents": 3200000
+        }
+      ]
+    },
+    {
+      "week": 331,
+      "hash": "db1803b3",
+      "cashCents": 261913968,
+      "revenueCents": 3760000,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 11,
+          "termWeeksServed": 9,
+          "lifetimeBilledCents": 3225000
+        }
+      ]
+    },
+    {
+      "week": 332,
+      "hash": "3f20b5d4",
+      "cashCents": 263116368,
+      "revenueCents": 3777400,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 11,
+          "termWeeksServed": 10,
+          "lifetimeBilledCents": 3250000
+        }
+      ]
+    },
+    {
+      "week": 333,
+      "hash": "b1ffacd8",
+      "cashCents": 264306168,
+      "revenueCents": 3764800,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 11,
+          "termWeeksServed": 11,
+          "lifetimeBilledCents": 3275000
+        }
+      ]
+    },
+    {
+      "week": 334,
+      "hash": "d2e41fd3",
+      "cashCents": 265529568,
+      "revenueCents": 3798400,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 11,
+          "termWeeksServed": 12,
+          "lifetimeBilledCents": 3300000
+        }
+      ]
+    },
+    {
+      "week": 335,
+      "hash": "fa19df44",
+      "cashCents": 266757768,
+      "revenueCents": 3803200,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 12,
+          "termWeeksServed": 1,
+          "lifetimeBilledCents": 3325000
+        }
+      ]
+    },
+    {
+      "week": 336,
+      "hash": "cbfd6ad8",
+      "cashCents": 267987168,
+      "revenueCents": 3804400,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 12,
+          "termWeeksServed": 2,
+          "lifetimeBilledCents": 3350000
+        }
+      ]
+    },
+    {
+      "week": 337,
+      "hash": "8f5e4b5f",
+      "cashCents": 269236368,
+      "revenueCents": 3824200,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 12,
+          "termWeeksServed": 3,
+          "lifetimeBilledCents": 3375000
+        }
+      ]
+    },
+    {
+      "week": 338,
+      "hash": "68a67abc",
+      "cashCents": 270465768,
+      "revenueCents": 3804400,
+      "expenseCents": 2575000,
+      "trustBps": 10000,
+      "agent": {
+        "rootJobId": "agent:0e424a52:support-replies:77",
+        "childId": "agent:0e424a52:support-replies:77:recovery:1",
+        "parentStatus": "handed-off",
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 2980000000,
+        "physicalWork": 2980000000,
+        "steps": 12,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:77:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328",
+        "invoiceCount": 1
+      },
+      "adapters": {
+        "baseModelId": "seed-0",
+        "activeProducts": 2,
+        "independentMemoryMU": 4500000000,
+        "sharedMemoryMU": 2500000000
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 12,
+          "termWeeksServed": 4,
+          "lifetimeBilledCents": 3400000
+        }
+      ]
+    }
+  ]
+}

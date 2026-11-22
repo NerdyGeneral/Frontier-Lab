@@ -1,0 +1,78 @@
+[
+  {
+    "buttons": [
+      {
+        "bottom": 0,
+        "text": "Results · 1",
+        "top": 0
+      },
+      {
+        "bottom": 0,
+        "text": "Save",
+        "top": 0
+      },
+      {
+        "bottom": 1104.796875,
+        "text": "Confirm for Week 4",
+        "top": 1060.796875
+      }
+    ],
+    "dialog": [
+      {
+        "height": 434,
+        "scrollHeight": 1100,
+        "scrollWidth": 640,
+        "width": 640
+      }
+    ],
+    "height": 468,
+    "label": "200-percent-review",
+    "scrollWidth": 681,
+    "width": 681
+  },
+  {
+    "buttons": [
+      {
+        "bottom": 0,
+        "text": "Results · 1",
+        "top": 0
+      },
+      {
+        "bottom": 0,
+        "text": "Save",
+        "top": 0
+      },
+      {
+        "bottom": 222.0546875,
+        "text": "Confirm for Week 4",
+        "top": 159.4609375
+      }
+    ],
+    "dialog": [
+      {
+        "height": 234,
+        "scrollHeight": 1496,
+        "scrollWidth": 337,
+        "width": 337
+      }
+    ],
+    "focused": "Confirm for Week 4",
+    "height": 234,
+    "label": "400-percent-review-keyboard-footer",
+    "scrollWidth": 340,
+    "width": 340
+  },
+  {
+    "dialog": [
+      {
+        "scrollWidth": 337,
+        "width": 337
+      }
+    ],
+    "height": 234,
+    "label": "400-percent-team-output",
+    "scrollWidth": 340,
+    "wideElements": 0,
+    "width": 340
+  }
+]

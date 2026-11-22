@@ -1,0 +1,24 @@
+✔ 30C-RP01 strong binding hashes exact UTF-8 snapshot bytes, including formatting (8.274346ms)
+✔ 30C-RP02 new timelines baseline historical evidence quietly; only later settled transitions become unread once (1.376617ms)
+✔ 30C-RP03 matching reload restores unread and dismissed flags without replay; cache cannot invent outcomes (0.582368ms)
+✔ 30C-RP04 stale binding, foreign player, corrupt and oversized envelopes all initialize quietly (1.033971ms)
+✔ 30C-RP05 an accepted identical-byte replacement creates a fresh timeline and reviewed historical baseline (0.637262ms)
+✔ 30C-RP06 observer and memory acknowledgement changes remain local and cannot rewrite the owner envelope (0.496179ms)
+✔ 30C-RP07 failed sidecar writes do not throw or advance the primary, and later save retries retain local marks (0.370108ms)
+✔ 30C-RP08 only a successful saved-byte receipt advances binding; marks cannot bind to a foreign primary (0.379913ms)
+✔ 30C-RP09 latest successful save wins out-of-order hashes; suspended sessions cannot finish old writes (0.44404ms)
+✔ 30C-RP10 old initialization callbacks cannot cross a replacement even with repeated player and result IDs (0.426323ms)
+✔ 30C-RP11 the 200-record window is selected before dismissal and stale keys are pruned (2.329705ms)
+✔ 30C-RP12 flags edited while restore hashes are pending override restored flags without a celebration (0.314144ms)
+✔ 30C-RP13 strict envelopes reject cached outcomes, excessive keys, invalid combinations and oversized encoded metadata (2.163214ms)
+✔ 30C-RP14 primary read/write receipts expose exact successful bytes while preserving legacy writer results and failures (27.196988ms)
+✔ 30C-RP15 accepted replacement invalidates old marks even when token generation fails; an empty primary cannot reuse a past timeline (0.377409ms)
+✔ 30C-RP16 a slow matching reload can restore old unread marks while preserving later settled evidence and binding to the newest primary (3.505069ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 200.418679

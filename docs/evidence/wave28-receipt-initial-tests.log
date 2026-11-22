@@ -1,0 +1,758 @@
+✖ W12-G01: rollout admission requires prior research, exact paid model reports and compatible resident capacity (260.975822ms)
+✖ W12-G02: compute and ML finish independently, obey weekly caps, and expose no audit before the next boundary (115.059798ms)
+✖ W12-G03: paired audit separates allowed mistakes from correct policy refusals and preserves a nested profile tradeoff (56.463403ms)
+✖ W12-G04: time, identifiers, mutable names and simulation random state cannot reroll a paid audit (108.835516ms)
+✖ W12-G05: actual routed audits cover each model and require the secondary’s own paid policy report (29.26367ms)
+✖ W12-G06: replacement is staged, returning to a prior profile reuses identical cases, and retained history is bounded (45.988225ms)
+✔ W12-G07: partial requests spend checking work but produce no completed check or false-refusal outcome (1.523006ms)
+✖ W12-G08: forged paid work, model evidence, audit outcomes, memory and serving counts fail checksum-correct import (29.654683ms)
+✖ W12-G09: source changes during rollout preserve paid audit history but cannot activate a mismatched checker (26.461376ms)
+✖ W13-A01: exact paid audit, buyer thresholds, research and owned active API govern admission without preview side effects (193.148397ms)
+✖ W13-A02: real commercial grants accrue independently, pause without staff, and bill only after the following boundary (68.848922ms)
+✖ W13-A03: unfinished request work consumes GPUs but cannot invent completed requests, tokens or retainer fulfillment (34.199223ms)
+✖ W13-A04: onboarding, exact qualification and once-only setup provenance resist valid-checksum forged saves (46.362171ms)
+✖ W13-A05: retained invoices reconcile actual physical grants, independent support and historical accepted evidence (23.251871ms)
+✖ W13-A06: cancellation before onboarding preserves the paid setup while preventing a term, workloads and invoices (13.811293ms)
+✖ W13-A07: public cache changes do not change an accepted separate-tenant workload or finite audit fingerprint (27.504047ms)
+✖ W13-A08: larger explicit requalification must fit real capacity and queued promises replace the old meter exactly once (21.379272ms)
+✖ W14-B01: scheduler fees, independent capped GPU and ML grants, and the activation boundary are paid through ordinary commands (202.229961ms)
+✖ W14-B02: admission requires prior paid API demand and the selected exact paid model; queued and cancelled claims remain finite (57.622857ms)
+✖ W14-B03: first scheduler grants cannot invent earlier GPU or ML work, even under a valid checksum and matching latest grants (28.133878ms)
+✖ W14-B04: frozen batch admission, calendar carry and physical resource provenance reject forged retained jobs (40.897113ms)
+✖ W14-B05: partial commercial supervision clips an owned GPU integer conversion rather than creating a free final work unit (25.689423ms)
+✖ W14-B06: batch inference keeps sparse fabric and custom compiler compatibility at the physical allocator boundary (61.886564ms)
+✖ W14-B07: the terminal invoice is immutable, bills whole completed requests once, and retains its exact paid source (24.058207ms)
+✔ W27-C01 paid regression canary observes disjoint traffic, restores the incumbent and invoices once (38372.847255ms)
+✔ W27-C02 queue and stopped-save reloads preserve exact continuation and duplicate commands cannot charge again (7549.306635ms)
+✔ W27-C03 explicit protocol limits and both queued command orders reject stale full rollout (5257.808088ms)
+✔ W27-C04 sufficient nonregressing evidence permits the existing paid handover and retained-source rollback (26737.084837ms)
+✔ W27-C05 compressed API candidate keeps its paid policy/runtime identity and shares one executed-token carry (21337.481436ms)
+✔ W27-C06 actual work respects its hard allowance and eight insufficient samples never unlock rollout (18326.771662ms)
+✔ W27-C07 loss of connected memory stops actual zero-grant traffic without rejecting the settlement (7294.494897ms)
+✔ W27-C08 checksummed imports reject stopped-canary resurrection, fabricated qualification and changed cohort billing (3680.365447ms)
+✔ W27-C09 pure release views and frozen paid identities preserve state, RNG and canonical reload ordering (630.339573ms)
+✔ W9-H01: both finite arms and ML review consume normal resources; outcomes arrive next boundary while incumbent invoices continue (3830.087069ms)
+✔ W9-H02: starvation and pause cannot create work; paid progress survives exact save continuation (6086.051226ms)
+✔ W9-H03: names and weeks cannot reroll cases; configuration changes stale qualification but preserve valid history (3980.984199ms)
+✔ W9-H04: import validation rejects outcome, work, memory, tariff, report and early-availability fabrication (482.67053ms)
+✔ W9-H05: exact evaluated ownership, R12 timing and actual unshared resident grants remain mandatory (856.000483ms)
+✔ W9-H06: owned GPUs convert useful work into actual physical execution and reconcile with the existing cost meter (1512.678082ms)
+✔ W9-H07: installed evidence and retrieval identities are captured; runtime optimizations do not alter standard work (2928.896404ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 17
+ℹ fail 23
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 130139.215642
+
+✖ failing tests:
+
+test at tests/wave12-guardrails.test.js:25:25
+✖ W12-G01: rollout admission requires prior research, exact paid model reports and compatible resident capacity (260.975822ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave12-guardrails.test.js:26:68)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave12-guardrails.test.js:56:25
+✖ W12-G02: compute and ML finish independently, obey weekly caps, and expose no audit before the next boundary (115.059798ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave12-guardrails.test.js:57:68)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave12-guardrails.test.js:112:25
+✖ W12-G03: paired audit separates allowed mistakes from correct policy refusals and preserves a nested profile tradeoff (56.463403ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at activeGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:49:18)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave12-guardrails.test.js:113:66)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave12-guardrails.test.js:142:25
+✖ W12-G04: time, identifiers, mutable names and simulation random state cannot reroll a paid audit (108.835516ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at activeGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:49:18)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave12-guardrails.test.js:143:66)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave12-guardrails.test.js:161:25
+✖ W12-G05: actual routed audits cover each model and require the secondary’s own paid policy report (29.26367ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave12-guardrails.test.js:162:68)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave12-guardrails.test.js:189:25
+✖ W12-G06: replacement is staged, returning to a prior profile reuses identical cases, and retained history is bounded (45.988225ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at activeGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:49:18)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave12-guardrails.test.js:190:66)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave12-guardrails.test.js:242:25
+✖ W12-G08: forged paid work, model evidence, audit outcomes, memory and serving counts fail checksum-correct import (29.654683ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at activeGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:49:18)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave12-guardrails.test.js:243:66)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave12-guardrails.test.js:275:25
+✖ W12-G09: source changes during rollout preserve paid audit history but cannot activate a mismatched checker (26.461376ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave12-guardrails.test.js:276:68)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave13-assurance.test.js:28:25
+✖ W13-A01: exact paid audit, buyer thresholds, research and owned active API govern admission without preview side effects (193.148397ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at assuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:24:68)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave13-assurance.test.js:29:59)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave13-assurance.test.js:63:25
+✖ W13-A02: real commercial grants accrue independently, pause without staff, and bill only after the following boundary (68.848922ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at assuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:24:68)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave13-assurance.test.js:64:59)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave13-assurance.test.js:105:25
+✖ W13-A03: unfinished request work consumes GPUs but cannot invent completed requests, tokens or retainer fulfillment (34.199223ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at assuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:24:68)
+      at activeAssuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:49:18)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave13-assurance.test.js:106:65)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave13-assurance.test.js:133:25
+✖ W13-A04: onboarding, exact qualification and once-only setup provenance resist valid-checksum forged saves (46.362171ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at assuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:24:68)
+      at activeAssuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:49:18)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave13-assurance.test.js:134:65)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave13-assurance.test.js:155:25
+✖ W13-A05: retained invoices reconcile actual physical grants, independent support and historical accepted evidence (23.251871ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at assuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:24:68)
+      at activeAssuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:49:18)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave13-assurance.test.js:156:65)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave13-assurance.test.js:182:25
+✖ W13-A06: cancellation before onboarding preserves the paid setup while preventing a term, workloads and invoices (13.811293ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at assuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:24:68)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave13-assurance.test.js:183:59)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave13-assurance.test.js:212:25
+✖ W13-A07: public cache changes do not change an accepted separate-tenant workload or finite audit fingerprint (27.504047ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at assuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:24:68)
+      at activeAssuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:49:18)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave13-assurance.test.js:213:65)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave13-assurance.test.js:224:25
+✖ W13-A08: larger explicit requalification must fit real capacity and queued promises replace the old meter exactly once (21.379272ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at assuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:24:68)
+      at activeAssuranceScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave13-assurance.js:49:18)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave13-assurance.test.js:225:65)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave14-batch.test.js:53:25
+✖ W14-B01: scheduler fees, independent capped GPU and ML grants, and the activation boundary are paid through ordinary commands (202.229961ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave14-batch.test.js:54:68)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave14-batch.test.js:114:25
+✖ W14-B02: admission requires prior paid API demand and the selected exact paid model; queued and cancelled claims remain finite (57.622857ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at batchScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave14-batch.js:22:85)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave14-batch.test.js:115:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave14-batch.test.js:159:25
+✖ W14-B03: first scheduler grants cannot invent earlier GPU or ML work, even under a valid checksum and matching latest grants (28.133878ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at partialScheduler (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave14-batch.test.js:36:68)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave14-batch.test.js:160:18)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave14-batch.test.js:201:25
+✖ W14-B04: frozen batch admission, calendar carry and physical resource provenance reject forged retained jobs (40.897113ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at batchScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave14-batch.js:22:85)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave14-batch.test.js:202:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave14-batch.test.js:235:25
+✖ W14-B05: partial commercial supervision clips an owned GPU integer conversion rather than creating a free final work unit (25.689423ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at batchScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave14-batch.js:22:85)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave14-batch.test.js:236:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave14-batch.test.js:263:25
+✖ W14-B06: batch inference keeps sparse fabric and custom compiler compatibility at the physical allocator boundary (61.886564ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at batchScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave14-batch.js:22:85)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave14-batch.test.js:264:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave14-batch.test.js:302:25
+✖ W14-B07: the terminal invoice is immutable, bills whole completed requests once, and retains its exact paid source (24.058207ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   {
+  +     code: 'INVALID_STATE',
+  +     message: 'Facility specialization research preceded an owned site commissioning.'
+  +   }
+  + ]
+  - []
+  
+      at createPolicyScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:44:22)
+      at policyCandidate (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave11-policy.js:64:62)
+      at deployedGuardrailScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave12-guardrails.js:28:59)
+      at batchScenario (/tmp/frontier-lab-wave0-Mn2FCD/tests/fixtures/wave14-batch.js:22:85)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-Mn2FCD/tests/wave14-batch.test.js:303:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ { code: 'INVALID_STATE', message: 'Facility specialization research preceded an owned site commissioning.' } ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }

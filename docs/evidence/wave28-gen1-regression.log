@@ -1,0 +1,22 @@
+✔ W4-H01: paid specification and prototype require separate staff/work meters and next-boundary qualification; duplicate specifications cannot reroll (1029.166426ms)
+✔ W4-H02: manufacturing payment yields finite inventory after lead time; installation is the only path to staffed capacity (5334.190921ms)
+✔ W4-H03: compatible custom silicon accelerates actual work, bills physical usage, and cannot execute training or sparse work on its inference compiler (4137.789232ms)
+✔ W4-H04: sparse work is rejected without fabric, then admitted only after a paid three-meter installation; the independent resource boundary rejects forged grants (872.752119ms)
+✔ W4-H05: fabric pause preserves paid work and elapsed time; staffing and parking still constrain a wired pool (1121.170559ms)
+✔ W4-H06: eight distinct real customer-serving weeks establish feasibility; idle allocations and internal assistant/teacher calls do not (2146.658091ms)
+✔ W4-H07: qualified yield, fabrication payment, inventory capacity and prototype evidence reject checksum-independent tampering (397.361109ms)
+✔ W4-H08: save/reload preserves production lead time and hardware availability; repeated stepping stays deterministic (941.746372ms)
+✔ W4-H09: payback uses explicit utilization and fixed operating costs; low utilization cannot manufacture positive savings (515.735678ms)
+✔ W4-H10: incoming custom batches share the same finite site slots as ordinary GPU orders and wait for commissioning (427.39364ms)
+✔ W4-H11: cloud shrink cannot replace active inference memory with a training-only custom pool (440.009577ms)
+✔ W22-F01: alternate foundries freeze price, delivery and useful output on real rack orders (192.940141ms)
+✔ W23-S01: qualified orders compete with internal fabrication, then pay once on direct shipment (188.466887ms)
+✔ W23-S02: memory-heavy inference and training buyers accept different qualified designs (333.649634ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 22166.482246

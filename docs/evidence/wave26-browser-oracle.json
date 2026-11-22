@@ -1,0 +1,96 @@
+{
+  "result": "PASS",
+  "expectedSnapshot": "wave26-browser-expected.json",
+  "actualSnapshot": "wave26-browser-final.json",
+  "expectedSnapshotValid": true,
+  "actualSnapshotValid": true,
+  "stateIdentical": true,
+  "byteIdentical": true,
+  "expectedChecksum": "7e9a62b6",
+  "actualChecksum": "7e9a62b6",
+  "week": 556,
+  "revision": 947,
+  "nextId": 3167,
+  "cashCents": 615519786,
+  "arrearsCents": 0,
+  "commands": [
+    {
+      "week": 546,
+      "commandId": "command-3112",
+      "payload": {
+        "kind": "start_synthetic_generation",
+        "teacherModelId": "model-natural-business-command-159",
+        "sourcePacketId": "curated-natural-business-command-111",
+        "domain": "documents"
+      }
+    },
+    {
+      "week": 548,
+      "commandId": "command-3121",
+      "payload": {
+        "kind": "start_synthetic_review",
+        "jobId": "synthetic-job:command-3112"
+      }
+    },
+    {
+      "week": 552,
+      "commandId": "command-3140",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "seed-0",
+        "packetId": "synthetic-data:command-3112",
+        "recipeId": "targeted-synthetic"
+      }
+    },
+    {
+      "week": 554,
+      "commandId": "command-3152",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-command-3140",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 555,
+      "commandId": "command-3159",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-command-3140",
+        "suiteId": "independent-holdouts-1"
+      }
+    }
+  ],
+  "jobId": "synthetic-job:command-3112",
+  "packetId": "synthetic-data:command-3112",
+  "modelId": "model-command-3140",
+  "audit": {
+    "acceptedUnits": 53,
+    "sourceOverlapUnits": 20,
+    "holdoutOverlapUnits": 10,
+    "qualityRejectedUnits": 17,
+    "qualityBps": 7700
+  },
+  "capabilityBps": {
+    "conversation": 4000,
+    "documents": 4155,
+    "coding": 2000,
+    "tools": 2000
+  },
+  "reliabilityBps": 7000,
+  "independentReportId": "report-evaluation-command-3159",
+  "independentTotals": {
+    "cases": 100,
+    "claimedCompletions": 48,
+    "actualSuccesses": 36,
+    "unsuccessfulCases": 64,
+    "basicAccepted": 41,
+    "basicFalseAccepts": 5,
+    "independentAccepted": 37,
+    "independentFalseAccepts": 1,
+    "necessaryLookups": 166,
+    "plannedLookups": 209,
+    "repeatedLookups": 43,
+    "outOfScopeProposals": 6
+  }
+}

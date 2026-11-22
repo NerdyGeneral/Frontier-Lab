@@ -1,0 +1,24 @@
+✔ W27-C01 paid regression canary observes disjoint traffic, restores the incumbent and invoices once (44087.94723ms)
+✔ W27-C02 queue and stopped-save reloads preserve exact continuation and duplicate commands cannot charge again (9455.935006ms)
+✔ W27-C03 explicit protocol limits and both queued command orders reject stale full rollout (4834.466129ms)
+✔ W27-C04 sufficient nonregressing evidence permits the existing paid handover and retained-source rollback (21039.506073ms)
+✔ W27-C05 compressed API candidate keeps its paid policy/runtime identity and shares one executed-token carry (18802.751034ms)
+✔ W27-C06 actual work respects its hard allowance and eight insufficient samples never unlock rollout (22486.495243ms)
+✔ W27-C07 loss of connected memory stops actual zero-grant traffic without rejecting the settlement (9225.26943ms)
+✔ W27-C08 checksummed imports reject stopped-canary resurrection, fabricated qualification and changed cohort billing (9606.385847ms)
+✔ W27-C09 pure release views and frozen paid identities preserve state, RNG and canonical reload ordering (968.000985ms)
+✔ W9-H01: both finite arms and ML review consume normal resources; outcomes arrive next boundary while incumbent invoices continue (2645.612227ms)
+✔ W9-H02: starvation and pause cannot create work; paid progress survives exact save continuation (7734.33284ms)
+✔ W9-H03: names and weeks cannot reroll cases; configuration changes stale qualification but preserve valid history (2873.001787ms)
+✔ W9-H04: import validation rejects outcome, work, memory, tariff, report and early-availability fabrication (451.199572ms)
+✔ W9-H05: exact evaluated ownership, R12 timing and actual unshared resident grants remain mandatory (627.476772ms)
+✔ W9-H06: owned GPUs convert useful work into actual physical execution and reconcile with the existing cost meter (1661.798263ms)
+✔ W9-H07: installed evidence and retrieval identities are captured; runtime optimizations do not alter standard work (3553.161201ms)
+ℹ tests 16
+ℹ suites 0
+ℹ pass 16
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 140973.108168

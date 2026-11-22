@@ -1,0 +1,86 @@
+{
+  "result": "PASS",
+  "snapshot": {
+    "week": 556,
+    "checksum": "7e9a62b6",
+    "source": "wave26-browser-final.json"
+  },
+  "scope": "UI-only quote reuse and lazy selected research preview. No engine, command-admission or state-validator changes.",
+  "measurement": "Whole-state structuredClone calls counted in a scratch Node process. React render timings are indicative markup-calculation timings, not browser DOM/layout measurements.",
+  "beforeAfterWholeStateClones": {
+    "researchTreeCold": {
+      "before": 25,
+      "after": 3,
+      "reductionPercent": 88
+    },
+    "combinedTreeAndLegacyResearchFirstRender": {
+      "before": 46,
+      "after": 21
+    },
+    "researchTreeSameStateRerender": 0,
+    "legacyResearchSameStateRerender": 0,
+    "syntheticPanel": {
+      "cold": 4,
+      "sameStateRerender": 0
+    },
+    "modelCorpusComparison": 0
+  },
+  "indicativeRenderMs": {
+    "researchTreeBefore": 648.23,
+    "researchTreeColdAfter": 130.7,
+    "researchTreeSameStateAfter": 43,
+    "legacyResearchSameStateAfter": 5.02,
+    "syntheticPanelColdAfter": 110.68,
+    "syntheticPanelSameStateAfter": 31.58
+  },
+  "cacheVerification": {
+    "result": "PASS",
+    "counts": {
+      "firstAuthoritativeQuote": 3,
+      "sameValueReorderedKeys": 0,
+      "actionControlSharesSelectedQuote": 0,
+      "newGameIdentityRevalidates": 3,
+      "newContentIdentityRevalidates": 3
+    },
+    "checks": [
+      "same full value and reordered keys reuse one quote",
+      "ActionControl shares selected-node quote",
+      "changed scalar payload changes cost",
+      "changed nested payload changes admission",
+      "new game and content identities revalidate",
+      "queued state rejects duplicate despite previous approval",
+      "submitCommand independently rejects duplicate",
+      "invalid draft keeps direct engine behavior",
+      "source state remains unchanged"
+    ]
+  },
+  "researchGateParity": {
+    "nodeStatusComparisons": 186,
+    "fullAuthoritativeGateComparisons": 161,
+    "scenarios": [
+      "opening",
+      "week556",
+      "insufficient_cash",
+      "queued_fee_reservation",
+      "unpaid_bills",
+      "queued_start"
+    ],
+    "assertions": {
+      "everyGraphStatusMatchesPreviousFullPreviewBehavior": true,
+      "everyEvaluatedFirstGateMatchesFullEngineMessage": true,
+      "allInputSnapshotsUnchanged": true,
+      "ownQueuedResearchRemainsQueued": true,
+      "queuedFeesReduceAffordability": true,
+      "selectedUnaffordableActionDisabledAndExplained": true,
+      "changedGameSnapshotGetsFreshSelectedAction": true
+    }
+  },
+  "submissionSafety": "Display quotes are keyed by current UI game identity, content identity and the canonical full payload. Changed state or payload recomputes the authoritative preview. submitCommand still independently validates admission; an earlier accepted quote cannot authorize a duplicate command.",
+  "rawProfiles": [
+    "/workspace/shared/frontier-lab/wave26-performance-review.json",
+    "/workspace/shared/frontier-lab/wave26-performance-clones.json",
+    "/workspace/shared/frontier-lab/wave26-performance-after.json",
+    "/workspace/shared/frontier-lab/wave26-preview-cache-verification.json",
+    "/workspace/shared/frontier-lab/wave26-tree-gate-parity.json"
+  ]
+}

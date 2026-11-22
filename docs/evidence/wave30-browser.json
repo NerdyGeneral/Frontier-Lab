@@ -1,0 +1,48 @@
+{
+  "build": "0.30.0",
+  "date": "2026-11-09",
+  "environment": "Managed Chrome preview via sites-preview and CUA",
+  "observations": [
+    "Workstation menu opened with keyboard arrows and Return; it closed before dialog focus moved to studio-decision-title.",
+    "One aria-modal dialog and nine inert background branches observed. Shift+Tab from heading focused Reset; Tab wrapped to Close.",
+    "Prepare data reviewed current $1000 commitment and Week1 timing, then real controller acceptance showed Decision queued. Projects contained one pending change; cash remained $48000 with $1000 reserved.",
+    "Document adaptation selection survived Close, reopen, planner resource detour, Return to task and Escape. Explicit Reset restored Conversation adaptation.",
+    "Close returned focus to Open train a model menu; opening and closing tasks left time paused.",
+    "Invalid JSON import displayed rejection while retaining Week0 and Resume train a model. Accepted original import cleared saved task drafts.",
+    "Completed Preference and reliability tuning result opened Preference and reliability tuning19 (model-wave15-natural-command-9), while the newest of43 candidates was Targeted synthetic curriculum20.",
+    "Classic rendered exactly one inspect-model selector, one training-recipe selector, and zero modal dialogs. Returned to Studio afterward.",
+    "Original Week556 remained paused with its one queued Week557 action. Re-export exactly matched original 1525373 bytes and SHA256."
+  ],
+  "responsive": [
+    {
+      "viewportCssWidth": 1363,
+      "viewportCssHeight": 936,
+      "result": "Centered dialog, one visible task, no document horizontal overflow"
+    },
+    {
+      "browserZoomPercent": 175,
+      "viewportCssWidth": 779,
+      "viewportCssHeight": 535,
+      "result": "Inset dialog with scrollable body and reachable footer; no horizontal overflow"
+    },
+    {
+      "browserZoomPercent": 200,
+      "viewportCssWidth": 681,
+      "viewportCssHeight": 468,
+      "result": "Short-viewport fallback active, no horizontal overflow"
+    },
+    {
+      "browserZoomPercent": 400,
+      "viewportCssWidth": 340,
+      "viewportCssHeight": 234,
+      "result": "Full-height narrow sheet, outer scrolling, no horizontal overflow; Tab scrolled Training recipe into view at y96.96\u2013140.96"
+    }
+  ],
+  "limits": [
+    "Exact device emulation was unavailable because organization policy disables DevTools. Ordinary browser zoom was used through the browser UI; no policy setting was changed.",
+    "A physical mobile keyboard and screen-reader session were not tested.",
+    "The native browser briefly served a different shared preview; the correct project was restarted. A later load failure was traced to the Wave30 catalog validator and fixed before final validation.",
+    "Read-only, stale async result, cancellation and missing-target cases have source/SSR coverage; all were not separately induced in mounted Chrome.",
+    "This is not a full repository test run or a latency benchmark."
+  ]
+}

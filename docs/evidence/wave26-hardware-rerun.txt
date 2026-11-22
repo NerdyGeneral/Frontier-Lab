@@ -1,0 +1,22 @@
+✔ W4-H01: paid specification and prototype require separate staff/work meters and next-boundary qualification; duplicate specifications cannot reroll (1700.095988ms)
+✔ W4-H02: manufacturing payment yields finite inventory after lead time; installation is the only path to staffed capacity (1428.035484ms)
+✔ W4-H03: compatible custom silicon accelerates actual work, bills physical usage, and cannot execute training or sparse work on its inference compiler (2052.556093ms)
+✔ W4-H04: sparse work is rejected without fabric, then admitted only after a paid three-meter installation; the independent resource boundary rejects forged grants (1572.91116ms)
+✔ W4-H05: fabric pause preserves paid work and elapsed time; staffing and parking still constrain a wired pool (3418.837618ms)
+✔ W4-H06: eight distinct real customer-serving weeks establish feasibility; idle allocations and internal assistant/teacher calls do not (939.211113ms)
+✔ W4-H07: qualified yield, fabrication payment, inventory capacity and prototype evidence reject checksum-independent tampering (310.538208ms)
+✔ W4-H08: save/reload preserves production lead time and hardware availability; repeated stepping stays deterministic (440.583352ms)
+✔ W4-H09: payback uses explicit utilization and fixed operating costs; low utilization cannot manufacture positive savings (519.473725ms)
+✔ W4-H10: incoming custom batches share the same finite site slots as ordinary GPU orders and wait for commissioning (567.813287ms)
+✔ W4-H11: cloud shrink cannot replace active inference memory with a training-only custom pool (426.215556ms)
+✔ W22-F01: alternate foundries freeze price, delivery and useful output on real rack orders (213.766301ms)
+✔ W23-S01: qualified orders compete with internal fabrication, then pay once on direct shipment (197.198161ms)
+✔ W23-S02: memory-heavy inference and training buyers accept different qualified designs (400.124295ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15608.607304

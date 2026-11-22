@@ -1,0 +1,32 @@
+{
+  "source": "git HEAD published Wave26",
+  "comparison": [
+    {
+      "path": "src/core/wave4-hardware-validation.ts",
+      "baselineCount": 2,
+      "currentCount": 2,
+      "sameMessages": true
+    },
+    {
+      "path": "src/core/wave8-costs-validation.ts",
+      "baselineCount": 6,
+      "currentCount": 6,
+      "sameMessages": true
+    },
+    {
+      "path": "src/modules/products.ts",
+      "baselineCount": 2,
+      "currentCount": 2,
+      "sameMessages": true
+    },
+    {
+      "path": "src/ui/studio-shell.tsx",
+      "baselineCount": 5,
+      "currentCount": 5,
+      "sameMessages": false,
+      "sameRuleSeverityAndHeadline": true,
+      "detailDifference": "React rule diagnostic source frames shift with imports and unrelated navigation additions; the two flagged effects are unchanged from HEAD."
+    }
+  ],
+  "result": "2 existing errors and 13 existing warnings; no new rule/severity/headline diagnostics in changed files."
+}

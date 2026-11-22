@@ -1,0 +1,11 @@
+
+/workspace/sites/frontier-lab/.sites-checkout/src/core/wave8-costs-validation.ts
+  205:44  warning  '_paid' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  205:64  warning  '_unpaid' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  231:26  warning  '_workloads' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  231:49  warning  '_poolUsage' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  231:73  warning  '_activities' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  231:94  warning  '_totals' is assigned a value but never used      @typescript-eslint/no-unused-vars
+
+✖ 6 problems (0 errors, 6 warnings)
+

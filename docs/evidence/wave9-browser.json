@@ -1,0 +1,188 @@
+{
+  "contentVersion": "0.10.0",
+  "week": 389,
+  "checksum": "b69b5bf0",
+  "snapshotBytes": 1392505,
+  "exactReloadBytes": true,
+  "rehearsal": {
+    "id": "release-rehearsal:command-2180",
+    "status": "complete",
+    "startedWeek": 379,
+    "completedWeek": 379,
+    "availableWeek": 380,
+    "sourceOutcomes": {
+      "cases": 100,
+      "useful": 76,
+      "confidentError": 11,
+      "falseRefusal": 9,
+      "clarification": 4,
+      "technicalErrorBps": 1662
+    },
+    "candidateOutcomes": {
+      "cases": 100,
+      "useful": 74,
+      "confidentError": 12,
+      "falseRefusal": 10,
+      "clarification": 4,
+      "technicalErrorBps": 1742
+    }
+  },
+  "release": {
+    "startCommandId": "command-2193",
+    "startedWeek": 381,
+    "requiredWork": 2000000000,
+    "completedWork": 2000000000,
+    "physicalWork": 1111111112,
+    "requiredStaff": 2000000000,
+    "completedStaff": 2000000000,
+    "requiredMemory": 2330000000,
+    "paused": false,
+    "completedWeek": 382,
+    "availableWeek": 383,
+    "promotionCommandId": "command-2208",
+    "promotionWeek": 384,
+    "cutoverWeek": 385,
+    "lastProgress": 1000000000,
+    "lastBottleneck": "",
+    "lastGrant": {
+      "week": 382,
+      "requestedWork": 1000000000,
+      "grantedWork": 1000000000,
+      "physicalWork": 555555556,
+      "memoryMU": 2330000000,
+      "poolId": "owned:colocation:training",
+      "staff": 1000000000
+    },
+    "id": "prepared-release:command-2193",
+    "companyId": "company-player",
+    "productId": "product:natural-business-command-67",
+    "rehearsalId": "release-rehearsal:command-2180",
+    "sourceDeployment": {
+      "id": "deployment:wave7-natural-command-18",
+      "companyId": "company-player",
+      "productId": "product:natural-business-command-67",
+      "modelId": "model-wave7-natural-command-14",
+      "status": "active",
+      "startedWeek": 307,
+      "requiredStaff": 1000000000,
+      "completedStaff": 1000000000,
+      "readyWeek": 308,
+      "lastBottleneck": ""
+    },
+    "sourceModelId": "model-wave7-natural-command-14",
+    "candidateModelId": "variant:wave9-natural-command-2",
+    "configurationFingerprint": "6d23771a",
+    "status": "released",
+    "candidateDeploymentId": "prepared-deployment:prepared-release:command-2193",
+    "releasedWeek": 385,
+    "postCutoverFingerprint": "6d23771a",
+    "rollbackExpiresWeek": 391,
+    "rollback": {
+      "startCommandId": "command-2219",
+      "startedWeek": 386,
+      "requiredWork": 1000000000,
+      "completedWork": 1000000000,
+      "physicalWork": 555555556,
+      "requiredStaff": 1000000000,
+      "completedStaff": 1000000000,
+      "requiredMemory": 2330000000,
+      "paused": false,
+      "completedWeek": 386,
+      "availableWeek": 387,
+      "promotionCommandId": "command-2228",
+      "promotionWeek": 388,
+      "cutoverWeek": 389,
+      "lastProgress": 1000000000,
+      "lastBottleneck": "",
+      "lastGrant": {
+        "week": 386,
+        "requestedWork": 1000000000,
+        "grantedWork": 1000000000,
+        "physicalWork": 555555556,
+        "memoryMU": 2330000000,
+        "poolId": "owned:colocation:training",
+        "staff": 1000000000
+      },
+      "id": "rollback:prepared-release:command-2193",
+      "status": "complete",
+      "sourceDeploymentId": "prepared-deployment:prepared-release:command-2193",
+      "configurationFingerprint": "6d23771a",
+      "restoredDeploymentId": "rollback-deployment:prepared-release:command-2193",
+      "restoredWeek": 389
+    }
+  },
+  "product": {
+    "id": "product:natural-business-command-67",
+    "companyId": "company-player",
+    "name": "Developer API",
+    "kind": "developer-api",
+    "features": {
+      "memory": false,
+      "extendedContext": true,
+      "deepReasoning": true
+    },
+    "deploymentId": "rollback-deployment:prepared-release:command-2193",
+    "contractId": "contract:natural-business-command-67",
+    "status": "active",
+    "createdWeek": 106,
+    "publicModelId": "model-wave7-natural-command-14"
+  },
+  "finalUsage": {
+    "week": 389,
+    "productId": "product:natural-business-command-67",
+    "paidAccounts": 153,
+    "trialAccounts": 4,
+    "requestedWork": 46123500000,
+    "executedWork": 46123500000,
+    "paidRequestedWork": 45823500000,
+    "paidExecutedWork": 45823500000,
+    "trialRequestedWork": 300000000,
+    "trialExecutedWork": 300000000,
+    "exchanges": 92247,
+    "fulfillmentBps": 10000,
+    "errorBps": 1662,
+    "behavior": {
+      "confidentErrorBps": 1000,
+      "falseRefusalBps": 700
+    },
+    "trialCompletedIds": [
+      "trial-2361"
+    ],
+    "grossBillCents": 2291487,
+    "creditsCents": 0,
+    "billedCents": 2291487,
+    "segments": [
+      {
+        "segmentId": "developers",
+        "accounts": 153,
+        "requestedExchanges": 91647,
+        "requestedWork": 45823500000,
+        "errorBps": 1662
+      }
+    ],
+    "tokens": {
+      "inputTokens": 91647000,
+      "outputTokens": 9164700,
+      "internalTokens": 18329400,
+      "inputPriceCentsPerMillion": 10001,
+      "outputPriceCentsPerMillion": 50008,
+      "billCarryIn": 902400,
+      "billCarryOut": 502200,
+      "physicalWork": 46123500000,
+      "ownedVariableCostCents": 0
+    }
+  },
+  "restoredOriginalPreview": true,
+  "screenshot": "../images/frontier-lab-wave9-releases.png",
+  "actions": [
+    "Imported earned Week378 company through the normal file chooser",
+    "Selected the compressed candidate and queued a rehearsal",
+    "Advanced to comparison availability in Week380",
+    "Prepared a handover and advanced its ordinary work and availability",
+    "Explicitly promoted; observed scheduled Week384 and live candidate in Week385",
+    "Prepared one paid rollback and explicitly promoted it",
+    "Observed retained-source restoration Week389",
+    "Exported through the UI, reloaded, and exported byte-identical state",
+    "Reimported the saved original Week0 preview"
+  ]
+}

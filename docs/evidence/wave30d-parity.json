@@ -1,0 +1,521 @@
+{
+  "baselineCommit": "b69fdea096175d25479f82d076a28b044f2ef6ff",
+  "currentBuild": "0.30.3",
+  "baselineBuild": "0.30.2",
+  "method": "Baseline normalizes each fixture once, then both implementations import the identical serialized bytes. Full command results, states, serialized saves and final browser-storage writes are compared. The additive saved-byte receipt is checked against the exact primary snapshot. No browser UI is involved.",
+  "normalization": "Only the newly created company buildVersion header is normalized for the initial-state comparison. Subsequent full results, states, saves and browser-storage bytes use identical imported fixture headers and are compared without normalization.",
+  "newCompanyEqualExceptBuildVersion": true,
+  "checkpoints": [
+    {
+      "scenario": "opening-first-sale",
+      "label": "identical imported baseline",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 0,
+      "checksum": "83598b30",
+      "serializedBytes": 41831,
+      "sha256": "3d25570b6af78b8e7014e3e727096278d5a3a9704440a2d7900bd7c47d81ab27"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "reject training on unprepared data",
+      "accepted": false,
+      "rejectionReason": "Every selected packet must belong to your company and be fully prepared.",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 0,
+      "checksum": "83598b30",
+      "serializedBytes": 41831,
+      "sha256": "3d25570b6af78b8e7014e3e727096278d5a3a9704440a2d7900bd7c47d81ab27"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "prepare starter data",
+      "accepted": true,
+      "commandId": "command-2",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 1,
+      "checksum": "3e1b563b",
+      "serializedBytes": 42303,
+      "sha256": "c0b1248c33371f071372efc3a520ddf4bd3ed4ea0a9298d11a19c6fa86973cd1"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "hire ML engineer",
+      "accepted": true,
+      "commandId": "command-4",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 2,
+      "checksum": "4f6cc4f7",
+      "serializedBytes": 42742,
+      "sha256": "15d82abf800b39f81db8e1dd5dc87b928d4869d8869d096ae70554576f66f00a"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "allocate development compute",
+      "accepted": true,
+      "commandId": "command-6",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 3,
+      "checksum": "49e51c0d",
+      "serializedBytes": 43310,
+      "sha256": "7b6d3f1fa6ecba1697d6b3c4ba9b6aa938caabaa81c36e4e9c40f740da9a42d1"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "preparation/onboarding 1",
+      "accepted": true,
+      "week": 1,
+      "cashCents": 4420000,
+      "queuedCount": 0,
+      "checksum": "8f3e8fb8",
+      "serializedBytes": 71802,
+      "sha256": "decb95cbf71d447d19c38e20ffbf40378c7c591f6383ff5afbdd4c1e0bb7b4ce"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "preparation/onboarding 2",
+      "accepted": true,
+      "week": 2,
+      "cashCents": 4290000,
+      "queuedCount": 0,
+      "checksum": "32f9bc64",
+      "serializedBytes": 88005,
+      "sha256": "a3a498aa710bf6d8d3fb8771259465ef208e108728c9e220bb2a20f1fb359437"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "assign founder to research",
+      "accepted": true,
+      "commandId": "command-15",
+      "week": 2,
+      "cashCents": 4290000,
+      "queuedCount": 1,
+      "checksum": "cf2629d0",
+      "serializedBytes": 88624,
+      "sha256": "a95fa7ec8be0113acf9c4c05b3bb960e196d7e98489a571ce56b10c93841cbf7"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "train exact starter candidate",
+      "accepted": true,
+      "commandId": "command-17",
+      "week": 2,
+      "cashCents": 4290000,
+      "queuedCount": 2,
+      "checksum": "6aefa512",
+      "serializedBytes": 89168,
+      "sha256": "169d74c230c5d43bc8b5db3604da7c392d9eff229ffe6dfe27c8b270e2d466d6"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "training 1",
+      "accepted": true,
+      "week": 3,
+      "cashCents": 4160000,
+      "queuedCount": 0,
+      "checksum": "f11234f9",
+      "serializedBytes": 108424,
+      "sha256": "603d196c1b35a11fec2cba7dfbf1df698390dc38239b9e7f1f6575ed9d804899"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "training 2",
+      "accepted": true,
+      "week": 4,
+      "cashCents": 4030000,
+      "queuedCount": 1,
+      "checksum": "7f2ab368",
+      "serializedBytes": 124443,
+      "sha256": "c07e0c3183a79392fcc4dc7d2eb0e395c7fe5c60ce3bcf815e12344e38cd4278"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "training 3",
+      "accepted": true,
+      "week": 5,
+      "cashCents": 3900000,
+      "queuedCount": 0,
+      "checksum": "f6a52cdc",
+      "serializedBytes": 142057,
+      "sha256": "bc05f32835c98c13c0af9d9db2454b168c28313e80d28a933b83cdf05390b4a7"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "evaluate exact output",
+      "accepted": true,
+      "commandId": "command-29",
+      "week": 5,
+      "cashCents": 3900000,
+      "queuedCount": 1,
+      "checksum": "daa7594f",
+      "serializedBytes": 142559,
+      "sha256": "1322d8fd5bbdddd56da00f09409c89d3702550cc1f6dcfae7100842026dc6091"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "evaluation",
+      "accepted": true,
+      "week": 6,
+      "cashCents": 3770000,
+      "queuedCount": 1,
+      "checksum": "63953fc3",
+      "serializedBytes": 167096,
+      "sha256": "8637b7a48ca16f7d2893cfe9adaaaeec6c761eb6ddfab3248d65993b720d180b"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deploy Basic Chat",
+      "accepted": true,
+      "commandId": "command-36",
+      "week": 6,
+      "cashCents": 3770000,
+      "queuedCount": 2,
+      "checksum": "287b05ed",
+      "serializedBytes": 167596,
+      "sha256": "d5688a223e26efbced2d732d88421a4d010233f9ff08412fc2b9bc198adcc476"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "allocate serving compute",
+      "accepted": true,
+      "commandId": "command-38",
+      "week": 6,
+      "cashCents": 3770000,
+      "queuedCount": 3,
+      "checksum": "cda67174",
+      "serializedBytes": 168166,
+      "sha256": "ef82a74c5aa1aa9ec8e3bf896d7faf9e0fcd52297ff5d949779d156f91e46996"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 1",
+      "accepted": true,
+      "week": 7,
+      "cashCents": 3640000,
+      "queuedCount": 0,
+      "checksum": "af8cf541",
+      "serializedBytes": 188019,
+      "sha256": "85685509586f9a03ca847c89b69c386ce3711c622fab6e0433a3d20a031dfbad"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 2",
+      "accepted": true,
+      "week": 8,
+      "cashCents": 3510000,
+      "queuedCount": 2,
+      "checksum": "a8027e87",
+      "serializedBytes": 198568,
+      "sha256": "9a14448d7501b80a8de4142d688a6766906bf5018c42759c1bc0fac03a1d0ef0"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 3",
+      "accepted": true,
+      "week": 9,
+      "cashCents": 3380000,
+      "queuedCount": 0,
+      "checksum": "9ec53900",
+      "serializedBytes": 202451,
+      "sha256": "6842e95690a885d1c80f43b1f94fe34712a7fb1d00cddef796674eca798373a3"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 4",
+      "accepted": true,
+      "week": 10,
+      "cashCents": 3260800,
+      "queuedCount": 0,
+      "checksum": "0c320f9e",
+      "serializedBytes": 207691,
+      "sha256": "1fc0a8156e2b27033e68e3ce6e5ed4a3c248fa33ba08af5ebc7a9ac53a418d5f"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "identical imported baseline",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 0,
+      "checksum": "94738a07",
+      "serializedBytes": 1461888,
+      "sha256": "3585f115010b41b48355dcf14c44f32ae6baed619f48442a5728183056f614e6"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "reject missing research",
+      "accepted": false,
+      "rejectionReason": "This research is planned for a later wave and has no active project yet.",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 0,
+      "checksum": "94738a07",
+      "serializedBytes": 1461888,
+      "sha256": "3585f115010b41b48355dcf14c44f32ae6baed619f48442a5728183056f614e6"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "hire data employee",
+      "accepted": true,
+      "commandId": "command-3150",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 1,
+      "checksum": "6abde2f6",
+      "serializedBytes": 1462028,
+      "sha256": "2c3b5dbcecb1bf758ce7e7d23fa585ed337e5f19734ab56b1a289823ae18d59d"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "rebalance shared capacity",
+      "accepted": true,
+      "commandId": "command-3152",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 2,
+      "checksum": "02d24d8c",
+      "serializedBytes": 1462245,
+      "sha256": "9cad88358577f8bd2573e9f92a4be922a41ffe37ca53a73c03b3cbed3533f226"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "reject terms change while a prepared release owns the exact Chat product",
+      "accepted": false,
+      "rejectionReason": "Finish or discard this product’s prepared release before changing its model, terms, features, session history, retrieval, efficiency, or runtime guardrail settings.",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 2,
+      "checksum": "02d24d8c",
+      "serializedBytes": 1462245,
+      "sha256": "9cad88358577f8bd2573e9f92a4be922a41ffe37ca53a73c03b3cbed3533f226"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "advanced settlement 1",
+      "accepted": true,
+      "week": 554,
+      "cashCents": 611674275,
+      "queuedCount": 0,
+      "checksum": "e6638bc6",
+      "serializedBytes": 1458949,
+      "sha256": "838fca9d793c9d66fe0f4fa063519fdfa294d2c71cea6a7de247e2dc96d5e1eb"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "advanced settlement 2",
+      "accepted": true,
+      "week": 555,
+      "cashCents": 613140511,
+      "queuedCount": 0,
+      "checksum": "ed2a07fa",
+      "serializedBytes": 1458567,
+      "sha256": "a12c7f506af7a5ff32f8184d87b2cdf255a5ffbb1a25e2ad5ea65f3ebd68e7cc"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "label": "identical imported baseline",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 0,
+      "checksum": "83598b30",
+      "serializedBytes": 41831,
+      "sha256": "3d25570b6af78b8e7014e3e727096278d5a3a9704440a2d7900bd7c47d81ab27"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "label": "hire ML for focused staffing",
+      "accepted": true,
+      "commandId": "command-2",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 1,
+      "checksum": "d7d47c14",
+      "serializedBytes": 42274,
+      "sha256": "9fba973b811b6a5e5b578d0666d58f671456571a4e47138e29ff17ebd239512f"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "label": "hire boundary and payroll before readiness",
+      "accepted": true,
+      "week": 1,
+      "cashCents": 4520000,
+      "queuedCount": 0,
+      "checksum": "96b2f083",
+      "serializedBytes": 69605,
+      "sha256": "9ef4a411cf2b4020254735a7ec837414862a7027728111592b44a9052980c4d3"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "label": "assign onboarding employee half FTE",
+      "accepted": true,
+      "commandId": "command-6",
+      "week": 1,
+      "cashCents": 4520000,
+      "queuedCount": 1,
+      "checksum": "6ac98644",
+      "serializedBytes": 70092,
+      "sha256": "4342a4d114c99413d922969eb146e97fb6b682d2cdeab8bf633c72e9153a4517"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "label": "split founder research and data",
+      "accepted": true,
+      "commandId": "command-8",
+      "week": 1,
+      "cashCents": 4520000,
+      "queuedCount": 2,
+      "checksum": "59b94742",
+      "serializedBytes": 70713,
+      "sha256": "4a48f10b8e4ce16995954fe4978bc4ca9420beeb1b83d5e5d1ba777c1126de0f"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "label": "assignment boundary before onboarding completes",
+      "accepted": true,
+      "week": 2,
+      "cashCents": 4390000,
+      "queuedCount": 0,
+      "checksum": "81bd0d59",
+      "serializedBytes": 86403,
+      "sha256": "177de10053867f1a90d511b38a56bf6488951211d4c70f47fd8630b2aed31c7e"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "label": "employee reaches recorded ready week",
+      "accepted": true,
+      "week": 3,
+      "cashCents": 4260000,
+      "queuedCount": 0,
+      "checksum": "b616fe1d",
+      "serializedBytes": 100888,
+      "sha256": "5070f52ae2c13c1f693974bca4bf0e924f3633dcb79483742b8541cea8fafc0a"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "label": "reject missing employee assignment",
+      "accepted": false,
+      "rejectionReason": "That employee does not belong to this company.",
+      "week": 3,
+      "cashCents": 4260000,
+      "queuedCount": 0,
+      "checksum": "b616fe1d",
+      "serializedBytes": 100888,
+      "sha256": "5070f52ae2c13c1f693974bca4bf0e924f3633dcb79483742b8541cea8fafc0a"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "label": "atomic people and compute plan",
+      "accepted": true,
+      "commandId": "command-15",
+      "week": 3,
+      "cashCents": 4260000,
+      "queuedCount": 1,
+      "checksum": "5d4218fd",
+      "serializedBytes": 102073,
+      "sha256": "35aae628fae9e00da7ba1018690169bec4ec7f9aeed93650f7ace0743d72c01d"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "label": "atomic plan settlement",
+      "accepted": true,
+      "week": 4,
+      "cashCents": 4050000,
+      "queuedCount": 1,
+      "checksum": "91d8a3f0",
+      "serializedBytes": 116703,
+      "sha256": "a37cfcdcf155b2b1e9682d7dda29aaf07ecc0b5fa1bc3dd84c4772464490fbc1"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "opening-first-sale",
+      "source": "Baseline-created opening serialized before either implementation imports it",
+      "bytes": 41831,
+      "sha256": "3d25570b6af78b8e7014e3e727096278d5a3a9704440a2d7900bd7c47d81ab27",
+      "week": 0,
+      "retainedBuildHeader": "0.30.2"
+    },
+    {
+      "name": "advanced-commercial-company",
+      "source": {
+        "path": "tests/fixtures/wave27-canary-published.json",
+        "sourceSha256": "8fbb318b6f1d0a7adf44a97f773992e36d6eb80523cbeb8c92a9334017daf1ac",
+        "normalization": "Baseline migration once; shared content 0.28.0 snapshot imported by both implementations"
+      },
+      "bytes": 1461888,
+      "sha256": "3585f115010b41b48355dcf14c44f32ae6baed619f48442a5728183056f614e6",
+      "week": 553,
+      "retainedBuildHeader": "0.30.2"
+    },
+    {
+      "name": "focused-staffing-and-resources",
+      "source": "Baseline-created opening; ordinary hires, founder/employee assignments and one atomic people/compute plan",
+      "bytes": 41831,
+      "sha256": "3d25570b6af78b8e7014e3e727096278d5a3a9704440a2d7900bd7c47d81ab27",
+      "week": 0,
+      "retainedBuildHeader": "0.30.2"
+    }
+  ],
+  "persistence": [
+    {
+      "scenario": "opening-first-sale",
+      "writesCompared": 3,
+      "legacyWritesCompared": 2,
+      "additiveReceiptWritesCompared": 1,
+      "keys": [
+        {
+          "key": "frontier-lab.wave0.snapshot",
+          "bytes": 207691,
+          "sha256": "1fc0a8156e2b27033e68e3ce6e5ed4a3c248fa33ba08af5ebc7a9ac53a418d5f"
+        }
+      ]
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "writesCompared": 3,
+      "legacyWritesCompared": 2,
+      "additiveReceiptWritesCompared": 1,
+      "keys": [
+        {
+          "key": "frontier-lab.wave0.snapshot",
+          "bytes": 1458567,
+          "sha256": "a12c7f506af7a5ff32f8184d87b2cdf255a5ffbb1a25e2ad5ea65f3ebd68e7cc"
+        }
+      ]
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "writesCompared": 3,
+      "legacyWritesCompared": 2,
+      "additiveReceiptWritesCompared": 1,
+      "keys": [
+        {
+          "key": "frontier-lab.wave0.snapshot",
+          "bytes": 116703,
+          "sha256": "a37cfcdcf155b2b1e9682d7dda29aaf07ecc0b5fa1bc3dd84c4772464490fbc1"
+        }
+      ]
+    }
+  ],
+  "savedByteReceipts": [
+    {
+      "scenario": "opening-first-sale",
+      "bytes": 207691,
+      "sha256": "1fc0a8156e2b27033e68e3ce6e5ed4a3c248fa33ba08af5ebc7a9ac53a418d5f"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "bytes": 1458567,
+      "sha256": "a12c7f506af7a5ff32f8184d87b2cdf255a5ffbb1a25e2ad5ea65f3ebd68e7cc"
+    },
+    {
+      "scenario": "focused-staffing-and-resources",
+      "bytes": 116703,
+      "sha256": "a37cfcdcf155b2b1e9682d7dda29aaf07ecc0b5fa1bc3dd84c4772464490fbc1"
+    }
+  ],
+  "allEqual": true
+}

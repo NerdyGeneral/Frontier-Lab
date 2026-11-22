@@ -1,0 +1,618 @@
+{
+  "title": "Frontier Lab 0.34 — paid challenge progression proof",
+  "proofKind": "Ordinary-command continuation of a published mature company; no balances, research, assets, staff, model scores or work grants were injected.",
+  "reproduction": {
+    "command": "node scripts/test-wave0.mjs challenge-progression",
+    "harness": "tests/challenge-progression.test.ts",
+    "startingFixture": "tests/fixtures/wave26-published.json",
+    "fixtureChecksum": "7e9a62b6"
+  },
+  "scope": {
+    "startingWeek": 556,
+    "endingWeek": 638,
+    "ordinaryWeeks": 82,
+    "startingCashCents": 615519786,
+    "endingCashCents": 700122048,
+    "minimumCashCents": 615519786,
+    "endingArrearsCents": 0,
+    "alreadyOwnedPrerequisites": [
+      "R1",
+      "R2",
+      "R3"
+    ],
+    "freshStartPlaythrough": false,
+    "gameContentVersion": "0.34.0"
+  },
+  "data": {
+    "catalogId": "advanced-broad-1",
+    "qualityBps": 9500,
+    "rawUnits": 600,
+    "readyUnits": 600,
+    "coreRelevantUnits": 390,
+    "advancedRelevantUnits": 360,
+    "behaviorUnits": 120,
+    "purchaseFeeCents": 1600000,
+    "paidStaffWork": [
+      {
+        "kind": "prepare",
+        "requiredStaff": 5000000000,
+        "completedStaff": 5000000000,
+        "completedWeek": 560
+      },
+      {
+        "kind": "curate",
+        "requiredStaff": 3000000000,
+        "completedStaff": 3000000000,
+        "completedWeek": 561
+      }
+    ]
+  },
+  "architectureResearch": [
+    {
+      "level": 1,
+      "focus": "reliability",
+      "startedWeek": 562,
+      "completedWeek": 562,
+      "availableWeek": 563,
+      "feeCents": 250000,
+      "requiredWork": 8000000000,
+      "completedWork": 8000000000,
+      "physicalWork": 4444444445,
+      "requiredStaff": 2000000000,
+      "completedStaff": 2000000000
+    },
+    {
+      "level": 2,
+      "focus": "reliability",
+      "startedWeek": 564,
+      "completedWeek": 564,
+      "availableWeek": 565,
+      "feeCents": 1000000,
+      "requiredWork": 32000000000,
+      "completedWork": 32000000000,
+      "physicalWork": 32000000000,
+      "requiredStaff": 3000000000,
+      "completedStaff": 3000000000
+    },
+    {
+      "level": 3,
+      "focus": "reliability",
+      "startedWeek": 566,
+      "completedWeek": 568,
+      "availableWeek": 569,
+      "feeCents": 2250000,
+      "requiredWork": 72000000000,
+      "completedWork": 72000000000,
+      "physicalWork": 68444444445,
+      "requiredStaff": 4000000000,
+      "completedStaff": 4000000000
+    },
+    {
+      "level": 4,
+      "focus": "reliability",
+      "startedWeek": 570,
+      "completedWeek": 573,
+      "availableWeek": 574,
+      "feeCents": 4000000,
+      "requiredWork": 128000000000,
+      "completedWork": 128000000000,
+      "physicalWork": 128000000000,
+      "requiredStaff": 5000000000,
+      "completedStaff": 5000000000
+    },
+    {
+      "level": 5,
+      "focus": "reliability",
+      "startedWeek": 575,
+      "completedWeek": 581,
+      "availableWeek": 582,
+      "feeCents": 6250000,
+      "requiredWork": 200000000000,
+      "completedWork": 200000000000,
+      "physicalWork": 196444444445,
+      "requiredStaff": 6000000000,
+      "completedStaff": 6000000000
+    }
+  ],
+  "design": {
+    "spec": {
+      "name": "Horizon proof 32B",
+      "mode": "foundation",
+      "family": "medium",
+      "parameterMillions": 32000,
+      "sparsityBps": 0,
+      "computeBudgetCUw": 1600000000000,
+      "dataMix": {
+        "conversation": 1,
+        "documents": 1,
+        "coding": 1,
+        "tools": 1,
+        "reasoning": 1,
+        "longContext": 1,
+        "multimodal": 1
+      }
+    },
+    "researchLevel": 5,
+    "frontierRating": 866,
+    "researchFocus": {
+      "counts": {
+        "balanced": 0,
+        "capability": 0,
+        "efficiency": 0,
+        "reliability": 5
+      },
+      "capacityBonusBps": 681,
+      "efficiencyBonusBps": 340,
+      "reliabilityBonusBps": 650
+    },
+    "servingWorkBps": 19320,
+    "requiredEvidence": 263000000000,
+    "ceilings": {
+      "conversation": 9481,
+      "documents": 9481,
+      "coding": 9481,
+      "tools": 9481
+    },
+    "advancedCeilings": {
+      "reasoning": 9481,
+      "longContext": 9481,
+      "multimodal": 9481
+    }
+  },
+  "paidTraining": {
+    "modelId": "model-challenge-feasibility-command-13",
+    "startedWeek": 584,
+    "completedWeek": 634,
+    "feeCents": 530000,
+    "requiredWork": 1600000000000,
+    "completedWork": 1600000000000,
+    "physicalWork": 1600000000000,
+    "requiredMemory": 48000000000,
+    "preparationRequired": 5000000000,
+    "preparationCompleted": 5000000000,
+    "residentMU": 16000000000
+  },
+  "earnedModel": {
+    "capabilityBps": {
+      "conversation": 9107,
+      "documents": 9107,
+      "coding": 9057,
+      "tools": 9057
+    },
+    "advancedCapabilities": {
+      "reasoning": 9007,
+      "longContext": 9007,
+      "multimodal": 9007
+    },
+    "reliabilityBps": 9708
+  },
+  "paidEvaluations": [
+    {
+      "suiteId": "expanded-capabilities-1",
+      "startedWeek": 635,
+      "completedWeek": 635,
+      "requiredWork": 4000000000,
+      "completedWork": 4000000000,
+      "requiredStaff": 1000000000,
+      "completedStaff": 1000000000,
+      "passedCases": 95,
+      "totalCases": 100,
+      "earnedTitle": null,
+      "perSkill": null
+    },
+    {
+      "suiteId": "challenge-applied-1",
+      "startedWeek": 636,
+      "completedWeek": 636,
+      "requiredWork": 8000000000,
+      "completedWork": 8000000000,
+      "requiredStaff": 2000000000,
+      "completedStaff": 2000000000,
+      "passedCases": 21,
+      "totalCases": 21,
+      "earnedTitle": "Applied Researcher",
+      "perSkill": {
+        "conversation": {
+          "passed": 3,
+          "total": 3
+        },
+        "documents": {
+          "passed": 3,
+          "total": 3
+        },
+        "coding": {
+          "passed": 3,
+          "total": 3
+        },
+        "tools": {
+          "passed": 3,
+          "total": 3
+        },
+        "reasoning": {
+          "passed": 3,
+          "total": 3
+        },
+        "longContext": {
+          "passed": 3,
+          "total": 3
+        },
+        "multimodal": {
+          "passed": 3,
+          "total": 3
+        }
+      }
+    },
+    {
+      "suiteId": "challenge-frontier-1",
+      "startedWeek": 637,
+      "completedWeek": 637,
+      "requiredWork": 16000000000,
+      "completedWork": 16000000000,
+      "requiredStaff": 3000000000,
+      "completedStaff": 3000000000,
+      "passedCases": 21,
+      "totalCases": 21,
+      "earnedTitle": "Frontier Fellow",
+      "perSkill": {
+        "conversation": {
+          "passed": 3,
+          "total": 3
+        },
+        "documents": {
+          "passed": 3,
+          "total": 3
+        },
+        "coding": {
+          "passed": 3,
+          "total": 3
+        },
+        "tools": {
+          "passed": 3,
+          "total": 3
+        },
+        "reasoning": {
+          "passed": 3,
+          "total": 3
+        },
+        "longContext": {
+          "passed": 3,
+          "total": 3
+        },
+        "multimodal": {
+          "passed": 3,
+          "total": 3
+        }
+      }
+    },
+    {
+      "suiteId": "challenge-horizon-1",
+      "startedWeek": 638,
+      "completedWeek": 638,
+      "requiredWork": 28000000000,
+      "completedWork": 28000000000,
+      "requiredStaff": 4000000000,
+      "completedStaff": 4000000000,
+      "passedCases": 21,
+      "totalCases": 21,
+      "earnedTitle": "Horizon Laureate",
+      "perSkill": {
+        "conversation": {
+          "passed": 3,
+          "total": 3
+        },
+        "documents": {
+          "passed": 3,
+          "total": 3
+        },
+        "coding": {
+          "passed": 3,
+          "total": 3
+        },
+        "tools": {
+          "passed": 3,
+          "total": 3
+        },
+        "reasoning": {
+          "passed": 3,
+          "total": 3
+        },
+        "longContext": {
+          "passed": 3,
+          "total": 3
+        },
+        "multimodal": {
+          "passed": 3,
+          "total": 3
+        }
+      }
+    }
+  ],
+  "achievementsAfterSaveReload": [
+    {
+      "tierId": "applied",
+      "title": "Applied Researcher",
+      "reportId": "report-evaluation-challenge-feasibility-command-15",
+      "modelId": "model-challenge-feasibility-command-13",
+      "week": 636
+    },
+    {
+      "tierId": "frontier",
+      "title": "Frontier Fellow",
+      "reportId": "report-evaluation-challenge-feasibility-command-16",
+      "modelId": "model-challenge-feasibility-command-13",
+      "week": 637
+    },
+    {
+      "tierId": "horizon",
+      "title": "Horizon Laureate",
+      "reportId": "report-evaluation-challenge-feasibility-command-17",
+      "modelId": "model-challenge-feasibility-command-13",
+      "week": 638
+    }
+  ],
+  "focusComparison": {
+    "method": "Four separately paid Architecture level-1 branches from the same company; subsequent 8B compact foundation outcomes are deterministic getTrainingPreview forecasts, not four completed training runs.",
+    "spec": {
+      "family": "compact",
+      "parameterMillions": 8000,
+      "sparsityBps": 0,
+      "computeBudgetCUw": 400000000000,
+      "dataMix": "Equal weights across all seven skills",
+      "dataQualityBps": 9500
+    },
+    "results": [
+      {
+        "focus": "balanced",
+        "capacityBps": 7957,
+        "servingWorkBps": 19643,
+        "reliabilityTargetBps": 9200,
+        "forecastCore": {
+          "conversation": 7659,
+          "documents": 7659,
+          "coding": 7609,
+          "tools": 7609
+        },
+        "forecastAdvanced": {
+          "reasoning": 7559,
+          "longContext": 7559,
+          "multimodal": 7559
+        },
+        "forecastReliabilityBps": 9090
+      },
+      {
+        "focus": "capability",
+        "capacityBps": 8171,
+        "servingWorkBps": 19930,
+        "reliabilityTargetBps": 9200,
+        "forecastCore": {
+          "conversation": 7862,
+          "documents": 7862,
+          "coding": 7812,
+          "tools": 7812
+        },
+        "forecastAdvanced": {
+          "reasoning": 7762,
+          "longContext": 7762,
+          "multimodal": 7762
+        },
+        "forecastReliabilityBps": 9090
+      },
+      {
+        "focus": "efficiency",
+        "capacityBps": 7742,
+        "servingWorkBps": 19358,
+        "reliabilityTargetBps": 9200,
+        "forecastCore": {
+          "conversation": 7455,
+          "documents": 7455,
+          "coding": 7405,
+          "tools": 7405
+        },
+        "forecastAdvanced": {
+          "reasoning": 7355,
+          "longContext": 7355,
+          "multimodal": 7355
+        },
+        "forecastReliabilityBps": 9090
+      },
+      {
+        "focus": "reliability",
+        "capacityBps": 7814,
+        "servingWorkBps": 19786,
+        "reliabilityTargetBps": 9414,
+        "forecastCore": {
+          "conversation": 7523,
+          "documents": 7523,
+          "coding": 7473,
+          "tools": 7473
+        },
+        "forecastAdvanced": {
+          "reasoning": 7423,
+          "longContext": 7423,
+          "multimodal": 7423
+        },
+        "forecastReliabilityBps": 9293
+      }
+    ],
+    "caveats": [
+      "No focus dominates across skill capacity, serving efficiency and reliability before saturation.",
+      "After the cumulative 650-basis-point reliability bonus cap, another reliability-focus iteration gives no further reliability gain and balanced is better on both remaining gains.",
+      "Capacity gains stop helping a design when its family-adjusted ceiling reaches 9950 basis points."
+    ]
+  },
+  "commandManifest": [
+    {
+      "week": 556,
+      "id": "challenge-feasibility-command-1",
+      "payload": {
+        "kind": "set_cloud_capacity",
+        "cu": 128000000000
+      }
+    },
+    {
+      "week": 557,
+      "id": "challenge-feasibility-command-2",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 160000000000,
+        "development": 0,
+        "research": 32000000000
+      }
+    },
+    {
+      "week": 557,
+      "id": "challenge-feasibility-command-3",
+      "payload": {
+        "kind": "assign_founder",
+        "allocations": {
+          "research": 1000000000,
+          "ml": 0,
+          "data": 0,
+          "infrastructure": 0,
+          "commercial": 0,
+          "hardware": 0
+        }
+      }
+    },
+    {
+      "week": 558,
+      "id": "challenge-feasibility-command-4",
+      "payload": {
+        "kind": "buy_data",
+        "catalogId": "advanced-broad-1"
+      }
+    },
+    {
+      "week": 559,
+      "id": "challenge-feasibility-command-5",
+      "payload": {
+        "kind": "prepare_data",
+        "packetId": "data-company-player-advanced-broad-1"
+      }
+    },
+    {
+      "week": 560,
+      "id": "challenge-feasibility-command-6",
+      "payload": {
+        "kind": "curate_data",
+        "packetId": "data-company-player-advanced-broad-1"
+      }
+    },
+    {
+      "week": 561,
+      "id": "challenge-feasibility-command-7",
+      "payload": {
+        "kind": "start_model_research",
+        "focus": "reliability"
+      }
+    },
+    {
+      "week": 563,
+      "id": "challenge-feasibility-command-8",
+      "payload": {
+        "kind": "start_model_research",
+        "focus": "reliability"
+      }
+    },
+    {
+      "week": 565,
+      "id": "challenge-feasibility-command-9",
+      "payload": {
+        "kind": "start_model_research",
+        "focus": "reliability"
+      }
+    },
+    {
+      "week": 569,
+      "id": "challenge-feasibility-command-10",
+      "payload": {
+        "kind": "start_model_research",
+        "focus": "reliability"
+      }
+    },
+    {
+      "week": 574,
+      "id": "challenge-feasibility-command-11",
+      "payload": {
+        "kind": "start_model_research",
+        "focus": "reliability"
+      }
+    },
+    {
+      "week": 582,
+      "id": "challenge-feasibility-command-12",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 160000000000,
+        "development": 32000000000,
+        "research": 0
+      }
+    },
+    {
+      "week": 583,
+      "id": "challenge-feasibility-command-13",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "seed-0",
+        "packetId": "curated-challenge-feasibility-command-6",
+        "packetIds": [
+          "curated-challenge-feasibility-command-6"
+        ],
+        "recipeId": "custom-model-foundation",
+        "modelDesign": {
+          "name": "Horizon proof 32B",
+          "mode": "foundation",
+          "family": "medium",
+          "parameterMillions": 32000,
+          "sparsityBps": 0,
+          "computeBudgetCUw": 1600000000000,
+          "dataMix": {
+            "conversation": 1,
+            "documents": 1,
+            "coding": 1,
+            "tools": 1,
+            "reasoning": 1,
+            "longContext": 1,
+            "multimodal": 1
+          }
+        }
+      }
+    },
+    {
+      "week": 634,
+      "id": "challenge-feasibility-command-14",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-challenge-feasibility-command-13",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 635,
+      "id": "challenge-feasibility-command-15",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-challenge-feasibility-command-13",
+        "suiteId": "challenge-applied-1"
+      }
+    },
+    {
+      "week": 636,
+      "id": "challenge-feasibility-command-16",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-challenge-feasibility-command-13",
+        "suiteId": "challenge-frontier-1"
+      }
+    },
+    {
+      "week": 637,
+      "id": "challenge-feasibility-command-17",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-challenge-feasibility-command-13",
+        "suiteId": "challenge-horizon-1"
+      }
+    }
+  ]
+}

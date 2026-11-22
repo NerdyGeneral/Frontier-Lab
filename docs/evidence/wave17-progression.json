@@ -1,0 +1,4143 @@
+{
+  "sourceCommit": "1ab56a80d4501ba214eb778a2ab20a38a6dc5547",
+  "sourceWeek": 553,
+  "sourceChecksum": "48f10a80",
+  "finalWeek": 571,
+  "finalChecksum": "b6aaffe4",
+  "snapshotBytes": 1593344,
+  "cashCents": 659364439,
+  "minimumCashCents": 619938392,
+  "base": {
+    "id": "model-wave15-natural-command-9",
+    "name": "Preference and reliability tuning 19",
+    "companyId": "company-player",
+    "family": "compact",
+    "architecture": "dense",
+    "status": "evaluated",
+    "capabilityBps": {
+      "conversation": 4109,
+      "documents": 5566,
+      "coding": 5089,
+      "tools": 2256
+    },
+    "reliabilityBps": 9280,
+    "behavior": {
+      "confidentErrorBps": 550,
+      "falseRefusalBps": 385
+    },
+    "policy": {
+      "protocol": "policy-boundaries-v1",
+      "baselineUnsafeComplianceBps": 1200,
+      "currentUnsafeComplianceBps": 660
+    },
+    "residentMU": 2000000000,
+    "source": "Preference and reliability tuning: 16 of 16 useful CUw. Evaluation is separate.",
+    "parentModelId": "model-wave15-natural-command-4",
+    "trainingRunId": "training-wave15-natural-command-9",
+    "trainingEvidenceId": "corpus-9d93bfd3",
+    "createdWeek": 520,
+    "foundationAnchor": {
+      "conversation": 4000,
+      "documents": 3000,
+      "coding": 2000,
+      "tools": 2000
+    },
+    "evaluationReportId": "report-evaluation-wave15-natural-command-10"
+  },
+  "primary": {
+    "id": "curated-wave17-natural-command-4",
+    "name": "Conversation specialist pack · curated r1",
+    "companyId": "company-player",
+    "catalogId": "specialist-conversation-1",
+    "sourceIds": [
+      "specialist-conversation-1"
+    ],
+    "purchaseFactId": "data-purchase-wave17-natural-command-2",
+    "purchasedWeek": 554,
+    "revision": 1,
+    "rawUnits": 120,
+    "readyUnits": 120,
+    "qualityBps": 9500,
+    "coverageBps": {
+      "conversation": 10000,
+      "documents": 2000,
+      "coding": 2000,
+      "tools": 2000
+    },
+    "rights": {
+      "hosted": true,
+      "weights": true,
+      "feedback": false
+    },
+    "behaviorUnits": 100,
+    "broadUnits": 0,
+    "prepared": true,
+    "parentPacketId": "data-company-player-specialist-conversation-1"
+  },
+  "documents": {
+    "id": "curated-natural-business-command-111",
+    "name": "Documents specialist pack · curated r1",
+    "companyId": "company-player",
+    "catalogId": "specialist-documents-1",
+    "sourceIds": [
+      "specialist-documents-1"
+    ],
+    "purchaseFactId": "data-purchase-natural-business-command-106",
+    "purchasedWeek": 139,
+    "revision": 1,
+    "rawUnits": 120,
+    "readyUnits": 120,
+    "qualityBps": 9500,
+    "coverageBps": {
+      "conversation": 2000,
+      "documents": 10000,
+      "coding": 2000,
+      "tools": 2000
+    },
+    "rights": {
+      "hosted": true,
+      "weights": true,
+      "feedback": false
+    },
+    "behaviorUnits": 100,
+    "broadUnits": 0,
+    "prepared": true,
+    "parentPacketId": "data-company-player-specialist-documents-1"
+  },
+  "coding": {
+    "id": "curated-natural-business-command-54",
+    "name": "Coding specialist pack · curated r1",
+    "companyId": "company-player",
+    "catalogId": "specialist-coding-1",
+    "sourceIds": [
+      "specialist-coding-1"
+    ],
+    "purchaseFactId": "data-purchase-natural-business-command-51",
+    "purchasedWeek": 84,
+    "revision": 1,
+    "rawUnits": 120,
+    "readyUnits": 120,
+    "qualityBps": 9500,
+    "coverageBps": {
+      "conversation": 2000,
+      "documents": 2000,
+      "coding": 10000,
+      "tools": 2000
+    },
+    "rights": {
+      "hosted": true,
+      "weights": true,
+      "feedback": false
+    },
+    "behaviorUnits": 100,
+    "broadUnits": 0,
+    "prepared": true,
+    "parentPacketId": "data-company-player-specialist-coding-1"
+  },
+  "previews": {
+    "ordinary": {
+      "recipeId": "compact-conversation-adaptation",
+      "recipeName": "Conversation adaptation",
+      "workCUw": 9900000000,
+      "memoryMU": 4000000000,
+      "preparationStaff": 0,
+      "feeCents": 0,
+      "checkpointOverheadWork": 0,
+      "capabilityRange": {
+        "minimum": {
+          "conversation": 4855,
+          "documents": 3023,
+          "coding": 1977,
+          "tools": 2068
+        },
+        "maximum": {
+          "conversation": 5045,
+          "documents": 3068,
+          "coding": 2023,
+          "tools": 2114
+        }
+      },
+      "reliabilityRange": {
+        "minimum": 8900,
+        "maximum": 8900
+      },
+      "corpus": {
+        "sourceIds": [
+          "specialist-conversation-1"
+        ],
+        "packetIds": [
+          "curated-wave17-natural-command-4"
+        ],
+        "distinctUnits": 120,
+        "broadUnits": 0,
+        "relevantUnits": {
+          "conversation": 120000000000,
+          "documents": 24000000000,
+          "coding": 24000000000,
+          "tools": 24000000000
+        },
+        "qualityBps": {
+          "conversation": 9500,
+          "documents": 9500,
+          "coding": 9500,
+          "tools": 9500
+        },
+        "behaviorUnits": 100,
+        "behaviorQualityBps": 9500,
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "fingerprint": "corpus-9c1d9456"
+      },
+      "notes": [
+        "Prepared evidence is reusable. Duplicated sources are counted once; the best selected revision supplies quality.",
+        "Capabilities are finite targets from a fixed lineage anchor. Evaluation and deployment are separate projects.",
+        "R4 reduces this new adaptation’s update work by 25%; existing runs keep their saved budgets.",
+        "This descendant retains its base’s trained policy. It needs its own paid capability and policy reports before a new release."
+      ]
+    },
+    "split": {
+      "recipeId": "compact-conversation-adaptation",
+      "recipeName": "Conversation adaptation",
+      "workCUw": 19800000000,
+      "memoryMU": 4000000000,
+      "preparationStaff": 0,
+      "feeCents": 0,
+      "checkpointOverheadWork": 0,
+      "capabilityRange": {
+        "minimum": {
+          "conversation": 4855,
+          "documents": 3023,
+          "coding": 2417,
+          "tools": 2068
+        },
+        "maximum": {
+          "conversation": 5045,
+          "documents": 3068,
+          "coding": 2417,
+          "tools": 2114
+        }
+      },
+      "reliabilityRange": {
+        "minimum": 8900,
+        "maximum": 8900
+      },
+      "corpus": {
+        "sourceIds": [
+          "specialist-conversation-1"
+        ],
+        "packetIds": [
+          "curated-wave17-natural-command-4"
+        ],
+        "distinctUnits": 120,
+        "broadUnits": 0,
+        "relevantUnits": {
+          "conversation": 120000000000,
+          "documents": 24000000000,
+          "coding": 24000000000,
+          "tools": 24000000000
+        },
+        "qualityBps": {
+          "conversation": 9500,
+          "documents": 9500,
+          "coding": 9500,
+          "tools": 9500
+        },
+        "behaviorUnits": 100,
+        "behaviorQualityBps": 9500,
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "fingerprint": "corpus-9c1d9456"
+      },
+      "notes": [
+        "Prepared evidence is reusable. Duplicated sources are counted once; the best selected revision supplies quality.",
+        "Capabilities are finite targets from a fixed lineage anchor. Evaluation and deployment are separate projects.",
+        "R4 reduces this new adaptation’s update work by 25%; existing runs keep their saved budgets.",
+        "The two-skill curriculum reserves a nominal 50% of updates, split equally before independent cleanup: 9.9 primary CUw plus 9.9 replay CUw. coding at 95% evidence quality preserves a floor of 24.17 from the incoming 50.89; documents at 95% evidence quality preserves a floor of 26.43 from the incoming 55.66 at full paid work. The ordinary outcome wins if higher. All three distinct corpora constrain rights; profile draws and focus targets stay fixed. The candidate needs fresh paid reports.",
+        "This descendant retains its base’s trained policy. It needs its own paid capability and policy reports before a new release."
+      ],
+      "curriculum": {
+        "shareBps": 5000,
+        "baseModelId": "model-wave15-natural-command-9",
+        "baseModelFingerprint": "33775861",
+        "baselineReportId": "report-evaluation-wave15-natural-command-10",
+        "ordinaryIdentity": "training-identity-c06cdcf3",
+        "nominalFocusWorkCUw": 9900000000,
+        "focusWorkCUw": 9900000000,
+        "nominalReplayWorkCUw": 9900000000,
+        "replayWorkCUw": 9900000000,
+        "tracks": [
+          {
+            "domain": "coding",
+            "shareBps": 2500,
+            "baselineScoreBps": 5089,
+            "corpus": {
+              "sourceIds": [
+                "specialist-coding-1"
+              ],
+              "packetIds": [
+                "curated-natural-business-command-54"
+              ],
+              "distinctUnits": 120,
+              "broadUnits": 0,
+              "relevantUnits": {
+                "conversation": 24000000000,
+                "documents": 24000000000,
+                "coding": 120000000000,
+                "tools": 24000000000
+              },
+              "qualityBps": {
+                "conversation": 9500,
+                "documents": 9500,
+                "coding": 9500,
+                "tools": 9500
+              },
+              "behaviorUnits": 100,
+              "behaviorQualityBps": 9500,
+              "rights": {
+                "hosted": true,
+                "weights": true,
+                "feedback": false
+              },
+              "fingerprint": "corpus-35dfb5d1"
+            },
+            "requiredEvidence": 100000000000,
+            "coverageBps": 10000,
+            "qualityBps": 9500,
+            "retentionBps": 4750,
+            "preservationFloorBps": 2417,
+            "nominalReplayWorkCUw": 4950000000,
+            "replayWorkCUw": 4950000000
+          },
+          {
+            "domain": "documents",
+            "shareBps": 2500,
+            "baselineScoreBps": 5566,
+            "corpus": {
+              "sourceIds": [
+                "specialist-documents-1"
+              ],
+              "packetIds": [
+                "curated-natural-business-command-111"
+              ],
+              "distinctUnits": 120,
+              "broadUnits": 0,
+              "relevantUnits": {
+                "conversation": 24000000000,
+                "documents": 120000000000,
+                "coding": 24000000000,
+                "tools": 24000000000
+              },
+              "qualityBps": {
+                "conversation": 9500,
+                "documents": 9500,
+                "coding": 9500,
+                "tools": 9500
+              },
+              "behaviorUnits": 100,
+              "behaviorQualityBps": 9500,
+              "rights": {
+                "hosted": true,
+                "weights": true,
+                "feedback": false
+              },
+              "fingerprint": "corpus-d81e6bcf"
+            },
+            "requiredEvidence": 100000000000,
+            "coverageBps": 10000,
+            "qualityBps": 9500,
+            "retentionBps": 4750,
+            "preservationFloorBps": 2643,
+            "nominalReplayWorkCUw": 4950000000,
+            "replayWorkCUw": 4950000000
+          }
+        ]
+      }
+    },
+    "deep": {
+      "recipeId": "compact-conversation-adaptation",
+      "recipeName": "Conversation adaptation",
+      "workCUw": 39600000000,
+      "memoryMU": 4000000000,
+      "preparationStaff": 0,
+      "feeCents": 0,
+      "checkpointOverheadWork": 0,
+      "capabilityRange": {
+        "minimum": {
+          "conversation": 4855,
+          "documents": 3965,
+          "coding": 3625,
+          "tools": 2068
+        },
+        "maximum": {
+          "conversation": 5045,
+          "documents": 3965,
+          "coding": 3625,
+          "tools": 2114
+        }
+      },
+      "reliabilityRange": {
+        "minimum": 8900,
+        "maximum": 8900
+      },
+      "corpus": {
+        "sourceIds": [
+          "specialist-conversation-1"
+        ],
+        "packetIds": [
+          "curated-wave17-natural-command-4"
+        ],
+        "distinctUnits": 120,
+        "broadUnits": 0,
+        "relevantUnits": {
+          "conversation": 120000000000,
+          "documents": 24000000000,
+          "coding": 24000000000,
+          "tools": 24000000000
+        },
+        "qualityBps": {
+          "conversation": 9500,
+          "documents": 9500,
+          "coding": 9500,
+          "tools": 9500
+        },
+        "behaviorUnits": 100,
+        "behaviorQualityBps": 9500,
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "fingerprint": "corpus-9c1d9456"
+      },
+      "notes": [
+        "Prepared evidence is reusable. Duplicated sources are counted once; the best selected revision supplies quality.",
+        "Capabilities are finite targets from a fixed lineage anchor. Evaluation and deployment are separate projects.",
+        "R4 reduces this new adaptation’s update work by 25%; existing runs keep their saved budgets.",
+        "The two-skill curriculum reserves a nominal 75% of updates, split equally before independent cleanup: 9.9 primary CUw plus 29.7 replay CUw. coding at 95% evidence quality preserves a floor of 36.25 from the incoming 50.89; documents at 95% evidence quality preserves a floor of 39.65 from the incoming 55.66 at full paid work. The ordinary outcome wins if higher. All three distinct corpora constrain rights; profile draws and focus targets stay fixed. The candidate needs fresh paid reports.",
+        "This descendant retains its base’s trained policy. It needs its own paid capability and policy reports before a new release."
+      ],
+      "curriculum": {
+        "shareBps": 7500,
+        "baseModelId": "model-wave15-natural-command-9",
+        "baseModelFingerprint": "33775861",
+        "baselineReportId": "report-evaluation-wave15-natural-command-10",
+        "ordinaryIdentity": "training-identity-c06cdcf3",
+        "nominalFocusWorkCUw": 9900000000,
+        "focusWorkCUw": 9900000000,
+        "nominalReplayWorkCUw": 29700000000,
+        "replayWorkCUw": 29700000000,
+        "tracks": [
+          {
+            "domain": "coding",
+            "shareBps": 3750,
+            "baselineScoreBps": 5089,
+            "corpus": {
+              "sourceIds": [
+                "specialist-coding-1"
+              ],
+              "packetIds": [
+                "curated-natural-business-command-54"
+              ],
+              "distinctUnits": 120,
+              "broadUnits": 0,
+              "relevantUnits": {
+                "conversation": 24000000000,
+                "documents": 24000000000,
+                "coding": 120000000000,
+                "tools": 24000000000
+              },
+              "qualityBps": {
+                "conversation": 9500,
+                "documents": 9500,
+                "coding": 9500,
+                "tools": 9500
+              },
+              "behaviorUnits": 100,
+              "behaviorQualityBps": 9500,
+              "rights": {
+                "hosted": true,
+                "weights": true,
+                "feedback": false
+              },
+              "fingerprint": "corpus-35dfb5d1"
+            },
+            "requiredEvidence": 100000000000,
+            "coverageBps": 10000,
+            "qualityBps": 9500,
+            "retentionBps": 7125,
+            "preservationFloorBps": 3625,
+            "nominalReplayWorkCUw": 14850000000,
+            "replayWorkCUw": 14850000000
+          },
+          {
+            "domain": "documents",
+            "shareBps": 3750,
+            "baselineScoreBps": 5566,
+            "corpus": {
+              "sourceIds": [
+                "specialist-documents-1"
+              ],
+              "packetIds": [
+                "curated-natural-business-command-111"
+              ],
+              "distinctUnits": 120,
+              "broadUnits": 0,
+              "relevantUnits": {
+                "conversation": 24000000000,
+                "documents": 120000000000,
+                "coding": 24000000000,
+                "tools": 24000000000
+              },
+              "qualityBps": {
+                "conversation": 9500,
+                "documents": 9500,
+                "coding": 9500,
+                "tools": 9500
+              },
+              "behaviorUnits": 100,
+              "behaviorQualityBps": 9500,
+              "rights": {
+                "hosted": true,
+                "weights": true,
+                "feedback": false
+              },
+              "fingerprint": "corpus-d81e6bcf"
+            },
+            "requiredEvidence": 100000000000,
+            "coverageBps": 10000,
+            "qualityBps": 9500,
+            "retentionBps": 7125,
+            "preservationFloorBps": 3965,
+            "nominalReplayWorkCUw": 14850000000,
+            "replayWorkCUw": 14850000000
+          }
+        ]
+      }
+    }
+  },
+  "singleSkillComparison": {
+    "recipeId": "compact-conversation-adaptation",
+    "recipeName": "Conversation adaptation",
+    "workCUw": 19800000000,
+    "memoryMU": 4000000000,
+    "preparationStaff": 0,
+    "feeCents": 0,
+    "checkpointOverheadWork": 0,
+    "capabilityRange": {
+      "minimum": {
+        "conversation": 4855,
+        "documents": 3023,
+        "coding": 4834,
+        "tools": 2068
+      },
+      "maximum": {
+        "conversation": 5045,
+        "documents": 3068,
+        "coding": 4834,
+        "tools": 2114
+      }
+    },
+    "reliabilityRange": {
+      "minimum": 8900,
+      "maximum": 8900
+    },
+    "corpus": {
+      "sourceIds": [
+        "specialist-conversation-1"
+      ],
+      "packetIds": [
+        "curated-wave17-natural-command-4"
+      ],
+      "distinctUnits": 120,
+      "broadUnits": 0,
+      "relevantUnits": {
+        "conversation": 120000000000,
+        "documents": 24000000000,
+        "coding": 24000000000,
+        "tools": 24000000000
+      },
+      "qualityBps": {
+        "conversation": 9500,
+        "documents": 9500,
+        "coding": 9500,
+        "tools": 9500
+      },
+      "behaviorUnits": 100,
+      "behaviorQualityBps": 9500,
+      "rights": {
+        "hosted": true,
+        "weights": true,
+        "feedback": false
+      },
+      "fingerprint": "corpus-9c1d9456"
+    },
+    "notes": [
+      "Prepared evidence is reusable. Duplicated sources are counted once; the best selected revision supplies quality.",
+      "Capabilities are finite targets from a fixed lineage anchor. Evaluation and deployment are separate projects.",
+      "R4 reduces this new adaptation’s update work by 25%; existing runs keep their saved budgets.",
+      "Replay reserves a nominal 50% of updates before independent cleanup: 9.9 primary CUw plus 9.9 replay CUw. Separate coding evidence at 95% quality preserves a floor of 48.34 from the incoming 50.89 skill at full paid work; the ordinary outcome wins if higher. Other targets and profile draws stay fixed. Both corpora constrain inherited rights, and the new candidate needs fresh reports.",
+      "This descendant retains its base’s trained policy. It needs its own paid capability and policy reports before a new release."
+    ],
+    "replay": {
+      "domain": "coding",
+      "shareBps": 5000,
+      "baseModelId": "model-wave15-natural-command-9",
+      "baseModelFingerprint": "33775861",
+      "baselineReportId": "report-evaluation-wave15-natural-command-10",
+      "baselineScoreBps": 5089,
+      "ordinaryIdentity": "training-identity-c06cdcf3",
+      "corpus": {
+        "sourceIds": [
+          "specialist-coding-1"
+        ],
+        "packetIds": [
+          "curated-natural-business-command-54"
+        ],
+        "distinctUnits": 120,
+        "broadUnits": 0,
+        "relevantUnits": {
+          "conversation": 24000000000,
+          "documents": 24000000000,
+          "coding": 120000000000,
+          "tools": 24000000000
+        },
+        "qualityBps": {
+          "conversation": 9500,
+          "documents": 9500,
+          "coding": 9500,
+          "tools": 9500
+        },
+        "behaviorUnits": 100,
+        "behaviorQualityBps": 9500,
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "fingerprint": "corpus-35dfb5d1"
+      },
+      "requiredEvidence": 100000000000,
+      "coverageBps": 10000,
+      "qualityBps": 9500,
+      "retentionBps": 9500,
+      "preservationFloorBps": 4834,
+      "nominalFocusWorkCUw": 9900000000,
+      "focusWorkCUw": 9900000000,
+      "nominalReplayWorkCUw": 9900000000,
+      "replayWorkCUw": 9900000000
+    }
+  },
+  "trainings": {
+    "ordinary": {
+      "id": "training-wave17-natural-command-5",
+      "companyId": "company-player",
+      "baseModelId": "model-wave15-natural-command-9",
+      "packetId": "curated-wave17-natural-command-4",
+      "outputModelId": "model-wave17-natural-command-5",
+      "recipeId": "compact-conversation-adaptation",
+      "startedWeek": 557,
+      "requiredWork": 9900000000,
+      "completedWork": 9900000000,
+      "physicalWork": 5500000001,
+      "requiredMemory": 4000000000,
+      "status": "complete",
+      "checkpointWork": 9900000000,
+      "checkpointModelId": "model-wave17-natural-command-5",
+      "checkpointModelIds": [
+        "checkpoint-training-wave17-natural-command-5",
+        "model-wave17-natural-command-5"
+      ],
+      "anchorScores": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      },
+      "anchorReliabilityBps": 7000,
+      "evidence": {
+        "id": "curated-wave17-natural-command-4",
+        "name": "Conversation specialist pack · curated r1",
+        "companyId": "company-player",
+        "catalogId": "specialist-conversation-1",
+        "sourceIds": [
+          "specialist-conversation-1"
+        ],
+        "purchaseFactId": "data-purchase-wave17-natural-command-2",
+        "purchasedWeek": 554,
+        "revision": 1,
+        "rawUnits": 120,
+        "readyUnits": 120,
+        "qualityBps": 9500,
+        "coverageBps": {
+          "conversation": 10000,
+          "documents": 2000,
+          "coding": 2000,
+          "tools": 2000
+        },
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "behaviorUnits": 100,
+        "broadUnits": 0,
+        "prepared": true,
+        "parentPacketId": "data-company-player-specialist-conversation-1"
+      },
+      "plan": {
+        "recipeName": "Conversation adaptation",
+        "kind": "adaptation",
+        "profile": "stable",
+        "profileApplied": true,
+        "family": "compact",
+        "architecture": "dense",
+        "residentMU": 2000000000,
+        "lineageId": "seed-0",
+        "identity": "training-identity-c06cdcf3",
+        "corpus": {
+          "sourceIds": [
+            "specialist-conversation-1"
+          ],
+          "packetIds": [
+            "curated-wave17-natural-command-4"
+          ],
+          "distinctUnits": 120,
+          "broadUnits": 0,
+          "relevantUnits": {
+            "conversation": 120000000000,
+            "documents": 24000000000,
+            "coding": 24000000000,
+            "tools": 24000000000
+          },
+          "qualityBps": {
+            "conversation": 9500,
+            "documents": 9500,
+            "coding": 9500,
+            "tools": 9500
+          },
+          "behaviorUnits": 100,
+          "behaviorQualityBps": 9500,
+          "rights": {
+            "hosted": true,
+            "weights": true,
+            "feedback": false
+          },
+          "fingerprint": "corpus-9c1d9456"
+        },
+        "targets": {
+          "conversation": 5000,
+          "documents": 3200,
+          "coding": 2000,
+          "tools": 2400
+        },
+        "ceilings": {
+          "conversation": 7000,
+          "documents": 6500,
+          "coding": 6500,
+          "tools": 6000
+        },
+        "savedAdjustments": {
+          "conversation": 54,
+          "documents": 50,
+          "coding": 16,
+          "tools": -78
+        },
+        "requiredEvidence": 100000000000,
+        "reliabilityTargetBps": 9000,
+        "behaviorAnchor": {
+          "confidentErrorBps": 1000,
+          "falseRefusalBps": 700
+        },
+        "behaviorTarget": {
+          "confidentErrorBps": 550,
+          "falseRefusalBps": 385
+        },
+        "preparationRequired": 0,
+        "checkpointOverheadRequired": 0,
+        "checkpoints": [
+          {
+            "atBps": 5000,
+            "overheadWork": 0
+          },
+          {
+            "atBps": 10000,
+            "overheadWork": 0
+          }
+        ],
+        "methods": [
+          "R4"
+        ],
+        "inheritedPolicy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "foundationAnchor": {
+          "conversation": 4000,
+          "documents": 3000,
+          "coding": 2000,
+          "tools": 2000
+        }
+      },
+      "preparationCompleted": 0,
+      "checkpointOverheadCompleted": 0,
+      "lastProgress": 1900000000,
+      "lastBottleneck": "",
+      "completedWeek": 558
+    },
+    "split": {
+      "id": "training-wave17-natural-command-7",
+      "companyId": "company-player",
+      "baseModelId": "model-wave15-natural-command-9",
+      "packetId": "curated-wave17-natural-command-4",
+      "outputModelId": "model-wave17-natural-command-7",
+      "recipeId": "compact-conversation-adaptation",
+      "startedWeek": 560,
+      "requiredWork": 19800000000,
+      "completedWork": 19800000000,
+      "physicalWork": 11000000002,
+      "requiredMemory": 4000000000,
+      "status": "complete",
+      "checkpointWork": 19800000000,
+      "checkpointModelId": "model-wave17-natural-command-7",
+      "checkpointModelIds": [
+        "checkpoint-training-wave17-natural-command-7",
+        "model-wave17-natural-command-7"
+      ],
+      "anchorScores": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      },
+      "anchorReliabilityBps": 7000,
+      "evidence": {
+        "id": "curated-wave17-natural-command-4",
+        "name": "Conversation specialist pack · curated r1",
+        "companyId": "company-player",
+        "catalogId": "specialist-conversation-1",
+        "sourceIds": [
+          "specialist-conversation-1"
+        ],
+        "purchaseFactId": "data-purchase-wave17-natural-command-2",
+        "purchasedWeek": 554,
+        "revision": 1,
+        "rawUnits": 120,
+        "readyUnits": 120,
+        "qualityBps": 9500,
+        "coverageBps": {
+          "conversation": 10000,
+          "documents": 2000,
+          "coding": 2000,
+          "tools": 2000
+        },
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "behaviorUnits": 100,
+        "broadUnits": 0,
+        "prepared": true,
+        "parentPacketId": "data-company-player-specialist-conversation-1"
+      },
+      "plan": {
+        "recipeName": "Conversation adaptation",
+        "kind": "adaptation",
+        "profile": "stable",
+        "profileApplied": true,
+        "family": "compact",
+        "architecture": "dense",
+        "residentMU": 2000000000,
+        "lineageId": "seed-0",
+        "identity": "training-curriculum-9628607f",
+        "corpus": {
+          "sourceIds": [
+            "specialist-conversation-1"
+          ],
+          "packetIds": [
+            "curated-wave17-natural-command-4"
+          ],
+          "distinctUnits": 120,
+          "broadUnits": 0,
+          "relevantUnits": {
+            "conversation": 120000000000,
+            "documents": 24000000000,
+            "coding": 24000000000,
+            "tools": 24000000000
+          },
+          "qualityBps": {
+            "conversation": 9500,
+            "documents": 9500,
+            "coding": 9500,
+            "tools": 9500
+          },
+          "behaviorUnits": 100,
+          "behaviorQualityBps": 9500,
+          "rights": {
+            "hosted": true,
+            "weights": true,
+            "feedback": false
+          },
+          "fingerprint": "corpus-9c1d9456"
+        },
+        "targets": {
+          "conversation": 5000,
+          "documents": 3200,
+          "coding": 2000,
+          "tools": 2400
+        },
+        "ceilings": {
+          "conversation": 7000,
+          "documents": 6500,
+          "coding": 6500,
+          "tools": 6000
+        },
+        "savedAdjustments": {
+          "conversation": 54,
+          "documents": 50,
+          "coding": 16,
+          "tools": -78
+        },
+        "requiredEvidence": 100000000000,
+        "reliabilityTargetBps": 9000,
+        "behaviorAnchor": {
+          "confidentErrorBps": 1000,
+          "falseRefusalBps": 700
+        },
+        "behaviorTarget": {
+          "confidentErrorBps": 550,
+          "falseRefusalBps": 385
+        },
+        "preparationRequired": 0,
+        "checkpointOverheadRequired": 0,
+        "checkpoints": [
+          {
+            "atBps": 5000,
+            "overheadWork": 0
+          },
+          {
+            "atBps": 10000,
+            "overheadWork": 0
+          }
+        ],
+        "methods": [
+          "R4",
+          "R4C"
+        ],
+        "curriculum": {
+          "shareBps": 5000,
+          "baseModelId": "model-wave15-natural-command-9",
+          "baseModelFingerprint": "33775861",
+          "baselineReportId": "report-evaluation-wave15-natural-command-10",
+          "ordinaryIdentity": "training-identity-c06cdcf3",
+          "nominalFocusWorkCUw": 9900000000,
+          "focusWorkCUw": 9900000000,
+          "nominalReplayWorkCUw": 9900000000,
+          "replayWorkCUw": 9900000000,
+          "tracks": [
+            {
+              "domain": "coding",
+              "shareBps": 2500,
+              "baselineScoreBps": 5089,
+              "corpus": {
+                "sourceIds": [
+                  "specialist-coding-1"
+                ],
+                "packetIds": [
+                  "curated-natural-business-command-54"
+                ],
+                "distinctUnits": 120,
+                "broadUnits": 0,
+                "relevantUnits": {
+                  "conversation": 24000000000,
+                  "documents": 24000000000,
+                  "coding": 120000000000,
+                  "tools": 24000000000
+                },
+                "qualityBps": {
+                  "conversation": 9500,
+                  "documents": 9500,
+                  "coding": 9500,
+                  "tools": 9500
+                },
+                "behaviorUnits": 100,
+                "behaviorQualityBps": 9500,
+                "rights": {
+                  "hosted": true,
+                  "weights": true,
+                  "feedback": false
+                },
+                "fingerprint": "corpus-35dfb5d1"
+              },
+              "requiredEvidence": 100000000000,
+              "coverageBps": 10000,
+              "qualityBps": 9500,
+              "retentionBps": 4750,
+              "preservationFloorBps": 2417,
+              "nominalReplayWorkCUw": 4950000000,
+              "replayWorkCUw": 4950000000
+            },
+            {
+              "domain": "documents",
+              "shareBps": 2500,
+              "baselineScoreBps": 5566,
+              "corpus": {
+                "sourceIds": [
+                  "specialist-documents-1"
+                ],
+                "packetIds": [
+                  "curated-natural-business-command-111"
+                ],
+                "distinctUnits": 120,
+                "broadUnits": 0,
+                "relevantUnits": {
+                  "conversation": 24000000000,
+                  "documents": 120000000000,
+                  "coding": 24000000000,
+                  "tools": 24000000000
+                },
+                "qualityBps": {
+                  "conversation": 9500,
+                  "documents": 9500,
+                  "coding": 9500,
+                  "tools": 9500
+                },
+                "behaviorUnits": 100,
+                "behaviorQualityBps": 9500,
+                "rights": {
+                  "hosted": true,
+                  "weights": true,
+                  "feedback": false
+                },
+                "fingerprint": "corpus-d81e6bcf"
+              },
+              "requiredEvidence": 100000000000,
+              "coverageBps": 10000,
+              "qualityBps": 9500,
+              "retentionBps": 4750,
+              "preservationFloorBps": 2643,
+              "nominalReplayWorkCUw": 4950000000,
+              "replayWorkCUw": 4950000000
+            }
+          ]
+        },
+        "inheritedPolicy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "foundationAnchor": {
+          "conversation": 4000,
+          "documents": 3000,
+          "coding": 2000,
+          "tools": 2000
+        }
+      },
+      "preparationCompleted": 0,
+      "checkpointOverheadCompleted": 0,
+      "lastProgress": 3800000000,
+      "lastBottleneck": "",
+      "completedWeek": 562
+    },
+    "deep": {
+      "id": "training-wave17-natural-command-9",
+      "companyId": "company-player",
+      "baseModelId": "model-wave15-natural-command-9",
+      "packetId": "curated-wave17-natural-command-4",
+      "outputModelId": "model-wave17-natural-command-9",
+      "recipeId": "compact-conversation-adaptation",
+      "startedWeek": 564,
+      "requiredWork": 39600000000,
+      "completedWork": 39600000000,
+      "physicalWork": 22000000003,
+      "requiredMemory": 4000000000,
+      "status": "complete",
+      "checkpointWork": 39600000000,
+      "checkpointModelId": "model-wave17-natural-command-9",
+      "checkpointModelIds": [
+        "checkpoint-training-wave17-natural-command-9",
+        "model-wave17-natural-command-9"
+      ],
+      "anchorScores": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      },
+      "anchorReliabilityBps": 7000,
+      "evidence": {
+        "id": "curated-wave17-natural-command-4",
+        "name": "Conversation specialist pack · curated r1",
+        "companyId": "company-player",
+        "catalogId": "specialist-conversation-1",
+        "sourceIds": [
+          "specialist-conversation-1"
+        ],
+        "purchaseFactId": "data-purchase-wave17-natural-command-2",
+        "purchasedWeek": 554,
+        "revision": 1,
+        "rawUnits": 120,
+        "readyUnits": 120,
+        "qualityBps": 9500,
+        "coverageBps": {
+          "conversation": 10000,
+          "documents": 2000,
+          "coding": 2000,
+          "tools": 2000
+        },
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "behaviorUnits": 100,
+        "broadUnits": 0,
+        "prepared": true,
+        "parentPacketId": "data-company-player-specialist-conversation-1"
+      },
+      "plan": {
+        "recipeName": "Conversation adaptation",
+        "kind": "adaptation",
+        "profile": "stable",
+        "profileApplied": true,
+        "family": "compact",
+        "architecture": "dense",
+        "residentMU": 2000000000,
+        "lineageId": "seed-0",
+        "identity": "training-curriculum-b2b6660c",
+        "corpus": {
+          "sourceIds": [
+            "specialist-conversation-1"
+          ],
+          "packetIds": [
+            "curated-wave17-natural-command-4"
+          ],
+          "distinctUnits": 120,
+          "broadUnits": 0,
+          "relevantUnits": {
+            "conversation": 120000000000,
+            "documents": 24000000000,
+            "coding": 24000000000,
+            "tools": 24000000000
+          },
+          "qualityBps": {
+            "conversation": 9500,
+            "documents": 9500,
+            "coding": 9500,
+            "tools": 9500
+          },
+          "behaviorUnits": 100,
+          "behaviorQualityBps": 9500,
+          "rights": {
+            "hosted": true,
+            "weights": true,
+            "feedback": false
+          },
+          "fingerprint": "corpus-9c1d9456"
+        },
+        "targets": {
+          "conversation": 5000,
+          "documents": 3200,
+          "coding": 2000,
+          "tools": 2400
+        },
+        "ceilings": {
+          "conversation": 7000,
+          "documents": 6500,
+          "coding": 6500,
+          "tools": 6000
+        },
+        "savedAdjustments": {
+          "conversation": 54,
+          "documents": 50,
+          "coding": 16,
+          "tools": -78
+        },
+        "requiredEvidence": 100000000000,
+        "reliabilityTargetBps": 9000,
+        "behaviorAnchor": {
+          "confidentErrorBps": 1000,
+          "falseRefusalBps": 700
+        },
+        "behaviorTarget": {
+          "confidentErrorBps": 550,
+          "falseRefusalBps": 385
+        },
+        "preparationRequired": 0,
+        "checkpointOverheadRequired": 0,
+        "checkpoints": [
+          {
+            "atBps": 5000,
+            "overheadWork": 0
+          },
+          {
+            "atBps": 10000,
+            "overheadWork": 0
+          }
+        ],
+        "methods": [
+          "R4",
+          "R4C"
+        ],
+        "curriculum": {
+          "shareBps": 7500,
+          "baseModelId": "model-wave15-natural-command-9",
+          "baseModelFingerprint": "33775861",
+          "baselineReportId": "report-evaluation-wave15-natural-command-10",
+          "ordinaryIdentity": "training-identity-c06cdcf3",
+          "nominalFocusWorkCUw": 9900000000,
+          "focusWorkCUw": 9900000000,
+          "nominalReplayWorkCUw": 29700000000,
+          "replayWorkCUw": 29700000000,
+          "tracks": [
+            {
+              "domain": "coding",
+              "shareBps": 3750,
+              "baselineScoreBps": 5089,
+              "corpus": {
+                "sourceIds": [
+                  "specialist-coding-1"
+                ],
+                "packetIds": [
+                  "curated-natural-business-command-54"
+                ],
+                "distinctUnits": 120,
+                "broadUnits": 0,
+                "relevantUnits": {
+                  "conversation": 24000000000,
+                  "documents": 24000000000,
+                  "coding": 120000000000,
+                  "tools": 24000000000
+                },
+                "qualityBps": {
+                  "conversation": 9500,
+                  "documents": 9500,
+                  "coding": 9500,
+                  "tools": 9500
+                },
+                "behaviorUnits": 100,
+                "behaviorQualityBps": 9500,
+                "rights": {
+                  "hosted": true,
+                  "weights": true,
+                  "feedback": false
+                },
+                "fingerprint": "corpus-35dfb5d1"
+              },
+              "requiredEvidence": 100000000000,
+              "coverageBps": 10000,
+              "qualityBps": 9500,
+              "retentionBps": 7125,
+              "preservationFloorBps": 3625,
+              "nominalReplayWorkCUw": 14850000000,
+              "replayWorkCUw": 14850000000
+            },
+            {
+              "domain": "documents",
+              "shareBps": 3750,
+              "baselineScoreBps": 5566,
+              "corpus": {
+                "sourceIds": [
+                  "specialist-documents-1"
+                ],
+                "packetIds": [
+                  "curated-natural-business-command-111"
+                ],
+                "distinctUnits": 120,
+                "broadUnits": 0,
+                "relevantUnits": {
+                  "conversation": 24000000000,
+                  "documents": 120000000000,
+                  "coding": 24000000000,
+                  "tools": 24000000000
+                },
+                "qualityBps": {
+                  "conversation": 9500,
+                  "documents": 9500,
+                  "coding": 9500,
+                  "tools": 9500
+                },
+                "behaviorUnits": 100,
+                "behaviorQualityBps": 9500,
+                "rights": {
+                  "hosted": true,
+                  "weights": true,
+                  "feedback": false
+                },
+                "fingerprint": "corpus-d81e6bcf"
+              },
+              "requiredEvidence": 100000000000,
+              "coverageBps": 10000,
+              "qualityBps": 9500,
+              "retentionBps": 7125,
+              "preservationFloorBps": 3965,
+              "nominalReplayWorkCUw": 14850000000,
+              "replayWorkCUw": 14850000000
+            }
+          ]
+        },
+        "inheritedPolicy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "foundationAnchor": {
+          "conversation": 4000,
+          "documents": 3000,
+          "coding": 2000,
+          "tools": 2000
+        }
+      },
+      "preparationCompleted": 0,
+      "checkpointOverheadCompleted": 0,
+      "lastProgress": 7600000000,
+      "lastBottleneck": "",
+      "completedWeek": 570
+    }
+  },
+  "candidates": {
+    "ordinary": {
+      "id": "model-wave17-natural-command-5",
+      "name": "Conversation 21",
+      "companyId": "company-player",
+      "family": "compact",
+      "architecture": "dense",
+      "status": "evaluated",
+      "capabilityBps": {
+        "conversation": 5001,
+        "documents": 3057,
+        "coding": 2004,
+        "tools": 2073
+      },
+      "reliabilityBps": 8900,
+      "behavior": {
+        "confidentErrorBps": 550,
+        "falseRefusalBps": 385
+      },
+      "policy": {
+        "protocol": "policy-boundaries-v1",
+        "baselineUnsafeComplianceBps": 1200,
+        "currentUnsafeComplianceBps": 660
+      },
+      "residentMU": 2000000000,
+      "source": "Conversation adaptation: 9.9 of 9.9 useful CUw. Evaluation is separate.",
+      "parentModelId": "model-wave15-natural-command-9",
+      "trainingRunId": "training-wave17-natural-command-5",
+      "trainingEvidenceId": "corpus-9c1d9456",
+      "createdWeek": 558,
+      "foundationAnchor": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      },
+      "evaluationReportId": "report-evaluation-wave17-natural-command-6"
+    },
+    "split": {
+      "id": "model-wave17-natural-command-7",
+      "name": "Conversation 22",
+      "companyId": "company-player",
+      "family": "compact",
+      "architecture": "dense",
+      "status": "evaluated",
+      "capabilityBps": {
+        "conversation": 5001,
+        "documents": 3057,
+        "coding": 2417,
+        "tools": 2073
+      },
+      "reliabilityBps": 8900,
+      "behavior": {
+        "confidentErrorBps": 550,
+        "falseRefusalBps": 385
+      },
+      "policy": {
+        "protocol": "policy-boundaries-v1",
+        "baselineUnsafeComplianceBps": 1200,
+        "currentUnsafeComplianceBps": 660
+      },
+      "residentMU": 2000000000,
+      "source": "Conversation adaptation: 19.8 of 19.8 useful CUw. Evaluation is separate.",
+      "parentModelId": "model-wave15-natural-command-9",
+      "trainingRunId": "training-wave17-natural-command-7",
+      "trainingEvidenceId": "curriculum-evidence-bfb16b0d",
+      "createdWeek": 562,
+      "foundationAnchor": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      },
+      "evaluationReportId": "report-evaluation-wave17-natural-command-8"
+    },
+    "deep": {
+      "id": "model-wave17-natural-command-9",
+      "name": "Conversation 23",
+      "companyId": "company-player",
+      "family": "compact",
+      "architecture": "dense",
+      "status": "evaluated",
+      "capabilityBps": {
+        "conversation": 5001,
+        "documents": 3965,
+        "coding": 3625,
+        "tools": 2073
+      },
+      "reliabilityBps": 8900,
+      "behavior": {
+        "confidentErrorBps": 550,
+        "falseRefusalBps": 385
+      },
+      "policy": {
+        "protocol": "policy-boundaries-v1",
+        "baselineUnsafeComplianceBps": 1200,
+        "currentUnsafeComplianceBps": 660
+      },
+      "residentMU": 2000000000,
+      "source": "Conversation adaptation: 39.6 of 39.6 useful CUw. Evaluation is separate.",
+      "parentModelId": "model-wave15-natural-command-9",
+      "trainingRunId": "training-wave17-natural-command-9",
+      "trainingEvidenceId": "curriculum-evidence-ee73fd1e",
+      "createdWeek": 570,
+      "foundationAnchor": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      },
+      "evaluationReportId": "report-evaluation-wave17-natural-command-12"
+    }
+  },
+  "evaluations": {
+    "ordinary": {
+      "job": {
+        "id": "evaluation-wave17-natural-command-6",
+        "companyId": "company-player",
+        "modelId": "model-wave17-natural-command-5",
+        "suiteId": "expanded-capabilities-1",
+        "startedWeek": 559,
+        "requiredWork": 4000000000,
+        "completedWork": 4000000000,
+        "requiredStaff": 1000000000,
+        "completedStaff": 1000000000,
+        "status": "complete",
+        "reportId": "report-evaluation-wave17-natural-command-6",
+        "lastProgress": 4000000000,
+        "lastBottleneck": "",
+        "completedWeek": 559
+      },
+      "report": {
+        "id": "report-evaluation-wave17-natural-command-6",
+        "companyId": "company-player",
+        "modelId": "model-wave17-natural-command-5",
+        "week": 559,
+        "heldOut": true,
+        "suiteId": "expanded-capabilities-1",
+        "capabilityBps": {
+          "conversation": 5001,
+          "documents": 3057,
+          "coding": 2004,
+          "tools": 2073
+        },
+        "reliabilityBps": 8900,
+        "cases": [
+          {
+            "id": "expanded-capabilities-1:case-01",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-02",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-03",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-04",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-05",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-06",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-07",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-08",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-09",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-10",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-11",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-12",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-13",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-14",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-15",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-16",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-17",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-18",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-19",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-20",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-21",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-22",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-23",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-24",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-25",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-26",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-27",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-28",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-29",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-30",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-31",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-32",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-33",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-34",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-35",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-36",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-37",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-38",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-39",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-40",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-41",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-42",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-43",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-44",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-45",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-46",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-47",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-48",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-49",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-50",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-51",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-52",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-53",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-54",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-55",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-56",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-57",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-58",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-59",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-60",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-61",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-62",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-63",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-64",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-65",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-66",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-67",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-68",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-69",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-70",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-71",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-72",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-73",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-74",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-75",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-76",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-77",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-78",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-79",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-80",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-81",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-82",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-83",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-84",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-85",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-86",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-87",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-88",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-89",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-90",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-91",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-92",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-93",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-94",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-95",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-96",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-97",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-98",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-99",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-100",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          }
+        ],
+        "passedCases": 49,
+        "basicChatEligible": true
+      }
+    },
+    "split": {
+      "job": {
+        "id": "evaluation-wave17-natural-command-8",
+        "companyId": "company-player",
+        "modelId": "model-wave17-natural-command-7",
+        "suiteId": "expanded-capabilities-1",
+        "startedWeek": 563,
+        "requiredWork": 4000000000,
+        "completedWork": 4000000000,
+        "requiredStaff": 1000000000,
+        "completedStaff": 1000000000,
+        "status": "complete",
+        "reportId": "report-evaluation-wave17-natural-command-8",
+        "lastProgress": 4000000000,
+        "lastBottleneck": "",
+        "completedWeek": 563
+      },
+      "report": {
+        "id": "report-evaluation-wave17-natural-command-8",
+        "companyId": "company-player",
+        "modelId": "model-wave17-natural-command-7",
+        "week": 563,
+        "heldOut": true,
+        "suiteId": "expanded-capabilities-1",
+        "capabilityBps": {
+          "conversation": 5001,
+          "documents": 3057,
+          "coding": 2417,
+          "tools": 2073
+        },
+        "reliabilityBps": 8900,
+        "cases": [
+          {
+            "id": "expanded-capabilities-1:case-01",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-02",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-03",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-04",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-05",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-06",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-07",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-08",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-09",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-10",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-11",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-12",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-13",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-14",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-15",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-16",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-17",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-18",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-19",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-20",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-21",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-22",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-23",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-24",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-25",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-26",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-27",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-28",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-29",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-30",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-31",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-32",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-33",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-34",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-35",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-36",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-37",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-38",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-39",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-40",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-41",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-42",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-43",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-44",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-45",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-46",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-47",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-48",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-49",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-50",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-51",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-52",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-53",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-54",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-55",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-56",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-57",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-58",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-59",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-60",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-61",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-62",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-63",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-64",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-65",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-66",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-67",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-68",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-69",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-70",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-71",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-72",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-73",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-74",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-75",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-76",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-77",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-78",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-79",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-80",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-81",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-82",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-83",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-84",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-85",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-86",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-87",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-88",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-89",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-90",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-91",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-92",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-93",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-94",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-95",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-96",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-97",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-98",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-99",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-100",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          }
+        ],
+        "passedCases": 59,
+        "basicChatEligible": true
+      }
+    },
+    "deep": {
+      "job": {
+        "id": "evaluation-wave17-natural-command-12",
+        "companyId": "company-player",
+        "modelId": "model-wave17-natural-command-9",
+        "suiteId": "expanded-capabilities-1",
+        "startedWeek": 571,
+        "requiredWork": 4000000000,
+        "completedWork": 4000000000,
+        "requiredStaff": 1000000000,
+        "completedStaff": 1000000000,
+        "status": "complete",
+        "reportId": "report-evaluation-wave17-natural-command-12",
+        "lastProgress": 4000000000,
+        "lastBottleneck": "",
+        "completedWeek": 571
+      },
+      "report": {
+        "id": "report-evaluation-wave17-natural-command-12",
+        "companyId": "company-player",
+        "modelId": "model-wave17-natural-command-9",
+        "week": 571,
+        "heldOut": true,
+        "suiteId": "expanded-capabilities-1",
+        "capabilityBps": {
+          "conversation": 5001,
+          "documents": 3965,
+          "coding": 3625,
+          "tools": 2073
+        },
+        "reliabilityBps": 8900,
+        "cases": [
+          {
+            "id": "expanded-capabilities-1:case-01",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-02",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-03",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-04",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-05",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-06",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-07",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-08",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-09",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-10",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-11",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-12",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-13",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-14",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-15",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-16",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-17",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-18",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-19",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-20",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-21",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-22",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-23",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-24",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-25",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-26",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-27",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-28",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-29",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-30",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-31",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-32",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-33",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-34",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-35",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-36",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-37",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-38",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-39",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-40",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-41",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-42",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-43",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-44",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-45",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-46",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-47",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-48",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-49",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-50",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-51",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-52",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-53",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-54",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-55",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-56",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-57",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-58",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-59",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-60",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-61",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-62",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-63",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-64",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-65",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-66",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-67",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-68",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-69",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-70",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-71",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-72",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-73",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-74",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-75",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-76",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-77",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-78",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-79",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-80",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-81",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-82",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-83",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-84",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-85",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-86",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-87",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-88",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-89",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-90",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-91",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-92",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-93",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-94",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-95",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-96",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-97",
+            "domain": "conversation",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-98",
+            "domain": "documents",
+            "difficultyBps": 2000,
+            "passed": true
+          },
+          {
+            "id": "expanded-capabilities-1:case-99",
+            "domain": "coding",
+            "difficultyBps": 2000,
+            "passed": false
+          },
+          {
+            "id": "expanded-capabilities-1:case-100",
+            "domain": "tools",
+            "difficultyBps": 2000,
+            "passed": true
+          }
+        ],
+        "passedCases": 63,
+        "basicChatEligible": true
+      }
+    }
+  },
+  "costs": {
+    "training-wave17-natural-command-5": {
+      "physicalCUw": 5500000001,
+      "ownedVariableCents": 41249,
+      "cloudAttributedCents": 0
+    },
+    "training-wave17-natural-command-7": {
+      "physicalCUw": 11000000002,
+      "ownedVariableCents": 82499,
+      "cloudAttributedCents": 0
+    },
+    "training-wave17-natural-command-9": {
+      "physicalCUw": 22000000003,
+      "ownedVariableCents": 164998,
+      "cloudAttributedCents": 0
+    }
+  },
+  "dataFacts": [
+    {
+      "id": "data-purchase-wave17-natural-command-2",
+      "companyId": "company-player",
+      "week": 554,
+      "sourceId": "data-company-player-specialist-conversation-1",
+      "category": "operating",
+      "amountCents": 600000,
+      "label": "Conversation specialist pack purchase",
+      "kind": "expense"
+    }
+  ],
+  "weeks": [
+    {
+      "week": 554,
+      "cashCents": 621551227,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 283500,
+        "attributedCloudRentCents": 1591545,
+        "attributedOwnedVariableCents": 283500,
+        "attributedComputeCents": 1875045,
+        "unallocatedCloudCents": 8455,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 86455,
+        "totalComputeCents": 1961500,
+        "companyRevenueCents": 4544335,
+        "otherOperatingCents": 970000,
+        "companyOperatingCents": 2931500,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1612835
+      },
+      "projects": []
+    },
+    {
+      "week": 555,
+      "cashCents": 623767663,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 283500,
+        "attributedCloudRentCents": 1594691,
+        "attributedOwnedVariableCents": 283500,
+        "attributedComputeCents": 1878191,
+        "unallocatedCloudCents": 5309,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 83309,
+        "totalComputeCents": 1961500,
+        "companyRevenueCents": 4547936,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2331500,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2216436
+      },
+      "projects": []
+    },
+    {
+      "week": 556,
+      "cashCents": 625982898,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 283500,
+        "attributedCloudRentCents": 1593481,
+        "attributedOwnedVariableCents": 283500,
+        "attributedComputeCents": 1876981,
+        "unallocatedCloudCents": 6519,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 84519,
+        "totalComputeCents": 1961500,
+        "companyRevenueCents": 4546735,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2331500,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2215235
+      },
+      "projects": []
+    },
+    {
+      "week": 557,
+      "cashCents": 628180002,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 320209,
+        "attributedCloudRentCents": 1598441,
+        "attributedOwnedVariableCents": 320208,
+        "attributedComputeCents": 1918649,
+        "unallocatedCloudCents": 1559,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 79560,
+        "totalComputeCents": 1998209,
+        "companyRevenueCents": 4565313,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2368209,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2197104
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "running",
+          "completedWork": 8000000000,
+          "physicalWork": 4444444445
+        }
+      ]
+    },
+    {
+      "week": 558,
+      "cashCents": 630408621,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 304916,
+        "attributedCloudRentCents": 1595241,
+        "attributedOwnedVariableCents": 304916,
+        "attributedComputeCents": 1900157,
+        "unallocatedCloudCents": 4759,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 82759,
+        "totalComputeCents": 1982916,
+        "companyRevenueCents": 4581535,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2352916,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2228619
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        }
+      ]
+    },
+    {
+      "week": 559,
+      "cashCents": 632627515,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 317042,
+        "attributedCloudRentCents": 1596451,
+        "attributedOwnedVariableCents": 317041,
+        "attributedComputeCents": 1913492,
+        "unallocatedCloudCents": 3549,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 81550,
+        "totalComputeCents": 1995042,
+        "companyRevenueCents": 4583936,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2365042,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2218894
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        }
+      ]
+    },
+    {
+      "week": 560,
+      "cashCents": 634865794,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 343833,
+        "attributedCloudRentCents": 1598485,
+        "attributedOwnedVariableCents": 343833,
+        "attributedComputeCents": 1942318,
+        "unallocatedCloudCents": 1515,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 79515,
+        "totalComputeCents": 2021833,
+        "companyRevenueCents": 4630112,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2391833,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2238279
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "running",
+          "completedWork": 8000000000,
+          "physicalWork": 4444444445
+        }
+      ]
+    },
+    {
+      "week": 561,
+      "cashCents": 637106473,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 343834,
+        "attributedCloudRentCents": 1599805,
+        "attributedOwnedVariableCents": 343833,
+        "attributedComputeCents": 1943638,
+        "unallocatedCloudCents": 195,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 78196,
+        "totalComputeCents": 2021834,
+        "companyRevenueCents": 4632513,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2391834,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2240679
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "running",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890
+        }
+      ]
+    },
+    {
+      "week": 562,
+      "cashCents": 639331975,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 312833,
+        "attributedCloudRentCents": 1598167,
+        "attributedOwnedVariableCents": 312833,
+        "attributedComputeCents": 1911000,
+        "unallocatedCloudCents": 1833,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 79833,
+        "totalComputeCents": 1990833,
+        "companyRevenueCents": 4586335,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2360833,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2225502
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "complete",
+          "completedWork": 19800000000,
+          "physicalWork": 11000000002
+        }
+      ]
+    },
+    {
+      "week": 563,
+      "cashCents": 641560244,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 313667,
+        "attributedCloudRentCents": 1596055,
+        "attributedOwnedVariableCents": 313666,
+        "attributedComputeCents": 1909721,
+        "unallocatedCloudCents": 3945,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 81946,
+        "totalComputeCents": 1991667,
+        "companyRevenueCents": 4589936,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2361667,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2228269
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "complete",
+          "completedWork": 19800000000,
+          "physicalWork": 11000000002
+        }
+      ]
+    },
+    {
+      "week": 564,
+      "cashCents": 643767271,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 333708,
+        "attributedCloudRentCents": 1594845,
+        "attributedOwnedVariableCents": 333708,
+        "attributedComputeCents": 1928553,
+        "unallocatedCloudCents": 5155,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 83155,
+        "totalComputeCents": 2011708,
+        "companyRevenueCents": 4588735,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2381708,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2207027
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "complete",
+          "completedWork": 19800000000,
+          "physicalWork": 11000000002
+        },
+        {
+          "id": "training-wave17-natural-command-9",
+          "status": "running",
+          "completedWork": 8000000000,
+          "physicalWork": 4444444445
+        }
+      ]
+    },
+    {
+      "week": 565,
+      "cashCents": 645995707,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 283500,
+        "attributedCloudRentCents": 1597441,
+        "attributedOwnedVariableCents": 283500,
+        "attributedComputeCents": 1880941,
+        "unallocatedCloudCents": 2559,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 80559,
+        "totalComputeCents": 1961500,
+        "companyRevenueCents": 4559936,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2331500,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2228436
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "complete",
+          "completedWork": 19800000000,
+          "physicalWork": 11000000002
+        },
+        {
+          "id": "training-wave17-natural-command-9",
+          "status": "paused",
+          "completedWork": 8000000000,
+          "physicalWork": 4444444445
+        }
+      ]
+    },
+    {
+      "week": 566,
+      "cashCents": 648221967,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 286875,
+        "attributedCloudRentCents": 1596165,
+        "attributedOwnedVariableCents": 286875,
+        "attributedComputeCents": 1883040,
+        "unallocatedCloudCents": 3835,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 81835,
+        "totalComputeCents": 1964875,
+        "companyRevenueCents": 4561135,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2334875,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2226260
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "complete",
+          "completedWork": 19800000000,
+          "physicalWork": 11000000002
+        },
+        {
+          "id": "training-wave17-natural-command-9",
+          "status": "paused",
+          "completedWork": 8000000000,
+          "physicalWork": 4444444445
+        }
+      ]
+    },
+    {
+      "week": 567,
+      "cashCents": 650439570,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 330333,
+        "attributedCloudRentCents": 1599531,
+        "attributedOwnedVariableCents": 330333,
+        "attributedComputeCents": 1929864,
+        "unallocatedCloudCents": 469,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 78469,
+        "totalComputeCents": 2008333,
+        "companyRevenueCents": 4595936,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2378333,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2217603
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "complete",
+          "completedWork": 19800000000,
+          "physicalWork": 11000000002
+        },
+        {
+          "id": "training-wave17-natural-command-9",
+          "status": "running",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890
+        }
+      ]
+    },
+    {
+      "week": 568,
+      "cashCents": 652668773,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 333709,
+        "attributedCloudRentCents": 1599915,
+        "attributedOwnedVariableCents": 333708,
+        "attributedComputeCents": 1933623,
+        "unallocatedCloudCents": 85,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 78086,
+        "totalComputeCents": 2011709,
+        "companyRevenueCents": 4610912,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2381709,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2229203
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "complete",
+          "completedWork": 19800000000,
+          "physicalWork": 11000000002
+        },
+        {
+          "id": "training-wave17-natural-command-9",
+          "status": "running",
+          "completedWork": 24000000000,
+          "physicalWork": 13333333335
+        }
+      ]
+    },
+    {
+      "week": 569,
+      "cashCents": 654894476,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 343833,
+        "attributedCloudRentCents": 1595285,
+        "attributedOwnedVariableCents": 343833,
+        "attributedComputeCents": 1939118,
+        "unallocatedCloudCents": 4715,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 82715,
+        "totalComputeCents": 2021833,
+        "companyRevenueCents": 4617536,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2391833,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2225703
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "complete",
+          "completedWork": 19800000000,
+          "physicalWork": 11000000002
+        },
+        {
+          "id": "training-wave17-natural-command-9",
+          "status": "running",
+          "completedWork": 32000000000,
+          "physicalWork": 17777777780
+        }
+      ]
+    },
+    {
+      "week": 570,
+      "cashCents": 657120869,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 345542,
+        "attributedCloudRentCents": 1598101,
+        "attributedOwnedVariableCents": 345541,
+        "attributedComputeCents": 1943642,
+        "unallocatedCloudCents": 1899,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 79900,
+        "totalComputeCents": 2023542,
+        "companyRevenueCents": 4619935,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2393542,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2226393
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "complete",
+          "completedWork": 19800000000,
+          "physicalWork": 11000000002
+        },
+        {
+          "id": "training-wave17-natural-command-9",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003
+        }
+      ]
+    },
+    {
+      "week": 571,
+      "cashCents": 659364439,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 327166,
+        "attributedCloudRentCents": 1596561,
+        "attributedOwnedVariableCents": 327166,
+        "attributedComputeCents": 1923727,
+        "unallocatedCloudCents": 3439,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 81439,
+        "totalComputeCents": 2005166,
+        "companyRevenueCents": 4618736,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2375166,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2243570
+      },
+      "projects": [
+        {
+          "id": "training-wave17-natural-command-5",
+          "status": "complete",
+          "completedWork": 9900000000,
+          "physicalWork": 5500000001
+        },
+        {
+          "id": "training-wave17-natural-command-7",
+          "status": "complete",
+          "completedWork": 19800000000,
+          "physicalWork": 11000000002
+        },
+        {
+          "id": "training-wave17-natural-command-9",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003
+        }
+      ]
+    }
+  ],
+  "commands": [
+    {
+      "week": 553,
+      "id": "wave17-natural-command-1",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 128000000000,
+        "development": 16000000000,
+        "research": 0
+      }
+    },
+    {
+      "week": 553,
+      "id": "wave17-natural-command-2",
+      "payload": {
+        "kind": "buy_data",
+        "catalogId": "specialist-conversation-1"
+      }
+    },
+    {
+      "week": 554,
+      "id": "wave17-natural-command-3",
+      "payload": {
+        "kind": "prepare_data",
+        "packetId": "data-company-player-specialist-conversation-1"
+      }
+    },
+    {
+      "week": 555,
+      "id": "wave17-natural-command-4",
+      "payload": {
+        "kind": "curate_data",
+        "packetId": "data-company-player-specialist-conversation-1"
+      }
+    },
+    {
+      "week": 556,
+      "id": "wave17-natural-command-5",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "model-wave15-natural-command-9",
+        "packetId": "curated-wave17-natural-command-4",
+        "recipeId": "compact-conversation-adaptation",
+        "profile": "stable"
+      }
+    },
+    {
+      "week": 558,
+      "id": "wave17-natural-command-6",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave17-natural-command-5",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 559,
+      "id": "wave17-natural-command-7",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "model-wave15-natural-command-9",
+        "packetId": "curated-wave17-natural-command-4",
+        "recipeId": "compact-conversation-adaptation",
+        "profile": "stable",
+        "curriculum": {
+          "shareBps": 5000,
+          "tracks": [
+            {
+              "domain": "documents",
+              "packetIds": [
+                "curated-natural-business-command-111"
+              ]
+            },
+            {
+              "domain": "coding",
+              "packetIds": [
+                "curated-natural-business-command-54"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "week": 562,
+      "id": "wave17-natural-command-8",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave17-natural-command-7",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 563,
+      "id": "wave17-natural-command-9",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "model-wave15-natural-command-9",
+        "packetId": "curated-wave17-natural-command-4",
+        "recipeId": "compact-conversation-adaptation",
+        "profile": "stable",
+        "curriculum": {
+          "shareBps": 7500,
+          "tracks": [
+            {
+              "domain": "documents",
+              "packetIds": [
+                "curated-natural-business-command-111"
+              ]
+            },
+            {
+              "domain": "coding",
+              "packetIds": [
+                "curated-natural-business-command-54"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    {
+      "week": 564,
+      "id": "wave17-natural-command-10",
+      "payload": {
+        "kind": "set_job_paused",
+        "jobId": "training-wave17-natural-command-9",
+        "paused": true
+      }
+    },
+    {
+      "week": 566,
+      "id": "wave17-natural-command-11",
+      "payload": {
+        "kind": "set_job_paused",
+        "jobId": "training-wave17-natural-command-9",
+        "paused": false
+      }
+    },
+    {
+      "week": 570,
+      "id": "wave17-natural-command-12",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave17-natural-command-9",
+        "suiteId": "expanded-capabilities-1"
+      }
+    }
+  ],
+  "assertions": [
+    "All continuation actions are ordinary commands from the independently verified Wave16 company.",
+    "Separate primary data is purchased, prepared, and curated through paid work.",
+    "Comparison preserves full serialized state and randomness.",
+    "Nominal budgets of 9.9, 19.8, and 39.6 CUw execute on shared GPUs under real ML supervision.",
+    "Both retained skills are bounded by the original evaluated model and independent source quality.",
+    "Focus draws, focus outcome, reliability, policy, and live deployments stay consistent across the designs.",
+    "Fresh Expanded capabilities reports consume their own four CUw and one research staff-week each.",
+    "Pause/reload preserves paid progress exactly; reversed track order cannot create a repeat attempt.",
+    "Public products remain fully served, original batch receipts remain unchanged, and the company stays funded."
+  ],
+  "costBoundary": "Recorded training usage excludes existing cloud rent, payroll, data purchase/curation, and later evaluation. Cloud-work attribution is already within reservation rent. All such expenses remain in the actual company ledger."
+}

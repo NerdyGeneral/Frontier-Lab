@@ -1,0 +1,17 @@
+✔ W27-C01 paid regression canary observes disjoint traffic, restores the incumbent and invoices once (31025.840497ms)
+✔ W27-C02 queue and stopped-save reloads preserve exact continuation and duplicate commands cannot charge again (6402.378146ms)
+✔ W27-C03 explicit protocol limits and both queued command orders reject stale full rollout (5080.870188ms)
+✔ W27-C04 sufficient nonregressing evidence permits the existing paid handover and retained-source rollback (40685.235794ms)
+✔ W27-C05 compressed API candidate keeps its paid policy/runtime identity and shares one executed-token carry (41650.509119ms)
+✔ W27-C06 actual work respects its hard allowance and eight insufficient samples never unlock rollout (32623.27896ms)
+✔ W27-C07 loss of connected memory stops actual zero-grant traffic without rejecting the settlement (14540.139065ms)
+✔ W27-C08 checksummed imports reject stopped-canary resurrection, fabricated qualification and changed cohort billing (13581.039377ms)
+✔ W27-C09 pure release views and frozen paid identities preserve state, RNG and canonical reload ordering (816.783912ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 186939.807769

@@ -1,0 +1,159 @@
+{
+  "phase": "30C",
+  "build": "0.30.2",
+  "content": "0.28.0",
+  "saveSchema": 5,
+  "environment": "Managed Chrome against the supported local Sites preview",
+  "method": "Ordinary UI actions, native browser zoom, supported snapshot export/import. No runtime state edits or direct grants.",
+  "checks": {
+    "singleResultsDialog": true,
+    "resultsFromSave": true,
+    "hireRoleRetainedThroughResults": true,
+    "staffingRetainedThroughResourceDetour": true,
+    "noStaffingSelfReturnLoop": true,
+    "founderDraftRetainedAcrossHireAssign": {
+      "data": 0.25,
+      "ml": 0.75,
+      "notSubmitted": true
+    },
+    "hireReview": {
+      "role": "ml",
+      "recruitmentDollars": 1500,
+      "salaryDollarsPerWeek": 300,
+      "hiredWeek": 1,
+      "readyWeek": 3,
+      "startingFte": 1,
+      "onboardingCapacity": 0
+    },
+    "doubleClickHireSingleCommand": {
+      "commandId": "command-2",
+      "week": 1,
+      "status": "accepted",
+      "playerStaffCount": 1
+    },
+    "week3Completion": {
+      "unread": 1,
+      "dialogs": 0,
+      "paused": true
+    },
+    "reload": {
+      "unreadRestored": 1,
+      "quietSavedLabMessage": true,
+      "pausedWeek": 3,
+      "noForcedDialog": true
+    },
+    "dismissedReload": {
+      "hiddenByDefault": true,
+      "visibleWithDismissedFilter": true
+    },
+    "identicalImport": {
+      "historicalStatus": "Reviewed",
+      "notDismissed": true,
+      "unread": 0,
+      "freshTimeline": true
+    },
+    "exactEmployeeAction": "staff:command-2",
+    "assignment": {
+      "proposedFte": 0.5,
+      "retainedThroughPlanner": true,
+      "reviewCurrentFte": 1,
+      "reviewProposedFte": 0.5,
+      "week": 4,
+      "commandId": "command-9",
+      "receipt": {
+        "id": "command-9",
+        "week": 4,
+        "status": "accepted"
+      },
+      "exportedEmployee": {
+        "id": "staff:command-2",
+        "companyId": "company-player",
+        "role": "ml",
+        "hiredWeek": 1,
+        "readyWeek": 3,
+        "assignedFte": 500000000
+      }
+    },
+    "olderCandidate": {
+      "fixture": "tests/fixtures/wave27-canary-published.json",
+      "labWeek": 553,
+      "filterType": "Training",
+      "completionWeek": 508,
+      "selectedName": "Document adaptation 17",
+      "selectedId": "model-wave15-natural-command-2",
+      "newerCandidatesPresent": true
+    },
+    "attention": {
+      "title": "Basic Chat canary",
+      "reason": "Week 552 decision: Canary regression in useful answers. The incumbent receives all new requests next week; the existing invoice settles this week\u2019s actual work once.",
+      "contextualPlanner": true,
+      "returnToEvaluation": true
+    },
+    "zoom200": {
+      "viewport": {
+        "width": 681,
+        "height": 468
+      },
+      "documentScrollWidth": 681
+    },
+    "zoom400": {
+      "viewport": {
+        "width": 340,
+        "height": 234
+      },
+      "documentScrollWidth": 340,
+      "dialogWidth": 340.75,
+      "resultsOuterScroll": true,
+      "keyboardWrappedInsideDialog": true,
+      "escapeReturnedToEvaluation": true,
+      "staffingReviewReachableByKeyboard": true,
+      "reviewControlHeight": 44
+    },
+    "zoomRestoredTo100": true,
+    "restoration": {
+      "original": {
+        "bytes": 41831,
+        "sha256": "3d25570b6af78b8e7014e3e727096278d5a3a9704440a2d7900bd7c47d81ab27",
+        "week": 0,
+        "buildVersion": "0.30.2"
+      },
+      "restored": {
+        "bytes": 41831,
+        "sha256": "3d25570b6af78b8e7014e3e727096278d5a3a9704440a2d7900bd7c47d81ab27",
+        "week": 0,
+        "buildVersion": "0.30.2"
+      },
+      "byteEqual": true,
+      "paused": true,
+      "noQueuedTestingCommands": true
+    }
+  },
+  "intermediateExports": {
+    "week3": {
+      "bytes": 99898,
+      "sha256": "2f0971af08f3f29d9d3fac42f135a397d5bb8e453df8eb9eed40c761e9d92735",
+      "week": 3,
+      "buildVersion": "0.30.2"
+    },
+    "week4": {
+      "bytes": 114993,
+      "sha256": "eeae297d09c81ad1987772b47d78ac1ebbe0d66f0fa69a18f5e0374e93c6802f",
+      "week": 4,
+      "buildVersion": "0.30.2"
+    }
+  },
+  "limits": [
+    "Browser zoom rather than device emulation",
+    "No physical mobile or screen-reader session",
+    "Completion sounds were disabled",
+    "Ownership/storage-failure/delayed-hash and unavailable-target edge cases are covered by automated checks rather than all being induced in Chrome"
+  ],
+  "screenshots": [
+    "docs/images/wave30c-results-inbox.png",
+    "docs/images/wave30c-focused-hiring.png",
+    "docs/images/wave30c-results-200-percent.png",
+    "docs/images/wave30c-results-400-percent.png",
+    "docs/images/wave30c-staffing-400-percent.png",
+    "docs/images/wave30c-onboarding-completion.png"
+  ]
+}

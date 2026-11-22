@@ -1,0 +1,144 @@
+{
+  "audit": "Frontier Lab plain-language source safety review",
+  "baselineCommit": "932e004ab6cb4599f3a18512a82006a8f0e430cd",
+  "buildBefore": "0.30.3",
+  "buildAfter": "0.30.4",
+  "status": "passed",
+  "checkedSourceCount": 66,
+  "checkedPaths": [
+    "src/content/catalog.ts",
+    "src/content/wave2-lab.ts",
+    "src/content/wave28-facilities.ts",
+    "src/content/wave6-forecast.ts",
+    "src/content/wave8-costs.ts",
+    "src/core/studio-journey.ts",
+    "src/core/studio-planning.ts",
+    "src/core/studio-results.ts",
+    "src/core/studio-tasks.ts",
+    "src/core/studio.ts",
+    "src/modules/capacity-forecast.ts",
+    "src/modules/chips.ts",
+    "src/modules/lab-data.ts",
+    "src/modules/lab-planner.ts",
+    "src/modules/lab.ts",
+    "src/modules/research.ts",
+    "src/ui/FrontierLab.tsx",
+    "src/ui/adapter-bank-panel.tsx",
+    "src/ui/agent-panels.tsx",
+    "src/ui/agent-recovery-controls.tsx",
+    "src/ui/applied-research-panel.tsx",
+    "src/ui/assured-api-panel.tsx",
+    "src/ui/batch-inference-panel.tsx",
+    "src/ui/batch-planning-panel.tsx",
+    "src/ui/business-panels.tsx",
+    "src/ui/campaign-panel.tsx",
+    "src/ui/capacity-forecast-panel.tsx",
+    "src/ui/chips-panel.tsx",
+    "src/ui/components.tsx",
+    "src/ui/compute-costs-panel.tsx",
+    "src/ui/data-quality-panel.tsx",
+    "src/ui/evidence-panel.tsx",
+    "src/ui/facility-retrofits-panel.tsx",
+    "src/ui/feedback-panel.tsx",
+    "src/ui/feedback-review-panel.tsx",
+    "src/ui/hardware-sales-panel.tsx",
+    "src/ui/independent-holdout-details.tsx",
+    "src/ui/infrastructure-panel.tsx",
+    "src/ui/lab-panels.tsx",
+    "src/ui/panels.tsx",
+    "src/ui/player-guide.tsx",
+    "src/ui/policy-details.tsx",
+    "src/ui/prepared-releases-panel.tsx",
+    "src/ui/product-panels.tsx",
+    "src/ui/rack-relocation-controls.tsx",
+    "src/ui/release-operations-controls.tsx",
+    "src/ui/release-rehearsal-panel.tsx",
+    "src/ui/replay-training-controls.tsx",
+    "src/ui/runtime-guardrails-panel.tsx",
+    "src/ui/studio-appliance-desk.tsx",
+    "src/ui/studio-campus.tsx",
+    "src/ui/studio-command-review.tsx",
+    "src/ui/studio-management-review.ts",
+    "src/ui/studio-navigation.tsx",
+    "src/ui/studio-opening-journey.tsx",
+    "src/ui/studio-planner.tsx",
+    "src/ui/studio-release-desk.tsx",
+    "src/ui/studio-research-method.tsx",
+    "src/ui/studio-research-tree.tsx",
+    "src/ui/studio-results.tsx",
+    "src/ui/studio-shell.tsx",
+    "src/ui/studio-staffing.tsx",
+    "src/ui/studio-surfaces.tsx",
+    "src/ui/synthetic-data-panel.tsx",
+    "src/ui/training-curriculum-controls.tsx",
+    "src/ui/training-experiments-panel.tsx"
+  ],
+  "sourceSetSha256": "560aa343770b5cae9a6553e8ed5fd2c0d51aa89812b1f4c3997291001b6b8e4d",
+  "sourceSetHashMethod": "SHA-256 of JSON.stringify of the ordered {path,sha256} entries, using UTF-8 working-tree file bytes for each file hash.",
+  "sourceFilesUnchangedDuringAudit": true,
+  "excluded": [
+    "All tests, including src/ui/lab-journey.test.tsx",
+    "Package version metadata",
+    "Documentation, screenshots and verification logs"
+  ],
+  "checks": {
+    "typescriptParse": {
+      "files": 66,
+      "errors": 0
+    },
+    "nonTextSyntaxAndOperators": {
+      "passed": true,
+      "method": "Compare TypeScript AST structure and operators after removing JSX text and replacing literal/template text with placeholders. Normalize only the four reviewed presentation changes listed below."
+    },
+    "numericLiterals": {
+      "unchanged": true
+    },
+    "gameplayIdentifiersAndExpressions": {
+      "unchanged": true,
+      "exceptions": "Only the declared display-label expressions below were simplified."
+    },
+    "eventHandlerLogic": {
+      "unchanged": true,
+      "detail": "Callback bodies, conditions, handlers and non-display arguments match; status-message wording may differ."
+    },
+    "protectedStrings": {
+      "unexpectedChanges": 0,
+      "detail": "Checked changed strings for imports, types, switch and comparison values, object keys, element indexes, structural DOM attributes, command/navigation IDs and machine properties/calls. Reviewed table labels, callback messages and rendered props as display copy."
+    },
+    "comparisonAndStructuralAttributeLiterals": {
+      "unchanged": true
+    },
+    "copyLiteralAndTemplateChangesReviewed": 1024,
+    "unexpectedStructuralChanges": 0
+  },
+  "knownExceptions": [
+    {
+      "path": "src/content/catalog.ts",
+      "change": "buildVersion 0.30.3 → 0.30.4",
+      "scope": "Release metadata only."
+    },
+    {
+      "path": "src/ui/studio-shell.tsx",
+      "change": "Generic return label replaces a concatenated task title with “Back to your choices”.",
+      "scope": "Conditional branches and navigation remain unchanged."
+    },
+    {
+      "path": "src/ui/studio-shell.tsx",
+      "change": "Detour reminder removes the interpolated lowercased task name.",
+      "scope": "Display sentence only; return handler and disabled conditions match."
+    },
+    {
+      "path": "src/ui/studio-shell.tsx",
+      "change": "Draft button keeps the task title capitalization after “Continue:”.",
+      "scope": "Removes display-only toLowerCase(); task identity and click handler match."
+    },
+    {
+      "path": "src/ui/FrontierLab.tsx",
+      "change": "About-this-version overview changes from two static paragraphs to three.",
+      "scope": "Static prose only; diagnostics, version values, fingerprint and controls match."
+    }
+  ],
+  "additionalCopyObservation": "The chip progress summary removes a standalone JSX text node (“grants”); both dynamic expressions are unchanged. This is covered by the JSX-text comparison, not a gameplay exception.",
+  "findings": [],
+  "limits": "Source-diff review only. Rendered layout, type checking, production build and gameplay tests are recorded separately. Reworded messages can change text in newly produced records; this audit does not claim serialized-save byte equality."
+}

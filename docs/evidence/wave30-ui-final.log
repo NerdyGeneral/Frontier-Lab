@@ -1,0 +1,30 @@
+✔ W29-U01: unvisited Studio workbenches do not execute heavy children or add DOM wrappers (9.851393ms)
+✔ W29-U02: the selected real Data panel retains its direct-child section, quote and current state (134.827196ms)
+✔ W29-U03: Classic renders every legacy section once and excludes Studio-only duplicate workbenches (9.604249ms)
+✔ W29-U04: standalone selection renders one workbench with the props supplied for that render (2.350364ms)
+✔ W29-U05: the actual initial Studio Shell defers legacy, planner and research preview work (385.230234ms)
+✔ W29-U06: pending Shell feedback stays outside the inspector and disables every clock action (48.549885ms)
+✔ W29-U07: action buttons describe the unique accepted, blocked, incomplete and queued quote in one render (42.55708ms)
+✔ W29-U08: memo policy skips hidden prop churn but allows active changes and epoch replacement (0.991991ms)
+✔ W30-U01: opening and advanced cold shells keep every unvisited workbench lazy and leave the company intact (1647.934812ms)
+✔ W30-U02: a read-only cold shell exposes its status while disabling all clock commitments (33.657878ms)
+✔ W30-U03: registered task titles name their dialog and only a concise introduction describes it (6.196398ms)
+✔ W30-U04: hidden and inline surfaces keep one child tree without exposing another modal (3.819534ms)
+✔ W30-U05: busy task status stays outside its busy body and unsafe Close and Back are disabled (1.882735ms)
+✔ W30-U06: a read-only commitment keeps its current quote and never calls the review dispatcher during rendering (8.344927ms)
+✔ W30-U07: contextual menu reuses one named native trigger and exposes its current expansion state (3.357086ms)
+✔ W30-U08: inspector and result primitives remain named nonmodal context with exact supplied identity (2.280261ms)
+✔ W30-U09: a resolved older training result selects its actual output in the real Models panel (841.436913ms)
+✔ W30-U10: an exact report intent selects both its model and its real evaluation suite (488.231283ms)
+✔ W30-U11: explicit missing or foreign candidates show a recovery choice without selecting the newest model (540.140626ms)
+✔ W30-U12: a mismatched report keeps the requested candidate and does not display a different report as its result (461.334695ms)
+✔ W30-U13: commitment review names the captured setup and describes acceptance timing without claiming it was queued (12.329732ms)
+✔ W30-U14: stale commitment review preserves the setup and only enables refresh when it is safe (7.775787ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7203.896526

@@ -1,0 +1,550 @@
+{
+  "provenance": "Ordinary-command continuation of the published natural business campaign; no player state grants.",
+  "sourceCommit": "0dea6af3946645d25e33b81430b86edf380cebcd",
+  "sourceWeek": 252,
+  "sourceChecksum": "be2188bd",
+  "endWeek": 265,
+  "checksum": "7b1924ee",
+  "cashCents": 187735609,
+  "revenueCents": 3796000,
+  "operatingExpenseCents": 2575000,
+  "commands": [
+    {
+      "week": 252,
+      "id": "command-1442",
+      "payload": {
+        "kind": "set_cloud_capacity",
+        "cu": 112000000000
+      }
+    },
+    {
+      "week": 253,
+      "id": "command-1448",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 100000000000,
+        "development": 6000000000,
+        "research": 6000000000
+      }
+    },
+    {
+      "week": 253,
+      "id": "command-1450",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "R2A"
+      }
+    },
+    {
+      "week": 253,
+      "id": "command-1452",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "R6A"
+      }
+    },
+    {
+      "week": 253,
+      "id": "command-1454",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "R12A"
+      }
+    },
+    {
+      "week": 256,
+      "id": "command-1476",
+      "payload": {
+        "kind": "start_system_rollout",
+        "method": "deduplication"
+      }
+    },
+    {
+      "week": 256,
+      "id": "command-1478",
+      "payload": {
+        "kind": "start_system_rollout",
+        "method": "capacity-forecast"
+      }
+    },
+    {
+      "week": 256,
+      "id": "command-1480",
+      "payload": {
+        "kind": "install_retrieval",
+        "productId": "product:natural-business-command-163",
+        "packetId": "curated-natural-business-command-111"
+      }
+    },
+    {
+      "week": 259,
+      "id": "command-1498",
+      "payload": {
+        "kind": "install_product_efficiency",
+        "productId": "product:natural-business-command-163",
+        "method": "evidence-links"
+      }
+    },
+    {
+      "week": 261,
+      "id": "command-1507",
+      "payload": {
+        "kind": "hire_staff",
+        "role": "data"
+      }
+    },
+    {
+      "week": 261,
+      "id": "command-1509",
+      "payload": {
+        "kind": "hire_staff",
+        "role": "data"
+      }
+    },
+    {
+      "week": 261,
+      "id": "command-1511",
+      "payload": {
+        "kind": "hire_staff",
+        "role": "data"
+      }
+    },
+    {
+      "week": 261,
+      "id": "command-1513",
+      "payload": {
+        "kind": "hire_staff",
+        "role": "data"
+      }
+    },
+    {
+      "week": 261,
+      "id": "command-1515",
+      "payload": {
+        "kind": "hire_staff",
+        "role": "data"
+      }
+    },
+    {
+      "week": 264,
+      "id": "command-1538",
+      "payload": {
+        "kind": "deduplicate_data",
+        "packetId": "curated-natural-business-command-124"
+      }
+    }
+  ],
+  "productId": "product:natural-business-command-163",
+  "cleanedId": "deduplicated-command-1538",
+  "understaffed": {
+    "installationId": "efficiency:command-1498",
+    "retrievalId": "retrieval:product:natural-business-command-163",
+    "packetId": "curated-natural-business-command-111",
+    "qualityBps": 9500,
+    "documentCoverageBps": 10000,
+    "freshnessBps": 7692,
+    "requestWorkCUw": 660000,
+    "supportBps": 7307,
+    "requestedRequests": 39000,
+    "checkedRequests": 39000,
+    "supportedRequests": 28497,
+    "withheldRequests": 10503,
+    "uncheckedRequests": 0,
+    "checkWorkCUw": 780000000
+  },
+  "staffed": {
+    "installationId": "efficiency:command-1498",
+    "retrievalId": "retrieval:product:natural-business-command-163",
+    "packetId": "curated-natural-business-command-111",
+    "qualityBps": 9500,
+    "documentCoverageBps": 10000,
+    "freshnessBps": 10000,
+    "requestWorkCUw": 660000,
+    "supportBps": 9500,
+    "requestedRequests": 42000,
+    "checkedRequests": 42000,
+    "supportedRequests": 39900,
+    "withheldRequests": 2100,
+    "uncheckedRequests": 0,
+    "checkWorkCUw": 840000000
+  },
+  "settledEvidence": {
+    "installationId": "efficiency:command-1498",
+    "retrievalId": "retrieval:product:natural-business-command-163",
+    "packetId": "curated-natural-business-command-111",
+    "qualityBps": 9500,
+    "documentCoverageBps": 10000,
+    "freshnessBps": 10000,
+    "requestWorkCUw": 660000,
+    "supportBps": 9500,
+    "requestedRequests": 42750,
+    "checkedRequests": 42750,
+    "supportedRequests": 40612,
+    "withheldRequests": 2138,
+    "uncheckedRequests": 0,
+    "checkWorkCUw": 855000000
+  },
+  "trainingWorkBeforeCUw": 12000000000,
+  "trainingWorkAfterCUw": 10800000000,
+  "forecast": [
+    {
+      "name": "Base case",
+      "growthBps": 200,
+      "firstPressureWeek": 268,
+      "firstWeek": {
+        "week": 266,
+        "offset": 1,
+        "paidAccounts": 1234,
+        "trialAccounts": 32,
+        "privateCommitments": 0,
+        "licenseCommitments": 1,
+        "requestedWorkCUw": 89550000000,
+        "publicWorkCUw": 89550000000,
+        "privateWorkCUw": 0,
+        "requestedMemoryMU": 46780000000,
+        "physicalWorkCUw": 89550000000,
+        "reservedPhysicalCU": 98505000000,
+        "headroomCU": 8955000000,
+        "servingAllocationCU": 100000000000,
+        "grantedWorkCUw": 89550000000,
+        "weakestCapacityBps": 10000,
+        "computeFits": true,
+        "staffFits": true,
+        "fits": true,
+        "ownedServiceWorkCents": 0,
+        "staff": [
+          {
+            "role": "data",
+            "requiredFte": 1500000000,
+            "grantedFte": 1500000000,
+            "shortfallFte": 0
+          },
+          {
+            "role": "commercial",
+            "requiredFte": 250000000,
+            "grantedFte": 250000000,
+            "shortfallFte": 0
+          }
+        ],
+        "requests": [
+          {
+            "requestId": "serve:product:natural-business-command-8",
+            "label": "Basic Chat",
+            "requestedWorkCUw": 18225000000,
+            "grantedWorkCUw": 18225000000,
+            "physicalWorkCUw": 18225000000,
+            "requestedMemoryMU": 24200000000,
+            "grantedMemoryMU": 24200000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": true,
+            "reason": ""
+          },
+          {
+            "requestId": "serve:product:natural-business-command-67",
+            "label": "Developer API",
+            "requestedWorkCUw": 41625000000,
+            "grantedWorkCUw": 41625000000,
+            "physicalWorkCUw": 41625000000,
+            "requestedMemoryMU": 13280000000,
+            "grantedMemoryMU": 13280000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": true,
+            "reason": ""
+          },
+          {
+            "requestId": "serve:product:natural-business-command-163",
+            "label": "Business Documents",
+            "requestedWorkCUw": 29700000000,
+            "grantedWorkCUw": 29700000000,
+            "physicalWorkCUw": 29700000000,
+            "requestedMemoryMU": 9300000000,
+            "grantedMemoryMU": 9300000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": true,
+            "reason": ""
+          }
+        ],
+        "bottlenecks": [],
+        "cloudPlan": {
+          "additionalCU": 0,
+          "additionalRentCents": 0,
+          "totalCloudCU": 112000000000,
+          "servingAllocationCU": 100000000000,
+          "usesSpareAllocation": false,
+          "reason": "The current serving allocation fits this customer-service load."
+        }
+      },
+      "lastWeek": {
+        "week": 277,
+        "offset": 12,
+        "paidAccounts": 1528,
+        "trialAccounts": 32,
+        "privateCommitments": 0,
+        "licenseCommitments": 1,
+        "requestedWorkCUw": 103820000000,
+        "publicWorkCUw": 103820000000,
+        "privateWorkCUw": 0,
+        "requestedMemoryMU": 54640000000,
+        "physicalWorkCUw": 90909090909,
+        "reservedPhysicalCU": 100000000000,
+        "headroomCU": 9090909091,
+        "servingAllocationCU": 100000000000,
+        "grantedWorkCUw": 90909090909,
+        "weakestCapacityBps": 4285,
+        "computeFits": false,
+        "staffFits": true,
+        "fits": false,
+        "ownedServiceWorkCents": 0,
+        "staff": [
+          {
+            "role": "data",
+            "requiredFte": 1500000000,
+            "grantedFte": 1500000000,
+            "shortfallFte": 0
+          },
+          {
+            "role": "commercial",
+            "requiredFte": 250000000,
+            "grantedFte": 250000000,
+            "shortfallFte": 0
+          }
+        ],
+        "requests": [
+          {
+            "requestId": "serve:product:natural-business-command-8",
+            "label": "Basic Chat",
+            "requestedWorkCUw": 22595000000,
+            "grantedWorkCUw": 9684090909,
+            "physicalWorkCUw": 9684090909,
+            "requestedMemoryMU": 29420000000,
+            "grantedMemoryMU": 29420000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": false,
+            "reason": "Serving capacity and its headroom limit fulfillment."
+          },
+          {
+            "requestId": "serve:product:natural-business-command-67",
+            "label": "Developer API",
+            "requestedWorkCUw": 51525000000,
+            "grantedWorkCUw": 51525000000,
+            "physicalWorkCUw": 51525000000,
+            "requestedMemoryMU": 15920000000,
+            "grantedMemoryMU": 15920000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": true,
+            "reason": ""
+          },
+          {
+            "requestId": "serve:product:natural-business-command-163",
+            "label": "Business Documents",
+            "requestedWorkCUw": 29700000000,
+            "grantedWorkCUw": 29700000000,
+            "physicalWorkCUw": 29700000000,
+            "requestedMemoryMU": 9300000000,
+            "grantedMemoryMU": 9300000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": true,
+            "reason": ""
+          }
+        ],
+        "bottlenecks": [
+          "Basic Chat: Serving capacity and its headroom limit fulfillment."
+        ],
+        "cloudPlan": {
+          "additionalCU": 15000000000,
+          "additionalRentCents": 300000,
+          "totalCloudCU": 127000000000,
+          "servingAllocationCU": 115000000000,
+          "usesSpareAllocation": false,
+          "reason": "Add this cloud reservation and apply the displayed serving allocation. Staffing and other work still need their own resources."
+        }
+      }
+    },
+    {
+      "name": "Heavier load",
+      "growthBps": 500,
+      "firstPressureWeek": 267,
+      "firstWeek": {
+        "week": 266,
+        "offset": 1,
+        "paidAccounts": 1234,
+        "trialAccounts": 32,
+        "privateCommitments": 0,
+        "licenseCommitments": 1,
+        "requestedWorkCUw": 89550000000,
+        "publicWorkCUw": 89550000000,
+        "privateWorkCUw": 0,
+        "requestedMemoryMU": 46780000000,
+        "physicalWorkCUw": 89550000000,
+        "reservedPhysicalCU": 98505000000,
+        "headroomCU": 8955000000,
+        "servingAllocationCU": 100000000000,
+        "grantedWorkCUw": 89550000000,
+        "weakestCapacityBps": 10000,
+        "computeFits": true,
+        "staffFits": true,
+        "fits": true,
+        "ownedServiceWorkCents": 0,
+        "staff": [
+          {
+            "role": "data",
+            "requiredFte": 1500000000,
+            "grantedFte": 1500000000,
+            "shortfallFte": 0
+          },
+          {
+            "role": "commercial",
+            "requiredFte": 250000000,
+            "grantedFte": 250000000,
+            "shortfallFte": 0
+          }
+        ],
+        "requests": [
+          {
+            "requestId": "serve:product:natural-business-command-8",
+            "label": "Basic Chat",
+            "requestedWorkCUw": 18225000000,
+            "grantedWorkCUw": 18225000000,
+            "physicalWorkCUw": 18225000000,
+            "requestedMemoryMU": 24200000000,
+            "grantedMemoryMU": 24200000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": true,
+            "reason": ""
+          },
+          {
+            "requestId": "serve:product:natural-business-command-67",
+            "label": "Developer API",
+            "requestedWorkCUw": 41625000000,
+            "grantedWorkCUw": 41625000000,
+            "physicalWorkCUw": 41625000000,
+            "requestedMemoryMU": 13280000000,
+            "grantedMemoryMU": 13280000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": true,
+            "reason": ""
+          },
+          {
+            "requestId": "serve:product:natural-business-command-163",
+            "label": "Business Documents",
+            "requestedWorkCUw": 29700000000,
+            "grantedWorkCUw": 29700000000,
+            "physicalWorkCUw": 29700000000,
+            "requestedMemoryMU": 9300000000,
+            "grantedMemoryMU": 9300000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": true,
+            "reason": ""
+          }
+        ],
+        "bottlenecks": [],
+        "cloudPlan": {
+          "additionalCU": 0,
+          "additionalRentCents": 0,
+          "totalCloudCU": 112000000000,
+          "servingAllocationCU": 100000000000,
+          "usesSpareAllocation": false,
+          "reason": "The current serving allocation fits this customer-service load."
+        }
+      },
+      "lastWeek": {
+        "week": 277,
+        "offset": 12,
+        "paidAccounts": 2097,
+        "trialAccounts": 32,
+        "privateCommitments": 0,
+        "licenseCommitments": 1,
+        "requestedWorkCUw": 131460000000,
+        "publicWorkCUw": 131460000000,
+        "privateWorkCUw": 0,
+        "requestedMemoryMU": 69860000000,
+        "physicalWorkCUw": 90909090909,
+        "reservedPhysicalCU": 100000000000,
+        "headroomCU": 9090909091,
+        "servingAllocationCU": 100000000000,
+        "grantedWorkCUw": 90909090909,
+        "weakestCapacityBps": 0,
+        "computeFits": false,
+        "staffFits": true,
+        "fits": false,
+        "ownedServiceWorkCents": 0,
+        "staff": [
+          {
+            "role": "data",
+            "requiredFte": 1500000000,
+            "grantedFte": 1500000000,
+            "shortfallFte": 0
+          },
+          {
+            "role": "commercial",
+            "requiredFte": 250000000,
+            "grantedFte": 250000000,
+            "shortfallFte": 0
+          }
+        ],
+        "requests": [
+          {
+            "requestId": "serve:product:natural-business-command-8",
+            "label": "Basic Chat",
+            "requestedWorkCUw": 31035000000,
+            "grantedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "requestedMemoryMU": 39520000000,
+            "grantedMemoryMU": 0,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": null,
+            "fits": false,
+            "reason": "No serving capacity is available after existing reservations."
+          },
+          {
+            "requestId": "serve:product:natural-business-command-67",
+            "label": "Developer API",
+            "requestedWorkCUw": 70725000000,
+            "grantedWorkCUw": 61209090909,
+            "physicalWorkCUw": 61209090909,
+            "requestedMemoryMU": 21040000000,
+            "grantedMemoryMU": 21040000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": false,
+            "reason": "Serving capacity and its headroom limit fulfillment."
+          },
+          {
+            "requestId": "serve:product:natural-business-command-163",
+            "label": "Business Documents",
+            "requestedWorkCUw": 29700000000,
+            "grantedWorkCUw": 29700000000,
+            "physicalWorkCUw": 29700000000,
+            "requestedMemoryMU": 9300000000,
+            "grantedMemoryMU": 9300000000,
+            "largestCompatiblePoolMU": 224000000000,
+            "poolName": "General cloud",
+            "fits": true,
+            "reason": ""
+          }
+        ],
+        "bottlenecks": [
+          "Basic Chat: No serving capacity is available after existing reservations.",
+          "Developer API: Serving capacity and its headroom limit fulfillment."
+        ],
+        "cloudPlan": {
+          "additionalCU": null,
+          "additionalRentCents": null,
+          "totalCloudCU": null,
+          "servingAllocationCU": null,
+          "usesSpareAllocation": false,
+          "reason": "No general-cloud addition up to 128 total CU fits this load. Review compatible hardware, connected memory, fabric, and operations coverage."
+        }
+      }
+    }
+  ]
+}

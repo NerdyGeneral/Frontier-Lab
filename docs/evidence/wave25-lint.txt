@@ -1,0 +1,9 @@
+Wave 25 focused ESLint verification
+
+Command: node node_modules/eslint/bin/eslint.js src/contracts/wave25-studio.ts src/core/studio-planning.ts src/ui/studio-planner.tsx tests/fixtures/wave25-studio.ts tests/wave25-planning.test.ts src/contracts/types.ts src/core/command-shape.ts src/core/engine.ts src/core/studio.ts src/core/validation.ts
+
+No ESLint diagnostics.
+
+Exit code: 0
+
+Baseline finding: All 10 reported repository-wide lint errors predate Wave 25 at HEAD ba19446850abdc7f574f47f8dcec51d27875bc13. The complete batch-planning.ts, lab-panels.tsx, training-curriculum-controls.tsx, wave7-progression.test.ts and wave8-costs.test.ts files are byte-identical to HEAD. Both studio-shell.tsx effect bodies are also unchanged: preference loading (current line 90) and forced Save navigation (current line 149). A shell-only rerun reports those 2 existing errors and 3 img-element warnings. No unrelated lint fixes were made.

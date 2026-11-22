@@ -1,0 +1,45 @@
+{
+  "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+  "exitCode": 0,
+  "log": "docs/evidence/wave29-build.txt",
+  "stagesPassed": 5,
+  "packageVersion": "0.29.0",
+  "contentVersion": "0.28.0",
+  "schemaVersion": 5,
+  "typescript": {
+    "command": "npm run typecheck",
+    "exitCode": 0,
+    "log": "docs/evidence/wave29-typecheck.txt"
+  },
+  "controllerLint": {
+    "exitCode": 0,
+    "diagnostics": 0,
+    "log": "docs/evidence/wave29-controller-lint.txt"
+  },
+  "outputFiles": {
+    "dist/server/index.js": {
+      "bytes": 197088,
+      "sha256": "e3c0d00b46c2242b88bd8e0df2cc0c1a76bab6b34119bc219e036f17c76114d9"
+    },
+    "dist/server/wrangler.json": {
+      "bytes": 1160,
+      "sha256": "b2451e40d1ce68904e9b61bf7ba84dcdc374a3239566d7b07dbbcde85d3505df"
+    },
+    "dist/client/_next/static/chunks/FrontierLab-CSJBJx5M.js": {
+      "bytes": 1880298,
+      "sha256": "af0c4558ee44d82453ba8272e9d04c12f8e185bc4aec7e097133466bb670ef26",
+      "buildVersionMarker": "0.29.0"
+    }
+  },
+  "campusAsset": {
+    "bytes": 163428,
+    "sha256": "40354741c2a53269bd352247aed3ddc77667efb35a8f455cf11d37c86f2b8e44",
+    "sourceAndPackagedExact": true
+  },
+  "notices": [
+    "Existing large-client-chunk warning over500kB remains.",
+    "Framework reports route classification unknown.",
+    "Proxy environment and npm proxy-configuration notices remain."
+  ],
+  "postBuildApplicationEdits": false
+}

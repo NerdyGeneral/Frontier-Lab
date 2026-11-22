@@ -1,0 +1,38 @@
+{
+  "week": 590,
+  "command": {
+    "kind": "start_release_rehearsal",
+    "productId": "product:natural-business-command-8",
+    "candidateModelId": "model-natural-business-command-4"
+  },
+  "commandId": "command-3307",
+  "rehearsalId": "release-rehearsal:command-3307",
+  "originalValid": true,
+  "changed": [
+    {
+      "armName": "source",
+      "poolId": "owned:facility-wave8-scale-command-3:training",
+      "oldRateCentsPerCUw": 6750,
+      "newRateCentsPerCUw": 7500
+    },
+    {
+      "armName": "candidate",
+      "poolId": "owned:facility-wave8-scale-command-3:training",
+      "oldRateCentsPerCUw": 6750,
+      "newRateCentsPerCUw": 7500
+    }
+  ],
+  "mutatedStateAccepted": true,
+  "errors": [],
+  "afterFix": {
+    "originalValidation": [],
+    "mutatedValidation": [
+      {
+        "code": "INVALID_STATE",
+        "message": "Discounted facility work is missing its paid profile receipt."
+      }
+    ],
+    "originalImport": true,
+    "mutatedImport": false
+  }
+}

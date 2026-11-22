@@ -1,0 +1,60 @@
+{
+  "wave": 11,
+  "contentVersion": "0.12.0",
+  "schemaVersion": 5,
+  "date": "2026-11-07",
+  "priorPublishedCommit": "63dac0612733705f3ffdfef9d847c16996ba7378",
+  "automatedTests": {
+    "command": "node scripts/test-wave0.mjs",
+    "passed": 444,
+    "failed": 0,
+    "durationMs": 86813.645346,
+    "logSha256": "993effba850b427bddd860d1a63193a04b61dd08606b5b64cdf71e17d68b94c1"
+  },
+  "typecheck": {
+    "command": "npx tsc --noEmit --incremental false",
+    "exitCode": 0,
+    "logBytes": 99
+  },
+  "productionBuild": {
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+    "exitCode": 0,
+    "logSha256": "2e60fb2664e559663ca76ac379cf7b08e185a3bfcdb4dc50a49cb3895da5e491"
+  },
+  "naturalCampaign": {
+    "weeks": [
+      408,
+      432
+    ],
+    "commands": 13,
+    "checksum": "473327f1",
+    "snapshotBytes": 1741312
+  },
+  "browserCampaign": {
+    "weeks": [
+      408,
+      432
+    ],
+    "commands": 13,
+    "checksum": "e7bcfdbd",
+    "snapshotBytes": 1739692,
+    "byteExactReload": true,
+    "originalPreviewRestored": true,
+    "appConsoleErrors": 0
+  },
+  "historicalOracle": {
+    "sourceContent": "0.11.0",
+    "sourceWeek": 395,
+    "baselineChecksum": "27e47e54",
+    "futureWeeks": [
+      396,
+      409
+    ],
+    "fullStatesMatched": 14
+  },
+  "publication": {
+    "projectId": "appgprj_6aee557bdf488191ad2acf02d3520cf6",
+    "audience": "existing owner-private",
+    "method": "native save_version_and_deploy_private with exact pushed source and locally built archive"
+  }
+}

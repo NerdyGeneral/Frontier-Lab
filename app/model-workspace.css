@@ -1,0 +1,13 @@
+.model-blueprint-tools { min-width: 0; margin: 0 0 1rem; padding: .75rem 1rem; border: 1px solid var(--fl-line); border-radius: 12px; background: var(--fl-panel); color: var(--fl-text); overflow-wrap: anywhere; }
+.model-blueprint-status { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: .4rem 1rem; }
+.model-blueprint-status p { margin: 0; }
+.model-blueprint-tools details { margin-top: .5rem; }
+.model-blueprint-tools summary { cursor: pointer; font-size: .85rem; font-weight: 650; }
+.model-blueprint-row { display: flex; align-items: end; flex-wrap: wrap; gap: .6rem; margin-top: .65rem; }
+.model-blueprint-row label { display: grid; min-width: 0; max-width: 100%; gap: .3rem; flex: 1 1 12rem; font-size: .8rem; }
+.model-blueprint-row input, .model-blueprint-row select { min-width: 0; width: 100%; }
+.model-blueprint-row button { min-height: 40px; }
+.development-imported-design { padding: 1rem; border: 1px solid var(--fl-line); border-radius: 12px; background: var(--fl-panel); color: var(--fl-text); }
+.development-imported-design h4 { margin: 0 0 .5rem; }
+.development-evaluation-advice { padding: .75rem 1rem; border-left: 3px solid var(--fl-accent); background: var(--fl-raised); color: var(--fl-text); font-size: .85rem; line-height: 1.6; }
+@media (max-width: 600px) { .model-blueprint-tools { padding: .7rem; } .model-blueprint-status { align-items: stretch; } .model-blueprint-row button { flex: 1 0 100%; } }

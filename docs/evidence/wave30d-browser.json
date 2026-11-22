@@ -1,0 +1,131 @@
+{
+  "phase": "30D",
+  "build": "0.30.3",
+  "content": "0.28.0",
+  "saveSchema": 5,
+  "environment": "Managed Chrome against the supported local Sites preview",
+  "method": "Representative mounted journeys through ordinary game controls, browser zoom and supported snapshot export/import. Automated engine/storage parity is recorded separately.",
+  "checks": {
+    "desktopDestinations": [
+      "Studio",
+      "Projects",
+      "Research",
+      "Products",
+      "Operations",
+      "Company"
+    ],
+    "basicChatDraft": {
+      "priceDollars": 13.25,
+      "retainedThroughBack": true,
+      "retainedThroughResources": true,
+      "retainedThroughResultsS3MethodAndBrowse": true
+    },
+    "singleModalOnCheckedTaskResultsResearchPaths": true,
+    "escapeReturnsThroughRetainedFlow": true,
+    "releaseDraft": {
+      "minimumCohortSample": 333,
+      "candidateBudgetCUw": 3.25,
+      "retainedThroughSaveAndCancelledImport": true
+    },
+    "pendingImport": {
+      "primaryNavigationDisabled": true,
+      "retainedParentReturnDisabled": true,
+      "taskModalCount": 0
+    },
+    "stoppedCanaryPromotionBlocked": true,
+    "doubleActivationDiscard": {
+      "acceptedCommandCount": 1,
+      "commandId": "command-3150",
+      "effectiveWeek": 554,
+      "settledThroughOrdinaryWeekControl": true
+    },
+    "campusProfileReview": {
+      "site": "Site 1",
+      "researchId": "S5",
+      "costDollars": 18000,
+      "elapsedWeeks": 3,
+      "infrastructureStaffWeeks": 3,
+      "workCUw": 6,
+      "memoryMU": 2,
+      "scope": "Mounted review; no claim of completed profile construction"
+    },
+    "successorChipReview": {
+      "name": "Cedar Memory II",
+      "parentName": "Cedar document appliance",
+      "improvement": "memory",
+      "costDollars": 18000,
+      "workCUw": 12,
+      "hardwareStaffWeeks": 6,
+      "backRetainsSelection": true,
+      "scope": "Mounted exact-parent review and retained draft; no claim of completed successor development"
+    },
+    "chipBatchReview": {
+      "racks": 1,
+      "attemptedChips": 8,
+      "usefulChips": 7,
+      "yieldPercent": 87.5,
+      "fabricationWeeks": 6,
+      "fabricationCostDollars": 11200,
+      "fabricationAndInstallationRemainDistinct": true,
+      "scope": "Mounted quote review; no claim of completed fabrication or installation"
+    }
+  },
+  "reflow": {
+    "zoom200": {
+      "viewportWidthCssPixels": 681,
+      "documentWidthCssPixels": 681,
+      "horizontalOverflow": false
+    },
+    "zoom400": {
+      "viewportWidthCssPixels": 340,
+      "documentWidthCssPixels": 340,
+      "horizontalOverflow": false
+    },
+    "narrowNavigation": {
+      "visibleDestinations": [
+        "Studio",
+        "Projects",
+        "Research",
+        "Products",
+        "More"
+      ],
+      "moreToCompanyWorks": true
+    },
+    "reviewFooter400": {
+      "path": [
+        "R1 research method",
+        "Resources",
+        "Hire"
+      ],
+      "buttonCount": 5,
+      "secondaryColumns": 2,
+      "secondaryButtonWidthCssPixels": 147,
+      "queueButtonWidthCssPixels": 305,
+      "queueSpansFullWidth": true,
+      "tabWrapsQueueToClose": true,
+      "shiftTabWrapsCloseToQueue": true,
+      "footerOverflowCorrectedAndRechecked": true
+    }
+  },
+  "restoration": {
+    "method": "Ordinary UI import/review followed by export",
+    "originalBytes": 41831,
+    "restoredBytes": 41831,
+    "originalSha256": "2e4dd272a8fb14d5640dcac03e6a4148c606ad862b6bb4fa7e8368e62a5a4fbc",
+    "restoredSha256": "2e4dd272a8fb14d5640dcac03e6a4148c606ad862b6bb4fa7e8368e62a5a4fbc",
+    "byteEqual": true,
+    "snapshotContentsCommitted": false
+  },
+  "screenshots": [
+    "wave30d-research-method.png",
+    "wave30d-review-footer-400.png",
+    "wave30d-navigation-400.png"
+  ],
+  "limits": [
+    "Representative mounted paths do not cover every gated API, business, agent, hardware or site operation.",
+    "Campus, successor and chip-batch observations establish the listed review terms and retention, not paid completion of those projects.",
+    "Browser zoom and keyboard checks are not physical-device or screen-reader certification.",
+    "The independent parity scenarios are pure engine/storage comparisons, not mounted browser campaigns."
+  ],
+  "publication": "Tracked separately through the native deployment result; no publication identifier asserted here."
+}

@@ -1,0 +1,20 @@
+{
+  "wave": 28,
+  "result": "PASS",
+  "verifiedAt": "2026-11-09T20:13:38.305674+00:00",
+  "week": 612,
+  "checksum": "627fa28e",
+  "revision": 1013,
+  "nextId": 3409,
+  "actualBytes": 1463938,
+  "expectedBytes": 1463938,
+  "actualSha256": "bbb43b62b660e1932064d61a2597558548194f8eae0313c523a4d1d60d805c5c",
+  "expectedSha256": "bbb43b62b660e1932064d61a2597558548194f8eae0313c523a4d1d60d805c5c",
+  "exactBytesMatch": true,
+  "exactStateMatch": true,
+  "method": "Imported the ordinary-command W596 readiness snapshot, then funded design, qualified prototype, fabricated one standard colocation rack, and installed it through visible browser controls. Default command IDs, no hidden state changes.",
+  "oracleEvidence": "wave28-silicon-ui-oracle.json",
+  "qualificationSurvivedReload": true,
+  "cashCents": 685350891,
+  "referenceReconciliation": "The original explicit-standard oracle stores optional batch.foundry. The production UI omits that default. An independent ordinary-command replay of the actual UI payload matches the browser bytes exactly; the original reference is retained unchanged."
+}

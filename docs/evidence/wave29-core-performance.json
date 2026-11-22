@@ -1,0 +1,229 @@
+{
+  "status": "pass",
+  "publishedBaselineCommit": "6b82a6dd08e2d2ab7b78bd066a0cd043167dec38",
+  "scope": "Core command assessment and per-tick immutable read snapshots only. Public input/output state validation, admission revalidation, atomic rollback, fee comparison, resource boundaries and domain ordering remain in place.",
+  "method": {
+    "driver": "/workspace/scratch/3755ece2734b/profile-wave29-core.ts",
+    "command": "node --import tsx /workspace/scratch/3755ece2734b/profile-wave29-core.ts baseline|after",
+    "warmupsPerOperation": 1,
+    "commandSamples": 5,
+    "weeklyAndValidationSamples": 3,
+    "timings": "Indicative pure Node timings on a shared machine; these are neither browser input latency nor DOM/layout time. Whole-state clone counts are deterministic. Total clone-call count can increase because reusable snapshots copy smaller pieces.",
+    "baselineTypecheck": "wave29-core-baseline-typecheck.txt"
+  },
+  "advancedInput": {
+    "file": "wave28-silicon-browser-actual.json",
+    "week": 612,
+    "checksum": "627fa28e",
+    "bytes": 1463938,
+    "sourceUnchanged": true
+  },
+  "catalogBuilds": {
+    "before": "0.28.0",
+    "after": "0.29.0",
+    "contentVersion": "0.28.0",
+    "normalization": "None. Both passes import the exact preserved source snapshots, including the captured opening save. Existing saved build provenance remains unchanged."
+  },
+  "measurements": [
+    {
+      "path": "opening accepted preview",
+      "samplesPerBuild": 5,
+      "beforeMedianMs": 1.54,
+      "afterMedianMs": 0.81,
+      "medianTimeChangePercent": -47.4,
+      "beforeWholeStateClonesPerCall": [
+        3
+      ],
+      "afterWholeStateClonesPerCall": [
+        1
+      ],
+      "beforeAllCloneCallsPerCall": [
+        4
+      ],
+      "afterAllCloneCallsPerCall": [
+        2
+      ],
+      "beforeMedianStructuredCloneMs": 0.81,
+      "afterMedianStructuredCloneMs": 0.28
+    },
+    {
+      "path": "W612 accepted preview",
+      "samplesPerBuild": 5,
+      "beforeMedianMs": 74.81,
+      "afterMedianMs": 26.08,
+      "medianTimeChangePercent": -65.14,
+      "beforeWholeStateClonesPerCall": [
+        3
+      ],
+      "afterWholeStateClonesPerCall": [
+        1
+      ],
+      "beforeAllCloneCallsPerCall": [
+        4
+      ],
+      "afterAllCloneCallsPerCall": [
+        2
+      ],
+      "beforeMedianStructuredCloneMs": 60.2,
+      "afterMedianStructuredCloneMs": 15.44
+    },
+    {
+      "path": "W612 rejected preview",
+      "samplesPerBuild": 5,
+      "beforeMedianMs": 17.95,
+      "afterMedianMs": 29.64,
+      "medianTimeChangePercent": 65.13,
+      "beforeWholeStateClonesPerCall": [
+        1
+      ],
+      "afterWholeStateClonesPerCall": [
+        1
+      ],
+      "beforeAllCloneCallsPerCall": [
+        2
+      ],
+      "afterAllCloneCallsPerCall": [
+        2
+      ],
+      "beforeMedianStructuredCloneMs": 14.58,
+      "afterMedianStructuredCloneMs": 18.34
+    },
+    {
+      "path": "W612 submit",
+      "samplesPerBuild": 5,
+      "beforeMedianMs": 411.17,
+      "afterMedianMs": 332.78,
+      "medianTimeChangePercent": -19.07,
+      "beforeWholeStateClonesPerCall": [
+        4
+      ],
+      "afterWholeStateClonesPerCall": [
+        2
+      ],
+      "beforeAllCloneCallsPerCall": [
+        286
+      ],
+      "afterAllCloneCallsPerCall": [
+        284
+      ],
+      "beforeMedianStructuredCloneMs": 68.98,
+      "afterMedianStructuredCloneMs": 35.92
+    },
+    {
+      "path": "W612 advanceWeek",
+      "samplesPerBuild": 3,
+      "beforeMedianMs": 1451.28,
+      "afterMedianMs": 912.93,
+      "medianTimeChangePercent": -37.09,
+      "beforeWholeStateClonesPerCall": [
+        31
+      ],
+      "afterWholeStateClonesPerCall": [
+        1
+      ],
+      "beforeAllCloneCallsPerCall": [
+        638
+      ],
+      "afterAllCloneCallsPerCall": [
+        671
+      ],
+      "beforeMedianStructuredCloneMs": 809.62,
+      "afterMedianStructuredCloneMs": 425.42
+    },
+    {
+      "path": "W612 validateState",
+      "samplesPerBuild": 3,
+      "beforeMedianMs": 138.06,
+      "afterMedianMs": 123.93,
+      "medianTimeChangePercent": -10.23,
+      "beforeWholeStateClonesPerCall": [
+        0
+      ],
+      "afterWholeStateClonesPerCall": [
+        0
+      ],
+      "beforeAllCloneCallsPerCall": [
+        140
+      ],
+      "afterAllCloneCallsPerCall": [
+        140
+      ],
+      "beforeMedianStructuredCloneMs": 2.28,
+      "afterMedianStructuredCloneMs": 2.14
+    }
+  ],
+  "sourceSha256": {
+    "src/core/engine.ts": "04e1cebedbe62bcedb50f5014fdd04c0bfa8a2c5e32edaf29f331bead0a32560",
+    "src/core/read-snapshot.ts": "5b1214741c8f86a9ea252a2365d1e31020c438671a2b37809ef23c7a4dae5520"
+  },
+  "safety": {
+    "cacheLifetime": "Private to one advanceWeek invocation; there is no cross-operation mutable-state trust cache.",
+    "durableSlices": "Frozen plain-data copies are reused only while the engine-owned slice replacement identity is unchanged. applyResult still clones each installed owned slice.",
+    "coordinator": "Queue, receipts, random streams, journal, schedules and remaining top-level data are cloned fresh on every handler read.",
+    "exoticFallback": "Recursively non-plain Map/Set/Date-containing values receive fresh copies; Object.freeze is not used as proof of immutable internals. The same rule separates command validation and quoting for these values.",
+    "independentReview": "The exotic-value isolation finding was fixed conservatively; bounded follow-up review found no additional concrete P1/P2 in the snapshot/assessment paths."
+  },
+  "parity": {
+    "fullCommandCases": 8,
+    "weeklyCheckpoints": 19,
+    "fullStateSha256Equal": true,
+    "serializedSnapshotBytesEqual": true,
+    "details": "wave29-core-parity.json"
+  },
+  "validation": {
+    "distinctPassingChecks": 52,
+    "newWave29Checks": 9,
+    "existingChecks": 43,
+    "suites": [
+      {
+        "source": "tests/wave0.test.ts",
+        "passed": 33,
+        "evidence": "wave29-engine-initial-tests.log",
+        "includePrefix": "W0-",
+        "note": "All33 W0 identities passed on the final production core. The separate W25-P10 failure in this mixed log is resolved by the final planning log; no W0 rerun was needed."
+      },
+      {
+        "source": "tests/wave25-planning.test.ts",
+        "passed": 10,
+        "evidence": "wave29-engine-planning-tests.log",
+        "includePrefix": "W25-P"
+      },
+      {
+        "source": "tests/wave29-engine.test.ts",
+        "passed": 9,
+        "evidence": "wave29-engine-planning-tests.log",
+        "includePrefix": "W29-E"
+      }
+    ],
+    "unresolvedFailures": 0,
+    "scopedLint": {
+      "result": "pass",
+      "evidence": "wave29-core-lint.txt"
+    },
+    "initialExpectationCorrection": {
+      "check": "W25-P10",
+      "initialLog": "wave29-engine-initial-tests.log",
+      "cause": "The old expectation assigned Studio to every revenue-earning imported company. The preserved Wave16 W537 fixture already has its own active facility-wave8-scale-command-3, so the Wave28 room selector correctly returns Campus. Only the expected room table was corrected; fixture data and application selector were unchanged."
+    },
+    "newCoverage": [
+      "current cash and mutable caller identity revalidated between public calls",
+      "paid Studio fee once and exact queue/reload continuation",
+      "same-tick slice replacements, command receipts, journal and random changes remain visible",
+      "retained earlier snapshots and returned module objects remain isolated",
+      "mutating frozen durable/coordinator/context data fails with original rollback identity",
+      "input and output full validation remain authoritative",
+      "single commit quote still rejects mismatched applied charges",
+      "later Studio child failure discards earlier hire and fee while ordinary week settles",
+      "Map, Set and Date extra fields retain per-handler and validator/quote/application copy isolation"
+    ]
+  },
+  "rawEvidence": [
+    "wave29-core-baseline.json",
+    "wave29-core-after.json",
+    "wave29-core-final-replay.log"
+  ],
+  "superseded": [
+    "/workspace/shared/frontier-lab/wave29-core-after-initial.json (before exotic-value fallback)",
+    "/workspace/shared/frontier-lab/wave29-core-after-interrupted.log (incomplete final attempt; excluded from final measurements)"
+  ]
+}

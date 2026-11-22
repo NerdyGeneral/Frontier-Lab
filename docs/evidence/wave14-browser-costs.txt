@@ -1,0 +1,51 @@
+Compute costs
+Top
+
+Track actual GPU bills, unused reservations, and product contribution over the last eight settled weeks.
+
+Inspect settled compute costs · Week 481
+Settled week
+Week 485
+Week 484
+Week 483
+Week 482
+Week 481
+Week 480
+Week 479
+Week 478
+Billed compute and infrastructure
+$20,875
+Assigned to workloads
+$16,487.83
+Unused and shared compute
+$4,387.17
+
+Actual settled Week 481 costs. Cloud reservation, owned GPU use, and fixed upkeep add up to the company’s recorded charges.
+
+Products and internal work
+Week 481 · revenue and assigned compute
+Activity	Earned	Compute	Contribution
+Code index · batch order 1
+7.2727 physical CUw
+	$12,000	$545.45	$11,454.55
+Code index · batch order 2
+8 physical CUw
+	$15,000	$1,600	$13,400
+Vector Studio · weight license
+0 physical CUw
+	$250	$0	$250
+Business Documents
+34.2 physical CUw
+	$5,700	$2,565	$3,135
+Developer API
+49.0584 physical CUw
+	$23,513.95	$10,792.83	$12,721.12
+Basic Chat
+13.1273 physical CUw
+	$10,620	$984.55	$9,635.45
+
+Contribution is revenue less assigned compute. Shared infrastructure, unused cloud, payroll, support, penalties and other company expenses still need funding. Batch and agent work can be paid in later weeks, so this week’s contribution is not the whole job’s profit.
+
+Unused capacity and pool costs
+Company cost reconciliation
+Attribution rules

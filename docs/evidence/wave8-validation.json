@@ -1,0 +1,95 @@
+{
+  "contentVersion": "0.9.0",
+  "schemaVersion": 5,
+  "validatedOn": "2026-11-07",
+  "acceptance": {
+    "command": "npm test",
+    "passed": 351,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 50086.105633
+  },
+  "typecheck": {
+    "command": "npm run typecheck",
+    "exitCode": 0
+  },
+  "whitespace": {
+    "command": "git diff --check",
+    "exitCode": 0
+  },
+  "productionBuild": {
+    "command": "Sites build-site.mjs",
+    "exitCode": 0
+  },
+  "compatibility": {
+    "publishedCommit": "8fb429ad34c58da2ff323edd030220143a336982",
+    "fixtureWeek": 326,
+    "fixtureChecksum": "a3923526",
+    "weeksCompared": 12,
+    "finalWeek": 338,
+    "publishedFinalHash": "68a67abc",
+    "comparison": "Complete canonical state hashes after normalizing only content/build headers to 0.8.0",
+    "includedEarlierOracles": [
+      "Wave 4",
+      "Wave 5",
+      "Wave 6"
+    ]
+  },
+  "naturalProgression": {
+    "receipt": "docs/evidence/wave8-progression.json",
+    "startingWeek": 326,
+    "finalWeek": 370,
+    "commands": 31,
+    "finalHash": "b70a084d",
+    "snapshotBytes": 1332420
+  },
+  "browser": {
+    "environment": "Managed preview, Chrome",
+    "checks": [
+      "Imported naturally earned Week 352 company through the game UI.",
+      "Funded both independent facility projects; distinct queued labels, paid capital and progress meters; both commissioned by Week 357.",
+      "Funded existing colocation rack relocation in Week 358; offline work, preserved purchase, sequential transport and reconnection, commissioned Week 362.",
+      "Site reached 64 usable CU and 128 MU; total fixed infrastructure became $660/week.",
+      "Inspected product contribution, company costs and rented/owned pool utilization; customer-hosted license had zero company inference.",
+      "Week 357 historical report retained its $780 fixed charge after current Week 362 charge became $660.",
+      "Exported Week 362, reloaded, exported again and verified exact matching bytes.",
+      "Restored original Week 0 paused company and verified export exactly matched original 41800 bytes.",
+      "Hosted URL showed its existing ChatGPT sign-in gate; no hosted authentication or sharing changes."
+    ],
+    "exports": [
+      {
+        "name": "frontier-lab-wave8-original-browser.json",
+        "bytes": 41800,
+        "checksum": "899c121f",
+        "sha256": "7ff071241ab9cf3b85460cf4cefcf902a503f6bbba2e799ea5ad517c74d35d28",
+        "week": 0
+      },
+      {
+        "name": "frontier-lab-wave8-browser-verified.json",
+        "bytes": 1348331,
+        "checksum": "c5d796f4",
+        "sha256": "ded1be27052f24c285d37ec8a95f7c8c7e5aba393f4806e0b9a74918172dcf46",
+        "week": 362
+      },
+      {
+        "name": "frontier-lab-wave8-browser-reloaded.json",
+        "bytes": 1348331,
+        "checksum": "c5d796f4",
+        "sha256": "ded1be27052f24c285d37ec8a95f7c8c7e5aba393f4806e0b9a74918172dcf46",
+        "week": 362
+      },
+      {
+        "name": "frontier-lab-wave8-browser-restored.json",
+        "bytes": 41800,
+        "checksum": "899c121f",
+        "sha256": "7ff071241ab9cf3b85460cf4cefcf902a503f6bbba2e799ea5ad517c74d35d28",
+        "week": 0
+      }
+    ],
+    "reloadBytesMatch": true,
+    "originalRestoredBytesMatch": true,
+    "screenshots": [
+      "docs/images/frontier-lab-wave8-costs.png"
+    ]
+  }
+}

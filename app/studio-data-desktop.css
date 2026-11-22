@@ -1,0 +1,44 @@
+/* The real data form keeps one mounted owner. Wide tasks place its choices
+   beside its original quote; narrow and enlarged layouts return to one column. */
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-task { min-width: 0; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); align-items: start; gap: 24px; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout > * { min-width: 0; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout h3 { margin: 0 0 8px; font-size: 20px; line-height: 1.3; color: var(--fl-text); }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout h4 { margin: 0; font-size: 17px; line-height: 1.4; color: var(--fl-text); }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout :is(.small-note, .action-explanation, .quote-remaining, .metric, .line-control, summary) { font-size: 16px; line-height: 1.45; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout .small-note { margin: 8px 0 0; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout .studio-data-intro { margin: 0 0 16px; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout :is(button, select) { font-size: 16px; min-height: 42px; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout .line-control { display: grid; gap: 6px; margin: 0 0 14px; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout .line-control select { width: 100%; max-width: 100%; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-selected { padding: 16px; border: 1px solid var(--fl-line); border-radius: 10px; background: var(--fl-panel); }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-state { display: inline-flex; margin-top: 6px; font-size: 14px; line-height: 1.4; color: var(--fl-muted); }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-state[data-ready="true"] { color: var(--fl-accent); }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-selected .metrics { margin: 12px 0 0; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout .metric { display: flex; align-items: baseline; justify-content: space-between; gap: 14px; margin: 6px 0 0; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout .metric dd { flex-shrink: 0; margin: 0; font-variant-numeric: tabular-nums; text-align: right; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout .inline-details { margin-top: 16px; padding-top: 12px; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout summary { min-height: 32px; cursor: pointer; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout .studio-data-tools > .inline-details { margin-top: 10px; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-summary { padding: 18px; background: var(--fl-raised); border: 1px solid var(--fl-line); border-radius: 12px; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-summary .action-control { margin: 12px 0 0; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-summary .quote-costs { font-size: 22px; font-weight: 700; line-height: 1.3; margin: 12px 0 0; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-readiness { padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--fl-line); }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-readiness > strong { display: block; font-size: 16px; line-height: 1.4; color: var(--fl-text); }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-readiness[data-waiting="true"] > strong { color: var(--fl-warning, #f5ca7b); }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-readiness .studio-surface-button { margin-top: 10px; width: 100%; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-next { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--fl-line); }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-progress { margin-top: 12px; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-progress progress { display: block; width: 100%; margin-top: 8px; }
+
+@media (max-width: 760px) {
+  .studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-summary { padding: 16px; }
+}
+
+@media (max-width: 380px) {
+  .studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout .metric { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-layout .metric dd { text-align: left; }
+  .studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-selected,
+  .studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-content .studio-data-summary { padding: 12px; }
+}

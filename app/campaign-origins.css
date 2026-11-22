@@ -1,0 +1,74 @@
+.campaign-opening {
+  min-height: 100svh;
+  padding: clamp(20px, 5vw, 72px) 20px;
+  color: var(--fl-text);
+  background: radial-gradient(ellipse at 75% 12%, #1a3147 0%, transparent 55%), var(--fl-canvas);
+}
+.origin-picker { width: min(100%, 1030px); margin: 0 auto; font-family: var(--fl-font); }
+.origin-hero {
+  isolation: isolate; overflow: hidden; position: relative; min-height: 192px; display: flex; align-items: center;
+  border: 1px solid var(--fl-line); border-radius: 18px; background: #111f30;
+}
+.origin-room { position: absolute; z-index: -2; right: -3%; top: 50%; transform: translateY(-49%); width: 62%; height: auto; }
+.origin-hero::after {
+  content: ''; position: absolute; z-index: -1; inset: 0;
+  background: linear-gradient(90deg,#111f30 28%, #111f30f5 42%, #111f3030 73%, transparent);
+}
+.origin-intro { position: relative; width: min(570px, 65%); padding: clamp(24px, 4.5%, 46px); }
+.origin-brand { display: flex; align-items: center; gap: 7px; margin: 0 0 19px; font-weight: 700; font-size: 17px; letter-spacing: -.04em; }
+.origin-brand svg, .origin-brand span { color: var(--fl-accent); }
+.origin-brand span { margin-left: -7px; }
+.origin-intro h1 { font-size: clamp(29px, 4vw, 50px); letter-spacing: -.055em; line-height: 1.04; font-weight: 650; }
+.origin-intro p { line-height: 1.55; color: var(--fl-muted); margin-top: 12px; font-size: 1rem; }
+.origin-grid { border: 0; min-width: 0; padding: 0; margin: 18px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.origin-card {
+  --origin-tone: var(--fl-accent);
+  display: flex; flex-direction: column; position: relative; padding: clamp(15px, 2.2vw, 25px);
+  background: var(--fl-panel); border: 1px solid var(--fl-line); border-radius: 13px; cursor: pointer;
+}
+.origin-university { --origin-tone: var(--fl-research); } .origin-consultancy { --origin-tone: var(--fl-warning); }
+.origin-card input { position: absolute; width: 1px; height: 1px; padding: 0; opacity: 0; }
+.origin-card:hover { border-color: var(--fl-control-hover); }
+.origin-card:has(input:checked) { border-color: var(--origin-tone); box-shadow: inset 0 0 0 1px var(--origin-tone); }
+.origin-card:has(input:focus-visible), .origin-actions button:focus-visible { outline: 3px solid var(--fl-accent); outline-offset: 4px; }
+.origin-card-heading { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.origin-icon { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 10px; color: var(--origin-tone); background: var(--fl-raised); }
+.origin-check { width: 18px; height: 18px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--fl-control-border); }
+.origin-card:has(input:checked) .origin-check { color: var(--fl-on-accent); background: var(--origin-tone); border-color: var(--origin-tone); }
+.origin-title { font-size: clamp(18px, 2vw, 22px); line-height: 1.2; letter-spacing: -.035em; color: var(--fl-text); }
+.origin-description, .origin-benefit, .origin-pressure, .origin-resources span { font-size: .9375rem; line-height: 1.5; }
+.origin-description { margin-top: 7px; color: var(--fl-muted); }
+.origin-resources { display: grid; align-content: center; gap: 1px; min-height: 82px; padding: 12px 0; margin: 14px 0; border-block: 1px solid var(--fl-line); }
+.origin-resources strong { font-size: 25px; line-height: 1; color: var(--origin-tone); letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
+.origin-resources span, .origin-pressure { color: var(--fl-muted); }
+.origin-resources span { margin-top: 4px; }
+.origin-pressure { margin-top: 8px; }
+.origin-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.origin-picker .origin-actions button { display: inline-flex; align-items: center; justify-content: center; gap: 9px; min-height: 44px; padding: 10px 17px; border: 1px solid var(--fl-control-border); border-radius: 8px; color: var(--fl-text); background: var(--fl-panel); font-weight: 650; font-size: .875rem; }
+.origin-picker .origin-actions .origin-start { background: var(--fl-accent); border-color: var(--fl-accent); color: var(--fl-on-accent); }
+.origin-picker .origin-actions button:hover { border-color: var(--fl-accent-hover); }
+.origin-picker .origin-actions .origin-start:hover { background: var(--fl-accent-hover); }
+.origin-system-note { color: var(--fl-muted); font-size: 13px; margin-bottom: 12px; }
+.origin-picker-compact { margin: 14px 0; }
+.origin-picker-compact .origin-hero { border: 0; border-radius: 0; min-height: 0; background: transparent; }
+.origin-picker-compact .origin-hero::after { display: none; }
+.origin-picker-compact .origin-intro { width: 100%; padding: 0; }
+.origin-picker-compact .origin-intro h3 { font-size: 20px; }
+.origin-picker-compact .origin-intro p { margin-top: 5px; }
+.origin-picker-compact .origin-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr)); }
+.origin-picker-compact .origin-card { padding: 14px; }
+.origin-picker-compact .origin-resources { min-height: auto; }
+@media (max-width: 690px) {
+  .campaign-opening { padding: 16px; }
+  .origin-hero { min-height: 168px; }
+  .origin-intro { width: 75%; padding: 20px; }
+  .origin-room { width: 76%; right: -16%; }
+  .origin-grid { grid-template-columns: 1fr; }
+  .origin-card-heading { position: absolute; top: 16px; right: 16px; margin: 0; }
+  .origin-icon { display: none; }
+  .origin-title { padding-right: 24px; }
+  .origin-resources { min-height: auto; }
+  .origin-picker .origin-actions button { flex-grow: 1; }
+}
+
+.origin-picker-compact .origin-actions button { white-space: normal; }

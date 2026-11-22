@@ -1,0 +1,18 @@
+{
+  "wave": 27,
+  "byteIdentical": true,
+  "parsedExportIdentical": true,
+  "originalBytes": 1525373,
+  "restoredBytes": 1525373,
+  "sha256": "386201e80c678710e9a45427d5eab92a075d6e9429721920f8c2ebe7e599254c",
+  "originalExport": "wave27-original-preview.json",
+  "restoredExport": "wave27-original-preview-restored.json",
+  "visibleState": {
+    "week": 556,
+    "cash": 6155197.86,
+    "paused": true,
+    "queuedForWeek557": 1
+  },
+  "advancedOriginalCompany": false,
+  "note": "Compared ordinary visible Export snapshots before acceptance imports and after restoring the original lab. No extra week was stepped."
+}

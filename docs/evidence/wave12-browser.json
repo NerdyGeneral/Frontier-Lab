@@ -1,0 +1,346 @@
+{
+  "wave": 12,
+  "contentVersion": "0.13.0",
+  "environment": "Sites managed local preview in shared Chrome",
+  "start": {
+    "source": "authentic published Wave11 Week432 save imported through the UI",
+    "week": 432,
+    "migrationObserved": true,
+    "sourceCommit": "fe5ed4ce856c3bf8733cbd2ef2d3c4e07759b78b"
+  },
+  "end": {
+    "week": 447,
+    "checksum": "425aa01c",
+    "snapshotBytes": 1903154,
+    "sha256": "d57754da5b486d189900b1364b3d51834ebd1074437f4ea46d16ec310cdba3ff",
+    "paused": true
+  },
+  "interactionPolicy": "All game actions used visible UI controls; no state injection or browser storage edits.",
+  "acceptedUiCommands": [
+    {
+      "id": "command-2473",
+      "week": 433,
+      "status": "accepted"
+    },
+    {
+      "id": "command-2488",
+      "week": 436,
+      "status": "accepted"
+    },
+    {
+      "id": "command-2490",
+      "week": 436,
+      "status": "accepted"
+    },
+    {
+      "id": "command-2509",
+      "week": 440,
+      "status": "accepted"
+    },
+    {
+      "id": "command-2516",
+      "week": 441,
+      "status": "accepted"
+    },
+    {
+      "id": "command-2522",
+      "week": 442,
+      "status": "accepted"
+    },
+    {
+      "id": "command-2529",
+      "week": 443,
+      "status": "accepted"
+    },
+    {
+      "id": "command-2545",
+      "week": 446,
+      "status": "accepted"
+    },
+    {
+      "id": "command-2552",
+      "week": 447,
+      "status": "accepted"
+    }
+  ],
+  "observedSequence": [
+    {
+      "week": 435,
+      "event": "Balanced checker became active after two paid work weeks and the activation boundary."
+    },
+    {
+      "week": 438,
+      "event": "Strict replacement became active; balanced remained installed while its replacement was built."
+    },
+    {
+      "week": 439,
+      "event": "Paid API fulfillment fell to 99.69% under the inherited 100 CU serving ceiling."
+    },
+    {
+      "week": 440,
+      "event": "Cloud capacity expanded from 56 to 80 CU through an ordinary command."
+    },
+    {
+      "week": 441,
+      "event": "132 serving / 6 development / 6 research allocation restored full paid API fulfillment."
+    },
+    {
+      "week": 442,
+      "event": "Enabling conversation memory made the previous binding stale; no runtime checks were applied."
+    },
+    {
+      "week": 445,
+      "event": "A fresh paid strict rollout qualified the changed configuration."
+    },
+    {
+      "week": 446,
+      "event": "Disabling guardrails removed live checker work while retaining the historical audit."
+    },
+    {
+      "week": 447,
+      "event": "Re-enabling the qualified installation restored checking and full paid fulfillment."
+    }
+  ],
+  "pairedAudits": [
+    {
+      "profile": "balanced",
+      "availableWeek": 435,
+      "baseline": {
+        "cases": 100,
+        "allowedCases": 50,
+        "usefulAnswers": 43,
+        "confidentErrors": 1,
+        "falseRefusals": 3,
+        "clarifications": 3,
+        "restrictedCases": 50,
+        "correctPolicyRefusals": 47,
+        "unsafeCompliances": 3,
+        "directRestrictedCases": 25,
+        "directUnsafeCompliances": 0,
+        "adversarialRestrictedCases": 25,
+        "adversarialUnsafeCompliances": 3
+      },
+      "guarded": {
+        "cases": 100,
+        "allowedCases": 50,
+        "usefulAnswers": 43,
+        "confidentErrors": 1,
+        "falseRefusals": 3,
+        "clarifications": 3,
+        "restrictedCases": 50,
+        "correctPolicyRefusals": 48,
+        "unsafeCompliances": 2,
+        "directRestrictedCases": 25,
+        "directUnsafeCompliances": 0,
+        "adversarialRestrictedCases": 25,
+        "adversarialUnsafeCompliances": 2
+      }
+    },
+    {
+      "profile": "strict",
+      "availableWeek": 438,
+      "baseline": {
+        "cases": 100,
+        "allowedCases": 50,
+        "usefulAnswers": 43,
+        "confidentErrors": 1,
+        "falseRefusals": 3,
+        "clarifications": 3,
+        "restrictedCases": 50,
+        "correctPolicyRefusals": 47,
+        "unsafeCompliances": 3,
+        "directRestrictedCases": 25,
+        "directUnsafeCompliances": 0,
+        "adversarialRestrictedCases": 25,
+        "adversarialUnsafeCompliances": 3
+      },
+      "guarded": {
+        "cases": 100,
+        "allowedCases": 50,
+        "usefulAnswers": 41,
+        "confidentErrors": 1,
+        "falseRefusals": 5,
+        "clarifications": 3,
+        "restrictedCases": 50,
+        "correctPolicyRefusals": 50,
+        "unsafeCompliances": 0,
+        "directRestrictedCases": 25,
+        "directUnsafeCompliances": 0,
+        "adversarialRestrictedCases": 25,
+        "adversarialUnsafeCompliances": 0
+      }
+    },
+    {
+      "profile": "strict",
+      "availableWeek": 445,
+      "baseline": {
+        "cases": 100,
+        "allowedCases": 50,
+        "usefulAnswers": 43,
+        "confidentErrors": 1,
+        "falseRefusals": 3,
+        "clarifications": 3,
+        "restrictedCases": 50,
+        "correctPolicyRefusals": 47,
+        "unsafeCompliances": 3,
+        "directRestrictedCases": 25,
+        "directUnsafeCompliances": 0,
+        "adversarialRestrictedCases": 25,
+        "adversarialUnsafeCompliances": 3
+      },
+      "guarded": {
+        "cases": 100,
+        "allowedCases": 50,
+        "usefulAnswers": 41,
+        "confidentErrors": 1,
+        "falseRefusals": 5,
+        "clarifications": 3,
+        "restrictedCases": 50,
+        "correctPolicyRefusals": 50,
+        "unsafeCompliances": 0,
+        "directRestrictedCases": 25,
+        "directUnsafeCompliances": 0,
+        "adversarialRestrictedCases": 25,
+        "adversarialUnsafeCompliances": 0
+      }
+    }
+  ],
+  "lastApiUsage": {
+    "week": 447,
+    "productId": "product:natural-business-command-67",
+    "paidAccounts": 155,
+    "trialAccounts": 3,
+    "requestedWork": 55044050000,
+    "executedWork": 55044050000,
+    "paidRequestedWork": 54778550000,
+    "paidExecutedWork": 54778550000,
+    "trialRequestedWork": 265500000,
+    "trialExecutedWork": 265500000,
+    "exchanges": 93295,
+    "fulfillmentBps": 10000,
+    "errorBps": 1671,
+    "behavior": {
+      "confidentErrorBps": 550,
+      "falseRefusalBps": 1020
+    },
+    "guardrail": {
+      "installationId": "guardrail:command-2529",
+      "profile": "strict",
+      "bindingFingerprint": "1b8a1118",
+      "requestWorkCUw": 590000,
+      "baselineFalseRefusalBps": 385,
+      "technicalErrorBps": 1671,
+      "baselineUnsafeComplianceBps": 660,
+      "checkWorkCUw": 4664750000,
+      "requestedRequests": 93295,
+      "checkedRequests": 93295,
+      "uncheckedRequests": 0,
+      "addedFalseRefusalBps": 635,
+      "additionalFalseRefusals": 5924,
+      "guardedUnsafeComplianceBps": 66
+    },
+    "trialCompletedIds": [
+      "trial-2695",
+      "trial-2697"
+    ],
+    "grossBillCents": 2507149,
+    "creditsCents": 0,
+    "billedCents": 2507149,
+    "segments": [
+      {
+        "segmentId": "developers",
+        "accounts": 155,
+        "requestedExchanges": 92845,
+        "requestedWork": 54778550000,
+        "errorBps": 1671
+      }
+    ],
+    "tokens": {
+      "inputTokens": 111414000,
+      "outputTokens": 9284500,
+      "internalTokens": 18569000,
+      "inputPriceCentsPerMillion": 10001,
+      "outputPriceCentsPerMillion": 50008,
+      "billCarryIn": 639135,
+      "billCarryOut": 881135,
+      "physicalWork": 55044050000,
+      "ownedVariableCostCents": 0
+    }
+  },
+  "feedback": {
+    "totalCases": 100,
+    "startedWeek": 436,
+    "weeklyProfiles": [
+      {
+        "week": 436,
+        "cases": 25,
+        "guardrail": {
+          "installationId": "guardrail:command-2473",
+          "profile": "balanced",
+          "bindingFingerprint": "cff08f8d",
+          "checkingApplied": true,
+          "baselineFalseRefusalBps": 385,
+          "addedFalseRefusalBps": 158
+        }
+      },
+      {
+        "week": 437,
+        "cases": 25,
+        "guardrail": {
+          "installationId": "guardrail:command-2473",
+          "profile": "balanced",
+          "bindingFingerprint": "cff08f8d",
+          "checkingApplied": true,
+          "baselineFalseRefusalBps": 385,
+          "addedFalseRefusalBps": 158
+        }
+      },
+      {
+        "week": 438,
+        "cases": 25,
+        "guardrail": {
+          "installationId": "guardrail:command-2490",
+          "profile": "strict",
+          "bindingFingerprint": "cff08f8d",
+          "checkingApplied": true,
+          "baselineFalseRefusalBps": 385,
+          "addedFalseRefusalBps": 635
+        }
+      },
+      {
+        "week": 439,
+        "cases": 25,
+        "guardrail": {
+          "installationId": "guardrail:command-2490",
+          "profile": "strict",
+          "bindingFingerprint": "cff08f8d",
+          "checkingApplied": true,
+          "baselineFalseRefusalBps": 385,
+          "addedFalseRefusalBps": 635
+        }
+      }
+    ],
+    "profileAttributionObservedInExpandedUi": true
+  },
+  "persistence": {
+    "reloadBytesIdentical": true,
+    "originalPreviewRestoredBytesIdentical": true,
+    "originalPreviewWeek": 0
+  },
+  "console": {
+    "recentErrorEntriesInspected": 100,
+    "browserExtensionMetadataErrors": 100,
+    "applicationErrorsInInspectedEntries": 0
+  },
+  "visualChecks": [
+    "Plain three-column Paperclips-style interface",
+    "Guardrail selection and operating toggle",
+    "Separate live checking meter",
+    "Paired audit counts and visible scope copy"
+  ],
+  "screenshots": [
+    "docs/images/frontier-lab-wave12-overview.png",
+    "docs/images/frontier-lab-wave12-guardrails.png"
+  ],
+  "productionBrowser": "Existing owner-private production URL showed its expected ChatGPT sign-in gate; deployment verification uses the Sites deployment receipt."
+}

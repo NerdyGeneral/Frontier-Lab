@@ -1,0 +1,537 @@
+{
+  "wave": 28,
+  "scope": "Second-generation silicon",
+  "source": {
+    "file": "tests/fixtures/wave27-appliance-published.json",
+    "week": 579,
+    "checksum": "0e2eb06a",
+    "commandsOnly": true,
+    "explicitCommandIds": false,
+    "injectedResources": false
+  },
+  "preSuccessor": {
+    "file": "wave28-silicon-before-successor.json",
+    "week": 596,
+    "checksum": "1d0502d5"
+  },
+  "selected": {
+    "parentDesignId": "chip-26f7c851",
+    "designId": "chip-gen2-9de1e523",
+    "improvement": "memory",
+    "modelId": "model-natural-business-command-159",
+    "reportId": "report-evaluation-natural-business-command-162",
+    "modelFingerprint": "59b74b59",
+    "batchId": "chip-batch-command-3368",
+    "rackIds": [
+      "rack-command-3368-1"
+    ],
+    "foundry": "standard",
+    "location": "colocation"
+  },
+  "commands": [
+    {
+      "week": 579,
+      "id": "command-3259",
+      "payload": {
+        "kind": "accept_hardware_order",
+        "buyerId": "vesper-systems",
+        "designId": "chip-26f7c851",
+        "foundry": "standard"
+      }
+    },
+    {
+      "week": 579,
+      "id": "command-3261",
+      "payload": {
+        "kind": "assign_founder",
+        "allocations": {
+          "research": 0,
+          "ml": 0,
+          "data": 0,
+          "infrastructure": 1000000000,
+          "commercial": 0,
+          "hardware": 0
+        }
+      }
+    },
+    {
+      "week": 586,
+      "id": "command-3290",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "S5"
+      }
+    },
+    {
+      "week": 591,
+      "id": "command-3313",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "S6"
+      }
+    },
+    {
+      "week": 596,
+      "id": "command-3333",
+      "payload": {
+        "kind": "start_chip_successor",
+        "parentDesignId": "chip-26f7c851",
+        "name": "Cedar Gen2 Memory",
+        "improvement": "memory"
+      }
+    },
+    {
+      "week": 600,
+      "id": "command-3352",
+      "payload": {
+        "kind": "start_chip_prototype",
+        "designId": "chip-gen2-9de1e523",
+        "modelId": "model-natural-business-command-159"
+      }
+    },
+    {
+      "week": 603,
+      "id": "command-3368",
+      "payload": {
+        "kind": "order_chip_batch",
+        "designId": "chip-gen2-9de1e523",
+        "racks": 1,
+        "location": "colocation",
+        "foundry": "standard"
+      }
+    },
+    {
+      "week": 610,
+      "id": "command-3396",
+      "payload": {
+        "kind": "install_rack",
+        "rackId": "rack-command-3368-1"
+      }
+    }
+  ],
+  "readinessMilestones": [
+    {
+      "label": "Published W579 company",
+      "week": 579,
+      "cashCents": 645031779,
+      "revenueCents": 4579043,
+      "expenseCents": 3105000,
+      "consumers": 959,
+      "developers": 181,
+      "businesses": 22,
+      "trustBps": 10000
+    },
+    {
+      "label": "Vesper shipment and single buyer settlement",
+      "week": 586,
+      "cashCents": 656281066,
+      "revenueCents": 7747221,
+      "expenseCents": 3094875,
+      "consumers": 947,
+      "developers": 181,
+      "businesses": 21,
+      "trustBps": 10000
+    },
+    {
+      "label": "Paid facility specialization research available",
+      "week": 591,
+      "cashCents": 662036784,
+      "revenueCents": 4540021,
+      "expenseCents": 3105000,
+      "consumers": 941,
+      "developers": 182,
+      "businesses": 21,
+      "trustBps": 10000
+    },
+    {
+      "label": "Paid Gen2 silicon research available",
+      "week": 596,
+      "cashCents": 666783768,
+      "revenueCents": 4491397,
+      "expenseCents": 3181227,
+      "consumers": 937,
+      "developers": 183,
+      "businesses": 20,
+      "trustBps": 10000
+    }
+  ],
+  "minimumCashCents": 644260048,
+  "stages": [
+    {
+      "name": "beforeSuccessor",
+      "week": 596,
+      "checksum": "1d0502d5",
+      "validityErrors": [],
+      "cashCents": 666783768,
+      "phase": null,
+      "designWork": null,
+      "prototypeWork": null,
+      "rackStatus": null
+    },
+    {
+      "name": "designing",
+      "week": 597,
+      "checksum": "e8e619cd",
+      "validityErrors": [],
+      "cashCents": 666242977,
+      "phase": "designing",
+      "designWork": {
+        "compute": 12000000000,
+        "hardware": 2000000000
+      },
+      "prototypeWork": null,
+      "rackStatus": null
+    },
+    {
+      "name": "designReady",
+      "week": 600,
+      "checksum": "487e227e",
+      "validityErrors": [],
+      "cashCents": 670179704,
+      "phase": "design-ready",
+      "designWork": {
+        "compute": 12000000000,
+        "hardware": 6000000000
+      },
+      "prototypeWork": null,
+      "rackStatus": null
+    },
+    {
+      "name": "prototyping",
+      "week": 601,
+      "checksum": "6e56956f",
+      "validityErrors": [],
+      "cashCents": 670847179,
+      "phase": "prototyping",
+      "designWork": {
+        "compute": 12000000000,
+        "hardware": 6000000000
+      },
+      "prototypeWork": {
+        "compute": 6000000000,
+        "hardware": 2000000000,
+        "ml": 1000000000
+      },
+      "rackStatus": null
+    },
+    {
+      "name": "qualified",
+      "week": 603,
+      "checksum": "b2c6263e",
+      "validityErrors": [],
+      "cashCents": 673575812,
+      "phase": "validated",
+      "designWork": {
+        "compute": 12000000000,
+        "hardware": 6000000000
+      },
+      "prototypeWork": {
+        "compute": 6000000000,
+        "hardware": 3000000000,
+        "ml": 1000000000
+      },
+      "rackStatus": null
+    },
+    {
+      "name": "ordered",
+      "week": 604,
+      "checksum": "b3dc21e6",
+      "validityErrors": [],
+      "cashCents": 673783887,
+      "phase": "validated",
+      "designWork": {
+        "compute": 12000000000,
+        "hardware": 6000000000
+      },
+      "prototypeWork": {
+        "compute": 6000000000,
+        "hardware": 3000000000,
+        "ml": 1000000000
+      },
+      "rackStatus": "ordered"
+    },
+    {
+      "name": "delivered",
+      "week": 610,
+      "checksum": "f591bda9",
+      "validityErrors": [],
+      "cashCents": 682451965,
+      "phase": "validated",
+      "designWork": {
+        "compute": 12000000000,
+        "hardware": 6000000000
+      },
+      "prototypeWork": {
+        "compute": 6000000000,
+        "hardware": 3000000000,
+        "ml": 1000000000
+      },
+      "rackStatus": "inventory"
+    },
+    {
+      "name": "installing",
+      "week": 611,
+      "checksum": "c0a4e68f",
+      "validityErrors": [],
+      "cashCents": 683902539,
+      "phase": "validated",
+      "designWork": {
+        "compute": 12000000000,
+        "hardware": 6000000000
+      },
+      "prototypeWork": {
+        "compute": 6000000000,
+        "hardware": 3000000000,
+        "ml": 1000000000
+      },
+      "rackStatus": "installing"
+    },
+    {
+      "name": "installed",
+      "week": 612,
+      "checksum": "5de56d52",
+      "validityErrors": [],
+      "cashCents": 685350891,
+      "phase": "validated",
+      "designWork": {
+        "compute": 12000000000,
+        "hardware": 6000000000
+      },
+      "prototypeWork": {
+        "compute": 6000000000,
+        "hardware": 3000000000,
+        "ml": 1000000000
+      },
+      "rackStatus": "installed"
+    }
+  ],
+  "hardware": {
+    "parent": {
+      "designFeeCents": 2300000,
+      "designHardwareStaff": 4000000000,
+      "designWorkCUw": 8000000000,
+      "purchaseCentsPerCU": 140000,
+      "memoryMUPerCU": 4000000000,
+      "trainingBps": 0,
+      "servingBps": 16500,
+      "powerPerCU": 0.85,
+      "variableCentsPerCUw": 3000,
+      "deliveryWeeks": 6
+    },
+    "successor": {
+      "designFeeCents": 1800000,
+      "designHardwareStaff": 6000000000,
+      "designWorkCUw": 12000000000,
+      "purchaseCentsPerCU": 154000,
+      "memoryMUPerCU": 5000000000,
+      "trainingBps": 0,
+      "servingBps": 16500,
+      "powerPerCU": 0.85,
+      "variableCentsPerCUw": 3000,
+      "deliveryWeeks": 6
+    },
+    "prototype": {
+      "feeCents": 750000,
+      "hardwareStaff": 3000000000,
+      "mlStaff": 1000000000,
+      "workCUw": 6000000000
+    },
+    "qualifiedYieldBps": 8750,
+    "batch": {
+      "id": "chip-batch-command-3368",
+      "companyId": "company-player",
+      "designId": "chip-gen2-9de1e523",
+      "location": "colocation",
+      "racks": 1,
+      "rackIds": [
+        "rack-command-3368-1"
+      ],
+      "attemptedCU": 8000000000,
+      "usableCU": 7000000000,
+      "yieldBps": 8750,
+      "foundry": "standard",
+      "orderedWeek": 604,
+      "arrivalWeek": 610,
+      "deliveredWeek": 610,
+      "status": "delivered",
+      "purchaseCents": 1232000,
+      "paymentId": "chip-production:chip-batch-command-3368"
+    },
+    "pool": {
+      "id": "owned:colocation:chip-gen2-9de1e523",
+      "companyId": "company-player",
+      "name": "Cedar Gen2 Memory · Colocation",
+      "ownership": "owned",
+      "location": "colocation",
+      "hardwareId": "chip-gen2-9de1e523",
+      "nominalCU": 7000000000,
+      "capacityCU": 7000000000,
+      "memoryMU": 35000000000,
+      "rackCount": 1,
+      "singleRackCU": 7000000000,
+      "singleRackMemoryMU": 35000000000,
+      "trainingBps": 0,
+      "servingBps": 16500,
+      "variableCentsPerCUw": 3000,
+      "staffCoverageBps": 10000,
+      "powerCoverageBps": 10000,
+      "coolingCoverageBps": 10000,
+      "bottleneck": "",
+      "architectures": [
+        "dense"
+      ],
+      "workloads": [
+        "inference"
+      ]
+    }
+  },
+  "actualEngineering": {
+    "design": {
+      "startedWeek": 597,
+      "requiredWorkCUw": 12000000000,
+      "completedWorkCUw": 12000000000,
+      "requiredHardwareStaff": 6000000000,
+      "completedHardwareStaff": 6000000000,
+      "requiredMlStaff": 0,
+      "completedMlStaff": 0,
+      "completedWeek": 599,
+      "readyWeek": 600,
+      "lastProgress": 0,
+      "lastBottleneck": "Stage complete; the result becomes available in week 600.",
+      "grantProof": {
+        "firstWeek": 597,
+        "grantWeeks": 3,
+        "physicalWorkCUw": 6666666667,
+        "workReceipts": {
+          "f2a4a647": {
+            "poolId": "owned:colocation:training",
+            "hardwareId": "training",
+            "ownership": "owned",
+            "crossRack": false,
+            "specializationId": null,
+            "baseMultiplierBps": 18000,
+            "multiplierBps": 18000,
+            "effectiveCUw": 12000000000,
+            "physicalCUw": 6666666667,
+            "conversionRemainder": 6000,
+            "grants": 1,
+            "firstWeek": 597,
+            "lastWeek": 597
+          }
+        },
+        "hardwareGrantWeeks": 3,
+        "mlGrantWeeks": 0,
+        "latest": {
+          "week": 599,
+          "remainingWorkCUw": 0,
+          "remainingHardwareStaff": 2000000000,
+          "remainingMlStaff": 0,
+          "hardwareStaff": 2000000000,
+          "mlStaff": 0,
+          "effectiveCUw": 0,
+          "physicalCUw": 0,
+          "memoryMU": 0,
+          "poolId": null,
+          "receiptKey": null
+        }
+      }
+    },
+    "prototype": {
+      "startedWeek": 601,
+      "requiredWorkCUw": 6000000000,
+      "completedWorkCUw": 6000000000,
+      "requiredHardwareStaff": 3000000000,
+      "completedHardwareStaff": 3000000000,
+      "requiredMlStaff": 1000000000,
+      "completedMlStaff": 1000000000,
+      "completedWeek": 602,
+      "readyWeek": 603,
+      "lastProgress": 0,
+      "lastBottleneck": "Stage complete; the result becomes available in week 603.",
+      "grantProof": {
+        "firstWeek": 601,
+        "grantWeeks": 2,
+        "physicalWorkCUw": 3333333334,
+        "workReceipts": {
+          "f2a4a647": {
+            "poolId": "owned:colocation:training",
+            "hardwareId": "training",
+            "ownership": "owned",
+            "crossRack": false,
+            "specializationId": null,
+            "baseMultiplierBps": 18000,
+            "multiplierBps": 18000,
+            "effectiveCUw": 6000000000,
+            "physicalCUw": 3333333334,
+            "conversionRemainder": 12000,
+            "grants": 1,
+            "firstWeek": 601,
+            "lastWeek": 601
+          }
+        },
+        "hardwareGrantWeeks": 2,
+        "mlGrantWeeks": 1,
+        "latest": {
+          "week": 602,
+          "remainingWorkCUw": 0,
+          "remainingHardwareStaff": 1000000000,
+          "remainingMlStaff": 0,
+          "hardwareStaff": 1000000000,
+          "mlStaff": 0,
+          "effectiveCUw": 0,
+          "physicalCUw": 0,
+          "memoryMU": 0,
+          "poolId": null,
+          "receiptKey": null
+        }
+      },
+      "modelFingerprint": "59b74b59",
+      "modelId": "model-natural-business-command-159",
+      "reportId": "report-evaluation-natural-business-command-162",
+      "modelArchitecture": "dense",
+      "modelFamily": "medium",
+      "modelMemoryMU": 8000000000,
+      "feeCents": 750000,
+      "paymentId": "chip-prototype-fee:chip-gen2-9de1e523"
+    }
+  },
+  "directPayments": {
+    "designFeeCents": 1800000,
+    "prototypeFeeCents": 750000,
+    "fabricationCents": 1232000,
+    "designFact": "chip-design-fee:chip-gen2-9de1e523",
+    "prototypeFact": "chip-prototype-fee:chip-gen2-9de1e523",
+    "fabricationFact": "chip-production:chip-batch-command-3368",
+    "postedOnce": true
+  },
+  "expectedFinal": {
+    "file": "wave28-silicon-browser-expected.json",
+    "week": 612,
+    "checksum": "5de56d52",
+    "bytes": 1463959,
+    "sha256": "f566fdb6157bc3bbbb2f89a1bf723239f1c7c210925319ea3d7c3d304e1a7467",
+    "revision": 1013,
+    "nextId": 3409,
+    "cashCents": 685350891
+  },
+  "limitations": [
+    "The hardware payback forecast is an unprofiled baseline; active facility profile effects are shown separately in Campus.",
+    "This ordinary acceptance path installs a memory-target inference successor; throughput-target qualification and rejection cases are covered by focused tests."
+  ],
+  "verification": {
+    "focused": {
+      "log": "wave28-silicon-tests.log",
+      "passed": 8,
+      "failed": 0
+    },
+    "gen1Regression": {
+      "log": "wave28-gen1-regression.log",
+      "passed": 14,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "focusedEslint": "passed",
+    "historicalProfileReview": "Independent bounded review: no concrete P1/P2; specialization identities preserve each historical conversion interval.",
+    "receiptBound": "4096 buckets cover all 19 hardware identities, four sites with up to 12 profile activations, colocation, cloud and ordinary/fabric cross-rack regimes."
+  }
+}

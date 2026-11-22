@@ -1,0 +1,48 @@
+{
+  "status": "expected oracle captured before receiving the new browser export",
+  "method": "Extracted the entire src tree from exact published commit with git archive into an isolated scratch directory; imported only that published engine/content; submitted the exact displayed UI allocation without explicit command ID and advanced one ordinary week.",
+  "publishedCommit": "6b82a6dd08e2d2ab7b78bd066a0cd043167dec38",
+  "codeRoot": "/workspace/scratch/3755ece2734b/wave29-published-oracle/src",
+  "input": "/workspace/shared/frontier-lab/wave28-silicon-browser-actual.json",
+  "inputSha256": "bbb43b62b660e1932064d61a2597558548194f8eae0313c523a4d1d60d805c5c",
+  "inputChecksum": "627fa28e",
+  "payload": {
+    "kind": "allocate_compute",
+    "serving": 160000000000,
+    "development": 9000000000,
+    "research": 8000000000
+  },
+  "commandId": "command-3409",
+  "queuedChecksum": "9b01b533",
+  "preview": {
+    "accepted": true,
+    "sourceRevision": 1013,
+    "summary": "Physical allocation ceilings change next week. Serving headroom fits inside its ceiling; owned pools remain subject to memory, staff, power, and cooling.",
+    "weeklyCostCents": 2824000,
+    "upfrontCostCents": 0,
+    "weeklyCostDeltaCents": 0,
+    "cashAfterCommitmentsCents": 685350891,
+    "availableCU": 183000000000,
+    "allocation": {
+      "serving": 160000000000,
+      "development": 9000000000,
+      "research": 8000000000
+    }
+  },
+  "output": "/workspace/shared/frontier-lab/wave29-browser-expected.json",
+  "bytes": 1465122,
+  "sha256": "5f0e28199e891dcbcf1a6a51210b793ea0f5fcc59011dc2bd7b464be241357da",
+  "checksum": "bc84a4ff",
+  "week": 613,
+  "revision": 1015,
+  "nextId": 3416,
+  "cashCents": 686800443,
+  "allocation": {
+    "serving": 160000000000,
+    "development": 9000000000,
+    "research": 8000000000
+  },
+  "validSnapshot": true,
+  "exactRoundtrip": true,
+  "originalUnchanged": true
+}

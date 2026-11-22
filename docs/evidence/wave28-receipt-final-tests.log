@@ -1,0 +1,44 @@
+✔ W12-G01: rollout admission requires prior research, exact paid model reports and compatible resident capacity (5781.83747ms)
+✔ W12-G02: compute and ML finish independently, obey weekly caps, and expose no audit before the next boundary (1487.950034ms)
+✔ W12-G03: paired audit separates allowed mistakes from correct policy refusals and preserves a nested profile tradeoff (934.141252ms)
+✔ W12-G04: time, identifiers, mutable names and simulation random state cannot reroll a paid audit (58.372756ms)
+✔ W12-G05: actual routed audits cover each model and require the secondary’s own paid policy report (4135.078499ms)
+✔ W12-G06: replacement is staged, returning to a prior profile reuses identical cases, and retained history is bounded (10529.343679ms)
+✔ W12-G07: partial requests spend checking work but produce no completed check or false-refusal outcome (0.351049ms)
+✔ W12-G08: forged paid work, model evidence, audit outcomes, memory and serving counts fail checksum-correct import (1764.538818ms)
+✔ W12-G09: source changes during rollout preserve paid audit history but cannot activate a mismatched checker (828.446299ms)
+✔ W13-A01: exact paid audit, buyer thresholds, research and owned active API govern admission without preview side effects (27629.424773ms)
+✔ W13-A02: real commercial grants accrue independently, pause without staff, and bill only after the following boundary (3327.889584ms)
+✔ W13-A03: unfinished request work consumes GPUs but cannot invent completed requests, tokens or retainer fulfillment (548.992954ms)
+✔ W13-A04: onboarding, exact qualification and once-only setup provenance resist valid-checksum forged saves (811.947093ms)
+✔ W13-A05: retained invoices reconcile actual physical grants, independent support and historical accepted evidence (906.724315ms)
+✔ W13-A06: cancellation before onboarding preserves the paid setup while preventing a term, workloads and invoices (1075.973822ms)
+✔ W13-A07: public cache changes do not change an accepted separate-tenant workload or finite audit fingerprint (5.537962ms)
+✔ W13-A08: larger explicit requalification must fit real capacity and queued promises replace the old meter exactly once (1525.178086ms)
+✔ W14-B01: scheduler fees, independent capped GPU and ML grants, and the activation boundary are paid through ordinary commands (5679.93818ms)
+✔ W14-B02: admission requires prior paid API demand and the selected exact paid model; queued and cancelled claims remain finite (2386.72925ms)
+✔ W14-B03: first scheduler grants cannot invent earlier GPU or ML work, even under a valid checksum and matching latest grants (1119.68817ms)
+✔ W14-B04: frozen batch admission, calendar carry and physical resource provenance reject forged retained jobs (3209.887563ms)
+✔ W14-B05: partial commercial supervision clips an owned GPU integer conversion rather than creating a free final work unit (206.614011ms)
+✔ W14-B06: batch inference keeps sparse fabric and custom compiler compatibility at the physical allocator boundary (194.282014ms)
+✔ W14-B07: the terminal invoice is immutable, bills whole completed requests once, and retains its exact paid source (934.034223ms)
+✔ W26-S01: old companies migrate with synthetic support without grants, clock changes or new synthetic records (2773.746283ms)
+✔ W26-S02: the first content upgrade exposes untouched original bytes and never overwrites on archive failure (179.4215ms)
+✔ W26-S03: paid method, teacher qualification, licensed sources and pure previews control generation admission (19546.244602ms)
+✔ W26-S04: an ordinary paid company generates, reviews, quarantines, trains and independently evaluates a distinct candidate (33124.583426ms)
+✔ W26-S05: alternate teachers, curated aliases and partially overlapping source sets cannot mint a second target slice (824.591646ms)
+✔ W26-S06: generation needs actual ML and connected compute grants, and paid progress resumes exactly after pause and reload (17539.525015ms)
+✔ W26-S07: review and audit are separate paid stages that cannot finish from elapsed time or a single resource alone (17571.586883ms)
+✔ W26-S08: only a separate student may use audited evidence through S2, without ordinary-recipe or recursive shortcuts (723.372826ms)
+✔ W26-S09: correctly checksummed imports cannot forge paid work, audit acceptance, source provenance or synthetic targets (4029.910775ms)
+✔ W28-T01: paid serving profiles apply only to eligible owned inference and preserve legacy tariff keys (35462.719352ms)
+✔ W28-T02: historical discounted receipts survive switching but cannot move to another pool, company or week (173.334775ms)
+✔ W28-T03: removing paid facility proof from an actual rehearsal cannot restore the base tariff under a valid checksum (3697.013522ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96873.09041

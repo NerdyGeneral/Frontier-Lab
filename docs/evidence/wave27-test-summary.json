@@ -1,0 +1,45 @@
+{
+  "wave": 27,
+  "contentVersion": "0.27.0",
+  "saveSchema": 5,
+  "fullRepositorySuiteRun": false,
+  "distinctFocusedChecks": 264,
+  "existingChecks": 245,
+  "newWave27Checks": 19,
+  "groups": [
+    {
+      "name": "Core/catalog, browser persistence, Wave27 migration",
+      "distinctChecks": 92,
+      "newWave27Checks": 4,
+      "finalLog": "wave27-migration-rerun.txt",
+      "pass": 92,
+      "fail": 0
+    },
+    {
+      "name": "Selected legacy serving/billing/release/hardware/session/Studio/planning/synthetic",
+      "distinctChecks": 157,
+      "newWave27Checks": 0,
+      "finalLog": "wave27-regression.txt",
+      "pass": 157,
+      "fail": 0
+    },
+    {
+      "name": "Wave27 canary",
+      "distinctChecks": 9,
+      "newWave27Checks": 9,
+      "finalLog": "wave27-canary-rerun.txt",
+      "pass": 9,
+      "fail": 0
+    },
+    {
+      "name": "Wave27 appliance",
+      "distinctChecks": 6,
+      "newWave27Checks": 6,
+      "initialLog": "wave27-appliance-tests-initial.log",
+      "rerunLog": "wave27-appliance-tests-lifecycle-rerun.log",
+      "resolvedPass": 6,
+      "unresolvedFail": 0
+    }
+  ],
+  "countingRule": "Reruns are not added as extra distinct checks. SSR scenarios and contrast calculations are recorded separately."
+}

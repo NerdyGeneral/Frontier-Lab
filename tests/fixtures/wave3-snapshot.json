@@ -1,0 +1,1259 @@
+{
+  "format": "frontier-lab",
+  "schemaVersion": 4,
+  "contentVersion": "0.4.0",
+  "checksum": "362608fc",
+  "state": {
+    "schemaVersion": 4,
+    "contentVersion": "0.4.0",
+    "buildVersion": "0.4.0",
+    "revision": 13,
+    "week": 5,
+    "nextId": 31,
+    "seed": "agent-case-seed-0",
+    "playerCompanyId": "company-player",
+    "random": {},
+    "slices": {
+      "company": {
+        "companies": {
+          "company-player": {
+            "id": "company-player",
+            "name": "Wave 3 QA Lab",
+            "cashCents": 99252500,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 1,
+            "earnedRevenueCents": 0,
+            "totalOperatingExpenseCents": 847500,
+            "lastWeek": {
+              "revenueCents": 0,
+              "operatingExpenseCents": 130000,
+              "cashChangeCents": -130000
+            }
+          }
+        },
+        "ledger": [
+          {
+            "id": "company-player:cloud-rent:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "agent-fee:agent:0e424a52:support-replies:0",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "command-7",
+            "category": "operating",
+            "amountCents": 2500,
+            "label": "Routine support replies: intake",
+            "kind": "expense",
+            "paidCents": 2500,
+            "unpaidCents": 0
+          },
+          {
+            "id": "business-setup:command-5",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "business:aster-services",
+            "category": "operating",
+            "amountCents": 75000,
+            "label": "Aster Services: weight delivery setup",
+            "kind": "expense",
+            "paidCents": 75000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "recruit:command-3",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "command-3",
+            "category": "operating",
+            "amountCents": 150000,
+            "label": "Recruit ML engineer",
+            "kind": "expense",
+            "paidCents": 150000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "staff:command-3:payroll:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "staff:command-3",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary (onboarding)",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "staff:command-3:payroll:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "staff:command-3",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary (onboarding)",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:4",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:4",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "staff:command-3:payroll:4",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "staff:command-3",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:5",
+            "companyId": "company-player",
+            "week": 5,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:5",
+            "companyId": "company-player",
+            "week": 5,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "staff:command-3:payroll:5",
+            "companyId": "company-player",
+            "week": 5,
+            "sourceId": "staff:command-3",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          }
+        ],
+        "postedFacts": {
+          "company-player:cloud-rent:1": true,
+          "company-player:overhead:1": true,
+          "agent-fixture-R1:fee": true,
+          "agent-fixture-R2:fee": true,
+          "agent-fixture-R5:fee": true,
+          "agent-fixture-R6:fee": true,
+          "agent-fixture-R9:fee": true,
+          "agent-fixture-R10:fee": true,
+          "agent-fixture-R11:fee": true,
+          "agent-fixture-R3:fee": true,
+          "agent-fixture-R12:fee": true,
+          "agent-fee:agent:0e424a52:support-replies:0": true,
+          "business-setup:command-5": true,
+          "company-player:cloud-rent:2": true,
+          "company-player:overhead:2": true,
+          "recruit:command-3": true,
+          "staff:command-3:payroll:2": true,
+          "company-player:cloud-rent:3": true,
+          "company-player:overhead:3": true,
+          "staff:command-3:payroll:3": true,
+          "company-player:cloud-rent:4": true,
+          "company-player:overhead:4": true,
+          "staff:command-3:payroll:4": true,
+          "company-player:cloud-rent:5": true,
+          "company-player:overhead:5": true,
+          "staff:command-3:payroll:5": true
+        },
+        "staff": {
+          "staff:command-3": {
+            "id": "staff:command-3",
+            "companyId": "company-player",
+            "role": "ml",
+            "hiredWeek": 2,
+            "readyWeek": 4,
+            "assignedFte": 1000000000
+          }
+        },
+        "founderAssignments": {
+          "company-player": {
+            "research": 0,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 0,
+            "commercial": 1000000000,
+            "hardware": 0
+          }
+        },
+        "lastStaff": {
+          "company-player": {
+            "capacity": {
+              "research": 0,
+              "ml": 1000000000,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 1000000000,
+              "hardware": 0
+            },
+            "granted": {
+              "research": 0,
+              "ml": 1000000000,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            }
+          }
+        }
+      },
+      "compute": {
+        "fleets": {
+          "company-player": {
+            "companyId": "company-player",
+            "cloudCU": 4000000000,
+            "ownedCU": 0,
+            "memoryMU": 8000000000,
+            "occupiedMemoryMU": 500000000,
+            "allocation": {
+              "serving": 4000000000,
+              "development": 0,
+              "research": 0
+            },
+            "lastWork": {
+              "serving": 120000000,
+              "development": 0,
+              "research": 0
+            },
+            "reservedCU": 132000000,
+            "deliveredEquipmentIds": [],
+            "inventory": {},
+            "lastBottleneck": "",
+            "lastReservedMemoryMU": 500000000,
+            "lastGrants": [
+              {
+                "requestId": "agent:0e424a52:support-replies:0:work",
+                "requestedWork": 120000000,
+                "grantedWork": 120000000,
+                "reason": ""
+              },
+              {
+                "requestId": "business-delivery:business:aster-services",
+                "requestedWork": 0,
+                "grantedWork": 0,
+                "reason": ""
+              }
+            ],
+            "variableCostCarry": 0
+          }
+        },
+        "racks": {},
+        "facilities": {}
+      },
+      "models": {
+        "versions": {
+          "seed-0": {
+            "id": "seed-0",
+            "name": "Seed 0",
+            "companyId": "company-player",
+            "family": "compact",
+            "architecture": "dense",
+            "status": "evaluated",
+            "capabilityBps": {
+              "conversation": 7000,
+              "documents": 7000,
+              "coding": 6000,
+              "tools": 6500
+            },
+            "reliabilityBps": 9600,
+            "residentMU": 2000000000,
+            "source": "Commercially usable starting checkpoint. The tutorial report is authored evidence, not a paid model call.",
+            "behavior": {
+              "confidentErrorBps": 1000,
+              "falseRefusalBps": 700
+            },
+            "scenarioStart": true,
+            "evaluationReportId": "agent-fixture-report"
+          }
+        },
+        "trainingRuns": {},
+        "evaluationRuns": {},
+        "reports": {
+          "agent-fixture-report": {
+            "id": "agent-fixture-report",
+            "companyId": "company-player",
+            "modelId": "seed-0",
+            "week": 0,
+            "scenarioStart": true,
+            "heldOut": true,
+            "capabilityBps": {
+              "conversation": 7000,
+              "documents": 7000,
+              "coding": 6000,
+              "tools": 6500
+            },
+            "reliabilityBps": 9600,
+            "basicChatEligible": true,
+            "cases": [
+              {
+                "id": "agent-case-0",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-1",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-2",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-3",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-4",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-5",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-6",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-7",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-8",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-9",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-10",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-11",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-12",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-13",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-14",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-15",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-16",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-17",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-18",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "agent-case-19",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              }
+            ],
+            "passedCases": 20
+          }
+        }
+      },
+      "data": {
+        "packets": {
+          "starter-public": {
+            "id": "starter-public",
+            "name": "Starter public sample",
+            "rawUnits": 100,
+            "readyUnits": 100,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 10000,
+              "documents": 3500,
+              "coding": 2500,
+              "tools": 2500
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": true,
+            "companyId": "company-player",
+            "catalogId": "starter-public",
+            "sourceIds": [
+              "starter-public"
+            ]
+          }
+        },
+        "preparationJobs": {}
+      },
+      "research": {
+        "completed": [
+          "R1",
+          "R10",
+          "R11",
+          "R12",
+          "R2",
+          "R3",
+          "R5",
+          "R6",
+          "R9"
+        ],
+        "active": [],
+        "completedByCompany": {
+          "company-player": [
+            "R1",
+            "R10",
+            "R11",
+            "R12",
+            "R2",
+            "R3",
+            "R5",
+            "R6",
+            "R9"
+          ]
+        },
+        "projects": {
+          "agent-fixture-R1": {
+            "id": "agent-fixture-R1",
+            "companyId": "company-player",
+            "researchId": "R1",
+            "startedWeek": 0,
+            "completedWeek": 0,
+            "availableWeek": 1,
+            "requiredWork": 2000000000,
+            "completedWork": 2000000000,
+            "requiredStaff": 2000000000,
+            "completedStaff": 2000000000,
+            "role": "research",
+            "status": "complete",
+            "lastProgress": 0,
+            "lastBottleneck": ""
+          },
+          "agent-fixture-R2": {
+            "id": "agent-fixture-R2",
+            "companyId": "company-player",
+            "researchId": "R2",
+            "startedWeek": 0,
+            "completedWeek": 0,
+            "availableWeek": 1,
+            "requiredWork": 4000000000,
+            "completedWork": 4000000000,
+            "requiredStaff": 3000000000,
+            "completedStaff": 3000000000,
+            "role": "data",
+            "status": "complete",
+            "lastProgress": 0,
+            "lastBottleneck": ""
+          },
+          "agent-fixture-R5": {
+            "id": "agent-fixture-R5",
+            "companyId": "company-player",
+            "researchId": "R5",
+            "startedWeek": 0,
+            "completedWeek": 0,
+            "availableWeek": 1,
+            "requiredWork": 8000000000,
+            "completedWork": 8000000000,
+            "requiredStaff": 3000000000,
+            "completedStaff": 3000000000,
+            "role": "research",
+            "status": "complete",
+            "lastProgress": 0,
+            "lastBottleneck": ""
+          },
+          "agent-fixture-R6": {
+            "id": "agent-fixture-R6",
+            "companyId": "company-player",
+            "researchId": "R6",
+            "startedWeek": 0,
+            "completedWeek": 0,
+            "availableWeek": 1,
+            "requiredWork": 6000000000,
+            "completedWork": 6000000000,
+            "requiredStaff": 3000000000,
+            "completedStaff": 3000000000,
+            "role": "ml",
+            "status": "complete",
+            "lastProgress": 0,
+            "lastBottleneck": ""
+          },
+          "agent-fixture-R9": {
+            "id": "agent-fixture-R9",
+            "companyId": "company-player",
+            "researchId": "R9",
+            "startedWeek": 0,
+            "completedWeek": 0,
+            "availableWeek": 1,
+            "requiredWork": 10000000000,
+            "completedWork": 10000000000,
+            "requiredStaff": 4000000000,
+            "completedStaff": 4000000000,
+            "role": "ml",
+            "status": "complete",
+            "lastProgress": 0,
+            "lastBottleneck": ""
+          },
+          "agent-fixture-R10": {
+            "id": "agent-fixture-R10",
+            "companyId": "company-player",
+            "researchId": "R10",
+            "startedWeek": 0,
+            "completedWeek": 0,
+            "availableWeek": 1,
+            "requiredWork": 12000000000,
+            "completedWork": 12000000000,
+            "requiredStaff": 4000000000,
+            "completedStaff": 4000000000,
+            "role": "research",
+            "status": "complete",
+            "lastProgress": 0,
+            "lastBottleneck": ""
+          },
+          "agent-fixture-R11": {
+            "id": "agent-fixture-R11",
+            "companyId": "company-player",
+            "researchId": "R11",
+            "startedWeek": 0,
+            "completedWeek": 0,
+            "availableWeek": 1,
+            "requiredWork": 16000000000,
+            "completedWork": 16000000000,
+            "requiredStaff": 6000000000,
+            "completedStaff": 6000000000,
+            "role": "ml",
+            "status": "complete",
+            "lastProgress": 0,
+            "lastBottleneck": ""
+          },
+          "agent-fixture-R3": {
+            "id": "agent-fixture-R3",
+            "companyId": "company-player",
+            "researchId": "R3",
+            "startedWeek": 0,
+            "completedWeek": 0,
+            "availableWeek": 1,
+            "requiredWork": 2000000000,
+            "completedWork": 2000000000,
+            "requiredStaff": 2000000000,
+            "completedStaff": 2000000000,
+            "role": "ml",
+            "status": "complete",
+            "lastProgress": 0,
+            "lastBottleneck": ""
+          },
+          "agent-fixture-R12": {
+            "id": "agent-fixture-R12",
+            "companyId": "company-player",
+            "researchId": "R12",
+            "startedWeek": 0,
+            "completedWeek": 0,
+            "availableWeek": 1,
+            "requiredWork": 12000000000,
+            "completedWork": 12000000000,
+            "requiredStaff": 6000000000,
+            "completedStaff": 6000000000,
+            "role": "infrastructure",
+            "status": "complete",
+            "lastProgress": 0,
+            "lastBottleneck": ""
+          }
+        }
+      },
+      "products": {
+        "activeIds": [],
+        "offers": {},
+        "deployments": {},
+        "contracts": {},
+        "lastUsage": {},
+        "invoices": [],
+        "retrievalInstalls": {},
+        "commercialContracts": {
+          "business:aster-services": {
+            "id": "business:aster-services",
+            "customerId": "aster-services",
+            "companyId": "company-player",
+            "modelId": "seed-0",
+            "contractKind": "customer-hosted",
+            "generation": 1,
+            "signedWeek": 2,
+            "setupFeeCents": 75000,
+            "setupFactId": "business-setup:command-5",
+            "status": "ready",
+            "requiredDeliveryStaff": 2000000000,
+            "completedDeliveryStaff": 2000000000,
+            "readyWeek": 6,
+            "termStartedWeek": null,
+            "termEndsWeek": null,
+            "termIndex": 0,
+            "autoRenew": false,
+            "termWeeksServed": 0,
+            "termServiceBpsTotal": 0,
+            "breachWeeks": 0,
+            "endedWeek": null,
+            "lastBottleneck": "",
+            "evidence": null,
+            "rights": {
+              "hosted": true,
+              "weights": true
+            },
+            "weeklyPriceCents": 22000,
+            "weeklyRequests": 0,
+            "reservedWorkCUw": 0,
+            "reservedMemoryMU": 0,
+            "servingHeadroomBps": 0,
+            "inputTokensPerRequest": 0,
+            "outputTokensPerRequest": 0,
+            "workPerRequestCUw": 0,
+            "dataStaffPerWeek": 0,
+            "supportStaffPerWeek": 250000000,
+            "lifetimeBilledCents": 0,
+            "lifetimeCreditsCents": 0,
+            "lastUsage": null
+          }
+        },
+        "commercialInvoices": []
+      },
+      "markets": {
+        "companyTrustBps": {
+          "company-player": 5000
+        },
+        "carries": {
+          "company-player:regular": {
+            "conversion": 0,
+            "churn": 0,
+            "reach": 0
+          }
+        },
+        "shopperCarry": {
+          "casual": 0,
+          "regular": 0,
+          "heavy": 0,
+          "professional": 0,
+          "developers": 0,
+          "business": 9600
+        },
+        "rivals": {},
+        "returnedNextWeek": {},
+        "payingConsumers": 0,
+        "waitlistRemaining": 40,
+        "activeRivalIds": [],
+        "trials": [],
+        "cohorts": [],
+        "trustBps": 5000,
+        "acquisitionCarry": 0,
+        "conversionCarry": 0,
+        "churnCarry": 0,
+        "reachCarry": 0,
+        "nextTrialId": 1,
+        "lastGained": 0,
+        "lastLost": 0,
+        "lastTrialCount": 0,
+        "lastExplanation": "0 new trials; 0 paid accounts start next week; 0 left. Offers compete on model fit, price, service and trust; reach, serving capacity and memory limit growth."
+      },
+      "agents": {
+        "activeJobIds": [
+          "agent:0e424a52:support-replies:0"
+        ],
+        "jobs": {
+          "agent:0e424a52:support-replies:0": {
+            "id": "agent:0e424a52:support-replies:0",
+            "companyId": "company-player",
+            "orderId": "support-replies@0",
+            "templateId": "support-replies",
+            "cycle": 0,
+            "acceptedWeek": 2,
+            "completedWeek": null,
+            "configuration": {
+              "mode": "approval",
+              "verification": "independent",
+              "tools": [
+                "read_ticket",
+                "send_reply"
+              ],
+              "maxSteps": 12,
+              "maxRetries": 1,
+              "workBudget": 1000000000
+            },
+            "model": {
+              "id": "seed-0",
+              "name": "Seed 0",
+              "family": "compact",
+              "residentMU": 2000000000,
+              "capabilityBps": {
+                "conversation": 7000,
+                "documents": 7000,
+                "coding": 6000,
+                "tools": 6500
+              },
+              "reliabilityBps": 9600,
+              "behavior": {
+                "confidentErrorBps": 1000,
+                "falseRefusalBps": 700
+              },
+              "reportId": "agent-fixture-report"
+            },
+            "terms": {
+              "id": "support-replies",
+              "name": "Routine support replies",
+              "description": "Prepare answers for a small batch of routine support tickets.",
+              "caseCount": 10,
+              "setupCents": 2500,
+              "draftFeeCents": 15000,
+              "outcomeFeeCents": 35000,
+              "failurePenaltyCents": 5000,
+              "minConversationBps": 4500,
+              "minDocumentsBps": 2500,
+              "minToolsBps": 0,
+              "difficultyBps": 1000,
+              "readTools": [
+                "read_ticket"
+              ],
+              "actionTool": "send_reply"
+            },
+            "evidenceKey": "d3180449",
+            "status": "awaiting-approval",
+            "stage": "review",
+            "stageStartedWeek": 5,
+            "stageWork": 0,
+            "stagePhysicalWork": 0,
+            "stageStaff": 0,
+            "steps": 4,
+            "retries": 0,
+            "attempt": 0,
+            "lookupIndex": 1,
+            "plannedTools": [
+              "read_ticket"
+            ],
+            "spentWork": 740000000,
+            "physicalWork": 740000000,
+            "reviewStaff": 0,
+            "inputTokens": 20000,
+            "outputTokens": 5000,
+            "modelCalls": 20,
+            "checkerRuns": 10,
+            "toolCalls": 10,
+            "claimedComplete": true,
+            "draftOutcome": "useful",
+            "checkerPassed": true,
+            "humanDecision": "pending",
+            "deliveredDraft": false,
+            "actionApplied": false,
+            "actualSuccess": null,
+            "verifiedOutcome": false,
+            "permissionBlocks": 0,
+            "receiptId": null,
+            "invoiceId": null,
+            "billedCents": 0,
+            "penaltyCents": 0,
+            "lastBottleneck": "Approve the proposed draft; commercial staff must then perform the review.",
+            "history": [
+              {
+                "index": 0,
+                "stage": "plan",
+                "attempt": 0,
+                "tool": null,
+                "startedWeek": 2,
+                "completedWeek": 2,
+                "work": 200000000,
+                "physicalWork": 200000000,
+                "staff": 0,
+                "inputTokens": 5000,
+                "outputTokens": 1000,
+                "calls": 10,
+                "note": "Fixed workflow selected its required evidence steps."
+              },
+              {
+                "index": 1,
+                "stage": "lookup",
+                "attempt": 0,
+                "tool": "read_ticket",
+                "startedWeek": 2,
+                "completedWeek": 3,
+                "work": 20000000,
+                "physicalWork": 20000000,
+                "staff": 0,
+                "inputTokens": 0,
+                "outputTokens": 0,
+                "calls": 10,
+                "note": "Read read_ticket within this order’s scope."
+              },
+              {
+                "index": 2,
+                "stage": "draft",
+                "attempt": 0,
+                "tool": null,
+                "startedWeek": 3,
+                "completedWeek": 4,
+                "work": 400000000,
+                "physicalWork": 400000000,
+                "staff": 0,
+                "inputTokens": 15000,
+                "outputTokens": 4000,
+                "calls": 10,
+                "note": "Model claims the draft completes the task. This claim is not customer acceptance."
+              },
+              {
+                "index": 3,
+                "stage": "check",
+                "attempt": 0,
+                "tool": null,
+                "startedWeek": 4,
+                "completedWeek": 5,
+                "work": 120000000,
+                "physicalWork": 120000000,
+                "staff": 0,
+                "inputTokens": 0,
+                "outputTokens": 0,
+                "calls": 10,
+                "note": "Independent proposal check passed; actual outcome remains unverified."
+              }
+            ]
+          }
+        },
+        "actionReceipts": {},
+        "invoices": [],
+        "claims": {
+          "company-player:support-replies": 0
+        },
+        "totalsByCompany": {
+          "company-player": {
+            "accepted": 1,
+            "complete": 0,
+            "failed": 0,
+            "deliveredDrafts": 0,
+            "verifiedOutcomes": 0,
+            "revenueCents": 0,
+            "penaltyCents": 0
+          }
+        }
+      },
+      "campaign": {
+        "milestones": [
+          "company-founded",
+          "starter-data-ready",
+          "first-evaluation"
+        ],
+        "endingStreaks": {
+          "frontier": 0,
+          "platform": 0,
+          "specialist": 0
+        }
+      }
+    },
+    "queuedCommands": [
+      {
+        "id": "command-21",
+        "companyId": "company-player",
+        "issuedForWeek": 6,
+        "payload": {
+          "kind": "review_agent_job",
+          "jobId": "agent:0e424a52:support-replies:0",
+          "decision": "approve"
+        },
+        "reservedCents": 0
+      },
+      {
+        "id": "command-23",
+        "companyId": "company-player",
+        "issuedForWeek": 6,
+        "payload": {
+          "kind": "start_research",
+          "researchId": "R4"
+        },
+        "reservedCents": 400000
+      },
+      {
+        "id": "command-25",
+        "companyId": "company-player",
+        "issuedForWeek": 6,
+        "payload": {
+          "kind": "hire_staff",
+          "role": "research"
+        },
+        "reservedCents": 225000
+      },
+      {
+        "id": "command-27",
+        "companyId": "company-player",
+        "issuedForWeek": 6,
+        "payload": {
+          "kind": "order_rack",
+          "hardwareId": "general",
+          "location": "colocation"
+        },
+        "reservedCents": 1800000
+      },
+      {
+        "id": "command-29",
+        "companyId": "company-player",
+        "issuedForWeek": 6,
+        "payload": {
+          "kind": "allocate_compute",
+          "serving": 2000000000,
+          "development": 1000000000,
+          "research": 1000000000
+        },
+        "reservedCents": 0
+      }
+    ],
+    "commandReceipts": {
+      "command-3": {
+        "id": "command-3",
+        "week": 2,
+        "status": "accepted"
+      },
+      "command-5": {
+        "id": "command-5",
+        "week": 2,
+        "status": "accepted"
+      },
+      "command-7": {
+        "id": "command-7",
+        "week": 2,
+        "status": "accepted"
+      }
+    },
+    "scheduled": [],
+    "journal": [
+      {
+        "id": "event-1",
+        "week": 0,
+        "category": "system",
+        "message": "Company founded. Seed 0 is ready for inspection. The lab clock is paused."
+      },
+      {
+        "id": "event-2",
+        "week": 1,
+        "category": "finance",
+        "message": "Week 1 settled: $0 earned revenue and $1,000 expenses."
+      },
+      {
+        "id": "event-4",
+        "week": 1,
+        "category": "command",
+        "message": "Queued: $1,500 recruiting, then $300 per week from hiring. Productive after 2 onboarding weeks."
+      },
+      {
+        "id": "event-6",
+        "week": 1,
+        "category": "command",
+        "message": "Queued: Pay $750 delivery setup and deliver 2 ML staff-weeks. License these evaluated weights for twelve weeks at $220/week with 0.25 support FTE. The buyer supplies runtime compute; no company inference capacity or token bill is created."
+      },
+      {
+        "id": "event-8",
+        "week": 1,
+        "category": "command",
+        "message": "Queued: Routine support replies: $25 intake fee; baseline 7 steps, 0.84 serving CUw and 0.25 commercial staff-weeks. Cap 12 steps, 1 retries, 1 CUw. Outcome fees require an accepted independent check of the actual result. Payroll, rented capacity and actual GPU use are shared company costs."
+      },
+      {
+        "id": "event-9",
+        "week": 2,
+        "category": "command",
+        "message": "ML engineer hired. Salary starts now; ready in Week 4."
+      },
+      {
+        "id": "event-10",
+        "week": 2,
+        "category": "project",
+        "message": "Aster Services signed. Delivery must finish before the twelve-week term and weekly billing begin."
+      },
+      {
+        "id": "event-11",
+        "week": 2,
+        "category": "project",
+        "message": "Routine support replies accepted with frozen model, permissions and budgets. Every executed call, checker and retry uses shared capacity."
+      },
+      {
+        "id": "event-12",
+        "week": 2,
+        "category": "finance",
+        "message": "Week 2 settled: $0 earned revenue and $3,575 expenses."
+      },
+      {
+        "id": "event-13",
+        "week": 2,
+        "category": "project",
+        "message": "Prepared training data is ready."
+      },
+      {
+        "id": "event-14",
+        "week": 2,
+        "category": "project",
+        "message": "A model passed the Basic Chat eligibility gate."
+      },
+      {
+        "id": "event-15",
+        "week": 3,
+        "category": "finance",
+        "message": "Week 3 settled: $0 earned revenue and $1,300 expenses."
+      },
+      {
+        "id": "event-16",
+        "week": 4,
+        "category": "project",
+        "message": "ML engineer finished onboarding and can now contribute."
+      },
+      {
+        "id": "event-17",
+        "week": 4,
+        "category": "finance",
+        "message": "Week 4 settled: $0 earned revenue and $1,300 expenses."
+      },
+      {
+        "id": "event-18",
+        "week": 5,
+        "category": "project",
+        "message": "Aster Services: fixed-model delivery completed. Its term begins next week."
+      },
+      {
+        "id": "event-19",
+        "week": 5,
+        "category": "project",
+        "message": "Routine support replies: Approve the proposed draft; commercial staff must then perform the review."
+      },
+      {
+        "id": "event-20",
+        "week": 5,
+        "category": "finance",
+        "message": "Week 5 settled: $0 earned revenue and $1,300 expenses."
+      },
+      {
+        "id": "event-22",
+        "week": 5,
+        "category": "command",
+        "message": "Queued: Apply the saved workflow decision next week. Executed work, receipts and customer intake identity remain."
+      },
+      {
+        "id": "event-24",
+        "week": 5,
+        "category": "command",
+        "message": "Queued: Efficient adaptation: 4 ml staff-weeks and 6 research CUw. Both meters must finish; the method unlocks at the following weekly boundary."
+      },
+      {
+        "id": "event-26",
+        "week": 5,
+        "category": "command",
+        "message": "Queued: $2,250 recruiting, then $450 per week from hiring. Productive after 2 onboarding weeks."
+      },
+      {
+        "id": "event-28",
+        "week": 5,
+        "category": "command",
+        "message": "Queued: Order 8 general gpu CU / 16 MU for $18,000. Delivery takes 6 weeks, followed by 1 infrastructure staff-week of installation. Inventory supplies no compute."
+      },
+      {
+        "id": "event-30",
+        "week": 5,
+        "category": "command",
+        "message": "Queued: Physical allocation ceilings change next week. Serving headroom fits inside its ceiling; owned pools remain subject to memory, staff, power, and cooling."
+      }
+    ],
+    "lastTick": {
+      "week": 5,
+      "phases": [
+        {
+          "phase": "commit",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "reserve",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "execute",
+          "facts": 3,
+          "events": 0
+        },
+        {
+          "phase": "resolve",
+          "facts": 0,
+          "events": 2
+        },
+        {
+          "phase": "settle",
+          "facts": 0,
+          "events": 1
+        },
+        {
+          "phase": "market",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "plan",
+          "facts": 0,
+          "events": 0
+        }
+      ],
+      "chargedCents": 130000,
+      "receivedCents": 0,
+      "scheduledCount": 0
+    }
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "schema": "frontier-lab.qa.wave31b.native-zoom.v1",
+  "record_scope": "Historical pre-workforce-points candidate 0.31.1; not a 0.32.0 acceptance result.",
+  "candidate_build": "0.31.1",
+  "source": {
+    "path": "/workspace/shared/frontier-wave31b/native-zoom-checks.json",
+    "sha256": "66b958c0f11b8c81eebd60d6544da5eeb28412dad8cddd639b46a9e5373f8e0d"
+  },
+  "curation": "Original labels, geometry, named inputs and action states are preserved. Empty anonymous input records are omitted. The pre-correction overflow diagnostic is retained and is not final acceptance.",
+  "final_acceptance_label": "400-percent-review-final",
+  "superseded_diagnostic_labels": [
+    "400-percent-keyboard-confirm-visible"
+  ],
+  "samples": [
+    {
+      "label": "125-percent",
+      "body": {
+        "clientHeight": 465,
+        "clientWidth": 1029,
+        "scrollHeight": 720,
+        "scrollWidth": 1029
+      },
+      "footer": {
+        "bottom": 724.0000152587891,
+        "top": 651.2000122070312
+      },
+      "grid": "501.175px 455.625px",
+      "inputs": [
+        {
+          "id": "basic-chat-deploy-model",
+          "value": "model-command-17"
+        },
+        {
+          "id": "basic-chat-price",
+          "value": "15"
+        },
+        {
+          "id": "basic-chat-allowance",
+          "value": "120"
+        }
+      ],
+      "primary": [
+        {
+          "disabled": false,
+          "text": "Review: Deploy Basic Chat"
+        }
+      ],
+      "short": "false",
+      "viewport": {
+        "height": 749,
+        "scrollWidth": 1090,
+        "width": 1090
+      }
+    },
+    {
+      "label": "150-percent",
+      "body": {
+        "clientHeight": 341,
+        "clientWidth": 849,
+        "scrollHeight": 765,
+        "scrollWidth": 849
+      },
+      "footer": {
+        "bottom": 599.3333587646484,
+        "top": 526.6666870117188
+      },
+      "grid": "407.167px 370.167px",
+      "inputs": [
+        {
+          "id": "basic-chat-deploy-model",
+          "value": "model-command-17"
+        },
+        {
+          "id": "basic-chat-price",
+          "value": "15"
+        },
+        {
+          "id": "basic-chat-allowance",
+          "value": "120"
+        }
+      ],
+      "primary": [
+        {
+          "disabled": false,
+          "text": "Review: Deploy Basic Chat"
+        }
+      ],
+      "short": "false",
+      "viewport": {
+        "height": 624,
+        "scrollWidth": 909,
+        "width": 909
+      }
+    },
+    {
+      "label": "200-percent",
+      "body": {
+        "clientHeight": 874,
+        "clientWidth": 640,
+        "scrollHeight": 874,
+        "scrollWidth": 640
+      },
+      "footer": {
+        "bottom": 1110.3125,
+        "top": 1041.3125
+      },
+      "grid": "608px",
+      "inputs": [
+        {
+          "id": "basic-chat-deploy-model",
+          "value": "model-command-17"
+        },
+        {
+          "id": "basic-chat-price",
+          "value": "15"
+        },
+        {
+          "id": "basic-chat-allowance",
+          "value": "120"
+        }
+      ],
+      "primary": [
+        {
+          "disabled": false,
+          "text": "Review: Deploy Basic Chat"
+        }
+      ],
+      "short": "true",
+      "viewport": {
+        "height": 468,
+        "scrollWidth": 681,
+        "width": 681
+      }
+    },
+    {
+      "label": "400-percent-setup",
+      "body": {
+        "clientHeight": 1310,
+        "clientWidth": 337,
+        "scrollHeight": 1310,
+        "scrollWidth": 337
+      },
+      "footer": {
+        "bottom": 1661.71875,
+        "top": 1482.71875
+      },
+      "grid": "305px",
+      "inputs": [
+        {
+          "id": "basic-chat-deploy-model",
+          "value": "model-command-17"
+        },
+        {
+          "id": "basic-chat-price",
+          "value": "15"
+        },
+        {
+          "id": "basic-chat-allowance",
+          "value": "120"
+        }
+      ],
+      "primary": [
+        {
+          "disabled": false,
+          "text": "Review: Deploy Basic Chat"
+        }
+      ],
+      "short": "true",
+      "viewport": {
+        "height": 234,
+        "scrollWidth": 340,
+        "width": 340
+      }
+    },
+    {
+      "label": "400-percent-keyboard-confirm-visible",
+      "body": {
+        "clientHeight": 1149,
+        "clientWidth": 337,
+        "scrollHeight": 1149,
+        "scrollWidth": 515
+      },
+      "footer": {
+        "bottom": 234.0546875,
+        "top": 92.4609375
+      },
+      "grid": "minmax(0px, 1fr)",
+      "inputs": [],
+      "primary": [
+        {
+          "disabled": false,
+          "text": "Confirm for Week 7"
+        }
+      ],
+      "short": "true",
+      "viewport": {
+        "height": 234,
+        "scrollWidth": 340,
+        "width": 340
+      }
+    },
+    {
+      "label": "400-percent-review-wrapping-fixed",
+      "body": {
+        "clientHeight": 1218,
+        "clientWidth": 337,
+        "scrollHeight": 1218,
+        "scrollWidth": 337
+      },
+      "footer": {
+        "bottom": 1580.65234375,
+        "top": 1439.05859375
+      },
+      "grid": "minmax(0px, 1fr)",
+      "inputs": [],
+      "primary": [
+        {
+          "disabled": false,
+          "text": "Confirm for Week 7"
+        }
+      ],
+      "short": "true",
+      "viewport": {
+        "height": 234,
+        "scrollWidth": 340,
+        "width": 340
+      }
+    },
+    {
+      "label": "400-percent-review-final",
+      "body": {
+        "clientHeight": 1218,
+        "clientWidth": 337,
+        "scrollHeight": 1218,
+        "scrollWidth": 337
+      },
+      "footer": {
+        "bottom": 233.90234375,
+        "top": 92.30859375
+      },
+      "grid": "minmax(0px, 1fr)",
+      "inputs": [],
+      "primary": [
+        {
+          "disabled": false,
+          "text": "Confirm for Week 7"
+        }
+      ],
+      "short": "true",
+      "viewport": {
+        "height": 234,
+        "scrollWidth": 340,
+        "width": 340
+      }
+    }
+  ]
+}

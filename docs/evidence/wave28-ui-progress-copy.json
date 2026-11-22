@@ -1,0 +1,48 @@
+{
+  "wave": 28,
+  "scope": "Focused SSR after display-only progress copy change; natural paid retrofit snapshots. No engine advance or state/fixture edits.",
+  "scenarios": 4,
+  "passed": 4,
+  "results": [
+    {
+      "stage": "building",
+      "week": 586,
+      "hash": "21100123",
+      "status": "building",
+      "grantedStaff": 1525000000,
+      "originalCoreBottleneck": "Assign Infrastructure staff after operating coverage and existing construction commitments.",
+      "stateAndFixtureUnchanged": true,
+      "pass": true
+    },
+    {
+      "stage": "ready",
+      "week": 588,
+      "hash": "5a3c3e36",
+      "status": "ready",
+      "grantedStaff": 0,
+      "originalCoreBottleneck": "Paid work complete; the existing profile remains until Week 589.",
+      "stateAndFixtureUnchanged": true,
+      "pass": true
+    },
+    {
+      "stage": "switching",
+      "week": 590,
+      "hash": "f912bc65",
+      "status": "building",
+      "grantedStaff": 1525000000,
+      "originalCoreBottleneck": "Assign Infrastructure staff after operating coverage and existing construction commitments.",
+      "stateAndFixtureUnchanged": true,
+      "pass": true
+    },
+    {
+      "stage": "trainingReady",
+      "week": 592,
+      "hash": "659756ac",
+      "status": "ready",
+      "grantedStaff": 0,
+      "originalCoreBottleneck": "Paid work complete; the existing profile remains until Week 593.",
+      "stateAndFixtureUnchanged": true,
+      "pass": true
+    }
+  ]
+}

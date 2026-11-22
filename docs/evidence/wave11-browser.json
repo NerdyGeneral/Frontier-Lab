@@ -1,0 +1,480 @@
+{
+  "sourceWeek": 408,
+  "dataPreparedWeek": 410,
+  "trainingCompletedWeek": 416,
+  "boundaryModelId": "model-command-2353",
+  "conservativeModelId": "model-command-2355",
+  "blockedUntilCapability": true,
+  "boundaryHoldout": "Models\nTop\nInspect\nSeed 0\nConversation 1 \u00b7 50% checkpoint\nConversation 1\nCoding and tools adaptation 2 \u00b7 50% checkpoint\nCoding and tools adaptation 2\nPreference and reliability tuning 3 \u00b7 50% checkpoint\nPreference and reliability tuning 3\nCalibration curriculum 4 \u00b7 50% checkpoint\nCalibration curriculum 4\nCalibration curriculum 5 \u00b7 50% checkpoint\nCalibration curriculum 5\nMedium foundation 6 \u00b7 50% checkpoint\nMedium foundation 6\nPreference and reliability tuning 7 \u00b7 50% checkpoint\nPreference and reliability tuning 7\nCalibration curriculum 8 \u00b7 50% checkpoint\nCalibration curriculum 8\nBudgeted planner curriculum 9 \u00b7 50% checkpoint\nBudgeted planner curriculum 9\nConversation 10 \u00b7 50% checkpoint\nConversation 10\nCoding and tools adaptation 11 \u00b7 50% checkpoint\nCoding and tools adaptation 11\nCoding and tools adaptation 11 \u00b7 compressed\nCalibration curriculum 12 \u00b7 50% checkpoint\nCalibration curriculum 12\nPolicy boundary discrimination 13 \u00b7 50% checkpoint\nPolicy boundary discrimination 13\nConservative policy refusal 14 \u00b7 50% checkpoint\nConservative policy refusal 14\n\nPolicy boundary discrimination 13 / compact, dense\n\nConversation\n40.88\nDocuments\n31.38\nCoding\n53.57\nTool use\n27.41\nReliability\n89\nEvaluation suite\nBasic conversation\nExpanded capabilities\nBehavior cases\nIndependent outcome holdouts\nPolicy boundary holdouts\n\n50 allowed and 50 restricted reserved cases distinguish false refusals from unsafe compliance under this game\u2019s authored rulebook. Requires this exact candidate\u2019s paid capability report. Evidence never trains weights or certifies general safety.\n\nIndependent policy holdout \u00b7 Week 420\n\nAllowed requests\n50\nUseful allowed answers\n27 / 50\nUnnecessary refusals\n2 / 50\nConfident errors\n2 / 50\nClarifications\n19 / 50\nRestricted requests\n50\nCorrect policy refusals\n46 / 50\nRestricted compliances\n4 / 50\nPolicy release check\nMeets threshold\n\nPolicy-trained models need at most 5 restricted compliances in 50 restricted cases before commercial use. Allowed work has its own denominator: refusing a legitimate request remains a failure. Capability requirements and data rights are checked separately.\n\nThese reserved game cases are separate from the licensed training pairs. Candidate versions face the same saved cohort; renaming or waiting cannot select easier cases. This limited report changes no weights and makes no claim about universal safety.\n\nDirect and adversarial cases\n\nLearned policy behavior\n\nUnnecessary-refusal tendency\n3.85%\nRestricted-compliance tendency\n6.60%\nPolicy evidence\nExact candidate tested\n\nThis exact candidate meets the policy holdout threshold. Choose a commercial rollout separately; training and testing do not replace the live model.\n\nTendencies are authored game properties; observed case counts appear in Policy boundary holdouts. Refusal training preserves capability, reliability, confident-error behavior, inference work, and agent permissions.\n\nBehavior and version details",
+  "conservativeHoldout": "Models\nTop\nInspect\nSeed 0\nConversation 1 \u00b7 50% checkpoint\nConversation 1\nCoding and tools adaptation 2 \u00b7 50% checkpoint\nCoding and tools adaptation 2\nPreference and reliability tuning 3 \u00b7 50% checkpoint\nPreference and reliability tuning 3\nCalibration curriculum 4 \u00b7 50% checkpoint\nCalibration curriculum 4\nCalibration curriculum 5 \u00b7 50% checkpoint\nCalibration curriculum 5\nMedium foundation 6 \u00b7 50% checkpoint\nMedium foundation 6\nPreference and reliability tuning 7 \u00b7 50% checkpoint\nPreference and reliability tuning 7\nCalibration curriculum 8 \u00b7 50% checkpoint\nCalibration curriculum 8\nBudgeted planner curriculum 9 \u00b7 50% checkpoint\nBudgeted planner curriculum 9\nConversation 10 \u00b7 50% checkpoint\nConversation 10\nCoding and tools adaptation 11 \u00b7 50% checkpoint\nCoding and tools adaptation 11\nCoding and tools adaptation 11 \u00b7 compressed\nCalibration curriculum 12 \u00b7 50% checkpoint\nCalibration curriculum 12\nPolicy boundary discrimination 13 \u00b7 50% checkpoint\nPolicy boundary discrimination 13\nConservative policy refusal 14 \u00b7 50% checkpoint\nConservative policy refusal 14\n\nConservative policy refusal 14 / compact, dense\n\nConversation\n40.88\nDocuments\n31.38\nCoding\n53.57\nTool use\n27.41\nReliability\n89\nEvaluation suite\nBasic conversation\nExpanded capabilities\nBehavior cases\nIndependent outcome holdouts\nPolicy boundary holdouts\n\n50 allowed and 50 restricted reserved cases distinguish false refusals from unsafe compliance under this game\u2019s authored rulebook. Requires this exact candidate\u2019s paid capability report. Evidence never trains weights or certifies general safety.\n\nIndependent policy holdout \u00b7 Week 419\n\nAllowed requests\n50\nUseful allowed answers\n23 / 50\nUnnecessary refusals\n6 / 50\nConfident errors\n2 / 50\nClarifications\n19 / 50\nRestricted requests\n50\nCorrect policy refusals\n48 / 50\nRestricted compliances\n2 / 50\nPolicy release check\nMeets threshold\n\nPolicy-trained models need at most 5 restricted compliances in 50 restricted cases before commercial use. Allowed work has its own denominator: refusing a legitimate request remains a failure. Capability requirements and data rights are checked separately.\n\nThese reserved game cases are separate from the licensed training pairs. Candidate versions face the same saved cohort; renaming or waiting cannot select easier cases. This limited report changes no weights and makes no claim about universal safety.\n\nDirect and adversarial cases\n\nLearned policy behavior\n\nUnnecessary-refusal tendency\n11.50%\nRestricted-compliance tendency\n3.90%\nPolicy evidence\nExact candidate tested\n\nThis exact candidate meets the policy holdout threshold. Choose a commercial rollout separately; training and testing do not replace the live model.\n\nTendencies are authored game properties; observed case counts appear in Policy boundary holdouts. Refusal training preserves capability, reliability, confident-error behavior, inference work, and agent permissions.\n\nBehavior and version details",
+  "releasedWeek": 427,
+  "liveUsage": "Developer API\nTop\n\nPolicy boundary discrimination 13Live\n\nDeveloper accounts / next week\n155\nTrials / next week\n4\nReference bill / 600 requests\n$60.01\nRequest limit\n599 / account\n\nUsage \u00b7 Week 427\n\nBilled accounts\n154\nPhysical serving work\n46.273 CUw\nPaid demand fulfilled\n100%\nTechnical execution errors\n16.71%\nBilled revenue\n$23,064.64\n",
+  "finalWeek": 432,
+  "feedbackText": "Customer feedback\n\nCollect consented samples from four weeks of future paid service. Collection has no setup fee; reviewed data still needs training, evaluation and release before model behavior changes.\n\nSample\nRepresentative sample\nFailure-focused sample\n\nSamples opted-in paying accounts across their served responses. Broader task coverage; half the reviewed cases count as behavior evidence.\n\nConsent\nHosted training only \u00b7 25% opt in\nWeight distribution allowed \u00b7 10% opt in\n\nMore accounts participate. Models trained on this dataset can be hosted but cannot be licensed as weights.\n\nAt the most recent paid usage, these choices would permit 25 cases per week from 39 opted-in served accounts. A new study starts next week; earlier service is never collected retrospectively.\n\nStart four-week feedback study\n\nOpen four prospective calendar weeks of representative feedback. 25% of served paying accounts opt in, at most 25 cases per week and 100 total. Actual paid serving still uses your GPUs and ordinary bills. A source deployment change stops new captures. Separate paid review is required before this evidence becomes training data.\n\nRepresentative \u00b7 Week 428Closed\n\nCaptured cases\n100 / 100\nCalendar window\nWeeks 428\u2013431\nTraining consent\nHosted only \u00b7 25%\nSource model\nPolicy boundary discrimination 13\n\n100 cases captured. Paid human review can begin in Week 432.\n\nWeekly paid-use receipts\nCollected response estimate\tCases\nUseful answer\t80\nConfident error\t4\nFalse refusal of an allowed task\t4\nClarification / uncertainty\t12\n\nThis sample represents opted-in paying accounts; it is not a held-out benchmark or a guarantee about all customers. Paid human review below can convert these cases into reusable training data.\n\nFailure-focused \u00b7 Week 390Closed\n\nCaptured cases\n100 / 100\nCalendar window\nWeeks 390\u2013393\nTraining consent\nHosted only \u00b7 25%\nSource model\nCoding and tools adaptation 11\n\n100 cases captured. Paid human review can begin in Week 394.\n\nWeekly paid-use receipts\nCollected response estimate\tCases\nUseful answer\t0\nConfident error\t44\nFalse refusal of an allowed task\t28\nClarification / uncertainty\t28\n\nThis intentionally biased sample concentrates negative responses. Its counts are not the product\u2019s overall failure rate.\n\nStudy rules\n\nReview collected feedback\n\nReview turns opted-in customer cases into reusable training data. Representative sampling keeps wider coverage; failure-focused sampling provides denser behavior evidence with narrower coverage. Both are selected customer feedback, not independent evaluation or broad pretraining data. Training, evaluation and a new release still require their own work.\n\nClosed study\nWeek 428 \u00b7 100 cases \u00b7 Representative\nReview method\nVerified \u00b7 90% quality\nQuick \u00b7 65% quality\n\nThis batch needs 2 data staff-weeks and 1 development CUw with 1 MU workspace. Data review is capped at 1 staff-week each week. GPU processing can finish while staff review continues.\n\nThe resulting dataset permits hosted use; consent or source-model rights restrict distribution of trained weights. One review per study; the resulting dataset can be reused.\n\nStart feedback review\n\nVerified review: 100 cases, 2 data staff-weeks and 1 development CUw, with 1 MU workspace. At most 1 data staff-week runs each week; GPU and staff progress independently. Ordinary payroll and compute bills apply. The reusable dataset arrives at the boundary after both finish.\n\nVerified review \u00b7 100 cases \u00b7 Dataset ready\nPause or resume service\nRecent invoices\nAPI billing rules",
+  "reloadWeek": 432,
+  "byteExactReload": true,
+  "originalPreviewRestored": true,
+  "appConsoleErrors": [],
+  "buildVersion": "0.12.0",
+  "schemaVersion": 5,
+  "previewUrl": "http://127.0.0.1:4173/",
+  "snapshotChecksum": "e7bcfdbd",
+  "snapshotBytes": 1739692,
+  "snapshotSha256": "a3f21b568fa77efddc9ba6932d248787e181bbf875e8c869a1e4bf1a7000e924",
+  "originalPreviewWeek": 0,
+  "originalPreviewChecksum": "78d73bbf",
+  "playerCommandCount": 13,
+  "newCommandReceipts": {
+    "command-2339": {
+      "id": "command-2339",
+      "week": 409,
+      "status": "accepted"
+    },
+    "command-2346": {
+      "id": "command-2346",
+      "week": 410,
+      "status": "accepted"
+    },
+    "command-2353": {
+      "id": "command-2353",
+      "week": 411,
+      "status": "accepted"
+    },
+    "command-2355": {
+      "id": "command-2355",
+      "week": 411,
+      "status": "accepted"
+    },
+    "command-2357": {
+      "id": "command-2357",
+      "week": 411,
+      "status": "accepted"
+    },
+    "command-2388": {
+      "id": "command-2388",
+      "week": 417,
+      "status": "accepted"
+    },
+    "command-2390": {
+      "id": "command-2390",
+      "week": 417,
+      "status": "accepted"
+    },
+    "command-2402": {
+      "id": "command-2402",
+      "week": 419,
+      "status": "accepted"
+    },
+    "command-2404": {
+      "id": "command-2404",
+      "week": 419,
+      "status": "accepted"
+    },
+    "command-2418": {
+      "id": "command-2418",
+      "week": 421,
+      "status": "accepted"
+    },
+    "command-2430": {
+      "id": "command-2430",
+      "week": 423,
+      "status": "accepted"
+    },
+    "command-2441": {
+      "id": "command-2441",
+      "week": 426,
+      "status": "accepted"
+    },
+    "command-2453": {
+      "id": "command-2453",
+      "week": 428,
+      "status": "accepted"
+    }
+  },
+  "finalCashCents": 394993520,
+  "liveProduct": {
+    "id": "product:natural-business-command-67",
+    "companyId": "company-player",
+    "name": "Developer API",
+    "kind": "developer-api",
+    "features": {
+      "memory": false,
+      "extendedContext": true,
+      "deepReasoning": true
+    },
+    "deploymentId": "prepared-deployment:prepared-release:command-2430",
+    "contractId": "contract:natural-business-command-67",
+    "status": "active",
+    "createdWeek": 106,
+    "publicModelId": "model-command-2353"
+  },
+  "latestUsage": {
+    "week": 432,
+    "productId": "product:natural-business-command-67",
+    "paidAccounts": 156,
+    "trialAccounts": 0,
+    "requestedWork": 46722000000,
+    "executedWork": 46722000000,
+    "paidRequestedWork": 46722000000,
+    "paidExecutedWork": 46722000000,
+    "trialRequestedWork": 0,
+    "trialExecutedWork": 0,
+    "exchanges": 93444,
+    "fulfillmentBps": 10000,
+    "errorBps": 1671,
+    "behavior": {
+      "confidentErrorBps": 550,
+      "falseRefusalBps": 385
+    },
+    "trialCompletedIds": [],
+    "grossBillCents": 2336418,
+    "creditsCents": 0,
+    "billedCents": 2336418,
+    "segments": [
+      {
+        "segmentId": "developers",
+        "accounts": 156,
+        "requestedExchanges": 93444,
+        "requestedWork": 46722000000,
+        "errorBps": 1671
+      }
+    ],
+    "tokens": {
+      "inputTokens": 93444000,
+      "outputTokens": 9344400,
+      "internalTokens": 18688800,
+      "inputPriceCentsPerMillion": 10001,
+      "outputPriceCentsPerMillion": 50008,
+      "billCarryIn": 950000,
+      "billCarryOut": 659600,
+      "physicalWork": 46722000000,
+      "ownedVariableCostCents": 0
+    }
+  },
+  "selectedModel": {
+    "id": "model-command-2353",
+    "name": "Policy boundary discrimination 13",
+    "companyId": "company-player",
+    "family": "compact",
+    "architecture": "dense",
+    "status": "released",
+    "capabilityBps": {
+      "conversation": 4088,
+      "documents": 3138,
+      "coding": 5357,
+      "tools": 2741
+    },
+    "reliabilityBps": 8900,
+    "behavior": {
+      "confidentErrorBps": 550,
+      "falseRefusalBps": 385
+    },
+    "policy": {
+      "protocol": "policy-boundaries-v1",
+      "baselineUnsafeComplianceBps": 1200,
+      "currentUnsafeComplianceBps": 660
+    },
+    "residentMU": 2000000000,
+    "source": "Policy boundary discrimination: 24 of 24 useful CUw. Evaluation is separate.",
+    "parentModelId": "model-wave10-natural-command-3",
+    "trainingRunId": "training-command-2353",
+    "trainingEvidenceId": "corpus-0eca3f80",
+    "createdWeek": 414,
+    "foundationAnchor": {
+      "conversation": 4000,
+      "documents": 3000,
+      "coding": 2000,
+      "tools": 2000
+    },
+    "evaluationReportId": "report-evaluation-command-2388"
+  },
+  "policyReports": [
+    {
+      "modelId": "model-wave10-natural-command-3",
+      "week": 411,
+      "policy": {
+        "protocol": "policy-boundaries-v1",
+        "baselineReportId": "report-evaluation-wave10-natural-command-4",
+        "modelFingerprint": "bfca4169",
+        "evidenceKey": "6269030a",
+        "totals": {
+          "cases": 100,
+          "allowedCases": 50,
+          "usefulAnswers": 25,
+          "confidentErrors": 2,
+          "falseRefusals": 4,
+          "clarifications": 19,
+          "restrictedCases": 50,
+          "correctPolicyRefusals": 45,
+          "unsafeCompliances": 5,
+          "directRestrictedCases": 25,
+          "directUnsafeCompliances": 1,
+          "adversarialRestrictedCases": 25,
+          "adversarialUnsafeCompliances": 4
+        }
+      }
+    },
+    {
+      "modelId": "model-command-2355",
+      "week": 419,
+      "policy": {
+        "protocol": "policy-boundaries-v1",
+        "baselineReportId": "report-evaluation-command-2390",
+        "modelFingerprint": "3e44671c",
+        "evidenceKey": "6269030a",
+        "totals": {
+          "cases": 100,
+          "allowedCases": 50,
+          "usefulAnswers": 23,
+          "confidentErrors": 2,
+          "falseRefusals": 6,
+          "clarifications": 19,
+          "restrictedCases": 50,
+          "correctPolicyRefusals": 48,
+          "unsafeCompliances": 2,
+          "directRestrictedCases": 25,
+          "directUnsafeCompliances": 0,
+          "adversarialRestrictedCases": 25,
+          "adversarialUnsafeCompliances": 2
+        }
+      }
+    },
+    {
+      "modelId": "model-command-2353",
+      "week": 420,
+      "policy": {
+        "protocol": "policy-boundaries-v1",
+        "baselineReportId": "report-evaluation-command-2388",
+        "modelFingerprint": "212e1399",
+        "evidenceKey": "6269030a",
+        "totals": {
+          "cases": 100,
+          "allowedCases": 50,
+          "usefulAnswers": 27,
+          "confidentErrors": 2,
+          "falseRefusals": 2,
+          "clarifications": 19,
+          "restrictedCases": 50,
+          "correctPolicyRefusals": 46,
+          "unsafeCompliances": 4,
+          "directRestrictedCases": 25,
+          "directUnsafeCompliances": 1,
+          "adversarialRestrictedCases": 25,
+          "adversarialUnsafeCompliances": 3
+        }
+      }
+    }
+  ],
+  "newStudy": [
+    {
+      "id": "feedback-study:command-2453",
+      "companyId": "company-player",
+      "productId": "product:natural-business-command-67",
+      "productKind": "developer-api",
+      "protocol": "customer-feedback-1",
+      "sourceDeploymentId": "prepared-deployment:prepared-release:command-2430",
+      "sourceModelId": "model-command-2353",
+      "sourceDeployment": {
+        "id": "prepared-deployment:prepared-release:command-2430",
+        "companyId": "company-player",
+        "productId": "product:natural-business-command-67",
+        "modelId": "model-command-2353",
+        "status": "active",
+        "startedWeek": 423,
+        "requiredStaff": 1000000000,
+        "completedStaff": 1000000000,
+        "readyWeek": 427,
+        "lastBottleneck": ""
+      },
+      "sourceModelFingerprint": "8bc1faa9",
+      "sampling": "representative",
+      "consent": "hosted-only",
+      "status": "closed",
+      "startedWeek": 428,
+      "endsWeek": 431,
+      "endedEarly": false,
+      "closedWeek": 431,
+      "reviewableWeek": 432,
+      "endCommandId": null,
+      "weeks": [
+        {
+          "week": 428,
+          "sourceId": "feedback-source:818be189:428",
+          "observedDeploymentId": "prepared-deployment:prepared-release:command-2430",
+          "observedModelId": "model-command-2353",
+          "observedDeployment": {
+            "id": "prepared-deployment:prepared-release:command-2430",
+            "companyId": "company-player",
+            "productId": "product:natural-business-command-67",
+            "modelId": "model-command-2353",
+            "status": "active",
+            "startedWeek": 423,
+            "requiredStaff": 1000000000,
+            "completedStaff": 1000000000,
+            "readyWeek": 427,
+            "lastBottleneck": ""
+          },
+          "routingModelId": null,
+          "paidUsage": {
+            "paidAccounts": 155,
+            "paidRequestedExchanges": 92845,
+            "paidRequestedWork": 46422500000,
+            "paidExecutedWork": 46422500000,
+            "paidCompletedExchanges": 92845,
+            "errorBps": 1671,
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 385,
+            "billedCents": 2321440,
+            "invoiceId": "invoice:product:natural-business-command-67:428"
+          },
+          "servedAccounts": 155,
+          "consentAccounts": 38,
+          "negativeCandidates": 4772,
+          "reason": "sampled",
+          "outcomes": {
+            "cases": 25,
+            "useful": 20,
+            "confidentError": 1,
+            "falseRefusal": 1,
+            "clarification": 3
+          }
+        },
+        {
+          "week": 429,
+          "sourceId": "feedback-source:818be189:429",
+          "observedDeploymentId": "prepared-deployment:prepared-release:command-2430",
+          "observedModelId": "model-command-2353",
+          "observedDeployment": {
+            "id": "prepared-deployment:prepared-release:command-2430",
+            "companyId": "company-player",
+            "productId": "product:natural-business-command-67",
+            "modelId": "model-command-2353",
+            "status": "active",
+            "startedWeek": 423,
+            "requiredStaff": 1000000000,
+            "completedStaff": 1000000000,
+            "readyWeek": 427,
+            "lastBottleneck": ""
+          },
+          "routingModelId": null,
+          "paidUsage": {
+            "paidAccounts": 155,
+            "paidRequestedExchanges": 92845,
+            "paidRequestedWork": 46422500000,
+            "paidExecutedWork": 46422500000,
+            "paidCompletedExchanges": 92845,
+            "errorBps": 1671,
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 385,
+            "billedCents": 2321441,
+            "invoiceId": "invoice:product:natural-business-command-67:429"
+          },
+          "servedAccounts": 155,
+          "consentAccounts": 38,
+          "negativeCandidates": 4772,
+          "reason": "sampled",
+          "outcomes": {
+            "cases": 25,
+            "useful": 20,
+            "confidentError": 1,
+            "falseRefusal": 1,
+            "clarification": 3
+          }
+        },
+        {
+          "week": 430,
+          "sourceId": "feedback-source:818be189:430",
+          "observedDeploymentId": "prepared-deployment:prepared-release:command-2430",
+          "observedModelId": "model-command-2353",
+          "observedDeployment": {
+            "id": "prepared-deployment:prepared-release:command-2430",
+            "companyId": "company-player",
+            "productId": "product:natural-business-command-67",
+            "modelId": "model-command-2353",
+            "status": "active",
+            "startedWeek": 423,
+            "requiredStaff": 1000000000,
+            "completedStaff": 1000000000,
+            "readyWeek": 427,
+            "lastBottleneck": ""
+          },
+          "routingModelId": null,
+          "paidUsage": {
+            "paidAccounts": 156,
+            "paidRequestedExchanges": 93444,
+            "paidRequestedWork": 46722000000,
+            "paidExecutedWork": 46722000000,
+            "paidCompletedExchanges": 93444,
+            "errorBps": 1671,
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 385,
+            "billedCents": 2336418,
+            "invoiceId": "invoice:product:natural-business-command-67:430"
+          },
+          "servedAccounts": 156,
+          "consentAccounts": 39,
+          "negativeCandidates": 4803,
+          "reason": "sampled",
+          "outcomes": {
+            "cases": 25,
+            "useful": 20,
+            "confidentError": 1,
+            "falseRefusal": 1,
+            "clarification": 3
+          }
+        },
+        {
+          "week": 431,
+          "sourceId": "feedback-source:818be189:431",
+          "observedDeploymentId": "prepared-deployment:prepared-release:command-2430",
+          "observedModelId": "model-command-2353",
+          "observedDeployment": {
+            "id": "prepared-deployment:prepared-release:command-2430",
+            "companyId": "company-player",
+            "productId": "product:natural-business-command-67",
+            "modelId": "model-command-2353",
+            "status": "active",
+            "startedWeek": 423,
+            "requiredStaff": 1000000000,
+            "completedStaff": 1000000000,
+            "readyWeek": 427,
+            "lastBottleneck": ""
+          },
+          "routingModelId": null,
+          "paidUsage": {
+            "paidAccounts": 156,
+            "paidRequestedExchanges": 93444,
+            "paidRequestedWork": 46722000000,
+            "paidExecutedWork": 46722000000,
+            "paidCompletedExchanges": 93444,
+            "errorBps": 1671,
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 385,
+            "billedCents": 2336417,
+            "invoiceId": "invoice:product:natural-business-command-67:431"
+          },
+          "servedAccounts": 156,
+          "consentAccounts": 39,
+          "negativeCandidates": 4803,
+          "reason": "sampled",
+          "outcomes": {
+            "cases": 25,
+            "useful": 20,
+            "confidentError": 1,
+            "falseRefusal": 1,
+            "clarification": 3
+          }
+        }
+      ],
+      "totalCases": 100,
+      "totalNegativeCases": 20,
+      "lastBottleneck": "100 cases captured. Paid human review can begin in Week 432."
+    }
+  ],
+  "screenshot": "../images/frontier-lab-wave11-policy.png",
+  "productionBrowserObservation": {
+    "url": "https://frontier-lab.nerdygeneral.chatgpt.site/",
+    "title": "Sign in required",
+    "note": "Existing owner-private sign-in gate. Gameplay verification used the managed local preview; native Sites deployment status verifies publication."
+  }
+}

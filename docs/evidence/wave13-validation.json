@@ -1,0 +1,76 @@
+{
+  "release": "Wave 13 \u2014 Assured API contracts",
+  "contentVersion": "0.14.0",
+  "schemaVersion": 5,
+  "previousPublishedSource": "aeb403c6ed2982840030076ebd2da96d4e1dc0ed",
+  "fullRegression": {
+    "command": "node scripts/test-wave0.mjs",
+    "tests": 507,
+    "pass": 507,
+    "fail": 0,
+    "skipped": 0,
+    "durationMs": 124563.737544,
+    "timing": "Includes all final mechanics, admission fixes, validators and integration tests. A subsequent display-only clarification says disabled service can restore the accepted checker."
+  },
+  "focusedVerification": {
+    "compatibilityAndPersistence": {
+      "pass": 80,
+      "fail": 0
+    },
+    "assuranceCoreAndIntegration": {
+      "pass": 16,
+      "fail": 0
+    },
+    "earnedProgression": {
+      "pass": 1,
+      "fail": 0
+    },
+    "note": "Focused results overlap the full regression total; they are not additional tests."
+  },
+  "finalTypecheck": {
+    "command": "npx tsc --noEmit --incremental false",
+    "exitCode": 0
+  },
+  "productionBuild": {
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+    "exitCode": 0
+  },
+  "whitespace": "git diff --check passed",
+  "publishedEngineOracle": {
+    "fullStates": 21,
+    "weeks": [
+      444,
+      464
+    ],
+    "normalization": "Content and build version headers only",
+    "withoutAssuranceAdoption": true
+  },
+  "naturalCampaign": {
+    "sourceWeek": 449,
+    "finalWeek": 472,
+    "newCommands": 10,
+    "finalHash": "653fbcd2",
+    "snapshotBytes": 1172854,
+    "earnedRetainerCents": 1500000,
+    "serviceCreditCents": 1220000,
+    "setupExpenseCents": 150000,
+    "finalCashCents": 459770265,
+    "invoiceCount": 16,
+    "saveRoundTrip": "byte identical",
+    "receipt": "wave13-progression.json"
+  },
+  "browser": {
+    "actualUI": true,
+    "startWeek": 449,
+    "endWeek": 464,
+    "snapshotChecksum": "828d459a",
+    "snapshotBytes": 1156099,
+    "reloadByteIdentical": true,
+    "originalPreviewSaveRestoredByteIdentically": true,
+    "applicationOriginErrors": 0,
+    "receipt": "wave13-browser.json",
+    "screenshot": "../images/frontier-lab-wave13-contracts.png"
+  },
+  "review": "Independent lifecycle, historical qualification, routing, billing, legacy-header and queued-capacity review clean after explicit replacement-meter admission fix.",
+  "scope": "Finite authored audit evidence and benign tenant workload; fictional game billing. Production browser access stays behind the existing owner-private gate. Publication is verified separately by native Sites deployment and exact saved source provenance."
+}

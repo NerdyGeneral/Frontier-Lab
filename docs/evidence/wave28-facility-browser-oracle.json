@@ -1,0 +1,18 @@
+{
+  "week": 593,
+  "checksum": "c046a694",
+  "bytes": 1476889,
+  "sha256": "32f30591ac82cc64cca721f66c7181cf158105532f3aab0de7b31f346eb3e698",
+  "exactBytes": true,
+  "exactState": true,
+  "cashCents": 660394039,
+  "browserChecks": [
+    "keyboard-funded serving profile",
+    "draft retained across Campus sub-tabs",
+    "duplicate funding disabled",
+    "W588 ready survived reload",
+    "serving active fromW589 throughW592",
+    "separately paid training replacement activeW593",
+    "prior profile retained"
+  ]
+}

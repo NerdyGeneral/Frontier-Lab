@@ -1,0 +1,619 @@
+✖ W0-C01: opening catalog and initial state preserve the authored values (100.846029ms)
+✔ W0-C02: catalog has sixteen core programs, thirteen applied projects and two synthetic programs (5.78366ms)
+✔ W0-C03: catalog validation rejects duplicate IDs, missing references and prerequisite cycles (12.373456ms)
+✔ W0-C04: content validation rejects negative prices and impossible opening allocation (5.37275ms)
+✖ W0-E01: one settled week charges $800 rental and $200 overhead with no invented work or revenue (2.059818ms)
+✖ W0-E02: ten weeks retain $38,000 before any hiring or revenue systems exist (0.991104ms)
+✖ W0-E03: a real shortfall records unpaid bills without negative cash and blocks optional commands (6.521083ms)
+✖ W0-E04: phase order is explicit and stable (0.990278ms)
+✖ W0-E05: a release scheduled by resolve is unavailable until the next weekly commit (22.736998ms)
+✖ W0-E06: delivery records inventory once without creating usable or rented capacity (1.70404ms)
+✖ W0-E07: duplicate economic facts settle once (1.204288ms)
+✖ W0-E08: forbidden cross-domain writes reject the entire tick (1.253236ms)
+✖ W0-E09: exceptions and direct snapshot mutation cannot partly commit a week (1.076987ms)
+✖ W0-E10: duplicate registrations and invalid economic facts fail atomically (0.822376ms)
+✖ W0-E11: an unsafe owned-slice update aborts before settlement can hide it (11.610707ms)
+✖ W0-E12: a scheduled model release must belong to the model owner (0.97363ms)
+✖ W0-E13: all reserve requests precede owner grants and execution sees the complete grants (0.99681ms)
+✖ W0-A01: a queued command applies at the next boundary rather than on submission (1.019115ms)
+✖ W0-A02: duplicate pending and committed command IDs never create a second action (0.735547ms)
+✖ W0-A03: allocations are capacity ceilings, preserve rental cost, and perform no fabricated work (7.047906ms)
+✖ W0-A04: invalid or overcommitted commands spend no resources and consume no IDs or draws (23.784215ms)
+✖ W0-A05: repeated forecasts and diagnostics are read-only (52.894007ms)
+✖ W0-A06: command admission rejects exhausted safe counters without changing state (131.081941ms)
+✖ W0-R01: a hundred-command replay produces identical intermediate and final state (21.070684ms)
+✖ W0-R02: named random streams replay, survive snapshots, and remain independent (53.891949ms)
+✖ W0-R03: module draws persist and replay only when their entire tick commits (87.43652ms)
+✔ W0-N01: work at token scale remains exact and safe (23.094559ms)
+✔ W0-N02: fractional operating amounts accumulate rather than vanishing each step (0.43342ms)
+✔ W0-N03: checked addition rejects unsafe operands even when the sum is safe (81.116709ms)
+✖ W0-S01: snapshot roundtrip preserves commands, schedules, draws, and the next exact week (0.831419ms)
+✖ W0-S02: bad JSON and a changed payload are rejected without replacing the current state (30.833703ms)
+✖ W0-S03: incompatible versions and unsafe or impossible state fail validation (0.96952ms)
+✖ W0-S04: imports reject malformed reports and incomplete model maps even with a matching checksum (0.683712ms)
+✖ browser adapter writes and reads a current save without creating recovery copies (11.93657ms)
+✔ first legacy write archives the untouched v1 bytes before updating the primary snapshot (120.619818ms)
+✔ an existing original v1 copy is retained across later upgraded writes (41.287266ms)
+✔ first Wave 1 upgrade archives its exact bytes separately from the Wave 0 original (51.310144ms)
+✔ the first Wave 1 recovery remains unchanged across subsequent migrated writes (39.036552ms)
+✔ a failed Wave 1 archive prevents the primary from being replaced (24.993424ms)
+✔ a failed current primary write leaves the Wave 1 save and successful archive recoverable (13.979703ms)
+✔ first Wave 2 upgrade archives exact v3 bytes independently of earlier originals (136.956868ms)
+✔ the first Wave 2 recovery remains untouched across later migrated writes (124.011886ms)
+✔ a failed Wave 2 archive prevents any primary replacement (40.951334ms)
+✔ a failed Wave 3 primary write retains the Wave 2 save and successful exact archive (63.661155ms)
+✔ first Wave 3 upgrade archives exact v4 bytes before the Wave 4 primary write (57.253586ms)
+✔ the first Wave 3 recovery remains untouched across subsequent upgraded saves (28.300316ms)
+✔ a failed Wave 3 recovery archive leaves the v4 primary untouched (22.59313ms)
+✔ a failed Wave 4 primary write retains the exact Wave 3 save and successful archive (15.832385ms)
+✔ Wave 4 content upgrade archives exact schema5 bytes before replacing the primary (184.619615ms)
+✔ Wave 4 recovery is never overwritten, including a later content upgrade (147.64723ms)
+✔ failed Wave 4 backup blocks replacement and a failed primary write retains the original and archive (205.313494ms)
+✔ Wave 5 upgrade archives exact bytes before replacing the primary and retains older recovery copies (525.460849ms)
+✔ Wave 5 original bytes are never overwritten by later saves (304.222112ms)
+✔ failed Wave 5 backup blocks replacement; failed primary writes retain both original and archive (470.997579ms)
+✔ Wave 6 upgrade archives exact bytes before replacing the primary and retains older recovery copies (365.603767ms)
+✔ Wave 6 original bytes are never overwritten by later saves (503.07883ms)
+✔ failed Wave 6 backup blocks replacement; failed primary writes retain both original and archive (1468.912849ms)
+✔ Wave 7 upgrade archives exact bytes before replacing the primary and retains older recovery copies (977.256058ms)
+✔ Wave 7 original bytes are never overwritten by later saves (1042.909194ms)
+✔ failed Wave 7 backup blocks replacement; failed primary writes retain both original and archive (1000.255197ms)
+✔ Wave 8 upgrade archives exact bytes before replacing the primary and retains older recovery copies (954.19202ms)
+✔ Wave 8 original bytes are never overwritten by later saves (809.382077ms)
+✔ failed Wave 8 backup blocks replacement; failed primary writes retain both original and archive (2056.599266ms)
+✔ Wave 9 upgrade archives exact bytes before replacing the primary and retains older recovery copies (1363.636227ms)
+✔ Wave 9 original bytes are never overwritten by later saves (1312.876228ms)
+✔ failed Wave 9 backup blocks replacement; failed primary writes retain both original and archive (1051.961761ms)
+✔ Wave 10 upgrade archives exact mid-review bytes before replacing the primary and retains older recovery copies (684.548653ms)
+✔ Wave 10 original bytes are never overwritten by later saves (581.555962ms)
+✔ failed Wave 10 backup blocks replacement; failed primary writes retain both original and archive (910.921984ms)
+✔ Wave 11 upgrade archives exact mid-policy-training bytes before replacing the primary and retains older recovery copies (701.282002ms)
+✔ Wave 11 original bytes are never overwritten by later saves (670.793432ms)
+✔ failed Wave 11 backup blocks replacement; failed primary writes retain both original and archive (990.858177ms)
+✔ Wave 12 upgrade archives exact mid-guardrail-rollout bytes before replacing the primary and retains older recovery copies (1005.487218ms)
+✔ Wave 12 original bytes are never overwritten by later saves (942.198054ms)
+✔ failed Wave 12 backup blocks replacement; failed primary writes retain both original and archive (1312.826412ms)
+✔ Wave 13 upgrade archives exact active-assurance-term bytes before replacing the primary and retains older recovery copies (917.344008ms)
+✔ Wave 13 original bytes are never overwritten by later saves (1112.344763ms)
+✔ failed Wave 13 backup blocks replacement; failed primary writes retain both original and archive (1692.642596ms)
+✔ Wave 14 upgrade archives exact active-batch bytes before replacing the primary and retains older recovery copies (848.472101ms)
+✔ Wave 14 original bytes are never overwritten by later saves (1429.848453ms)
+✔ failed Wave 14 backup blocks replacement; failed primary writes retain both original and archive (1551.47316ms)
+✖ empty, corrupt and unknown-version stored bytes block automatic replacement and remain exportable (0.950899ms)
+✖ confirmed replacement keeps the previous raw save before installing the new run (0.560452ms)
+✔ failed migration backup leaves the legacy primary untouched (6.859712ms)
+✔ failed primary write preserves both the legacy primary and its successful backup (5.09571ms)
+✖ failed replacement backup prevents the new run from overwriting the current snapshot (1.009154ms)
+✖ unavailable storage and invalid live states fail without promising a saved run (0.780305ms)
+✖ UTF-8 snapshot limits match import and prevent an oversized autosave from replacing the usable run (0.812628ms)
+✖ W27-M01: S3/S4 are ordinary paid discoveries and a new company receives no release artifacts (8.206263ms)
+✔ W27-M02: the published synthetic campaign migrates with every existing slice, command and receipt intact (8512.782038ms)
+✔ W27-M03: first upgraded browser write archives exact 0.26 bytes before replacing the primary save (5628.367957ms)
+✔ W27-M04: correctly checksummed historical envelopes cannot smuggle new research, canary receipts or appliance contracts (1761.767322ms)
+ℹ tests 92
+ℹ suites 0
+ℹ pass 58
+ℹ fail 34
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 31801.473403
+
+✖ failing tests:
+
+test at tests/wave0.test.js:33:25
+✖ W0-C01: opening catalog and initial state preserve the authored values (100.846029ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
+  + actual - expected
+  
+  + [
+  +   'roadmap[26].status: must be one of current',
+  +   'roadmap[27].wave: The roadmap contains waves 0 through 26',
+  +   'roadmap[27].status: must be one of complete',
+  +   'roadmap: must include each wave from 0 through 26 exactly once'
+  + ]
+  - []
+  
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:34:22)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [ 'roadmap[26].status: must be one of current', 'roadmap[27].wave: The roadmap contains waves 0 through 26', 'roadmap[27].status: must be one of complete', 'roadmap: must include each wave from 0 through 26 exactly once' ],
+    expected: [],
+    operator: 'deepStrictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave0.test.js:85:25
+✖ W0-E01: one settled week charges $800 rental and $200 overhead with no invented work or revenue (2.059818ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:86:60)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:101:25
+✖ W0-E02: ten weeks retain $38,000 before any hiring or revenue systems exist (0.991104ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:102:57)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:110:25
+✖ W0-E03: a real shortfall records unpaid bills without negative cash and blocks optional commands (6.521083ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:113:64)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:122:25
+✖ W0-E04: phase order is explicit and stable (0.990278ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:123:64)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:129:25
+✖ W0-E05: a release scheduled by resolve is unavailable until the next weekly commit (22.736998ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:141:64)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:150:25
+✖ W0-E06: delivery records inventory once without creating usable or rented capacity (1.70404ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:151:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:165:25
+✖ W0-E07: duplicate economic facts settle once (1.204288ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:173:64)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:178:25
+✖ W0-E08: forbidden cross-domain writes reject the entire tick (1.253236ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:179:62)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:191:25
+✖ W0-E09: exceptions and direct snapshot mutation cannot partly commit a week (1.076987ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:192:62)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:211:25
+✖ W0-E10: duplicate registrations and invalid economic facts fail atomically (0.822376ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:212:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:232:25
+✖ W0-E11: an unsafe owned-slice update aborts before settlement can hide it (11.610707ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:233:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:260:25
+✖ W0-E12: a scheduled model release must belong to the model owner (0.97363ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:261:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:288:25
+✖ W0-E13: all reserve requests precede owner grants and execution sees the complete grants (0.99681ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:289:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:354:25
+✖ W0-A01: a queued command applies at the next boundary rather than on submission (1.019115ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:355:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:366:25
+✖ W0-A02: duplicate pending and committed command IDs never create a second action (0.735547ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:368:86)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:377:25
+✖ W0-A03: allocations are capacity ceilings, preserve rental cost, and perform no fabricated work (7.047906ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:378:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:390:25
+✖ W0-A04: invalid or overcommitted commands spend no resources and consume no IDs or draws (23.784215ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:391:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:408:25
+✖ W0-A05: repeated forecasts and diagnostics are read-only (52.894007ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:409:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:422:25
+✖ W0-A06: command admission rejects exhausted safe counters without changing state (131.081941ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:424:65)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:435:25
+✖ W0-R01: a hundred-command replay produces identical intermediate and final state (21.070684ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at play (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:437:61)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:454:19)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:461:25
+✖ W0-R02: named random streams replay, survive snapshots, and remain independent (53.891949ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:462:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:479:25
+✖ W0-R03: module draws persist and replay only when their entire tick commits (87.43652ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:489:61)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:549:25
+✖ W0-S01: snapshot roundtrip preserves commands, schedules, draws, and the next exact week (0.831419ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:550:62)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:562:25
+✖ W0-S02: bad JSON and a changed payload are rejected without replacing the current state (30.833703ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:563:59)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:572:25
+✖ W0-S03: incompatible versions and unsafe or impossible state fail validation (0.96952ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:573:101)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave0.test.js:595:25
+✖ W0-S04: imports reject malformed reports and incomplete model maps even with a matching checksum (0.683712ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at createPlayerOnlyState (/tmp/frontier-lab-wave0-fQhgAn/tests/fixtures/player-only.js:8:51)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave0.test.js:596:64)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave1-persistence.test.js:79:25
+✖ browser adapter writes and reads a current save without creating recovery copies (11.93657ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at /tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:83:54
+      at inBrowser (/tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:70:9)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:81:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave1-persistence.test.js:928:25
+✖ empty, corrupt and unknown-version stored bytes block automatic replacement and remain exportable (0.950899ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:929:90)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave1-persistence.test.js:945:25
+✖ confirmed replacement keeps the previous raw save before installing the new run (0.560452ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at /tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:950:54
+      at inBrowser (/tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:70:9)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:949:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave1-persistence.test.js:987:25
+✖ failed replacement backup prevents the new run from overwriting the current snapshot (1.009154ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:989:76)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave1-persistence.test.js:1000:25
+✖ unavailable storage and invalid live states fail without promising a saved run (0.780305ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at /tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:1005:105
+      at inBrowser (/tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:70:9)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:1003:5)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave1-persistence.test.js:1018:25
+✖ UTF-8 snapshot limits match import and prevent an oversized autosave from replacing the usable run (0.812628ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave1-persistence.test.js:1019:81)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'INVALID_CONTENT'
+  }
+
+test at tests/wave27-migration.test.js:52:25
+✖ W27-M01: S3/S4 are ordinary paid discoveries and a new company receives no release artifacts (8.206263ms)
+  Error: roadmap[26].status: must be one of current roadmap[27].wave: The roadmap contains waves 0 through 26 roadmap[27].status: must be one of complete roadmap: must include each wave from 0 through 26 exactly once
+      at createInitialState (/tmp/frontier-lab-wave0-fQhgAn/src/core/engine.js:31:15)
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-fQhgAn/tests/wave27-migration.test.js:62:51)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    code: 'INVALID_CONTENT'
+  }

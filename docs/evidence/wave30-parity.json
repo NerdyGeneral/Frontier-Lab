@@ -1,0 +1,363 @@
+{
+  "baselineCommit": "4694353853fff04c1fa9587faf49f12c2bdea661",
+  "currentBuild": "0.30.0",
+  "baselineBuild": "0.29.0",
+  "method": "Baseline normalizes each fixture once, then both implementations import the identical serialized bytes. Full command results, states, serialized saves and final browser-storage writes are compared. No browser UI is involved.",
+  "checkpoints": [
+    {
+      "scenario": "opening-first-sale",
+      "label": "identical imported baseline",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 0,
+      "checksum": "73d5735c",
+      "serializedBytes": 41831,
+      "sha256": "1b731aab0f536676d84ff5c786a470d8de8f932c8f873821f0f84ca74d59427f"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "reject training on unprepared data",
+      "accepted": false,
+      "rejectionReason": "Every selected packet must belong to your company and be fully prepared.",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 0,
+      "checksum": "73d5735c",
+      "serializedBytes": 41831,
+      "sha256": "1b731aab0f536676d84ff5c786a470d8de8f932c8f873821f0f84ca74d59427f"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "prepare starter data",
+      "accepted": true,
+      "commandId": "command-2",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 1,
+      "checksum": "b5782737",
+      "serializedBytes": 42303,
+      "sha256": "8c96f03ef3077e302b052e7e98a3a736b7bdd83472b68dea5b4df471adaeb099"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "hire ML engineer",
+      "accepted": true,
+      "commandId": "command-4",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 2,
+      "checksum": "78abea03",
+      "serializedBytes": 42742,
+      "sha256": "f2ac123bf8052b744f4cc29c2e55d7f969ea0750f2d00a936ef9624a6f51625a"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "allocate development compute",
+      "accepted": true,
+      "commandId": "command-6",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 3,
+      "checksum": "87a8f409",
+      "serializedBytes": 43310,
+      "sha256": "3f09ae9597e17ff408c6adc05e600f50e37d7964d44543510e0eae0f4fe0a0df"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "preparation/onboarding 1",
+      "accepted": true,
+      "week": 1,
+      "cashCents": 4420000,
+      "queuedCount": 0,
+      "checksum": "8ff5b694",
+      "serializedBytes": 71802,
+      "sha256": "3699678acef2625f8a6e1ea883b3ba8813accfabe2310cf8fdb175cf44d3db33"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "preparation/onboarding 2",
+      "accepted": true,
+      "week": 2,
+      "cashCents": 4290000,
+      "queuedCount": 0,
+      "checksum": "50521e78",
+      "serializedBytes": 88005,
+      "sha256": "d55ea07df7f4254767cf70e6b400e69152e3dd777e3e1679ad4e7e73c6d438cd"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "assign founder to research",
+      "accepted": true,
+      "commandId": "command-15",
+      "week": 2,
+      "cashCents": 4290000,
+      "queuedCount": 1,
+      "checksum": "bd6c408c",
+      "serializedBytes": 88624,
+      "sha256": "e26afb2fec48dcc1f0db55e6a892da85add508a37a2197f22b5056e4dd73ef04"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "train exact starter candidate",
+      "accepted": true,
+      "commandId": "command-17",
+      "week": 2,
+      "cashCents": 4290000,
+      "queuedCount": 2,
+      "checksum": "2195705e",
+      "serializedBytes": 89168,
+      "sha256": "7ca5932f41b12334d02982707507003a3436474ae146ef026d3ad4050402a2fb"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "training 1",
+      "accepted": true,
+      "week": 3,
+      "cashCents": 4160000,
+      "queuedCount": 0,
+      "checksum": "6a029a1d",
+      "serializedBytes": 108424,
+      "sha256": "75ac82091a40674a68c1d96abe806f5d974001c0c245de37ca46e70a0004a92b"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "training 2",
+      "accepted": true,
+      "week": 4,
+      "cashCents": 4030000,
+      "queuedCount": 1,
+      "checksum": "229278b4",
+      "serializedBytes": 124443,
+      "sha256": "3b28b08b5eb7c6f6d5dd5493211b2368abc6aaf9a68617a3a5d9c43ba3c1af23"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "training 3",
+      "accepted": true,
+      "week": 5,
+      "cashCents": 3900000,
+      "queuedCount": 0,
+      "checksum": "87a57720",
+      "serializedBytes": 142057,
+      "sha256": "230909ed8496efc805c5955f40069e91684fd04a103450eab99a224ae8b0969f"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "evaluate exact output",
+      "accepted": true,
+      "commandId": "command-29",
+      "week": 5,
+      "cashCents": 3900000,
+      "queuedCount": 1,
+      "checksum": "e396e023",
+      "serializedBytes": 142559,
+      "sha256": "5d2c890b7b932259496f299a13680b22e7b97653cc8d18529c4773a887c197d0"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "evaluation",
+      "accepted": true,
+      "week": 6,
+      "cashCents": 3770000,
+      "queuedCount": 1,
+      "checksum": "6b721def",
+      "serializedBytes": 167096,
+      "sha256": "45629922ae72dc10f4e6adff156397fddfe83aa3e3cb41c6e45a3c769202513e"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deploy Basic Chat",
+      "accepted": true,
+      "commandId": "command-36",
+      "week": 6,
+      "cashCents": 3770000,
+      "queuedCount": 2,
+      "checksum": "91f815e1",
+      "serializedBytes": 167596,
+      "sha256": "ebd8a4dc18f6cbcfb39b61a9d640d2dcf2e845d2e07f9cd0d2a009816265bf68"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "allocate serving compute",
+      "accepted": true,
+      "commandId": "command-38",
+      "week": 6,
+      "cashCents": 3770000,
+      "queuedCount": 3,
+      "checksum": "372622f0",
+      "serializedBytes": 168166,
+      "sha256": "ee71282e2e7cfe94220f07c726ed7a1c417c15fad098a9658da0e1135e8c5107"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 1",
+      "accepted": true,
+      "week": 7,
+      "cashCents": 3640000,
+      "queuedCount": 0,
+      "checksum": "aa73cf85",
+      "serializedBytes": 188019,
+      "sha256": "cfccbacb6f4bbd04e3beaaa508650663f1c7d36af7b856fbaba6d2cf7be816fa"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 2",
+      "accepted": true,
+      "week": 8,
+      "cashCents": 3510000,
+      "queuedCount": 2,
+      "checksum": "bb78a9d3",
+      "serializedBytes": 198568,
+      "sha256": "43736651fbf6b2feb63a6a187cbbacac74deb7cda23eef1f961fb7ff5b0cac18"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 3",
+      "accepted": true,
+      "week": 9,
+      "cashCents": 3380000,
+      "queuedCount": 0,
+      "checksum": "f608ba2c",
+      "serializedBytes": 202451,
+      "sha256": "5465a0e3bb2dc2f427d28187d83fb810b1af92ce8f4904a87ae6bd59bcd9313f"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 4",
+      "accepted": true,
+      "week": 10,
+      "cashCents": 3260800,
+      "queuedCount": 0,
+      "checksum": "e69f3f82",
+      "serializedBytes": 207691,
+      "sha256": "cfb85bcfc1ab1b078e7b2572be98b76f74e5ac7d8fd9566550f907de72ea6224"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "identical imported baseline",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 0,
+      "checksum": "07c4095b",
+      "serializedBytes": 1461888,
+      "sha256": "ecb919ee82b0517625c4186003ea36caec4b8f06ec1e2c7062b8674a1c9e6454"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "reject missing research",
+      "accepted": false,
+      "rejectionReason": "This research is planned for a later wave and has no active project yet.",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 0,
+      "checksum": "07c4095b",
+      "serializedBytes": 1461888,
+      "sha256": "ecb919ee82b0517625c4186003ea36caec4b8f06ec1e2c7062b8674a1c9e6454"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "hire data employee",
+      "accepted": true,
+      "commandId": "command-3150",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 1,
+      "checksum": "e37ad9ca",
+      "serializedBytes": 1462028,
+      "sha256": "8ad614afc806dbc1469b8c3009d38d117aa34821364f5ad2341671734b578caf"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "rebalance shared capacity",
+      "accepted": true,
+      "commandId": "command-3152",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 2,
+      "checksum": "524a3b78",
+      "serializedBytes": 1462245,
+      "sha256": "f24f8efdf39dc75733fdcf4b3228d28764d80dbd2a70bbdb3bc754892c1c6c32"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "reject terms change while a prepared release owns the exact Chat product",
+      "accepted": false,
+      "rejectionReason": "Finish or discard this product’s prepared release before changing its model, terms, features, session history, retrieval, efficiency, or runtime guardrail settings.",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 2,
+      "checksum": "524a3b78",
+      "serializedBytes": 1462245,
+      "sha256": "f24f8efdf39dc75733fdcf4b3228d28764d80dbd2a70bbdb3bc754892c1c6c32"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "advanced settlement 1",
+      "accepted": true,
+      "week": 554,
+      "cashCents": 611674275,
+      "queuedCount": 0,
+      "checksum": "e0cabca2",
+      "serializedBytes": 1458949,
+      "sha256": "c29e354358b4422f1580936e68a4571c7ac10bd63b2a9dadc8afa23b08cb4596"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "advanced settlement 2",
+      "accepted": true,
+      "week": 555,
+      "cashCents": 613140511,
+      "queuedCount": 0,
+      "checksum": "6280ebae",
+      "serializedBytes": 1458567,
+      "sha256": "87ce42e29099fb708ca48d643f4a53ead5c3f99694f742b58e407d2a9e420eb1"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "opening-first-sale",
+      "source": "Baseline-created opening serialized before either implementation imports it",
+      "bytes": 41831,
+      "sha256": "1b731aab0f536676d84ff5c786a470d8de8f932c8f873821f0f84ca74d59427f",
+      "week": 0,
+      "retainedBuildHeader": "0.29.0"
+    },
+    {
+      "name": "advanced-commercial-company",
+      "source": {
+        "path": "tests/fixtures/wave27-canary-published.json",
+        "sourceSha256": "8fbb318b6f1d0a7adf44a97f773992e36d6eb80523cbeb8c92a9334017daf1ac",
+        "normalization": "Baseline migration once; shared content 0.28.0 snapshot imported by both implementations"
+      },
+      "bytes": 1461888,
+      "sha256": "ecb919ee82b0517625c4186003ea36caec4b8f06ec1e2c7062b8674a1c9e6454",
+      "week": 553,
+      "retainedBuildHeader": "0.29.0"
+    }
+  ],
+  "persistence": [
+    {
+      "scenario": "opening-first-sale",
+      "writesCompared": 2,
+      "keys": [
+        {
+          "key": "frontier-lab.wave0.snapshot",
+          "bytes": 207691,
+          "sha256": "cfb85bcfc1ab1b078e7b2572be98b76f74e5ac7d8fd9566550f907de72ea6224"
+        }
+      ]
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "writesCompared": 2,
+      "keys": [
+        {
+          "key": "frontier-lab.wave0.snapshot",
+          "bytes": 1458567,
+          "sha256": "87ce42e29099fb708ca48d643f4a53ead5c3f99694f742b58e407d2a9e420eb1"
+        }
+      ]
+    }
+  ],
+  "allEqual": true
+}

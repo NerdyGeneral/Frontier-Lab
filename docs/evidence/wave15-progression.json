@@ -1,0 +1,3613 @@
+{
+  "sourceCommit": "bfef7d414b23b271b37f5a136b8cc0a376647b1f",
+  "sourceWeek": 500,
+  "sourceHash": "38350449",
+  "finalWeek": 535,
+  "finalHash": "9a5b6de8",
+  "snapshotBytes": 1451812,
+  "cashCents": 583667175,
+  "minimumCashCents": 511183692,
+  "productId": "product:natural-business-command-67",
+  "publicModelId": "model-wave11-natural-command-3",
+  "documentPacketId": "curated-natural-business-command-111",
+  "codingPacketId": "curated-natural-business-command-54",
+  "research": {
+    "id": "research-wave15-natural-command-1",
+    "companyId": "company-player",
+    "researchId": "R4C",
+    "startedWeek": 501,
+    "requiredWork": 6000000000,
+    "completedWork": 6000000000,
+    "requiredStaff": 3000000000,
+    "completedStaff": 3000000000,
+    "role": "research",
+    "status": "complete",
+    "lastProgress": 0,
+    "lastBottleneck": "",
+    "completedWeek": 503,
+    "availableWeek": 504
+  },
+  "researchFacts": [
+    {
+      "id": "research-wave15-natural-command-1:fee",
+      "companyId": "company-player",
+      "week": 501,
+      "sourceId": "research-wave15-natural-command-1",
+      "category": "operating",
+      "amountCents": 300000,
+      "label": "Replay curricula research",
+      "kind": "expense"
+    }
+  ],
+  "commands": [
+    {
+      "week": 500,
+      "id": "wave15-natural-command-1",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "R4C"
+      }
+    },
+    {
+      "week": 504,
+      "id": "wave15-natural-command-2",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "model-wave11-natural-command-3",
+        "packetId": "curated-natural-business-command-111",
+        "recipeId": "document-adaptation",
+        "profile": "stable",
+        "replay": {
+          "domain": "coding",
+          "shareBps": 2500,
+          "packetIds": [
+            "curated-natural-business-command-54"
+          ]
+        }
+      }
+    },
+    {
+      "week": 508,
+      "id": "wave15-natural-command-3",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave15-natural-command-2",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 509,
+      "id": "wave15-natural-command-4",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "model-wave11-natural-command-3",
+        "packetId": "curated-natural-business-command-111",
+        "recipeId": "document-adaptation",
+        "profile": "stable",
+        "replay": {
+          "domain": "coding",
+          "shareBps": 5000,
+          "packetIds": [
+            "curated-natural-business-command-54"
+          ]
+        }
+      }
+    },
+    {
+      "week": 510,
+      "id": "wave15-natural-command-5",
+      "payload": {
+        "kind": "set_job_paused",
+        "jobId": "training-wave15-natural-command-4",
+        "paused": true
+      }
+    },
+    {
+      "week": 512,
+      "id": "wave15-natural-command-6",
+      "payload": {
+        "kind": "set_job_paused",
+        "jobId": "training-wave15-natural-command-4",
+        "paused": false
+      }
+    },
+    {
+      "week": 516,
+      "id": "wave15-natural-command-7",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave15-natural-command-4",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 517,
+      "id": "wave15-natural-command-8",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave15-natural-command-4",
+        "suiteId": "policy-boundaries-1"
+      }
+    },
+    {
+      "week": 518,
+      "id": "wave15-natural-command-9",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "model-wave15-natural-command-4",
+        "recipeId": "behavior-reliability",
+        "packetId": "curated-natural-business-command-111",
+        "packetIds": [
+          "curated-natural-business-command-111",
+          "curated-natural-business-command-54"
+        ],
+        "profile": "stable"
+      }
+    },
+    {
+      "week": 520,
+      "id": "wave15-natural-command-10",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave15-natural-command-9",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 521,
+      "id": "wave15-natural-command-11",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave15-natural-command-9",
+        "suiteId": "policy-boundaries-1"
+      }
+    },
+    {
+      "week": 522,
+      "id": "wave15-natural-command-12",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 144000000000,
+        "development": 0,
+        "research": 0
+      }
+    },
+    {
+      "week": 522,
+      "id": "wave15-natural-command-13",
+      "payload": {
+        "kind": "accept_batch_job",
+        "productId": "product:natural-business-command-67",
+        "orderId": "code-index",
+        "modelId": "model-wave15-natural-command-9",
+        "weeklyWorkCapCUw": 16000000000
+      }
+    },
+    {
+      "week": 522,
+      "id": "wave15-natural-command-14",
+      "payload": {
+        "kind": "accept_batch_job",
+        "productId": "product:natural-business-command-67",
+        "orderId": "longform-digest",
+        "modelId": "model-wave15-natural-command-9",
+        "weeklyWorkCapCUw": 16000000000
+      }
+    },
+    {
+      "week": 528,
+      "id": "wave15-natural-command-15",
+      "payload": {
+        "kind": "set_cloud_capacity",
+        "cu": 96000000000
+      }
+    },
+    {
+      "week": 528,
+      "id": "wave15-natural-command-16",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 144000000000,
+        "development": 0,
+        "research": 0
+      }
+    },
+    {
+      "week": 529,
+      "id": "wave15-natural-command-17",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 160000000000,
+        "development": 0,
+        "research": 0
+      }
+    },
+    {
+      "week": 529,
+      "id": "wave15-natural-command-18",
+      "payload": {
+        "kind": "accept_batch_job",
+        "productId": "product:natural-business-command-67",
+        "orderId": "longform-digest",
+        "modelId": "model-wave15-natural-command-9",
+        "weeklyWorkCapCUw": 16000000000
+      }
+    }
+  ],
+  "milestones": [
+    {
+      "label": "The paid 25% replay retains some coding but remains below the code-order threshold",
+      "week": 509,
+      "cashCents": 528194953,
+      "revenueCents": 4294388,
+      "expenseCents": 2348166,
+      "consumers": 960,
+      "developers": 167,
+      "businesses": 21,
+      "trustBps": 10000
+    },
+    {
+      "label": "50% replay preserves coding eligibility after exact capability and policy reports, at a higher measured GPU cost",
+      "week": 518,
+      "cashCents": 546084148,
+      "revenueCents": 4392119,
+      "expenseCents": 2361667,
+      "consumers": 983,
+      "developers": 170,
+      "businesses": 21,
+      "trustBps": 10000
+    },
+    {
+      "label": "The hybrid completes code work, but fragmented spare capacity cannot finish the simultaneous digest before its fixed deadline",
+      "week": 528,
+      "cashCents": 568880373,
+      "revenueCents": 5937950,
+      "expenseCents": 2436950,
+      "consumers": 994,
+      "developers": 172,
+      "businesses": 23,
+      "trustBps": 10000
+    },
+    {
+      "label": "Renting and allocating a larger connected cloud pool lets the same candidate finish the remaining digest for its full invoice",
+      "week": 535,
+      "cashCents": 583667175,
+      "revenueCents": 6724828,
+      "expenseCents": 2733182,
+      "consumers": 1001,
+      "developers": 174,
+      "businesses": 21,
+      "trustBps": 10000
+    }
+  ],
+  "previews": {
+    "ordinary": {
+      "recipeId": "document-adaptation",
+      "recipeName": "Document adaptation",
+      "workCUw": 19800000000,
+      "memoryMU": 4000000000,
+      "preparationStaff": 0,
+      "feeCents": 0,
+      "checkpointOverheadWork": 0,
+      "capabilityRange": {
+        "minimum": {
+          "conversation": 4091,
+          "documents": 5565,
+          "coding": 2023,
+          "tools": 2251
+        },
+        "maximum": {
+          "conversation": 4137,
+          "documents": 5755,
+          "coding": 2068,
+          "tools": 2296
+        }
+      },
+      "reliabilityRange": {
+        "minimum": 8900,
+        "maximum": 8900
+      },
+      "corpus": {
+        "sourceIds": [
+          "specialist-documents-1"
+        ],
+        "packetIds": [
+          "curated-natural-business-command-111"
+        ],
+        "distinctUnits": 120,
+        "broadUnits": 0,
+        "relevantUnits": {
+          "conversation": 24000000000,
+          "documents": 120000000000,
+          "coding": 24000000000,
+          "tools": 24000000000
+        },
+        "qualityBps": {
+          "conversation": 9500,
+          "documents": 9500,
+          "coding": 9500,
+          "tools": 9500
+        },
+        "behaviorUnits": 100,
+        "behaviorQualityBps": 9500,
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "fingerprint": "corpus-d81e6bcf"
+      },
+      "notes": [
+        "Prepared evidence is reusable. Duplicated sources are counted once; the best selected revision supplies quality.",
+        "Capabilities are finite targets from a fixed lineage anchor. Evaluation and deployment are separate projects.",
+        "R4 reduces this new adaptation’s update work by 25%; existing runs keep their saved budgets.",
+        "This descendant retains its base’s trained policy. It needs its own paid capability and policy reports before a new release."
+      ],
+      "reason": {
+        "code": "NO_IMPROVEMENT",
+        "message": "This lineage, recipe, evidence and target tier already have a saved candidate. Repeating the run cannot add gains or reroll it."
+      }
+    },
+    "light": {
+      "recipeId": "document-adaptation",
+      "recipeName": "Document adaptation",
+      "workCUw": 26400000000,
+      "memoryMU": 4000000000,
+      "preparationStaff": 0,
+      "feeCents": 0,
+      "checkpointOverheadWork": 0,
+      "capabilityRange": {
+        "minimum": {
+          "conversation": 4091,
+          "documents": 5565,
+          "coding": 2544,
+          "tools": 2251
+        },
+        "maximum": {
+          "conversation": 4137,
+          "documents": 5755,
+          "coding": 2544,
+          "tools": 2296
+        }
+      },
+      "reliabilityRange": {
+        "minimum": 8900,
+        "maximum": 8900
+      },
+      "corpus": {
+        "sourceIds": [
+          "specialist-documents-1"
+        ],
+        "packetIds": [
+          "curated-natural-business-command-111"
+        ],
+        "distinctUnits": 120,
+        "broadUnits": 0,
+        "relevantUnits": {
+          "conversation": 24000000000,
+          "documents": 120000000000,
+          "coding": 24000000000,
+          "tools": 24000000000
+        },
+        "qualityBps": {
+          "conversation": 9500,
+          "documents": 9500,
+          "coding": 9500,
+          "tools": 9500
+        },
+        "behaviorUnits": 100,
+        "behaviorQualityBps": 9500,
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "fingerprint": "corpus-d81e6bcf"
+      },
+      "notes": [
+        "Prepared evidence is reusable. Duplicated sources are counted once; the best selected revision supplies quality.",
+        "Capabilities are finite targets from a fixed lineage anchor. Evaluation and deployment are separate projects.",
+        "R4 reduces this new adaptation’s update work by 25%; existing runs keep their saved budgets.",
+        "Replay reserves a nominal 25% of updates before independent cleanup: 19.8 primary CUw plus 6.6 replay CUw. Separate coding evidence at 95% quality preserves a floor of 25.44 from the incoming 53.57 skill at full paid work; the ordinary outcome wins if higher. Other targets and profile draws stay fixed. Both corpora constrain inherited rights, and the new candidate needs fresh reports.",
+        "This descendant retains its base’s trained policy. It needs its own paid capability and policy reports before a new release."
+      ],
+      "replay": {
+        "domain": "coding",
+        "shareBps": 2500,
+        "baseModelId": "model-wave11-natural-command-3",
+        "baseModelFingerprint": "7e57e645",
+        "baselineReportId": "report-evaluation-wave11-natural-command-6",
+        "baselineScoreBps": 5357,
+        "ordinaryIdentity": "training-identity-5988af39",
+        "corpus": {
+          "sourceIds": [
+            "specialist-coding-1"
+          ],
+          "packetIds": [
+            "curated-natural-business-command-54"
+          ],
+          "distinctUnits": 120,
+          "broadUnits": 0,
+          "relevantUnits": {
+            "conversation": 24000000000,
+            "documents": 24000000000,
+            "coding": 120000000000,
+            "tools": 24000000000
+          },
+          "qualityBps": {
+            "conversation": 9500,
+            "documents": 9500,
+            "coding": 9500,
+            "tools": 9500
+          },
+          "behaviorUnits": 100,
+          "behaviorQualityBps": 9500,
+          "rights": {
+            "hosted": true,
+            "weights": true,
+            "feedback": false
+          },
+          "fingerprint": "corpus-35dfb5d1"
+        },
+        "requiredEvidence": 100000000000,
+        "coverageBps": 10000,
+        "qualityBps": 9500,
+        "retentionBps": 4750,
+        "preservationFloorBps": 2544,
+        "nominalFocusWorkCUw": 19800000000,
+        "focusWorkCUw": 19800000000,
+        "nominalReplayWorkCUw": 6600000000,
+        "replayWorkCUw": 6600000000
+      }
+    },
+    "strong": {
+      "recipeId": "document-adaptation",
+      "recipeName": "Document adaptation",
+      "workCUw": 39600000000,
+      "memoryMU": 4000000000,
+      "preparationStaff": 0,
+      "feeCents": 0,
+      "checkpointOverheadWork": 0,
+      "capabilityRange": {
+        "minimum": {
+          "conversation": 4091,
+          "documents": 5565,
+          "coding": 5089,
+          "tools": 2251
+        },
+        "maximum": {
+          "conversation": 4137,
+          "documents": 5755,
+          "coding": 5089,
+          "tools": 2296
+        }
+      },
+      "reliabilityRange": {
+        "minimum": 8900,
+        "maximum": 8900
+      },
+      "corpus": {
+        "sourceIds": [
+          "specialist-documents-1"
+        ],
+        "packetIds": [
+          "curated-natural-business-command-111"
+        ],
+        "distinctUnits": 120,
+        "broadUnits": 0,
+        "relevantUnits": {
+          "conversation": 24000000000,
+          "documents": 120000000000,
+          "coding": 24000000000,
+          "tools": 24000000000
+        },
+        "qualityBps": {
+          "conversation": 9500,
+          "documents": 9500,
+          "coding": 9500,
+          "tools": 9500
+        },
+        "behaviorUnits": 100,
+        "behaviorQualityBps": 9500,
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "fingerprint": "corpus-d81e6bcf"
+      },
+      "notes": [
+        "Prepared evidence is reusable. Duplicated sources are counted once; the best selected revision supplies quality.",
+        "Capabilities are finite targets from a fixed lineage anchor. Evaluation and deployment are separate projects.",
+        "R4 reduces this new adaptation’s update work by 25%; existing runs keep their saved budgets.",
+        "Replay reserves a nominal 50% of updates before independent cleanup: 19.8 primary CUw plus 19.8 replay CUw. Separate coding evidence at 95% quality preserves a floor of 50.89 from the incoming 53.57 skill at full paid work; the ordinary outcome wins if higher. Other targets and profile draws stay fixed. Both corpora constrain inherited rights, and the new candidate needs fresh reports.",
+        "This descendant retains its base’s trained policy. It needs its own paid capability and policy reports before a new release."
+      ],
+      "replay": {
+        "domain": "coding",
+        "shareBps": 5000,
+        "baseModelId": "model-wave11-natural-command-3",
+        "baseModelFingerprint": "7e57e645",
+        "baselineReportId": "report-evaluation-wave11-natural-command-6",
+        "baselineScoreBps": 5357,
+        "ordinaryIdentity": "training-identity-5988af39",
+        "corpus": {
+          "sourceIds": [
+            "specialist-coding-1"
+          ],
+          "packetIds": [
+            "curated-natural-business-command-54"
+          ],
+          "distinctUnits": 120,
+          "broadUnits": 0,
+          "relevantUnits": {
+            "conversation": 24000000000,
+            "documents": 24000000000,
+            "coding": 120000000000,
+            "tools": 24000000000
+          },
+          "qualityBps": {
+            "conversation": 9500,
+            "documents": 9500,
+            "coding": 9500,
+            "tools": 9500
+          },
+          "behaviorUnits": 100,
+          "behaviorQualityBps": 9500,
+          "rights": {
+            "hosted": true,
+            "weights": true,
+            "feedback": false
+          },
+          "fingerprint": "corpus-35dfb5d1"
+        },
+        "requiredEvidence": 100000000000,
+        "coverageBps": 10000,
+        "qualityBps": 9500,
+        "retentionBps": 9500,
+        "preservationFloorBps": 5089,
+        "nominalFocusWorkCUw": 19800000000,
+        "focusWorkCUw": 19800000000,
+        "nominalReplayWorkCUw": 19800000000,
+        "replayWorkCUw": 19800000000
+      }
+    }
+  },
+  "candidates": {
+    "light": {
+      "id": "model-wave15-natural-command-2",
+      "name": "Document adaptation 17",
+      "companyId": "company-player",
+      "family": "compact",
+      "architecture": "dense",
+      "status": "checkpoint",
+      "capabilityBps": {
+        "conversation": 4109,
+        "documents": 5566,
+        "coding": 2544,
+        "tools": 2256
+      },
+      "reliabilityBps": 8900,
+      "behavior": {
+        "confidentErrorBps": 550,
+        "falseRefusalBps": 385
+      },
+      "policy": {
+        "protocol": "policy-boundaries-v1",
+        "baselineUnsafeComplianceBps": 1200,
+        "currentUnsafeComplianceBps": 660
+      },
+      "residentMU": 2000000000,
+      "source": "Document adaptation: 26.4 of 26.4 useful CUw. Evaluation is separate.",
+      "parentModelId": "model-wave11-natural-command-3",
+      "trainingRunId": "training-wave15-natural-command-2",
+      "trainingEvidenceId": "replay-evidence-62889a90",
+      "createdWeek": 508,
+      "foundationAnchor": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      }
+    },
+    "strong": {
+      "id": "model-wave15-natural-command-4",
+      "name": "Document adaptation 18",
+      "companyId": "company-player",
+      "family": "compact",
+      "architecture": "dense",
+      "status": "checkpoint",
+      "capabilityBps": {
+        "conversation": 4109,
+        "documents": 5566,
+        "coding": 5089,
+        "tools": 2256
+      },
+      "reliabilityBps": 8900,
+      "behavior": {
+        "confidentErrorBps": 550,
+        "falseRefusalBps": 385
+      },
+      "policy": {
+        "protocol": "policy-boundaries-v1",
+        "baselineUnsafeComplianceBps": 1200,
+        "currentUnsafeComplianceBps": 660
+      },
+      "residentMU": 2000000000,
+      "source": "Document adaptation: 39.6 of 39.6 useful CUw. Evaluation is separate.",
+      "parentModelId": "model-wave11-natural-command-3",
+      "trainingRunId": "training-wave15-natural-command-4",
+      "trainingEvidenceId": "replay-evidence-f73eae94",
+      "createdWeek": 516,
+      "foundationAnchor": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      }
+    },
+    "reliable": {
+      "id": "model-wave15-natural-command-9",
+      "name": "Preference and reliability tuning 19",
+      "companyId": "company-player",
+      "family": "compact",
+      "architecture": "dense",
+      "status": "checkpoint",
+      "capabilityBps": {
+        "conversation": 4109,
+        "documents": 5566,
+        "coding": 5089,
+        "tools": 2256
+      },
+      "reliabilityBps": 9280,
+      "behavior": {
+        "confidentErrorBps": 550,
+        "falseRefusalBps": 385
+      },
+      "policy": {
+        "protocol": "policy-boundaries-v1",
+        "baselineUnsafeComplianceBps": 1200,
+        "currentUnsafeComplianceBps": 660
+      },
+      "residentMU": 2000000000,
+      "source": "Preference and reliability tuning: 16 of 16 useful CUw. Evaluation is separate.",
+      "parentModelId": "model-wave15-natural-command-4",
+      "trainingRunId": "training-wave15-natural-command-9",
+      "trainingEvidenceId": "corpus-9d93bfd3",
+      "createdWeek": 520,
+      "foundationAnchor": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      }
+    }
+  },
+  "training": [
+    {
+      "id": "training-wave15-natural-command-2",
+      "companyId": "company-player",
+      "baseModelId": "model-wave11-natural-command-3",
+      "packetId": "curated-natural-business-command-111",
+      "outputModelId": "model-wave15-natural-command-2",
+      "recipeId": "document-adaptation",
+      "startedWeek": 505,
+      "requiredWork": 26400000000,
+      "completedWork": 26400000000,
+      "physicalWork": 14666666669,
+      "requiredMemory": 4000000000,
+      "status": "complete",
+      "checkpointWork": 26400000000,
+      "checkpointModelId": "model-wave15-natural-command-2",
+      "checkpointModelIds": [
+        "checkpoint-training-wave15-natural-command-2",
+        "model-wave15-natural-command-2"
+      ],
+      "anchorScores": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      },
+      "anchorReliabilityBps": 7000,
+      "evidence": {
+        "id": "curated-natural-business-command-111",
+        "name": "Documents specialist pack · curated r1",
+        "companyId": "company-player",
+        "catalogId": "specialist-documents-1",
+        "sourceIds": [
+          "specialist-documents-1"
+        ],
+        "purchaseFactId": "data-purchase-natural-business-command-106",
+        "purchasedWeek": 139,
+        "revision": 1,
+        "rawUnits": 120,
+        "readyUnits": 120,
+        "qualityBps": 9500,
+        "coverageBps": {
+          "conversation": 2000,
+          "documents": 10000,
+          "coding": 2000,
+          "tools": 2000
+        },
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "behaviorUnits": 100,
+        "broadUnits": 0,
+        "prepared": true,
+        "parentPacketId": "data-company-player-specialist-documents-1"
+      },
+      "plan": {
+        "recipeName": "Document adaptation",
+        "kind": "adaptation",
+        "profile": "stable",
+        "profileApplied": true,
+        "family": "compact",
+        "architecture": "dense",
+        "residentMU": 2000000000,
+        "lineageId": "seed-0",
+        "identity": "training-replay-e9cc17a3",
+        "corpus": {
+          "sourceIds": [
+            "specialist-documents-1"
+          ],
+          "packetIds": [
+            "curated-natural-business-command-111"
+          ],
+          "distinctUnits": 120,
+          "broadUnits": 0,
+          "relevantUnits": {
+            "conversation": 24000000000,
+            "documents": 120000000000,
+            "coding": 24000000000,
+            "tools": 24000000000
+          },
+          "qualityBps": {
+            "conversation": 9500,
+            "documents": 9500,
+            "coding": 9500,
+            "tools": 9500
+          },
+          "behaviorUnits": 100,
+          "behaviorQualityBps": 9500,
+          "rights": {
+            "hosted": true,
+            "weights": true,
+            "feedback": false
+          },
+          "fingerprint": "corpus-d81e6bcf"
+        },
+        "targets": {
+          "conversation": 4500,
+          "documents": 5800,
+          "coding": 2200,
+          "tools": 3200
+        },
+        "ceilings": {
+          "conversation": 7000,
+          "documents": 6500,
+          "coding": 6500,
+          "tools": 6000
+        },
+        "savedAdjustments": {
+          "conversation": -21,
+          "documents": -99,
+          "coding": -44,
+          "tools": -77
+        },
+        "requiredEvidence": 100000000000,
+        "reliabilityTargetBps": 9000,
+        "behaviorAnchor": {
+          "confidentErrorBps": 1000,
+          "falseRefusalBps": 700
+        },
+        "behaviorTarget": {
+          "confidentErrorBps": 550,
+          "falseRefusalBps": 385
+        },
+        "preparationRequired": 0,
+        "checkpointOverheadRequired": 0,
+        "checkpoints": [
+          {
+            "atBps": 5000,
+            "overheadWork": 0
+          },
+          {
+            "atBps": 10000,
+            "overheadWork": 0
+          }
+        ],
+        "methods": [
+          "R4",
+          "R4C"
+        ],
+        "replay": {
+          "domain": "coding",
+          "shareBps": 2500,
+          "baseModelId": "model-wave11-natural-command-3",
+          "baseModelFingerprint": "7e57e645",
+          "baselineReportId": "report-evaluation-wave11-natural-command-6",
+          "baselineScoreBps": 5357,
+          "ordinaryIdentity": "training-identity-5988af39",
+          "corpus": {
+            "sourceIds": [
+              "specialist-coding-1"
+            ],
+            "packetIds": [
+              "curated-natural-business-command-54"
+            ],
+            "distinctUnits": 120,
+            "broadUnits": 0,
+            "relevantUnits": {
+              "conversation": 24000000000,
+              "documents": 24000000000,
+              "coding": 120000000000,
+              "tools": 24000000000
+            },
+            "qualityBps": {
+              "conversation": 9500,
+              "documents": 9500,
+              "coding": 9500,
+              "tools": 9500
+            },
+            "behaviorUnits": 100,
+            "behaviorQualityBps": 9500,
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "fingerprint": "corpus-35dfb5d1"
+          },
+          "requiredEvidence": 100000000000,
+          "coverageBps": 10000,
+          "qualityBps": 9500,
+          "retentionBps": 4750,
+          "preservationFloorBps": 2544,
+          "nominalFocusWorkCUw": 19800000000,
+          "focusWorkCUw": 19800000000,
+          "nominalReplayWorkCUw": 6600000000,
+          "replayWorkCUw": 6600000000
+        },
+        "inheritedPolicy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "foundationAnchor": {
+          "conversation": 4000,
+          "documents": 3000,
+          "coding": 2000,
+          "tools": 2000
+        }
+      },
+      "preparationCompleted": 0,
+      "checkpointOverheadCompleted": 0,
+      "lastProgress": 2400000000,
+      "lastBottleneck": "",
+      "completedWeek": 508
+    },
+    {
+      "id": "training-wave15-natural-command-4",
+      "companyId": "company-player",
+      "baseModelId": "model-wave11-natural-command-3",
+      "packetId": "curated-natural-business-command-111",
+      "outputModelId": "model-wave15-natural-command-4",
+      "recipeId": "document-adaptation",
+      "startedWeek": 510,
+      "requiredWork": 39600000000,
+      "completedWork": 39600000000,
+      "physicalWork": 22000000003,
+      "requiredMemory": 4000000000,
+      "status": "complete",
+      "checkpointWork": 39600000000,
+      "checkpointModelId": "model-wave15-natural-command-4",
+      "checkpointModelIds": [
+        "checkpoint-training-wave15-natural-command-4",
+        "model-wave15-natural-command-4"
+      ],
+      "anchorScores": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      },
+      "anchorReliabilityBps": 7000,
+      "evidence": {
+        "id": "curated-natural-business-command-111",
+        "name": "Documents specialist pack · curated r1",
+        "companyId": "company-player",
+        "catalogId": "specialist-documents-1",
+        "sourceIds": [
+          "specialist-documents-1"
+        ],
+        "purchaseFactId": "data-purchase-natural-business-command-106",
+        "purchasedWeek": 139,
+        "revision": 1,
+        "rawUnits": 120,
+        "readyUnits": 120,
+        "qualityBps": 9500,
+        "coverageBps": {
+          "conversation": 2000,
+          "documents": 10000,
+          "coding": 2000,
+          "tools": 2000
+        },
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "behaviorUnits": 100,
+        "broadUnits": 0,
+        "prepared": true,
+        "parentPacketId": "data-company-player-specialist-documents-1"
+      },
+      "plan": {
+        "recipeName": "Document adaptation",
+        "kind": "adaptation",
+        "profile": "stable",
+        "profileApplied": true,
+        "family": "compact",
+        "architecture": "dense",
+        "residentMU": 2000000000,
+        "lineageId": "seed-0",
+        "identity": "training-replay-149e5db3",
+        "corpus": {
+          "sourceIds": [
+            "specialist-documents-1"
+          ],
+          "packetIds": [
+            "curated-natural-business-command-111"
+          ],
+          "distinctUnits": 120,
+          "broadUnits": 0,
+          "relevantUnits": {
+            "conversation": 24000000000,
+            "documents": 120000000000,
+            "coding": 24000000000,
+            "tools": 24000000000
+          },
+          "qualityBps": {
+            "conversation": 9500,
+            "documents": 9500,
+            "coding": 9500,
+            "tools": 9500
+          },
+          "behaviorUnits": 100,
+          "behaviorQualityBps": 9500,
+          "rights": {
+            "hosted": true,
+            "weights": true,
+            "feedback": false
+          },
+          "fingerprint": "corpus-d81e6bcf"
+        },
+        "targets": {
+          "conversation": 4500,
+          "documents": 5800,
+          "coding": 2200,
+          "tools": 3200
+        },
+        "ceilings": {
+          "conversation": 7000,
+          "documents": 6500,
+          "coding": 6500,
+          "tools": 6000
+        },
+        "savedAdjustments": {
+          "conversation": -21,
+          "documents": -99,
+          "coding": -44,
+          "tools": -77
+        },
+        "requiredEvidence": 100000000000,
+        "reliabilityTargetBps": 9000,
+        "behaviorAnchor": {
+          "confidentErrorBps": 1000,
+          "falseRefusalBps": 700
+        },
+        "behaviorTarget": {
+          "confidentErrorBps": 550,
+          "falseRefusalBps": 385
+        },
+        "preparationRequired": 0,
+        "checkpointOverheadRequired": 0,
+        "checkpoints": [
+          {
+            "atBps": 5000,
+            "overheadWork": 0
+          },
+          {
+            "atBps": 10000,
+            "overheadWork": 0
+          }
+        ],
+        "methods": [
+          "R4",
+          "R4C"
+        ],
+        "replay": {
+          "domain": "coding",
+          "shareBps": 5000,
+          "baseModelId": "model-wave11-natural-command-3",
+          "baseModelFingerprint": "7e57e645",
+          "baselineReportId": "report-evaluation-wave11-natural-command-6",
+          "baselineScoreBps": 5357,
+          "ordinaryIdentity": "training-identity-5988af39",
+          "corpus": {
+            "sourceIds": [
+              "specialist-coding-1"
+            ],
+            "packetIds": [
+              "curated-natural-business-command-54"
+            ],
+            "distinctUnits": 120,
+            "broadUnits": 0,
+            "relevantUnits": {
+              "conversation": 24000000000,
+              "documents": 24000000000,
+              "coding": 120000000000,
+              "tools": 24000000000
+            },
+            "qualityBps": {
+              "conversation": 9500,
+              "documents": 9500,
+              "coding": 9500,
+              "tools": 9500
+            },
+            "behaviorUnits": 100,
+            "behaviorQualityBps": 9500,
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "fingerprint": "corpus-35dfb5d1"
+          },
+          "requiredEvidence": 100000000000,
+          "coverageBps": 10000,
+          "qualityBps": 9500,
+          "retentionBps": 9500,
+          "preservationFloorBps": 5089,
+          "nominalFocusWorkCUw": 19800000000,
+          "focusWorkCUw": 19800000000,
+          "nominalReplayWorkCUw": 19800000000,
+          "replayWorkCUw": 19800000000
+        },
+        "inheritedPolicy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "foundationAnchor": {
+          "conversation": 4000,
+          "documents": 3000,
+          "coding": 2000,
+          "tools": 2000
+        }
+      },
+      "preparationCompleted": 0,
+      "checkpointOverheadCompleted": 0,
+      "lastProgress": 7600000000,
+      "lastBottleneck": "",
+      "completedWeek": 516
+    },
+    {
+      "id": "training-wave15-natural-command-9",
+      "companyId": "company-player",
+      "baseModelId": "model-wave15-natural-command-4",
+      "packetId": "curated-natural-business-command-111",
+      "outputModelId": "model-wave15-natural-command-9",
+      "recipeId": "behavior-reliability",
+      "startedWeek": 519,
+      "requiredWork": 16000000000,
+      "completedWork": 16000000000,
+      "physicalWork": 8888888890,
+      "requiredMemory": 4000000000,
+      "status": "complete",
+      "checkpointWork": 16000000000,
+      "checkpointModelId": "model-wave15-natural-command-9",
+      "checkpointModelIds": [
+        "checkpoint-training-wave15-natural-command-9",
+        "model-wave15-natural-command-9"
+      ],
+      "anchorScores": {
+        "conversation": 4109,
+        "documents": 5566,
+        "coding": 5089,
+        "tools": 2256
+      },
+      "anchorReliabilityBps": 7000,
+      "evidence": {
+        "id": "curated-natural-business-command-111",
+        "name": "Combined prepared corpus",
+        "companyId": "company-player",
+        "catalogId": "specialist-documents-1",
+        "sourceIds": [
+          "specialist-coding-1",
+          "specialist-documents-1"
+        ],
+        "purchaseFactId": "data-purchase-natural-business-command-106",
+        "purchasedWeek": 139,
+        "revision": 1,
+        "rawUnits": 240,
+        "readyUnits": 240,
+        "qualityBps": 9500,
+        "coverageBps": {
+          "conversation": 2000,
+          "documents": 6000,
+          "coding": 6000,
+          "tools": 2000
+        },
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "behaviorUnits": 200,
+        "broadUnits": 0,
+        "prepared": true,
+        "parentPacketId": "data-company-player-specialist-documents-1"
+      },
+      "plan": {
+        "recipeName": "Preference and reliability tuning",
+        "kind": "behavior",
+        "profile": "balanced",
+        "profileApplied": false,
+        "family": "compact",
+        "architecture": "dense",
+        "residentMU": 2000000000,
+        "lineageId": "seed-0",
+        "identity": "training-identity-a96ddc7c",
+        "corpus": {
+          "sourceIds": [
+            "specialist-coding-1",
+            "specialist-documents-1"
+          ],
+          "packetIds": [
+            "curated-natural-business-command-111",
+            "curated-natural-business-command-54"
+          ],
+          "distinctUnits": 240,
+          "broadUnits": 0,
+          "relevantUnits": {
+            "conversation": 48000000000,
+            "documents": 144000000000,
+            "coding": 144000000000,
+            "tools": 48000000000
+          },
+          "qualityBps": {
+            "conversation": 9500,
+            "documents": 9500,
+            "coding": 9500,
+            "tools": 9500
+          },
+          "behaviorUnits": 200,
+          "behaviorQualityBps": 9500,
+          "rights": {
+            "hosted": true,
+            "weights": true,
+            "feedback": false
+          },
+          "fingerprint": "corpus-9d93bfd3"
+        },
+        "targets": {
+          "conversation": 4109,
+          "documents": 5566,
+          "coding": 5089,
+          "tools": 2256
+        },
+        "ceilings": {
+          "conversation": 7000,
+          "documents": 6500,
+          "coding": 6500,
+          "tools": 6000
+        },
+        "savedAdjustments": {
+          "conversation": 0,
+          "documents": 0,
+          "coding": 0,
+          "tools": 0
+        },
+        "requiredEvidence": 100000000000,
+        "reliabilityTargetBps": 9400,
+        "behaviorAnchor": {
+          "confidentErrorBps": 1000,
+          "falseRefusalBps": 700
+        },
+        "behaviorTarget": {
+          "confidentErrorBps": 550,
+          "falseRefusalBps": 385
+        },
+        "preparationRequired": 0,
+        "checkpointOverheadRequired": 0,
+        "checkpoints": [
+          {
+            "atBps": 5000,
+            "overheadWork": 0
+          },
+          {
+            "atBps": 10000,
+            "overheadWork": 0
+          }
+        ],
+        "methods": [
+          "R5"
+        ],
+        "inheritedPolicy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "foundationAnchor": {
+          "conversation": 4000,
+          "documents": 3000,
+          "coding": 2000,
+          "tools": 2000
+        }
+      },
+      "preparationCompleted": 0,
+      "checkpointOverheadCompleted": 0,
+      "lastProgress": 8000000000,
+      "lastBottleneck": "",
+      "completedWeek": 520
+    }
+  ],
+  "trainingCosts": {
+    "training-wave15-natural-command-2": {
+      "physicalCUw": 14666666669,
+      "ownedVariableCents": 109999,
+      "cloudRentCents": 0
+    },
+    "training-wave15-natural-command-4": {
+      "physicalCUw": 22000000003,
+      "ownedVariableCents": 164998,
+      "cloudRentCents": 0
+    },
+    "training-wave15-natural-command-9": {
+      "physicalCUw": 8888888890,
+      "ownedVariableCents": 66666,
+      "cloudRentCents": 0
+    }
+  },
+  "jobs": [
+    {
+      "id": "batch:wave15-natural-command-13",
+      "companyId": "company-player",
+      "productId": "product:natural-business-command-67",
+      "orderId": "code-index",
+      "claim": 3,
+      "schedulerId": "batch-scheduler:wave14-natural-command-1",
+      "acceptedWeek": 523,
+      "deadlineWeek": 528,
+      "terminalWeek": 527,
+      "status": "completed",
+      "cancellationCommandId": null,
+      "admission": {
+        "publicInvoiceId": "invoice:product:natural-business-command-67:522",
+        "publicInvoiceWeek": 522,
+        "paidAccounts": 169,
+        "publicContractId": "contract:natural-business-command-67"
+      },
+      "model": {
+        "modelId": "model-wave15-natural-command-9",
+        "modelFingerprint": "33775861",
+        "capabilityReportId": "report-evaluation-wave15-natural-command-10",
+        "policyReportId": "report-evaluation-wave15-natural-command-11",
+        "hostedRights": true,
+        "family": "compact",
+        "architecture": "dense",
+        "residentMU": 2000000000,
+        "workBps": 10000
+      },
+      "meter": {
+        "inputTokensPerRequest": 2500,
+        "outputTokensPerRequest": 500,
+        "workPerRequestCUw": 1000000,
+        "memoryMU": 2250000000,
+        "executionHints": {
+          "modelArchitecture": "dense",
+          "modelFamily": "compact",
+          "workloadKind": "inference"
+        }
+      },
+      "terms": {
+        "id": "code-index",
+        "name": "Code index",
+        "description": "Generate a fixed backlog of benign code descriptions for an existing developer customer.",
+        "domain": "coding",
+        "minimumScoreBps": 5000,
+        "minimumReliabilityBps": 8000,
+        "requests": 60000,
+        "inputTokensPerRequest": 2500,
+        "outputTokensPerRequest": 500,
+        "windowWeeks": 6,
+        "inputPriceCentsPerMillion": 5000,
+        "outputPriceCentsPerMillion": 25000
+      },
+      "weeklyWorkCapCUw": 16000000000,
+      "requiredWork": 60000000000,
+      "completedWork": 60000000000,
+      "physicalWork": 54545454546,
+      "completedRequests": 60000,
+      "inputTokens": 150000000,
+      "outputTokens": 30000000,
+      "commercialStaffSpent": 1250000000,
+      "workReceipts": {
+        "50973b79": {
+          "hardwareId": "training",
+          "ownership": "owned",
+          "multiplierBps": 11000,
+          "rateCentsPerCUw": 7500,
+          "physicalCUw": 54545454546,
+          "effectiveCUw": 60000000000,
+          "conversionRemainder": 6000,
+          "grants": 5,
+          "firstWeek": 523,
+          "lastWeek": 527
+        }
+      },
+      "latestGrant": {
+        "week": 527,
+        "poolId": "owned:colocation:training",
+        "receiptKey": "50973b79",
+        "remainingBefore": 4175000000,
+        "requestedWork": 4175000000,
+        "effectiveCUw": 4175000000,
+        "physicalCUw": 3795454546,
+        "memoryMU": 2250000000
+      },
+      "usageHistory": [
+        {
+          "week": 523,
+          "paused": false,
+          "remainingBefore": 60000000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 13684000000,
+          "physicalWorkCUw": 12440000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 0,
+          "completedWorkAfter": 13684000000,
+          "completedRequestsBefore": 0,
+          "completedRequestsAfter": 13684,
+          "completedRequests": 13684,
+          "inputTokens": 34210000,
+          "outputTokens": 6842000,
+          "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+        },
+        {
+          "week": 524,
+          "paused": false,
+          "remainingBefore": 46316000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 15317500000,
+          "physicalWorkCUw": 13925000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 13684000000,
+          "completedWorkAfter": 29001500000,
+          "completedRequestsBefore": 13684,
+          "completedRequestsAfter": 29001,
+          "completedRequests": 15317,
+          "inputTokens": 38292500,
+          "outputTokens": 7658500,
+          "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+        },
+        {
+          "week": 525,
+          "paused": false,
+          "remainingBefore": 30998500000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 13684000000,
+          "physicalWorkCUw": 12440000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 29001500000,
+          "completedWorkAfter": 42685500000,
+          "completedRequestsBefore": 29001,
+          "completedRequestsAfter": 42685,
+          "completedRequests": 13684,
+          "inputTokens": 34210000,
+          "outputTokens": 6842000,
+          "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+        },
+        {
+          "week": 526,
+          "paused": false,
+          "remainingBefore": 17314500000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 13139500000,
+          "physicalWorkCUw": 11945000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 42685500000,
+          "completedWorkAfter": 55825000000,
+          "completedRequestsBefore": 42685,
+          "completedRequestsAfter": 55825,
+          "completedRequests": 13140,
+          "inputTokens": 32850000,
+          "outputTokens": 6570000,
+          "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+        },
+        {
+          "week": 527,
+          "paused": false,
+          "remainingBefore": 4175000000,
+          "requestedWorkCUw": 4175000000,
+          "executedWorkCUw": 4175000000,
+          "physicalWorkCUw": 3795454546,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 4175000000,
+          "completedWorkBefore": 55825000000,
+          "completedWorkAfter": 60000000000,
+          "completedRequestsBefore": 55825,
+          "completedRequestsAfter": 60000,
+          "completedRequests": 4175,
+          "inputTokens": 10437500,
+          "outputTokens": 2087500,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        }
+      ],
+      "quotedCents": 1500000,
+      "invoiceId": "batch-invoice:batch:wave15-natural-command-13",
+      "lastBottleneck": "The fixed backlog is complete; all requests settle in one terminal invoice."
+    },
+    {
+      "id": "batch:wave15-natural-command-14",
+      "companyId": "company-player",
+      "productId": "product:natural-business-command-67",
+      "orderId": "longform-digest",
+      "claim": 2,
+      "schedulerId": "batch-scheduler:wave14-natural-command-1",
+      "acceptedWeek": 523,
+      "deadlineWeek": 528,
+      "terminalWeek": 528,
+      "status": "expired",
+      "cancellationCommandId": null,
+      "admission": {
+        "publicInvoiceId": "invoice:product:natural-business-command-67:522",
+        "publicInvoiceWeek": 522,
+        "paidAccounts": 169,
+        "publicContractId": "contract:natural-business-command-67"
+      },
+      "model": {
+        "modelId": "model-wave15-natural-command-9",
+        "modelFingerprint": "33775861",
+        "capabilityReportId": "report-evaluation-wave15-natural-command-10",
+        "policyReportId": "report-evaluation-wave15-natural-command-11",
+        "hostedRights": true,
+        "family": "compact",
+        "architecture": "dense",
+        "residentMU": 2000000000,
+        "workBps": 10000
+      },
+      "meter": {
+        "inputTokensPerRequest": 5000,
+        "outputTokensPerRequest": 500,
+        "workPerRequestCUw": 1500000,
+        "memoryMU": 2250000000,
+        "executionHints": {
+          "modelArchitecture": "dense",
+          "modelFamily": "compact",
+          "workloadKind": "inference"
+        }
+      },
+      "terms": {
+        "id": "longform-digest",
+        "name": "Long-form digest",
+        "description": "Process a fixed collection of long benign documents for an existing developer customer.",
+        "domain": "documents",
+        "minimumScoreBps": 5500,
+        "minimumReliabilityBps": 9000,
+        "requests": 60000,
+        "inputTokensPerRequest": 5000,
+        "outputTokensPerRequest": 500,
+        "windowWeeks": 6,
+        "inputPriceCentsPerMillion": 5000,
+        "outputPriceCentsPerMillion": 25000
+      },
+      "weeklyWorkCapCUw": 16000000000,
+      "requiredWork": 90000000000,
+      "completedWork": 58212000000,
+      "physicalWork": 52920000000,
+      "completedRequests": 38808,
+      "inputTokens": 194040000,
+      "outputTokens": 19404000,
+      "commercialStaffSpent": 1500000000,
+      "workReceipts": {
+        "50973b79": {
+          "hardwareId": "training",
+          "ownership": "owned",
+          "multiplierBps": 11000,
+          "rateCentsPerCUw": 7500,
+          "physicalCUw": 52920000000,
+          "effectiveCUw": 58212000000,
+          "conversionRemainder": 0,
+          "grants": 6,
+          "firstWeek": 523,
+          "lastWeek": 528
+        }
+      },
+      "latestGrant": {
+        "week": 528,
+        "poolId": "owned:facility-wave8-scale-command-3:training",
+        "receiptKey": "50973b79",
+        "remainingBefore": 43294000000,
+        "requestedWork": 16000000000,
+        "effectiveCUw": 11506000000,
+        "physicalCUw": 10460000000,
+        "memoryMU": 2250000000
+      },
+      "usageHistory": [
+        {
+          "week": 523,
+          "paused": false,
+          "remainingBefore": 90000000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 8800000000,
+          "physicalWorkCUw": 8000000000,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 0,
+          "completedWorkAfter": 8800000000,
+          "completedRequestsBefore": 0,
+          "completedRequestsAfter": 5866,
+          "completedRequests": 5866,
+          "inputTokens": 29330000,
+          "outputTokens": 2933000,
+          "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+        },
+        {
+          "week": 524,
+          "paused": false,
+          "remainingBefore": 81200000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 8800000000,
+          "physicalWorkCUw": 8000000000,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 8800000000,
+          "completedWorkAfter": 17600000000,
+          "completedRequestsBefore": 5866,
+          "completedRequestsAfter": 11733,
+          "completedRequests": 5867,
+          "inputTokens": 29335000,
+          "outputTokens": 2933500,
+          "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+        },
+        {
+          "week": 525,
+          "paused": false,
+          "remainingBefore": 72400000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 8800000000,
+          "physicalWorkCUw": 8000000000,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 17600000000,
+          "completedWorkAfter": 26400000000,
+          "completedRequestsBefore": 11733,
+          "completedRequestsAfter": 17600,
+          "completedRequests": 5867,
+          "inputTokens": 29335000,
+          "outputTokens": 2933500,
+          "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+        },
+        {
+          "week": 526,
+          "paused": false,
+          "remainingBefore": 63600000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 8800000000,
+          "physicalWorkCUw": 8000000000,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 26400000000,
+          "completedWorkAfter": 35200000000,
+          "completedRequestsBefore": 17600,
+          "completedRequestsAfter": 23466,
+          "completedRequests": 5866,
+          "inputTokens": 29330000,
+          "outputTokens": 2933000,
+          "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+        },
+        {
+          "week": 527,
+          "paused": false,
+          "remainingBefore": 54800000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 11506000000,
+          "physicalWorkCUw": 10460000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 35200000000,
+          "completedWorkAfter": 46706000000,
+          "completedRequestsBefore": 23466,
+          "completedRequestsAfter": 31137,
+          "completedRequests": 7671,
+          "inputTokens": 38355000,
+          "outputTokens": 3835500,
+          "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+        },
+        {
+          "week": 528,
+          "paused": false,
+          "remainingBefore": 43294000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 11506000000,
+          "physicalWorkCUw": 10460000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 46706000000,
+          "completedWorkAfter": 58212000000,
+          "completedRequestsBefore": 31137,
+          "completedRequestsAfter": 38808,
+          "completedRequests": 7671,
+          "inputTokens": 38355000,
+          "outputTokens": 3835500,
+          "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+        }
+      ],
+      "quotedCents": 2250000,
+      "invoiceId": "batch-invoice:batch:wave15-natural-command-14",
+      "lastBottleneck": "The original deadline ended. Fully completed requests are billed once; the unfinished quote is credited."
+    },
+    {
+      "id": "batch:wave15-natural-command-18",
+      "companyId": "company-player",
+      "productId": "product:natural-business-command-67",
+      "orderId": "longform-digest",
+      "claim": 3,
+      "schedulerId": "batch-scheduler:wave14-natural-command-1",
+      "acceptedWeek": 530,
+      "deadlineWeek": 535,
+      "terminalWeek": 535,
+      "status": "completed",
+      "cancellationCommandId": null,
+      "admission": {
+        "publicInvoiceId": "invoice:product:natural-business-command-67:529",
+        "publicInvoiceWeek": 529,
+        "paidAccounts": 172,
+        "publicContractId": "contract:natural-business-command-67"
+      },
+      "model": {
+        "modelId": "model-wave15-natural-command-9",
+        "modelFingerprint": "33775861",
+        "capabilityReportId": "report-evaluation-wave15-natural-command-10",
+        "policyReportId": "report-evaluation-wave15-natural-command-11",
+        "hostedRights": true,
+        "family": "compact",
+        "architecture": "dense",
+        "residentMU": 2000000000,
+        "workBps": 10000
+      },
+      "meter": {
+        "inputTokensPerRequest": 5000,
+        "outputTokensPerRequest": 500,
+        "workPerRequestCUw": 1500000,
+        "memoryMU": 2250000000,
+        "executionHints": {
+          "modelArchitecture": "dense",
+          "modelFamily": "compact",
+          "workloadKind": "inference"
+        }
+      },
+      "terms": {
+        "id": "longform-digest",
+        "name": "Long-form digest",
+        "description": "Process a fixed collection of long benign documents for an existing developer customer.",
+        "domain": "documents",
+        "minimumScoreBps": 5500,
+        "minimumReliabilityBps": 9000,
+        "requests": 60000,
+        "inputTokensPerRequest": 5000,
+        "outputTokensPerRequest": 500,
+        "windowWeeks": 6,
+        "inputPriceCentsPerMillion": 5000,
+        "outputPriceCentsPerMillion": 25000
+      },
+      "weeklyWorkCapCUw": 16000000000,
+      "requiredWork": 90000000000,
+      "completedWork": 90000000000,
+      "physicalWork": 89090909091,
+      "completedRequests": 60000,
+      "inputTokens": 300000000,
+      "outputTokens": 30000000,
+      "commercialStaffSpent": 1500000000,
+      "workReceipts": {
+        "98ab9ff0": {
+          "hardwareId": "general",
+          "ownership": "cloud",
+          "multiplierBps": 10000,
+          "rateCentsPerCUw": 20000,
+          "physicalCUw": 80000000000,
+          "effectiveCUw": 80000000000,
+          "conversionRemainder": 0,
+          "grants": 5,
+          "firstWeek": 530,
+          "lastWeek": 534
+        },
+        "50973b79": {
+          "hardwareId": "training",
+          "ownership": "owned",
+          "multiplierBps": 11000,
+          "rateCentsPerCUw": 7500,
+          "physicalCUw": 9090909091,
+          "effectiveCUw": 10000000000,
+          "conversionRemainder": 1000,
+          "grants": 1,
+          "firstWeek": 535,
+          "lastWeek": 535
+        }
+      },
+      "latestGrant": {
+        "week": 535,
+        "poolId": "owned:facility-wave8-scale-command-3:training",
+        "receiptKey": "50973b79",
+        "remainingBefore": 10000000000,
+        "requestedWork": 10000000000,
+        "effectiveCUw": 10000000000,
+        "physicalCUw": 9090909091,
+        "memoryMU": 2250000000
+      },
+      "usageHistory": [
+        {
+          "week": 530,
+          "paused": false,
+          "remainingBefore": 90000000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 16000000000,
+          "physicalWorkCUw": 16000000000,
+          "poolId": "general-cloud",
+          "receiptKey": "98ab9ff0",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 0,
+          "completedWorkAfter": 16000000000,
+          "completedRequestsBefore": 0,
+          "completedRequestsAfter": 10666,
+          "completedRequests": 10666,
+          "inputTokens": 53330000,
+          "outputTokens": 5333000,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        {
+          "week": 531,
+          "paused": false,
+          "remainingBefore": 74000000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 16000000000,
+          "physicalWorkCUw": 16000000000,
+          "poolId": "general-cloud",
+          "receiptKey": "98ab9ff0",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 16000000000,
+          "completedWorkAfter": 32000000000,
+          "completedRequestsBefore": 10666,
+          "completedRequestsAfter": 21333,
+          "completedRequests": 10667,
+          "inputTokens": 53335000,
+          "outputTokens": 5333500,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        {
+          "week": 532,
+          "paused": false,
+          "remainingBefore": 58000000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 16000000000,
+          "physicalWorkCUw": 16000000000,
+          "poolId": "general-cloud",
+          "receiptKey": "98ab9ff0",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 32000000000,
+          "completedWorkAfter": 48000000000,
+          "completedRequestsBefore": 21333,
+          "completedRequestsAfter": 32000,
+          "completedRequests": 10667,
+          "inputTokens": 53335000,
+          "outputTokens": 5333500,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        {
+          "week": 533,
+          "paused": false,
+          "remainingBefore": 42000000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 16000000000,
+          "physicalWorkCUw": 16000000000,
+          "poolId": "general-cloud",
+          "receiptKey": "98ab9ff0",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 48000000000,
+          "completedWorkAfter": 64000000000,
+          "completedRequestsBefore": 32000,
+          "completedRequestsAfter": 42666,
+          "completedRequests": 10666,
+          "inputTokens": 53330000,
+          "outputTokens": 5333000,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        {
+          "week": 534,
+          "paused": false,
+          "remainingBefore": 26000000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 16000000000,
+          "physicalWorkCUw": 16000000000,
+          "poolId": "general-cloud",
+          "receiptKey": "98ab9ff0",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 64000000000,
+          "completedWorkAfter": 80000000000,
+          "completedRequestsBefore": 42666,
+          "completedRequestsAfter": 53333,
+          "completedRequests": 10667,
+          "inputTokens": 53335000,
+          "outputTokens": 5333500,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        {
+          "week": 535,
+          "paused": false,
+          "remainingBefore": 10000000000,
+          "requestedWorkCUw": 10000000000,
+          "executedWorkCUw": 10000000000,
+          "physicalWorkCUw": 9090909091,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 10000000000,
+          "completedWorkBefore": 80000000000,
+          "completedWorkAfter": 90000000000,
+          "completedRequestsBefore": 53333,
+          "completedRequestsAfter": 60000,
+          "completedRequests": 6667,
+          "inputTokens": 33335000,
+          "outputTokens": 3333500,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        }
+      ],
+      "quotedCents": 2250000,
+      "invoiceId": "batch-invoice:batch:wave15-natural-command-18",
+      "lastBottleneck": "The fixed backlog is complete; all requests settle in one terminal invoice."
+    }
+  ],
+  "invoices": [
+    {
+      "id": "batch-invoice:batch:wave15-natural-command-13",
+      "jobId": "batch:wave15-natural-command-13",
+      "companyId": "company-player",
+      "productId": "product:natural-business-command-67",
+      "orderId": "code-index",
+      "week": 527,
+      "reason": "completed",
+      "modelId": "model-wave15-natural-command-9",
+      "modelFingerprint": "33775861",
+      "requestedRequests": 60000,
+      "completedRequests": 60000,
+      "inputTokens": 150000000,
+      "outputTokens": 30000000,
+      "grossCents": 1500000,
+      "creditsCents": 0,
+      "amountCents": 1500000
+    },
+    {
+      "id": "batch-invoice:batch:wave15-natural-command-14",
+      "jobId": "batch:wave15-natural-command-14",
+      "companyId": "company-player",
+      "productId": "product:natural-business-command-67",
+      "orderId": "longform-digest",
+      "week": 528,
+      "reason": "deadline",
+      "modelId": "model-wave15-natural-command-9",
+      "modelFingerprint": "33775861",
+      "requestedRequests": 60000,
+      "completedRequests": 38808,
+      "inputTokens": 194040000,
+      "outputTokens": 19404000,
+      "grossCents": 2250000,
+      "creditsCents": 794700,
+      "amountCents": 1455300
+    },
+    {
+      "id": "batch-invoice:batch:wave15-natural-command-18",
+      "jobId": "batch:wave15-natural-command-18",
+      "companyId": "company-player",
+      "productId": "product:natural-business-command-67",
+      "orderId": "longform-digest",
+      "week": 535,
+      "reason": "completed",
+      "modelId": "model-wave15-natural-command-9",
+      "modelFingerprint": "33775861",
+      "requestedRequests": 60000,
+      "completedRequests": 60000,
+      "inputTokens": 300000000,
+      "outputTokens": 30000000,
+      "grossCents": 2250000,
+      "creditsCents": 0,
+      "amountCents": 2250000
+    }
+  ],
+  "weeks": [
+    {
+      "week": 501,
+      "cashCents": 512781726,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 322000,
+        "attributedCloudRentCents": 1467547,
+        "attributedOwnedVariableCents": 322000,
+        "attributedComputeCents": 1789547,
+        "unallocatedCloudCents": 132453,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 210453,
+        "totalComputeCents": 2000000,
+        "companyRevenueCents": 4268034,
+        "otherOperatingCents": 670000,
+        "companyOperatingCents": 2670000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1598034
+      },
+      "publicApi": {
+        "paidAccounts": 164,
+        "billedCents": 2456234,
+        "billCarryIn": 869535,
+        "billCarryOut": 871935,
+        "inputTokens": 98236000,
+        "outputTokens": 9823600
+      },
+      "training": []
+    },
+    {
+      "week": 502,
+      "cashCents": 514708360,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 297000,
+        "attributedCloudRentCents": 1468977,
+        "attributedOwnedVariableCents": 297000,
+        "attributedComputeCents": 1765977,
+        "unallocatedCloudCents": 131023,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 209023,
+        "totalComputeCents": 1975000,
+        "companyRevenueCents": 4271634,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2345000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1926634
+      },
+      "publicApi": {
+        "paidAccounts": 164,
+        "billedCents": 2456234,
+        "billCarryIn": 871935,
+        "billCarryOut": 874335,
+        "inputTokens": 98236000,
+        "outputTokens": 9823600
+      },
+      "training": []
+    },
+    {
+      "week": 503,
+      "cashCents": 516652371,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 297000,
+        "attributedCloudRentCents": 1476600,
+        "attributedOwnedVariableCents": 297000,
+        "attributedComputeCents": 1773600,
+        "unallocatedCloudCents": 123400,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 201400,
+        "totalComputeCents": 1975000,
+        "companyRevenueCents": 4289011,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2345000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1944011
+      },
+      "publicApi": {
+        "paidAccounts": 165,
+        "billedCents": 2471211,
+        "billCarryIn": 874335,
+        "billCarryOut": 913335,
+        "inputTokens": 98835000,
+        "outputTokens": 9883500
+      },
+      "training": []
+    },
+    {
+      "week": 504,
+      "cashCents": 518584682,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 283500,
+        "attributedCloudRentCents": 1478470,
+        "attributedOwnedVariableCents": 283500,
+        "attributedComputeCents": 1761970,
+        "unallocatedCloudCents": 121530,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 199530,
+        "totalComputeCents": 1961500,
+        "companyRevenueCents": 4263811,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2331500,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1932311
+      },
+      "publicApi": {
+        "paidAccounts": 165,
+        "billedCents": 2471211,
+        "billCarryIn": 913335,
+        "billCarryOut": 952335,
+        "inputTokens": 98835000,
+        "outputTokens": 9883500
+      },
+      "training": []
+    },
+    {
+      "week": 505,
+      "cashCents": 520480285,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 320208,
+        "attributedCloudRentCents": 1477590,
+        "attributedOwnedVariableCents": 320208,
+        "attributedComputeCents": 1797798,
+        "unallocatedCloudCents": 122410,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 200410,
+        "totalComputeCents": 1998208,
+        "companyRevenueCents": 4263811,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2368208,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1895603
+      },
+      "publicApi": {
+        "paidAccounts": 165,
+        "billedCents": 2471211,
+        "billCarryIn": 952335,
+        "billCarryOut": 991335,
+        "inputTokens": 98835000,
+        "outputTokens": 9883500
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "running",
+          "completedWork": 8000000000,
+          "physicalWork": 4444444445,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 506,
+      "cashCents": 522382864,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 316833,
+        "attributedCloudRentCents": 1479350,
+        "attributedOwnedVariableCents": 316833,
+        "attributedComputeCents": 1796183,
+        "unallocatedCloudCents": 120650,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 198650,
+        "totalComputeCents": 1994833,
+        "companyRevenueCents": 4267412,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2364833,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1902579
+      },
+      "publicApi": {
+        "paidAccounts": 165,
+        "billedCents": 2471212,
+        "billCarryIn": 991335,
+        "billCarryOut": 30335,
+        "inputTokens": 98835000,
+        "outputTokens": 9883500
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "running",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 507,
+      "cashCents": 524301843,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 320209,
+        "attributedCloudRentCents": 1485696,
+        "attributedOwnedVariableCents": 320208,
+        "attributedComputeCents": 1805904,
+        "unallocatedCloudCents": 114304,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 192305,
+        "totalComputeCents": 1998209,
+        "companyRevenueCents": 4287188,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2368209,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1918979
+      },
+      "publicApi": {
+        "paidAccounts": 166,
+        "billedCents": 2486188,
+        "billCarryIn": 30335,
+        "billCarryOut": 105935,
+        "inputTokens": 99434000,
+        "outputTokens": 9943400
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "running",
+          "completedWork": 24000000000,
+          "physicalWork": 13333333335,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 508,
+      "cashCents": 526248731,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 293500,
+        "attributedCloudRentCents": 1487742,
+        "attributedOwnedVariableCents": 293500,
+        "attributedComputeCents": 1781242,
+        "unallocatedCloudCents": 112258,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 190258,
+        "totalComputeCents": 1971500,
+        "companyRevenueCents": 4288388,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2341500,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1946888
+      },
+      "publicApi": {
+        "paidAccounts": 166,
+        "billedCents": 2486188,
+        "billCarryIn": 105935,
+        "billCarryOut": 181535,
+        "inputTokens": 99434000,
+        "outputTokens": 9943400
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        }
+      ]
+    },
+    {
+      "week": 509,
+      "cashCents": 528194953,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 300166,
+        "attributedCloudRentCents": 1489942,
+        "attributedOwnedVariableCents": 300166,
+        "attributedComputeCents": 1790108,
+        "unallocatedCloudCents": 110058,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 188058,
+        "totalComputeCents": 1978166,
+        "companyRevenueCents": 4294388,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2348166,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1946222
+      },
+      "publicApi": {
+        "paidAccounts": 166,
+        "billedCents": 2486188,
+        "billCarryIn": 181535,
+        "billCarryOut": 257135,
+        "inputTokens": 99434000,
+        "outputTokens": 9943400
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        }
+      ]
+    },
+    {
+      "week": 510,
+      "cashCents": 530138284,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 316834,
+        "attributedCloudRentCents": 1495475,
+        "attributedOwnedVariableCents": 316833,
+        "attributedComputeCents": 1812308,
+        "unallocatedCloudCents": 104525,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 182526,
+        "totalComputeCents": 1994834,
+        "companyRevenueCents": 4308165,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2364834,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1943331
+      },
+      "publicApi": {
+        "paidAccounts": 167,
+        "billedCents": 2501165,
+        "billCarryIn": 257135,
+        "billCarryOut": 369335,
+        "inputTokens": 100033000,
+        "outputTokens": 10003300
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "running",
+          "completedWork": 8000000000,
+          "physicalWork": 4444444445,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 511,
+      "cashCents": 532119749,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 283500,
+        "attributedCloudRentCents": 1497345,
+        "attributedOwnedVariableCents": 283500,
+        "attributedComputeCents": 1780845,
+        "unallocatedCloudCents": 102655,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 180655,
+        "totalComputeCents": 1961500,
+        "companyRevenueCents": 4312965,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2331500,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1981465
+      },
+      "publicApi": {
+        "paidAccounts": 167,
+        "billedCents": 2501165,
+        "billCarryIn": 369335,
+        "billCarryOut": 481535,
+        "inputTokens": 100033000,
+        "outputTokens": 10003300
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "paused",
+          "completedWork": 8000000000,
+          "physicalWork": 4444444445,
+          "lastProgress": 0
+        }
+      ]
+    },
+    {
+      "week": 512,
+      "cashCents": 534104814,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 283500,
+        "attributedCloudRentCents": 1498775,
+        "attributedOwnedVariableCents": 283500,
+        "attributedComputeCents": 1782275,
+        "unallocatedCloudCents": 101225,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 179225,
+        "totalComputeCents": 1961500,
+        "companyRevenueCents": 4316565,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2331500,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1985065
+      },
+      "publicApi": {
+        "paidAccounts": 167,
+        "billedCents": 2501165,
+        "billCarryIn": 481535,
+        "billCarryOut": 593735,
+        "inputTokens": 100033000,
+        "outputTokens": 10003300
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "paused",
+          "completedWork": 8000000000,
+          "physicalWork": 4444444445,
+          "lastProgress": 0
+        }
+      ]
+    },
+    {
+      "week": 513,
+      "cashCents": 536070548,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 320208,
+        "attributedCloudRentCents": 1506288,
+        "attributedOwnedVariableCents": 320208,
+        "attributedComputeCents": 1826496,
+        "unallocatedCloudCents": 93712,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 171712,
+        "totalComputeCents": 1998208,
+        "companyRevenueCents": 4333942,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2368208,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1965734
+      },
+      "publicApi": {
+        "paidAccounts": 168,
+        "billedCents": 2516142,
+        "billCarryIn": 593735,
+        "billCarryOut": 742535,
+        "inputTokens": 100632000,
+        "outputTokens": 10063200
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "running",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 514,
+      "cashCents": 538043257,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 316833,
+        "attributedCloudRentCents": 1507828,
+        "attributedOwnedVariableCents": 316833,
+        "attributedComputeCents": 1824661,
+        "unallocatedCloudCents": 92172,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 170172,
+        "totalComputeCents": 1994833,
+        "companyRevenueCents": 4337542,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2364833,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1972709
+      },
+      "publicApi": {
+        "paidAccounts": 168,
+        "billedCents": 2516142,
+        "billCarryIn": 742535,
+        "billCarryOut": 891335,
+        "inputTokens": 100632000,
+        "outputTokens": 10063200
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "running",
+          "completedWork": 24000000000,
+          "physicalWork": 13333333335,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 515,
+      "cashCents": 540013791,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 320209,
+        "attributedCloudRentCents": 1507938,
+        "attributedOwnedVariableCents": 320208,
+        "attributedComputeCents": 1828146,
+        "unallocatedCloudCents": 92062,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 170063,
+        "totalComputeCents": 1998209,
+        "companyRevenueCents": 4338743,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2368209,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1970534
+      },
+      "publicApi": {
+        "paidAccounts": 168,
+        "billedCents": 2516143,
+        "billCarryIn": 891335,
+        "billCarryOut": 40135,
+        "inputTokens": 100632000,
+        "outputTokens": 10063200
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "running",
+          "completedWork": 32000000000,
+          "physicalWork": 17777777780,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 516,
+      "cashCents": 542024444,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 328666,
+        "attributedCloudRentCents": 1514284,
+        "attributedOwnedVariableCents": 328666,
+        "attributedComputeCents": 1842950,
+        "unallocatedCloudCents": 85716,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 163716,
+        "totalComputeCents": 2006666,
+        "companyRevenueCents": 4387319,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2376666,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2010653
+      },
+      "publicApi": {
+        "paidAccounts": 169,
+        "billedCents": 2531119,
+        "billCarryIn": 40135,
+        "billCarryOut": 225535,
+        "inputTokens": 101231000,
+        "outputTokens": 10123100
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        }
+      ]
+    },
+    {
+      "week": 517,
+      "cashCents": 544053696,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 313667,
+        "attributedCloudRentCents": 1519256,
+        "attributedOwnedVariableCents": 313666,
+        "attributedComputeCents": 1832922,
+        "unallocatedCloudCents": 80744,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 158745,
+        "totalComputeCents": 1991667,
+        "companyRevenueCents": 4390919,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2361667,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2029252
+      },
+      "publicApi": {
+        "paidAccounts": 169,
+        "billedCents": 2531119,
+        "billCarryIn": 225535,
+        "billCarryOut": 410935,
+        "inputTokens": 101231000,
+        "outputTokens": 10123100
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        }
+      ]
+    },
+    {
+      "week": 518,
+      "cashCents": 546084148,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 313667,
+        "attributedCloudRentCents": 1517320,
+        "attributedOwnedVariableCents": 313666,
+        "attributedComputeCents": 1830986,
+        "unallocatedCloudCents": 82680,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 160681,
+        "totalComputeCents": 1991667,
+        "companyRevenueCents": 4392119,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2361667,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2030452
+      },
+      "publicApi": {
+        "paidAccounts": 169,
+        "billedCents": 2531119,
+        "billCarryIn": 410935,
+        "billCarryOut": 596335,
+        "inputTokens": 101231000,
+        "outputTokens": 10123100
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        }
+      ]
+    },
+    {
+      "week": 519,
+      "cashCents": 548100011,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 316833,
+        "attributedCloudRentCents": 1523887,
+        "attributedOwnedVariableCents": 316833,
+        "attributedComputeCents": 1840720,
+        "unallocatedCloudCents": 76113,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 154113,
+        "totalComputeCents": 1994833,
+        "companyRevenueCents": 4380696,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2364833,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2015863
+      },
+      "publicApi": {
+        "paidAccounts": 170,
+        "billedCents": 2546096,
+        "billCarryIn": 596335,
+        "billCarryOut": 818335,
+        "inputTokens": 101830000,
+        "outputTokens": 10183000
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "running",
+          "completedWork": 8000000000,
+          "physicalWork": 4444444445,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 520,
+      "cashCents": 550113700,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 320208,
+        "attributedCloudRentCents": 1523997,
+        "attributedOwnedVariableCents": 320208,
+        "attributedComputeCents": 1844205,
+        "unallocatedCloudCents": 76003,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 154003,
+        "totalComputeCents": 1998208,
+        "companyRevenueCents": 4381897,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2368208,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2013689
+      },
+      "publicApi": {
+        "paidAccounts": 170,
+        "billedCents": 2546097,
+        "billCarryIn": 818335,
+        "billCarryOut": 40335,
+        "inputTokens": 101830000,
+        "outputTokens": 10183000
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 521,
+      "cashCents": 552152552,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 313667,
+        "attributedCloudRentCents": 1520180,
+        "attributedOwnedVariableCents": 313666,
+        "attributedComputeCents": 1833846,
+        "unallocatedCloudCents": 79820,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 157821,
+        "totalComputeCents": 1991667,
+        "companyRevenueCents": 4400519,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2361667,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2038852
+      },
+      "publicApi": {
+        "paidAccounts": 169,
+        "billedCents": 2531119,
+        "billCarryIn": 40335,
+        "billCarryOut": 225735,
+        "inputTokens": 101231000,
+        "outputTokens": 10123100
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 522,
+      "cashCents": 554190429,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 317042,
+        "attributedCloudRentCents": 1521500,
+        "attributedOwnedVariableCents": 317041,
+        "attributedComputeCents": 1838541,
+        "unallocatedCloudCents": 78500,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 156501,
+        "totalComputeCents": 1995042,
+        "companyRevenueCents": 4402919,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2365042,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2037877
+      },
+      "publicApi": {
+        "paidAccounts": 169,
+        "billedCents": 2531119,
+        "billCarryIn": 225735,
+        "billCarryOut": 411135,
+        "inputTokens": 101231000,
+        "outputTokens": 10123100
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 523,
+      "cashCents": 556113625,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 450300,
+        "attributedCloudRentCents": 1529123,
+        "attributedOwnedVariableCents": 450300,
+        "attributedComputeCents": 1979423,
+        "unallocatedCloudCents": 70877,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 148877,
+        "totalComputeCents": 2128300,
+        "companyRevenueCents": 4421496,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2498300,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1923196
+      },
+      "publicApi": {
+        "paidAccounts": 170,
+        "billedCents": 2546096,
+        "billCarryIn": 411135,
+        "billCarryOut": 633135,
+        "inputTokens": 101830000,
+        "outputTokens": 10183000
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 524,
+      "cashCents": 558007009,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 451312,
+        "attributedCloudRentCents": 1529453,
+        "attributedOwnedVariableCents": 451312,
+        "attributedComputeCents": 1980765,
+        "unallocatedCloudCents": 70547,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 148547,
+        "totalComputeCents": 2129312,
+        "companyRevenueCents": 4392696,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2499312,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1893384
+      },
+      "publicApi": {
+        "paidAccounts": 170,
+        "billedCents": 2546096,
+        "billCarryIn": 633135,
+        "billCarryOut": 855135,
+        "inputTokens": 101830000,
+        "outputTokens": 10183000
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 525,
+      "cashCents": 559935006,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 450300,
+        "attributedCloudRentCents": 1529167,
+        "attributedOwnedVariableCents": 450300,
+        "attributedComputeCents": 1979467,
+        "unallocatedCloudCents": 70833,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 148833,
+        "totalComputeCents": 2128300,
+        "companyRevenueCents": 4426297,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2498300,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1927997
+      },
+      "publicApi": {
+        "paidAccounts": 170,
+        "billedCents": 2546097,
+        "billCarryIn": 855135,
+        "billCarryOut": 77135,
+        "inputTokens": 101830000,
+        "outputTokens": 10183000
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 526,
+      "cashCents": 561875916,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 449963,
+        "attributedCloudRentCents": 1535755,
+        "attributedOwnedVariableCents": 449962,
+        "attributedComputeCents": 1985717,
+        "unallocatedCloudCents": 64245,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 142246,
+        "totalComputeCents": 2127963,
+        "companyRevenueCents": 4438873,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2497963,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1940910
+      },
+      "publicApi": {
+        "paidAccounts": 171,
+        "billedCents": 2561073,
+        "billCarryIn": 77135,
+        "billCarryOut": 335735,
+        "inputTokens": 102429000,
+        "outputTokens": 10242900
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 527,
+      "cashCents": 565379373,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 417416,
+        "attributedCloudRentCents": 1537911,
+        "attributedOwnedVariableCents": 417415,
+        "attributedComputeCents": 1955326,
+        "unallocatedCloudCents": 62089,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 140090,
+        "totalComputeCents": 2095416,
+        "companyRevenueCents": 5968873,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2465416,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 3503457
+      },
+      "publicApi": {
+        "paidAccounts": 171,
+        "billedCents": 2561073,
+        "billCarryIn": 335735,
+        "billCarryOut": 594335,
+        "inputTokens": 102429000,
+        "outputTokens": 10242900
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 528,
+      "cashCents": 568880373,
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 388950,
+        "attributedCloudRentCents": 1539682,
+        "attributedOwnedVariableCents": 388950,
+        "attributedComputeCents": 1928632,
+        "unallocatedCloudCents": 60318,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 138318,
+        "totalComputeCents": 2066950,
+        "companyRevenueCents": 5937950,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2436950,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 3501000
+      },
+      "publicApi": {
+        "paidAccounts": 172,
+        "billedCents": 2576050,
+        "billCarryIn": 594335,
+        "billCarryOut": 889535,
+        "inputTokens": 103028000,
+        "outputTokens": 10302800
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 529,
+      "cashCents": 570685724,
+      "totals": {
+        "cloudRentCents": 1920000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 310500,
+        "attributedCloudRentCents": 1540562,
+        "attributedOwnedVariableCents": 310500,
+        "attributedComputeCents": 1851062,
+        "unallocatedCloudCents": 379438,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 457438,
+        "totalComputeCents": 2308500,
+        "companyRevenueCents": 4483851,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2678500,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1805351
+      },
+      "publicApi": {
+        "paidAccounts": 172,
+        "billedCents": 2576051,
+        "billCarryIn": 889535,
+        "billCarryOut": 184735,
+        "inputTokens": 103028000,
+        "outputTokens": 10302800
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 530,
+      "cashCents": 572474574,
+      "totals": {
+        "cloudRentCents": 1920000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 297000,
+        "attributedCloudRentCents": 1862278,
+        "attributedOwnedVariableCents": 297000,
+        "attributedComputeCents": 2159278,
+        "unallocatedCloudCents": 57722,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 135722,
+        "totalComputeCents": 2295000,
+        "companyRevenueCents": 4453850,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2665000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1788850
+      },
+      "publicApi": {
+        "paidAccounts": 172,
+        "billedCents": 2576050,
+        "billCarryIn": 184735,
+        "billCarryOut": 479935,
+        "inputTokens": 103028000,
+        "outputTokens": 10302800
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 531,
+      "cashCents": 574267024,
+      "totals": {
+        "cloudRentCents": 1920000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 297000,
+        "attributedCloudRentCents": 1863598,
+        "attributedOwnedVariableCents": 297000,
+        "attributedComputeCents": 2160598,
+        "unallocatedCloudCents": 56402,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 134402,
+        "totalComputeCents": 2295000,
+        "companyRevenueCents": 4457450,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2665000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1792450
+      },
+      "publicApi": {
+        "paidAccounts": 172,
+        "billedCents": 2576050,
+        "billCarryIn": 479935,
+        "billCarryOut": 775135,
+        "inputTokens": 103028000,
+        "outputTokens": 10302800
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 532,
+      "cashCents": 576057075,
+      "totals": {
+        "cloudRentCents": 1920000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 297000,
+        "attributedCloudRentCents": 1860012,
+        "attributedOwnedVariableCents": 297000,
+        "attributedComputeCents": 2157012,
+        "unallocatedCloudCents": 59988,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 137988,
+        "totalComputeCents": 2295000,
+        "companyRevenueCents": 4455051,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2665000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1790051
+      },
+      "publicApi": {
+        "paidAccounts": 172,
+        "billedCents": 2576051,
+        "billCarryIn": 775135,
+        "billCarryOut": 70335,
+        "inputTokens": 103028000,
+        "outputTokens": 10302800
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 533,
+      "cashCents": 577865702,
+      "totals": {
+        "cloudRentCents": 1920000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 297000,
+        "attributedCloudRentCents": 1871726,
+        "attributedOwnedVariableCents": 297000,
+        "attributedComputeCents": 2168726,
+        "unallocatedCloudCents": 48274,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 126274,
+        "totalComputeCents": 2295000,
+        "companyRevenueCents": 4473627,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2665000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1808627
+      },
+      "publicApi": {
+        "paidAccounts": 173,
+        "billedCents": 2591027,
+        "billCarryIn": 70335,
+        "billCarryOut": 402135,
+        "inputTokens": 103627000,
+        "outputTokens": 10362700
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 534,
+      "cashCents": 579675529,
+      "totals": {
+        "cloudRentCents": 1920000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 297000,
+        "attributedCloudRentCents": 1870340,
+        "attributedOwnedVariableCents": 297000,
+        "attributedComputeCents": 2167340,
+        "unallocatedCloudCents": 49660,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 127660,
+        "totalComputeCents": 2295000,
+        "companyRevenueCents": 4474827,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2665000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1809827
+      },
+      "publicApi": {
+        "paidAccounts": 173,
+        "billedCents": 2591027,
+        "billCarryIn": 402135,
+        "billCarryOut": 733935,
+        "inputTokens": 103627000,
+        "outputTokens": 10362700
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    },
+    {
+      "week": 535,
+      "cashCents": 583667175,
+      "totals": {
+        "cloudRentCents": 1920000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 365182,
+        "attributedCloudRentCents": 1548514,
+        "attributedOwnedVariableCents": 365181,
+        "attributedComputeCents": 1913695,
+        "unallocatedCloudCents": 371486,
+        "sharedCarryCents": 1,
+        "sharedComputeCents": 449487,
+        "totalComputeCents": 2363182,
+        "companyRevenueCents": 6724828,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2733182,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 3991646
+      },
+      "publicApi": {
+        "paidAccounts": 173,
+        "billedCents": 2591028,
+        "billCarryIn": 733935,
+        "billCarryOut": 65735,
+        "inputTokens": 103627000,
+        "outputTokens": 10362700
+      },
+      "training": [
+        {
+          "id": "training-wave15-natural-command-2",
+          "status": "complete",
+          "completedWork": 26400000000,
+          "physicalWork": 14666666669,
+          "lastProgress": 2400000000
+        },
+        {
+          "id": "training-wave15-natural-command-4",
+          "status": "complete",
+          "completedWork": 39600000000,
+          "physicalWork": 22000000003,
+          "lastProgress": 7600000000
+        },
+        {
+          "id": "training-wave15-natural-command-9",
+          "status": "complete",
+          "completedWork": 16000000000,
+          "physicalWork": 8888888890,
+          "lastProgress": 8000000000
+        }
+      ]
+    }
+  ],
+  "assertions": [
+    "Authentic published Week500 company continues through ordinary paid commands with no resource grants",
+    "R4C consumes its entry fee, research GPU work, research staff and normal activation boundary",
+    "The 25% and 50% curricula preserve the same primary variance and separate replay evidence",
+    "Additional replay updates consume recorded owned GPU work and cost without duplicate billing",
+    "Pause and JSON reload preserve exact progress, targets and paid receipts",
+    "Fresh candidate capability and policy reports are required; replay alone does not grant reliability",
+    "A distinct combined corpus permits ordinary reliability tuning without weakening anti-repeat identities",
+    "The original hosted-only lineage stays ineligible for weight distribution after replay and reliability training",
+    "Finished research and development allocations are reassigned to serving before scheduling the two deliveries",
+    "The same resulting candidate completes code work; a simultaneous digest exposes connected-pool capacity limits and receives proportional credit",
+    "Renting and allocating 16 additional cloud CU enables the remaining digest to finish for its full $22500 invoice",
+    "Existing live model, ordinary token carry, terminal orders and feedback history stay independent",
+    "Every new week reconciles costs and revenue to the company ledger; final save reloads byte-for-byte"
+  ]
+}

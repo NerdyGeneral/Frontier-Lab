@@ -1,0 +1,151 @@
+{
+  "sourceCommit": "1ab56a80d4501ba214eb778a2ab20a38a6dc5547",
+  "sourceTree": "26c9f4a267c3d5814b2f77d2d290381ab63b62e4",
+  "sourceContent": "0.17.0",
+  "publishedSourcePreservation": {
+    "originalTrackedFilesVerifiedAgainstGitBlobs": 512,
+    "method": "git archive followed by independent Git blob checks; baseline production files remained unchanged"
+  },
+  "generator": {
+    "baselinePath": "/workspace/scratch/4788498e7ff5/wave16-baseline",
+    "file": "tests/wave17-oracle-generation.test.ts",
+    "runCommand": "node scripts/test-wave0.mjs wave17-oracle-generation",
+    "sha256": "adbf7656325cb2d4860ed7daf4443a29b372b4e28f7a0e8c70c0bb9fb09e96fc"
+  },
+  "originalActiveCheckpoint": {
+    "week": 537,
+    "checksum": "0591ee14",
+    "bytes": 1456229,
+    "sha256": "66b5aee72be12b7e2df96ab6a2e29c442574584aea57ae1f7994aa3d80621b25",
+    "matchesPublishedSnapshotExactly": true
+  },
+  "fixture": {
+    "file": "tests/fixtures/wave16-snapshot.json",
+    "week": 537,
+    "checksum": "97dad50f",
+    "bytes": 1457252,
+    "sha256": "9e7aa2e2a35b27289eb4c423cc8ce7cbfd3ef11d4e8bb481498808f1c9e30bf1",
+    "queuedCommands": [
+      "set_batch_capacity",
+      "set_batch_job_placement",
+      "set_batch_job_paused"
+    ]
+  },
+  "oracle": {
+    "file": "tests/fixtures/wave16-expected.json",
+    "futureFullStates": 16,
+    "futureOrdinaryCommands": 10,
+    "states": [
+      {
+        "week": 538,
+        "hash": "1e080129"
+      },
+      {
+        "week": 539,
+        "hash": "5d1a0660"
+      },
+      {
+        "week": 540,
+        "hash": "578af00f"
+      },
+      {
+        "week": 541,
+        "hash": "2b07453a"
+      },
+      {
+        "week": 542,
+        "hash": "d4203b84"
+      },
+      {
+        "week": 543,
+        "hash": "aebb4b7e"
+      },
+      {
+        "week": 544,
+        "hash": "07fd124e"
+      },
+      {
+        "week": 545,
+        "hash": "0a9699ed"
+      },
+      {
+        "week": 546,
+        "hash": "589b4c85"
+      },
+      {
+        "week": 547,
+        "hash": "abbb5a9e"
+      },
+      {
+        "week": 548,
+        "hash": "2e6531bc"
+      },
+      {
+        "week": 549,
+        "hash": "5de44383"
+      },
+      {
+        "week": 550,
+        "hash": "37c22caf"
+      },
+      {
+        "week": 551,
+        "hash": "8183cf51"
+      },
+      {
+        "week": 552,
+        "hash": "777805f1"
+      },
+      {
+        "week": 553,
+        "hash": "48f10a80"
+      }
+    ],
+    "finalWeek": 553,
+    "finalNormalizedChecksum": "48f10a80",
+    "finalSnapshotBytes": 1501532
+  },
+  "targetedAcceptance": {
+    "command": "node scripts/test-wave0.mjs wave17-compatibility",
+    "tests": 9,
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 37249.667116
+  },
+  "migration": {
+    "targetContent": "0.18.0",
+    "schemaVersion": 5,
+    "changesOnlyContentAndBuildHeaders": true,
+    "supportedPriorGenerations": 17,
+    "newCurriculumAdoptionRequired": true
+  },
+  "browserPersistenceUnitChecks": {
+    "archiveKey": "frontier-lab.wave16.original",
+    "originalBytesPreserved": true,
+    "existingArchivePreserved": true,
+    "archiveAndPrimaryWriteFailuresPreserveUsableSave": true
+  },
+  "observedLegacyOutcomes": {
+    "batchCompletedRequests": 40000,
+    "batchDeadlineWeek": 540,
+    "batchTerminalWeek": 540,
+    "batchInvoiceCents": 650000,
+    "batchCreditsCents": 0,
+    "placements": [
+      "owned:colocation:training",
+      "general-cloud",
+      "auto"
+    ],
+    "ordinaryCalibrationWorkCUw": 16,
+    "ordinaryCalibrationPhysicalCUw": 8.888888889,
+    "freshCandidateReports": 2
+  },
+  "guardChecks": [
+    "Unknown future versions rejected",
+    "Changed original checksums rejected before migration",
+    "Empty, null, false and structured curriculum selections rejected under all older headers",
+    "Retained curriculum-shaped plans rejected in every older fixture with paid training",
+    "An otherwise valid current two-skill curriculum cannot be relabeled as Wave16"
+  ]
+}

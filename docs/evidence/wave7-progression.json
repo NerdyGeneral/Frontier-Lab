@@ -1,0 +1,577 @@
+{
+  "sourceCommit": "870fd3792f162542740c53d7df154d52f8917c5f",
+  "originalWeek": 269,
+  "originalChecksum": "4246bec5",
+  "finalWeek": 328,
+  "finalHash": "dd80fdc4",
+  "cashCents": 258402168,
+  "minimumCashCents": 192780309,
+  "commandCount": 22,
+  "commands": [
+    {
+      "week": 269,
+      "id": "wave7-natural-command-1",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "R4"
+      }
+    },
+    {
+      "week": 272,
+      "id": "wave7-natural-command-2",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "R4B"
+      }
+    },
+    {
+      "week": 274,
+      "id": "wave7-natural-command-3",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "R9A"
+      }
+    },
+    {
+      "week": 276,
+      "id": "wave7-natural-command-4",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "R10A"
+      }
+    },
+    {
+      "week": 279,
+      "id": "wave7-natural-command-5",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "R11"
+      }
+    },
+    {
+      "week": 283,
+      "id": "wave7-natural-command-6",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "R11A"
+      }
+    },
+    {
+      "week": 288,
+      "id": "wave7-natural-command-7",
+      "payload": {
+        "kind": "start_system_rollout",
+        "method": "adapter-bank"
+      }
+    },
+    {
+      "week": 288,
+      "id": "wave7-natural-command-8",
+      "payload": {
+        "kind": "start_system_rollout",
+        "method": "action-receipts"
+      }
+    },
+    {
+      "week": 290,
+      "id": "wave7-natural-command-9",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "model-natural-business-command-4",
+        "packetId": "curated-natural-business-command-54",
+        "recipeId": "planner-curriculum"
+      }
+    },
+    {
+      "week": 293,
+      "id": "wave7-natural-command-10",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave7-natural-command-9",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 294,
+      "id": "wave7-natural-command-11",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-natural-business-command-4",
+        "suiteId": "independent-holdouts-1"
+      }
+    },
+    {
+      "week": 295,
+      "id": "wave7-natural-command-12",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave7-natural-command-9",
+        "suiteId": "independent-holdouts-1"
+      }
+    },
+    {
+      "week": 296,
+      "id": "wave7-natural-command-13",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "seed-0",
+        "packetId": "starter-public",
+        "packetIds": [
+          "starter-public",
+          "curated-natural-business-command-54"
+        ],
+        "recipeId": "compact-conversation-adaptation",
+        "asAdapter": true
+      }
+    },
+    {
+      "week": 298,
+      "id": "wave7-natural-command-14",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "seed-0",
+        "packetId": "curated-natural-business-command-54",
+        "recipeId": "coding-tools-adaptation",
+        "asAdapter": true
+      }
+    },
+    {
+      "week": 304,
+      "id": "wave7-natural-command-15",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave7-natural-command-13",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 305,
+      "id": "wave7-natural-command-16",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave7-natural-command-14",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 306,
+      "id": "wave7-natural-command-17",
+      "payload": {
+        "kind": "upgrade_product",
+        "productId": "product:natural-business-command-8",
+        "modelId": "model-wave7-natural-command-13"
+      }
+    },
+    {
+      "week": 306,
+      "id": "wave7-natural-command-18",
+      "payload": {
+        "kind": "upgrade_product",
+        "productId": "product:natural-business-command-67",
+        "modelId": "model-wave7-natural-command-14"
+      }
+    },
+    {
+      "week": 309,
+      "id": "wave7-natural-command-19",
+      "payload": {
+        "kind": "start_agent_job",
+        "orderId": "support-replies@77",
+        "modelId": "model-natural-business-command-159",
+        "mode": "approval",
+        "verification": "independent",
+        "tools": [
+          "read_ticket",
+          "send_reply"
+        ],
+        "maxSteps": 24,
+        "maxRetries": 2,
+        "workBudget": 32000000000
+      }
+    },
+    {
+      "week": 322,
+      "id": "wave7-natural-command-20",
+      "payload": {
+        "kind": "review_agent_job",
+        "jobId": "agent:0e424a52:support-replies:77",
+        "decision": "approve"
+      }
+    },
+    {
+      "week": 325,
+      "id": "wave7-natural-command-21",
+      "payload": {
+        "kind": "set_agent_job_paused",
+        "jobId": "agent:0e424a52:support-replies:77",
+        "paused": true
+      }
+    },
+    {
+      "week": 326,
+      "id": "wave7-natural-command-22",
+      "payload": {
+        "kind": "recover_agent_job",
+        "jobId": "agent:0e424a52:support-replies:77",
+        "maxSteps": 24,
+        "workBudget": 32000000000
+      }
+    }
+  ],
+  "milestones": [
+    {
+      "label": "Published Wave 6 company",
+      "week": 269,
+      "cashCents": 192780309,
+      "revenueCents": 3830800,
+      "expenseCents": 2575000,
+      "consumers": 1085,
+      "developers": 140,
+      "businesses": 15,
+      "trustBps": 9665
+    },
+    {
+      "label": "Four remaining research branches implemented",
+      "week": 290,
+      "cashCents": 217273281,
+      "revenueCents": 3764200,
+      "expenseCents": 2575000,
+      "consumers": 993,
+      "developers": 141,
+      "businesses": 15,
+      "trustBps": 9940
+    },
+    {
+      "label": "Planner trained and independent cases compared",
+      "week": 296,
+      "cashCents": 224652681,
+      "revenueCents": 3805000,
+      "expenseCents": 2575000,
+      "consumers": 1003,
+      "developers": 141,
+      "businesses": 16,
+      "trustBps": 10000
+    },
+    {
+      "label": "Two compatible adapters serving paid products",
+      "week": 309,
+      "cashCents": 236836477,
+      "revenueCents": 3578800,
+      "expenseCents": 2575000,
+      "consumers": 928,
+      "developers": 134,
+      "businesses": 16,
+      "trustBps": 9995
+    },
+    {
+      "label": "Interrupted action awaiting paid recovery and audit",
+      "week": 326,
+      "cashCents": 256079968,
+      "revenueCents": 3714400,
+      "expenseCents": 2575000,
+      "consumers": 939,
+      "developers": 139,
+      "businesses": 16,
+      "trustBps": 10000
+    },
+    {
+      "label": "Paid continuation completed one outcome and invoice",
+      "week": 328,
+      "cashCents": 258402168,
+      "revenueCents": 3755400,
+      "expenseCents": 2575000,
+      "consumers": 943,
+      "developers": 140,
+      "businesses": 16,
+      "trustBps": 10000
+    }
+  ],
+  "models": {
+    "plannerBaseId": "model-natural-business-command-4",
+    "plannerModelId": "model-wave7-natural-command-9",
+    "adapterChatId": "model-wave7-natural-command-13",
+    "adapterApiId": "model-wave7-natural-command-14"
+  },
+  "holdouts": {
+    "baseline": {
+      "protocol": "independent-support-v1",
+      "baselineReportId": "report-evaluation-natural-business-command-6",
+      "modelFingerprint": "1df52503",
+      "evidenceKey": "fa384525",
+      "totals": {
+        "cases": 100,
+        "claimedCompletions": 57,
+        "actualSuccesses": 48,
+        "unsuccessfulCases": 52,
+        "basicAccepted": 49,
+        "basicFalseAccepts": 1,
+        "independentAccepted": 48,
+        "independentFalseAccepts": 0,
+        "necessaryLookups": 166,
+        "plannedLookups": 209,
+        "repeatedLookups": 43,
+        "outOfScopeProposals": 6
+      }
+    },
+    "improved": {
+      "protocol": "independent-support-v1",
+      "baselineReportId": "report-evaluation-wave7-natural-command-10",
+      "modelFingerprint": "f5728a32",
+      "evidenceKey": "fa384525",
+      "totals": {
+        "cases": 100,
+        "claimedCompletions": 57,
+        "actualSuccesses": 48,
+        "unsuccessfulCases": 52,
+        "basicAccepted": 49,
+        "basicFalseAccepts": 1,
+        "independentAccepted": 48,
+        "independentFalseAccepts": 0,
+        "necessaryLookups": 166,
+        "plannedLookups": 202,
+        "repeatedLookups": 36,
+        "outOfScopeProposals": 6
+      }
+    }
+  },
+  "bank": {
+    "baseModelId": "seed-0",
+    "baseName": "Seed 0",
+    "baseMemoryMU": 2000000000,
+    "adapters": [
+      {
+        "id": "model-wave7-natural-command-13",
+        "name": "Conversation 10",
+        "evaluated": true,
+        "hosted": true,
+        "weights": true,
+        "activeProducts": [
+          "Basic Chat"
+        ]
+      },
+      {
+        "id": "model-wave7-natural-command-14",
+        "name": "Coding and tools adaptation 11",
+        "evaluated": true,
+        "hosted": true,
+        "weights": true,
+        "activeProducts": [
+          "Developer API"
+        ]
+      }
+    ],
+    "activeModels": 2,
+    "activeProducts": 2,
+    "independentMemoryMU": 4500000000,
+    "sharedMemoryMU": 2500000000
+  },
+  "recovery": {
+    "rootJobId": "agent:0e424a52:support-replies:77",
+    "childId": "agent:0e424a52:support-replies:77:recovery:1",
+    "originalReceipt": {
+      "id": "agent:0e424a52:support-replies:77:action",
+      "jobId": "agent:0e424a52:support-replies:77",
+      "companyId": "company-player",
+      "orderId": "support-replies@77",
+      "tool": "send_reply",
+      "week": 325,
+      "caseCount": 10,
+      "correct": true,
+      "authorizedBy": "human"
+    },
+    "priorWorkCUw": 2.7,
+    "finalWorkCUw": 2.98,
+    "history": [
+      {
+        "index": 0,
+        "stage": "plan",
+        "attempt": 0,
+        "tool": null,
+        "startedWeek": 310,
+        "completedWeek": 310,
+        "work": 400000000,
+        "physicalWork": 400000000,
+        "staff": 0,
+        "inputTokens": 5000,
+        "outputTokens": 1000,
+        "calls": 10,
+        "note": "Fixed workflow selected its required evidence steps."
+      },
+      {
+        "index": 1,
+        "stage": "lookup",
+        "attempt": 0,
+        "tool": "read_ticket",
+        "startedWeek": 310,
+        "completedWeek": 311,
+        "work": 20000000,
+        "physicalWork": 20000000,
+        "staff": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "calls": 10,
+        "note": "Read read_ticket within this order’s scope."
+      },
+      {
+        "index": 2,
+        "stage": "draft",
+        "attempt": 0,
+        "tool": null,
+        "startedWeek": 311,
+        "completedWeek": 312,
+        "work": 800000000,
+        "physicalWork": 800000000,
+        "staff": 0,
+        "inputTokens": 15000,
+        "outputTokens": 4000,
+        "calls": 10,
+        "note": "Model refused an allowed support case; no completion claimed."
+      },
+      {
+        "index": 3,
+        "stage": "check",
+        "attempt": 0,
+        "tool": null,
+        "startedWeek": 312,
+        "completedWeek": 313,
+        "work": 120000000,
+        "physicalWork": 120000000,
+        "staff": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "calls": 10,
+        "note": "Independent proposal check rejected; actual outcome remains unverified."
+      },
+      {
+        "index": 4,
+        "stage": "plan",
+        "attempt": 1,
+        "tool": null,
+        "startedWeek": 313,
+        "completedWeek": 314,
+        "work": 400000000,
+        "physicalWork": 400000000,
+        "staff": 0,
+        "inputTokens": 5000,
+        "outputTokens": 1000,
+        "calls": 10,
+        "note": "Fixed workflow selected its required evidence steps."
+      },
+      {
+        "index": 5,
+        "stage": "lookup",
+        "attempt": 1,
+        "tool": "read_ticket",
+        "startedWeek": 314,
+        "completedWeek": 315,
+        "work": 20000000,
+        "physicalWork": 20000000,
+        "staff": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "calls": 10,
+        "note": "Read read_ticket within this order’s scope."
+      },
+      {
+        "index": 6,
+        "stage": "draft",
+        "attempt": 1,
+        "tool": null,
+        "startedWeek": 315,
+        "completedWeek": 321,
+        "work": 800000000,
+        "physicalWork": 800000000,
+        "staff": 0,
+        "inputTokens": 15000,
+        "outputTokens": 4000,
+        "calls": 10,
+        "note": "Model claims the draft completes the task. This claim is not customer acceptance."
+      },
+      {
+        "index": 7,
+        "stage": "check",
+        "attempt": 1,
+        "tool": null,
+        "startedWeek": 321,
+        "completedWeek": 322,
+        "work": 120000000,
+        "physicalWork": 120000000,
+        "staff": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "calls": 10,
+        "note": "Independent proposal check passed; actual outcome remains unverified."
+      },
+      {
+        "index": 8,
+        "stage": "review",
+        "attempt": 1,
+        "tool": null,
+        "startedWeek": 322,
+        "completedWeek": 323,
+        "work": 0,
+        "physicalWork": 0,
+        "staff": 250000000,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "calls": 0,
+        "note": "Approved draft passed the paid commercial review."
+      },
+      {
+        "index": 9,
+        "stage": "action",
+        "attempt": 1,
+        "tool": "send_reply",
+        "startedWeek": 323,
+        "completedWeek": 325,
+        "work": 20000000,
+        "physicalWork": 20000000,
+        "staff": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "calls": 10,
+        "note": "Authorized simulated action applied once. Its durable receipt still needs a paid customer-outcome audit."
+      },
+      {
+        "index": 10,
+        "stage": "recover",
+        "attempt": 1,
+        "tool": null,
+        "startedWeek": 327,
+        "completedWeek": 327,
+        "work": 200000000,
+        "physicalWork": 200000000,
+        "staff": 0,
+        "inputTokens": 3000,
+        "outputTokens": 500,
+        "calls": 10,
+        "note": "Paid recovery reconciled the original order, admitted permissions, prior calls and once-only action receipt. No new customer action or invoice was created."
+      },
+      {
+        "index": 11,
+        "stage": "audit",
+        "attempt": 1,
+        "tool": null,
+        "startedWeek": 325,
+        "completedWeek": 328,
+        "work": 80000000,
+        "physicalWork": 80000000,
+        "staff": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "calls": 10,
+        "note": "Customer-outcome audit accepted the actual result and action receipt."
+      }
+    ],
+    "billedCents": 35000,
+    "invoiceId": "invoice:agent:agent:0e424a52:support-replies:77:328"
+  },
+  "assertions": [
+    "No granted cash, research, staff, data, models, or resources",
+    "No arrears throughout",
+    "All player commands admitted and committed",
+    "Same reserved cases compare planner behavior",
+    "Two adapters share one exact base",
+    "Paid continuation preserves one customer action and invoice"
+  ]
+}

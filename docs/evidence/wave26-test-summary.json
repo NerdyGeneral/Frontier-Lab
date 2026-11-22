@@ -1,0 +1,591 @@
+{
+  "schema_version": 1,
+  "release": "Frontier Lab Wave 26",
+  "generated_at_utc": "2026-11-09T17:29:58.988Z",
+  "base_git_commit_at_summary": "1ee3252600ce2881fd7ef350b94fee23cd3ae020",
+  "source_note": "The logs cover the Wave 26 working tree plus the explicitly recorded fixes. The base commit identifies the checkout, not a claim that uncommitted Wave 26 code existed in that commit.",
+  "verification_status": "all-selected-distinct-checks-passed-after-targeted-reruns",
+  "scope": {
+    "legacy_suite_files": 13,
+    "wave26_suite_files": 1,
+    "total_suite_files": 14,
+    "full_repository_suite_run": false,
+    "browser_build_and_publish_in_scope": false,
+    "suite_count_definition": "Suite counts refer to test files. The node:test reporter lists zero describe-style suites because these files declare top-level tests."
+  },
+  "totals": {
+    "legacy_distinct_checks": 178,
+    "wave26_distinct_checks": 9,
+    "total_distinct_checks": 187,
+    "initial_check_executions": 187,
+    "initial_passed": 181,
+    "initial_failed": 6,
+    "targeted_rerun_check_executions": 55,
+    "targeted_rerun_passed": 55,
+    "targeted_rerun_failed": 0,
+    "total_check_executions_in_retained_logs": 242,
+    "final_distinct_passed": 187,
+    "final_distinct_failed": 0,
+    "unresolved_initial_failures": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "reconciliation_method": [
+    "Parse each log only through its first node:test summary, excluding repeated failure diagnostics and appended prose from execution counts.",
+    "Map each reported title to a unique top-level test declaration in the selected source files. Stable W-prefixed check IDs reconcile the intentionally updated W0-C02 title.",
+    "Retain initial results separately. A targeted rerun changes final status only for checks that it actually executed.",
+    "Verify 178 legacy and 9 Wave 26 unique checks, 55 repeated check executions, and 187 final passing distinct checks. This is not a claim of one clean 187-check run.",
+    "Record SHA-256 hashes of all six evidence logs so the summary can be matched to the exact reviewed files."
+  ],
+  "suites": [
+    {
+      "suite": "wave0",
+      "test_file": "tests/wave0.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 33,
+      "initial_passed": 32,
+      "initial_failed": 1,
+      "rerun_check_executions": 33,
+      "rerun_passed": 33,
+      "final_distinct_passed": 33,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": [
+        "W0-C02"
+      ]
+    },
+    {
+      "suite": "wave1-persistence",
+      "test_file": "tests/wave1-persistence.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 55,
+      "initial_passed": 55,
+      "initial_failed": 0,
+      "rerun_check_executions": 0,
+      "rerun_passed": 0,
+      "final_distinct_passed": 55,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": []
+    },
+    {
+      "suite": "wave1-integration",
+      "test_file": "tests/wave1-integration.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 8,
+      "initial_passed": 8,
+      "initial_failed": 0,
+      "rerun_check_executions": 0,
+      "rerun_passed": 0,
+      "final_distinct_passed": 8,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": []
+    },
+    {
+      "suite": "wave2-lab",
+      "test_file": "tests/wave2-lab.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 12,
+      "initial_passed": 12,
+      "initial_failed": 0,
+      "rerun_check_executions": 0,
+      "rerun_passed": 0,
+      "final_distinct_passed": 12,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": []
+    },
+    {
+      "suite": "wave2-receipts",
+      "test_file": "tests/wave2-receipts.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 1,
+      "initial_passed": 1,
+      "initial_failed": 0,
+      "rerun_check_executions": 0,
+      "rerun_passed": 0,
+      "final_distinct_passed": 1,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": []
+    },
+    {
+      "suite": "wave4-research",
+      "test_file": "tests/wave4-research.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 12,
+      "initial_passed": 12,
+      "initial_failed": 0,
+      "rerun_check_executions": 0,
+      "rerun_passed": 0,
+      "final_distinct_passed": 12,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": []
+    },
+    {
+      "suite": "wave4-hardware",
+      "test_file": "tests/wave4-hardware.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 14,
+      "initial_passed": 11,
+      "initial_failed": 3,
+      "rerun_check_executions": 14,
+      "rerun_passed": 14,
+      "final_distinct_passed": 14,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": [
+        "W22-F01",
+        "W23-S01",
+        "W23-S02"
+      ]
+    },
+    {
+      "suite": "wave7-holdouts",
+      "test_file": "tests/wave7-holdouts.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 8,
+      "initial_passed": 8,
+      "initial_failed": 0,
+      "rerun_check_executions": 0,
+      "rerun_passed": 0,
+      "final_distinct_passed": 8,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": []
+    },
+    {
+      "suite": "wave17-compatibility",
+      "test_file": "tests/wave17-compatibility.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 9,
+      "initial_passed": 9,
+      "initial_failed": 0,
+      "rerun_check_executions": 0,
+      "rerun_passed": 0,
+      "final_distinct_passed": 9,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": []
+    },
+    {
+      "suite": "wave17-curriculum",
+      "test_file": "tests/wave17-curriculum.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 6,
+      "initial_passed": 5,
+      "initial_failed": 1,
+      "rerun_check_executions": 6,
+      "rerun_passed": 6,
+      "final_distinct_passed": 6,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": [
+        "W17-C02"
+      ]
+    },
+    {
+      "suite": "wave21-release",
+      "test_file": "tests/wave21-release.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 5,
+      "initial_passed": 5,
+      "initial_failed": 0,
+      "rerun_check_executions": 0,
+      "rerun_passed": 0,
+      "final_distinct_passed": 5,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": []
+    },
+    {
+      "suite": "wave24-studio",
+      "test_file": "tests/wave24-studio.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 5,
+      "initial_passed": 5,
+      "initial_failed": 0,
+      "rerun_check_executions": 0,
+      "rerun_passed": 0,
+      "final_distinct_passed": 5,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": []
+    },
+    {
+      "suite": "wave25-planning",
+      "test_file": "tests/wave25-planning.test.ts",
+      "coverage_group": "legacy",
+      "distinct_checks": 10,
+      "initial_passed": 10,
+      "initial_failed": 0,
+      "rerun_check_executions": 0,
+      "rerun_passed": 0,
+      "final_distinct_passed": 10,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": []
+    },
+    {
+      "suite": "wave26-synthetic",
+      "test_file": "tests/wave26-synthetic.test.ts",
+      "coverage_group": "wave26",
+      "distinct_checks": 9,
+      "initial_passed": 8,
+      "initial_failed": 1,
+      "rerun_check_executions": 2,
+      "rerun_passed": 2,
+      "final_distinct_passed": 9,
+      "final_distinct_failed": 0,
+      "resolved_check_ids": [
+        "W26-S04"
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "run_id": "legacy-initial",
+      "phase": "initial",
+      "log": "docs/evidence/wave26-regression.txt",
+      "log_sha256": "1287e0b68835822e58bf8dd3e2331aa90ad501e6c50d3b993543bd207889a3be",
+      "command": "node scripts/test-wave0.mjs wave0 wave1-persistence wave1-integration wave2-lab wave2-receipts wave4-research wave4-hardware wave7-holdouts wave17-compatibility wave17-curriculum wave21-release wave24-studio wave25-planning",
+      "suite_file_count": 13,
+      "suite_files": [
+        "tests/wave0.test.ts",
+        "tests/wave1-persistence.test.ts",
+        "tests/wave1-integration.test.ts",
+        "tests/wave2-lab.test.ts",
+        "tests/wave2-receipts.test.ts",
+        "tests/wave4-research.test.ts",
+        "tests/wave4-hardware.test.ts",
+        "tests/wave7-holdouts.test.ts",
+        "tests/wave17-compatibility.test.ts",
+        "tests/wave17-curriculum.test.ts",
+        "tests/wave21-release.test.ts",
+        "tests/wave24-studio.test.ts",
+        "tests/wave25-planning.test.ts"
+      ],
+      "checks_by_suite": {
+        "wave0": 33,
+        "wave1-persistence": 55,
+        "wave1-integration": 8,
+        "wave2-lab": 12,
+        "wave2-receipts": 1,
+        "wave4-research": 12,
+        "wave4-hardware": 14,
+        "wave7-holdouts": 8,
+        "wave17-compatibility": 9,
+        "wave17-curriculum": 6,
+        "wave21-release": 5,
+        "wave24-studio": 5,
+        "wave25-planning": 10
+      },
+      "reported": {
+        "tests": 178,
+        "describe_suites": 0,
+        "passed": 173,
+        "failed": 5,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 214513.213143
+      },
+      "failed_checks": [
+        {
+          "check_id": "W0-C02",
+          "title": "W0-C02: catalog has sixteen core programs and thirteen authored applied projects",
+          "suite": "wave0"
+        },
+        {
+          "check_id": "W17-C02",
+          "title": "W17-C02: admission requires two distinct non-focus sources, paid research and exact prior evidence, with no adapter or one-skill stacking",
+          "suite": "wave17-curriculum"
+        },
+        {
+          "check_id": "W22-F01",
+          "title": "W22-F01: alternate foundries freeze price, delivery and useful output on real rack orders",
+          "suite": "wave4-hardware"
+        },
+        {
+          "check_id": "W23-S01",
+          "title": "W23-S01: qualified orders compete with internal fabrication, then pay once on direct shipment",
+          "suite": "wave4-hardware"
+        },
+        {
+          "check_id": "W23-S02",
+          "title": "W23-S02: memory-heavy inference and training buyers accept different qualified designs",
+          "suite": "wave4-hardware"
+        }
+      ],
+      "note": "Original output retained with all five initial failures; source was transpiled before the later curriculum guard fix."
+    },
+    {
+      "run_id": "catalog-rerun",
+      "phase": "targeted-rerun",
+      "log": "docs/evidence/wave26-catalog-rerun.txt",
+      "log_sha256": "a543bf31f0fdf9c28760a01736212ddc9791c658142dc53b391b3e889f068104",
+      "command": "node scripts/test-wave0.mjs wave0",
+      "suite_file_count": 1,
+      "suite_files": [
+        "tests/wave0.test.ts"
+      ],
+      "checks_by_suite": {
+        "wave0": 33
+      },
+      "reported": {
+        "tests": 33,
+        "describe_suites": 0,
+        "passed": 33,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 8218.764719
+      },
+      "failed_checks": [],
+      "note": "Rerun after the catalog assertion explicitly retained sixteen R core programs, thirteen applied children and added S1/S2."
+    },
+    {
+      "run_id": "curriculum-rerun",
+      "phase": "targeted-rerun",
+      "log": "docs/evidence/wave26-curriculum-rerun.txt",
+      "log_sha256": "f8eccafb137aadc80142245a87722f95cad6fd7a6f9faf7dabff931dc7d0ee60",
+      "command": "node scripts/test-wave0.mjs wave17-curriculum",
+      "suite_file_count": 1,
+      "suite_files": [
+        "tests/wave17-curriculum.test.ts"
+      ],
+      "checks_by_suite": {
+        "wave17-curriculum": 6
+      },
+      "reported": {
+        "tests": 6,
+        "describe_suites": 0,
+        "passed": 6,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 114625.581086
+      },
+      "failed_checks": [],
+      "note": "Rerun after defensive array handling in the synthetic provenance guard restored malformed-draft preview rejection."
+    },
+    {
+      "run_id": "hardware-rerun",
+      "phase": "targeted-rerun",
+      "log": "docs/evidence/wave26-hardware-rerun.txt",
+      "log_sha256": "f4fe6490476b0d55c3d0ce5cc81637177d23469c1f3cc5c8fbf86b5e670f6679",
+      "command": "node scripts/test-wave0.mjs wave4-hardware",
+      "suite_file_count": 1,
+      "suite_files": [
+        "tests/wave4-hardware.test.ts"
+      ],
+      "checks_by_suite": {
+        "wave4-hardware": 14
+      },
+      "reported": {
+        "tests": 14,
+        "describe_suites": 0,
+        "passed": 14,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 15608.607304
+      },
+      "failed_checks": [],
+      "note": "Rerun after foundry and hardware-sales admission admitted content 0.26 while retaining historical restrictions."
+    },
+    {
+      "run_id": "synthetic-initial",
+      "phase": "initial",
+      "log": "docs/evidence/wave26-synthetic-checks.txt",
+      "log_sha256": "81accffe72763ad89ccd3ff2df0d23bfb746604c2db76c1011a0e87880dc95f1",
+      "command": "node scripts/test-wave0.mjs wave26-synthetic",
+      "suite_file_count": 1,
+      "suite_files": [
+        "tests/wave26-synthetic.test.ts"
+      ],
+      "checks_by_suite": {
+        "wave26-synthetic": 9
+      },
+      "reported": {
+        "tests": 9,
+        "describe_suites": 0,
+        "passed": 8,
+        "failed": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 124454.778044
+      },
+      "failed_checks": [
+        {
+          "check_id": "W26-S04",
+          "title": "W26-S04: an ordinary paid company generates, reviews, quarantines, trains and independently evaluates a distinct candidate",
+          "suite": "wave26-synthetic"
+        }
+      ],
+      "note": "The first reporter block records nine checks and the S04 failure. The file also contains an appended explanatory resolution note; that note is not counted as test execution."
+    },
+    {
+      "run_id": "synthetic-rerun",
+      "phase": "targeted-rerun",
+      "log": "docs/evidence/wave26-synthetic-rerun.txt",
+      "log_sha256": "7c15c458a7fe892c529134752dae05833014adc93d1a7970d30fdf84f9f0c03d",
+      "command": "node --import tsx --test --test-reporter=spec --test-name-pattern='W26-S03|W26-S04' tests/wave26-synthetic.test.ts",
+      "suite_file_count": 1,
+      "suite_files": [
+        "tests/wave26-synthetic.test.ts"
+      ],
+      "checks_by_suite": {
+        "wave26-synthetic": 2
+      },
+      "reported": {
+        "tests": 2,
+        "describe_suites": 0,
+        "passed": 2,
+        "failed": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 41816.118911
+      },
+      "failed_checks": [],
+      "note": "Only S03 and S04 ran. S04 compares the existing model-rights contract; S03 adds an inherited teacher transfer-rights rejection case."
+    }
+  ],
+  "resolved_issues": [
+    {
+      "check_id": "W0-C02",
+      "suite": "wave0",
+      "initial_title": "W0-C02: catalog has sixteen core programs and thirteen authored applied projects",
+      "initial_run": "legacy-initial",
+      "initial_log": "docs/evidence/wave26-regression.txt",
+      "status": "resolved-and-verified",
+      "category": "authored-catalog-expectation",
+      "observed_failure": "18 !== 16 because the no-parent filter also counted the two new synthetic programs.",
+      "resolution": "The test now preserves sixteen R core programs and thirteen applied children, explicitly asserts S1/S2, and asserts 31 total implemented discoveries.",
+      "production_logic_changed_for_resolution": false,
+      "source_files": [
+        "tests/wave0.test.ts"
+      ],
+      "verified_by_run": "catalog-rerun",
+      "verification_log": "docs/evidence/wave26-catalog-rerun.txt"
+    },
+    {
+      "check_id": "W17-C02",
+      "suite": "wave17-curriculum",
+      "initial_title": "W17-C02: admission requires two distinct non-focus sources, paid research and exact prior evidence, with no adapter or one-skill stacking",
+      "initial_run": "legacy-initial",
+      "initial_log": "docs/evidence/wave26-regression.txt",
+      "status": "resolved-and-verified",
+      "category": "malformed-public-preview",
+      "observed_failure": "TypeError: Cannot read properties of undefined (reading 'flatMap') in validateSyntheticTraining.",
+      "resolution": "Defensive Array.isArray checks around curriculum tracks, replay packet IDs and selected packet IDs allow malformed ordinary drafts to reach their established validator.",
+      "production_logic_changed_for_resolution": true,
+      "source_files": [
+        "src/modules/synthetic-training.ts"
+      ],
+      "verified_by_run": "curriculum-rerun",
+      "verification_log": "docs/evidence/wave26-curriculum-rerun.txt"
+    },
+    {
+      "check_id": "W22-F01",
+      "suite": "wave4-hardware",
+      "initial_title": "W22-F01: alternate foundries freeze price, delivery and useful output on real rack orders",
+      "initial_run": "legacy-initial",
+      "initial_log": "docs/evidence/wave26-regression.txt",
+      "status": "resolved-and-verified",
+      "category": "content-version-admission",
+      "observed_failure": "Explicit alternate foundries were rejected with Choose a supported production foundry.",
+      "resolution": "Chip production admission now permits both 0.23 and 0.26 content versions while retaining historical rejection.",
+      "production_logic_changed_for_resolution": true,
+      "source_files": [
+        "src/modules/chips.ts"
+      ],
+      "verified_by_run": "hardware-rerun",
+      "verification_log": "docs/evidence/wave26-hardware-rerun.txt"
+    },
+    {
+      "check_id": "W23-S01",
+      "suite": "wave4-hardware",
+      "initial_title": "W23-S01: qualified orders compete with internal fabrication, then pay once on direct shipment",
+      "initial_run": "legacy-initial",
+      "initial_log": "docs/evidence/wave26-regression.txt",
+      "status": "resolved-and-verified",
+      "category": "content-version-admission",
+      "observed_failure": "A listed buyer and foundry was rejected before the intended deadline check.",
+      "resolution": "Hardware-sales admission now permits both 0.23 and 0.26 content versions; the qualified-order and deadline tests pass again.",
+      "production_logic_changed_for_resolution": true,
+      "source_files": [
+        "src/modules/hardware-sales.ts"
+      ],
+      "verified_by_run": "hardware-rerun",
+      "verification_log": "docs/evidence/wave26-hardware-rerun.txt"
+    },
+    {
+      "check_id": "W23-S02",
+      "suite": "wave4-hardware",
+      "initial_title": "W23-S02: memory-heavy inference and training buyers accept different qualified designs",
+      "initial_run": "legacy-initial",
+      "initial_log": "docs/evidence/wave26-regression.txt",
+      "status": "resolved-and-verified",
+      "category": "content-version-admission",
+      "observed_failure": "Qualified memory-heavy inference and training buyer orders were rejected as an invalid buyer/foundry.",
+      "resolution": "The same hardware-sales version guard correction restores admission for the two distinct qualified designs.",
+      "production_logic_changed_for_resolution": true,
+      "source_files": [
+        "src/modules/hardware-sales.ts"
+      ],
+      "verified_by_run": "hardware-rerun",
+      "verification_log": "docs/evidence/wave26-hardware-rerun.txt"
+    },
+    {
+      "check_id": "W26-S04",
+      "suite": "wave26-synthetic",
+      "initial_title": "W26-S04: an ordinary paid company generates, reviews, quarantines, trains and independently evaluates a distinct candidate",
+      "initial_run": "synthetic-initial",
+      "initial_log": "docs/evidence/wave26-synthetic-checks.txt",
+      "status": "resolved-and-verified",
+      "category": "model-rights-test-expectation",
+      "observed_failure": "Expected a feedback field in inheritedModelRights, whose existing return type contains only hosted and weights.",
+      "resolution": "The test compares the two model-rights fields explicitly. Data-packet feedback rights remain separately asserted; no engine change was required.",
+      "production_logic_changed_for_resolution": false,
+      "source_files": [
+        "tests/wave26-synthetic.test.ts",
+        "src/modules/model-runtime.ts"
+      ],
+      "verified_by_run": "synthetic-rerun",
+      "verification_log": "docs/evidence/wave26-synthetic-rerun.txt"
+    }
+  ],
+  "migration_review": {
+    "status": "no-unresolved-findings",
+    "preservation": {
+      "finding": "The 0.23-to-0.26 schema-5 path validates the historical state, clones it, updates only contentVersion/buildVersion and validates again. W26-S01 verifies normalized deep equality of the 0.23 fixture, including all retained slices and queued commands.",
+      "verification_checks": [
+        "W26-S01"
+      ],
+      "evidence_log": "docs/evidence/wave26-synthetic-checks.txt"
+    },
+    "original_byte_archive": {
+      "prior_finding": "The archive key existed, but RecoveryKind, RECOVERY_OPTIONS and RECOVERY_KEYS initially did not expose it for recovery export.",
+      "resolution": "The content023 recovery option now exports frontier-lab.content023.original. The original string is archived before primary replacement, is never overwritten by later saves, and an archive failure leaves the primary untouched.",
+      "verification_checks": [
+        "W26-S02"
+      ],
+      "evidence_log": "docs/evidence/wave26-synthetic-checks.txt"
+    },
+    "future_field_rejection": {
+      "finding": "The recursive historical-version guard rejects synthetic fields, S1/S2 knowledge and commands, and targeted synthetic recipe evidence before migration and during source-state validation. W26-S09 includes a correctly checksummed synthetic state disguised under a 0.23 header.",
+      "verification_checks": [
+        "W26-S09"
+      ],
+      "evidence_log": "docs/evidence/wave26-synthetic-checks.txt"
+    }
+  },
+  "strengthened_coverage": [
+    {
+      "check_id": "W26-S03",
+      "description": "Added an explicit rejection case for a teacher without inherited transfer rights; the strengthened check passed in the targeted synthetic rerun.",
+      "evidence_log": "docs/evidence/wave26-synthetic-rerun.txt"
+    }
+  ],
+  "outstanding_concerns": [],
+  "scope_limits": [
+    "This summary covers the selected automated suites only. Browser workflow, production build and publication are handled separately.",
+    "Initial failures remain in the retained logs; final status is reconciled from passing targeted reruns, not from rewriting those logs or claiming a full repository rerun."
+  ]
+}

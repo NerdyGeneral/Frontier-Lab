@@ -1,0 +1,49 @@
+{
+  "protocol": "wave29-prior-validation-cache-1",
+  "source": {
+    "path": "/workspace/shared/frontier-lab/wave28-facility-trainingActive.json",
+    "week": 593,
+    "checksum": "c046a694",
+    "bytes": 1476889,
+    "contentVersion": "0.28.0",
+    "buildVersion": "0.28.0"
+  },
+  "scope": "Node memory-backed Storage: serialize/validate new state and persist it; disk, React and browser rendering are not timed.",
+  "method": "Six alternating writes of two valid same-week/same-revision company states. Each supplied state is newly cloned outside the timer. Cold writes use a new Storage instance seeded with exact previous bytes; warm writes use one instance primed by a successful write. Every timed call uses the production writeBrowserSnapshot path.",
+  "cold": {
+    "milliseconds": [
+      1052.6779150000002,
+      776.9928300000001,
+      573.1107279999997,
+      687.3629600000004,
+      586.0488530000002,
+      691.3451729999997
+    ],
+    "medianMilliseconds": 689.3540665,
+    "priorSnapshotParses": 6
+  },
+  "warm": {
+    "milliseconds": [
+      567.306681,
+      327.4955629999995,
+      485.5693680000004,
+      231.8147089999984,
+      690.9369319999987,
+      335.0212190000002
+    ],
+    "medianMilliseconds": 410.2952935000003,
+    "priorSnapshotParses": 0
+  },
+  "medianMillisecondsSaved": 279.05877299999975,
+  "medianReductionPercent": 40.48119632003356,
+  "checks": {
+    "sixColdPriorParses": true,
+    "noWarmPriorParses": true,
+    "everyWriteSucceeded": true
+  },
+  "notes": [
+    "The new GameState still receives serializeState validation on every call.",
+    "This bounded benchmark ran alongside selected tests, so timings are illustrative; parse-count assertions are deterministic.",
+    "No company state from this benchmark is installed in the application or exported as a playable campaign."
+  ]
+}

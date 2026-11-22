@@ -1,0 +1,359 @@
+{
+  "format": "frontier-lab",
+  "schemaVersion": 1,
+  "contentVersion": "0.1.0",
+  "checksum": "7864455e",
+  "state": {
+    "schemaVersion": 1,
+    "contentVersion": "0.1.0",
+    "buildVersion": "0.1.0",
+    "revision": 6,
+    "week": 3,
+    "nextId": 12,
+    "seed": "frontier-lab-wave-0",
+    "playerCompanyId": "company-player",
+    "random": {
+      "legacy-fixture:saved-event": {
+        "state": 2815934353,
+        "draws": 3
+      }
+    },
+    "slices": {
+      "company": {
+        "companies": {
+          "company-player": {
+            "id": "company-player",
+            "name": "Wave 0 Research",
+            "cashCents": 4500000,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 0,
+            "earnedRevenueCents": 0,
+            "totalOperatingExpenseCents": 300000,
+            "lastWeek": {
+              "revenueCents": 0,
+              "operatingExpenseCents": 100000,
+              "cashChangeCents": -100000
+            }
+          }
+        },
+        "ledger": [
+          {
+            "id": "company-player:cloud-rent:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          }
+        ],
+        "postedFacts": {
+          "company-player:cloud-rent:1": true,
+          "company-player:overhead:1": true,
+          "company-player:cloud-rent:2": true,
+          "company-player:overhead:2": true,
+          "company-player:cloud-rent:3": true,
+          "company-player:overhead:3": true
+        }
+      },
+      "compute": {
+        "fleets": {
+          "company-player": {
+            "companyId": "company-player",
+            "cloudCU": 4000000000,
+            "ownedCU": 0,
+            "memoryMU": 8000000000,
+            "occupiedMemoryMU": 0,
+            "allocation": {
+              "serving": 0,
+              "development": 2000000000,
+              "research": 0
+            },
+            "lastWork": {
+              "serving": 0,
+              "development": 0,
+              "research": 0
+            },
+            "reservedCU": 2000000000,
+            "deliveredEquipmentIds": [],
+            "inventory": {}
+          }
+        }
+      },
+      "models": {
+        "versions": {
+          "seed-0": {
+            "id": "seed-0",
+            "name": "Seed 0",
+            "companyId": "company-player",
+            "family": "compact",
+            "architecture": "dense",
+            "status": "checkpoint",
+            "capabilityBps": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            },
+            "reliabilityBps": 7000,
+            "residentMU": 2000000000,
+            "source": "Commercially usable starting checkpoint. The tutorial report is authored evidence, not a paid model call."
+          }
+        }
+      },
+      "data": {
+        "packets": {
+          "starter-public": {
+            "id": "starter-public",
+            "name": "Starter public sample",
+            "rawUnits": 100,
+            "readyUnits": 0,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 10000,
+              "documents": 3500,
+              "coding": 2500,
+              "tools": 2500
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": false
+          }
+        }
+      },
+      "research": {
+        "completed": [],
+        "active": []
+      },
+      "products": {
+        "activeIds": []
+      },
+      "markets": {
+        "payingConsumers": 0,
+        "waitlistRemaining": 40,
+        "activeRivalIds": []
+      },
+      "agents": {
+        "activeJobIds": []
+      },
+      "campaign": {
+        "milestones": [
+          "company-founded"
+        ],
+        "endingStreaks": {
+          "frontier": 0,
+          "platform": 0,
+          "specialist": 0
+        }
+      }
+    },
+    "queuedCommands": [
+      {
+        "id": "legacy-queued-rename-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+        "companyId": "company-player",
+        "issuedForWeek": 4,
+        "payload": {
+          "kind": "rename_company",
+          "name": "Legacy queued rename"
+        }
+      },
+      {
+        "id": "legacy-queued-allocation",
+        "companyId": "company-player",
+        "issuedForWeek": 4,
+        "payload": {
+          "kind": "allocate_compute",
+          "serving": 1000000000,
+          "development": 3000000000,
+          "research": 0
+        }
+      }
+    ],
+    "commandReceipts": {
+      "legacy-applied-rename": {
+        "id": "legacy-applied-rename",
+        "week": 1,
+        "status": "accepted"
+      }
+    },
+    "scheduled": [
+      {
+        "id": "legacy-equipment-order",
+        "companyId": "company-player",
+        "dueWeek": 4,
+        "kind": "equipment_delivery",
+        "targetId": "legacy-gpu-order",
+        "quantityCU": 2000000000,
+        "memoryMU": 4000000000
+      },
+      {
+        "id": "legacy-model-release",
+        "companyId": "company-player",
+        "dueWeek": 5,
+        "kind": "model_release",
+        "targetId": "seed-0"
+      }
+    ],
+    "journal": [
+      {
+        "id": "event-1",
+        "week": 0,
+        "category": "system",
+        "message": "Company founded. Seed 0 is ready for inspection. The lab clock is paused."
+      },
+      {
+        "id": "event-3",
+        "week": 0,
+        "category": "command",
+        "message": "Company name queued for next week."
+      },
+      {
+        "id": "event-4",
+        "week": 1,
+        "category": "command",
+        "message": "Company renamed to Wave 0 Research."
+      },
+      {
+        "id": "event-5",
+        "week": 1,
+        "category": "finance",
+        "message": "Week 1 settled. Cloud rent and overhead paid once."
+      },
+      {
+        "id": "event-6",
+        "week": 2,
+        "category": "finance",
+        "message": "Week 2 settled. Cloud rent and overhead paid once."
+      },
+      {
+        "id": "event-7",
+        "week": 3,
+        "category": "finance",
+        "message": "Week 3 settled. Cloud rent and overhead paid once."
+      },
+      {
+        "id": "event-9",
+        "week": 3,
+        "category": "command",
+        "message": "Company name queued for next week."
+      },
+      {
+        "id": "event-11",
+        "week": 3,
+        "category": "command",
+        "message": "Compute allocation queued for next week."
+      }
+    ],
+    "lastTick": {
+      "week": 3,
+      "phases": [
+        {
+          "phase": "commit",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "reserve",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "execute",
+          "facts": 2,
+          "events": 0
+        },
+        {
+          "phase": "resolve",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "settle",
+          "facts": 0,
+          "events": 1
+        },
+        {
+          "phase": "market",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "plan",
+          "facts": 0,
+          "events": 0
+        }
+      ],
+      "chargedCents": 100000,
+      "receivedCents": 0,
+      "scheduledCount": 2
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-07T19:47:34.112307+00:00",
+  "contentVersion": "0.16.0",
+  "schemaVersion": 5,
+  "acceptance": {
+    "command": "node scripts/test-wave0.mjs",
+    "tests": 564,
+    "passed": 564,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 171968.82044
+  },
+  "typecheck": {
+    "command": "./node_modules/.bin/tsc --noEmit --incremental false",
+    "exitCode": 0
+  },
+  "productionBuild": {
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+    "exitCode": 0
+  },
+  "whitespace": {
+    "command": "git diff --check",
+    "exitCode": 0
+  },
+  "compatibility": {
+    "priorPublishedCommit": "bfef7d414b23b271b37f5a136b8cc0a376647b1f",
+    "priorSourceTree": "3933071a1a4bd77bf0d4ae05fec883149dac8288",
+    "fixtureWeek": 477,
+    "fixtureChecksum": "101cc8f9",
+    "independentFutureStates": 23,
+    "finalWeek": 500,
+    "finalNormalizedChecksum": "38350449",
+    "fixture": "tests/fixtures/wave14-snapshot.json",
+    "oracle": "tests/fixtures/wave14-expected.json"
+  },
+  "naturalCampaign": {
+    "receipt": "docs/evidence/wave15-progression.json",
+    "startWeek": 500,
+    "endWeek": 535,
+    "commands": 18,
+    "finalChecksum": "9a5b6de8",
+    "snapshotBytes": 1451812
+  },
+  "browser": {
+    "receipt": "docs/evidence/wave15-browser.json",
+    "startWeek": 504,
+    "endWeek": 512,
+    "finalChecksum": "1c47207f",
+    "originalPreviewRestoredExactly": true,
+    "appOriginErrors": 0
+  },
+  "audience": "Existing owner-private Site; no sharing changes",
+  "persistence": "Prior saves preserved; original preview restored exactly"
+}

@@ -1,0 +1,22 @@
+✔ W0-T01: clock starts paused and ten active seconds advance one week at 1x (1.583604ms)
+✔ W0-T02: supported speeds change active-time rate without changing week size (0.627849ms)
+✔ W0-T03: hidden time pauses rather than catching up or resuming itself (0.246379ms)
+✔ W0-T04: long scheduler suspension is discarded instead of creating overdue weeks (0.446232ms)
+✔ W0-T05: a speed change does not retroactively bill prior wall-clock time (0.227329ms)
+✔ W0-T06: a pause inside the callback prevents later automatic steps (0.301016ms)
+✔ W0-T07: reset and disposal discard elapsed timing state (0.194614ms)
+✔ W29-B01: rapid repeated activation admits one deferred operation (3.339854ms)
+✔ W29-B02: hidden-page cancellation prevents an old callback from changing a later run (6.641746ms)
+✔ W29-B03: an executing step stays atomic and rejects reentrant work (0.283759ms)
+✔ W29-B04: failed work releases the admission guard for an explicit retry (2.747033ms)
+✔ W29-B05: scheduler failure cannot leave the UI permanently busy (1.051836ms)
+✔ W29-B06: work waits for both a frame and a later browser task, and either stage cancels (1.437209ms)
+✔ W29-B07: deferred non-week work preserves partial clock progress without counting its wall time (4.047694ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 600.618943

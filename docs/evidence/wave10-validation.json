@@ -1,0 +1,63 @@
+{
+  "date": "2026-11-07",
+  "wave": 10,
+  "contentVersion": "0.11.0",
+  "buildVersion": "0.11.0",
+  "schemaVersion": 5,
+  "sourceBaseCommit": "de0cb0a0c4b2b3ca8fb1cc9534b528f86fd85b6e",
+  "typecheck": {
+    "command": "npm run typecheck",
+    "status": "passed"
+  },
+  "tests": {
+    "command": "npm test",
+    "status": "passed",
+    "tests": 406,
+    "passed": 406,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 73337.68555
+  },
+  "productionBuild": {
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+    "status": "passed"
+  },
+  "browser": {
+    "status": "passed",
+    "evidence": "wave10-browser.json",
+    "week": 408,
+    "snapshotBytes": 1504361,
+    "checksum": "877897ec",
+    "exactReloadExport": true,
+    "exactOriginalRestore": true
+  },
+  "naturalProgression": {
+    "status": "passed",
+    "evidence": "wave10-progression.json",
+    "startingWeek": 389,
+    "finalWeek": 408,
+    "commands": 8,
+    "snapshotBytes": 1505616,
+    "checksum": "282813c5"
+  },
+  "compatibility": {
+    "olderWaves": "0\u20139",
+    "authenticOracleSource": "0.10.0",
+    "futureFullStates": 12,
+    "weeks": [
+      382,
+      393
+    ],
+    "normalizedFields": [
+      "contentVersion",
+      "buildVersion"
+    ],
+    "originalBytesArchived": true
+  },
+  "scope": {
+    "newDependencies": false,
+    "liveModelCalls": false,
+    "realBillingIntegration": false,
+    "audienceChange": false
+  }
+}

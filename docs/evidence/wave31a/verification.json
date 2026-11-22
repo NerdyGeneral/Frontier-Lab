@@ -1,0 +1,385 @@
+{
+  "recorded_date": "2026-11-10",
+  "candidate_build": "0.31.0",
+  "content_version": "0.28.0",
+  "save_schema": 5,
+  "status": "All planned Wave31A source validation checks passed; production build complete",
+  "baseline": {
+    "published_site_version": 35,
+    "build": "0.30.5",
+    "commit": "4d6fdd47b208b2a40a682ca9a611716220940ed6",
+    "snapshot_files": 480,
+    "snapshot_sha256": "377ac307da000c47162c96c4df9a44b5431487e59fc2b9c6a253fd2e3007ef4e"
+  },
+  "protected_source": {
+    "baseline_commit": "4d6fdd47b208b2a40a682ca9a611716220940ed6",
+    "files_checked": 206,
+    "raw_changed_files": [
+      "src/content/catalog.ts"
+    ],
+    "added_files": [],
+    "normalization": "src/content/catalog.ts buildVersion '0.31.0' -> '0.30.5' only",
+    "normalized_all_identical": true,
+    "baseline_aggregate_sha256": "640924bb9281a277eae68c10870a1b4c65f898c5fa97e7ca727f591c7d592342",
+    "current_raw_aggregate_sha256": "94bc593dd6c39350020b51b3e51888a824474da1c976b5d3fe6c401ea4ef23e7",
+    "current_normalized_aggregate_sha256": "640924bb9281a277eae68c10870a1b4c65f898c5fa97e7ca727f591c7d592342"
+  },
+  "tests": {
+    "focused_core": {
+      "tests": 101,
+      "passed": 101,
+      "failed": 0,
+      "runner": "node scripts/test-wave0.mjs wave30-task-state wave30-submission wave29-browser-task clock wave30b-task-state wave30b-journey wave30c-results wave29-persistence-cache wave30c-results-persistence wave30d-navigation",
+      "log_sha256": "fc894f7942362779a77bc88c4abe7408487fe3510a5736ef288082d3f846df0b"
+    },
+    "rendered_ui": {
+      "tests": 116,
+      "passed": 116,
+      "failed": 0,
+      "existing_checks": 108,
+      "new_data_checks": 8,
+      "runner": "node scripts/check-wave30e-ui.mjs tests/wave31-data-ui.test.tsx",
+      "log_sha256": "b00fb84f78ad99d10c77fc446155e34e134fd7694946c0fcac5701e9fccb4bd9",
+      "limit": "Static React rendering and helpers; mounted layout and keyboard checked separately"
+    },
+    "typecheck": {
+      "status": "passed",
+      "exit_code": 0
+    },
+    "production_build": {
+      "status": "passed",
+      "exit_code": 0,
+      "helper": "Official Sites build helper",
+      "pipeline": "Vinext/Vite",
+      "stages_passed": 5,
+      "nonblocking_warning": "Existing Vite chunk above 500 KB",
+      "runtime_performance_claim": false
+    },
+    "full_historical_gameplay_suite": "Not rerun"
+  },
+  "parity": {
+    "all_equal": true,
+    "checkpoints": 37,
+    "storage_comparisons": 9,
+    "new_company_equal_except_build_header": true,
+    "imported_state_save_and_command_normalization": "None; both implementations import identical baseline-normalized fixture bytes",
+    "detailed_output_sha256": "abef907685b2e69ffde9f8cb42f9543e9c8d65107f740c63732c7d6a343d6377",
+    "scenarios": [
+      {
+        "name": "opening-first-sale",
+        "checkpoints": 20,
+        "first_week": 0,
+        "last_week": 10,
+        "final_state_checksum": "fc18469f",
+        "final_save_sha256": "ce0fba7bb70d22da0ec1acbb16ebf76f6a6c98345d7db644fb88e934cbf1b680",
+        "storage_comparisons": 3
+      },
+      {
+        "name": "advanced-commercial-company",
+        "checkpoints": 7,
+        "first_week": 553,
+        "last_week": 555,
+        "final_state_checksum": "cbb8df6f",
+        "final_save_sha256": "8265118b9791bcda9a606cf0ecac1636027fa5690bb91b4744fcee619764f8f3",
+        "storage_comparisons": 3
+      },
+      {
+        "name": "focused-staffing-and-resources",
+        "checkpoints": 10,
+        "first_week": 0,
+        "last_week": 4,
+        "final_state_checksum": "d23869f0",
+        "final_save_sha256": "2f476740df29cffb51272a29a1c2718082f362122101265de1bd9e82aa6682b8",
+        "storage_comparisons": 3
+      }
+    ]
+  },
+  "browser": {
+    "method": "Actual same-origin game inside fixed-size iframe; managed display maximum width 1364 pixels",
+    "actual_browser_zoom_tested": true,
+    "studio_1440x900": {
+      "root_client": [
+        1440,
+        900
+      ],
+      "root_scroll": [
+        1440,
+        900
+      ],
+      "header_height": 76,
+      "room_viewport": [
+        892,
+        614
+      ],
+      "uncropped_scene_rounded": [
+        892,
+        595
+      ],
+      "inspector_box": [
+        320,
+        734
+      ],
+      "inspector_client_height": 732,
+      "inspector_scroll_height": 732,
+      "footer_top": 868,
+      "footer_height": 32
+    },
+    "prepare_1440x900": {
+      "frame_box": [
+        1100,
+        761
+      ],
+      "frame_top": 70,
+      "body_client_height": 524,
+      "body_scroll_height": 524,
+      "footer_top": 756,
+      "footer_height": 73,
+      "review_body_client_height": 470,
+      "review_body_scroll_height": 470
+    },
+    "studio_1920x1080": {
+      "root_client_equals_scroll": true,
+      "header_height": 76,
+      "sidebar_width": 192,
+      "pinned_projects": 1,
+      "scene_rounded": [
+        967,
+        645
+      ],
+      "inspector_box": [
+        360,
+        914
+      ],
+      "inspector_client_height": 912,
+      "inspector_scroll_height": 912
+    },
+    "list_view": {
+      "station_buttons": 6,
+      "room_hotspots": 0
+    },
+    "task_flow": {
+      "selected_starter_retained_through_staff_plan": true,
+      "double_confirm_queued_commands": 1,
+      "single_advance_final_week": 1,
+      "single_advance_cash_cents": 4600000,
+      "preparation_completed_staff_weeks": 1,
+      "preparation_required_staff_weeks": 2
+    },
+    "reflow_360x256": {
+      "horizontal_overflow": false,
+      "frame_scroll_height": 1922,
+      "frame_scrollers": 1,
+      "shift_tab_reaches_footer": true,
+      "tab_wraps_to_close": true,
+      "escape_returns_to_workbench": true
+    },
+    "disclosure_retained_across_resize": [
+      "1920 desktop",
+      "720x450",
+      "360x256",
+      "1440 desktop"
+    ],
+    "pending": [],
+    "evidence": "Observed managed Chrome session; screenshots retained in the execution QA workspace",
+    "native_chrome_zoom": [
+      {
+        "zoom_percent": 125,
+        "viewport_css": [
+          1090,
+          749
+        ],
+        "horizontal_overflow": false
+      },
+      {
+        "zoom_percent": 150,
+        "viewport_css": [
+          909,
+          624
+        ],
+        "body_client_height": 341,
+        "body_scroll_height": 591,
+        "footer_visible": true
+      },
+      {
+        "zoom_percent": 200,
+        "viewport_css": [
+          681,
+          468
+        ],
+        "frame_scrollers": 1,
+        "frame_scroll_height": 1099,
+        "shift_tab_reaches_footer": true
+      },
+      {
+        "zoom_percent": 400,
+        "viewport_css": [
+          340,
+          234
+        ],
+        "horizontal_overflow": false,
+        "keyboard_journey": [
+          "Review",
+          "Confirm for Week 1",
+          "Keep planning"
+        ],
+        "queued_commands": 1,
+        "time_advanced": false
+      }
+    ],
+    "mature_campus": {
+      "source_fixture": "tests/fixtures/wave27-canary-published.json",
+      "week": 553,
+      "imported_via_actual_ui": true,
+      "viewports": [
+        {
+          "viewport_css": [
+            1440,
+            900
+          ],
+          "root_client_equals_scroll": true,
+          "header_height": 76,
+          "inspector_client_height": 732,
+          "inspector_scroll_height": 732
+        },
+        {
+          "viewport_css": [
+            1920,
+            1080
+          ],
+          "root_client_equals_scroll": true,
+          "header_height": 76,
+          "inspector_client_height": 912,
+          "inspector_scroll_height": 912
+        }
+      ],
+      "all_six_hotspots_fit": true,
+      "large_company_values_fit": true,
+      "button_wrap_fix": {
+        "initial_horizontal_overflow_px": 7,
+        "corrected_client_width": 265,
+        "corrected_scroll_width": 265,
+        "corrected_height": 61,
+        "inspector_client_height_after": 732,
+        "inspector_scroll_height_after": 732
+      }
+    },
+    "restoration": {
+      "original_restored_via_ui": true,
+      "verified_by_final_download": true,
+      "exact_bytes_equal": true,
+      "bytes": 41831,
+      "sha256": "2e4dd272a8fb14d5640dcac03e6a4148c606ad862b6bb4fa7e8368e62a5a4fbc",
+      "chrome_zoom_percent_after": 100,
+      "workstation_mode_after": "Room"
+    },
+    "short_desktop_tasks": [
+      {
+        "viewport_css": [
+          1366,
+          768
+        ],
+        "frame_y": [
+          24,
+          744
+        ],
+        "frame_client_height": 718,
+        "frame_scroll_height": 718,
+        "body_client_height": 483,
+        "body_scroll_height": 524,
+        "footer_y": [
+          670,
+          743
+        ]
+      },
+      {
+        "viewport_css": [
+          1366,
+          650
+        ],
+        "frame_y": [
+          24,
+          626
+        ],
+        "frame_client_height": 600,
+        "frame_scroll_height": 600,
+        "body_client_height": 365,
+        "body_scroll_height": 524,
+        "footer_y": [
+          552,
+          625
+        ]
+      },
+      {
+        "viewport_css": [
+          1440,
+          780
+        ],
+        "frame_y": [
+          24,
+          756
+        ],
+        "frame_client_height": 730,
+        "frame_scroll_height": 730,
+        "body_client_height": 495,
+        "body_scroll_height": 524,
+        "footer_y": [
+          682,
+          755
+        ]
+      }
+    ],
+    "short_desktop_task_behavior": {
+      "vertical_scrollers": "One task-body scroller",
+      "footer_stable_within_frame": true,
+      "short_studio_document_vertical_scroll_allowed": true,
+      "short_studio_horizontal_overflow": false
+    },
+    "six_destination_smoke": {
+      "viewport_css": [
+        1440,
+        900
+      ],
+      "destinations": [
+        "Studio",
+        "Projects",
+        "Research",
+        "Products",
+        "Operations",
+        "Company"
+      ],
+      "actual_navigation_routes_correct": true,
+      "root_fits_all_destinations": true,
+      "internal_content_scroll_allowed": true,
+      "research_correction": {
+        "initial_root_scroll_height": 944,
+        "fix": "Play area position: relative contains absolutely positioned accessibility labels; desktop minimum-height and maximum-width overrides reset",
+        "final_root_client": [
+          1440,
+          900
+        ],
+        "final_root_scroll": [
+          1440,
+          900
+        ],
+        "content_client_height": 712,
+        "content_scroll_height": 1930
+      },
+      "scope": "Shared shell and route smoke checks; broader workspace redesigns remain later phases"
+    },
+    "captures": [
+      "docs/evidence/wave31a/studio-1440x900.png",
+      "docs/evidence/wave31a/data-1440x900.png",
+      "docs/evidence/wave31a/data-zoom-400.png"
+    ]
+  },
+  "privacy": "No original player save, snapshot payload, credential, or token included.",
+  "cleanup": {
+    "temporary_layout_page_removed_before_build": true,
+    "recursive_dist_matching_files": 0
+  },
+  "publication": {
+    "status_at_source_finalization": "Publication follows packaging and push",
+    "receipt_location": "Sites saved-version/deployment history and final release response",
+    "post_publication_source_edit_required": false
+  }
+}

@@ -1,0 +1,14 @@
+✔ W28-RB01: concurrent serving grants cannot exceed the shared training-profile ceiling, including across collector calls (39577.681356ms)
+✔ W28-RB02: explicit inference shares one ceiling across serving, development and research allocations (462.066216ms)
+✔ W28-RB03: the class ceiling counts reserved headroom and admits its exact boundary (699.665716ms)
+✔ W28-RB04: explicit training retains its shared serving-profile tradeoff across allocation categories (489.857335ms)
+✔ W28-RB05: general work can use the remaining physical pool and a separate unprofiled pool keeps its own capacity (569.077181ms)
+✔ W28-RB06: existing physical and connected-memory conservation remain independently enforced (428.113448ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 6
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 47319.8837

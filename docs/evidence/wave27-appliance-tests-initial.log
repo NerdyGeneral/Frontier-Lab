@@ -1,0 +1,35 @@
+✖ the paid natural appliance path ships, installs, accepts and settles one bundle with separate ordinary service (100042.193196ms)
+✔ quote, queue, import and commit preserve the same complete appliance payload and paid terms (4891.585361ms)
+✔ appliance qualification rejects unresearched, unevaluated, malformed and standalone-license paths (508.89084ms)
+✔ owned batches, hardware sales and appliances reserve the same queued foundry line (8498.505622ms)
+✔ snapshot validation rejects detached artifacts, unearned installation and duplicate or premature appliance settlement (28414.434793ms)
+✔ support shortfalls use existing service credits and termination without another appliance payment (13303.775933ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 161390.605223
+
+✖ failing tests:
+
+test at tests/wave27-appliance.test.ts:1:1513
+✖ the paid natural appliance path ships, installs, accepts and settles one bundle with separate ordinary service (100042.193196ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/wave27-appliance.test.ts:35:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

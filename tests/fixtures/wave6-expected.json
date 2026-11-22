@@ -1,0 +1,351 @@
+{
+  "sourceCommit": "870fd3792f162542740c53d7df154d52f8917c5f",
+  "sourceContent": "0.7.0",
+  "startingChecksum": "7b1924ee",
+  "startingWeek": 265,
+  "commands": [
+    {
+      "week": 265,
+      "id": "wave6-oracle-1",
+      "payload": {
+        "kind": "start_agent_job",
+        "orderId": "support-replies@66",
+        "modelId": "model-natural-business-command-159",
+        "mode": "approval",
+        "verification": "independent",
+        "tools": [
+          "read_ticket",
+          "send_reply"
+        ],
+        "maxSteps": 24,
+        "maxRetries": 2,
+        "workBudget": 32000000000
+      }
+    },
+    {
+      "week": 269,
+      "id": "wave6-oracle-2",
+      "payload": {
+        "kind": "review_agent_job",
+        "jobId": "agent:0e424a52:support-replies:66",
+        "decision": "approve"
+      }
+    }
+  ],
+  "fixtureWeek": 269,
+  "checksum": "4246bec5",
+  "weeks": [
+    {
+      "week": 270,
+      "hash": "6e5fef0f",
+      "cashCents": 194082309,
+      "revenueCents": 3877000,
+      "expenseCents": 2575000,
+      "trustBps": 9690,
+      "agent": {
+        "status": "running",
+        "stage": "action",
+        "spentWork": 1340000000,
+        "physicalWork": 1340000000,
+        "reviewStaff": 250000000,
+        "billedCents": 0,
+        "receiptId": null,
+        "invoiceId": null
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 6,
+          "termWeeksServed": 8,
+          "lifetimeBilledCents": 1700000
+        }
+      ]
+    },
+    {
+      "week": 271,
+      "hash": "22d0274c",
+      "cashCents": 195385509,
+      "revenueCents": 3878200,
+      "expenseCents": 2575000,
+      "trustBps": 9715,
+      "agent": {
+        "status": "running",
+        "stage": "audit",
+        "spentWork": 1360000000,
+        "physicalWork": 1360000000,
+        "reviewStaff": 250000000,
+        "billedCents": 0,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": null
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 6,
+          "termWeeksServed": 9,
+          "lifetimeBilledCents": 1725000
+        }
+      ]
+    },
+    {
+      "week": 272,
+      "hash": "43652467",
+      "cashCents": 196644384,
+      "revenueCents": 3833875,
+      "expenseCents": 2575000,
+      "trustBps": 9690,
+      "agent": {
+        "status": "running",
+        "stage": "audit",
+        "spentWork": 1360000000,
+        "physicalWork": 1360000000,
+        "reviewStaff": 250000000,
+        "billedCents": 0,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": null
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 6,
+          "termWeeksServed": 10,
+          "lifetimeBilledCents": 1750000
+        }
+      ]
+    },
+    {
+      "week": 273,
+      "hash": "bc543a04",
+      "cashCents": 197901667,
+      "revenueCents": 3832283,
+      "expenseCents": 2575000,
+      "trustBps": 9665,
+      "agent": {
+        "status": "running",
+        "stage": "audit",
+        "spentWork": 1360000000,
+        "physicalWork": 1360000000,
+        "reviewStaff": 250000000,
+        "billedCents": 0,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": null
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 6,
+          "termWeeksServed": 11,
+          "lifetimeBilledCents": 1775000
+        }
+      ]
+    },
+    {
+      "week": 274,
+      "hash": "eb489a75",
+      "cashCents": 199163906,
+      "revenueCents": 3837239,
+      "expenseCents": 2575000,
+      "trustBps": 9640,
+      "agent": {
+        "status": "running",
+        "stage": "audit",
+        "spentWork": 1360000000,
+        "physicalWork": 1360000000,
+        "reviewStaff": 250000000,
+        "billedCents": 0,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": null
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 6,
+          "termWeeksServed": 12,
+          "lifetimeBilledCents": 1800000
+        }
+      ]
+    },
+    {
+      "week": 275,
+      "hash": "4c9e751e",
+      "cashCents": 200418506,
+      "revenueCents": 3829600,
+      "expenseCents": 2575000,
+      "trustBps": 9665,
+      "agent": {
+        "status": "running",
+        "stage": "audit",
+        "spentWork": 1384090909,
+        "physicalWork": 1384090909,
+        "reviewStaff": 250000000,
+        "billedCents": 0,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": null
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 7,
+          "termWeeksServed": 1,
+          "lifetimeBilledCents": 1825000
+        }
+      ]
+    },
+    {
+      "week": 276,
+      "hash": "73327056",
+      "cashCents": 201677906,
+      "revenueCents": 3834400,
+      "expenseCents": 2575000,
+      "trustBps": 9690,
+      "agent": {
+        "status": "running",
+        "stage": "audit",
+        "spentWork": 1388181818,
+        "physicalWork": 1388181818,
+        "reviewStaff": 250000000,
+        "billedCents": 0,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": null
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 7,
+          "termWeeksServed": 2,
+          "lifetimeBilledCents": 1850000
+        }
+      ]
+    },
+    {
+      "week": 277,
+      "hash": "cd00639b",
+      "cashCents": 202950106,
+      "revenueCents": 3847200,
+      "expenseCents": 2575000,
+      "trustBps": 9715,
+      "agent": {
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 1440000000,
+        "physicalWork": 1440000000,
+        "reviewStaff": 250000000,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:66:277"
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 7,
+          "termWeeksServed": 3,
+          "lifetimeBilledCents": 1875000
+        }
+      ]
+    },
+    {
+      "week": 278,
+      "hash": "6035e60f",
+      "cashCents": 204174706,
+      "revenueCents": 3799600,
+      "expenseCents": 2575000,
+      "trustBps": 9740,
+      "agent": {
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 1440000000,
+        "physicalWork": 1440000000,
+        "reviewStaff": 250000000,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:66:277"
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 7,
+          "termWeeksServed": 4,
+          "lifetimeBilledCents": 1900000
+        }
+      ]
+    },
+    {
+      "week": 279,
+      "hash": "a64f9a94",
+      "cashCents": 205401706,
+      "revenueCents": 3802000,
+      "expenseCents": 2575000,
+      "trustBps": 9765,
+      "agent": {
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 1440000000,
+        "physicalWork": 1440000000,
+        "reviewStaff": 250000000,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:66:277"
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 7,
+          "termWeeksServed": 5,
+          "lifetimeBilledCents": 1925000
+        }
+      ]
+    },
+    {
+      "week": 280,
+      "hash": "204ee3b7",
+      "cashCents": 206632306,
+      "revenueCents": 3805600,
+      "expenseCents": 2575000,
+      "trustBps": 9790,
+      "agent": {
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 1440000000,
+        "physicalWork": 1440000000,
+        "reviewStaff": 250000000,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:66:277"
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 7,
+          "termWeeksServed": 6,
+          "lifetimeBilledCents": 1950000
+        }
+      ]
+    },
+    {
+      "week": 281,
+      "hash": "65283396",
+      "cashCents": 207880306,
+      "revenueCents": 3823000,
+      "expenseCents": 2575000,
+      "trustBps": 9815,
+      "agent": {
+        "status": "complete",
+        "stage": "audit",
+        "spentWork": 1440000000,
+        "physicalWork": 1440000000,
+        "reviewStaff": 250000000,
+        "billedCents": 35000,
+        "receiptId": "agent:0e424a52:support-replies:66:action",
+        "invoiceId": "invoice:agent:agent:0e424a52:support-replies:66:277"
+      },
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 7,
+          "termWeeksServed": 7,
+          "lifetimeBilledCents": 1975000
+        }
+      ]
+    }
+  ]
+}

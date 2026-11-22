@@ -1,0 +1,306 @@
+{
+  "protocol": "wave28-public-serving-route-1",
+  "sourceWeek": 589,
+  "sourceChecksum": "74d08ad9",
+  "sourcePath": "/workspace/shared/frontier-lab/wave28-facility-servingActive.json",
+  "ordinaryCommandsOnly": true,
+  "customersReset": false,
+  "branches": [
+    {
+      "branch": "constrained",
+      "week": 591,
+      "checksum": "4428b7ec",
+      "path": "/workspace/shared/frontier-lab/wave28-facility-public-constrained.json",
+      "valid": true,
+      "commands": [
+        {
+          "week": 589,
+          "id": "command-3307",
+          "payload": {
+            "kind": "allocate_compute",
+            "serving": 128000000000,
+            "development": 0,
+            "research": 0
+          }
+        },
+        {
+          "week": 590,
+          "id": "command-3314",
+          "payload": {
+            "kind": "set_cloud_capacity",
+            "cu": 64000000000
+          }
+        }
+      ],
+      "facilityId": "facility-wave8-scale-command-3",
+      "rackId": null,
+      "relocationId": null,
+      "relocation": null,
+      "cloudCU": 64000000000,
+      "allocation": {
+        "serving": 128000000000,
+        "development": 0,
+        "research": 0
+      },
+      "sitePools": [
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "companyId": "company-player",
+          "name": "Training GPU · Site 1",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "hardwareId": "training",
+          "nominalCU": 56000000000,
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000,
+          "rackCount": 7,
+          "singleRackCU": 8000000000,
+          "singleRackMemoryMU": 16000000000,
+          "trainingBps": 18000,
+          "servingBps": 11000,
+          "variableCentsPerCUw": 7500,
+          "staffCoverageBps": 10000,
+          "powerCoverageBps": 10000,
+          "coolingCoverageBps": 10000,
+          "bottleneck": "",
+          "specialization": {
+            "id": "facility-specialization:command-3288",
+            "profile": "serving",
+            "activatedWeek": 589,
+            "trainingCapacityBps": 9000,
+            "servingCapacityBps": 10000,
+            "crossRackTrainingBps": 10000,
+            "servingVariableCostBps": 9000
+          }
+        }
+      ],
+      "services": [
+        {
+          "id": "product:natural-business-command-8",
+          "kind": "basic-chat",
+          "paidAccounts": 941,
+          "requestedWork": 15160000000,
+          "executedWork": 12439999999,
+          "fulfillmentBps": 8271,
+          "billedCents": 933961,
+          "physicalWork": 11309090909,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "baseRate": 7500,
+          "actualRate": 6750,
+          "ownedVariableCostCents": 76336,
+          "invoiceCount": 1
+        },
+        {
+          "id": "product:natural-business-command-67",
+          "kind": "developer-api",
+          "paidAccounts": 182,
+          "requestedWork": 56845360000,
+          "executedWork": 56845360000,
+          "fulfillmentBps": 10000,
+          "billedCents": 2725821,
+          "physicalWork": 56845360000,
+          "poolId": "general-cloud",
+          "baseRate": 0,
+          "actualRate": 0,
+          "ownedVariableCostCents": 0,
+          "invoiceCount": 1
+        },
+        {
+          "id": "product:natural-business-command-163",
+          "kind": "business-docs",
+          "paidAccounts": 22,
+          "requestedWork": 43560000000,
+          "executedWork": 43560000000,
+          "fulfillmentBps": 10000,
+          "billedCents": 660000,
+          "physicalWork": 39600000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "baseRate": 7500,
+          "actualRate": 6750,
+          "ownedVariableCostCents": 267300,
+          "invoiceCount": 1
+        }
+      ],
+      "costs": {
+        "cloudRentCents": 1280000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 343636,
+        "variableFactCount": 1
+      },
+      "minimumCashCents": 656409230
+    },
+    {
+      "branch": "efficient",
+      "week": 596,
+      "checksum": "058f7af6",
+      "path": "/workspace/shared/frontier-lab/wave28-facility-public-efficient.json",
+      "valid": true,
+      "commands": [
+        {
+          "week": 589,
+          "id": "command-3307",
+          "payload": {
+            "kind": "start_rack_relocation",
+            "rackId": "rack-wave8-scale-command-11",
+            "destination": "facility-wave8-scale-command-3"
+          }
+        },
+        {
+          "week": 594,
+          "id": "command-3328",
+          "payload": {
+            "kind": "allocate_compute",
+            "serving": 128000000000,
+            "development": 0,
+            "research": 0
+          }
+        },
+        {
+          "week": 595,
+          "id": "command-3334",
+          "payload": {
+            "kind": "set_cloud_capacity",
+            "cu": 64000000000
+          }
+        }
+      ],
+      "facilityId": "facility-wave8-scale-command-3",
+      "rackId": "rack-wave8-scale-command-11",
+      "relocationId": "rack-relocation:command-3307",
+      "relocation": {
+        "id": "rack-relocation:command-3307",
+        "companyId": "company-player",
+        "rackId": "rack-wave8-scale-command-11",
+        "sourceLocation": "colocation",
+        "destination": "facility-wave8-scale-command-3",
+        "restoreStatus": "installed",
+        "status": "complete",
+        "paused": false,
+        "startedWeek": 590,
+        "readyWeek": 594,
+        "completedWeek": 594,
+        "stageIndex": 3,
+        "stages": [
+          {
+            "startedWeek": 590,
+            "elapsedWeeks": 1,
+            "completedStaff": 250000000,
+            "completedWeek": 590
+          },
+          {
+            "startedWeek": 591,
+            "elapsedWeeks": 2,
+            "completedStaff": 0,
+            "completedWeek": 592
+          },
+          {
+            "startedWeek": 593,
+            "elapsedWeeks": 1,
+            "completedStaff": 750000000,
+            "completedWeek": 593
+          }
+        ],
+        "paidCents": 150000,
+        "paymentId": "rack-relocation-capital:rack-relocation:command-3307",
+        "hardwareId": "training",
+        "usableCU": 8000000000,
+        "purchaseCents": 3200000,
+        "originalInstalledWeek": 339,
+        "lastBottleneck": ""
+      },
+      "cloudCU": 64000000000,
+      "allocation": {
+        "serving": 128000000000,
+        "development": 0,
+        "research": 0
+      },
+      "sitePools": [
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "companyId": "company-player",
+          "name": "Training GPU · Site 1",
+          "ownership": "owned",
+          "location": "facility-wave8-scale-command-3",
+          "hardwareId": "training",
+          "nominalCU": 64000000000,
+          "capacityCU": 64000000000,
+          "memoryMU": 128000000000,
+          "rackCount": 8,
+          "singleRackCU": 8000000000,
+          "singleRackMemoryMU": 16000000000,
+          "trainingBps": 18000,
+          "servingBps": 11000,
+          "variableCentsPerCUw": 7500,
+          "staffCoverageBps": 10000,
+          "powerCoverageBps": 10000,
+          "coolingCoverageBps": 10000,
+          "bottleneck": "",
+          "specialization": {
+            "id": "facility-specialization:command-3288",
+            "profile": "serving",
+            "activatedWeek": 589,
+            "trainingCapacityBps": 9000,
+            "servingCapacityBps": 10000,
+            "crossRackTrainingBps": 10000,
+            "servingVariableCostBps": 9000
+          }
+        }
+      ],
+      "services": [
+        {
+          "id": "product:natural-business-command-8",
+          "kind": "basic-chat",
+          "paidAccounts": 938,
+          "requestedWork": 15140000000,
+          "executedWork": 15140000000,
+          "fulfillmentBps": 10000,
+          "billedCents": 1125600,
+          "physicalWork": 13763636364,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "baseRate": 7500,
+          "actualRate": 6750,
+          "ownedVariableCostCents": 92904,
+          "invoiceCount": 1
+        },
+        {
+          "id": "product:natural-business-command-67",
+          "kind": "developer-api",
+          "paidAccounts": 183,
+          "requestedWork": 57156840000,
+          "executedWork": 57156840000,
+          "fulfillmentBps": 10000,
+          "billedCents": 2740797,
+          "physicalWork": 57156840000,
+          "poolId": "general-cloud",
+          "baseRate": 0,
+          "actualRate": 0,
+          "ownedVariableCostCents": 0,
+          "invoiceCount": 1
+        },
+        {
+          "id": "product:natural-business-command-163",
+          "kind": "business-docs",
+          "paidAccounts": 20,
+          "requestedWork": 39600000000,
+          "executedWork": 39600000000,
+          "fulfillmentBps": 10000,
+          "billedCents": 600000,
+          "physicalWork": 36000000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "baseRate": 7500,
+          "actualRate": 6750,
+          "ownedVariableCostCents": 243000,
+          "invoiceCount": 1
+        }
+      ],
+      "costs": {
+        "cloudRentCents": 1280000,
+        "ownedFixedCents": 66000,
+        "ownedVariableCents": 335905,
+        "variableFactCount": 1
+      },
+      "minimumCashCents": 656409230
+    }
+  ],
+  "interpretation": "Cloud reduction alone cannot combine stranded capacity from separate pools into one Chat grant. The independent efficient branch separately pays and waits for the existing eighth rack to move into the owned site before reducing cloud. Chat and Documents then receive the actual serving tariff; API remains on cloud and receives no owned-site discount. These are different ordinary continuation weeks, so customer or invoice changes are not attributed to the profile."
+}

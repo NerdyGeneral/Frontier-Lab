@@ -1,0 +1,34 @@
+✔ W32-U01: every hire card displays its actual specialty and two secondary weekly outputs (102.871675ms)
+✔ W32-U02: founder point choices preserve saved fractions and the shared twenty-point limit (15.36134ms)
+✔ W32-U03: real paid onboarding displays zero current output until the actual ready week (85.636666ms)
+✔ W32-U04: fractional current and proposed employee output remain distinct without changing payroll (69.68932ms)
+✔ W32-U05: assignment review projects next week without falsely showing an onboarding employee as ready now (50.973895ms)
+✔ W32-U06: selecting an older employee keeps that person’s point profile and one review summary (63.504064ms)
+✔ W32-U07: invalid founder and employee output stays blocked without inventing a valid point preview (68.740508ms)
+✔ W32-U08: observers can read employee output but cannot submit a point change or hire (53.700458ms)
+✔ W32-U09: the team table adds secondary output to the founder and separates allocation from completed work (44.463913ms)
+✔ W32-P01: the six specialist profiles and displayed labels match the authored point contract (18.110927ms)
+✔ W32-P02: readiness and saved employee fractions scale every profile component exactly (1.668978ms)
+✔ W32-P03: the founder still shares twenty points and cannot create Hardware output (26.51637ms)
+✔ W32-P04: workforce totals include owned secondary output and exclude foreign employees (69.830766ms)
+✔ W32-P05: paid onboarding, assignment changes and dismissal affect actual weekly output at their boundaries (69.713735ms)
+✔ W32-P06: actual preparation gains thirty specialist points versus twenty founder points and does not bank idle output (214.165326ms)
+✔ W32-P07: a researcher’s secondary Data points advance the real preparation job (50.003392ms)
+✔ W32-P08: real research consumes specialist points independently of its compute meter and following-week unlock (176.902568ms)
+✔ W32-P09: specialist Design points increase actual training supervision once while GPUs remain an independent limit (287.182021ms)
+✔ W32-P10: simultaneous requests share each specialty budget without cross-role borrowing or double grants (39.938664ms)
+✔ W32-P11: an owner that grants the same specialist output twice rolls back the entire week (42.718338ms)
+✔ W32-P12: point-based planning previews stay pure and match the actual changed output after one boundary (118.48699ms)
+✔ W32-P13: authentic 0.28 progress and queued assignments migrate without changing any saved economic field (44.414036ms)
+✔ W32-P14: save/reload preserves future point grants and progress without replaying work or recruitment (142.644027ms)
+✔ W32-P15: a real mature company preserves paid history and continues deterministically with the new matrix (11622.025115ms)
+✔ W32-P16: the first point-version save archives exact 0.28 bytes and write failures preserve the old company (6.256579ms)
+✔ W32-P17: two paid Design specialists can meet foundation Research admission through secondary output (11388.565628ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 24833.013232

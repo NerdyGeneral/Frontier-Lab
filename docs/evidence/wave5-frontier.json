@@ -1,0 +1,286 @@
+{
+  "result": "natural-frontier",
+  "source": {
+    "entry": "createInitialState(CONTENT)",
+    "seed": "frontier-lab-wave-0",
+    "buildVersion": "0.6.0",
+    "contentVersion": "0.6.0",
+    "schemaVersion": 5,
+    "initialCashCents": 4800000,
+    "rivals": [
+      {
+        "companyId": "rival-atlas",
+        "lastActionWeek": 24,
+        "withdrawn": false
+      },
+      {
+        "companyId": "rival-swift",
+        "lastActionWeek": 232,
+        "withdrawn": false
+      },
+      {
+        "companyId": "rival-harbor",
+        "lastActionWeek": 186,
+        "withdrawn": true
+      }
+    ],
+    "directStateMutation": false,
+    "externalFunding": false
+  },
+  "reproduce": {
+    "test": "npm test -- wave5-frontier",
+    "opening": "openNaturalBusiness().funded(30_000_000)",
+    "continuation": "continueToFrontier(opening.state)",
+    "exports": "Set FRONTIER_CAMPAIGN_EXPORT to an absolute snapshot path and FRONTIER_CAMPAIGN_RECEIPT to an absolute metrics path."
+  },
+  "openingWeek": 96,
+  "achievedWeek": 235,
+  "commands": 143,
+  "commandKinds": {
+    "prepare_data": 5,
+    "allocate_compute": 53,
+    "assign_founder": 6,
+    "start_training": 5,
+    "evaluate_model": 4,
+    "deploy_product": 2,
+    "set_cloud_capacity": 15,
+    "hire_staff": 10,
+    "order_rack": 8,
+    "install_rack": 8,
+    "start_research": 7,
+    "start_system_rollout": 1,
+    "buy_data": 4,
+    "curate_data": 7,
+    "upgrade_product": 1,
+    "dismiss_staff": 7
+  },
+  "finances": {
+    "minimumContinuationCashCents": 5712688,
+    "finalCashCents": 17818485,
+    "finalRevenueCents": 1161600,
+    "finalOperatingExpenseCents": 494785,
+    "totalEarnedRevenueCents": 142162278,
+    "totalOperatingExpenseCents": 110143793,
+    "purchasedHardwareCents": 19000000,
+    "purchasedDataCents": 3600000,
+    "foundationEntryFeeCents": 7000000
+  },
+  "hardware": {
+    "generalRacks": 3,
+    "memoryRichRacks": 5,
+    "ownedCU": 64,
+    "cloudCU": 0
+  },
+  "modelId": "model-frontier:frontier-calibration:71",
+  "capabilityBps": {
+    "conversation": 8862,
+    "documents": 8599,
+    "coding": 8321,
+    "tools": 8159
+  },
+  "reliabilityBps": 9280,
+  "modeledBehavior": {
+    "confidentErrorBps": 525,
+    "falseRefusalBps": 700
+  },
+  "heldOutBehavior": {
+    "usefulAnswers": 78,
+    "confidentErrors": 2,
+    "falseRefusals": 7,
+    "clarifications": 3,
+    "correctPolicyRefusals": 10,
+    "eligibleCases": 90
+  },
+  "foundation": {
+    "physicalTrainingCUw": 1285.714285715,
+    "usefulTrainingCUw": 990,
+    "workspaceMU": 72,
+    "preparationStaffWeeks": 20,
+    "broadUnits": 1500,
+    "qualityBps": {
+      "conversation": 9500,
+      "documents": 9500,
+      "coding": 9500,
+      "tools": 9500
+    }
+  },
+  "stages": [
+    {
+      "stage": "Natural operating company",
+      "week": 96,
+      "cashCents": 30435200,
+      "revenueCents": 830400,
+      "expenseCents": 280000,
+      "cloudCU": 13,
+      "ownedCU": 0,
+      "hash": "d7914ff4"
+    },
+    {
+      "stage": "Paid racks and specialist workforce",
+      "week": 112,
+      "cashCents": 12749850,
+      "revenueCents": 802800,
+      "expenseCents": 537550,
+      "cloudCU": 0,
+      "ownedCU": 64,
+      "hash": "e5ee7a32"
+    },
+    {
+      "stage": "Research and supervision paid",
+      "week": 131,
+      "cashCents": 15826700,
+      "revenueCents": 759600,
+      "expenseCents": 533450,
+      "cloudCU": 0,
+      "ownedCU": 64,
+      "hash": "1cca8b96"
+    },
+    {
+      "stage": "Second evaluated compact release",
+      "week": 142,
+      "cashCents": 16241138,
+      "revenueCents": 139878,
+      "expenseCents": 492090,
+      "cloudCU": 0,
+      "ownedCU": 64,
+      "hash": "a7c4662c"
+    },
+    {
+      "stage": "Three distinct broad editions curated to 95",
+      "week": 163,
+      "cashCents": 15507688,
+      "revenueCents": 632400,
+      "expenseCents": 523850,
+      "cloudCU": 0,
+      "ownedCU": 64,
+      "hash": "e1d5f4d5"
+    },
+    {
+      "stage": "Stable large foundation complete",
+      "week": 204,
+      "cashCents": 5785909,
+      "revenueCents": 626400,
+      "expenseCents": 553179,
+      "cloudCU": 0,
+      "ownedCU": 64,
+      "hash": "50cfa3df"
+    },
+    {
+      "stage": "Frontier evaluated",
+      "week": 209,
+      "cashCents": 6036538,
+      "revenueCents": 625200,
+      "expenseCents": 541500,
+      "cloudCU": 0,
+      "ownedCU": 64,
+      "hash": "430943a5"
+    },
+    {
+      "stage": "Frontier API launched beside compact consumers",
+      "week": 212,
+      "cashCents": 6118188,
+      "revenueCents": 626400,
+      "expenseCents": 753350,
+      "cloudCU": 0,
+      "ownedCU": 64,
+      "hash": "4e5575a5"
+    },
+    {
+      "stage": "Frontier laboratory earned",
+      "week": 235,
+      "cashCents": 17818485,
+      "revenueCents": 1161600,
+      "expenseCents": 494785,
+      "cloudCU": 0,
+      "ownedCU": 64,
+      "hash": "7da89a9a"
+    }
+  ],
+  "checkpoint": {
+    "week": 235,
+    "checksum": "7da89a9a",
+    "format": "frontier-lab"
+  },
+  "proof": [
+    {
+      "week": 228,
+      "revenueCents": 1000800,
+      "operatingExpenseCents": 435040,
+      "cashCents": 13458225,
+      "reserveRequiredCents": 2024000,
+      "consumers": 579,
+      "developers": 51,
+      "serviceBps": 10000
+    },
+    {
+      "week": 229,
+      "revenueCents": 1029600,
+      "operatingExpenseCents": 445365,
+      "cashCents": 14042460,
+      "reserveRequiredCents": 2024000,
+      "consumers": 583,
+      "developers": 55,
+      "serviceBps": 10000
+    },
+    {
+      "week": 230,
+      "revenueCents": 1051200,
+      "operatingExpenseCents": 452950,
+      "cashCents": 14640710,
+      "reserveRequiredCents": 2024000,
+      "consumers": 586,
+      "developers": 58,
+      "serviceBps": 10000
+    },
+    {
+      "week": 231,
+      "revenueCents": 1065600,
+      "operatingExpenseCents": 458965,
+      "cashCents": 15247345,
+      "reserveRequiredCents": 2024000,
+      "consumers": 588,
+      "developers": 60,
+      "serviceBps": 10000
+    },
+    {
+      "week": 232,
+      "revenueCents": 1087200,
+      "operatingExpenseCents": 467870,
+      "cashCents": 15866675,
+      "reserveRequiredCents": 2024000,
+      "consumers": 591,
+      "developers": 63,
+      "serviceBps": 10000
+    },
+    {
+      "week": 233,
+      "revenueCents": 1116000,
+      "operatingExpenseCents": 478195,
+      "cashCents": 16504480,
+      "reserveRequiredCents": 2024000,
+      "consumers": 595,
+      "developers": 67,
+      "serviceBps": 10000
+    },
+    {
+      "week": 234,
+      "revenueCents": 1131600,
+      "operatingExpenseCents": 484410,
+      "cashCents": 17151670,
+      "reserveRequiredCents": 2024000,
+      "consumers": 598,
+      "developers": 69,
+      "serviceBps": 10000
+    },
+    {
+      "week": 235,
+      "revenueCents": 1161600,
+      "operatingExpenseCents": 494785,
+      "cashCents": 17818485,
+      "reserveRequiredCents": 2024000,
+      "consumers": 603,
+      "developers": 73,
+      "serviceBps": 10000
+    }
+  ]
+}

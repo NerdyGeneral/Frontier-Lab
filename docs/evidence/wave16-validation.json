@@ -1,0 +1,73 @@
+{
+  "date": "2026-11-07T21:33:40.088Z",
+  "contentVersion": "0.17.0",
+  "schemaVersion": 5,
+  "acceptance": {
+    "command": "node scripts/test-wave0.mjs",
+    "tests": 584,
+    "passed": 584,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 177743.922355
+  },
+  "typecheck": {
+    "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+    "exitCode": 0
+  },
+  "productionBuild": {
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+    "exitCode": 0,
+    "note": "This record is written by the ordered publication workflow only after the production build succeeds."
+  },
+  "whitespace": {
+    "command": "git diff --check",
+    "exitCode": 0
+  },
+  "compatibility": {
+    "priorPublishedCommit": "3132248a7e1142a1783d9d352a9bdc889a16c92f",
+    "priorSourceTree": "701d3995ab33b619811c4cb76d6ae1f3e5e1575c",
+    "fixtureWeek": 511,
+    "fixtureChecksum": "4138abaa",
+    "originalCampaignCheckpoints": 8,
+    "independentFutureStates": 24,
+    "finalWeek": 535,
+    "finalNormalizedChecksum": "9a5b6de8",
+    "priorGenerations": 16,
+    "fixture": "tests/fixtures/wave15-snapshot.json",
+    "oracle": "tests/fixtures/wave15-expected.json"
+  },
+  "naturalCampaign": {
+    "receipt": "docs/evidence/wave16-progression.json",
+    "startWeek": 535,
+    "endWeek": 540,
+    "commands": 2,
+    "finalChecksum": "6e77d37e",
+    "snapshotBytes": 1456012,
+    "commonWindow": [
+      536,
+      540
+    ],
+    "operatingExpenseSavingsCents": 1422728
+  },
+  "relocation": {
+    "receipt": "docs/evidence/wave16-relocation.json",
+    "startWeek": 522,
+    "endWeek": 528,
+    "missingPoolChecksum": "29a66ba1",
+    "explicitRecoveryChecksum": "7107dd1d",
+    "silentFallback": false,
+    "unchangedDeadline": true
+  },
+  "browser": {
+    "receipt": "docs/evidence/wave16-browser.json",
+    "startWeek": 535,
+    "endWeek": 538,
+    "finalChecksum": "dcf7400d",
+    "originalPreviewRestoredExactly": true,
+    "pausedReloadExact": true,
+    "appOriginWarningsAndErrors": 0
+  },
+  "audience": "Existing owner-private Site; no sharing changes",
+  "scope": "Conditional batch placement and capacity planning; ordinary forecasts hold workload and readiness fixed and assume bills stay funded."
+}

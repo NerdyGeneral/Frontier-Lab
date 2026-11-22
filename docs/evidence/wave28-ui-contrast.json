@@ -1,0 +1,360 @@
+{
+  "wave": 28,
+  "scope": "Authored meaningful Campus/Gen2 text and status pairs, plus changed navigation labels; disabled controls/decorations excluded. Does not replace browser accessibility inspection.",
+  "method": "WCAG sRGB relative luminance; text threshold 4.5:1. Mobile translucent navigation measured against its authored opaque base color.",
+  "pairs": 50,
+  "failed": 0,
+  "minimumRatio": 5.101,
+  "results": [
+    {
+      "label": "Ink/body/headings",
+      "foreground": "#122f2d",
+      "background": "#f7f3e9",
+      "ratio": 12.89,
+      "pass": true
+    },
+    {
+      "label": "Ink/body/headings",
+      "foreground": "#122f2d",
+      "background": "#fffdf5",
+      "ratio": 14.026,
+      "pass": true
+    },
+    {
+      "label": "Muted copy and fact labels",
+      "foreground": "#52634e",
+      "background": "#f7f3e9",
+      "ratio": 5.825,
+      "pass": true
+    },
+    {
+      "label": "Muted copy and fact labels",
+      "foreground": "#52634e",
+      "background": "#fffdf5",
+      "ratio": 6.338,
+      "pass": true
+    },
+    {
+      "label": "Muted copy and fact labels",
+      "foreground": "#52634e",
+      "background": "#f9faf1",
+      "ratio": 6.139,
+      "pass": true
+    },
+    {
+      "label": "Muted copy and fact labels",
+      "foreground": "#52634e",
+      "background": "#f4f5e9",
+      "ratio": 5.866,
+      "pass": true
+    },
+    {
+      "label": "Muted copy and fact labels",
+      "foreground": "#52634e",
+      "background": "#f1f3e6",
+      "ratio": 5.749,
+      "pass": true
+    },
+    {
+      "label": "Muted copy and fact labels",
+      "foreground": "#52634e",
+      "background": "#f2f4e7",
+      "ratio": 5.8,
+      "pass": true
+    },
+    {
+      "label": "Kicker and pool coverage",
+      "foreground": "#4f6848",
+      "background": "#f7f3e9",
+      "ratio": 5.564,
+      "pass": true
+    },
+    {
+      "label": "Kicker and pool coverage",
+      "foreground": "#4f6848",
+      "background": "#fffdf5",
+      "ratio": 6.054,
+      "pass": true
+    },
+    {
+      "label": "Kicker and pool coverage",
+      "foreground": "#4f6848",
+      "background": "#f9faf1",
+      "ratio": 5.864,
+      "pass": true
+    },
+    {
+      "label": "Neutral status",
+      "foreground": "#52634e",
+      "background": "#eeeee3",
+      "ratio": 5.525,
+      "pass": true
+    },
+    {
+      "label": "Good status",
+      "foreground": "#175e50",
+      "background": "#e1eee0",
+      "ratio": 6.359,
+      "pass": true
+    },
+    {
+      "label": "Field labels",
+      "foreground": "#315447",
+      "background": "#f7f3e9",
+      "ratio": 7.612,
+      "pass": true
+    },
+    {
+      "label": "Field labels",
+      "foreground": "#315447",
+      "background": "#fffdf5",
+      "ratio": 8.282,
+      "pass": true
+    },
+    {
+      "label": "Field values",
+      "foreground": "#122f2d",
+      "background": "#fffdf5",
+      "ratio": 14.026,
+      "pass": true
+    },
+    {
+      "label": "Choice heading",
+      "foreground": "#123f34",
+      "background": "#f7f7ed",
+      "ratio": 10.906,
+      "pass": true
+    },
+    {
+      "label": "Choice heading",
+      "foreground": "#123f34",
+      "background": "#ebf3e7",
+      "ratio": 10.36,
+      "pass": true
+    },
+    {
+      "label": "Choice benefit",
+      "foreground": "#425b41",
+      "background": "#f7f7ed",
+      "ratio": 6.947,
+      "pass": true
+    },
+    {
+      "label": "Choice benefit",
+      "foreground": "#425b41",
+      "background": "#ebf3e7",
+      "ratio": 6.599,
+      "pass": true
+    },
+    {
+      "label": "Choice tradeoff",
+      "foreground": "#70501c",
+      "background": "#f7f7ed",
+      "ratio": 6.828,
+      "pass": true
+    },
+    {
+      "label": "Choice tradeoff",
+      "foreground": "#70501c",
+      "background": "#ebf3e7",
+      "ratio": 6.486,
+      "pass": true
+    },
+    {
+      "label": "Facts and pool heading",
+      "foreground": "#153e32",
+      "background": "#fffdf5",
+      "ratio": 11.67,
+      "pass": true
+    },
+    {
+      "label": "Facts and pool heading",
+      "foreground": "#153e32",
+      "background": "#f1f3e6",
+      "ratio": 10.585,
+      "pass": true
+    },
+    {
+      "label": "Facts and pool heading",
+      "foreground": "#153e32",
+      "background": "#f9faf1",
+      "ratio": 11.303,
+      "pass": true
+    },
+    {
+      "label": "Facts and pool heading",
+      "foreground": "#153e32",
+      "background": "#f2f4e7",
+      "ratio": 10.679,
+      "pass": true
+    },
+    {
+      "label": "Notice text",
+      "foreground": "#345b45",
+      "background": "#edf2e7",
+      "ratio": 6.764,
+      "pass": true
+    },
+    {
+      "label": "Warning text",
+      "foreground": "#795018",
+      "background": "#fbefe2",
+      "ratio": 6.237,
+      "pass": true
+    },
+    {
+      "label": "Progress label",
+      "foreground": "#52634e",
+      "background": "#fffdf5",
+      "ratio": 6.338,
+      "pass": true
+    },
+    {
+      "label": "Progress value",
+      "foreground": "#16483b",
+      "background": "#fffdf5",
+      "ratio": 10.187,
+      "pass": true
+    },
+    {
+      "label": "Pool table cells",
+      "foreground": "#193d33",
+      "background": "#f9faf1",
+      "ratio": 11.37,
+      "pass": true
+    },
+    {
+      "label": "Pool table cells",
+      "foreground": "#193d33",
+      "background": "#f0f5e9",
+      "ratio": 10.783,
+      "pass": true
+    },
+    {
+      "label": "Pool table cells",
+      "foreground": "#193d33",
+      "background": "#fffdf5",
+      "ratio": 11.739,
+      "pass": true
+    },
+    {
+      "label": "Pool table headings",
+      "foreground": "#425c3d",
+      "background": "#edf1e3",
+      "ratio": 6.464,
+      "pass": true
+    },
+    {
+      "label": "Blocking explanation",
+      "foreground": "#914236",
+      "background": "#fffdf5",
+      "ratio": 6.791,
+      "pass": true
+    },
+    {
+      "label": "Blocking explanation",
+      "foreground": "#914236",
+      "background": "#f9faf1",
+      "ratio": 6.577,
+      "pass": true
+    },
+    {
+      "label": "Link text",
+      "foreground": "#176a61",
+      "background": "#f7f3e9",
+      "ratio": 5.794,
+      "pass": true
+    },
+    {
+      "label": "Link text",
+      "foreground": "#176a61",
+      "background": "#fffdf5",
+      "ratio": 6.305,
+      "pass": true
+    },
+    {
+      "label": "Link text",
+      "foreground": "#176a61",
+      "background": "#edf2e7",
+      "ratio": 5.643,
+      "pass": true
+    },
+    {
+      "label": "Link text",
+      "foreground": "#176a61",
+      "background": "#f2f4e7",
+      "ratio": 5.769,
+      "pass": true
+    },
+    {
+      "label": "Summary text",
+      "foreground": "#315b46",
+      "background": "#fffdf5",
+      "ratio": 7.594,
+      "pass": true
+    },
+    {
+      "label": "Summary text",
+      "foreground": "#315b46",
+      "background": "#f4f5e9",
+      "ratio": 7.028,
+      "pass": true
+    },
+    {
+      "label": "History title",
+      "foreground": "#173f33",
+      "background": "#f4f5e9",
+      "ratio": 10.63,
+      "pass": true
+    },
+    {
+      "label": "Unselected tab",
+      "foreground": "#315b4d",
+      "background": "#fffdf5",
+      "ratio": 7.542,
+      "pass": true
+    },
+    {
+      "label": "Selected tab/action button",
+      "foreground": "#fffdf5",
+      "background": "#176a61",
+      "ratio": 6.305,
+      "pass": true
+    },
+    {
+      "label": "Quote costs",
+      "foreground": "#17604f",
+      "background": "#fffdf5",
+      "ratio": 7.306,
+      "pass": true
+    },
+    {
+      "label": "Gen2 label",
+      "foreground": "#1d6051",
+      "background": "#e9f3e5",
+      "ratio": 6.475,
+      "pass": true
+    },
+    {
+      "label": "Navigation labels",
+      "foreground": "#52634e",
+      "background": "#f0eee2",
+      "ratio": 5.543,
+      "pass": true
+    },
+    {
+      "label": "Navigation labels",
+      "foreground": "#52634e",
+      "background": "#f3f1e6",
+      "ratio": 5.697,
+      "pass": true
+    },
+    {
+      "label": "Current navigation",
+      "foreground": "#176a61",
+      "background": "#dfe8d9",
+      "ratio": 5.101,
+      "pass": true
+    }
+  ]
+}

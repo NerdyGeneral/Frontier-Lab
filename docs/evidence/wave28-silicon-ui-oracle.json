@@ -1,0 +1,310 @@
+{
+  "status": "pass",
+  "method": {
+    "driver": "/workspace/scratch/3755ece2734b/replay-wave28-silicon-ui-oracle.ts",
+    "run": "node --import tsx /workspace/scratch/3755ece2734b/replay-wave28-silicon-ui-oracle.ts",
+    "workingDirectory": "/workspace/sites/frontier-lab/.sites-checkout",
+    "input": "/workspace/shared/frontier-lab/wave28-silicon-before-successor.json",
+    "inputChecksum": "1d0502d5",
+    "inputSha256": "c97234a9c39c612cd08970f3266abd3d74cca22f66cd7da8e749045f3fc8fa56",
+    "commandTrace": "/workspace/shared/frontier-lab/wave28-silicon-commands.json",
+    "engine": "Deserialize the original W596 before-successor snapshot; call submitCommand(state, payload, CONTENT) without explicit IDs for four commands at the original weeks, and advanceWeek(state, CONTENT) once per week through W612. All commands and ticks must be accepted.",
+    "payloadAdjustment": "Only command-3368 order_chip_batch omits the optional foundry field, matching ProductionPlan when standard is selected. All other command fields and submission weeks are unchanged.",
+    "sourceVerification": [
+      {
+        "file": "src/ui/chips-panel.tsx",
+        "function": "ProductionPlan",
+        "behavior": "ActionControl payload uses ...(foundry === 'standard' ? {} : { foundry }); the default selection is standard."
+      },
+      {
+        "file": "src/modules/chips.ts",
+        "behavior": "order_chip_batch passes the optional foundry to chipProductionTerms and retains foundry on the batch only if supplied; the quote resolves an absent route to standard."
+      }
+    ],
+    "ticks": 16,
+    "commandsSubmitted": 4,
+    "stateInjections": false,
+    "applicationChanges": false,
+    "originalOraclePreserved": true,
+    "inputAndActualPreserved": true
+  },
+  "actualFile": "/workspace/shared/frontier-lab/wave28-silicon-browser-actual.json",
+  "expectedFile": "/workspace/shared/frontier-lab/wave28-silicon-browser-ui-expected.json",
+  "originalExplicitFoundryOracle": "/workspace/shared/frontier-lab/wave28-silicon-browser-expected.json",
+  "byteEqual": true,
+  "stateEqual": true,
+  "actual": {
+    "bytes": 1463938,
+    "sha256": "bbb43b62b660e1932064d61a2597558548194f8eae0313c523a4d1d60d805c5c",
+    "declaredChecksum": "627fa28e",
+    "canonicalChecksum": "627fa28e",
+    "validSnapshot": true,
+    "validationErrors": [],
+    "roundtripByteEqual": true,
+    "week": 612,
+    "revision": 1013,
+    "nextId": 3409,
+    "cashCents": 685350891
+  },
+  "expected": {
+    "bytes": 1463938,
+    "sha256": "bbb43b62b660e1932064d61a2597558548194f8eae0313c523a4d1d60d805c5c",
+    "declaredChecksum": "627fa28e",
+    "canonicalChecksum": "627fa28e",
+    "validSnapshot": true,
+    "validationErrors": [],
+    "roundtripByteEqual": true,
+    "week": 612,
+    "revision": 1013,
+    "nextId": 3409,
+    "cashCents": 685350891
+  },
+  "originalExpected": {
+    "bytes": 1463959,
+    "sha256": "f566fdb6157bc3bbbb2f89a1bf723239f1c7c210925319ea3d7c3d304e1a7467",
+    "declaredChecksum": "5de56d52",
+    "canonicalChecksum": "5de56d52",
+    "validSnapshot": true,
+    "validationErrors": [],
+    "roundtripByteEqual": true,
+    "week": 612,
+    "revision": 1013,
+    "nextId": 3409,
+    "cashCents": 685350891
+  },
+  "differences": [],
+  "originalOracleDifferences": [
+    {
+      "path": "/checksum",
+      "actual": {
+        "present": true,
+        "value": "627fa28e"
+      },
+      "expected": {
+        "present": true,
+        "value": "5de56d52"
+      }
+    },
+    {
+      "path": "/state/slices/compute/chipBatches/chip-batch-command-3368/foundry",
+      "actual": {
+        "present": false
+      },
+      "expected": {
+        "present": true,
+        "value": "standard"
+      }
+    }
+  ],
+  "commands": [
+    {
+      "week": 596,
+      "id": "command-3333",
+      "payload": {
+        "kind": "start_chip_successor",
+        "parentDesignId": "chip-26f7c851",
+        "name": "Cedar Gen2 Memory",
+        "improvement": "memory"
+      }
+    },
+    {
+      "week": 600,
+      "id": "command-3352",
+      "payload": {
+        "kind": "start_chip_prototype",
+        "designId": "chip-gen2-9de1e523",
+        "modelId": "model-natural-business-command-159"
+      }
+    },
+    {
+      "week": 603,
+      "id": "command-3368",
+      "payload": {
+        "kind": "order_chip_batch",
+        "designId": "chip-gen2-9de1e523",
+        "racks": 1,
+        "location": "colocation"
+      }
+    },
+    {
+      "week": 610,
+      "id": "command-3396",
+      "payload": {
+        "kind": "install_rack",
+        "rackId": "rack-command-3368-1"
+      }
+    }
+  ],
+  "weeks": [
+    {
+      "week": 597,
+      "checksum": "e8e619cd",
+      "revision": 995,
+      "nextId": 3339,
+      "cashCents": 666242977,
+      "designStatus": "designing",
+      "batchStatus": null,
+      "rackStatus": null
+    },
+    {
+      "week": 598,
+      "checksum": "7d98eee4",
+      "revision": 996,
+      "nextId": 3342,
+      "cashCents": 667552084,
+      "designStatus": "designing",
+      "batchStatus": null,
+      "rackStatus": null
+    },
+    {
+      "week": 599,
+      "checksum": "84ab8f5b",
+      "revision": 997,
+      "nextId": 3347,
+      "cashCents": 668860059,
+      "designStatus": "designing",
+      "batchStatus": null,
+      "rackStatus": null
+    },
+    {
+      "week": 600,
+      "checksum": "487e227e",
+      "revision": 998,
+      "nextId": 3352,
+      "cashCents": 670179704,
+      "designStatus": "design-ready",
+      "batchStatus": null,
+      "rackStatus": null
+    },
+    {
+      "week": 601,
+      "checksum": "6e56956f",
+      "revision": 1000,
+      "nextId": 3359,
+      "cashCents": 670847179,
+      "designStatus": "prototyping",
+      "batchStatus": null,
+      "rackStatus": null
+    },
+    {
+      "week": 602,
+      "checksum": "739c2cf2",
+      "revision": 1001,
+      "nextId": 3364,
+      "cashCents": 672149515,
+      "designStatus": "prototyping",
+      "batchStatus": null,
+      "rackStatus": null
+    },
+    {
+      "week": 603,
+      "checksum": "b2c6263e",
+      "revision": 1002,
+      "nextId": 3368,
+      "cashCents": 673575812,
+      "designStatus": "validated",
+      "batchStatus": null,
+      "rackStatus": null
+    },
+    {
+      "week": 604,
+      "checksum": "59e17116",
+      "revision": 1004,
+      "nextId": 3374,
+      "cashCents": 673783887,
+      "designStatus": "validated",
+      "batchStatus": "fabricating",
+      "rackStatus": "ordered"
+    },
+    {
+      "week": 605,
+      "checksum": "8460dc1b",
+      "revision": 1005,
+      "nextId": 3378,
+      "cashCents": 675219387,
+      "designStatus": "validated",
+      "batchStatus": "fabricating",
+      "rackStatus": "ordered"
+    },
+    {
+      "week": 606,
+      "checksum": "4e5989e1",
+      "revision": 1006,
+      "nextId": 3381,
+      "cashCents": 676673562,
+      "designStatus": "validated",
+      "batchStatus": "fabricating",
+      "rackStatus": "ordered"
+    },
+    {
+      "week": 607,
+      "checksum": "313448a2",
+      "revision": 1007,
+      "nextId": 3385,
+      "cashCents": 678125336,
+      "designStatus": "validated",
+      "batchStatus": "fabricating",
+      "rackStatus": "ordered"
+    },
+    {
+      "week": 608,
+      "checksum": "3d56eb8e",
+      "revision": 1008,
+      "nextId": 3388,
+      "cashCents": 679571013,
+      "designStatus": "validated",
+      "batchStatus": "fabricating",
+      "rackStatus": "ordered"
+    },
+    {
+      "week": 609,
+      "checksum": "0fa56811",
+      "revision": 1009,
+      "nextId": 3391,
+      "cashCents": 681021265,
+      "designStatus": "validated",
+      "batchStatus": "fabricating",
+      "rackStatus": "ordered"
+    },
+    {
+      "week": 610,
+      "checksum": "8b21766b",
+      "revision": 1010,
+      "nextId": 3396,
+      "cashCents": 682451965,
+      "designStatus": "validated",
+      "batchStatus": "delivered",
+      "rackStatus": "inventory"
+    },
+    {
+      "week": 611,
+      "checksum": "0fae23c5",
+      "revision": 1012,
+      "nextId": 3404,
+      "cashCents": 683902539,
+      "designStatus": "validated",
+      "batchStatus": "delivered",
+      "rackStatus": "installing"
+    },
+    {
+      "week": 612,
+      "checksum": "627fa28e",
+      "revision": 1013,
+      "nextId": 3409,
+      "cashCents": 685350891,
+      "designStatus": "validated",
+      "batchStatus": "delivered",
+      "rackStatus": "installed"
+    }
+  ],
+  "outcome": {
+    "designId": "chip-gen2-9de1e523",
+    "batchId": "chip-batch-command-3368",
+    "rackId": "rack-command-3368-1",
+    "designStatus": "validated",
+    "batchStatus": "delivered",
+    "rackStatus": "installed",
+    "foundryFieldPresent": false,
+    "effectiveFoundry": "standard"
+  }
+}

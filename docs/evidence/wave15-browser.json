@@ -1,0 +1,176 @@
+{
+  "date": "2026-11-07T19:47:34.059269+00:00",
+  "contentVersion": "0.16.0",
+  "previewUrl": "http://127.0.0.1:4173/",
+  "sourceCheckpoint": "frontier-lab-wave15-replay-ready.json",
+  "sourceWeek": 504,
+  "outcome": "Passed visible UI controls, paid training, pause/reload, both evaluations, and original-preview restoration",
+  "checks": [
+    "The Week 0 opening keeps replay controls hidden until research is earned.",
+    "Imported the authentic earned Week 504 company through the normal snapshot chooser and confirmation.",
+    "Selected document adaptation, the paid policy base, stable profile, and curated primary documents through visible controls.",
+    "Empty replay data disables Start training and gives an admission reason without crashing.",
+    "Source filtering excludes the primary document corpus and all its revisions from replay choices.",
+    "90% coding replay forecasts 48.21; 95% replay forecasts 50.89 at the same 39.6 CUw budget.",
+    "The 25% budget forecasts 26.4 CUw and 25.44 coding; the 50% budget forecasts 39.6 CUw and 50.89 coding.",
+    "Data pickers and optional evidence stay collapsed until opened, using the existing plain-text three-column layout.",
+    "Started paid 39.6 CUw training at Week 505; 8 CUw completed before pause took effect at Week 506.",
+    "Exported the paused run, reloaded, and exported again with byte-identical files.",
+    "Resumed at Week 507 and completed at Week 510; an intermediate checkpoint appeared at Week 508.",
+    "Paid exact Expanded capabilities and Policy boundary holdouts completed at Weeks 511 and 512.",
+    "The final model shows documents 55.66, coding 50.89, reliability 89, and the frozen replay receipt; the live API retains its original model.",
+    "Restored the original Week 0 preview through normal import and proved a byte-identical export."
+  ],
+  "training": {
+    "id": "training-command-2870",
+    "requiredWorkCUw": 39600000000,
+    "completedWorkCUw": 39600000000,
+    "physicalWorkCUw": 22000000003,
+    "checkpointModelIds": [
+      "checkpoint-training-command-2870",
+      "model-command-2870"
+    ],
+    "replay": {
+      "domain": "coding",
+      "shareBps": 5000,
+      "baseModelId": "model-wave11-natural-command-3",
+      "baseModelFingerprint": "7e57e645",
+      "baselineReportId": "report-evaluation-wave11-natural-command-6",
+      "baselineScoreBps": 5357,
+      "ordinaryIdentity": "training-identity-5988af39",
+      "corpus": {
+        "sourceIds": [
+          "specialist-coding-1"
+        ],
+        "packetIds": [
+          "curated-natural-business-command-54"
+        ],
+        "distinctUnits": 120,
+        "broadUnits": 0,
+        "relevantUnits": {
+          "conversation": 24000000000,
+          "documents": 24000000000,
+          "coding": 120000000000,
+          "tools": 24000000000
+        },
+        "qualityBps": {
+          "conversation": 9500,
+          "documents": 9500,
+          "coding": 9500,
+          "tools": 9500
+        },
+        "behaviorUnits": 100,
+        "behaviorQualityBps": 9500,
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "fingerprint": "corpus-35dfb5d1"
+      },
+      "requiredEvidence": 100000000000,
+      "coverageBps": 10000,
+      "qualityBps": 9500,
+      "retentionBps": 9500,
+      "preservationFloorBps": 5089,
+      "nominalFocusWorkCUw": 19800000000,
+      "focusWorkCUw": 19800000000,
+      "nominalReplayWorkCUw": 19800000000,
+      "replayWorkCUw": 19800000000
+    }
+  },
+  "model": {
+    "id": "model-command-2870",
+    "capabilityBps": {
+      "conversation": 4109,
+      "documents": 5566,
+      "coding": 5089,
+      "tools": 2256
+    },
+    "reliabilityBps": 8900,
+    "trainingEvidenceId": "replay-evidence-f73eae94"
+  },
+  "reports": [
+    {
+      "id": "report-evaluation-command-2900",
+      "suiteId": "expanded-capabilities-1",
+      "week": 511,
+      "passedCases": 66,
+      "policyTotals": null
+    },
+    {
+      "id": "report-evaluation-command-2907",
+      "suiteId": "policy-boundaries-1",
+      "week": 512,
+      "passedCases": 75,
+      "policyTotals": {
+        "cases": 100,
+        "allowedCases": 50,
+        "usefulAnswers": 29,
+        "confidentErrors": 4,
+        "falseRefusals": 2,
+        "clarifications": 15,
+        "restrictedCases": 50,
+        "correctPolicyRefusals": 46,
+        "unsafeCompliances": 4,
+        "directRestrictedCases": 25,
+        "directUnsafeCompliances": 1,
+        "adversarialRestrictedCases": 25,
+        "adversarialUnsafeCompliances": 3
+      }
+    }
+  ],
+  "snapshots": [
+    {
+      "file": "wave15-browser-original.json",
+      "bytes": 41803,
+      "sha256": "2968990998d77aac1f5d6fa8665ab479c9c4b92f225797c6b9a76f245dc37939",
+      "checksum": "cdf67daf",
+      "week": 0,
+      "contentVersion": "0.16.0"
+    },
+    {
+      "file": "wave15-browser-paused.json",
+      "bytes": 1300033,
+      "sha256": "778cbb324f9052633686c6d63de74a05716ba515217b7fd5dc58b79e58817ae1",
+      "checksum": "80a3222c",
+      "week": 506,
+      "contentVersion": "0.16.0"
+    },
+    {
+      "file": "wave15-browser-reloaded.json",
+      "bytes": 1300033,
+      "sha256": "778cbb324f9052633686c6d63de74a05716ba515217b7fd5dc58b79e58817ae1",
+      "checksum": "80a3222c",
+      "week": 506,
+      "contentVersion": "0.16.0"
+    },
+    {
+      "file": "wave15-browser-complete.json",
+      "bytes": 1346410,
+      "sha256": "f0dc1e74a657ef398ed5c920cdbe0fa61029f62e9e09a7ac5b71e6fa2c31e4d2",
+      "checksum": "1c47207f",
+      "week": 512,
+      "contentVersion": "0.16.0"
+    },
+    {
+      "file": "wave15-browser-restored.json",
+      "bytes": 41803,
+      "sha256": "2968990998d77aac1f5d6fa8665ab479c9c4b92f225797c6b9a76f245dc37939",
+      "checksum": "cdf67daf",
+      "week": 0,
+      "contentVersion": "0.16.0"
+    }
+  ],
+  "pausedReloadByteIdentical": true,
+  "originalRestoredByteIdentical": true,
+  "console": {
+    "appOriginErrorCount": 0,
+    "extensionOriginErrorCount": 90,
+    "note": "Observed errors came only from the browser extension. Intermittent browser transport timeouts were checked against fresh visible state before retrying any action."
+  },
+  "screenshots": [
+    "docs/images/frontier-lab-wave15-preview.png",
+    "docs/images/frontier-lab-wave15-model.png"
+  ]
+}

@@ -1,0 +1,676 @@
+{
+  "contentVersion": "0.27.0",
+  "source": "Published wave16-snapshot.json continued with ordinary paid commands",
+  "beforeOrderWeek": 569,
+  "beforeOrderChecksum": "789ef672",
+  "commandId": "command-3218",
+  "payload": {
+    "kind": "accept_private_appliance_order",
+    "buyerId": "cedar-records",
+    "modelId": "model-natural-business-command-159",
+    "designId": "chip-26f7c851",
+    "foundry": "standard"
+  },
+  "acceptanceWeek": 578,
+  "acceptedChecksum": "5f88aac8",
+  "minimumCashCents": 587882908,
+  "stages": [
+    {
+      "week": 570,
+      "checksum": "732ec564",
+      "cashCents": 628289999,
+      "shippedWeek": null,
+      "acceptedWeek": null,
+      "settledWeek": null,
+      "delivery": {
+        "completedStaff": 0,
+        "grantCount": 0,
+        "firstWeek": null,
+        "latestGrant": null
+      },
+      "contractStatus": "building",
+      "lifetimeBilledCents": 0,
+      "lifetimeCreditsCents": 0
+    },
+    {
+      "week": 571,
+      "checksum": "3ed806d1",
+      "cashCents": 629697188,
+      "shippedWeek": null,
+      "acceptedWeek": null,
+      "settledWeek": null,
+      "delivery": {
+        "completedStaff": 0,
+        "grantCount": 0,
+        "firstWeek": null,
+        "latestGrant": null
+      },
+      "contractStatus": "building",
+      "lifetimeBilledCents": 0,
+      "lifetimeCreditsCents": 0
+    },
+    {
+      "week": 572,
+      "checksum": "f0b7fa01",
+      "cashCents": 631117180,
+      "shippedWeek": null,
+      "acceptedWeek": null,
+      "settledWeek": null,
+      "delivery": {
+        "completedStaff": 0,
+        "grantCount": 0,
+        "firstWeek": null,
+        "latestGrant": null
+      },
+      "contractStatus": "building",
+      "lifetimeBilledCents": 0,
+      "lifetimeCreditsCents": 0
+    },
+    {
+      "week": 573,
+      "checksum": "02d5b04d",
+      "cashCents": 632554647,
+      "shippedWeek": null,
+      "acceptedWeek": null,
+      "settledWeek": null,
+      "delivery": {
+        "completedStaff": 0,
+        "grantCount": 0,
+        "firstWeek": null,
+        "latestGrant": null
+      },
+      "contractStatus": "building",
+      "lifetimeBilledCents": 0,
+      "lifetimeCreditsCents": 0
+    },
+    {
+      "week": 574,
+      "checksum": "3f5ff23a",
+      "cashCents": 633988513,
+      "shippedWeek": null,
+      "acceptedWeek": null,
+      "settledWeek": null,
+      "delivery": {
+        "completedStaff": 0,
+        "grantCount": 0,
+        "firstWeek": null,
+        "latestGrant": null
+      },
+      "contractStatus": "building",
+      "lifetimeBilledCents": 0,
+      "lifetimeCreditsCents": 0
+    },
+    {
+      "week": 575,
+      "checksum": "15514c85",
+      "cashCents": 635421180,
+      "shippedWeek": null,
+      "acceptedWeek": null,
+      "settledWeek": null,
+      "delivery": {
+        "completedStaff": 0,
+        "grantCount": 0,
+        "firstWeek": null,
+        "latestGrant": null
+      },
+      "contractStatus": "building",
+      "lifetimeBilledCents": 0,
+      "lifetimeCreditsCents": 0
+    },
+    {
+      "week": 576,
+      "checksum": "6b58b6ea",
+      "cashCents": 636854723,
+      "shippedWeek": 576,
+      "acceptedWeek": null,
+      "settledWeek": null,
+      "delivery": {
+        "completedStaff": 1000000000,
+        "grantCount": 1,
+        "firstWeek": 576,
+        "latestGrant": {
+          "week": 576,
+          "remainingBefore": 2000000000,
+          "grantedStaff": 1000000000
+        }
+      },
+      "contractStatus": "building",
+      "lifetimeBilledCents": 0,
+      "lifetimeCreditsCents": 0
+    },
+    {
+      "week": 577,
+      "checksum": "d2b2dab7",
+      "cashCents": 638281292,
+      "shippedWeek": 576,
+      "acceptedWeek": null,
+      "settledWeek": null,
+      "delivery": {
+        "completedStaff": 2000000000,
+        "grantCount": 2,
+        "firstWeek": 576,
+        "latestGrant": {
+          "week": 577,
+          "remainingBefore": 1000000000,
+          "grantedStaff": 1000000000
+        }
+      },
+      "contractStatus": "ready",
+      "lifetimeBilledCents": 0,
+      "lifetimeCreditsCents": 0
+    },
+    {
+      "week": 578,
+      "checksum": "5f88aac8",
+      "cashCents": 643557736,
+      "shippedWeek": 576,
+      "acceptedWeek": 578,
+      "settledWeek": 578,
+      "delivery": {
+        "completedStaff": 2000000000,
+        "grantCount": 2,
+        "firstWeek": 576,
+        "latestGrant": {
+          "week": 577,
+          "remainingBefore": 1000000000,
+          "grantedStaff": 1000000000
+        }
+      },
+      "contractStatus": "active",
+      "lifetimeBilledCents": 30000,
+      "lifetimeCreditsCents": 0
+    },
+    {
+      "week": 579,
+      "checksum": "0e2eb06a",
+      "cashCents": 645031779,
+      "shippedWeek": 576,
+      "acceptedWeek": 578,
+      "settledWeek": 578,
+      "delivery": {
+        "completedStaff": 2000000000,
+        "grantCount": 2,
+        "firstWeek": 576,
+        "latestGrant": {
+          "week": 577,
+          "remainingBefore": 1000000000,
+          "grantedStaff": 1000000000
+        }
+      },
+      "contractStatus": "active",
+      "lifetimeBilledCents": 60000,
+      "lifetimeCreditsCents": 0
+    }
+  ],
+  "order": {
+    "id": "private-appliance:cedar-records",
+    "buyerId": "cedar-records",
+    "companyId": "company-player",
+    "commandId": "command-3218",
+    "modelId": "model-natural-business-command-159",
+    "contractId": "business:cedar-records",
+    "configuration": {
+      "release": {
+        "modelId": "model-natural-business-command-159",
+        "modelFingerprint": "59b74b59",
+        "capabilityReportId": "report-evaluation-natural-business-command-162",
+        "policyReportId": null,
+        "runtimeSourceModelId": null,
+        "runtimeFingerprint": null,
+        "rights": {
+          "hosted": true,
+          "weights": true
+        }
+      },
+      "designId": "chip-26f7c851",
+      "designFingerprint": "104f2db4",
+      "foundry": "standard",
+      "racks": 2,
+      "attemptedCU": 16000000000,
+      "usableCU": 14000000000,
+      "memoryMU": 56000000000,
+      "yieldBps": 8750,
+      "weeklyWorkCUw": 13200000000,
+      "weeklyCapacityCUw": 23100000000,
+      "requiredMemoryMU": 9000000000,
+      "leadWeeks": 6,
+      "fabricationCostCents": 2240000
+    },
+    "orderedWeek": 570,
+    "arrivalWeek": 576,
+    "shippedWeek": 576,
+    "acceptedWeek": 578,
+    "settledWeek": 578,
+    "fabricationFactId": "private-appliance:cedar-records:fabrication",
+    "bundleReceiptId": "private-appliance:cedar-records:bundle-receipt",
+    "bundlePriceCents": 3800000,
+    "delivery": {
+      "completedStaff": 2000000000,
+      "grantCount": 2,
+      "firstWeek": 576,
+      "latestGrant": {
+        "week": 577,
+        "remainingBefore": 1000000000,
+        "grantedStaff": 1000000000
+      }
+    },
+    "artifact": {
+      "id": "private-appliance:cedar-records:installed",
+      "acceptedWeek": 578,
+      "configuration": {
+        "release": {
+          "modelId": "model-natural-business-command-159",
+          "modelFingerprint": "59b74b59",
+          "capabilityReportId": "report-evaluation-natural-business-command-162",
+          "policyReportId": null,
+          "runtimeSourceModelId": null,
+          "runtimeFingerprint": null,
+          "rights": {
+            "hosted": true,
+            "weights": true
+          }
+        },
+        "designId": "chip-26f7c851",
+        "designFingerprint": "104f2db4",
+        "foundry": "standard",
+        "racks": 2,
+        "attemptedCU": 16000000000,
+        "usableCU": 14000000000,
+        "memoryMU": 56000000000,
+        "yieldBps": 8750,
+        "weeklyWorkCUw": 13200000000,
+        "weeklyCapacityCUw": 23100000000,
+        "requiredMemoryMU": 9000000000,
+        "leadWeeks": 6,
+        "fabricationCostCents": 2240000
+      }
+    }
+  },
+  "contract": {
+    "id": "business:cedar-records",
+    "customerId": "cedar-records",
+    "companyId": "company-player",
+    "modelId": "model-natural-business-command-159",
+    "contractKind": "customer-hosted",
+    "generation": 1,
+    "signedWeek": 570,
+    "setupFeeCents": 100000,
+    "setupFactId": "business-setup:command-3218",
+    "status": "active",
+    "requiredDeliveryStaff": 2000000000,
+    "completedDeliveryStaff": 2000000000,
+    "readyWeek": 578,
+    "termStartedWeek": 578,
+    "termEndsWeek": 590,
+    "termIndex": 1,
+    "autoRenew": false,
+    "termWeeksServed": 2,
+    "termServiceBpsTotal": 20000,
+    "breachWeeks": 0,
+    "endedWeek": null,
+    "lastBottleneck": "",
+    "evidence": null,
+    "rights": {
+      "hosted": true,
+      "weights": true
+    },
+    "weeklyPriceCents": 30000,
+    "weeklyRequests": 0,
+    "reservedWorkCUw": 0,
+    "reservedMemoryMU": 0,
+    "servingHeadroomBps": 0,
+    "inputTokensPerRequest": 0,
+    "outputTokensPerRequest": 0,
+    "workPerRequestCUw": 0,
+    "dataStaffPerWeek": 0,
+    "supportStaffPerWeek": 250000000,
+    "lifetimeBilledCents": 60000,
+    "lifetimeCreditsCents": 0,
+    "lastUsage": {
+      "week": 579,
+      "requestedWorkCUw": 0,
+      "executedWorkCUw": 0,
+      "physicalWorkCUw": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "dataStaffRequired": 0,
+      "dataStaffGranted": 0,
+      "supportStaffRequired": 250000000,
+      "supportStaffGranted": 250000000,
+      "freshnessBps": 10000,
+      "fulfillmentBps": 10000,
+      "serviceBps": 10000,
+      "technicalErrorBps": null,
+      "grossCents": 30000,
+      "creditsCents": 0,
+      "billedCents": 30000,
+      "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+    }
+  },
+  "invoices": [
+    {
+      "id": "business-invoice:business:cedar-records:1:578",
+      "contractId": "business:cedar-records",
+      "customerId": "cedar-records",
+      "companyId": "company-player",
+      "modelId": "model-natural-business-command-159",
+      "contractKind": "customer-hosted",
+      "generation": 1,
+      "termIndex": 1,
+      "week": 578,
+      "grossCents": 30000,
+      "creditsCents": 0,
+      "amountCents": 30000,
+      "serviceBps": 10000
+    },
+    {
+      "id": "business-invoice:business:cedar-records:1:579",
+      "contractId": "business:cedar-records",
+      "customerId": "cedar-records",
+      "companyId": "company-player",
+      "modelId": "model-natural-business-command-159",
+      "contractKind": "customer-hosted",
+      "generation": 1,
+      "termIndex": 1,
+      "week": 579,
+      "grossCents": 30000,
+      "creditsCents": 0,
+      "amountCents": 30000,
+      "serviceBps": 10000
+    }
+  ],
+  "receipts": [
+    {
+      "id": "business-setup:command-3218",
+      "companyId": "company-player",
+      "week": 570,
+      "sourceId": "business:cedar-records",
+      "category": "operating",
+      "amountCents": 100000,
+      "label": "Cedar Records: weight delivery setup",
+      "kind": "expense",
+      "paidCents": 100000,
+      "unpaidCents": 0
+    },
+    {
+      "id": "private-appliance:cedar-records:fabrication",
+      "sourceId": "private-appliance:cedar-records",
+      "companyId": "company-player",
+      "kind": "expense",
+      "category": "operating",
+      "amountCents": 2240000,
+      "week": 570,
+      "label": "Cedar Records: appliance fabrication",
+      "paidCents": 2240000,
+      "unpaidCents": 0
+    },
+    {
+      "id": "private-appliance:cedar-records:bundle-receipt",
+      "sourceId": "private-appliance:cedar-records",
+      "companyId": "company-player",
+      "week": 578,
+      "kind": "receipt",
+      "category": "revenue",
+      "amountCents": 3800000,
+      "label": "Cedar Records: accepted appliance bundle",
+      "paidCents": 3800000,
+      "unpaidCents": 0
+    }
+  ],
+  "expectedFinalWeek": 579,
+  "expectedFinalChecksum": "0e2eb06a",
+  "expectedFinalCashCents": 645031779,
+  "qualificationTrace": {
+    "originalWeek": 537,
+    "originalChecksum": "97dad50f",
+    "inheritedQueuedCommands": [
+      {
+        "id": "wave16-oracle-command-1",
+        "companyId": "company-player",
+        "issuedForWeek": 538,
+        "payload": {
+          "kind": "set_batch_capacity",
+          "cloudCU": 96000000000,
+          "servingCU": 160000000000
+        },
+        "reservedCents": 0
+      },
+      {
+        "id": "wave16-oracle-command-2",
+        "companyId": "company-player",
+        "issuedForWeek": 538,
+        "payload": {
+          "kind": "set_batch_job_placement",
+          "jobId": "batch:wave16-natural-command-2",
+          "poolId": "general-cloud"
+        },
+        "reservedCents": 0
+      },
+      {
+        "id": "wave16-oracle-command-3",
+        "companyId": "company-player",
+        "issuedForWeek": 538,
+        "payload": {
+          "kind": "set_batch_job_paused",
+          "jobId": "batch:wave16-natural-command-2",
+          "paused": true
+        },
+        "reservedCents": 0
+      }
+    ],
+    "commands": [
+      {
+        "week": 538,
+        "id": "wave27-appliance-ready-command-1",
+        "payload": {
+          "kind": "set_cloud_capacity",
+          "cu": 112000000000
+        }
+      },
+      {
+        "week": 539,
+        "id": "wave27-appliance-ready-command-2",
+        "payload": {
+          "kind": "allocate_compute",
+          "serving": 160000000000,
+          "development": 8000000000,
+          "research": 8000000000
+        }
+      },
+      {
+        "week": 539,
+        "id": "wave27-appliance-ready-command-3",
+        "payload": {
+          "kind": "assign_founder",
+          "allocations": {
+            "research": 1000000000,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 0,
+            "commercial": 0,
+            "hardware": 0
+          }
+        }
+      },
+      {
+        "week": 540,
+        "id": "wave27-appliance-ready-command-4",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "R7A"
+        }
+      },
+      {
+        "week": 542,
+        "id": "wave27-appliance-ready-command-5",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "S3"
+        }
+      },
+      {
+        "week": 545,
+        "id": "wave27-appliance-ready-command-6",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "S4"
+        }
+      },
+      {
+        "week": 556,
+        "id": "wave27-appliance-ready-command-7",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "R16"
+        }
+      },
+      {
+        "week": 557,
+        "id": "wave27-appliance-ready-command-8",
+        "payload": {
+          "kind": "hire_staff",
+          "role": "hardware"
+        }
+      },
+      {
+        "week": 557,
+        "id": "wave27-appliance-ready-command-9",
+        "payload": {
+          "kind": "hire_staff",
+          "role": "hardware"
+        }
+      },
+      {
+        "week": 564,
+        "id": "wave27-appliance-ready-command-10",
+        "payload": {
+          "kind": "start_chip_design",
+          "name": "Cedar document appliance",
+          "spec": {
+            "architecture": "dense",
+            "target": "inference",
+            "memory": "wide"
+          }
+        }
+      },
+      {
+        "week": 567,
+        "id": "wave27-appliance-ready-command-11",
+        "payload": {
+          "kind": "start_chip_prototype",
+          "designId": "chip-26f7c851",
+          "modelId": "model-natural-business-command-159"
+        }
+      }
+    ],
+    "milestones": [
+      {
+        "label": "Published company",
+        "week": 537,
+        "cashCents": 587882908,
+        "revenueCents": 4493404,
+        "expenseCents": 2405000,
+        "consumers": 1005,
+        "developers": 174,
+        "businesses": 22,
+        "trustBps": 10000
+      },
+      {
+        "label": "Inherited batch queue settled",
+        "week": 538,
+        "cashCents": 589711538,
+        "revenueCents": 4497005,
+        "expenseCents": 2668375,
+        "consumers": 1004,
+        "developers": 174,
+        "businesses": 23,
+        "trustBps": 10000
+      },
+      {
+        "label": "Memory format research available",
+        "week": 542,
+        "cashCents": 595903141,
+        "revenueCents": 4498204,
+        "expenseCents": 2988375,
+        "consumers": 1005,
+        "developers": 175,
+        "businesses": 23,
+        "trustBps": 10000
+      },
+      {
+        "label": "Release telemetry available",
+        "week": 545,
+        "cashCents": 599794477,
+        "revenueCents": 4540781,
+        "expenseCents": 3001875,
+        "consumers": 1001,
+        "developers": 176,
+        "businesses": 23,
+        "trustBps": 10000
+      },
+      {
+        "label": "Private appliance qualification available",
+        "week": 556,
+        "cashCents": 615561453,
+        "revenueCents": 4491535,
+        "expenseCents": 2974875,
+        "consumers": 990,
+        "developers": 178,
+        "businesses": 22,
+        "trustBps": 10000
+      },
+      {
+        "label": "Chip feasibility available",
+        "week": 564,
+        "cashCents": 624905882,
+        "revenueCents": 4524512,
+        "expenseCents": 3105000,
+        "consumers": 977,
+        "developers": 179,
+        "businesses": 21,
+        "trustBps": 10000
+      },
+      {
+        "label": "Paid design and prototype qualified",
+        "week": 569,
+        "cashCents": 629202709,
+        "revenueCents": 4548466,
+        "expenseCents": 3105000,
+        "consumers": 972,
+        "developers": 179,
+        "businesses": 22,
+        "trustBps": 10000
+      }
+    ]
+  },
+  "assertions": {
+    "ordinaryPaidQualification": true,
+    "injectedResourcesOrReadiness": false,
+    "commandIdUsesNormalSubmission": true,
+    "shipmentBeforeInstallation": true,
+    "exactEvaluatedReleaseAndRuntime": true,
+    "bundleReceipts": 1,
+    "ordinaryServiceInvoices": 2,
+    "licenseSupportBilledCents": 60000,
+    "newLabRacks": 0,
+    "customerHostedInferenceCUw": 0,
+    "customerHostedTokens": 0
+  },
+  "verification": {
+    "focusedCasesPassed": 6,
+    "cases": [
+      "paid order, shipment, installation, acceptance and separate support lifecycle",
+      "quote/queue/import/commit parity and source purity",
+      "research/model/payload/standalone-license rejection",
+      "internal/external/appliance shared foundry reservations",
+      "tampered artifact, runtime, rights, work and settlement rejection",
+      "support credits and termination without another bundle receipt"
+    ],
+    "testRuns": "Five cases passed in the initial focused run; the lifecycle case passed after correcting its bounded-ledger-retention assertion. Production source was unchanged between runs.",
+    "typecheck": "passed",
+    "focusedLint": "passed",
+    "independentCoreReview": "No concrete P1/P2 findings in fee/receipt uniqueness, frozen qualification, shipment/installation/acceptance or support billing.",
+    "stageSsr": "All six real stages rendered without state mutation or whole-state clones; IDs and label targets passed.",
+    "browserOracle": "Expected snapshots are command-derived; actual browser export comparison is performed separately."
+  }
+}

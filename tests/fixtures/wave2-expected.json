@@ -1,0 +1,1419 @@
+{
+  "sourceCommit": "613f0e326e3384063868139a56a13cf3cb20e397",
+  "generatedBy": "Archived published Wave 2 engine and serializer; no version-header rewriting.",
+  "baseline": {
+    "week": 11,
+    "player": {
+      "id": "company-player",
+      "name": "Frontier Lab",
+      "cashCents": 1252400,
+      "arrearsCents": 0,
+      "founderOwnershipBps": 10000,
+      "founderFte": 1000000000,
+      "activeStaff": 1,
+      "earnedRevenueCents": 32400,
+      "totalOperatingExpenseCents": 1780000,
+      "lastWeek": {
+        "revenueCents": 21600,
+        "operatingExpenseCents": 230000,
+        "cashChangeCents": -2008400
+      }
+    },
+    "ledger": [
+      {
+        "id": "invoice:product:command-36:11",
+        "companyId": "company-player",
+        "week": 11,
+        "sourceId": "contract:command-36",
+        "category": "revenue",
+        "amountCents": 21600,
+        "label": "Basic Chat: 18 accounts, after service credits",
+        "kind": "receipt",
+        "paidCents": 21600,
+        "unpaidCents": 0
+      },
+      {
+        "id": "capital:command-54",
+        "companyId": "company-player",
+        "week": 11,
+        "sourceId": "rack-command-54",
+        "category": "capital",
+        "amountCents": 1800000,
+        "label": "General GPU: eight-CU rack purchase",
+        "kind": "expense",
+        "paidCents": 1800000,
+        "unpaidCents": 0
+      },
+      {
+        "id": "company-player:cloud-rent:11",
+        "companyId": "company-player",
+        "week": 11,
+        "sourceId": "general-cloud-reservation",
+        "category": "rent",
+        "amountCents": 80000,
+        "label": "Reserved general GPU capacity (energy included)",
+        "kind": "expense",
+        "paidCents": 80000,
+        "unpaidCents": 0
+      },
+      {
+        "id": "company-player:overhead:11",
+        "companyId": "company-player",
+        "week": 11,
+        "sourceId": "founder-and-basic-overhead",
+        "category": "overhead",
+        "amountCents": 20000,
+        "label": "Founder draw and basic overhead",
+        "kind": "expense",
+        "paidCents": 20000,
+        "unpaidCents": 0
+      },
+      {
+        "id": "research-command-58:fee",
+        "companyId": "company-player",
+        "week": 11,
+        "sourceId": "research-command-58",
+        "category": "operating",
+        "amountCents": 100000,
+        "label": "Evaluation suite research",
+        "kind": "expense",
+        "paidCents": 100000,
+        "unpaidCents": 0
+      },
+      {
+        "id": "staff:command-4:payroll:11",
+        "companyId": "company-player",
+        "week": 11,
+        "sourceId": "staff:command-4",
+        "category": "operating",
+        "amountCents": 30000,
+        "label": "ML engineer salary",
+        "kind": "expense",
+        "paidCents": 30000,
+        "unpaidCents": 0
+      }
+    ],
+    "fleet": {
+      "companyId": "company-player",
+      "cloudCU": 4000000000,
+      "ownedCU": 0,
+      "memoryMU": 8000000000,
+      "occupiedMemoryMU": 2760000000,
+      "allocation": {
+        "serving": 3000000000,
+        "development": 0,
+        "research": 1000000000
+      },
+      "lastWork": {
+        "serving": 460000000,
+        "development": 0,
+        "research": 1000000000
+      },
+      "reservedCU": 1506000000,
+      "deliveredEquipmentIds": [],
+      "inventory": {},
+      "lastBottleneck": "Research capacity, hardware, and fabric limit progress.",
+      "lastReservedMemoryMU": 2760000000,
+      "lastGrants": [
+        {
+          "requestId": "serve:product:command-36",
+          "requestedWork": 460000000,
+          "grantedWork": 460000000,
+          "reason": ""
+        },
+        {
+          "requestId": "research-command-58:work",
+          "requestedWork": 2000000000,
+          "grantedWork": 1000000000,
+          "reason": "Research capacity, hardware, and fabric limit progress."
+        }
+      ],
+      "variableCostCarry": 0
+    },
+    "staff": {
+      "staff:command-4": {
+        "id": "staff:command-4",
+        "companyId": "company-player",
+        "role": "ml",
+        "hiredWeek": 1,
+        "readyWeek": 3,
+        "assignedFte": 1000000000
+      }
+    },
+    "research": {
+      "research-command-58": {
+        "id": "research-command-58",
+        "companyId": "company-player",
+        "researchId": "R1",
+        "startedWeek": 11,
+        "requiredWork": 2000000000,
+        "completedWork": 1000000000,
+        "requiredStaff": 2000000000,
+        "completedStaff": 1000000000,
+        "role": "research",
+        "status": "running",
+        "lastProgress": 1000000000,
+        "lastBottleneck": ""
+      }
+    },
+    "completedResearch": [],
+    "racks": {
+      "rack-command-54": {
+        "id": "rack-command-54",
+        "companyId": "company-player",
+        "hardwareId": "general",
+        "location": "colocation",
+        "status": "ordered",
+        "orderedWeek": 11,
+        "arrivalWeek": 17,
+        "installationStartedWeek": null,
+        "completedInstallStaff": 0,
+        "readyWeek": null,
+        "installedWeek": null,
+        "purchaseCents": 1800000,
+        "lastBottleneck": "Delivery is pending; this hardware supplies no capacity."
+      }
+    },
+    "scheduled": [
+      {
+        "id": "delivery:command-54",
+        "companyId": "company-player",
+        "dueWeek": 17,
+        "kind": "equipment_delivery",
+        "targetId": "rack-command-54",
+        "quantityCU": 8000000000,
+        "memoryMU": 16000000000
+      }
+    ],
+    "queuedCommands": [
+      {
+        "id": "command-65",
+        "companyId": "company-player",
+        "issuedForWeek": 12,
+        "payload": {
+          "kind": "hire_staff",
+          "role": "data"
+        },
+        "reservedCents": 125000
+      },
+      {
+        "id": "command-67",
+        "companyId": "company-player",
+        "issuedForWeek": 12,
+        "payload": {
+          "kind": "allocate_compute",
+          "serving": 2000000000,
+          "development": 1000000000,
+          "research": 1000000000
+        },
+        "reservedCents": 0
+      }
+    ],
+    "random": {
+      "lab:eval:5c1f4b71:0:technical": {
+        "state": 552290060,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:0:execution": {
+        "state": 3695581801,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:1:technical": {
+        "state": 3997565207,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:1:execution": {
+        "state": 2158578032,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:2:technical": {
+        "state": 1356290708,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:2:execution": {
+        "state": 3352346086,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:3:technical": {
+        "state": 3552539179,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:3:execution": {
+        "state": 363178861,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:4:technical": {
+        "state": 1798811844,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:4:execution": {
+        "state": 2527380415,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:5:technical": {
+        "state": 476540429,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:5:execution": {
+        "state": 3201359401,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:6:technical": {
+        "state": 1055492394,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:6:execution": {
+        "state": 332287272,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:7:technical": {
+        "state": 2563058816,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:7:execution": {
+        "state": 2138708232,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:8:technical": {
+        "state": 2523105472,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:8:execution": {
+        "state": 3555141690,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:9:technical": {
+        "state": 1445938916,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:9:execution": {
+        "state": 1087900274,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:10:technical": {
+        "state": 1221272460,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:10:execution": {
+        "state": 3499649098,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:11:technical": {
+        "state": 2835320816,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:11:execution": {
+        "state": 3388922573,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:12:technical": {
+        "state": 1814143265,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:12:execution": {
+        "state": 291695956,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:13:technical": {
+        "state": 465739236,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:13:execution": {
+        "state": 1932294421,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:14:technical": {
+        "state": 344670120,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:14:execution": {
+        "state": 3522269724,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:15:technical": {
+        "state": 130133085,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:15:execution": {
+        "state": 629200991,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:16:technical": {
+        "state": 1171108558,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:16:execution": {
+        "state": 1556475798,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:17:technical": {
+        "state": 1450793613,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:17:execution": {
+        "state": 3973684651,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:18:technical": {
+        "state": 3984650314,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:18:execution": {
+        "state": 3207719218,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:19:technical": {
+        "state": 3921380694,
+        "draws": 1
+      },
+      "lab:eval:5c1f4b71:19:execution": {
+        "state": 1851359745,
+        "draws": 1
+      }
+    }
+  },
+  "weeks": [
+    {
+      "week": 12,
+      "player": {
+        "id": "company-player",
+        "name": "Frontier Lab",
+        "cashCents": 1001200,
+        "arrearsCents": 0,
+        "founderOwnershipBps": 10000,
+        "founderFte": 1000000000,
+        "activeStaff": 1,
+        "earnedRevenueCents": 61200,
+        "totalOperatingExpenseCents": 2060000,
+        "lastWeek": {
+          "revenueCents": 28800,
+          "operatingExpenseCents": 280000,
+          "cashChangeCents": -251200
+        }
+      },
+      "ledger": [
+        {
+          "id": "invoice:product:command-36:12",
+          "companyId": "company-player",
+          "week": 12,
+          "sourceId": "contract:command-36",
+          "category": "revenue",
+          "amountCents": 28800,
+          "label": "Basic Chat: 24 accounts, after service credits",
+          "kind": "receipt",
+          "paidCents": 28800,
+          "unpaidCents": 0
+        },
+        {
+          "id": "company-player:cloud-rent:12",
+          "companyId": "company-player",
+          "week": 12,
+          "sourceId": "general-cloud-reservation",
+          "category": "rent",
+          "amountCents": 80000,
+          "label": "Reserved general GPU capacity (energy included)",
+          "kind": "expense",
+          "paidCents": 80000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "company-player:overhead:12",
+          "companyId": "company-player",
+          "week": 12,
+          "sourceId": "founder-and-basic-overhead",
+          "category": "overhead",
+          "amountCents": 20000,
+          "label": "Founder draw and basic overhead",
+          "kind": "expense",
+          "paidCents": 20000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "recruit:command-65",
+          "companyId": "company-player",
+          "week": 12,
+          "sourceId": "command-65",
+          "category": "operating",
+          "amountCents": 125000,
+          "label": "Recruit Data engineer",
+          "kind": "expense",
+          "paidCents": 125000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "staff:command-4:payroll:12",
+          "companyId": "company-player",
+          "week": 12,
+          "sourceId": "staff:command-4",
+          "category": "operating",
+          "amountCents": 30000,
+          "label": "ML engineer salary",
+          "kind": "expense",
+          "paidCents": 30000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "staff:command-65:payroll:12",
+          "companyId": "company-player",
+          "week": 12,
+          "sourceId": "staff:command-65",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary (onboarding)",
+          "kind": "expense",
+          "paidCents": 25000,
+          "unpaidCents": 0
+        }
+      ],
+      "fleet": {
+        "companyId": "company-player",
+        "cloudCU": 4000000000,
+        "ownedCU": 0,
+        "memoryMU": 8000000000,
+        "occupiedMemoryMU": 2880000000,
+        "allocation": {
+          "serving": 2000000000,
+          "development": 1000000000,
+          "research": 1000000000
+        },
+        "lastWork": {
+          "serving": 520000000,
+          "development": 0,
+          "research": 1000000000
+        },
+        "reservedCU": 1572000000,
+        "deliveredEquipmentIds": [],
+        "inventory": {},
+        "lastBottleneck": "",
+        "lastReservedMemoryMU": 2880000000,
+        "lastGrants": [
+          {
+            "requestId": "serve:product:command-36",
+            "requestedWork": 520000000,
+            "grantedWork": 520000000,
+            "reason": ""
+          },
+          {
+            "requestId": "research-command-58:work",
+            "requestedWork": 1000000000,
+            "grantedWork": 1000000000,
+            "reason": ""
+          }
+        ],
+        "variableCostCarry": 0
+      },
+      "staff": {
+        "staff:command-4": {
+          "id": "staff:command-4",
+          "companyId": "company-player",
+          "role": "ml",
+          "hiredWeek": 1,
+          "readyWeek": 3,
+          "assignedFte": 1000000000
+        },
+        "staff:command-65": {
+          "id": "staff:command-65",
+          "companyId": "company-player",
+          "role": "data",
+          "hiredWeek": 12,
+          "readyWeek": 14,
+          "assignedFte": 1000000000
+        }
+      },
+      "research": {
+        "research-command-58": {
+          "id": "research-command-58",
+          "companyId": "company-player",
+          "researchId": "R1",
+          "startedWeek": 11,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "role": "research",
+          "status": "complete",
+          "lastProgress": 1000000000,
+          "lastBottleneck": "",
+          "completedWeek": 12,
+          "availableWeek": 13
+        }
+      },
+      "completedResearch": [],
+      "racks": {
+        "rack-command-54": {
+          "id": "rack-command-54",
+          "companyId": "company-player",
+          "hardwareId": "general",
+          "location": "colocation",
+          "status": "ordered",
+          "orderedWeek": 11,
+          "arrivalWeek": 17,
+          "installationStartedWeek": null,
+          "completedInstallStaff": 0,
+          "readyWeek": null,
+          "installedWeek": null,
+          "purchaseCents": 1800000,
+          "lastBottleneck": "Delivery is pending; this hardware supplies no capacity."
+        }
+      },
+      "scheduled": [
+        {
+          "id": "delivery:command-54",
+          "companyId": "company-player",
+          "dueWeek": 17,
+          "kind": "equipment_delivery",
+          "targetId": "rack-command-54",
+          "quantityCU": 8000000000,
+          "memoryMU": 16000000000
+        }
+      ],
+      "queuedCommands": [],
+      "random": {
+        "lab:eval:5c1f4b71:0:technical": {
+          "state": 552290060,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:0:execution": {
+          "state": 3695581801,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:1:technical": {
+          "state": 3997565207,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:1:execution": {
+          "state": 2158578032,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:2:technical": {
+          "state": 1356290708,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:2:execution": {
+          "state": 3352346086,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:3:technical": {
+          "state": 3552539179,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:3:execution": {
+          "state": 363178861,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:4:technical": {
+          "state": 1798811844,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:4:execution": {
+          "state": 2527380415,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:5:technical": {
+          "state": 476540429,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:5:execution": {
+          "state": 3201359401,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:6:technical": {
+          "state": 1055492394,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:6:execution": {
+          "state": 332287272,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:7:technical": {
+          "state": 2563058816,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:7:execution": {
+          "state": 2138708232,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:8:technical": {
+          "state": 2523105472,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:8:execution": {
+          "state": 3555141690,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:9:technical": {
+          "state": 1445938916,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:9:execution": {
+          "state": 1087900274,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:10:technical": {
+          "state": 1221272460,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:10:execution": {
+          "state": 3499649098,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:11:technical": {
+          "state": 2835320816,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:11:execution": {
+          "state": 3388922573,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:12:technical": {
+          "state": 1814143265,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:12:execution": {
+          "state": 291695956,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:13:technical": {
+          "state": 465739236,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:13:execution": {
+          "state": 1932294421,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:14:technical": {
+          "state": 344670120,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:14:execution": {
+          "state": 3522269724,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:15:technical": {
+          "state": 130133085,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:15:execution": {
+          "state": 629200991,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:16:technical": {
+          "state": 1171108558,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:16:execution": {
+          "state": 1556475798,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:17:technical": {
+          "state": 1450793613,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:17:execution": {
+          "state": 3973684651,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:18:technical": {
+          "state": 3984650314,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:18:execution": {
+          "state": 3207719218,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:19:technical": {
+          "state": 3921380694,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:19:execution": {
+          "state": 1851359745,
+          "draws": 1
+        }
+      }
+    },
+    {
+      "week": 13,
+      "player": {
+        "id": "company-player",
+        "name": "Frontier Lab",
+        "cashCents": 882200,
+        "arrearsCents": 0,
+        "founderOwnershipBps": 10000,
+        "founderFte": 1000000000,
+        "activeStaff": 1,
+        "earnedRevenueCents": 97200,
+        "totalOperatingExpenseCents": 2215000,
+        "lastWeek": {
+          "revenueCents": 36000,
+          "operatingExpenseCents": 155000,
+          "cashChangeCents": -119000
+        }
+      },
+      "ledger": [
+        {
+          "id": "invoice:product:command-36:13",
+          "companyId": "company-player",
+          "week": 13,
+          "sourceId": "contract:command-36",
+          "category": "revenue",
+          "amountCents": 36000,
+          "label": "Basic Chat: 30 accounts, after service credits",
+          "kind": "receipt",
+          "paidCents": 36000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "company-player:cloud-rent:13",
+          "companyId": "company-player",
+          "week": 13,
+          "sourceId": "general-cloud-reservation",
+          "category": "rent",
+          "amountCents": 80000,
+          "label": "Reserved general GPU capacity (energy included)",
+          "kind": "expense",
+          "paidCents": 80000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "company-player:overhead:13",
+          "companyId": "company-player",
+          "week": 13,
+          "sourceId": "founder-and-basic-overhead",
+          "category": "overhead",
+          "amountCents": 20000,
+          "label": "Founder draw and basic overhead",
+          "kind": "expense",
+          "paidCents": 20000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "staff:command-4:payroll:13",
+          "companyId": "company-player",
+          "week": 13,
+          "sourceId": "staff:command-4",
+          "category": "operating",
+          "amountCents": 30000,
+          "label": "ML engineer salary",
+          "kind": "expense",
+          "paidCents": 30000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "staff:command-65:payroll:13",
+          "companyId": "company-player",
+          "week": 13,
+          "sourceId": "staff:command-65",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary (onboarding)",
+          "kind": "expense",
+          "paidCents": 25000,
+          "unpaidCents": 0
+        }
+      ],
+      "fleet": {
+        "companyId": "company-player",
+        "cloudCU": 4000000000,
+        "ownedCU": 0,
+        "memoryMU": 8000000000,
+        "occupiedMemoryMU": 3000000000,
+        "allocation": {
+          "serving": 2000000000,
+          "development": 1000000000,
+          "research": 1000000000
+        },
+        "lastWork": {
+          "serving": 580000000,
+          "development": 0,
+          "research": 0
+        },
+        "reservedCU": 638000000,
+        "deliveredEquipmentIds": [],
+        "inventory": {},
+        "lastBottleneck": "",
+        "lastReservedMemoryMU": 3000000000,
+        "lastGrants": [
+          {
+            "requestId": "serve:product:command-36",
+            "requestedWork": 580000000,
+            "grantedWork": 580000000,
+            "reason": ""
+          }
+        ],
+        "variableCostCarry": 0
+      },
+      "staff": {
+        "staff:command-4": {
+          "id": "staff:command-4",
+          "companyId": "company-player",
+          "role": "ml",
+          "hiredWeek": 1,
+          "readyWeek": 3,
+          "assignedFte": 1000000000
+        },
+        "staff:command-65": {
+          "id": "staff:command-65",
+          "companyId": "company-player",
+          "role": "data",
+          "hiredWeek": 12,
+          "readyWeek": 14,
+          "assignedFte": 1000000000
+        }
+      },
+      "research": {
+        "research-command-58": {
+          "id": "research-command-58",
+          "companyId": "company-player",
+          "researchId": "R1",
+          "startedWeek": 11,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "role": "research",
+          "status": "complete",
+          "lastProgress": 1000000000,
+          "lastBottleneck": "",
+          "completedWeek": 12,
+          "availableWeek": 13
+        }
+      },
+      "completedResearch": [
+        "R1"
+      ],
+      "racks": {
+        "rack-command-54": {
+          "id": "rack-command-54",
+          "companyId": "company-player",
+          "hardwareId": "general",
+          "location": "colocation",
+          "status": "ordered",
+          "orderedWeek": 11,
+          "arrivalWeek": 17,
+          "installationStartedWeek": null,
+          "completedInstallStaff": 0,
+          "readyWeek": null,
+          "installedWeek": null,
+          "purchaseCents": 1800000,
+          "lastBottleneck": "Delivery is pending; this hardware supplies no capacity."
+        }
+      },
+      "scheduled": [
+        {
+          "id": "delivery:command-54",
+          "companyId": "company-player",
+          "dueWeek": 17,
+          "kind": "equipment_delivery",
+          "targetId": "rack-command-54",
+          "quantityCU": 8000000000,
+          "memoryMU": 16000000000
+        }
+      ],
+      "queuedCommands": [],
+      "random": {
+        "lab:eval:5c1f4b71:0:technical": {
+          "state": 552290060,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:0:execution": {
+          "state": 3695581801,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:1:technical": {
+          "state": 3997565207,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:1:execution": {
+          "state": 2158578032,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:2:technical": {
+          "state": 1356290708,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:2:execution": {
+          "state": 3352346086,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:3:technical": {
+          "state": 3552539179,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:3:execution": {
+          "state": 363178861,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:4:technical": {
+          "state": 1798811844,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:4:execution": {
+          "state": 2527380415,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:5:technical": {
+          "state": 476540429,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:5:execution": {
+          "state": 3201359401,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:6:technical": {
+          "state": 1055492394,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:6:execution": {
+          "state": 332287272,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:7:technical": {
+          "state": 2563058816,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:7:execution": {
+          "state": 2138708232,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:8:technical": {
+          "state": 2523105472,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:8:execution": {
+          "state": 3555141690,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:9:technical": {
+          "state": 1445938916,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:9:execution": {
+          "state": 1087900274,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:10:technical": {
+          "state": 1221272460,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:10:execution": {
+          "state": 3499649098,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:11:technical": {
+          "state": 2835320816,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:11:execution": {
+          "state": 3388922573,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:12:technical": {
+          "state": 1814143265,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:12:execution": {
+          "state": 291695956,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:13:technical": {
+          "state": 465739236,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:13:execution": {
+          "state": 1932294421,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:14:technical": {
+          "state": 344670120,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:14:execution": {
+          "state": 3522269724,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:15:technical": {
+          "state": 130133085,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:15:execution": {
+          "state": 629200991,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:16:technical": {
+          "state": 1171108558,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:16:execution": {
+          "state": 1556475798,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:17:technical": {
+          "state": 1450793613,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:17:execution": {
+          "state": 3973684651,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:18:technical": {
+          "state": 3984650314,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:18:execution": {
+          "state": 3207719218,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:19:technical": {
+          "state": 3921380694,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:19:execution": {
+          "state": 1851359745,
+          "draws": 1
+        }
+      }
+    },
+    {
+      "week": 14,
+      "player": {
+        "id": "company-player",
+        "name": "Frontier Lab",
+        "cashCents": 771600,
+        "arrearsCents": 0,
+        "founderOwnershipBps": 10000,
+        "founderFte": 1000000000,
+        "activeStaff": 2,
+        "earnedRevenueCents": 141600,
+        "totalOperatingExpenseCents": 2370000,
+        "lastWeek": {
+          "revenueCents": 44400,
+          "operatingExpenseCents": 155000,
+          "cashChangeCents": -110600
+        }
+      },
+      "ledger": [
+        {
+          "id": "invoice:product:command-36:14",
+          "companyId": "company-player",
+          "week": 14,
+          "sourceId": "contract:command-36",
+          "category": "revenue",
+          "amountCents": 44400,
+          "label": "Basic Chat: 37 accounts, after service credits",
+          "kind": "receipt",
+          "paidCents": 44400,
+          "unpaidCents": 0
+        },
+        {
+          "id": "company-player:cloud-rent:14",
+          "companyId": "company-player",
+          "week": 14,
+          "sourceId": "general-cloud-reservation",
+          "category": "rent",
+          "amountCents": 80000,
+          "label": "Reserved general GPU capacity (energy included)",
+          "kind": "expense",
+          "paidCents": 80000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "company-player:overhead:14",
+          "companyId": "company-player",
+          "week": 14,
+          "sourceId": "founder-and-basic-overhead",
+          "category": "overhead",
+          "amountCents": 20000,
+          "label": "Founder draw and basic overhead",
+          "kind": "expense",
+          "paidCents": 20000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "staff:command-4:payroll:14",
+          "companyId": "company-player",
+          "week": 14,
+          "sourceId": "staff:command-4",
+          "category": "operating",
+          "amountCents": 30000,
+          "label": "ML engineer salary",
+          "kind": "expense",
+          "paidCents": 30000,
+          "unpaidCents": 0
+        },
+        {
+          "id": "staff:command-65:payroll:14",
+          "companyId": "company-player",
+          "week": 14,
+          "sourceId": "staff:command-65",
+          "category": "operating",
+          "amountCents": 25000,
+          "label": "Data engineer salary",
+          "kind": "expense",
+          "paidCents": 25000,
+          "unpaidCents": 0
+        }
+      ],
+      "fleet": {
+        "companyId": "company-player",
+        "cloudCU": 4000000000,
+        "ownedCU": 0,
+        "memoryMU": 8000000000,
+        "occupiedMemoryMU": 3140000000,
+        "allocation": {
+          "serving": 2000000000,
+          "development": 1000000000,
+          "research": 1000000000
+        },
+        "lastWork": {
+          "serving": 650000000,
+          "development": 0,
+          "research": 0
+        },
+        "reservedCU": 715000000,
+        "deliveredEquipmentIds": [],
+        "inventory": {},
+        "lastBottleneck": "",
+        "lastReservedMemoryMU": 3140000000,
+        "lastGrants": [
+          {
+            "requestId": "serve:product:command-36",
+            "requestedWork": 650000000,
+            "grantedWork": 650000000,
+            "reason": ""
+          }
+        ],
+        "variableCostCarry": 0
+      },
+      "staff": {
+        "staff:command-4": {
+          "id": "staff:command-4",
+          "companyId": "company-player",
+          "role": "ml",
+          "hiredWeek": 1,
+          "readyWeek": 3,
+          "assignedFte": 1000000000
+        },
+        "staff:command-65": {
+          "id": "staff:command-65",
+          "companyId": "company-player",
+          "role": "data",
+          "hiredWeek": 12,
+          "readyWeek": 14,
+          "assignedFte": 1000000000
+        }
+      },
+      "research": {
+        "research-command-58": {
+          "id": "research-command-58",
+          "companyId": "company-player",
+          "researchId": "R1",
+          "startedWeek": 11,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "role": "research",
+          "status": "complete",
+          "lastProgress": 1000000000,
+          "lastBottleneck": "",
+          "completedWeek": 12,
+          "availableWeek": 13
+        }
+      },
+      "completedResearch": [
+        "R1"
+      ],
+      "racks": {
+        "rack-command-54": {
+          "id": "rack-command-54",
+          "companyId": "company-player",
+          "hardwareId": "general",
+          "location": "colocation",
+          "status": "ordered",
+          "orderedWeek": 11,
+          "arrivalWeek": 17,
+          "installationStartedWeek": null,
+          "completedInstallStaff": 0,
+          "readyWeek": null,
+          "installedWeek": null,
+          "purchaseCents": 1800000,
+          "lastBottleneck": "Delivery is pending; this hardware supplies no capacity."
+        }
+      },
+      "scheduled": [
+        {
+          "id": "delivery:command-54",
+          "companyId": "company-player",
+          "dueWeek": 17,
+          "kind": "equipment_delivery",
+          "targetId": "rack-command-54",
+          "quantityCU": 8000000000,
+          "memoryMU": 16000000000
+        }
+      ],
+      "queuedCommands": [],
+      "random": {
+        "lab:eval:5c1f4b71:0:technical": {
+          "state": 552290060,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:0:execution": {
+          "state": 3695581801,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:1:technical": {
+          "state": 3997565207,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:1:execution": {
+          "state": 2158578032,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:2:technical": {
+          "state": 1356290708,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:2:execution": {
+          "state": 3352346086,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:3:technical": {
+          "state": 3552539179,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:3:execution": {
+          "state": 363178861,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:4:technical": {
+          "state": 1798811844,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:4:execution": {
+          "state": 2527380415,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:5:technical": {
+          "state": 476540429,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:5:execution": {
+          "state": 3201359401,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:6:technical": {
+          "state": 1055492394,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:6:execution": {
+          "state": 332287272,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:7:technical": {
+          "state": 2563058816,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:7:execution": {
+          "state": 2138708232,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:8:technical": {
+          "state": 2523105472,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:8:execution": {
+          "state": 3555141690,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:9:technical": {
+          "state": 1445938916,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:9:execution": {
+          "state": 1087900274,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:10:technical": {
+          "state": 1221272460,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:10:execution": {
+          "state": 3499649098,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:11:technical": {
+          "state": 2835320816,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:11:execution": {
+          "state": 3388922573,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:12:technical": {
+          "state": 1814143265,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:12:execution": {
+          "state": 291695956,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:13:technical": {
+          "state": 465739236,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:13:execution": {
+          "state": 1932294421,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:14:technical": {
+          "state": 344670120,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:14:execution": {
+          "state": 3522269724,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:15:technical": {
+          "state": 130133085,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:15:execution": {
+          "state": 629200991,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:16:technical": {
+          "state": 1171108558,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:16:execution": {
+          "state": 1556475798,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:17:technical": {
+          "state": 1450793613,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:17:execution": {
+          "state": 3973684651,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:18:technical": {
+          "state": 3984650314,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:18:execution": {
+          "state": 3207719218,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:19:technical": {
+          "state": 3921380694,
+          "draws": 1
+        },
+        "lab:eval:5c1f4b71:19:execution": {
+          "state": 1851359745,
+          "draws": 1
+        }
+      }
+    }
+  ]
+}

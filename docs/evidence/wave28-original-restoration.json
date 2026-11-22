@@ -1,0 +1,17 @@
+{
+  "wave": 28,
+  "result": "PASS",
+  "verifiedAt": "2026-11-09T20:12:45.127535+00:00",
+  "week": 556,
+  "checksum": "f4c18870",
+  "bytes": 1525373,
+  "sha256": "9db19cc7651f709865398a287e84eef9262158624bcc2efa3df2d18c11da0bf0",
+  "exactMigratedOriginalBytes": true,
+  "exactMigratedOriginalState": true,
+  "originalCompanyAdvanced": false,
+  "queuedActionsPreserved": 1,
+  "queueBoundary": 557,
+  "browserAutosave": "Saved in this browser \u00b7 Week 556",
+  "screenshot": "docs/images/wave28-original-restored.png",
+  "method": "Visible import of preserved original migrated snapshot; confirmation, autosave, export and exact binary comparison."
+}

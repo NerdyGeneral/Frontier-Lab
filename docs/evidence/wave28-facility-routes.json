@@ -1,0 +1,976 @@
+{
+  "protocol": "wave28-facility-routes-1",
+  "source": {
+    "publishedWeek": 579,
+    "publishedChecksum": "0e2eb06a",
+    "fixtureHelper": "tests/fixtures/wave28-facilities.ts",
+    "authenticSeed": "tests/fixtures/wave27-appliance-published.json",
+    "commandsOnly": true,
+    "readinessInjected": false
+  },
+  "units": {
+    "resources": "1e9 units per CUw/MU/staff-week",
+    "money": "integer cents",
+    "rates": "basis points"
+  },
+  "profileStages": {
+    "facilityId": "facility-wave8-scale-command-3",
+    "servingId": "facility-specialization:command-3288",
+    "trainingId": "facility-specialization:command-3307",
+    "originalWeek": 579,
+    "originalChecksum": "0e2eb06a",
+    "commands": [
+      {
+        "week": 579,
+        "id": "command-3259",
+        "payload": {
+          "kind": "assign_founder",
+          "allocations": {
+            "research": 0,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 1000000000,
+            "commercial": 0,
+            "hardware": 0
+          }
+        }
+      },
+      {
+        "week": 580,
+        "id": "command-3266",
+        "payload": {
+          "kind": "start_research",
+          "researchId": "S5"
+        }
+      },
+      {
+        "week": 585,
+        "id": "command-3288",
+        "payload": {
+          "kind": "start_facility_specialization",
+          "facilityId": "facility-wave8-scale-command-3",
+          "profile": "serving"
+        }
+      },
+      {
+        "week": 589,
+        "id": "command-3307",
+        "payload": {
+          "kind": "start_facility_specialization",
+          "facilityId": "facility-wave8-scale-command-3",
+          "profile": "training"
+        }
+      }
+    ],
+    "milestones": [
+      {
+        "label": "Published W579 company",
+        "week": 579,
+        "cashCents": 645031779,
+        "revenueCents": 4579043,
+        "expenseCents": 3105000,
+        "consumers": 959,
+        "developers": 181,
+        "businesses": 22,
+        "trustBps": 10000
+      },
+      {
+        "label": "Paid Facility specialization available",
+        "week": 585,
+        "cashCents": 652410387,
+        "revenueCents": 4580821,
+        "expenseCents": 3105000,
+        "consumers": 947,
+        "developers": 182,
+        "businesses": 21,
+        "trustBps": 10000
+      },
+      {
+        "label": "Serving profile benefit and training ceiling active",
+        "week": 589,
+        "cashCents": 656409230,
+        "revenueCents": 4542421,
+        "expenseCents": 3066188,
+        "consumers": 942,
+        "developers": 182,
+        "businesses": 22,
+        "trustBps": 10000
+      },
+      {
+        "label": "Training profile benefit and serving ceiling active",
+        "week": 593,
+        "cashCents": 660394039,
+        "revenueCents": 4523797,
+        "expenseCents": 3091500,
+        "consumers": 938,
+        "developers": 183,
+        "businesses": 21,
+        "trustBps": 10000
+      }
+    ],
+    "minimumCashCents": 645031779,
+    "stages": [
+      {
+        "stage": "beforeRetrofit",
+        "week": 585,
+        "checksum": "92e0f022",
+        "cashCents": 652410387,
+        "path": "/workspace/shared/frontier-lab/wave28-facility-beforeRetrofit.json"
+      },
+      {
+        "stage": "building",
+        "week": 586,
+        "checksum": "21100123",
+        "cashCents": 652037733,
+        "path": "/workspace/shared/frontier-lab/wave28-facility-building.json"
+      },
+      {
+        "stage": "ready",
+        "week": 588,
+        "checksum": "5a3c3e36",
+        "cashCents": 654932997,
+        "path": "/workspace/shared/frontier-lab/wave28-facility-ready.json"
+      },
+      {
+        "stage": "servingActive",
+        "week": 589,
+        "checksum": "74d08ad9",
+        "cashCents": 656409230,
+        "path": "/workspace/shared/frontier-lab/wave28-facility-servingActive.json"
+      },
+      {
+        "stage": "switching",
+        "week": 590,
+        "checksum": "f912bc65",
+        "cashCents": 656050150,
+        "path": "/workspace/shared/frontier-lab/wave28-facility-switching.json"
+      },
+      {
+        "stage": "trainingReady",
+        "week": 592,
+        "checksum": "659756ac",
+        "cashCents": 658961742,
+        "path": "/workspace/shared/frontier-lab/wave28-facility-trainingReady.json"
+      },
+      {
+        "stage": "trainingActive",
+        "week": 593,
+        "checksum": "c046a694",
+        "cashCents": 660394039,
+        "path": "/workspace/shared/frontier-lab/wave28-facility-trainingActive.json"
+      }
+    ]
+  },
+  "serviceRoutes": [
+    {
+      "path": "/workspace/shared/frontier-lab/wave28-facility-beforeRetrofit.json",
+      "checksum": "92e0f022",
+      "week": 585,
+      "cashCents": 652410387,
+      "valid": true,
+      "pools": [
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "hardwareId": "training",
+          "profile": null,
+          "physicalCapacityCU": 56000000000,
+          "connectedMemoryMU": 112000000000,
+          "trainingCeilingCU": 56000000000,
+          "servingCeilingCU": 56000000000,
+          "baseVariableRateCentsPerCUw": 7500,
+          "eligibleServingRateCentsPerCUw": 7500
+        }
+      ],
+      "publicServices": [
+        {
+          "id": "product:natural-business-command-8",
+          "kind": "basic-chat",
+          "paidAccounts": 950,
+          "fulfillmentBps": 10000,
+          "requestedWork": 15315000000,
+          "executedWork": 15315000000,
+          "physicalWork": 15315000000,
+          "poolId": "general-cloud",
+          "billedCents": 1140000,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 0,
+          "actualOwnedVariableCostCents": 0
+        },
+        {
+          "id": "product:natural-business-command-67",
+          "kind": "developer-api",
+          "paidAccounts": 182,
+          "fulfillmentBps": 10000,
+          "requestedWork": 56845360000,
+          "executedWork": 56845360000,
+          "physicalWork": 56845360000,
+          "poolId": "general-cloud",
+          "billedCents": 2725821,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 0,
+          "actualOwnedVariableCostCents": 0
+        },
+        {
+          "id": "product:natural-business-command-163",
+          "kind": "business-docs",
+          "paidAccounts": 22,
+          "fulfillmentBps": 10000,
+          "requestedWork": 43560000000,
+          "executedWork": 43560000000,
+          "physicalWork": 39600000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "billedCents": 660000,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 7500,
+          "actualOwnedVariableCostCents": 297000
+        }
+      ],
+      "enterprise": [
+        {
+          "id": "business:vector-studio",
+          "kind": "customer-hosted",
+          "status": "active",
+          "termStartedWeek": 575,
+          "termEndsWeek": 587,
+          "termWeeksServed": 11,
+          "lastUsage": {
+            "week": 585,
+            "requestedWorkCUw": 0,
+            "executedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "dataStaffRequired": 0,
+            "dataStaffGranted": 0,
+            "supportStaffRequired": 250000000,
+            "supportStaffGranted": 250000000,
+            "freshnessBps": 10000,
+            "fulfillmentBps": 10000,
+            "serviceBps": 10000,
+            "technicalErrorBps": null,
+            "grossCents": 25000,
+            "creditsCents": 0,
+            "billedCents": 25000,
+            "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+          }
+        },
+        {
+          "id": "business:cedar-records",
+          "kind": "customer-hosted",
+          "status": "active",
+          "termStartedWeek": 578,
+          "termEndsWeek": 590,
+          "termWeeksServed": 8,
+          "lastUsage": {
+            "week": 585,
+            "requestedWorkCUw": 0,
+            "executedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "dataStaffRequired": 0,
+            "dataStaffGranted": 0,
+            "supportStaffRequired": 250000000,
+            "supportStaffGranted": 250000000,
+            "freshnessBps": 10000,
+            "fulfillmentBps": 10000,
+            "serviceBps": 10000,
+            "technicalErrorBps": null,
+            "grossCents": 30000,
+            "creditsCents": 0,
+            "billedCents": 30000,
+            "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+          }
+        }
+      ],
+      "costs": {
+        "cloudRentCents": 2240000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 297000,
+        "variableFactCount": 1,
+        "variableCarryIn": 682615000,
+        "variableCarryOut": 682615000
+      }
+    },
+    {
+      "path": "/workspace/shared/frontier-lab/wave28-facility-servingActive.json",
+      "checksum": "74d08ad9",
+      "week": 589,
+      "cashCents": 656409230,
+      "valid": true,
+      "pools": [
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "hardwareId": "training",
+          "profile": "serving",
+          "physicalCapacityCU": 56000000000,
+          "connectedMemoryMU": 112000000000,
+          "trainingCeilingCU": 50400000000,
+          "servingCeilingCU": 56000000000,
+          "baseVariableRateCentsPerCUw": 7500,
+          "eligibleServingRateCentsPerCUw": 6750
+        }
+      ],
+      "publicServices": [
+        {
+          "id": "product:natural-business-command-8",
+          "kind": "basic-chat",
+          "paidAccounts": 943,
+          "fulfillmentBps": 10000,
+          "requestedWork": 15185000000,
+          "executedWork": 15185000000,
+          "physicalWork": 15185000000,
+          "poolId": "general-cloud",
+          "billedCents": 1131600,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 0,
+          "actualOwnedVariableCostCents": 0
+        },
+        {
+          "id": "product:natural-business-command-67",
+          "kind": "developer-api",
+          "paidAccounts": 182,
+          "fulfillmentBps": 10000,
+          "requestedWork": 56923360000,
+          "executedWork": 56923360000,
+          "physicalWork": 56923360000,
+          "poolId": "general-cloud",
+          "billedCents": 2725821,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 0,
+          "actualOwnedVariableCostCents": 0
+        },
+        {
+          "id": "product:natural-business-command-163",
+          "kind": "business-docs",
+          "paidAccounts": 21,
+          "fulfillmentBps": 10000,
+          "requestedWork": 42075000000,
+          "executedWork": 42075000000,
+          "physicalWork": 38250000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "billedCents": 630000,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 6750,
+          "actualOwnedVariableCostCents": 258187
+        }
+      ],
+      "enterprise": [
+        {
+          "id": "business:vector-studio",
+          "kind": "customer-hosted",
+          "status": "active",
+          "termStartedWeek": 587,
+          "termEndsWeek": 599,
+          "termWeeksServed": 3,
+          "lastUsage": {
+            "week": 589,
+            "requestedWorkCUw": 0,
+            "executedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "dataStaffRequired": 0,
+            "dataStaffGranted": 0,
+            "supportStaffRequired": 250000000,
+            "supportStaffGranted": 250000000,
+            "freshnessBps": 10000,
+            "fulfillmentBps": 10000,
+            "serviceBps": 10000,
+            "technicalErrorBps": null,
+            "grossCents": 25000,
+            "creditsCents": 0,
+            "billedCents": 25000,
+            "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+          }
+        },
+        {
+          "id": "business:cedar-records",
+          "kind": "customer-hosted",
+          "status": "active",
+          "termStartedWeek": 578,
+          "termEndsWeek": 590,
+          "termWeeksServed": 12,
+          "lastUsage": {
+            "week": 589,
+            "requestedWorkCUw": 0,
+            "executedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "dataStaffRequired": 0,
+            "dataStaffGranted": 0,
+            "supportStaffRequired": 250000000,
+            "supportStaffGranted": 250000000,
+            "freshnessBps": 10000,
+            "fulfillmentBps": 10000,
+            "serviceBps": 10000,
+            "technicalErrorBps": null,
+            "grossCents": 30000,
+            "creditsCents": 0,
+            "billedCents": 30000,
+            "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+          }
+        }
+      ],
+      "costs": {
+        "cloudRentCents": 2240000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 258188,
+        "variableFactCount": 1,
+        "variableCarryIn": 682620000,
+        "variableCarryOut": 182620000
+      }
+    },
+    {
+      "path": "/workspace/shared/frontier-lab/wave28-facility-trainingActive.json",
+      "checksum": "c046a694",
+      "week": 593,
+      "cashCents": 660394039,
+      "valid": true,
+      "pools": [
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "hardwareId": "training",
+          "profile": "training",
+          "physicalCapacityCU": 56000000000,
+          "connectedMemoryMU": 112000000000,
+          "trainingCeilingCU": 56000000000,
+          "servingCeilingCU": 50400000000,
+          "baseVariableRateCentsPerCUw": 7500,
+          "eligibleServingRateCentsPerCUw": 7500
+        }
+      ],
+      "publicServices": [
+        {
+          "id": "product:natural-business-command-8",
+          "kind": "basic-chat",
+          "paidAccounts": 940,
+          "fulfillmentBps": 10000,
+          "requestedWork": 15165000000,
+          "executedWork": 15165000000,
+          "physicalWork": 15165000000,
+          "poolId": "general-cloud",
+          "billedCents": 1128000,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 0,
+          "actualOwnedVariableCostCents": 0
+        },
+        {
+          "id": "product:natural-business-command-67",
+          "kind": "developer-api",
+          "paidAccounts": 183,
+          "fulfillmentBps": 10000,
+          "requestedWork": 57234840000,
+          "executedWork": 57234840000,
+          "physicalWork": 57234840000,
+          "poolId": "general-cloud",
+          "billedCents": 2740797,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 0,
+          "actualOwnedVariableCostCents": 0
+        },
+        {
+          "id": "product:natural-business-command-163",
+          "kind": "business-docs",
+          "paidAccounts": 21,
+          "fulfillmentBps": 10000,
+          "requestedWork": 41580000000,
+          "executedWork": 41580000000,
+          "physicalWork": 37800000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "billedCents": 630000,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 7500,
+          "actualOwnedVariableCostCents": 283500
+        }
+      ],
+      "enterprise": [
+        {
+          "id": "business:vector-studio",
+          "kind": "customer-hosted",
+          "status": "active",
+          "termStartedWeek": 587,
+          "termEndsWeek": 599,
+          "termWeeksServed": 7,
+          "lastUsage": {
+            "week": 593,
+            "requestedWorkCUw": 0,
+            "executedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "dataStaffRequired": 0,
+            "dataStaffGranted": 0,
+            "supportStaffRequired": 250000000,
+            "supportStaffGranted": 250000000,
+            "freshnessBps": 10000,
+            "fulfillmentBps": 10000,
+            "serviceBps": 10000,
+            "technicalErrorBps": null,
+            "grossCents": 25000,
+            "creditsCents": 0,
+            "billedCents": 25000,
+            "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+          }
+        },
+        {
+          "id": "business:cedar-records",
+          "kind": "customer-hosted",
+          "status": "expired",
+          "termStartedWeek": 578,
+          "termEndsWeek": 590,
+          "termWeeksServed": 12,
+          "lastUsage": {
+            "week": 589,
+            "requestedWorkCUw": 0,
+            "executedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "dataStaffRequired": 0,
+            "dataStaffGranted": 0,
+            "supportStaffRequired": 250000000,
+            "supportStaffGranted": 250000000,
+            "freshnessBps": 10000,
+            "fulfillmentBps": 10000,
+            "serviceBps": 10000,
+            "technicalErrorBps": null,
+            "grossCents": 30000,
+            "creditsCents": 0,
+            "billedCents": 30000,
+            "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+          }
+        }
+      ],
+      "costs": {
+        "cloudRentCents": 2240000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 283500,
+        "variableFactCount": 1,
+        "variableCarryIn": 182625000,
+        "variableCarryOut": 182625000
+      }
+    }
+  ],
+  "trainingRoutes": [
+    {
+      "profile": "serving",
+      "week": 593,
+      "checksum": "49b2a586",
+      "path": "/workspace/shared/frontier-lab/wave28-facility-serving-training-work.json",
+      "runId": "training-command-3309",
+      "request": {
+        "id": "training-command-3309:work",
+        "companyId": "company-player",
+        "taskId": "training-command-3309",
+        "category": "development",
+        "normalizedWorkCUw": 336000000000,
+        "memoryMU": 24000000000,
+        "priority": 40,
+        "poolId": "auto",
+        "modelArchitecture": "dense",
+        "modelFamily": "medium",
+        "workloadKind": "training",
+        "staffDemand": [
+          {
+            "role": "ml",
+            "staffWeeks": 84000000000
+          }
+        ],
+        "supervision": {
+          "role": "ml",
+          "workPerStaffWeek": 4000000000
+        }
+      },
+      "grant": {
+        "requestId": "training-command-3309:work",
+        "physicalCUw": 8000000000,
+        "hardwareEffectiveCUw": 10080000000,
+        "memoryMU": 24000000000,
+        "poolId": "owned:facility-wave8-scale-command-3:training"
+      },
+      "poolId": "owned:facility-wave8-scale-command-3:training",
+      "crossRack": true,
+      "multiplierBps": 12600,
+      "commands": [
+        {
+          "week": 589,
+          "id": "command-3307",
+          "payload": {
+            "kind": "assign_founder",
+            "allocations": {
+              "research": 1000000000,
+              "ml": 0,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            }
+          }
+        },
+        {
+          "week": 589,
+          "id": "command-3309",
+          "payload": {
+            "kind": "start_training",
+            "recipeId": "medium-foundation",
+            "baseModelId": "seed-0",
+            "packetId": "curated-natural-business-command-124",
+            "packetIds": [
+              "curated-natural-business-command-124",
+              "curated-natural-business-command-111",
+              "curated-natural-business-command-54"
+            ],
+            "profile": "ambitious"
+          }
+        },
+        {
+          "week": 592,
+          "id": "command-3323",
+          "payload": {
+            "kind": "assign_founder",
+            "allocations": {
+              "research": 0,
+              "ml": 1000000000,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            }
+          }
+        }
+      ],
+      "minimumCashCents": 655875150,
+      "valid": true,
+      "requiredWork": 336000000000,
+      "completedWork": 10080000000,
+      "preparationRequired": 6000000000,
+      "preparationCompleted": 6000000000,
+      "mlGrant": {
+        "requestId": "training-command-3309:work",
+        "grants": [
+          {
+            "role": "ml",
+            "staffWeeks": 3000000000
+          }
+        ]
+      },
+      "liveServices": [
+        {
+          "id": "product:natural-business-command-8",
+          "kind": "basic-chat",
+          "paidAccounts": 940,
+          "fulfillmentBps": 10000,
+          "requestedWork": 15165000000,
+          "executedWork": 15165000000,
+          "physicalWork": 15165000000,
+          "poolId": "general-cloud",
+          "billedCents": 1128000,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 0,
+          "actualOwnedVariableCostCents": 0
+        },
+        {
+          "id": "product:natural-business-command-67",
+          "kind": "developer-api",
+          "paidAccounts": 183,
+          "fulfillmentBps": 10000,
+          "requestedWork": 57234840000,
+          "executedWork": 57234840000,
+          "physicalWork": 57234840000,
+          "poolId": "general-cloud",
+          "billedCents": 2740797,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 0,
+          "actualOwnedVariableCostCents": 0
+        },
+        {
+          "id": "product:natural-business-command-163",
+          "kind": "business-docs",
+          "paidAccounts": 21,
+          "fulfillmentBps": 10000,
+          "requestedWork": 41580000000,
+          "executedWork": 41580000000,
+          "physicalWork": 37800000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "billedCents": 630000,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 6750,
+          "actualOwnedVariableCostCents": 255150
+        }
+      ],
+      "enterprise": [
+        {
+          "id": "business:vector-studio",
+          "kind": "customer-hosted",
+          "status": "active",
+          "termStartedWeek": 587,
+          "termEndsWeek": 599,
+          "termWeeksServed": 7,
+          "lastUsage": {
+            "week": 593,
+            "requestedWorkCUw": 0,
+            "executedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "dataStaffRequired": 0,
+            "dataStaffGranted": 0,
+            "supportStaffRequired": 250000000,
+            "supportStaffGranted": 250000000,
+            "freshnessBps": 10000,
+            "fulfillmentBps": 10000,
+            "serviceBps": 10000,
+            "technicalErrorBps": null,
+            "grossCents": 25000,
+            "creditsCents": 0,
+            "billedCents": 25000,
+            "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+          }
+        },
+        {
+          "id": "business:cedar-records",
+          "kind": "customer-hosted",
+          "status": "expired",
+          "termStartedWeek": 578,
+          "termEndsWeek": 590,
+          "termWeeksServed": 12,
+          "lastUsage": {
+            "week": 589,
+            "requestedWorkCUw": 0,
+            "executedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "dataStaffRequired": 0,
+            "dataStaffGranted": 0,
+            "supportStaffRequired": 250000000,
+            "supportStaffGranted": 250000000,
+            "freshnessBps": 10000,
+            "fulfillmentBps": 10000,
+            "serviceBps": 10000,
+            "technicalErrorBps": null,
+            "grossCents": 30000,
+            "creditsCents": 0,
+            "billedCents": 30000,
+            "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+          }
+        }
+      ]
+    },
+    {
+      "profile": "training",
+      "week": 597,
+      "checksum": "4efed02c",
+      "path": "/workspace/shared/frontier-lab/wave28-facility-training-training-work.json",
+      "runId": "training-command-3327",
+      "request": {
+        "id": "training-command-3327:work",
+        "companyId": "company-player",
+        "taskId": "training-command-3327",
+        "category": "development",
+        "normalizedWorkCUw": 336000000000,
+        "memoryMU": 24000000000,
+        "priority": 40,
+        "poolId": "auto",
+        "modelArchitecture": "dense",
+        "modelFamily": "medium",
+        "workloadKind": "training",
+        "staffDemand": [
+          {
+            "role": "ml",
+            "staffWeeks": 84000000000
+          }
+        ],
+        "supervision": {
+          "role": "ml",
+          "workPerStaffWeek": 4000000000
+        }
+      },
+      "grant": {
+        "requestId": "training-command-3327:work",
+        "physicalCUw": 8000000000,
+        "hardwareEffectiveCUw": 11088000000,
+        "memoryMU": 24000000000,
+        "poolId": "owned:facility-wave8-scale-command-3:training"
+      },
+      "poolId": "owned:facility-wave8-scale-command-3:training",
+      "crossRack": true,
+      "multiplierBps": 13860,
+      "commands": [
+        {
+          "week": 593,
+          "id": "command-3325",
+          "payload": {
+            "kind": "assign_founder",
+            "allocations": {
+              "research": 1000000000,
+              "ml": 0,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            }
+          }
+        },
+        {
+          "week": 593,
+          "id": "command-3327",
+          "payload": {
+            "kind": "start_training",
+            "recipeId": "medium-foundation",
+            "baseModelId": "seed-0",
+            "packetId": "curated-natural-business-command-124",
+            "packetIds": [
+              "curated-natural-business-command-124",
+              "curated-natural-business-command-111",
+              "curated-natural-business-command-54"
+            ],
+            "profile": "ambitious"
+          }
+        },
+        {
+          "week": 596,
+          "id": "command-3340",
+          "payload": {
+            "kind": "assign_founder",
+            "allocations": {
+              "research": 0,
+              "ml": 1000000000,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            }
+          }
+        }
+      ],
+      "minimumCashCents": 659823937,
+      "valid": true,
+      "requiredWork": 336000000000,
+      "completedWork": 11088000000,
+      "preparationRequired": 6000000000,
+      "preparationCompleted": 6000000000,
+      "mlGrant": {
+        "requestId": "training-command-3327:work",
+        "grants": [
+          {
+            "role": "ml",
+            "staffWeeks": 3000000000
+          }
+        ]
+      },
+      "liveServices": [
+        {
+          "id": "product:natural-business-command-8",
+          "kind": "basic-chat",
+          "paidAccounts": 937,
+          "fulfillmentBps": 10000,
+          "requestedWork": 15105000000,
+          "executedWork": 15105000000,
+          "physicalWork": 15105000000,
+          "poolId": "general-cloud",
+          "billedCents": 1124400,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 0,
+          "actualOwnedVariableCostCents": 0
+        },
+        {
+          "id": "product:natural-business-command-67",
+          "kind": "developer-api",
+          "paidAccounts": 183,
+          "fulfillmentBps": 10000,
+          "requestedWork": 57234840000,
+          "executedWork": 57234840000,
+          "physicalWork": 57234840000,
+          "poolId": "general-cloud",
+          "billedCents": 2740798,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 0,
+          "actualOwnedVariableCostCents": 0
+        },
+        {
+          "id": "product:natural-business-command-163",
+          "kind": "business-docs",
+          "paidAccounts": 20,
+          "fulfillmentBps": 10000,
+          "requestedWork": 39600000000,
+          "executedWork": 39600000000,
+          "physicalWork": 36000000000,
+          "poolId": "owned:facility-wave8-scale-command-3:training",
+          "billedCents": 600000,
+          "invoiceCount": 1,
+          "actualVariableRateCentsPerCUw": 7500,
+          "actualOwnedVariableCostCents": 270000
+        }
+      ],
+      "enterprise": [
+        {
+          "id": "business:vector-studio",
+          "kind": "customer-hosted",
+          "status": "active",
+          "termStartedWeek": 587,
+          "termEndsWeek": 599,
+          "termWeeksServed": 11,
+          "lastUsage": {
+            "week": 597,
+            "requestedWorkCUw": 0,
+            "executedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "dataStaffRequired": 0,
+            "dataStaffGranted": 0,
+            "supportStaffRequired": 250000000,
+            "supportStaffGranted": 250000000,
+            "freshnessBps": 10000,
+            "fulfillmentBps": 10000,
+            "serviceBps": 10000,
+            "technicalErrorBps": null,
+            "grossCents": 25000,
+            "creditsCents": 0,
+            "billedCents": 25000,
+            "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+          }
+        },
+        {
+          "id": "business:cedar-records",
+          "kind": "customer-hosted",
+          "status": "expired",
+          "termStartedWeek": 578,
+          "termEndsWeek": 590,
+          "termWeeksServed": 12,
+          "lastUsage": {
+            "week": 589,
+            "requestedWorkCUw": 0,
+            "executedWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "inputTokens": 0,
+            "outputTokens": 0,
+            "dataStaffRequired": 0,
+            "dataStaffGranted": 0,
+            "supportStaffRequired": 250000000,
+            "supportStaffGranted": 250000000,
+            "freshnessBps": 10000,
+            "fulfillmentBps": 10000,
+            "serviceBps": 10000,
+            "technicalErrorBps": null,
+            "grossCents": 30000,
+            "creditsCents": 0,
+            "billedCents": 30000,
+            "explanation": "Fixed weights delivered; support available. The customer pays for and operates its own inference compute."
+          }
+        }
+      ]
+    }
+  ],
+  "conclusions": {
+    "servingBenefit": "Actual Documents owned-work tariff decreases from 7500 to 6750 cents per physical CUw; one ordinary compute expense fact settles all actual owned work. Chat/API remain on general cloud and receive no fictitious owned discount.",
+    "servingTradeoff": "The real 56-CU site pool permits at most 50.4 physical CU of explicit training reservations per week; focused shared-allocator tests aggregate requests across categories.",
+    "trainingBenefit": "After the same separately paid foundation and 6 real research staff-weeks, ordinary founder reassignment to ML yields 10.08 versus 11.088 useful CUw from the same 8 physical CUw and 24 MU connected workspace.",
+    "trainingTradeoff": "The training profile lowers this site pool’s serving/inference ceiling from 56 to 50.4 physical CU including headroom. Existing paid services remain fully fulfilled in these observed weeks.",
+    "enterpriseTerms": "Cedar’s customer-hosted support receives its actual final paid week at W589 and later expires at its signed term boundary; Vector support continues. Site profiles do not supply customer-owned inference or extend contracts.",
+    "comparison": "Each workload uses actual grants and settlement. Weeks differ between the two paid training branches; revenue differences between those weeks are not attributed to the profile."
+  }
+}

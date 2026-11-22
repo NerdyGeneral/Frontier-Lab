@@ -1,0 +1,148 @@
+{
+  "facilityId": "facility-wave8-scale-command-3",
+  "servingId": "facility-specialization:command-3288",
+  "trainingId": "facility-specialization:command-3307",
+  "originalWeek": 579,
+  "originalChecksum": "0e2eb06a",
+  "commands": [
+    {
+      "week": 579,
+      "id": "command-3259",
+      "payload": {
+        "kind": "assign_founder",
+        "allocations": {
+          "research": 0,
+          "ml": 0,
+          "data": 0,
+          "infrastructure": 1000000000,
+          "commercial": 0,
+          "hardware": 0
+        }
+      }
+    },
+    {
+      "week": 580,
+      "id": "command-3266",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "S5"
+      }
+    },
+    {
+      "week": 585,
+      "id": "command-3288",
+      "payload": {
+        "kind": "start_facility_specialization",
+        "facilityId": "facility-wave8-scale-command-3",
+        "profile": "serving"
+      }
+    },
+    {
+      "week": 589,
+      "id": "command-3307",
+      "payload": {
+        "kind": "start_facility_specialization",
+        "facilityId": "facility-wave8-scale-command-3",
+        "profile": "training"
+      }
+    }
+  ],
+  "milestones": [
+    {
+      "label": "Published W579 company",
+      "week": 579,
+      "cashCents": 645031779,
+      "revenueCents": 4579043,
+      "expenseCents": 3105000,
+      "consumers": 959,
+      "developers": 181,
+      "businesses": 22,
+      "trustBps": 10000
+    },
+    {
+      "label": "Paid Facility specialization available",
+      "week": 585,
+      "cashCents": 652410387,
+      "revenueCents": 4580821,
+      "expenseCents": 3105000,
+      "consumers": 947,
+      "developers": 182,
+      "businesses": 21,
+      "trustBps": 10000
+    },
+    {
+      "label": "Serving profile benefit and training ceiling active",
+      "week": 589,
+      "cashCents": 656409230,
+      "revenueCents": 4542421,
+      "expenseCents": 3066188,
+      "consumers": 942,
+      "developers": 182,
+      "businesses": 22,
+      "trustBps": 10000
+    },
+    {
+      "label": "Training profile benefit and serving ceiling active",
+      "week": 593,
+      "cashCents": 660394039,
+      "revenueCents": 4523797,
+      "expenseCents": 3091500,
+      "consumers": 938,
+      "developers": 183,
+      "businesses": 21,
+      "trustBps": 10000
+    }
+  ],
+  "minimumCashCents": 645031779,
+  "stages": [
+    {
+      "stage": "beforeRetrofit",
+      "week": 585,
+      "checksum": "92e0f022",
+      "cashCents": 652410387,
+      "path": "/workspace/shared/frontier-lab/wave28-facility-beforeRetrofit.json"
+    },
+    {
+      "stage": "building",
+      "week": 586,
+      "checksum": "21100123",
+      "cashCents": 652037733,
+      "path": "/workspace/shared/frontier-lab/wave28-facility-building.json"
+    },
+    {
+      "stage": "ready",
+      "week": 588,
+      "checksum": "5a3c3e36",
+      "cashCents": 654932997,
+      "path": "/workspace/shared/frontier-lab/wave28-facility-ready.json"
+    },
+    {
+      "stage": "servingActive",
+      "week": 589,
+      "checksum": "74d08ad9",
+      "cashCents": 656409230,
+      "path": "/workspace/shared/frontier-lab/wave28-facility-servingActive.json"
+    },
+    {
+      "stage": "switching",
+      "week": 590,
+      "checksum": "f912bc65",
+      "cashCents": 656050150,
+      "path": "/workspace/shared/frontier-lab/wave28-facility-switching.json"
+    },
+    {
+      "stage": "trainingReady",
+      "week": 592,
+      "checksum": "659756ac",
+      "cashCents": 658961742,
+      "path": "/workspace/shared/frontier-lab/wave28-facility-trainingReady.json"
+    },
+    {
+      "stage": "trainingActive",
+      "week": 593,
+      "checksum": "c046a694",
+      "cashCents": 660394039,
+      "path": "/workspace/shared/frontier-lab/wave28-facility-trainingActive.json"
+    }
+  ]
+}

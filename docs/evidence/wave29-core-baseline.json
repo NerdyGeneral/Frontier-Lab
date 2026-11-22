@@ -1,0 +1,776 @@
+{
+  "phase": "baseline",
+  "contentVersion": "0.28.0",
+  "buildVersion": "0.28.0",
+  "method": "Independent deterministic calls in a scratch Node process on preserved snapshots. No live UI state, source fixture, resource or research mutations. Each warm-up/sample starts from the same source. SHA256 comparisons cover complete canonical states and exact serialized snapshots.",
+  "engineSha256": "aacf209652d70813acb80109e64826e3ab308905ad83aa70de0997300f0c6d25",
+  "benchmark": [
+    {
+      "name": "opening accepted preview",
+      "samples": [
+        {
+          "ms": 1.71,
+          "wholeStateClones": 3,
+          "contentClones": 0,
+          "allClones": 4,
+          "cloneMs": 1.04
+        },
+        {
+          "ms": 1.22,
+          "wholeStateClones": 3,
+          "contentClones": 0,
+          "allClones": 4,
+          "cloneMs": 0.76
+        },
+        {
+          "ms": 3.22,
+          "wholeStateClones": 3,
+          "contentClones": 0,
+          "allClones": 4,
+          "cloneMs": 0.81
+        },
+        {
+          "ms": 1.54,
+          "wholeStateClones": 3,
+          "contentClones": 0,
+          "allClones": 4,
+          "cloneMs": 0.82
+        },
+        {
+          "ms": 0.97,
+          "wholeStateClones": 3,
+          "contentClones": 0,
+          "allClones": 4,
+          "cloneMs": 0.55
+        }
+      ],
+      "medianMs": 1.54
+    },
+    {
+      "name": "W612 accepted preview",
+      "samples": [
+        {
+          "ms": 79.46,
+          "wholeStateClones": 3,
+          "contentClones": 0,
+          "allClones": 4,
+          "cloneMs": 60.2
+        },
+        {
+          "ms": 64.39,
+          "wholeStateClones": 3,
+          "contentClones": 0,
+          "allClones": 4,
+          "cloneMs": 51.14
+        },
+        {
+          "ms": 107.78,
+          "wholeStateClones": 3,
+          "contentClones": 0,
+          "allClones": 4,
+          "cloneMs": 78.7
+        },
+        {
+          "ms": 74.81,
+          "wholeStateClones": 3,
+          "contentClones": 0,
+          "allClones": 4,
+          "cloneMs": 63.56
+        },
+        {
+          "ms": 58.05,
+          "wholeStateClones": 3,
+          "contentClones": 0,
+          "allClones": 4,
+          "cloneMs": 46.07
+        }
+      ],
+      "medianMs": 74.81
+    },
+    {
+      "name": "W612 rejected preview",
+      "samples": [
+        {
+          "ms": 17.46,
+          "wholeStateClones": 1,
+          "contentClones": 0,
+          "allClones": 2,
+          "cloneMs": 14.42
+        },
+        {
+          "ms": 15.83,
+          "wholeStateClones": 1,
+          "contentClones": 0,
+          "allClones": 2,
+          "cloneMs": 12.62
+        },
+        {
+          "ms": 19.95,
+          "wholeStateClones": 1,
+          "contentClones": 0,
+          "allClones": 2,
+          "cloneMs": 16.6
+        },
+        {
+          "ms": 17.95,
+          "wholeStateClones": 1,
+          "contentClones": 0,
+          "allClones": 2,
+          "cloneMs": 14.58
+        },
+        {
+          "ms": 20.71,
+          "wholeStateClones": 1,
+          "contentClones": 0,
+          "allClones": 2,
+          "cloneMs": 17.45
+        }
+      ],
+      "medianMs": 17.95
+    },
+    {
+      "name": "W612 submit",
+      "samples": [
+        {
+          "ms": 411.17,
+          "wholeStateClones": 4,
+          "contentClones": 0,
+          "allClones": 286,
+          "cloneMs": 65.44
+        },
+        {
+          "ms": 436.46,
+          "wholeStateClones": 4,
+          "contentClones": 0,
+          "allClones": 286,
+          "cloneMs": 71.44
+        },
+        {
+          "ms": 386.96,
+          "wholeStateClones": 4,
+          "contentClones": 0,
+          "allClones": 286,
+          "cloneMs": 68.98
+        },
+        {
+          "ms": 394.8,
+          "wholeStateClones": 4,
+          "contentClones": 0,
+          "allClones": 286,
+          "cloneMs": 65.48
+        },
+        {
+          "ms": 483.41,
+          "wholeStateClones": 4,
+          "contentClones": 0,
+          "allClones": 286,
+          "cloneMs": 71.92
+        }
+      ],
+      "medianMs": 411.17
+    },
+    {
+      "name": "W612 advanceWeek",
+      "samples": [
+        {
+          "ms": 1412.41,
+          "wholeStateClones": 31,
+          "contentClones": 30,
+          "allClones": 638,
+          "cloneMs": 786.62
+        },
+        {
+          "ms": 1451.28,
+          "wholeStateClones": 31,
+          "contentClones": 30,
+          "allClones": 638,
+          "cloneMs": 809.62
+        },
+        {
+          "ms": 1744.86,
+          "wholeStateClones": 31,
+          "contentClones": 30,
+          "allClones": 638,
+          "cloneMs": 1017.57
+        }
+      ],
+      "medianMs": 1451.28
+    },
+    {
+      "name": "W612 validateState",
+      "samples": [
+        {
+          "ms": 151.41,
+          "wholeStateClones": 0,
+          "contentClones": 0,
+          "allClones": 140,
+          "cloneMs": 3.34
+        },
+        {
+          "ms": 128.31,
+          "wholeStateClones": 0,
+          "contentClones": 0,
+          "allClones": 140,
+          "cloneMs": 2.28
+        },
+        {
+          "ms": 138.06,
+          "wholeStateClones": 0,
+          "contentClones": 0,
+          "allClones": 140,
+          "cloneMs": 2.15
+        }
+      ],
+      "medianMs": 138.06
+    }
+  ],
+  "parity": [
+    {
+      "name": "opening ordinary data",
+      "payload": {
+        "kind": "prepare_data",
+        "packetId": "starter-public"
+      },
+      "preview": {
+        "accepted": true,
+        "sourceRevision": 0,
+        "summary": "Prepare the packet with 2 data staff-weeks. The fee is paid once; ready evidence remains reusable.",
+        "weeklyCostCents": 100000,
+        "upfrontCostCents": 100000,
+        "weeklyCostDeltaCents": 0,
+        "cashAfterCommitmentsCents": 4700000,
+        "availableCU": 4000000000
+      },
+      "submitted": {
+        "accepted": true,
+        "reason": null,
+        "commandId": "command-2",
+        "stateHash": "ba3b6532",
+        "rollbackSameIdentity": null
+      }
+    },
+    {
+      "name": "opening paid hire",
+      "payload": {
+        "kind": "hire_staff",
+        "role": "data"
+      },
+      "preview": {
+        "accepted": true,
+        "sourceRevision": 0,
+        "summary": "$1,250 recruiting, then $250 per week from hiring. Productive after 2 onboarding weeks.",
+        "weeklyCostCents": 100000,
+        "upfrontCostCents": 125000,
+        "weeklyCostDeltaCents": 25000,
+        "cashAfterCommitmentsCents": 4675000,
+        "availableCU": 4000000000
+      },
+      "submitted": {
+        "accepted": true,
+        "reason": null,
+        "commandId": "command-2",
+        "stateHash": "73d925dc",
+        "rollbackSameIdentity": null
+      }
+    },
+    {
+      "name": "opening insufficient funds retains quote",
+      "payload": {
+        "kind": "hire_staff",
+        "role": "data"
+      },
+      "preview": {
+        "accepted": false,
+        "reason": {
+          "code": "INSUFFICIENT_FUNDS",
+          "message": "There is not enough uncommitted cash for this action. Queued fees already reserve part of your funds."
+        },
+        "sourceRevision": 0,
+        "summary": "There is not enough uncommitted cash for this action. Queued fees already reserve part of your funds.",
+        "weeklyCostCents": 100000,
+        "upfrontCostCents": 125000,
+        "weeklyCostDeltaCents": 25000,
+        "cashAfterCommitmentsCents": -125000,
+        "availableCU": 4000000000
+      },
+      "submitted": {
+        "accepted": false,
+        "reason": {
+          "code": "INSUFFICIENT_FUNDS",
+          "message": "There is not enough uncommitted cash for this action. Queued fees already reserve part of your funds."
+        },
+        "commandId": null,
+        "stateHash": "b97ed1f5",
+        "rollbackSameIdentity": true
+      }
+    },
+    {
+      "name": "opening research prerequisite",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "S6"
+      },
+      "preview": {
+        "accepted": false,
+        "reason": {
+          "code": "NOT_READY",
+          "message": "Complete R16, S5 and wait for the next weekly boundary before starting this research."
+        },
+        "sourceRevision": 0,
+        "summary": "Complete R16, S5 and wait for the next weekly boundary before starting this research.",
+        "weeklyCostCents": 100000,
+        "upfrontCostCents": 0,
+        "weeklyCostDeltaCents": 0,
+        "cashAfterCommitmentsCents": 4800000,
+        "availableCU": 4000000000
+      },
+      "submitted": {
+        "accepted": false,
+        "reason": {
+          "code": "NOT_READY",
+          "message": "Complete R16, S5 and wait for the next weekly boundary before starting this research."
+        },
+        "commandId": null,
+        "stateHash": "fb7b1481",
+        "rollbackSameIdentity": true
+      }
+    },
+    {
+      "name": "invalid capacity",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 1000000000000,
+        "development": 0,
+        "research": 0
+      },
+      "preview": {
+        "accepted": false,
+        "reason": {
+          "code": "CAPACITY_EXCEEDED",
+          "message": "The allocation exceeds rented and installed nominal compute. Install a rack, rent capacity, or reduce an amount."
+        },
+        "sourceRevision": 0,
+        "summary": "The allocation exceeds rented and installed nominal compute. Install a rack, rent capacity, or reduce an amount.",
+        "weeklyCostCents": 100000,
+        "upfrontCostCents": 0,
+        "weeklyCostDeltaCents": 0,
+        "cashAfterCommitmentsCents": 4800000,
+        "availableCU": 4000000000,
+        "allocation": {
+          "serving": 1000000000000,
+          "development": 0,
+          "research": 0
+        }
+      },
+      "submitted": {
+        "accepted": false,
+        "reason": {
+          "code": "CAPACITY_EXCEEDED",
+          "message": "The allocation exceeds rented and installed nominal compute. Install a rack, rent capacity, or reduce an amount."
+        },
+        "commandId": null,
+        "stateHash": "fb7b1481",
+        "rollbackSameIdentity": true
+      }
+    },
+    {
+      "name": "invalid input validation",
+      "payload": {
+        "kind": "hire_staff",
+        "role": "data"
+      },
+      "preview": {
+        "accepted": false,
+        "reason": {
+          "code": "INSUFFICIENT_FUNDS",
+          "message": "There is not enough uncommitted cash for this action. Queued fees already reserve part of your funds."
+        },
+        "sourceRevision": 0,
+        "summary": "There is not enough uncommitted cash for this action. Queued fees already reserve part of your funds.",
+        "weeklyCostCents": 100000,
+        "upfrontCostCents": 125000,
+        "weeklyCostDeltaCents": 25000,
+        "cashAfterCommitmentsCents": -125001,
+        "availableCU": 4000000000
+      },
+      "submitted": {
+        "accepted": false,
+        "reason": {
+          "code": "INVALID_STATE",
+          "message": "Company value must be a safe integer in range."
+        },
+        "commandId": null,
+        "stateHash": "1afbb05d",
+        "rollbackSameIdentity": true
+      }
+    },
+    {
+      "name": "paid Studio transaction",
+      "payload": {
+        "kind": "apply_studio_plan",
+        "commands": [
+          {
+            "kind": "hire_staff",
+            "role": "data"
+          },
+          {
+            "kind": "assign_founder",
+            "allocations": {
+              "research": 1000000000,
+              "ml": 0,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            }
+          }
+        ]
+      },
+      "preview": {
+        "accepted": true,
+        "sourceRevision": 0,
+        "summary": "Apply the reviewed staffing and compute plan together at the next weekly boundary.",
+        "weeklyCostCents": 100000,
+        "upfrontCostCents": 125000,
+        "weeklyCostDeltaCents": 25000,
+        "cashAfterCommitmentsCents": 4675000,
+        "availableCU": 4000000000
+      },
+      "submitted": {
+        "accepted": true,
+        "reason": null,
+        "commandId": "command-2",
+        "stateHash": "5ec6a5ff",
+        "rollbackSameIdentity": null
+      }
+    },
+    {
+      "name": "rejected Studio child atomicity",
+      "payload": {
+        "kind": "apply_studio_plan",
+        "commands": [
+          {
+            "kind": "hire_staff",
+            "role": "data"
+          },
+          {
+            "kind": "allocate_compute",
+            "serving": 1000000000000,
+            "development": 0,
+            "research": 0
+          }
+        ]
+      },
+      "preview": {
+        "accepted": false,
+        "reason": {
+          "code": "CAPACITY_EXCEEDED",
+          "message": "Studio plan change 2 (allocate_compute): The allocation exceeds rented and installed nominal compute. Install a rack, rent capacity, or reduce an amount. No part of this plan was applied."
+        },
+        "sourceRevision": 0,
+        "summary": "Studio plan change 2 (allocate_compute): The allocation exceeds rented and installed nominal compute. Install a rack, rent capacity, or reduce an amount. No part of this plan was applied.",
+        "weeklyCostCents": 100000,
+        "upfrontCostCents": 0,
+        "weeklyCostDeltaCents": 0,
+        "cashAfterCommitmentsCents": 4800000,
+        "availableCU": 4000000000
+      },
+      "submitted": {
+        "accepted": false,
+        "reason": {
+          "code": "CAPACITY_EXCEEDED",
+          "message": "Studio plan change 2 (allocate_compute): The allocation exceeds rented and installed nominal compute. Install a rack, rent capacity, or reduce an amount. No part of this plan was applied."
+        },
+        "commandId": null,
+        "stateHash": "fb7b1481",
+        "rollbackSameIdentity": true
+      }
+    }
+  ],
+  "continuations": [
+    {
+      "name": "installed Gen2 idle continuation",
+      "input": "wave28-silicon-browser-actual.json",
+      "inputWeek": 612,
+      "inputHash": "627fa28e",
+      "commands": [],
+      "weeks": [
+        {
+          "week": 613,
+          "hash": "bb100942",
+          "canonicalSha256": "802843309a00ac9050673c10151869b4757ac218f016656390a25de20f795f10",
+          "snapshotSha256": "148b479d47574d3ecb297811b78bc99f2fe9bd50b561ff771ea67a38c20844c6",
+          "bytes": 1464959,
+          "revision": 1014,
+          "nextId": 3413,
+          "cashCents": 686800443
+        },
+        {
+          "week": 614,
+          "hash": "c573eab2",
+          "canonicalSha256": "2ae6595681a0f17cf5af50a2fc90e76ec88f8c8cee6ced2a972c7e12593d8f5a",
+          "snapshotSha256": "b9e49495029bfbf2551403c7e774872b5bceb5c9ad4a3dec8988aeed32792b7c",
+          "bytes": 1465105,
+          "revision": 1015,
+          "nextId": 3416,
+          "cashCents": 688229895
+        },
+        {
+          "week": 615,
+          "hash": "951cbfbe",
+          "canonicalSha256": "7943c11be2c22067bce204468706489f4fbc985250c65de50acbcb2c41af02d0",
+          "snapshotSha256": "e06d4a461da8a4fcdfab119ea346f98cdaa93bb39b1e3ce8289f03cf39ea9f49",
+          "bytes": 1465690,
+          "revision": 1016,
+          "nextId": 3419,
+          "cashCents": 689660546
+        }
+      ]
+    },
+    {
+      "name": "paid facility serving-to-training switch",
+      "input": "wave28-facility-servingActive.json",
+      "inputWeek": 589,
+      "inputHash": "74d08ad9",
+      "commands": [
+        {
+          "week": 589,
+          "payload": {
+            "kind": "start_facility_specialization",
+            "facilityId": "facility-wave8-scale-command-3",
+            "profile": "training"
+          },
+          "id": "command-3307",
+          "queuedHash": "e1cc685b"
+        }
+      ],
+      "weeks": [
+        {
+          "week": 590,
+          "hash": "f912bc65",
+          "canonicalSha256": "0cadb7aae9815c59b7ad3bb432e81d419e3f3d30c743cc34b62545f42102a866",
+          "snapshotSha256": "4dc4e556961b7e66abfb3dd538e571e5630912acb12b1b618a2d5cb237470a4d",
+          "bytes": 1481705,
+          "revision": 987,
+          "nextId": 3314,
+          "cashCents": 656050150
+        },
+        {
+          "week": 591,
+          "hash": "b2337e29",
+          "canonicalSha256": "a2cbff9b429547beb967234dbc138a41aacd2df8856274f59b5c6ac3928df6bb",
+          "snapshotSha256": "8efaab88b6debf8b518f50a4e492f31c01c6ba793ec82beacc6ece0336323085",
+          "bytes": 1479433,
+          "revision": 988,
+          "nextId": 3317,
+          "cashCents": 657514871
+        },
+        {
+          "week": 592,
+          "hash": "659756ac",
+          "canonicalSha256": "98f86c2a5b01ad75da0f370361977d19d974a4b15105a56545ef0fc71fe0938b",
+          "snapshotSha256": "d795d9115049f2647a0ce677bc67b6f731eb55f9a78088b21e49bc507ae8d44e",
+          "bytes": 1478011,
+          "revision": 989,
+          "nextId": 3321,
+          "cashCents": 658961742
+        },
+        {
+          "week": 593,
+          "hash": "c046a694",
+          "canonicalSha256": "6e07377e04693821d689f9e67c921c86829130d3533a60c532894314164dbe44",
+          "snapshotSha256": "32f30591ac82cc64cca721f66c7181cf158105532f3aab0de7b31f346eb3e698",
+          "bytes": 1476889,
+          "revision": 990,
+          "nextId": 3325,
+          "cashCents": 660394039
+        },
+        {
+          "week": 594,
+          "hash": "bc3ec29c",
+          "canonicalSha256": "025c20e9a8d0dbcb942ceef946e9dabbed502c1059df67ec2c43da0d16d0624b",
+          "snapshotSha256": "994cceed8ba7412f42c4e45c8058a70345c3bed644ebf0677195cf8f1d93a559",
+          "bytes": 1474209,
+          "revision": 991,
+          "nextId": 3328,
+          "cashCents": 661823937
+        }
+      ]
+    },
+    {
+      "name": "paid Gen2 fabrication and installation",
+      "input": "wave28-silicon-qualified.json",
+      "inputWeek": 603,
+      "inputHash": "b2c6263e",
+      "commands": [
+        {
+          "week": 603,
+          "payload": {
+            "kind": "order_chip_batch",
+            "designId": "chip-gen2-9de1e523",
+            "racks": 1,
+            "location": "colocation"
+          },
+          "id": "command-3368",
+          "queuedHash": "9437ff83"
+        },
+        {
+          "week": 610,
+          "payload": {
+            "kind": "install_rack",
+            "rackId": "rack-command-3368-1"
+          },
+          "id": "command-3396",
+          "queuedHash": "15cd70de"
+        }
+      ],
+      "weeks": [
+        {
+          "week": 604,
+          "hash": "59e17116",
+          "canonicalSha256": "f1a5dcb5042a60a20eb62f25d2dad791d5d69307543543fb1e93cc7a1ccddccb",
+          "snapshotSha256": "e9428ab9a536e587eed04230acb1aded1c0b19d81b8550571702b4cbac644e26",
+          "bytes": 1469020,
+          "revision": 1004,
+          "nextId": 3374,
+          "cashCents": 673783887
+        },
+        {
+          "week": 605,
+          "hash": "8460dc1b",
+          "canonicalSha256": "66ba29d81a2ee954bbd2ea4595d9a525ae317ac85adb9321f7b3d50c1a9f7ee1",
+          "snapshotSha256": "94b23d7896feb39c195ae8ca9ab827fdf6634373536941808bc64e14d1eafbf2",
+          "bytes": 1467344,
+          "revision": 1005,
+          "nextId": 3378,
+          "cashCents": 675219387
+        },
+        {
+          "week": 606,
+          "hash": "4e5989e1",
+          "canonicalSha256": "51e9df0d5aac2e55910dcf6595765e818ceb0096182de8d08f581593b9d468ff",
+          "snapshotSha256": "3e413a1936de26c10fb839e0ac881bb9c7b2d9f57ecc2837c2f37fe08b87f008",
+          "bytes": 1466282,
+          "revision": 1006,
+          "nextId": 3381,
+          "cashCents": 676673562
+        },
+        {
+          "week": 607,
+          "hash": "313448a2",
+          "canonicalSha256": "d8bae018d8196b5b4e0a04aac57fea4d389da42024b616f7384316fa6fcef495",
+          "snapshotSha256": "6ceb1c3c86995b9dbe20fc209563c91a818009791a4e37054fa60b5209f4e1fe",
+          "bytes": 1465729,
+          "revision": 1007,
+          "nextId": 3385,
+          "cashCents": 678125336
+        },
+        {
+          "week": 608,
+          "hash": "3d56eb8e",
+          "canonicalSha256": "84721de379e860c2ab69fbc691a192bc6afbb3624fa7f36dc9ac0eb4cdec10b8",
+          "snapshotSha256": "52607776e988bbd33d98b487a3d7d241f198f48e91707c2dfea6b21fcb7265bf",
+          "bytes": 1464808,
+          "revision": 1008,
+          "nextId": 3388,
+          "cashCents": 679571013
+        },
+        {
+          "week": 609,
+          "hash": "0fa56811",
+          "canonicalSha256": "654199c749f0569d88a722fb5109d2bc67a289ae9d15f95f5d4a911cac9bef54",
+          "snapshotSha256": "cf2f67e4b0f17572ea6f0feace9be07a81e53a6d24fed881d3d554ccad12fdd6",
+          "bytes": 1463519,
+          "revision": 1009,
+          "nextId": 3391,
+          "cashCents": 681021265
+        },
+        {
+          "week": 610,
+          "hash": "8b21766b",
+          "canonicalSha256": "73098789e242a75d712fb6cc379a1e8b6d37eac50fa3d25099d8a0e6d8f5ec57",
+          "snapshotSha256": "580c47c9806100b39c039f288372c8cfdf13426cdbf13f5dbd97d149fccf30c1",
+          "bytes": 1462306,
+          "revision": 1010,
+          "nextId": 3396,
+          "cashCents": 682451965
+        },
+        {
+          "week": 611,
+          "hash": "0fae23c5",
+          "canonicalSha256": "b10e59cd45e9f6c429c8b8bad780526750a8ab547eacf1f209f755c8cced57f6",
+          "snapshotSha256": "d97a9d9d9627af9a8064ed2a064b606870e7a2ca9137479e1e6d67d1a4c08b69",
+          "bytes": 1463728,
+          "revision": 1012,
+          "nextId": 3404,
+          "cashCents": 683902539
+        },
+        {
+          "week": 612,
+          "hash": "627fa28e",
+          "canonicalSha256": "60ef223cb80722a8b6050cc765dddad53db5a628d978e6e396621cc4d30b4a95",
+          "snapshotSha256": "bbb43b62b660e1932064d61a2597558548194f8eae0313c523a4d1d60d805c5c",
+          "bytes": 1463938,
+          "revision": 1013,
+          "nextId": 3409,
+          "cashCents": 685350891
+        }
+      ]
+    },
+    {
+      "name": "paid Studio hire and founder transaction",
+      "input": "wave29-core-opening-baseline.json",
+      "inputWeek": 0,
+      "inputHash": "fb7b1481",
+      "commands": [
+        {
+          "week": 0,
+          "payload": {
+            "kind": "apply_studio_plan",
+            "commands": [
+              {
+                "kind": "hire_staff",
+                "role": "data"
+              },
+              {
+                "kind": "assign_founder",
+                "allocations": {
+                  "research": 1000000000,
+                  "ml": 0,
+                  "data": 0,
+                  "infrastructure": 0,
+                  "commercial": 0,
+                  "hardware": 0
+                }
+              }
+            ]
+          },
+          "id": "command-2",
+          "queuedHash": "5ec6a5ff"
+        }
+      ],
+      "weeks": [
+        {
+          "week": 1,
+          "hash": "c25d4903",
+          "canonicalSha256": "df16d1e27646711175901c020dbd319be529eecc3a52c37a2d8841ef943d7de3",
+          "snapshotSha256": "a965e3df1a5acf36cbd123f0c4e52aaccfdb6dbff20d8806558d947a8441d0e8",
+          "bytes": 70006,
+          "revision": 2,
+          "nextId": 8,
+          "cashCents": 4550000
+        },
+        {
+          "week": 2,
+          "hash": "d96d4f3d",
+          "canonicalSha256": "9c16a959b55d0211a5f17faeb0010272606cd947a45b9317dd55bb026297194a",
+          "snapshotSha256": "9bf63f47beee2e4dd3b1f7e24af598a13062c8d6e234c71ab65d6fffbb5a3971",
+          "bytes": 85838,
+          "revision": 3,
+          "nextId": 9,
+          "cashCents": 4425000
+        }
+      ]
+    }
+  ]
+}

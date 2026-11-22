@@ -1,0 +1,1139 @@
+{
+  "format": "frontier-lab",
+  "schemaVersion": 2,
+  "contentVersion": "0.2.0",
+  "checksum": "24beb853",
+  "state": {
+    "schemaVersion": 2,
+    "contentVersion": "0.2.0",
+    "buildVersion": "0.2.0",
+    "revision": 15,
+    "week": 6,
+    "nextId": 37,
+    "seed": "frontier-lab-wave-0",
+    "playerCompanyId": "company-player",
+    "random": {
+      "lab:eval:01687601:0:technical": {
+        "state": 225009460,
+        "draws": 1
+      },
+      "lab:eval:01687601:0:execution": {
+        "state": 4234347161,
+        "draws": 1
+      },
+      "lab:eval:01687601:1:technical": {
+        "state": 2145315827,
+        "draws": 1
+      },
+      "lab:eval:01687601:1:execution": {
+        "state": 2250841786,
+        "draws": 1
+      },
+      "lab:eval:01687601:2:technical": {
+        "state": 3008122009,
+        "draws": 1
+      },
+      "lab:eval:01687601:2:execution": {
+        "state": 1119022098,
+        "draws": 1
+      },
+      "lab:eval:01687601:3:technical": {
+        "state": 3103613170,
+        "draws": 1
+      },
+      "lab:eval:01687601:3:execution": {
+        "state": 2888007874,
+        "draws": 1
+      },
+      "lab:eval:01687601:4:technical": {
+        "state": 2399383016,
+        "draws": 1
+      },
+      "lab:eval:01687601:4:execution": {
+        "state": 2045363492,
+        "draws": 1
+      },
+      "lab:eval:01687601:5:technical": {
+        "state": 2302992379,
+        "draws": 1
+      },
+      "lab:eval:01687601:5:execution": {
+        "state": 2353824015,
+        "draws": 1
+      },
+      "lab:eval:01687601:6:technical": {
+        "state": 3707403800,
+        "draws": 1
+      },
+      "lab:eval:01687601:6:execution": {
+        "state": 1156740363,
+        "draws": 1
+      },
+      "lab:eval:01687601:7:technical": {
+        "state": 3133371171,
+        "draws": 1
+      },
+      "lab:eval:01687601:7:execution": {
+        "state": 3533499348,
+        "draws": 1
+      },
+      "lab:eval:01687601:8:technical": {
+        "state": 2584468684,
+        "draws": 1
+      },
+      "lab:eval:01687601:8:execution": {
+        "state": 3084140236,
+        "draws": 1
+      },
+      "lab:eval:01687601:9:technical": {
+        "state": 4086488956,
+        "draws": 1
+      },
+      "lab:eval:01687601:9:execution": {
+        "state": 919486161,
+        "draws": 1
+      },
+      "lab:eval:01687601:10:technical": {
+        "state": 14644998,
+        "draws": 1
+      },
+      "lab:eval:01687601:10:execution": {
+        "state": 142667404,
+        "draws": 1
+      },
+      "lab:eval:01687601:11:technical": {
+        "state": 776403100,
+        "draws": 1
+      },
+      "lab:eval:01687601:11:execution": {
+        "state": 2998641622,
+        "draws": 1
+      },
+      "lab:eval:01687601:12:technical": {
+        "state": 1456505474,
+        "draws": 1
+      },
+      "lab:eval:01687601:12:execution": {
+        "state": 3466925868,
+        "draws": 1
+      },
+      "lab:eval:01687601:13:technical": {
+        "state": 3906997306,
+        "draws": 1
+      },
+      "lab:eval:01687601:13:execution": {
+        "state": 3640338884,
+        "draws": 1
+      },
+      "lab:eval:01687601:14:technical": {
+        "state": 3545436683,
+        "draws": 1
+      },
+      "lab:eval:01687601:14:execution": {
+        "state": 3543124189,
+        "draws": 1
+      },
+      "lab:eval:01687601:15:technical": {
+        "state": 3904593625,
+        "draws": 1
+      },
+      "lab:eval:01687601:15:execution": {
+        "state": 1024825508,
+        "draws": 1
+      },
+      "lab:eval:01687601:16:technical": {
+        "state": 1818420875,
+        "draws": 1
+      },
+      "lab:eval:01687601:16:execution": {
+        "state": 2390053390,
+        "draws": 1
+      },
+      "lab:eval:01687601:17:technical": {
+        "state": 2732456946,
+        "draws": 1
+      },
+      "lab:eval:01687601:17:execution": {
+        "state": 1112159086,
+        "draws": 1
+      },
+      "lab:eval:01687601:18:technical": {
+        "state": 557178244,
+        "draws": 1
+      },
+      "lab:eval:01687601:18:execution": {
+        "state": 133408176,
+        "draws": 1
+      },
+      "lab:eval:01687601:19:technical": {
+        "state": 1077262056,
+        "draws": 1
+      },
+      "lab:eval:01687601:19:execution": {
+        "state": 1032714699,
+        "draws": 1
+      }
+    },
+    "slices": {
+      "company": {
+        "companies": {
+          "company-player": {
+            "id": "company-player",
+            "name": "Frontier Lab",
+            "cashCents": 3770000,
+            "arrearsCents": 0,
+            "founderOwnershipBps": 10000,
+            "founderFte": 1000000000,
+            "activeStaff": 1,
+            "earnedRevenueCents": 0,
+            "totalOperatingExpenseCents": 1030000,
+            "lastWeek": {
+              "revenueCents": 0,
+              "operatingExpenseCents": 130000,
+              "cashChangeCents": -130000
+            }
+          }
+        },
+        "ledger": [
+          {
+            "id": "company-player:cloud-rent:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "preparation-fixture-prepare:fee",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "preparation-fixture-prepare",
+            "category": "operating",
+            "amountCents": 100000,
+            "label": "Starter data preparation",
+            "kind": "expense",
+            "paidCents": 100000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "recruit:fixture-ml",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "fixture-ml",
+            "category": "operating",
+            "amountCents": 150000,
+            "label": "Recruit ML engineer",
+            "kind": "expense",
+            "paidCents": 150000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "staff:fixture-ml:payroll:1",
+            "companyId": "company-player",
+            "week": 1,
+            "sourceId": "staff:fixture-ml",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary (onboarding)",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "staff:fixture-ml:payroll:2",
+            "companyId": "company-player",
+            "week": 2,
+            "sourceId": "staff:fixture-ml",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary (onboarding)",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "staff:fixture-ml:payroll:3",
+            "companyId": "company-player",
+            "week": 3,
+            "sourceId": "staff:fixture-ml",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:4",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:4",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "staff:fixture-ml:payroll:4",
+            "companyId": "company-player",
+            "week": 4,
+            "sourceId": "staff:fixture-ml",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:5",
+            "companyId": "company-player",
+            "week": 5,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:5",
+            "companyId": "company-player",
+            "week": 5,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "staff:fixture-ml:payroll:5",
+            "companyId": "company-player",
+            "week": 5,
+            "sourceId": "staff:fixture-ml",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:cloud-rent:6",
+            "companyId": "company-player",
+            "week": 6,
+            "sourceId": "general-cloud-reservation",
+            "category": "rent",
+            "amountCents": 80000,
+            "label": "Reserved general GPU capacity (energy included)",
+            "kind": "expense",
+            "paidCents": 80000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "company-player:overhead:6",
+            "companyId": "company-player",
+            "week": 6,
+            "sourceId": "founder-and-basic-overhead",
+            "category": "overhead",
+            "amountCents": 20000,
+            "label": "Founder draw and basic overhead",
+            "kind": "expense",
+            "paidCents": 20000,
+            "unpaidCents": 0
+          },
+          {
+            "id": "staff:fixture-ml:payroll:6",
+            "companyId": "company-player",
+            "week": 6,
+            "sourceId": "staff:fixture-ml",
+            "category": "operating",
+            "amountCents": 30000,
+            "label": "ML engineer salary",
+            "kind": "expense",
+            "paidCents": 30000,
+            "unpaidCents": 0
+          }
+        ],
+        "postedFacts": {
+          "company-player:cloud-rent:1": true,
+          "company-player:overhead:1": true,
+          "preparation-fixture-prepare:fee": true,
+          "recruit:fixture-ml": true,
+          "staff:fixture-ml:payroll:1": true,
+          "company-player:cloud-rent:2": true,
+          "company-player:overhead:2": true,
+          "staff:fixture-ml:payroll:2": true,
+          "company-player:cloud-rent:3": true,
+          "company-player:overhead:3": true,
+          "staff:fixture-ml:payroll:3": true,
+          "company-player:cloud-rent:4": true,
+          "company-player:overhead:4": true,
+          "staff:fixture-ml:payroll:4": true,
+          "company-player:cloud-rent:5": true,
+          "company-player:overhead:5": true,
+          "staff:fixture-ml:payroll:5": true,
+          "company-player:cloud-rent:6": true,
+          "company-player:overhead:6": true,
+          "staff:fixture-ml:payroll:6": true
+        },
+        "staff": {
+          "staff:fixture-ml": {
+            "id": "staff:fixture-ml",
+            "companyId": "company-player",
+            "role": "ml",
+            "hiredWeek": 1,
+            "readyWeek": 3,
+            "assignedFte": 1000000000
+          }
+        },
+        "founderAssignments": {
+          "company-player": {
+            "research": 1000000000,
+            "ml": 0,
+            "data": 0,
+            "infrastructure": 0,
+            "commercial": 0,
+            "hardware": 0
+          }
+        },
+        "lastStaff": {
+          "company-player": {
+            "capacity": {
+              "research": 1000000000,
+              "ml": 1000000000,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            },
+            "granted": {
+              "research": 500000000,
+              "ml": 0,
+              "data": 0,
+              "infrastructure": 0,
+              "commercial": 0,
+              "hardware": 0
+            }
+          }
+        }
+      },
+      "compute": {
+        "fleets": {
+          "company-player": {
+            "companyId": "company-player",
+            "cloudCU": 4000000000,
+            "ownedCU": 0,
+            "memoryMU": 8000000000,
+            "occupiedMemoryMU": 2000000000,
+            "allocation": {
+              "serving": 0,
+              "development": 2000000000,
+              "research": 0
+            },
+            "lastWork": {
+              "serving": 0,
+              "development": 2000000000,
+              "research": 0
+            },
+            "reservedCU": 2000000000,
+            "deliveredEquipmentIds": [],
+            "inventory": {},
+            "lastBottleneck": "",
+            "lastReservedMemoryMU": 2000000000,
+            "lastGrants": [
+              {
+                "requestId": "evaluation-fixture-eval-midpoint:work",
+                "requestedWork": 2000000000,
+                "grantedWork": 2000000000,
+                "reason": ""
+              }
+            ]
+          }
+        }
+      },
+      "models": {
+        "versions": {
+          "seed-0": {
+            "id": "seed-0",
+            "name": "Seed 0",
+            "companyId": "company-player",
+            "family": "compact",
+            "architecture": "dense",
+            "status": "checkpoint",
+            "capabilityBps": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            },
+            "reliabilityBps": 7000,
+            "residentMU": 2000000000,
+            "source": "Commercially usable starting checkpoint. The tutorial report is authored evidence, not a paid model call."
+          },
+          "checkpoint-training-fixture-train": {
+            "id": "checkpoint-training-fixture-train",
+            "name": "Conversation 1 · 50% checkpoint",
+            "companyId": "company-player",
+            "family": "compact",
+            "architecture": "dense",
+            "status": "evaluated",
+            "capabilityBps": {
+              "conversation": 4400,
+              "documents": 3056,
+              "coding": 2000,
+              "tools": 2080
+            },
+            "reliabilityBps": 7800,
+            "residentMU": 2000000000,
+            "source": "Deterministic conversation adaptation using prepared evidence. 6 of 12 effective CUw; evaluation is separate.",
+            "parentModelId": "seed-0",
+            "trainingRunId": "training-fixture-train",
+            "trainingEvidenceId": "evidence-88edd7bf",
+            "createdWeek": 5,
+            "evaluationReportId": "report-evaluation-fixture-eval-midpoint"
+          }
+        },
+        "trainingRuns": {
+          "training-fixture-train": {
+            "id": "training-fixture-train",
+            "companyId": "company-player",
+            "baseModelId": "seed-0",
+            "packetId": "starter-public",
+            "outputModelId": "model-fixture-train",
+            "recipeId": "compact-conversation-adaptation",
+            "startedWeek": 3,
+            "requiredWork": 12000000000,
+            "completedWork": 6000000000,
+            "physicalWork": 6000000000,
+            "requiredMemory": 4000000000,
+            "status": "paused",
+            "checkpointWork": 6000000000,
+            "checkpointModelId": "checkpoint-training-fixture-train",
+            "anchorScores": {
+              "conversation": 4000,
+              "documents": 3000,
+              "coding": 2000,
+              "tools": 2000
+            },
+            "anchorReliabilityBps": 7000,
+            "evidence": {
+              "id": "starter-public",
+              "name": "Starter public sample",
+              "rawUnits": 100,
+              "readyUnits": 100,
+              "qualityBps": 8000,
+              "coverageBps": {
+                "conversation": 10000,
+                "documents": 3500,
+                "coding": 2500,
+                "tools": 2500
+              },
+              "rights": {
+                "hosted": true,
+                "weights": true,
+                "feedback": false
+              },
+              "prepared": true
+            },
+            "lastProgress": 0,
+            "lastBottleneck": "Paused by you."
+          }
+        },
+        "evaluationRuns": {
+          "evaluation-fixture-eval-midpoint": {
+            "id": "evaluation-fixture-eval-midpoint",
+            "companyId": "company-player",
+            "modelId": "checkpoint-training-fixture-train",
+            "startedWeek": 6,
+            "requiredWork": 2000000000,
+            "completedWork": 2000000000,
+            "requiredStaff": 500000000,
+            "completedStaff": 500000000,
+            "status": "complete",
+            "reportId": "report-evaluation-fixture-eval-midpoint",
+            "lastProgress": 2000000000,
+            "lastBottleneck": "",
+            "completedWeek": 6
+          }
+        },
+        "reports": {
+          "report-evaluation-fixture-eval-midpoint": {
+            "id": "report-evaluation-fixture-eval-midpoint",
+            "companyId": "company-player",
+            "modelId": "checkpoint-training-fixture-train",
+            "week": 6,
+            "heldOut": true,
+            "capabilityBps": {
+              "conversation": 4400,
+              "documents": 3056,
+              "coding": 2000,
+              "tools": 2080
+            },
+            "reliabilityBps": 7800,
+            "cases": [
+              {
+                "id": "basic-conversation-1:case-01",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": false
+              },
+              {
+                "id": "basic-conversation-1:case-02",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-03",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-04",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-05",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-06",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-07",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-08",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": false
+              },
+              {
+                "id": "basic-conversation-1:case-09",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-10",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": false
+              },
+              {
+                "id": "basic-conversation-1:case-11",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-12",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-13",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": false
+              },
+              {
+                "id": "basic-conversation-1:case-14",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": false
+              },
+              {
+                "id": "basic-conversation-1:case-15",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": false
+              },
+              {
+                "id": "basic-conversation-1:case-16",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-17",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-18",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-19",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              },
+              {
+                "id": "basic-conversation-1:case-20",
+                "domain": "conversation",
+                "difficultyBps": 0,
+                "passed": true
+              }
+            ],
+            "passedCases": 14,
+            "basicChatEligible": false
+          }
+        }
+      },
+      "data": {
+        "packets": {
+          "starter-public": {
+            "id": "starter-public",
+            "name": "Starter public sample",
+            "rawUnits": 100,
+            "readyUnits": 100,
+            "qualityBps": 8000,
+            "coverageBps": {
+              "conversation": 10000,
+              "documents": 3500,
+              "coding": 2500,
+              "tools": 2500
+            },
+            "rights": {
+              "hosted": true,
+              "weights": true,
+              "feedback": false
+            },
+            "prepared": true
+          }
+        },
+        "preparationJobs": {
+          "preparation-fixture-prepare": {
+            "id": "preparation-fixture-prepare",
+            "companyId": "company-player",
+            "packetId": "starter-public",
+            "startedWeek": 1,
+            "requiredStaff": 2000000000,
+            "completedStaff": 2000000000,
+            "status": "complete",
+            "lastProgress": 1000000000,
+            "lastBottleneck": "",
+            "completedWeek": 2
+          }
+        }
+      },
+      "research": {
+        "completed": [],
+        "active": []
+      },
+      "products": {
+        "activeIds": [],
+        "offers": {},
+        "deployments": {},
+        "contracts": {},
+        "lastUsage": {},
+        "invoices": []
+      },
+      "markets": {
+        "payingConsumers": 0,
+        "waitlistRemaining": 40,
+        "activeRivalIds": [],
+        "trials": [],
+        "cohorts": [],
+        "trustBps": 5000,
+        "acquisitionCarry": 0,
+        "conversionCarry": 0,
+        "churnCarry": 0,
+        "reachCarry": 0,
+        "nextTrialId": 1,
+        "lastGained": 0,
+        "lastLost": 0,
+        "lastTrialCount": 0,
+        "lastExplanation": "A one-time waitlist is ready when Basic Chat launches."
+      },
+      "agents": {
+        "activeJobIds": []
+      },
+      "campaign": {
+        "milestones": [
+          "company-founded",
+          "starter-data-ready"
+        ],
+        "endingStreaks": {
+          "frontier": 0,
+          "platform": 0,
+          "specialist": 0
+        }
+      }
+    },
+    "queuedCommands": [
+      {
+        "id": "fixture-resume",
+        "companyId": "company-player",
+        "issuedForWeek": 7,
+        "payload": {
+          "kind": "set_job_paused",
+          "jobId": "training-fixture-train",
+          "paused": false
+        },
+        "reservedCents": 0
+      },
+      {
+        "id": "fixture-allocation",
+        "companyId": "company-player",
+        "issuedForWeek": 7,
+        "payload": {
+          "kind": "allocate_compute",
+          "serving": 1000000000,
+          "development": 3000000000,
+          "research": 0
+        },
+        "reservedCents": 0
+      },
+      {
+        "id": "fixture-data-hire",
+        "companyId": "company-player",
+        "issuedForWeek": 7,
+        "payload": {
+          "kind": "hire_staff",
+          "role": "data"
+        },
+        "reservedCents": 125000
+      }
+    ],
+    "commandReceipts": {
+      "fixture-prepare": {
+        "id": "fixture-prepare",
+        "week": 1,
+        "status": "accepted"
+      },
+      "fixture-ml": {
+        "id": "fixture-ml",
+        "week": 1,
+        "status": "accepted"
+      },
+      "fixture-founder": {
+        "id": "fixture-founder",
+        "week": 3,
+        "status": "accepted"
+      },
+      "fixture-train": {
+        "id": "fixture-train",
+        "week": 3,
+        "status": "accepted"
+      },
+      "fixture-pause": {
+        "id": "fixture-pause",
+        "week": 6,
+        "status": "accepted"
+      },
+      "fixture-eval-midpoint": {
+        "id": "fixture-eval-midpoint",
+        "week": 6,
+        "status": "accepted"
+      }
+    },
+    "scheduled": [],
+    "journal": [
+      {
+        "id": "event-1",
+        "week": 0,
+        "category": "system",
+        "message": "Company founded. Seed 0 is ready for inspection. The lab clock is paused."
+      },
+      {
+        "id": "event-3",
+        "week": 0,
+        "category": "command",
+        "message": "Queued: Prepare the packet with 2 data staff-weeks. The fee is paid once; completed data remains reusable."
+      },
+      {
+        "id": "event-5",
+        "week": 0,
+        "category": "command",
+        "message": "Queued: $1,500 recruiting, then $300 per week from hiring. Productive after 2 onboarding weeks."
+      },
+      {
+        "id": "event-6",
+        "week": 1,
+        "category": "project",
+        "message": "Starter public sample preparation started. Only completed work becomes ready data."
+      },
+      {
+        "id": "event-7",
+        "week": 1,
+        "category": "command",
+        "message": "ML engineer hired. Salary starts now; ready in Week 3."
+      },
+      {
+        "id": "event-8",
+        "week": 1,
+        "category": "finance",
+        "message": "Week 1 settled: $0 earned revenue and $3,800 expenses."
+      },
+      {
+        "id": "event-9",
+        "week": 2,
+        "category": "project",
+        "message": "Starter public sample is ready: 100 reusable training units. Preparation fee was charged once."
+      },
+      {
+        "id": "event-10",
+        "week": 2,
+        "category": "finance",
+        "message": "Week 2 settled: $0 earned revenue and $1,300 expenses."
+      },
+      {
+        "id": "event-11",
+        "week": 2,
+        "category": "project",
+        "message": "Prepared training data is ready."
+      },
+      {
+        "id": "event-13",
+        "week": 2,
+        "category": "command",
+        "message": "Queued: Founder assignments change next week. All roles share the same one-FTE budget."
+      },
+      {
+        "id": "event-15",
+        "week": 2,
+        "category": "command",
+        "message": "Queued: 12 development CUw, 4 MU and ML coverage. The same evidence has one finite target; rentals and payroll continue."
+      },
+      {
+        "id": "event-16",
+        "week": 3,
+        "category": "project",
+        "message": "ML engineer finished onboarding and can now contribute."
+      },
+      {
+        "id": "event-17",
+        "week": 3,
+        "category": "command",
+        "message": "Founder role assignments updated. One shared FTE remains the total limit."
+      },
+      {
+        "id": "event-18",
+        "week": 3,
+        "category": "project",
+        "message": "Conversation adaptation started: 12 useful CUw with a saved midpoint checkpoint."
+      },
+      {
+        "id": "event-19",
+        "week": 3,
+        "category": "finance",
+        "message": "Week 3 settled: $0 earned revenue and $1,300 expenses."
+      },
+      {
+        "id": "event-20",
+        "week": 4,
+        "category": "finance",
+        "message": "Week 4 settled: $0 earned revenue and $1,300 expenses."
+      },
+      {
+        "id": "event-21",
+        "week": 5,
+        "category": "project",
+        "message": "Conversation 1 · 50% checkpoint saved. Training can pause and resume without losing this checkpoint."
+      },
+      {
+        "id": "event-22",
+        "week": 5,
+        "category": "finance",
+        "message": "Week 5 settled: $0 earned revenue and $1,300 expenses."
+      },
+      {
+        "id": "event-24",
+        "week": 5,
+        "category": "command",
+        "message": "Queued: Pause next week and preserve all completed work and checkpoints. Existing rent and payroll continue."
+      },
+      {
+        "id": "event-26",
+        "week": 5,
+        "category": "command",
+        "message": "Queued: Test 20 held-out routine conversation cases using 2 development CUw and 0.5 research staff-weeks. Testing creates evidence, not model gains."
+      },
+      {
+        "id": "event-27",
+        "week": 6,
+        "category": "project",
+        "message": "Paused training-fixture-train. Completed work and checkpoint identity were preserved."
+      },
+      {
+        "id": "event-28",
+        "week": 6,
+        "category": "project",
+        "message": "Conversation 1 · 50% checkpoint entered the basic held-out evaluation. Its trained scores will not change."
+      },
+      {
+        "id": "event-29",
+        "week": 6,
+        "category": "project",
+        "message": "Conversation 1 · 50% checkpoint evaluated: 14/20 routine held-out cases passed. Basic Chat model gates are not yet met. Testing did not train the model."
+      },
+      {
+        "id": "event-30",
+        "week": 6,
+        "category": "finance",
+        "message": "Week 6 settled: $0 earned revenue and $1,300 expenses."
+      },
+      {
+        "id": "event-32",
+        "week": 6,
+        "category": "command",
+        "message": "Queued: Resume the same project next week with its saved progress."
+      },
+      {
+        "id": "event-34",
+        "week": 6,
+        "category": "command",
+        "message": "Queued: Allocation changes next week. Serving headroom fits inside its ceiling; the rented cloud bill stays the same."
+      },
+      {
+        "id": "event-36",
+        "week": 6,
+        "category": "command",
+        "message": "Queued: $1,250 recruiting, then $250 per week from hiring. Productive after 2 onboarding weeks."
+      }
+    ],
+    "lastTick": {
+      "week": 6,
+      "phases": [
+        {
+          "phase": "commit",
+          "facts": 0,
+          "events": 2
+        },
+        {
+          "phase": "reserve",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "execute",
+          "facts": 3,
+          "events": 0
+        },
+        {
+          "phase": "resolve",
+          "facts": 0,
+          "events": 1
+        },
+        {
+          "phase": "settle",
+          "facts": 0,
+          "events": 1
+        },
+        {
+          "phase": "market",
+          "facts": 0,
+          "events": 0
+        },
+        {
+          "phase": "plan",
+          "facts": 0,
+          "events": 0
+        }
+      ],
+      "chargedCents": 130000,
+      "receivedCents": 0,
+      "scheduledCount": 0
+    }
+  }
+}

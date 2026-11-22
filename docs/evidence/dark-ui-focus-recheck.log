@@ -1,0 +1,22 @@
+✔ W30-U01: opening and advanced cold shells keep every unvisited workbench lazy and leave the company intact (827.636024ms)
+✔ W30-U02: a read-only cold shell exposes its status while disabling all clock commitments (49.111226ms)
+✔ W30-U03: registered task titles name their dialog and only a concise introduction describes it (28.01858ms)
+✔ W30-U04: hidden and inline surfaces keep one child tree without exposing another modal (4.015789ms)
+✔ W30-U05: busy task status stays outside its busy body and unsafe Close and Back are disabled (1.587996ms)
+✔ W30-U06: a read-only commitment keeps its current quote and never calls the review dispatcher during rendering (9.372612ms)
+✔ W30-U07: contextual menu reuses one named native trigger and exposes its current expansion state (3.466263ms)
+✔ W30-U08: inspector and result primitives remain named nonmodal context with exact supplied identity (1.860234ms)
+✔ W30-U09: a resolved older training result selects its actual output in the real Models panel (523.255827ms)
+✔ W30-U10: an exact report intent selects both its model and its real evaluation suite (460.432718ms)
+✔ W30-U11: explicit missing or foreign candidates show a recovery choice without selecting the newest model (455.578678ms)
+✔ W30-U12: a mismatched report keeps the requested candidate and does not display a different report as its result (448.372507ms)
+✔ W30-U13: commitment review names the captured setup and describes acceptance timing without claiming it was queued (7.661717ms)
+✔ W30-U14: stale commitment review preserves the setup and only enables refresh when it is safe (6.199256ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3931.235581

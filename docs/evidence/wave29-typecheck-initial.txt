@@ -1,0 +1,27 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> frontier-lab@0.29.0 typecheck
+> tsc --noEmit
+
+tests/wave29-engine.test.ts(139,32): error TS2352: Conversion of type 'readonly LedgerFact[]' to type '{ amountCents: number; }[]' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+  The type 'readonly LedgerFact[]' is 'readonly' and cannot be assigned to the mutable type '{ amountCents: number; }[]'.
+tests/wave29-workbench-ui.test.tsx(27,43): error TS2786: 'HeavyPanel' cannot be used as a JSX component.
+  Its type '() => void' is not a valid JSX element type.
+    Type '() => void' is not assignable to type '(props: any) => ReactNode | Promise<ReactNode>'.
+      Type 'void' is not assignable to type 'ReactNode | Promise<ReactNode>'.
+tests/wave29-workbench-ui.test.tsx(28,57): error TS2786: 'HeavyPanel' cannot be used as a JSX component.
+  Its type '() => void' is not a valid JSX element type.
+    Type '() => void' is not assignable to type '(props: any) => ReactNode | Promise<ReactNode>'.
+      Type 'void' is not assignable to type 'ReactNode | Promise<ReactNode>'.
+tests/wave29-workbench-ui.test.tsx(29,63): error TS2786: 'HeavyPanel' cannot be used as a JSX component.
+  Its type '() => void' is not a valid JSX element type.
+    Type '() => void' is not assignable to type '(props: any) => ReactNode | Promise<ReactNode>'.
+      Type 'void' is not assignable to type 'ReactNode | Promise<ReactNode>'.
+tests/wave29-workbench-ui.test.tsx(40,45): error TS2786: 'HiddenModelPanel' cannot be used as a JSX component.
+  Its type '() => void' is not a valid JSX element type.
+    Type '() => void' is not assignable to type '(props: any) => ReactNode | Promise<ReactNode>'.
+      Type 'void' is not assignable to type 'ReactNode | Promise<ReactNode>'.
+tests/wave29-workbench-ui.test.tsx(96,106): error TS2786: 'HeavyPanel' cannot be used as a JSX component.
+  Its type '() => void' is not a valid JSX element type.
+    Type '() => void' is not assignable to type '(props: any) => ReactNode | Promise<ReactNode>'.
+      Type 'void' is not assignable to type 'ReactNode | Promise<ReactNode>'.

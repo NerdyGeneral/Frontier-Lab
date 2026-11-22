@@ -1,0 +1,1630 @@
+{
+  "sourceCommit": "0fef8d0e2c010ca4ce351ff5215a2df757376480",
+  "sourceContentVersion": "0.5.0",
+  "authoredScenario": "Wave 4 QA Lab; all subsequent projects and commitments use the published engine.",
+  "checksum": "326eb5c9",
+  "baseline": {
+    "week": 14,
+    "applicationRuns": {
+      "application:published-compression": {
+        "id": "application:published-compression",
+        "companyId": "company-player",
+        "sourceModelId": "seed-0",
+        "outputModelId": "variant:published-compression",
+        "variant": "compression",
+        "startedWeek": 5,
+        "requiredWork": 2000000000,
+        "completedWork": 2000000000,
+        "physicalWork": 2000000000,
+        "requiredStaff": 2000000000,
+        "completedStaff": 2000000000,
+        "status": "complete",
+        "lastProgress": 0,
+        "lastBottleneck": "",
+        "completedWeek": 6
+      }
+    },
+    "chipDesigns": {
+      "chip-2aa96072": {
+        "id": "chip-2aa96072",
+        "companyId": "company-player",
+        "name": "Published FL-1",
+        "spec": {
+          "architecture": "dense",
+          "target": "inference",
+          "memory": "balanced"
+        },
+        "status": "validated",
+        "paused": false,
+        "designFeeCents": 2000000,
+        "designPaymentId": "chip-design-fee:chip-2aa96072",
+        "design": {
+          "startedWeek": 5,
+          "requiredWorkCUw": 8000000000,
+          "completedWorkCUw": 8000000000,
+          "requiredHardwareStaff": 4000000000,
+          "completedHardwareStaff": 4000000000,
+          "requiredMlStaff": 0,
+          "completedMlStaff": 0,
+          "completedWeek": 8,
+          "readyWeek": 9,
+          "lastProgress": 0,
+          "lastBottleneck": "Stage complete; the result becomes available in week 9."
+        },
+        "prototypeRun": {
+          "startedWeek": 10,
+          "requiredWorkCUw": 4000000000,
+          "completedWorkCUw": 4000000000,
+          "requiredHardwareStaff": 2000000000,
+          "completedHardwareStaff": 2000000000,
+          "requiredMlStaff": 1000000000,
+          "completedMlStaff": 1000000000,
+          "completedWeek": 11,
+          "readyWeek": 12,
+          "lastProgress": 1000000000,
+          "lastBottleneck": "Stage complete; the result becomes available in week 12.",
+          "modelId": "seed-0",
+          "reportId": "agent-fixture-report",
+          "modelArchitecture": "dense",
+          "modelFamily": "compact",
+          "modelMemoryMU": 2000000000,
+          "feeCents": 500000,
+          "paymentId": "chip-prototype-fee:chip-2aa96072"
+        },
+        "qualifiedYieldBps": 10000
+      }
+    },
+    "chipBatches": {
+      "chip-batch-published-production": {
+        "id": "chip-batch-published-production",
+        "companyId": "company-player",
+        "designId": "chip-2aa96072",
+        "location": "colocation",
+        "racks": 1,
+        "rackIds": [
+          "rack-published-production-1"
+        ],
+        "attemptedCU": 8000000000,
+        "usableCU": 8000000000,
+        "yieldBps": 10000,
+        "orderedWeek": 13,
+        "arrivalWeek": 18,
+        "deliveredWeek": null,
+        "status": "fabricating",
+        "purchaseCents": 880000,
+        "paymentId": "chip-production:chip-batch-published-production"
+      }
+    },
+    "fabricProjects": {
+      "fabric-published-fabric": {
+        "id": "fabric-published-fabric",
+        "companyId": "company-player",
+        "location": "colocation",
+        "status": "installing",
+        "paused": false,
+        "startedWeek": 13,
+        "requiredWeeks": 3,
+        "elapsedWeeks": 2,
+        "requiredStaff": 2000000000,
+        "completedStaff": 2000000000,
+        "requiredWorkCUw": 4000000000,
+        "completedWorkCUw": 4000000000,
+        "completedWeek": null,
+        "readyWeek": null,
+        "purchaseCents": 800000,
+        "paymentId": "fast-fabric:fabric-published-fabric",
+        "lastBottleneck": "Work is progressing; the network lead time must also finish."
+      }
+    },
+    "racks": {
+      "rack-published-production-1": {
+        "id": "rack-published-production-1",
+        "companyId": "company-player",
+        "hardwareId": "chip-2aa96072",
+        "location": "colocation",
+        "status": "ordered",
+        "orderedWeek": 13,
+        "arrivalWeek": 18,
+        "installationStartedWeek": null,
+        "completedInstallStaff": 0,
+        "readyWeek": null,
+        "installedWeek": null,
+        "purchaseCents": 880000,
+        "lastBottleneck": "Custom production is pending; uninstalled hardware supplies no capacity.",
+        "chipDesignId": "chip-2aa96072",
+        "chipBatchId": "chip-batch-published-production",
+        "usableCU": 8000000000
+      }
+    },
+    "rollouts": {
+      "system-rollout:published-supervisor": {
+        "id": "system-rollout:published-supervisor",
+        "companyId": "company-player",
+        "method": "run-supervisor",
+        "startedWeek": 13,
+        "requiredWork": 1000000000,
+        "completedWork": 1000000000,
+        "requiredStaff": 1000000000,
+        "completedStaff": 1000000000,
+        "status": "active",
+        "readyWeek": 14,
+        "lastBottleneck": ""
+      },
+      "system-rollout:published-assistant": {
+        "id": "system-rollout:published-assistant",
+        "companyId": "company-player",
+        "method": "research-assistant",
+        "startedWeek": 14,
+        "requiredWork": 2000000000,
+        "completedWork": 2000000000,
+        "requiredStaff": 2000000000,
+        "completedStaff": 1000000000,
+        "status": "building",
+        "readyWeek": null,
+        "lastBottleneck": ""
+      }
+    },
+    "efficiencyInstalls": {
+      "product:published-chat:prefix-cache": {
+        "id": "efficiency:published-cache",
+        "companyId": "company-player",
+        "productId": "product:published-chat",
+        "kind": "prefix-cache",
+        "modelId": "seed-0",
+        "startedWeek": 10,
+        "requiredWork": 1000000000,
+        "completedWork": 1000000000,
+        "requiredStaff": 1000000000,
+        "completedStaff": 1000000000,
+        "status": "active",
+        "readyWeek": 11,
+        "enabled": true,
+        "lastBottleneck": "",
+        "cacheKey": "prefix:361597e1",
+        "warmedWeek": 11,
+        "lastServedWeek": 14
+      },
+      "product:published-chat:routing": {
+        "id": "efficiency:published-routing",
+        "companyId": "company-player",
+        "productId": "product:published-chat",
+        "kind": "routing",
+        "modelId": "seed-0",
+        "secondaryModelId": "variant:published-compression",
+        "startedWeek": 14,
+        "requiredWork": 2000000000,
+        "completedWork": 2000000000,
+        "requiredStaff": 2000000000,
+        "completedStaff": 1000000000,
+        "status": "building",
+        "readyWeek": null,
+        "enabled": true,
+        "lastBottleneck": ""
+      }
+    },
+    "playerReceipts": {
+      "published-chat": {
+        "id": "published-chat",
+        "week": 5,
+        "status": "accepted"
+      },
+      "published-compression": {
+        "id": "published-compression",
+        "week": 5,
+        "status": "accepted"
+      },
+      "published-chip": {
+        "id": "published-chip",
+        "week": 5,
+        "status": "accepted"
+      },
+      "published-eval": {
+        "id": "published-eval",
+        "week": 10,
+        "status": "accepted"
+      },
+      "published-prototype": {
+        "id": "published-prototype",
+        "week": 10,
+        "status": "accepted"
+      },
+      "published-cache": {
+        "id": "published-cache",
+        "week": 10,
+        "status": "accepted"
+      },
+      "published-production": {
+        "id": "published-production",
+        "week": 13,
+        "status": "accepted"
+      },
+      "published-fabric": {
+        "id": "published-fabric",
+        "week": 13,
+        "status": "accepted"
+      },
+      "published-supervisor": {
+        "id": "published-supervisor",
+        "week": 13,
+        "status": "accepted"
+      },
+      "published-routing": {
+        "id": "published-routing",
+        "week": 14,
+        "status": "accepted"
+      },
+      "published-assistant": {
+        "id": "published-assistant",
+        "week": 14,
+        "status": "accepted"
+      }
+    },
+    "playerAllocation": {
+      "serving": 4000000000,
+      "development": 8000000000,
+      "research": 4000000000
+    }
+  },
+  "weeks": [
+    {
+      "week": 15,
+      "applicationRuns": {
+        "application:published-compression": {
+          "id": "application:published-compression",
+          "companyId": "company-player",
+          "sourceModelId": "seed-0",
+          "outputModelId": "variant:published-compression",
+          "variant": "compression",
+          "startedWeek": 5,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "physicalWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "complete",
+          "lastProgress": 0,
+          "lastBottleneck": "",
+          "completedWeek": 6
+        }
+      },
+      "chipDesigns": {
+        "chip-2aa96072": {
+          "id": "chip-2aa96072",
+          "companyId": "company-player",
+          "name": "Published FL-1",
+          "spec": {
+            "architecture": "dense",
+            "target": "inference",
+            "memory": "balanced"
+          },
+          "status": "validated",
+          "paused": false,
+          "designFeeCents": 2000000,
+          "designPaymentId": "chip-design-fee:chip-2aa96072",
+          "design": {
+            "startedWeek": 5,
+            "requiredWorkCUw": 8000000000,
+            "completedWorkCUw": 8000000000,
+            "requiredHardwareStaff": 4000000000,
+            "completedHardwareStaff": 4000000000,
+            "requiredMlStaff": 0,
+            "completedMlStaff": 0,
+            "completedWeek": 8,
+            "readyWeek": 9,
+            "lastProgress": 0,
+            "lastBottleneck": "Stage complete; the result becomes available in week 9."
+          },
+          "prototypeRun": {
+            "startedWeek": 10,
+            "requiredWorkCUw": 4000000000,
+            "completedWorkCUw": 4000000000,
+            "requiredHardwareStaff": 2000000000,
+            "completedHardwareStaff": 2000000000,
+            "requiredMlStaff": 1000000000,
+            "completedMlStaff": 1000000000,
+            "completedWeek": 11,
+            "readyWeek": 12,
+            "lastProgress": 1000000000,
+            "lastBottleneck": "Stage complete; the result becomes available in week 12.",
+            "modelId": "seed-0",
+            "reportId": "agent-fixture-report",
+            "modelArchitecture": "dense",
+            "modelFamily": "compact",
+            "modelMemoryMU": 2000000000,
+            "feeCents": 500000,
+            "paymentId": "chip-prototype-fee:chip-2aa96072"
+          },
+          "qualifiedYieldBps": 10000
+        }
+      },
+      "chipBatches": {
+        "chip-batch-published-production": {
+          "id": "chip-batch-published-production",
+          "companyId": "company-player",
+          "designId": "chip-2aa96072",
+          "location": "colocation",
+          "racks": 1,
+          "rackIds": [
+            "rack-published-production-1"
+          ],
+          "attemptedCU": 8000000000,
+          "usableCU": 8000000000,
+          "yieldBps": 10000,
+          "orderedWeek": 13,
+          "arrivalWeek": 18,
+          "deliveredWeek": null,
+          "status": "fabricating",
+          "purchaseCents": 880000,
+          "paymentId": "chip-production:chip-batch-published-production"
+        }
+      },
+      "fabricProjects": {
+        "fabric-published-fabric": {
+          "id": "fabric-published-fabric",
+          "companyId": "company-player",
+          "location": "colocation",
+          "status": "ready",
+          "paused": false,
+          "startedWeek": 13,
+          "requiredWeeks": 3,
+          "elapsedWeeks": 3,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "requiredWorkCUw": 4000000000,
+          "completedWorkCUw": 4000000000,
+          "completedWeek": 15,
+          "readyWeek": 16,
+          "purchaseCents": 800000,
+          "paymentId": "fast-fabric:fabric-published-fabric",
+          "lastBottleneck": "Installation complete; fast fabric activates in week 16."
+        }
+      },
+      "racks": {
+        "rack-published-production-1": {
+          "id": "rack-published-production-1",
+          "companyId": "company-player",
+          "hardwareId": "chip-2aa96072",
+          "location": "colocation",
+          "status": "ordered",
+          "orderedWeek": 13,
+          "arrivalWeek": 18,
+          "installationStartedWeek": null,
+          "completedInstallStaff": 0,
+          "readyWeek": null,
+          "installedWeek": null,
+          "purchaseCents": 880000,
+          "lastBottleneck": "Custom production is pending; uninstalled hardware supplies no capacity.",
+          "chipDesignId": "chip-2aa96072",
+          "chipBatchId": "chip-batch-published-production",
+          "usableCU": 8000000000
+        }
+      },
+      "rollouts": {
+        "system-rollout:published-supervisor": {
+          "id": "system-rollout:published-supervisor",
+          "companyId": "company-player",
+          "method": "run-supervisor",
+          "startedWeek": 13,
+          "requiredWork": 1000000000,
+          "completedWork": 1000000000,
+          "requiredStaff": 1000000000,
+          "completedStaff": 1000000000,
+          "status": "active",
+          "readyWeek": 14,
+          "lastBottleneck": ""
+        },
+        "system-rollout:published-assistant": {
+          "id": "system-rollout:published-assistant",
+          "companyId": "company-player",
+          "method": "research-assistant",
+          "startedWeek": 14,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "ready",
+          "readyWeek": 16,
+          "lastBottleneck": "Implementation finished; activation is next week."
+        }
+      },
+      "efficiencyInstalls": {
+        "product:published-chat:prefix-cache": {
+          "id": "efficiency:published-cache",
+          "companyId": "company-player",
+          "productId": "product:published-chat",
+          "kind": "prefix-cache",
+          "modelId": "seed-0",
+          "startedWeek": 10,
+          "requiredWork": 1000000000,
+          "completedWork": 1000000000,
+          "requiredStaff": 1000000000,
+          "completedStaff": 1000000000,
+          "status": "active",
+          "readyWeek": 11,
+          "enabled": true,
+          "lastBottleneck": "",
+          "cacheKey": "prefix:361597e1",
+          "warmedWeek": 11,
+          "lastServedWeek": 15
+        },
+        "product:published-chat:routing": {
+          "id": "efficiency:published-routing",
+          "companyId": "company-player",
+          "productId": "product:published-chat",
+          "kind": "routing",
+          "modelId": "seed-0",
+          "secondaryModelId": "variant:published-compression",
+          "startedWeek": 14,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "ready",
+          "readyWeek": 16,
+          "enabled": true,
+          "lastBottleneck": "Implementation finished; activation is next week."
+        }
+      },
+      "playerReceipts": {
+        "published-chat": {
+          "id": "published-chat",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-compression": {
+          "id": "published-compression",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-chip": {
+          "id": "published-chip",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-eval": {
+          "id": "published-eval",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-prototype": {
+          "id": "published-prototype",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-cache": {
+          "id": "published-cache",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-production": {
+          "id": "published-production",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-fabric": {
+          "id": "published-fabric",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-supervisor": {
+          "id": "published-supervisor",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-routing": {
+          "id": "published-routing",
+          "week": 14,
+          "status": "accepted"
+        },
+        "published-assistant": {
+          "id": "published-assistant",
+          "week": 14,
+          "status": "accepted"
+        },
+        "published-terms": {
+          "id": "published-terms",
+          "week": 15,
+          "status": "accepted"
+        },
+        "published-allocation": {
+          "id": "published-allocation",
+          "week": 15,
+          "status": "accepted"
+        }
+      },
+      "playerAllocation": {
+        "serving": 5000000000,
+        "development": 7000000000,
+        "research": 4000000000
+      }
+    },
+    {
+      "week": 16,
+      "applicationRuns": {
+        "application:published-compression": {
+          "id": "application:published-compression",
+          "companyId": "company-player",
+          "sourceModelId": "seed-0",
+          "outputModelId": "variant:published-compression",
+          "variant": "compression",
+          "startedWeek": 5,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "physicalWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "complete",
+          "lastProgress": 0,
+          "lastBottleneck": "",
+          "completedWeek": 6
+        }
+      },
+      "chipDesigns": {
+        "chip-2aa96072": {
+          "id": "chip-2aa96072",
+          "companyId": "company-player",
+          "name": "Published FL-1",
+          "spec": {
+            "architecture": "dense",
+            "target": "inference",
+            "memory": "balanced"
+          },
+          "status": "validated",
+          "paused": false,
+          "designFeeCents": 2000000,
+          "designPaymentId": "chip-design-fee:chip-2aa96072",
+          "design": {
+            "startedWeek": 5,
+            "requiredWorkCUw": 8000000000,
+            "completedWorkCUw": 8000000000,
+            "requiredHardwareStaff": 4000000000,
+            "completedHardwareStaff": 4000000000,
+            "requiredMlStaff": 0,
+            "completedMlStaff": 0,
+            "completedWeek": 8,
+            "readyWeek": 9,
+            "lastProgress": 0,
+            "lastBottleneck": "Stage complete; the result becomes available in week 9."
+          },
+          "prototypeRun": {
+            "startedWeek": 10,
+            "requiredWorkCUw": 4000000000,
+            "completedWorkCUw": 4000000000,
+            "requiredHardwareStaff": 2000000000,
+            "completedHardwareStaff": 2000000000,
+            "requiredMlStaff": 1000000000,
+            "completedMlStaff": 1000000000,
+            "completedWeek": 11,
+            "readyWeek": 12,
+            "lastProgress": 1000000000,
+            "lastBottleneck": "Stage complete; the result becomes available in week 12.",
+            "modelId": "seed-0",
+            "reportId": "agent-fixture-report",
+            "modelArchitecture": "dense",
+            "modelFamily": "compact",
+            "modelMemoryMU": 2000000000,
+            "feeCents": 500000,
+            "paymentId": "chip-prototype-fee:chip-2aa96072"
+          },
+          "qualifiedYieldBps": 10000
+        }
+      },
+      "chipBatches": {
+        "chip-batch-published-production": {
+          "id": "chip-batch-published-production",
+          "companyId": "company-player",
+          "designId": "chip-2aa96072",
+          "location": "colocation",
+          "racks": 1,
+          "rackIds": [
+            "rack-published-production-1"
+          ],
+          "attemptedCU": 8000000000,
+          "usableCU": 8000000000,
+          "yieldBps": 10000,
+          "orderedWeek": 13,
+          "arrivalWeek": 18,
+          "deliveredWeek": null,
+          "status": "fabricating",
+          "purchaseCents": 880000,
+          "paymentId": "chip-production:chip-batch-published-production"
+        }
+      },
+      "fabricProjects": {
+        "fabric-published-fabric": {
+          "id": "fabric-published-fabric",
+          "companyId": "company-player",
+          "location": "colocation",
+          "status": "active",
+          "paused": false,
+          "startedWeek": 13,
+          "requiredWeeks": 3,
+          "elapsedWeeks": 3,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "requiredWorkCUw": 4000000000,
+          "completedWorkCUw": 4000000000,
+          "completedWeek": 15,
+          "readyWeek": 16,
+          "purchaseCents": 800000,
+          "paymentId": "fast-fabric:fabric-published-fabric",
+          "lastBottleneck": ""
+        }
+      },
+      "racks": {
+        "rack-published-production-1": {
+          "id": "rack-published-production-1",
+          "companyId": "company-player",
+          "hardwareId": "chip-2aa96072",
+          "location": "colocation",
+          "status": "ordered",
+          "orderedWeek": 13,
+          "arrivalWeek": 18,
+          "installationStartedWeek": null,
+          "completedInstallStaff": 0,
+          "readyWeek": null,
+          "installedWeek": null,
+          "purchaseCents": 880000,
+          "lastBottleneck": "Custom production is pending; uninstalled hardware supplies no capacity.",
+          "chipDesignId": "chip-2aa96072",
+          "chipBatchId": "chip-batch-published-production",
+          "usableCU": 8000000000
+        }
+      },
+      "rollouts": {
+        "system-rollout:published-supervisor": {
+          "id": "system-rollout:published-supervisor",
+          "companyId": "company-player",
+          "method": "run-supervisor",
+          "startedWeek": 13,
+          "requiredWork": 1000000000,
+          "completedWork": 1000000000,
+          "requiredStaff": 1000000000,
+          "completedStaff": 1000000000,
+          "status": "active",
+          "readyWeek": 14,
+          "lastBottleneck": ""
+        },
+        "system-rollout:published-assistant": {
+          "id": "system-rollout:published-assistant",
+          "companyId": "company-player",
+          "method": "research-assistant",
+          "startedWeek": 14,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "active",
+          "readyWeek": 16,
+          "lastBottleneck": ""
+        }
+      },
+      "efficiencyInstalls": {
+        "product:published-chat:prefix-cache": {
+          "id": "efficiency:published-cache",
+          "companyId": "company-player",
+          "productId": "product:published-chat",
+          "kind": "prefix-cache",
+          "modelId": "seed-0",
+          "startedWeek": 10,
+          "requiredWork": 1000000000,
+          "completedWork": 1000000000,
+          "requiredStaff": 1000000000,
+          "completedStaff": 1000000000,
+          "status": "active",
+          "readyWeek": 11,
+          "enabled": true,
+          "lastBottleneck": "",
+          "cacheKey": "prefix:25d74130",
+          "warmedWeek": 16,
+          "lastServedWeek": 16
+        },
+        "product:published-chat:routing": {
+          "id": "efficiency:published-routing",
+          "companyId": "company-player",
+          "productId": "product:published-chat",
+          "kind": "routing",
+          "modelId": "seed-0",
+          "secondaryModelId": "variant:published-compression",
+          "startedWeek": 14,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "active",
+          "readyWeek": 16,
+          "enabled": true,
+          "lastBottleneck": ""
+        }
+      },
+      "playerReceipts": {
+        "published-chat": {
+          "id": "published-chat",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-compression": {
+          "id": "published-compression",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-chip": {
+          "id": "published-chip",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-eval": {
+          "id": "published-eval",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-prototype": {
+          "id": "published-prototype",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-cache": {
+          "id": "published-cache",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-production": {
+          "id": "published-production",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-fabric": {
+          "id": "published-fabric",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-supervisor": {
+          "id": "published-supervisor",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-routing": {
+          "id": "published-routing",
+          "week": 14,
+          "status": "accepted"
+        },
+        "published-assistant": {
+          "id": "published-assistant",
+          "week": 14,
+          "status": "accepted"
+        },
+        "published-terms": {
+          "id": "published-terms",
+          "week": 15,
+          "status": "accepted"
+        },
+        "published-allocation": {
+          "id": "published-allocation",
+          "week": 15,
+          "status": "accepted"
+        }
+      },
+      "playerAllocation": {
+        "serving": 5000000000,
+        "development": 7000000000,
+        "research": 4000000000
+      }
+    },
+    {
+      "week": 17,
+      "applicationRuns": {
+        "application:published-compression": {
+          "id": "application:published-compression",
+          "companyId": "company-player",
+          "sourceModelId": "seed-0",
+          "outputModelId": "variant:published-compression",
+          "variant": "compression",
+          "startedWeek": 5,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "physicalWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "complete",
+          "lastProgress": 0,
+          "lastBottleneck": "",
+          "completedWeek": 6
+        }
+      },
+      "chipDesigns": {
+        "chip-2aa96072": {
+          "id": "chip-2aa96072",
+          "companyId": "company-player",
+          "name": "Published FL-1",
+          "spec": {
+            "architecture": "dense",
+            "target": "inference",
+            "memory": "balanced"
+          },
+          "status": "validated",
+          "paused": false,
+          "designFeeCents": 2000000,
+          "designPaymentId": "chip-design-fee:chip-2aa96072",
+          "design": {
+            "startedWeek": 5,
+            "requiredWorkCUw": 8000000000,
+            "completedWorkCUw": 8000000000,
+            "requiredHardwareStaff": 4000000000,
+            "completedHardwareStaff": 4000000000,
+            "requiredMlStaff": 0,
+            "completedMlStaff": 0,
+            "completedWeek": 8,
+            "readyWeek": 9,
+            "lastProgress": 0,
+            "lastBottleneck": "Stage complete; the result becomes available in week 9."
+          },
+          "prototypeRun": {
+            "startedWeek": 10,
+            "requiredWorkCUw": 4000000000,
+            "completedWorkCUw": 4000000000,
+            "requiredHardwareStaff": 2000000000,
+            "completedHardwareStaff": 2000000000,
+            "requiredMlStaff": 1000000000,
+            "completedMlStaff": 1000000000,
+            "completedWeek": 11,
+            "readyWeek": 12,
+            "lastProgress": 1000000000,
+            "lastBottleneck": "Stage complete; the result becomes available in week 12.",
+            "modelId": "seed-0",
+            "reportId": "agent-fixture-report",
+            "modelArchitecture": "dense",
+            "modelFamily": "compact",
+            "modelMemoryMU": 2000000000,
+            "feeCents": 500000,
+            "paymentId": "chip-prototype-fee:chip-2aa96072"
+          },
+          "qualifiedYieldBps": 10000
+        }
+      },
+      "chipBatches": {
+        "chip-batch-published-production": {
+          "id": "chip-batch-published-production",
+          "companyId": "company-player",
+          "designId": "chip-2aa96072",
+          "location": "colocation",
+          "racks": 1,
+          "rackIds": [
+            "rack-published-production-1"
+          ],
+          "attemptedCU": 8000000000,
+          "usableCU": 8000000000,
+          "yieldBps": 10000,
+          "orderedWeek": 13,
+          "arrivalWeek": 18,
+          "deliveredWeek": null,
+          "status": "fabricating",
+          "purchaseCents": 880000,
+          "paymentId": "chip-production:chip-batch-published-production"
+        }
+      },
+      "fabricProjects": {
+        "fabric-published-fabric": {
+          "id": "fabric-published-fabric",
+          "companyId": "company-player",
+          "location": "colocation",
+          "status": "active",
+          "paused": false,
+          "startedWeek": 13,
+          "requiredWeeks": 3,
+          "elapsedWeeks": 3,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "requiredWorkCUw": 4000000000,
+          "completedWorkCUw": 4000000000,
+          "completedWeek": 15,
+          "readyWeek": 16,
+          "purchaseCents": 800000,
+          "paymentId": "fast-fabric:fabric-published-fabric",
+          "lastBottleneck": ""
+        }
+      },
+      "racks": {
+        "rack-published-production-1": {
+          "id": "rack-published-production-1",
+          "companyId": "company-player",
+          "hardwareId": "chip-2aa96072",
+          "location": "colocation",
+          "status": "ordered",
+          "orderedWeek": 13,
+          "arrivalWeek": 18,
+          "installationStartedWeek": null,
+          "completedInstallStaff": 0,
+          "readyWeek": null,
+          "installedWeek": null,
+          "purchaseCents": 880000,
+          "lastBottleneck": "Custom production is pending; uninstalled hardware supplies no capacity.",
+          "chipDesignId": "chip-2aa96072",
+          "chipBatchId": "chip-batch-published-production",
+          "usableCU": 8000000000
+        }
+      },
+      "rollouts": {
+        "system-rollout:published-supervisor": {
+          "id": "system-rollout:published-supervisor",
+          "companyId": "company-player",
+          "method": "run-supervisor",
+          "startedWeek": 13,
+          "requiredWork": 1000000000,
+          "completedWork": 1000000000,
+          "requiredStaff": 1000000000,
+          "completedStaff": 1000000000,
+          "status": "active",
+          "readyWeek": 14,
+          "lastBottleneck": ""
+        },
+        "system-rollout:published-assistant": {
+          "id": "system-rollout:published-assistant",
+          "companyId": "company-player",
+          "method": "research-assistant",
+          "startedWeek": 14,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "active",
+          "readyWeek": 16,
+          "lastBottleneck": ""
+        }
+      },
+      "efficiencyInstalls": {
+        "product:published-chat:prefix-cache": {
+          "id": "efficiency:published-cache",
+          "companyId": "company-player",
+          "productId": "product:published-chat",
+          "kind": "prefix-cache",
+          "modelId": "seed-0",
+          "startedWeek": 10,
+          "requiredWork": 1000000000,
+          "completedWork": 1000000000,
+          "requiredStaff": 1000000000,
+          "completedStaff": 1000000000,
+          "status": "active",
+          "readyWeek": 11,
+          "enabled": true,
+          "lastBottleneck": "",
+          "cacheKey": "prefix:25d74130",
+          "warmedWeek": 16,
+          "lastServedWeek": 17
+        },
+        "product:published-chat:routing": {
+          "id": "efficiency:published-routing",
+          "companyId": "company-player",
+          "productId": "product:published-chat",
+          "kind": "routing",
+          "modelId": "seed-0",
+          "secondaryModelId": "variant:published-compression",
+          "startedWeek": 14,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "active",
+          "readyWeek": 16,
+          "enabled": true,
+          "lastBottleneck": ""
+        }
+      },
+      "playerReceipts": {
+        "published-chat": {
+          "id": "published-chat",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-compression": {
+          "id": "published-compression",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-chip": {
+          "id": "published-chip",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-eval": {
+          "id": "published-eval",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-prototype": {
+          "id": "published-prototype",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-cache": {
+          "id": "published-cache",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-production": {
+          "id": "published-production",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-fabric": {
+          "id": "published-fabric",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-supervisor": {
+          "id": "published-supervisor",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-routing": {
+          "id": "published-routing",
+          "week": 14,
+          "status": "accepted"
+        },
+        "published-assistant": {
+          "id": "published-assistant",
+          "week": 14,
+          "status": "accepted"
+        },
+        "published-terms": {
+          "id": "published-terms",
+          "week": 15,
+          "status": "accepted"
+        },
+        "published-allocation": {
+          "id": "published-allocation",
+          "week": 15,
+          "status": "accepted"
+        }
+      },
+      "playerAllocation": {
+        "serving": 5000000000,
+        "development": 7000000000,
+        "research": 4000000000
+      }
+    },
+    {
+      "week": 18,
+      "applicationRuns": {
+        "application:published-compression": {
+          "id": "application:published-compression",
+          "companyId": "company-player",
+          "sourceModelId": "seed-0",
+          "outputModelId": "variant:published-compression",
+          "variant": "compression",
+          "startedWeek": 5,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "physicalWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "complete",
+          "lastProgress": 0,
+          "lastBottleneck": "",
+          "completedWeek": 6
+        }
+      },
+      "chipDesigns": {
+        "chip-2aa96072": {
+          "id": "chip-2aa96072",
+          "companyId": "company-player",
+          "name": "Published FL-1",
+          "spec": {
+            "architecture": "dense",
+            "target": "inference",
+            "memory": "balanced"
+          },
+          "status": "validated",
+          "paused": false,
+          "designFeeCents": 2000000,
+          "designPaymentId": "chip-design-fee:chip-2aa96072",
+          "design": {
+            "startedWeek": 5,
+            "requiredWorkCUw": 8000000000,
+            "completedWorkCUw": 8000000000,
+            "requiredHardwareStaff": 4000000000,
+            "completedHardwareStaff": 4000000000,
+            "requiredMlStaff": 0,
+            "completedMlStaff": 0,
+            "completedWeek": 8,
+            "readyWeek": 9,
+            "lastProgress": 0,
+            "lastBottleneck": "Stage complete; the result becomes available in week 9."
+          },
+          "prototypeRun": {
+            "startedWeek": 10,
+            "requiredWorkCUw": 4000000000,
+            "completedWorkCUw": 4000000000,
+            "requiredHardwareStaff": 2000000000,
+            "completedHardwareStaff": 2000000000,
+            "requiredMlStaff": 1000000000,
+            "completedMlStaff": 1000000000,
+            "completedWeek": 11,
+            "readyWeek": 12,
+            "lastProgress": 1000000000,
+            "lastBottleneck": "Stage complete; the result becomes available in week 12.",
+            "modelId": "seed-0",
+            "reportId": "agent-fixture-report",
+            "modelArchitecture": "dense",
+            "modelFamily": "compact",
+            "modelMemoryMU": 2000000000,
+            "feeCents": 500000,
+            "paymentId": "chip-prototype-fee:chip-2aa96072"
+          },
+          "qualifiedYieldBps": 10000
+        }
+      },
+      "chipBatches": {
+        "chip-batch-published-production": {
+          "id": "chip-batch-published-production",
+          "companyId": "company-player",
+          "designId": "chip-2aa96072",
+          "location": "colocation",
+          "racks": 1,
+          "rackIds": [
+            "rack-published-production-1"
+          ],
+          "attemptedCU": 8000000000,
+          "usableCU": 8000000000,
+          "yieldBps": 10000,
+          "orderedWeek": 13,
+          "arrivalWeek": 18,
+          "deliveredWeek": 18,
+          "status": "delivered",
+          "purchaseCents": 880000,
+          "paymentId": "chip-production:chip-batch-published-production"
+        }
+      },
+      "fabricProjects": {
+        "fabric-published-fabric": {
+          "id": "fabric-published-fabric",
+          "companyId": "company-player",
+          "location": "colocation",
+          "status": "active",
+          "paused": false,
+          "startedWeek": 13,
+          "requiredWeeks": 3,
+          "elapsedWeeks": 3,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "requiredWorkCUw": 4000000000,
+          "completedWorkCUw": 4000000000,
+          "completedWeek": 15,
+          "readyWeek": 16,
+          "purchaseCents": 800000,
+          "paymentId": "fast-fabric:fabric-published-fabric",
+          "lastBottleneck": ""
+        }
+      },
+      "racks": {
+        "rack-published-production-1": {
+          "id": "rack-published-production-1",
+          "companyId": "company-player",
+          "hardwareId": "chip-2aa96072",
+          "location": "colocation",
+          "status": "inventory",
+          "orderedWeek": 13,
+          "arrivalWeek": 18,
+          "installationStartedWeek": null,
+          "completedInstallStaff": 0,
+          "readyWeek": null,
+          "installedWeek": null,
+          "purchaseCents": 880000,
+          "lastBottleneck": "Delivered; start installation to turn inventory into usable hardware.",
+          "chipDesignId": "chip-2aa96072",
+          "chipBatchId": "chip-batch-published-production",
+          "usableCU": 8000000000
+        }
+      },
+      "rollouts": {
+        "system-rollout:published-supervisor": {
+          "id": "system-rollout:published-supervisor",
+          "companyId": "company-player",
+          "method": "run-supervisor",
+          "startedWeek": 13,
+          "requiredWork": 1000000000,
+          "completedWork": 1000000000,
+          "requiredStaff": 1000000000,
+          "completedStaff": 1000000000,
+          "status": "active",
+          "readyWeek": 14,
+          "lastBottleneck": ""
+        },
+        "system-rollout:published-assistant": {
+          "id": "system-rollout:published-assistant",
+          "companyId": "company-player",
+          "method": "research-assistant",
+          "startedWeek": 14,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "active",
+          "readyWeek": 16,
+          "lastBottleneck": ""
+        }
+      },
+      "efficiencyInstalls": {
+        "product:published-chat:prefix-cache": {
+          "id": "efficiency:published-cache",
+          "companyId": "company-player",
+          "productId": "product:published-chat",
+          "kind": "prefix-cache",
+          "modelId": "seed-0",
+          "startedWeek": 10,
+          "requiredWork": 1000000000,
+          "completedWork": 1000000000,
+          "requiredStaff": 1000000000,
+          "completedStaff": 1000000000,
+          "status": "active",
+          "readyWeek": 11,
+          "enabled": true,
+          "lastBottleneck": "",
+          "cacheKey": "prefix:25d74130",
+          "warmedWeek": 16,
+          "lastServedWeek": 18
+        },
+        "product:published-chat:routing": {
+          "id": "efficiency:published-routing",
+          "companyId": "company-player",
+          "productId": "product:published-chat",
+          "kind": "routing",
+          "modelId": "seed-0",
+          "secondaryModelId": "variant:published-compression",
+          "startedWeek": 14,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "active",
+          "readyWeek": 16,
+          "enabled": true,
+          "lastBottleneck": ""
+        }
+      },
+      "playerReceipts": {
+        "published-chat": {
+          "id": "published-chat",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-compression": {
+          "id": "published-compression",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-chip": {
+          "id": "published-chip",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-eval": {
+          "id": "published-eval",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-prototype": {
+          "id": "published-prototype",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-cache": {
+          "id": "published-cache",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-production": {
+          "id": "published-production",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-fabric": {
+          "id": "published-fabric",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-supervisor": {
+          "id": "published-supervisor",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-routing": {
+          "id": "published-routing",
+          "week": 14,
+          "status": "accepted"
+        },
+        "published-assistant": {
+          "id": "published-assistant",
+          "week": 14,
+          "status": "accepted"
+        },
+        "published-terms": {
+          "id": "published-terms",
+          "week": 15,
+          "status": "accepted"
+        },
+        "published-allocation": {
+          "id": "published-allocation",
+          "week": 15,
+          "status": "accepted"
+        }
+      },
+      "playerAllocation": {
+        "serving": 5000000000,
+        "development": 7000000000,
+        "research": 4000000000
+      }
+    },
+    {
+      "week": 19,
+      "applicationRuns": {
+        "application:published-compression": {
+          "id": "application:published-compression",
+          "companyId": "company-player",
+          "sourceModelId": "seed-0",
+          "outputModelId": "variant:published-compression",
+          "variant": "compression",
+          "startedWeek": 5,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "physicalWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "complete",
+          "lastProgress": 0,
+          "lastBottleneck": "",
+          "completedWeek": 6
+        }
+      },
+      "chipDesigns": {
+        "chip-2aa96072": {
+          "id": "chip-2aa96072",
+          "companyId": "company-player",
+          "name": "Published FL-1",
+          "spec": {
+            "architecture": "dense",
+            "target": "inference",
+            "memory": "balanced"
+          },
+          "status": "validated",
+          "paused": false,
+          "designFeeCents": 2000000,
+          "designPaymentId": "chip-design-fee:chip-2aa96072",
+          "design": {
+            "startedWeek": 5,
+            "requiredWorkCUw": 8000000000,
+            "completedWorkCUw": 8000000000,
+            "requiredHardwareStaff": 4000000000,
+            "completedHardwareStaff": 4000000000,
+            "requiredMlStaff": 0,
+            "completedMlStaff": 0,
+            "completedWeek": 8,
+            "readyWeek": 9,
+            "lastProgress": 0,
+            "lastBottleneck": "Stage complete; the result becomes available in week 9."
+          },
+          "prototypeRun": {
+            "startedWeek": 10,
+            "requiredWorkCUw": 4000000000,
+            "completedWorkCUw": 4000000000,
+            "requiredHardwareStaff": 2000000000,
+            "completedHardwareStaff": 2000000000,
+            "requiredMlStaff": 1000000000,
+            "completedMlStaff": 1000000000,
+            "completedWeek": 11,
+            "readyWeek": 12,
+            "lastProgress": 1000000000,
+            "lastBottleneck": "Stage complete; the result becomes available in week 12.",
+            "modelId": "seed-0",
+            "reportId": "agent-fixture-report",
+            "modelArchitecture": "dense",
+            "modelFamily": "compact",
+            "modelMemoryMU": 2000000000,
+            "feeCents": 500000,
+            "paymentId": "chip-prototype-fee:chip-2aa96072"
+          },
+          "qualifiedYieldBps": 10000
+        }
+      },
+      "chipBatches": {
+        "chip-batch-published-production": {
+          "id": "chip-batch-published-production",
+          "companyId": "company-player",
+          "designId": "chip-2aa96072",
+          "location": "colocation",
+          "racks": 1,
+          "rackIds": [
+            "rack-published-production-1"
+          ],
+          "attemptedCU": 8000000000,
+          "usableCU": 8000000000,
+          "yieldBps": 10000,
+          "orderedWeek": 13,
+          "arrivalWeek": 18,
+          "deliveredWeek": 18,
+          "status": "delivered",
+          "purchaseCents": 880000,
+          "paymentId": "chip-production:chip-batch-published-production"
+        }
+      },
+      "fabricProjects": {
+        "fabric-published-fabric": {
+          "id": "fabric-published-fabric",
+          "companyId": "company-player",
+          "location": "colocation",
+          "status": "active",
+          "paused": false,
+          "startedWeek": 13,
+          "requiredWeeks": 3,
+          "elapsedWeeks": 3,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "requiredWorkCUw": 4000000000,
+          "completedWorkCUw": 4000000000,
+          "completedWeek": 15,
+          "readyWeek": 16,
+          "purchaseCents": 800000,
+          "paymentId": "fast-fabric:fabric-published-fabric",
+          "lastBottleneck": ""
+        }
+      },
+      "racks": {
+        "rack-published-production-1": {
+          "id": "rack-published-production-1",
+          "companyId": "company-player",
+          "hardwareId": "chip-2aa96072",
+          "location": "colocation",
+          "status": "inventory",
+          "orderedWeek": 13,
+          "arrivalWeek": 18,
+          "installationStartedWeek": null,
+          "completedInstallStaff": 0,
+          "readyWeek": null,
+          "installedWeek": null,
+          "purchaseCents": 880000,
+          "lastBottleneck": "Delivered; start installation to turn inventory into usable hardware.",
+          "chipDesignId": "chip-2aa96072",
+          "chipBatchId": "chip-batch-published-production",
+          "usableCU": 8000000000
+        }
+      },
+      "rollouts": {
+        "system-rollout:published-supervisor": {
+          "id": "system-rollout:published-supervisor",
+          "companyId": "company-player",
+          "method": "run-supervisor",
+          "startedWeek": 13,
+          "requiredWork": 1000000000,
+          "completedWork": 1000000000,
+          "requiredStaff": 1000000000,
+          "completedStaff": 1000000000,
+          "status": "active",
+          "readyWeek": 14,
+          "lastBottleneck": ""
+        },
+        "system-rollout:published-assistant": {
+          "id": "system-rollout:published-assistant",
+          "companyId": "company-player",
+          "method": "research-assistant",
+          "startedWeek": 14,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "active",
+          "readyWeek": 16,
+          "lastBottleneck": ""
+        }
+      },
+      "efficiencyInstalls": {
+        "product:published-chat:prefix-cache": {
+          "id": "efficiency:published-cache",
+          "companyId": "company-player",
+          "productId": "product:published-chat",
+          "kind": "prefix-cache",
+          "modelId": "seed-0",
+          "startedWeek": 10,
+          "requiredWork": 1000000000,
+          "completedWork": 1000000000,
+          "requiredStaff": 1000000000,
+          "completedStaff": 1000000000,
+          "status": "active",
+          "readyWeek": 11,
+          "enabled": true,
+          "lastBottleneck": "",
+          "cacheKey": "prefix:25d74130",
+          "warmedWeek": 16,
+          "lastServedWeek": 19
+        },
+        "product:published-chat:routing": {
+          "id": "efficiency:published-routing",
+          "companyId": "company-player",
+          "productId": "product:published-chat",
+          "kind": "routing",
+          "modelId": "seed-0",
+          "secondaryModelId": "variant:published-compression",
+          "startedWeek": 14,
+          "requiredWork": 2000000000,
+          "completedWork": 2000000000,
+          "requiredStaff": 2000000000,
+          "completedStaff": 2000000000,
+          "status": "active",
+          "readyWeek": 16,
+          "enabled": true,
+          "lastBottleneck": ""
+        }
+      },
+      "playerReceipts": {
+        "published-chat": {
+          "id": "published-chat",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-compression": {
+          "id": "published-compression",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-chip": {
+          "id": "published-chip",
+          "week": 5,
+          "status": "accepted"
+        },
+        "published-eval": {
+          "id": "published-eval",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-prototype": {
+          "id": "published-prototype",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-cache": {
+          "id": "published-cache",
+          "week": 10,
+          "status": "accepted"
+        },
+        "published-production": {
+          "id": "published-production",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-fabric": {
+          "id": "published-fabric",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-supervisor": {
+          "id": "published-supervisor",
+          "week": 13,
+          "status": "accepted"
+        },
+        "published-routing": {
+          "id": "published-routing",
+          "week": 14,
+          "status": "accepted"
+        },
+        "published-assistant": {
+          "id": "published-assistant",
+          "week": 14,
+          "status": "accepted"
+        },
+        "published-terms": {
+          "id": "published-terms",
+          "week": 15,
+          "status": "accepted"
+        },
+        "published-allocation": {
+          "id": "published-allocation",
+          "week": 15,
+          "status": "accepted"
+        }
+      },
+      "playerAllocation": {
+        "serving": 5000000000,
+        "development": 7000000000,
+        "research": 4000000000
+      }
+    }
+  ]
+}

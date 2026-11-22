@@ -1,0 +1,82 @@
+/* Shared, visible strategy controls inside the existing workspaces. */
+.development-plans-panel, .market-dynamics-panel, .model-challenge-card, .model-achievement-shelf { font-size: 1rem; line-height: 1.55; }
+.strategy-intro { display: flex; align-items: flex-start; gap: 14px; padding: 6px 0 22px; }
+.strategy-intro > svg { color: var(--fl-accent); flex-shrink: 0; margin-top: 4px; }
+.strategy-intro h3 { font-size: 1.25rem; margin-bottom: 7px; }
+.strategy-intro p { max-width: 78ch; color: var(--fl-muted); }
+.strategy-eyebrow { font-size: .78rem; font-weight: 650; letter-spacing: .07em; color: var(--fl-muted); }
+.studio-mode .studio-content #chapters .section-heading { display: flex; }
+.studio-mode .studio-content :is(#chapters, .product-strategy-panel, .market-dynamics-panel, .model-challenge-card, .development-plans-panel) .small-note { font-size: .875rem; line-height: 1.6; }
+.campaign-ambition-heading { font-size: 1.2rem; margin: 30px 0 14px; padding-top: 22px; border-top: 1px solid var(--fl-line); }
+.development-plan-card { border: 1px solid var(--fl-line); background: var(--fl-panel); border-radius: 12px; padding: 22px; margin: 12px 0 22px; }
+.development-plan-card.status-blocked { border-color: #c9964c; }
+.development-plan-card.status-review { border-color: #5ba999; }
+.development-plan-card > header { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; }
+.development-plan-card h3 { font-size: 1.3rem; margin: 6px 0 16px; overflow-wrap: anywhere; }
+.development-deadline { text-align: right; font-size: 1.1rem; white-space: nowrap; }
+.development-deadline small { display: block; font-size: .8rem; color: var(--fl-muted); }
+.development-stages { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; margin: 10px 0 20px; }
+.development-stages li { border-top: 3px solid var(--fl-line); display: flex; align-items: center; gap: 7px; padding: 12px 4px; color: var(--fl-muted); font-size: .875rem; }
+.development-stages .is-current { border-color: var(--fl-accent); color: var(--fl-text); font-weight: 650; }
+.development-stages .is-complete { border-color: #5ba999; color: #8cc8b9; }
+.development-plan-message { padding: 12px 0; }
+.development-plan-card .metrics, .development-forecast .metrics { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 16px 0; }
+.development-plan-card .metric dd { font-size: 1.1rem; }
+.development-plan-card .metric dd small { font-size: .85rem; color: var(--fl-muted); }
+.development-plan-builder .form-grid, .development-limit-editor .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 16px 0; }
+.development-plan-builder label, .development-limit-editor label { display: flex; flex-direction: column; gap: 8px; font-size: .9rem; }
+.development-plan-builder input, .development-plan-builder select, .development-limit-editor input { padding: 10px 12px; min-height: 44px; border-radius: 6px; font-size: 1rem; width: 100%; }
+.development-datasets { margin: 22px 0; border: 1px solid var(--fl-line); border-radius: 9px; padding: 16px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.development-datasets legend { padding: 0 8px; font-weight: 650; }
+.development-datasets p, .development-datasets > a { grid-column: 1 / -1; font-size: .9rem; }
+.development-datasets > label { display: flex; flex-direction: row; gap: 10px; border: 1px solid var(--fl-line); padding: 12px; border-radius: 7px; align-items: flex-start; }
+.development-datasets input { width: 18px; height: 18px; min-height: 18px; flex: 0 0 18px; margin-top: 3px; accent-color: var(--fl-accent); }
+.development-datasets small { display: block; color: var(--fl-muted); margin-top: 5px; font-size: .8rem; }
+.development-method { margin: 22px 0; max-width: 600px; }
+.development-forecast { background: var(--fl-raised); padding: 16px; border-radius: 9px; margin: 20px 0; }
+.development-forecast p { font-size: .875rem; color: var(--fl-muted); }
+.strategy-actions, .market-dynamics-actions { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 10px; margin: 16px 0; }
+.strategy-actions > a, .strategy-actions > button, .market-dynamics-actions button { border: 1px solid var(--fl-control-border); border-radius: 6px; padding: 10px 14px; font-size: .9rem; text-decoration: none; min-height: 42px; display: inline-flex; align-items: center; gap: 7px; white-space: normal; }
+.strategy-actions .action-control { max-width: 340px; flex: 1 1 190px; }
+.strategy-actions .action-control button { width: 100%; padding: 10px; font-size: .9rem; white-space: normal; min-height: 42px; }
+.development-result { padding: 18px; border-left: 3px solid #5ba999; background: var(--fl-raised); border-radius: 4px; }
+.development-result h4 { margin: 0 0 8px; font-size: 1.1rem; }
+.development-limit-editor { border-top: 1px solid var(--fl-line); padding-top: 12px; }
+.development-history { margin-top: 30px; }
+.development-history > h3 { font-size: 1.1rem; }
+.development-plan-card .small-note, .development-plan-builder .small-note { font-size: .875rem; line-height: 1.6; }
+.market-dynamics-panel { padding: 12px 0 20px; }
+.market-dynamics-panel h3 { margin: 14px 0 10px; font-size: 1.2rem; }
+.market-opportunity-card { padding: 20px; margin: 16px 0 26px; border: 1px solid var(--fl-accent); border-radius: 10px; background: var(--fl-raised); }
+.market-opportunity-card p { margin-top: 10px; }
+.rival-campaign-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 16px 0; }
+.rival-campaign-card { padding: 16px; border: 1px solid var(--fl-line); border-radius: 8px; }
+.rival-campaign-card .asset-summary { flex-wrap: wrap; gap: 6px; }
+.rival-campaign-card h4 { font-size: 1rem; margin: 12px 0; }
+.rival-campaign-card p { margin-top: 10px; }
+.market-dynamics-panel .small-note { font-size: .875rem; }
+.model-achievement-shelf { padding: 16px 20px; border: 1px solid #5ba999; border-radius: 9px; margin: 20px 0; }
+.model-achievement-shelf ul { margin: 0; padding-left: 18px; }
+.model-challenge-card { padding: 20px; margin-top: 20px; border: 1px solid var(--fl-line); border-radius: 10px; }
+.model-challenge-card .small-note, .model-challenge-report .small-note { font-size: .875rem; }
+.model-challenge-card .project-heading { flex-wrap: wrap; gap: 8px; }
+.model-challenge-card .metrics { grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); }
+.model-challenge-report .case-list li { gap: 18px; padding: 12px 0; }
+.model-challenge-report .case-list strong { font-size: .9rem; }
+.model-challenge-report h3 { margin: 18px 0 12px; }
+@media (max-width: 899px) {
+  .studio-mode .studio-inspector { scroll-margin-top: calc(var(--studio-measured-header-height, 144px) + 12px); }
+}
+@media (max-width: 640px) {
+  .development-plan-card { padding: 16px; }
+  .development-plan-card > header { flex-wrap: wrap; }
+  .development-deadline { text-align: left; }
+  .development-plan-builder .form-grid, .development-limit-editor .form-grid, .development-datasets { grid-template-columns: 1fr; }
+  .development-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px 10px; }
+  .development-stages li { padding: 9px 0; }
+  .strategy-actions { flex-direction: column; }
+  .strategy-actions .action-control { max-width: none; flex-basis: auto; width: 100%; }
+  .strategy-actions > button, .strategy-actions > a { width: 100%; justify-content: center; }
+  .rival-campaign-list { grid-template-columns: 1fr; }
+  .development-plan-builder .model-designer { margin-left: 0; margin-right: 0; }
+}

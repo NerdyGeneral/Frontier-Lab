@@ -1,0 +1,47 @@
+✔ W28-RB01: concurrent serving grants cannot exceed the shared training-profile ceiling, including across collector calls (46559.939417ms)
+✔ W28-RB02: explicit inference shares one ceiling across serving, development and research allocations (275.114561ms)
+✔ W28-RB03: the class ceiling counts reserved headroom and admits its exact boundary (229.491188ms)
+✔ W28-RB04: explicit training retains its shared serving-profile tradeoff across allocation categories (226.922743ms)
+✔ W28-RB05: general work can use the remaining physical pool and a separate unprofiled pool keeps its own capacity (241.196722ms)
+✖ W28-RB06: existing physical and connected-memory conservation remain independently enforced (166.345483ms)
+ℹ tests 6
+ℹ suites 0
+ℹ pass 5
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 51037.74487
+
+✖ failing tests:
+
+test at tests/wave28-resource-boundary.test.ts:1:4785
+✖ W28-RB06: existing physical and connected-memory conservation remain independently enforced (166.345483ms)
+  AssertionError [ERR_ASSERTION]: The input did not match the regular expression /physical capacity/. Input:
+  
+  'Error: Resource allocation: company-player exceeds its compatible pool serving workload ceiling including headroom.'
+  
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/wave28-resource-boundary.test.ts:76:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: Error: Resource allocation: company-player exceeds its compatible pool serving workload ceiling including headroom.
+        at fail (/workspace/sites/frontier-lab/.sites-checkout/src/core/resources.ts:11:47)
+        at collectResourceResult (/workspace/sites/frontier-lab/.sites-checkout/src/core/resources.ts:196:68)
+        at Object.collect (/workspace/sites/frontier-lab/.sites-checkout/tests/wave28-resource-boundary.test.ts:33:94)
+        at <anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/wave28-resource-boundary.test.ts:76:32)
+        at getActual (node:assert:611:5)
+        at strict.throws (node:assert:759:24)
+        at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/wave28-resource-boundary.test.ts:76:10)
+        at Test.runInAsyncScope (node:async_hooks:227:14)
+        at Test.run (node:internal/test_runner/test:1402:25)
+        at Test.processPendingSubtests (node:internal/test_runner/test:974:18),
+    expected: /physical capacity/,
+    operator: 'throws',
+    diff: 'simple'
+  }

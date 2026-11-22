@@ -1,0 +1,4437 @@
+{
+  "sourceCommit": "1ab56a80d4501ba214eb778a2ab20a38a6dc5547",
+  "sourceTree": "26c9f4a267c3d5814b2f77d2d290381ab63b62e4",
+  "sourceContent": "0.17.0",
+  "schemaVersion": 5,
+  "sourceFixture": {
+    "file": "tests/fixtures/wave15-snapshot.json",
+    "checksum": "4138abaa",
+    "bytes": 1326250,
+    "sha256": "d5a68d6154331e700ec8df460fa4799c821ec706e488796553403917e89403d9"
+  },
+  "generator": {
+    "baselinePath": "/workspace/scratch/4788498e7ff5/wave16-baseline",
+    "file": "tests/wave17-oracle-generation.test.ts",
+    "runCommand": "node scripts/test-wave0.mjs wave17-oracle-generation",
+    "sha256": "adbf7656325cb2d4860ed7daf4443a29b372b4e28f7a0e8c70c0bb9fb09e96fc"
+  },
+  "originalActiveCheckpoint": {
+    "week": 537,
+    "checksum": "0591ee14",
+    "bytes": 1456229,
+    "sha256": "66b5aee72be12b7e2df96ab6a2e29c442574584aea57ae1f7994aa3d80621b25",
+    "matchesPublishedSnapshotExactly": true
+  },
+  "fixtureWeek": 537,
+  "checksum": "97dad50f",
+  "snapshotBytes": 1457252,
+  "snapshotSha256": "9e7aa2e2a35b27289eb4c423cc8ce7cbfd3ef11d4e8bb481498808f1c9e30bf1",
+  "context": {
+    "productId": "product:natural-business-command-67",
+    "publicModelId": "model-wave11-natural-command-3",
+    "batchId": "batch:wave16-natural-command-2",
+    "trainingId": "training-wave16-oracle-command-5",
+    "candidateId": "model-wave16-oracle-command-5",
+    "sourceContent": "0.17.0",
+    "initialCostWeek": 537
+  },
+  "creationCommands": [
+    {
+      "week": 535,
+      "id": "wave16-natural-command-1",
+      "payload": {
+        "kind": "set_batch_capacity",
+        "cloudCU": 80000000000,
+        "servingCU": 144000000000
+      }
+    },
+    {
+      "week": 536,
+      "id": "wave16-natural-command-2",
+      "payload": {
+        "kind": "accept_batch_job",
+        "productId": "product:natural-business-command-67",
+        "orderId": "archive-tagging",
+        "modelId": "model-wave15-natural-command-9",
+        "weeklyWorkCapCUw": 16000000000,
+        "poolId": "owned:colocation:training"
+      }
+    },
+    {
+      "week": 537,
+      "id": "wave16-oracle-command-1",
+      "payload": {
+        "kind": "set_batch_capacity",
+        "cloudCU": 96000000000,
+        "servingCU": 160000000000
+      }
+    },
+    {
+      "week": 537,
+      "id": "wave16-oracle-command-2",
+      "payload": {
+        "kind": "set_batch_job_placement",
+        "jobId": "batch:wave16-natural-command-2",
+        "poolId": "general-cloud"
+      }
+    },
+    {
+      "week": 537,
+      "id": "wave16-oracle-command-3",
+      "payload": {
+        "kind": "set_batch_job_paused",
+        "jobId": "batch:wave16-natural-command-2",
+        "paused": true
+      }
+    }
+  ],
+  "commands": [
+    {
+      "week": 538,
+      "id": "wave16-oracle-command-4",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 158000000000,
+        "development": 2000000000,
+        "research": 0
+      }
+    },
+    {
+      "week": 538,
+      "id": "wave16-oracle-command-5",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "model-wave15-natural-command-9",
+        "packetId": "curated-natural-business-command-111",
+        "recipeId": "calibration-curriculum"
+      }
+    },
+    {
+      "week": 538,
+      "id": "wave16-oracle-command-6",
+      "payload": {
+        "kind": "set_batch_job_paused",
+        "jobId": "batch:wave16-natural-command-2",
+        "paused": false
+      }
+    },
+    {
+      "week": 539,
+      "id": "wave16-oracle-command-7",
+      "payload": {
+        "kind": "set_job_paused",
+        "jobId": "training-wave16-oracle-command-5",
+        "paused": true
+      }
+    },
+    {
+      "week": 539,
+      "id": "wave16-oracle-command-8",
+      "payload": {
+        "kind": "set_batch_job_placement",
+        "jobId": "batch:wave16-natural-command-2",
+        "poolId": "auto"
+      }
+    },
+    {
+      "week": 541,
+      "id": "wave16-oracle-command-9",
+      "payload": {
+        "kind": "set_job_paused",
+        "jobId": "training-wave16-oracle-command-5",
+        "paused": false
+      }
+    },
+    {
+      "week": 545,
+      "id": "wave16-oracle-command-10",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave16-oracle-command-5",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 547,
+      "id": "wave16-oracle-command-11",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-wave16-oracle-command-5",
+        "suiteId": "policy-boundaries-1"
+      }
+    },
+    {
+      "week": 548,
+      "id": "wave16-oracle-command-12",
+      "payload": {
+        "kind": "set_batch_capacity",
+        "cloudCU": 80000000000,
+        "servingCU": 142000000000
+      }
+    },
+    {
+      "week": 550,
+      "id": "wave16-oracle-command-13",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 144000000000,
+        "development": 0,
+        "research": 0
+      }
+    }
+  ],
+  "originalProduct": {
+    "id": "product:natural-business-command-67",
+    "companyId": "company-player",
+    "name": "Developer API",
+    "kind": "developer-api",
+    "features": {
+      "memory": false,
+      "extendedContext": true,
+      "deepReasoning": true
+    },
+    "deploymentId": "prepared-deployment:prepared-release:wave11-natural-command-11",
+    "contractId": "contract:natural-business-command-67",
+    "status": "active",
+    "createdWeek": 106,
+    "publicModelId": "model-wave11-natural-command-3"
+  },
+  "originalDeployment": {
+    "id": "prepared-deployment:prepared-release:wave11-natural-command-11",
+    "companyId": "company-player",
+    "productId": "product:natural-business-command-67",
+    "modelId": "model-wave11-natural-command-3",
+    "status": "active",
+    "startedWeek": 423,
+    "requiredStaff": 1000000000,
+    "completedStaff": 1000000000,
+    "readyWeek": 427,
+    "lastBottleneck": ""
+  },
+  "originalPublicContract": {
+    "id": "contract:natural-business-command-67",
+    "companyId": "company-player",
+    "productId": "product:natural-business-command-67",
+    "weeklyPriceCents": 6001,
+    "allowance": 599,
+    "creditBps": 10000,
+    "effectiveWeek": 378,
+    "tokenBillRemainder": 802535
+  },
+  "originalPublicModel": {
+    "id": "model-wave11-natural-command-3",
+    "name": "Policy boundary discrimination 13",
+    "companyId": "company-player",
+    "family": "compact",
+    "architecture": "dense",
+    "status": "released",
+    "capabilityBps": {
+      "conversation": 4088,
+      "documents": 3138,
+      "coding": 5357,
+      "tools": 2741
+    },
+    "reliabilityBps": 8900,
+    "behavior": {
+      "confidentErrorBps": 550,
+      "falseRefusalBps": 385
+    },
+    "policy": {
+      "protocol": "policy-boundaries-v1",
+      "baselineUnsafeComplianceBps": 1200,
+      "currentUnsafeComplianceBps": 660
+    },
+    "residentMU": 2000000000,
+    "source": "Policy boundary discrimination: 24 of 24 useful CUw. Evaluation is separate.",
+    "parentModelId": "model-wave10-natural-command-3",
+    "trainingRunId": "training-wave11-natural-command-3",
+    "trainingEvidenceId": "corpus-0eca3f80",
+    "createdWeek": 414,
+    "foundationAnchor": {
+      "conversation": 4000,
+      "documents": 3000,
+      "coding": 2000,
+      "tools": 2000
+    },
+    "evaluationReportId": "report-evaluation-wave11-natural-command-6"
+  },
+  "initialObservation": {
+    "week": 537,
+    "hash": "97dad50f",
+    "cashCents": 587882908,
+    "arrearsCents": 0,
+    "trustBps": 10000,
+    "public": {
+      "productHash": "d4062f47",
+      "deploymentHash": "49ee337e",
+      "contractHash": "559874f9",
+      "usage": {
+        "week": 537,
+        "productId": "product:natural-business-command-67",
+        "paidAccounts": 174,
+        "trialAccounts": 3,
+        "requestedWork": 54431520000,
+        "executedWork": 54431520000,
+        "paidRequestedWork": 54197520000,
+        "paidExecutedWork": 54197520000,
+        "trialRequestedWork": 234000000,
+        "trialExecutedWork": 234000000,
+        "exchanges": 104676,
+        "fulfillmentBps": 10000,
+        "errorBps": 1671,
+        "behavior": {
+          "confidentErrorBps": 550,
+          "falseRefusalBps": 543
+        },
+        "guardrail": {
+          "installationId": "guardrail:wave13-natural-command-7",
+          "profile": "balanced",
+          "bindingFingerprint": "cff08f8d",
+          "requestWorkCUw": 520000,
+          "baselineFalseRefusalBps": 385,
+          "technicalErrorBps": 1671,
+          "baselineUnsafeComplianceBps": 660,
+          "checkWorkCUw": 2093520000,
+          "requestedRequests": 104676,
+          "checkedRequests": 104676,
+          "uncheckedRequests": 0,
+          "addedFalseRefusalBps": 158,
+          "additionalFalseRefusals": 1653,
+          "guardedUnsafeComplianceBps": 198
+        },
+        "trialCompletedIds": [
+          "trial-3294"
+        ],
+        "grossBillCents": 2606004,
+        "creditsCents": 0,
+        "billedCents": 2606004,
+        "segments": [
+          {
+            "segmentId": "developers",
+            "accounts": 174,
+            "requestedExchanges": 104226,
+            "requestedWork": 54197520000,
+            "errorBps": 1671
+          }
+        ],
+        "tokens": {
+          "inputTokens": 104226000,
+          "outputTokens": 10422600,
+          "internalTokens": 20845200,
+          "inputPriceCentsPerMillion": 10001,
+          "outputPriceCentsPerMillion": 50008,
+          "billCarryIn": 434135,
+          "billCarryOut": 802535,
+          "physicalWork": 54431520000,
+          "ownedVariableCostCents": 0
+        }
+      },
+      "invoice": {
+        "id": "invoice:product:natural-business-command-67:537",
+        "companyId": "company-player",
+        "productId": "product:natural-business-command-67",
+        "contractId": "contract:natural-business-command-67",
+        "week": 537,
+        "accounts": 174,
+        "grossCents": 2606004,
+        "creditsCents": 0,
+        "amountCents": 2606004,
+        "billing": "tokens",
+        "inputTokens": 104226000,
+        "outputTokens": 31267800
+      },
+      "originalModelHash": "46c0d1e4"
+    },
+    "fleet": {
+      "cloudCU": 80000000000,
+      "ownedCU": 64000000000,
+      "allocation": {
+        "serving": 144000000000,
+        "development": 0,
+        "research": 0
+      },
+      "resourceHash": "76dd1958"
+    },
+    "batch": {
+      "id": "batch:wave16-natural-command-2",
+      "hash": "6aa63063",
+      "status": "active",
+      "deadlineWeek": 540,
+      "terminalWeek": null,
+      "completedRequests": 13538,
+      "completedWork": 8800000000,
+      "physicalWork": 8000000000,
+      "currentPoolId": "owned:colocation:training",
+      "placementHistory": [
+        {
+          "commandId": "wave16-natural-command-2",
+          "week": 537,
+          "poolId": "owned:colocation:training"
+        }
+      ],
+      "latestUsage": {
+        "week": 537,
+        "paused": false,
+        "remainingBefore": 26000000000,
+        "requestedWorkCUw": 16000000000,
+        "executedWorkCUw": 8800000000,
+        "physicalWorkCUw": 8000000000,
+        "poolId": "owned:colocation:training",
+        "receiptKey": "50973b79",
+        "memoryMU": 2250000000,
+        "staffRequired": 250000000,
+        "staffGranted": 250000000,
+        "supervisedLimitCUw": 16000000000,
+        "completedWorkBefore": 0,
+        "completedWorkAfter": 8800000000,
+        "completedRequestsBefore": 0,
+        "completedRequestsAfter": 13538,
+        "completedRequests": 13538,
+        "inputTokens": 27076000,
+        "outputTokens": 3384500,
+        "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+      },
+      "workReceiptsHash": "514b8808",
+      "invoice": null,
+      "estimatedGpuCents": 60000,
+      "admissionPosted": true
+    },
+    "training": null,
+    "candidate": null,
+    "legacy": {
+      "feedbackHash": "fd53f035",
+      "researchHash": "f4bee1d6",
+      "runtimeHash": "774adb6c",
+      "assuranceHash": "7ec0c34f",
+      "oldBatchHash": "72c78626"
+    },
+    "costs": {
+      "hash": "eb1196e9",
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 357000,
+        "attributedCloudRentCents": 1558403,
+        "attributedOwnedVariableCents": 357000,
+        "attributedComputeCents": 1915403,
+        "unallocatedCloudCents": 41597,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 119597,
+        "totalComputeCents": 2035000,
+        "companyRevenueCents": 4493404,
+        "otherOperatingCents": 370000,
+        "companyOperatingCents": 2405000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2088404
+      },
+      "historyWeeks": [
+        537,
+        536,
+        535,
+        534,
+        533,
+        532,
+        531,
+        530
+      ],
+      "initialWeekRetained": true,
+      "workloads": [
+        {
+          "requestId": "batch-serve:batch:wave16-natural-command-2",
+          "hash": "bd5b57e3",
+          "cloudRentCents": 0,
+          "ownedVariableCents": 60000
+        }
+      ]
+    },
+    "queuedHash": "fa776c81",
+    "saveBytes": 1457252
+  },
+  "checkpoints": [
+    {
+      "week": 537,
+      "hash": "97dad50f",
+      "bytes": 1457252,
+      "sha256": "9e7aa2e2a35b27289eb4c423cc8ce7cbfd3ef11d4e8bb481498808f1c9e30bf1",
+      "file": "frontier-lab-wave16-queued-capacity.json"
+    },
+    {
+      "week": 538,
+      "hash": "1e080129",
+      "bytes": 1455321,
+      "sha256": "fce933854a6d8a9ae9db19f4e83ce335e42ef29f12eee3bfcd3bded091149f89",
+      "file": "frontier-lab-wave16-week-538.json"
+    },
+    {
+      "week": 540,
+      "hash": "578af00f",
+      "bytes": 1462017,
+      "sha256": "82673d9242c470f9ec31b4da155ec757d65732f6cb2ffb91d112882a9f613e9f",
+      "file": "frontier-lab-wave16-week-540.json"
+    },
+    {
+      "week": 541,
+      "hash": "2b07453a",
+      "bytes": 1460137,
+      "sha256": "09e59b6d7d19dd5a40396df560359bcd5427229d37e15feb4468fde748116689",
+      "file": "frontier-lab-wave16-week-541.json"
+    },
+    {
+      "week": 544,
+      "hash": "07fd124e",
+      "bytes": 1460913,
+      "sha256": "2719127ce2b2fad1c437d049bdc8b42c82ec0aec965e6948cac9d9ae946613a9",
+      "file": "frontier-lab-wave16-week-544.json"
+    },
+    {
+      "week": 547,
+      "hash": "abbb5a9e",
+      "bytes": 1483110,
+      "sha256": "d63094262a9753aed3c45d2452c55c63b6bc8143c9add6bb2bd47d4cf68bd66d",
+      "file": "frontier-lab-wave16-week-547.json"
+    },
+    {
+      "week": 553,
+      "hash": "48f10a80",
+      "bytes": 1501532,
+      "sha256": "8d8f885271043cd4034d13ea7bcc945f1341f449a0f235238779d90b760c7870",
+      "file": "frontier-lab-wave16-week-553.json"
+    }
+  ],
+  "weeks": [
+    {
+      "week": 538,
+      "hash": "1e080129",
+      "cashCents": 589711538,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "263f7043",
+        "usage": {
+          "week": 538,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 174,
+          "trialAccounts": 2,
+          "requestedWork": 54353520000,
+          "executedWork": 54353520000,
+          "paidRequestedWork": 54197520000,
+          "paidExecutedWork": 54197520000,
+          "trialRequestedWork": 156000000,
+          "trialExecutedWork": 156000000,
+          "exchanges": 104526,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2090520000,
+            "requestedRequests": 104526,
+            "checkedRequests": 104526,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1651,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3299",
+            "trial-3301"
+          ],
+          "grossBillCents": 2606005,
+          "creditsCents": 0,
+          "billedCents": 2606005,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 174,
+              "requestedExchanges": 104226,
+              "requestedWork": 54197520000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 104226000,
+            "outputTokens": 10422600,
+            "internalTokens": 20845200,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 802535,
+            "billCarryOut": 170935,
+            "physicalWork": 54353520000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:538",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 538,
+          "accounts": 174,
+          "grossCents": 2606005,
+          "creditsCents": 0,
+          "amountCents": 2606005,
+          "billing": "tokens",
+          "inputTokens": 104226000,
+          "outputTokens": 31267800
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 160000000000,
+          "development": 0,
+          "research": 0
+        },
+        "resourceHash": "5e6c4016"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "766df5b0",
+        "status": "paused",
+        "deadlineWeek": 540,
+        "terminalWeek": null,
+        "completedRequests": 13538,
+        "completedWork": 8800000000,
+        "physicalWork": 8000000000,
+        "currentPoolId": "general-cloud",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          }
+        ],
+        "latestUsage": {
+          "week": 538,
+          "paused": true,
+          "remainingBefore": 17200000000,
+          "requestedWorkCUw": 0,
+          "executedWorkCUw": 0,
+          "physicalWorkCUw": 0,
+          "poolId": null,
+          "receiptKey": null,
+          "memoryMU": 0,
+          "staffRequired": 0,
+          "staffGranted": 0,
+          "supervisedLimitCUw": 0,
+          "completedWorkBefore": 8800000000,
+          "completedWorkAfter": 8800000000,
+          "completedRequestsBefore": 13538,
+          "completedRequestsAfter": 13538,
+          "completedRequests": 0,
+          "inputTokens": 0,
+          "outputTokens": 0,
+          "explanation": "Paused; paid partial progress is retained and the original deadline continues."
+        },
+        "workReceiptsHash": "514b8808",
+        "invoice": null,
+        "estimatedGpuCents": 60000,
+        "admissionPosted": true
+      },
+      "training": null,
+      "candidate": null,
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "3f065496",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 300375,
+          "attributedCloudRentCents": 1558007,
+          "attributedOwnedVariableCents": 300375,
+          "attributedComputeCents": 1858382,
+          "unallocatedCloudCents": 361993,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 439993,
+          "totalComputeCents": 2298375,
+          "companyRevenueCents": 4497005,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2668375,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1828630
+        },
+        "historyWeeks": [
+          538,
+          537,
+          536,
+          535,
+          534,
+          533,
+          532,
+          531
+        ],
+        "initialWeekRetained": true,
+        "workloads": []
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1455321
+    },
+    {
+      "week": 539,
+      "hash": "5d1a0660",
+      "cashCents": 591543842,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "f3681d3a",
+        "usage": {
+          "week": 539,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 174,
+          "trialAccounts": 3,
+          "requestedWork": 54431520000,
+          "executedWork": 54431520000,
+          "paidRequestedWork": 54197520000,
+          "paidExecutedWork": 54197520000,
+          "trialRequestedWork": 234000000,
+          "trialExecutedWork": 234000000,
+          "exchanges": 104676,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2093520000,
+            "requestedRequests": 104676,
+            "checkedRequests": 104676,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1653,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3309"
+          ],
+          "grossBillCents": 2606004,
+          "creditsCents": 0,
+          "billedCents": 2606004,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 174,
+              "requestedExchanges": 104226,
+              "requestedWork": 54197520000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 104226000,
+            "outputTokens": 10422600,
+            "internalTokens": 20845200,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 170935,
+            "billCarryOut": 539335,
+            "physicalWork": 54431520000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:539",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 539,
+          "accounts": 174,
+          "grossCents": 2606004,
+          "creditsCents": 0,
+          "amountCents": 2606004,
+          "billing": "tokens",
+          "inputTokens": 104226000,
+          "outputTokens": 31267800
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 158000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "1d63f4b9"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "ceafd372",
+        "status": "active",
+        "deadlineWeek": 540,
+        "terminalWeek": null,
+        "completedRequests": 38153,
+        "completedWork": 24800000000,
+        "physicalWork": 24000000000,
+        "currentPoolId": "general-cloud",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          }
+        ],
+        "latestUsage": {
+          "week": 539,
+          "paused": false,
+          "remainingBefore": 17200000000,
+          "requestedWorkCUw": 16000000000,
+          "executedWorkCUw": 16000000000,
+          "physicalWorkCUw": 16000000000,
+          "poolId": "general-cloud",
+          "receiptKey": "98ab9ff0",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 16000000000,
+          "completedWorkBefore": 8800000000,
+          "completedWorkAfter": 24800000000,
+          "completedRequestsBefore": 13538,
+          "completedRequestsAfter": 38153,
+          "completedRequests": 24615,
+          "inputTokens": 49230000,
+          "outputTokens": 6153750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "8fade7d1",
+        "invoice": null,
+        "estimatedGpuCents": 380000,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "e8d60dc0",
+        "status": "running",
+        "completedWork": 3600000000,
+        "physicalWork": 2000000000,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": []
+      },
+      "candidate": null,
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "61bb45d4",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 325500,
+          "attributedCloudRentCents": 1879283,
+          "attributedOwnedVariableCents": 325500,
+          "attributedComputeCents": 2204783,
+          "unallocatedCloudCents": 40717,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 118717,
+          "totalComputeCents": 2323500,
+          "companyRevenueCents": 4525804,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2693500,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1832304
+        },
+        "historyWeeks": [
+          539,
+          538,
+          537,
+          536,
+          535,
+          534,
+          533,
+          532
+        ],
+        "initialWeekRetained": true,
+        "workloads": [
+          {
+            "requestId": "batch-serve:batch:wave16-natural-command-2",
+            "hash": "59256910",
+            "cloudRentCents": 320000,
+            "ownedVariableCents": 0
+          },
+          {
+            "requestId": "training-wave16-oracle-command-5:work",
+            "hash": "56eb20e7",
+            "cloudRentCents": 0,
+            "ownedVariableCents": 15000
+          }
+        ]
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1460469
+    },
+    {
+      "week": 540,
+      "hash": "578af00f",
+      "cashCents": 594017890,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "bc21f32b",
+        "usage": {
+          "week": 540,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 174,
+          "trialAccounts": 4,
+          "requestedWork": 54509520000,
+          "executedWork": 54509520000,
+          "paidRequestedWork": 54197520000,
+          "paidExecutedWork": 54197520000,
+          "trialRequestedWork": 312000000,
+          "trialExecutedWork": 312000000,
+          "exchanges": 104826,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2096520000,
+            "requestedRequests": 104826,
+            "checkedRequests": 104826,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1656,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3314"
+          ],
+          "grossBillCents": 2606004,
+          "creditsCents": 0,
+          "billedCents": 2606004,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 174,
+              "requestedExchanges": 104226,
+              "requestedWork": 54197520000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 104226000,
+            "outputTokens": 10422600,
+            "internalTokens": 20845200,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 539335,
+            "billCarryOut": 907735,
+            "physicalWork": 54509520000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:540",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 540,
+          "accounts": 174,
+          "grossCents": 2606004,
+          "creditsCents": 0,
+          "amountCents": 2606004,
+          "billing": "tokens",
+          "inputTokens": 104226000,
+          "outputTokens": 31267800
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 158000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "c3684af8"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "dbc365cc",
+        "status": "paused",
+        "completedWork": 3600000000,
+        "physicalWork": 2000000000,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": []
+      },
+      "candidate": null,
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "dc9ee82e",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 308556,
+          "attributedCloudRentCents": 1562539,
+          "attributedOwnedVariableCents": 308556,
+          "attributedComputeCents": 1871095,
+          "unallocatedCloudCents": 357461,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 435461,
+          "totalComputeCents": 2306556,
+          "companyRevenueCents": 5150604,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2676556,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 2474048
+        },
+        "historyWeeks": [
+          540,
+          539,
+          538,
+          537,
+          536,
+          535,
+          534,
+          533
+        ],
+        "initialWeekRetained": true,
+        "workloads": [
+          {
+            "requestId": "batch-serve:batch:wave16-natural-command-2",
+            "hash": "44dac3aa",
+            "cloudRentCents": 0,
+            "ownedVariableCents": 8181
+          }
+        ]
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1462017
+    },
+    {
+      "week": 541,
+      "hash": "2b07453a",
+      "cashCents": 595867272,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "c3eee947",
+        "usage": {
+          "week": 541,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 175,
+          "trialAccounts": 2,
+          "requestedWork": 54665000000,
+          "executedWork": 54665000000,
+          "paidRequestedWork": 54509000000,
+          "paidExecutedWork": 54509000000,
+          "trialRequestedWork": 156000000,
+          "trialExecutedWork": 156000000,
+          "exchanges": 105125,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2102500000,
+            "requestedRequests": 105125,
+            "checkedRequests": 105125,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1660,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3320",
+            "trial-3322"
+          ],
+          "grossBillCents": 2620982,
+          "creditsCents": 0,
+          "billedCents": 2620982,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 175,
+              "requestedExchanges": 104825,
+              "requestedWork": 54509000000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 104825000,
+            "outputTokens": 10482500,
+            "internalTokens": 20965000,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 907735,
+            "billCarryOut": 312735,
+            "physicalWork": 54665000000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:541",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 541,
+          "accounts": 175,
+          "grossCents": 2620982,
+          "creditsCents": 0,
+          "amountCents": 2620982,
+          "billing": "tokens",
+          "inputTokens": 104825000,
+          "outputTokens": 31447500
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 158000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "67d66d72"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "dbc365cc",
+        "status": "paused",
+        "completedWork": 3600000000,
+        "physicalWork": 2000000000,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": []
+      },
+      "candidate": null,
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "33eb803f",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 297000,
+          "attributedCloudRentCents": 1565410,
+          "attributedOwnedVariableCents": 297000,
+          "attributedComputeCents": 1862410,
+          "unallocatedCloudCents": 354590,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 432590,
+          "totalComputeCents": 2295000,
+          "companyRevenueCents": 4514382,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2665000,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1849382
+        },
+        "historyWeeks": [
+          541,
+          540,
+          539,
+          538,
+          537,
+          536,
+          535,
+          534
+        ],
+        "initialWeekRetained": true,
+        "workloads": []
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1460137
+    },
+    {
+      "week": 542,
+      "hash": "d4203b84",
+      "cashCents": 597684501,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "bd5fef3a",
+        "usage": {
+          "week": 542,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 174,
+          "trialAccounts": 2,
+          "requestedWork": 54353520000,
+          "executedWork": 54353520000,
+          "paidRequestedWork": 54197520000,
+          "paidExecutedWork": 54197520000,
+          "trialRequestedWork": 156000000,
+          "trialExecutedWork": 156000000,
+          "exchanges": 104526,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2090520000,
+            "requestedRequests": 104526,
+            "checkedRequests": 104526,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1651,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3327",
+            "trial-3329"
+          ],
+          "grossBillCents": 2606004,
+          "creditsCents": 0,
+          "billedCents": 2606004,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 174,
+              "requestedExchanges": 104226,
+              "requestedWork": 54197520000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 104226000,
+            "outputTokens": 10422600,
+            "internalTokens": 20845200,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 312735,
+            "billCarryOut": 681135,
+            "physicalWork": 54353520000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:542",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 542,
+          "accounts": 174,
+          "grossCents": 2606004,
+          "creditsCents": 0,
+          "amountCents": 2606004,
+          "billing": "tokens",
+          "inputTokens": 104226000,
+          "outputTokens": 31267800
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 158000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "392f4df1"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "3eebbd52",
+        "status": "running",
+        "completedWork": 7200000000,
+        "physicalWork": 4000000000,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": []
+      },
+      "candidate": null,
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "dcd59917",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 315375,
+          "attributedCloudRentCents": 1559327,
+          "attributedOwnedVariableCents": 315375,
+          "attributedComputeCents": 1874702,
+          "unallocatedCloudCents": 360673,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 438673,
+          "totalComputeCents": 2313375,
+          "companyRevenueCents": 4500604,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2683375,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1817229
+        },
+        "historyWeeks": [
+          542,
+          541,
+          540,
+          539,
+          538,
+          537,
+          536,
+          535
+        ],
+        "initialWeekRetained": true,
+        "workloads": [
+          {
+            "requestId": "training-wave16-oracle-command-5:work",
+            "hash": "1fac4f7f",
+            "cloudRentCents": 0,
+            "ownedVariableCents": 15000
+          }
+        ]
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1459936
+    },
+    {
+      "week": 543,
+      "hash": "aebb4b7e",
+      "cashCents": 599538983,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "f8e45c8f",
+        "usage": {
+          "week": 543,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 175,
+          "trialAccounts": 3,
+          "requestedWork": 54743000000,
+          "executedWork": 54743000000,
+          "paidRequestedWork": 54509000000,
+          "paidExecutedWork": 54509000000,
+          "trialRequestedWork": 234000000,
+          "trialExecutedWork": 234000000,
+          "exchanges": 105275,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2105500000,
+            "requestedRequests": 105275,
+            "checkedRequests": 105275,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1663,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3335"
+          ],
+          "grossBillCents": 2620982,
+          "creditsCents": 0,
+          "billedCents": 2620982,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 175,
+              "requestedExchanges": 104825,
+              "requestedWork": 54509000000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 104825000,
+            "outputTokens": 10482500,
+            "internalTokens": 20965000,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 681135,
+            "billCarryOut": 86135,
+            "physicalWork": 54743000000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:543",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 543,
+          "accounts": 175,
+          "grossCents": 2620982,
+          "creditsCents": 0,
+          "amountCents": 2620982,
+          "billing": "tokens",
+          "inputTokens": 104825000,
+          "outputTokens": 31447500
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 158000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "0dc6d77a"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "7f044c23",
+        "status": "running",
+        "completedWork": 10800000000,
+        "physicalWork": 6000000000,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": null,
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "ff0b7edf",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 325500,
+          "attributedCloudRentCents": 1568886,
+          "attributedOwnedVariableCents": 325500,
+          "attributedComputeCents": 1894386,
+          "unallocatedCloudCents": 351114,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 429114,
+          "totalComputeCents": 2323500,
+          "companyRevenueCents": 4547982,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2693500,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1854482
+        },
+        "historyWeeks": [
+          543,
+          542,
+          541,
+          540,
+          539,
+          538,
+          537,
+          536
+        ],
+        "initialWeekRetained": true,
+        "workloads": [
+          {
+            "requestId": "training-wave16-oracle-command-5:work",
+            "hash": "0c3d3a3a",
+            "cloudRentCents": 0,
+            "ownedVariableCents": 15000
+          }
+        ]
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1460232
+    },
+    {
+      "week": 544,
+      "hash": "07fd124e",
+      "cashCents": 601395864,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "a2b05b01",
+        "usage": {
+          "week": 544,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 175,
+          "trialAccounts": 2,
+          "requestedWork": 54665000000,
+          "executedWork": 54665000000,
+          "paidRequestedWork": 54509000000,
+          "paidExecutedWork": 54509000000,
+          "trialRequestedWork": 156000000,
+          "trialExecutedWork": 156000000,
+          "exchanges": 105125,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2102500000,
+            "requestedRequests": 105125,
+            "checkedRequests": 105125,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1660,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3340",
+            "trial-3342"
+          ],
+          "grossBillCents": 2620981,
+          "creditsCents": 0,
+          "billedCents": 2620981,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 175,
+              "requestedExchanges": 104825,
+              "requestedWork": 54509000000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 104825000,
+            "outputTokens": 10482500,
+            "internalTokens": 20965000,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 86135,
+            "billCarryOut": 491135,
+            "physicalWork": 54665000000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:544",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 544,
+          "accounts": 175,
+          "grossCents": 2620981,
+          "creditsCents": 0,
+          "amountCents": 2620981,
+          "billing": "tokens",
+          "inputTokens": 104825000,
+          "outputTokens": 31447500
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 158000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "2493365d"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "1ca8d0c9",
+        "status": "running",
+        "completedWork": 14400000000,
+        "physicalWork": 8000000000,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": null,
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "5056b215",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 325500,
+          "attributedCloudRentCents": 1568380,
+          "attributedOwnedVariableCents": 325500,
+          "attributedComputeCents": 1893880,
+          "unallocatedCloudCents": 351620,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 429620,
+          "totalComputeCents": 2323500,
+          "companyRevenueCents": 4550381,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2693500,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1856881
+        },
+        "historyWeeks": [
+          544,
+          543,
+          542,
+          541,
+          540,
+          539,
+          538,
+          537
+        ],
+        "initialWeekRetained": true,
+        "workloads": [
+          {
+            "requestId": "training-wave16-oracle-command-5:work",
+            "hash": "9edc15ad",
+            "cloudRentCents": 0,
+            "ownedVariableCents": 15000
+          }
+        ]
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1460913
+    },
+    {
+      "week": 545,
+      "hash": "0a9699ed",
+      "cashCents": 603263478,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "fd7873c0",
+        "usage": {
+          "week": 545,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 175,
+          "trialAccounts": 3,
+          "requestedWork": 54743000000,
+          "executedWork": 54743000000,
+          "paidRequestedWork": 54509000000,
+          "paidExecutedWork": 54509000000,
+          "trialRequestedWork": 234000000,
+          "trialExecutedWork": 234000000,
+          "exchanges": 105275,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2105500000,
+            "requestedRequests": 105275,
+            "checkedRequests": 105275,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1663,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3347"
+          ],
+          "grossBillCents": 2620981,
+          "creditsCents": 0,
+          "billedCents": 2620981,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 175,
+              "requestedExchanges": 104825,
+              "requestedWork": 54509000000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 104825000,
+            "outputTokens": 10482500,
+            "internalTokens": 20965000,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 491135,
+            "billCarryOut": 896135,
+            "physicalWork": 54743000000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:545",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 545,
+          "accounts": 175,
+          "grossCents": 2620981,
+          "creditsCents": 0,
+          "amountCents": 2620981,
+          "billing": "tokens",
+          "inputTokens": 104825000,
+          "outputTokens": 31447500
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 158000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "19f49f74"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "afe8873b",
+        "status": "complete",
+        "completedWork": 16000000000,
+        "physicalWork": 8888888889,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5",
+          "model-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": {
+        "id": "model-wave16-oracle-command-5",
+        "hash": "020790d3",
+        "status": "checkpoint",
+        "capabilityBps": {
+          "conversation": 4109,
+          "documents": 5566,
+          "coding": 5089,
+          "tools": 2256
+        },
+        "reliabilityBps": 9280,
+        "behavior": {
+          "confidentErrorBps": 525,
+          "falseRefusalBps": 385
+        },
+        "policy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "rights": {
+          "hosted": true,
+          "weights": false
+        },
+        "reports": []
+      },
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "d0b49c7b",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 317167,
+          "attributedCloudRentCents": 1570976,
+          "attributedOwnedVariableCents": 317166,
+          "attributedComputeCents": 1888142,
+          "unallocatedCloudCents": 349024,
+          "sharedCarryCents": 1,
+          "sharedComputeCents": 427025,
+          "totalComputeCents": 2315167,
+          "companyRevenueCents": 4552781,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2685167,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1867614
+        },
+        "historyWeeks": [
+          545,
+          544,
+          543,
+          542,
+          541,
+          540,
+          539,
+          538
+        ],
+        "initialWeekRetained": false,
+        "workloads": [
+          {
+            "requestId": "training-wave16-oracle-command-5:work",
+            "hash": "21f86737",
+            "cloudRentCents": 0,
+            "ownedVariableCents": 6666
+          }
+        ]
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1460526
+    },
+    {
+      "week": 546,
+      "hash": "589b4c85",
+      "cashCents": 605124837,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "7052fa02",
+        "usage": {
+          "week": 546,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 176,
+          "trialAccounts": 3,
+          "requestedWork": 55054480000,
+          "executedWork": 55054480000,
+          "paidRequestedWork": 54820480000,
+          "paidExecutedWork": 54820480000,
+          "trialRequestedWork": 234000000,
+          "trialExecutedWork": 234000000,
+          "exchanges": 105874,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2117480000,
+            "requestedRequests": 105874,
+            "checkedRequests": 105874,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1672,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3352"
+          ],
+          "grossBillCents": 2635959,
+          "creditsCents": 0,
+          "billedCents": 2635959,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 176,
+              "requestedExchanges": 105424,
+              "requestedWork": 54820480000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 105424000,
+            "outputTokens": 10542400,
+            "internalTokens": 21084800,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 896135,
+            "billCarryOut": 337735,
+            "physicalWork": 55054480000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:546",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 546,
+          "accounts": 176,
+          "grossCents": 2635959,
+          "creditsCents": 0,
+          "amountCents": 2635959,
+          "billing": "tokens",
+          "inputTokens": 105424000,
+          "outputTokens": 31627200
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 158000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "78c90916"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "afe8873b",
+        "status": "complete",
+        "completedWork": 16000000000,
+        "physicalWork": 8888888889,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5",
+          "model-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": {
+        "id": "model-wave16-oracle-command-5",
+        "hash": "020790d3",
+        "status": "checkpoint",
+        "capabilityBps": {
+          "conversation": 4109,
+          "documents": 5566,
+          "coding": 5089,
+          "tools": 2256
+        },
+        "reliabilityBps": 9280,
+        "behavior": {
+          "confidentErrorBps": 525,
+          "falseRefusalBps": 385
+        },
+        "policy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "rights": {
+          "hosted": true,
+          "weights": false
+        },
+        "reports": []
+      },
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "e3ba9272",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 312000,
+          "attributedCloudRentCents": 1579588,
+          "attributedOwnedVariableCents": 312000,
+          "attributedComputeCents": 1891588,
+          "unallocatedCloudCents": 340412,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 418412,
+          "totalComputeCents": 2310000,
+          "companyRevenueCents": 4541359,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2680000,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1861359
+        },
+        "historyWeeks": [
+          546,
+          545,
+          544,
+          543,
+          542,
+          541,
+          540,
+          539
+        ],
+        "initialWeekRetained": false,
+        "workloads": [
+          {
+            "requestId": "evaluation-wave16-oracle-command-10:work",
+            "hash": "82f0aa92",
+            "cloudRentCents": 0,
+            "ownedVariableCents": 15000
+          }
+        ]
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1461937
+    },
+    {
+      "week": 547,
+      "hash": "abbb5a9e",
+      "cashCents": 607003128,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "bb8e3078",
+        "usage": {
+          "week": 547,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 176,
+          "trialAccounts": 2,
+          "requestedWork": 54976480000,
+          "executedWork": 54976480000,
+          "paidRequestedWork": 54820480000,
+          "paidExecutedWork": 54820480000,
+          "trialRequestedWork": 156000000,
+          "trialExecutedWork": 156000000,
+          "exchanges": 105724,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2114480000,
+            "requestedRequests": 105724,
+            "checkedRequests": 105724,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1670,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3357",
+            "trial-3359"
+          ],
+          "grossBillCents": 2635958,
+          "creditsCents": 0,
+          "billedCents": 2635958,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 176,
+              "requestedExchanges": 105424,
+              "requestedWork": 54820480000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 105424000,
+            "outputTokens": 10542400,
+            "internalTokens": 21084800,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 337735,
+            "billCarryOut": 779335,
+            "physicalWork": 54976480000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:547",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 547,
+          "accounts": 176,
+          "grossCents": 2635958,
+          "creditsCents": 0,
+          "amountCents": 2635958,
+          "billing": "tokens",
+          "inputTokens": 105424000,
+          "outputTokens": 31627200
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 158000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "52af25e0"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "afe8873b",
+        "status": "complete",
+        "completedWork": 16000000000,
+        "physicalWork": 8888888889,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5",
+          "model-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": {
+        "id": "model-wave16-oracle-command-5",
+        "hash": "f7fabbac",
+        "status": "evaluated",
+        "capabilityBps": {
+          "conversation": 4109,
+          "documents": 5566,
+          "coding": 5089,
+          "tools": 2256
+        },
+        "reliabilityBps": 9280,
+        "behavior": {
+          "confidentErrorBps": 525,
+          "falseRefusalBps": 385
+        },
+        "policy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "rights": {
+          "hosted": true,
+          "weights": false
+        },
+        "reports": [
+          {
+            "id": "report-evaluation-wave16-oracle-command-10",
+            "suiteId": "expanded-capabilities-1",
+            "week": 547,
+            "hash": "6318cd26"
+          }
+        ]
+      },
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "ad1f33cb",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 298667,
+          "attributedCloudRentCents": 1579082,
+          "attributedOwnedVariableCents": 298666,
+          "attributedComputeCents": 1877748,
+          "unallocatedCloudCents": 340918,
+          "sharedCarryCents": 1,
+          "sharedComputeCents": 418919,
+          "totalComputeCents": 2296667,
+          "companyRevenueCents": 4544958,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2666667,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1878291
+        },
+        "historyWeeks": [
+          547,
+          546,
+          545,
+          544,
+          543,
+          542,
+          541,
+          540
+        ],
+        "initialWeekRetained": false,
+        "workloads": [
+          {
+            "requestId": "evaluation-wave16-oracle-command-10:work",
+            "hash": "5f920695",
+            "cloudRentCents": 0,
+            "ownedVariableCents": 1666
+          }
+        ]
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1483110
+    },
+    {
+      "week": 548,
+      "hash": "2e6531bc",
+      "cashCents": 608869287,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "23ee69bb",
+        "usage": {
+          "week": 548,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 176,
+          "trialAccounts": 3,
+          "requestedWork": 55054480000,
+          "executedWork": 55054480000,
+          "paidRequestedWork": 54820480000,
+          "paidExecutedWork": 54820480000,
+          "trialRequestedWork": 234000000,
+          "trialExecutedWork": 234000000,
+          "exchanges": 105874,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2117480000,
+            "requestedRequests": 105874,
+            "checkedRequests": 105874,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1672,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3366"
+          ],
+          "grossBillCents": 2635959,
+          "creditsCents": 0,
+          "billedCents": 2635959,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 176,
+              "requestedExchanges": 105424,
+              "requestedWork": 54820480000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 105424000,
+            "outputTokens": 10542400,
+            "internalTokens": 21084800,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 779335,
+            "billCarryOut": 220935,
+            "physicalWork": 55054480000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:548",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 548,
+          "accounts": 176,
+          "grossCents": 2635959,
+          "creditsCents": 0,
+          "amountCents": 2635959,
+          "billing": "tokens",
+          "inputTokens": 105424000,
+          "outputTokens": 31627200
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 96000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 158000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "76f2f5b7"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "afe8873b",
+        "status": "complete",
+        "completedWork": 16000000000,
+        "physicalWork": 8888888889,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5",
+          "model-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": {
+        "id": "model-wave16-oracle-command-5",
+        "hash": "f7fabbac",
+        "status": "evaluated",
+        "capabilityBps": {
+          "conversation": 4109,
+          "documents": 5566,
+          "coding": 5089,
+          "tools": 2256
+        },
+        "reliabilityBps": 9280,
+        "behavior": {
+          "confidentErrorBps": 525,
+          "falseRefusalBps": 385
+        },
+        "policy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "rights": {
+          "hosted": true,
+          "weights": false
+        },
+        "reports": [
+          {
+            "id": "report-evaluation-wave16-oracle-command-10",
+            "suiteId": "expanded-capabilities-1",
+            "week": 547,
+            "hash": "6318cd26"
+          }
+        ]
+      },
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "dc2479b5",
+        "totals": {
+          "cloudRentCents": 1920000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 312000,
+          "attributedCloudRentCents": 1581348,
+          "attributedOwnedVariableCents": 312000,
+          "attributedComputeCents": 1893348,
+          "unallocatedCloudCents": 338652,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 416652,
+          "totalComputeCents": 2310000,
+          "companyRevenueCents": 4546159,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2680000,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 1866159
+        },
+        "historyWeeks": [
+          548,
+          547,
+          546,
+          545,
+          544,
+          543,
+          542,
+          541
+        ],
+        "initialWeekRetained": false,
+        "workloads": [
+          {
+            "requestId": "evaluation-wave16-oracle-command-11:work",
+            "hash": "e5e63445",
+            "cloudRentCents": 0,
+            "ownedVariableCents": 15000
+          }
+        ]
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1482941
+    },
+    {
+      "week": 549,
+      "hash": "5de44383",
+      "cashCents": 611070204,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "c16157b1",
+        "usage": {
+          "week": 549,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 176,
+          "trialAccounts": 4,
+          "requestedWork": 55132480000,
+          "executedWork": 55132480000,
+          "paidRequestedWork": 54820480000,
+          "paidExecutedWork": 54820480000,
+          "trialRequestedWork": 312000000,
+          "trialExecutedWork": 312000000,
+          "exchanges": 106024,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2120480000,
+            "requestedRequests": 106024,
+            "checkedRequests": 106024,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1675,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3371"
+          ],
+          "grossBillCents": 2635958,
+          "creditsCents": 0,
+          "billedCents": 2635958,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 176,
+              "requestedExchanges": 105424,
+              "requestedWork": 54820480000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 105424000,
+            "outputTokens": 10542400,
+            "internalTokens": 21084800,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 220935,
+            "billCarryOut": 662535,
+            "physicalWork": 55132480000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:549",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 549,
+          "accounts": 176,
+          "grossCents": 2635958,
+          "creditsCents": 0,
+          "amountCents": 2635958,
+          "billing": "tokens",
+          "inputTokens": 105424000,
+          "outputTokens": 31627200
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 80000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 142000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "064e9ba9"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "afe8873b",
+        "status": "complete",
+        "completedWork": 16000000000,
+        "physicalWork": 8888888889,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5",
+          "model-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": {
+        "id": "model-wave16-oracle-command-5",
+        "hash": "f7fabbac",
+        "status": "evaluated",
+        "capabilityBps": {
+          "conversation": 4109,
+          "documents": 5566,
+          "coding": 5089,
+          "tools": 2256
+        },
+        "reliabilityBps": 9280,
+        "behavior": {
+          "confidentErrorBps": 525,
+          "falseRefusalBps": 385
+        },
+        "policy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "rights": {
+          "hosted": true,
+          "weights": false
+        },
+        "reports": [
+          {
+            "id": "report-evaluation-wave16-oracle-command-10",
+            "suiteId": "expanded-capabilities-1",
+            "week": 547,
+            "hash": "6318cd26"
+          },
+          {
+            "id": "report-evaluation-wave16-oracle-command-11",
+            "suiteId": "policy-boundaries-1",
+            "week": 549,
+            "hash": "7e06ebc7"
+          }
+        ]
+      },
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "b52f9659",
+        "totals": {
+          "cloudRentCents": 1600000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 302041,
+          "attributedCloudRentCents": 1584824,
+          "attributedOwnedVariableCents": 302041,
+          "attributedComputeCents": 1886865,
+          "unallocatedCloudCents": 15176,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 93176,
+          "totalComputeCents": 1980041,
+          "companyRevenueCents": 4550958,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2350041,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 2200917
+        },
+        "historyWeeks": [
+          549,
+          548,
+          547,
+          546,
+          545,
+          544,
+          543,
+          542
+        ],
+        "initialWeekRetained": false,
+        "workloads": [
+          {
+            "requestId": "evaluation-wave16-oracle-command-11:work",
+            "hash": "9e5f9a0a",
+            "cloudRentCents": 0,
+            "ownedVariableCents": 1666
+          }
+        ]
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1506242
+    },
+    {
+      "week": 550,
+      "hash": "37c22caf",
+      "cashCents": 613292340,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "cc173eda",
+        "usage": {
+          "week": 550,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 177,
+          "trialAccounts": 2,
+          "requestedWork": 55287960000,
+          "executedWork": 55287960000,
+          "paidRequestedWork": 55131960000,
+          "paidExecutedWork": 55131960000,
+          "trialRequestedWork": 156000000,
+          "trialExecutedWork": 156000000,
+          "exchanges": 106323,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2126460000,
+            "requestedRequests": 106323,
+            "checkedRequests": 106323,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1679,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3377",
+            "trial-3379"
+          ],
+          "grossBillCents": 2650936,
+          "creditsCents": 0,
+          "billedCents": 2650936,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 177,
+              "requestedExchanges": 106023,
+              "requestedWork": 55131960000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 106023000,
+            "outputTokens": 10602300,
+            "internalTokens": 21204600,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 662535,
+            "billCarryOut": 140735,
+            "physicalWork": 55287960000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:550",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 550,
+          "accounts": 177,
+          "grossCents": 2650936,
+          "creditsCents": 0,
+          "amountCents": 2650936,
+          "billing": "tokens",
+          "inputTokens": 106023000,
+          "outputTokens": 31806900
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 80000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 142000000000,
+          "development": 2000000000,
+          "research": 0
+        },
+        "resourceHash": "4edeed3e"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "afe8873b",
+        "status": "complete",
+        "completedWork": 16000000000,
+        "physicalWork": 8888888889,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5",
+          "model-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": {
+        "id": "model-wave16-oracle-command-5",
+        "hash": "f7fabbac",
+        "status": "evaluated",
+        "capabilityBps": {
+          "conversation": 4109,
+          "documents": 5566,
+          "coding": 5089,
+          "tools": 2256
+        },
+        "reliabilityBps": 9280,
+        "behavior": {
+          "confidentErrorBps": 525,
+          "falseRefusalBps": 385
+        },
+        "policy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "rights": {
+          "hosted": true,
+          "weights": false
+        },
+        "reports": [
+          {
+            "id": "report-evaluation-wave16-oracle-command-10",
+            "suiteId": "expanded-capabilities-1",
+            "week": 547,
+            "hash": "6318cd26"
+          },
+          {
+            "id": "report-evaluation-wave16-oracle-command-11",
+            "suiteId": "policy-boundaries-1",
+            "week": 549,
+            "hash": "7e06ebc7"
+          }
+        ]
+      },
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "5ce48dd1",
+        "totals": {
+          "cloudRentCents": 1600000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 297000,
+          "attributedCloudRentCents": 1588905,
+          "attributedOwnedVariableCents": 297000,
+          "attributedComputeCents": 1885905,
+          "unallocatedCloudCents": 11095,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 89095,
+          "totalComputeCents": 1975000,
+          "companyRevenueCents": 4567136,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2345000,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 2222136
+        },
+        "historyWeeks": [
+          550,
+          549,
+          548,
+          547,
+          546,
+          545,
+          544,
+          543
+        ],
+        "initialWeekRetained": false,
+        "workloads": []
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1505341
+    },
+    {
+      "week": 551,
+      "hash": "8183cf51",
+      "cashCents": 615515675,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "f0d63c44",
+        "usage": {
+          "week": 551,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 177,
+          "trialAccounts": 2,
+          "requestedWork": 55287960000,
+          "executedWork": 55287960000,
+          "paidRequestedWork": 55131960000,
+          "paidExecutedWork": 55131960000,
+          "trialRequestedWork": 156000000,
+          "trialExecutedWork": 156000000,
+          "exchanges": 106323,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2126460000,
+            "requestedRequests": 106323,
+            "checkedRequests": 106323,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1679,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3386",
+            "trial-3388"
+          ],
+          "grossBillCents": 2650935,
+          "creditsCents": 0,
+          "billedCents": 2650935,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 177,
+              "requestedExchanges": 106023,
+              "requestedWork": 55131960000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 106023000,
+            "outputTokens": 10602300,
+            "internalTokens": 21204600,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 140735,
+            "billCarryOut": 618935,
+            "physicalWork": 55287960000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:551",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 551,
+          "accounts": 177,
+          "grossCents": 2650935,
+          "creditsCents": 0,
+          "amountCents": 2650935,
+          "billing": "tokens",
+          "inputTokens": 106023000,
+          "outputTokens": 31806900
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 80000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 144000000000,
+          "development": 0,
+          "research": 0
+        },
+        "resourceHash": "995f1e44"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "afe8873b",
+        "status": "complete",
+        "completedWork": 16000000000,
+        "physicalWork": 8888888889,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5",
+          "model-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": {
+        "id": "model-wave16-oracle-command-5",
+        "hash": "f7fabbac",
+        "status": "evaluated",
+        "capabilityBps": {
+          "conversation": 4109,
+          "documents": 5566,
+          "coding": 5089,
+          "tools": 2256
+        },
+        "reliabilityBps": 9280,
+        "behavior": {
+          "confidentErrorBps": 525,
+          "falseRefusalBps": 385
+        },
+        "policy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "rights": {
+          "hosted": true,
+          "weights": false
+        },
+        "reports": [
+          {
+            "id": "report-evaluation-wave16-oracle-command-10",
+            "suiteId": "expanded-capabilities-1",
+            "week": 547,
+            "hash": "6318cd26"
+          },
+          {
+            "id": "report-evaluation-wave16-oracle-command-11",
+            "suiteId": "policy-boundaries-1",
+            "week": 549,
+            "hash": "7e06ebc7"
+          }
+        ]
+      },
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "16199cbb",
+        "totals": {
+          "cloudRentCents": 1600000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 297000,
+          "attributedCloudRentCents": 1589235,
+          "attributedOwnedVariableCents": 297000,
+          "attributedComputeCents": 1886235,
+          "unallocatedCloudCents": 10765,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 88765,
+          "totalComputeCents": 1975000,
+          "companyRevenueCents": 4568335,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2345000,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 2223335
+        },
+        "historyWeeks": [
+          551,
+          550,
+          549,
+          548,
+          547,
+          546,
+          545,
+          544
+        ],
+        "initialWeekRetained": false,
+        "workloads": []
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1503373
+    },
+    {
+      "week": 552,
+      "hash": "777805f1",
+      "cashCents": 617725234,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "ec28b14b",
+        "usage": {
+          "week": 552,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 176,
+          "trialAccounts": 3,
+          "requestedWork": 55054480000,
+          "executedWork": 55054480000,
+          "paidRequestedWork": 54820480000,
+          "paidExecutedWork": 54820480000,
+          "trialRequestedWork": 234000000,
+          "trialExecutedWork": 234000000,
+          "exchanges": 105874,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2117480000,
+            "requestedRequests": 105874,
+            "checkedRequests": 105874,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1672,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3393"
+          ],
+          "grossBillCents": 2635959,
+          "creditsCents": 0,
+          "billedCents": 2635959,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 176,
+              "requestedExchanges": 105424,
+              "requestedWork": 54820480000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 105424000,
+            "outputTokens": 10542400,
+            "internalTokens": 21084800,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 618935,
+            "billCarryOut": 60535,
+            "physicalWork": 55054480000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:552",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 552,
+          "accounts": 176,
+          "grossCents": 2635959,
+          "creditsCents": 0,
+          "amountCents": 2635959,
+          "billing": "tokens",
+          "inputTokens": 105424000,
+          "outputTokens": 31627200
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 80000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 144000000000,
+          "development": 0,
+          "research": 0
+        },
+        "resourceHash": "274848b0"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "afe8873b",
+        "status": "complete",
+        "completedWork": 16000000000,
+        "physicalWork": 8888888889,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5",
+          "model-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": {
+        "id": "model-wave16-oracle-command-5",
+        "hash": "f7fabbac",
+        "status": "evaluated",
+        "capabilityBps": {
+          "conversation": 4109,
+          "documents": 5566,
+          "coding": 5089,
+          "tools": 2256
+        },
+        "reliabilityBps": 9280,
+        "behavior": {
+          "confidentErrorBps": 525,
+          "falseRefusalBps": 385
+        },
+        "policy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "rights": {
+          "hosted": true,
+          "weights": false
+        },
+        "reports": [
+          {
+            "id": "report-evaluation-wave16-oracle-command-10",
+            "suiteId": "expanded-capabilities-1",
+            "week": 547,
+            "hash": "6318cd26"
+          },
+          {
+            "id": "report-evaluation-wave16-oracle-command-11",
+            "suiteId": "policy-boundaries-1",
+            "week": 549,
+            "hash": "7e06ebc7"
+          }
+        ]
+      },
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "5b04bded",
+        "totals": {
+          "cloudRentCents": 1600000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 297000,
+          "attributedCloudRentCents": 1584868,
+          "attributedOwnedVariableCents": 297000,
+          "attributedComputeCents": 1881868,
+          "unallocatedCloudCents": 15132,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 93132,
+          "totalComputeCents": 1975000,
+          "companyRevenueCents": 4554559,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2345000,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 2209559
+        },
+        "historyWeeks": [
+          552,
+          551,
+          550,
+          549,
+          548,
+          547,
+          546,
+          545
+        ],
+        "initialWeekRetained": false,
+        "workloads": []
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1502096
+    },
+    {
+      "week": 553,
+      "hash": "48f10a80",
+      "cashCents": 619938392,
+      "arrearsCents": 0,
+      "trustBps": 10000,
+      "public": {
+        "productHash": "d4062f47",
+        "deploymentHash": "49ee337e",
+        "contractHash": "b13e01ca",
+        "usage": {
+          "week": 553,
+          "productId": "product:natural-business-command-67",
+          "paidAccounts": 176,
+          "trialAccounts": 3,
+          "requestedWork": 55054480000,
+          "executedWork": 55054480000,
+          "paidRequestedWork": 54820480000,
+          "paidExecutedWork": 54820480000,
+          "trialRequestedWork": 234000000,
+          "trialExecutedWork": 234000000,
+          "exchanges": 105874,
+          "fulfillmentBps": 10000,
+          "errorBps": 1671,
+          "behavior": {
+            "confidentErrorBps": 550,
+            "falseRefusalBps": 543
+          },
+          "guardrail": {
+            "installationId": "guardrail:wave13-natural-command-7",
+            "profile": "balanced",
+            "bindingFingerprint": "cff08f8d",
+            "requestWorkCUw": 520000,
+            "baselineFalseRefusalBps": 385,
+            "technicalErrorBps": 1671,
+            "baselineUnsafeComplianceBps": 660,
+            "checkWorkCUw": 2117480000,
+            "requestedRequests": 105874,
+            "checkedRequests": 105874,
+            "uncheckedRequests": 0,
+            "addedFalseRefusalBps": 158,
+            "additionalFalseRefusals": 1672,
+            "guardedUnsafeComplianceBps": 198
+          },
+          "trialCompletedIds": [
+            "trial-3398"
+          ],
+          "grossBillCents": 2635958,
+          "creditsCents": 0,
+          "billedCents": 2635958,
+          "segments": [
+            {
+              "segmentId": "developers",
+              "accounts": 176,
+              "requestedExchanges": 105424,
+              "requestedWork": 54820480000,
+              "errorBps": 1671
+            }
+          ],
+          "tokens": {
+            "inputTokens": 105424000,
+            "outputTokens": 10542400,
+            "internalTokens": 21084800,
+            "inputPriceCentsPerMillion": 10001,
+            "outputPriceCentsPerMillion": 50008,
+            "billCarryIn": 60535,
+            "billCarryOut": 502135,
+            "physicalWork": 55054480000,
+            "ownedVariableCostCents": 0
+          }
+        },
+        "invoice": {
+          "id": "invoice:product:natural-business-command-67:553",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "contractId": "contract:natural-business-command-67",
+          "week": 553,
+          "accounts": 176,
+          "grossCents": 2635958,
+          "creditsCents": 0,
+          "amountCents": 2635958,
+          "billing": "tokens",
+          "inputTokens": 105424000,
+          "outputTokens": 31627200
+        },
+        "originalModelHash": "46c0d1e4"
+      },
+      "fleet": {
+        "cloudCU": 80000000000,
+        "ownedCU": 64000000000,
+        "allocation": {
+          "serving": 144000000000,
+          "development": 0,
+          "research": 0
+        },
+        "resourceHash": "88f9080c"
+      },
+      "batch": {
+        "id": "batch:wave16-natural-command-2",
+        "hash": "b8d269ac",
+        "status": "completed",
+        "deadlineWeek": 540,
+        "terminalWeek": 540,
+        "completedRequests": 40000,
+        "completedWork": 26000000000,
+        "physicalWork": 25090909091,
+        "currentPoolId": "auto",
+        "placementHistory": [
+          {
+            "commandId": "wave16-natural-command-2",
+            "week": 537,
+            "poolId": "owned:colocation:training"
+          },
+          {
+            "commandId": "wave16-oracle-command-2",
+            "week": 538,
+            "poolId": "general-cloud"
+          },
+          {
+            "commandId": "wave16-oracle-command-8",
+            "week": 540,
+            "poolId": "auto"
+          }
+        ],
+        "latestUsage": {
+          "week": 540,
+          "paused": false,
+          "remainingBefore": 1200000000,
+          "requestedWorkCUw": 1200000000,
+          "executedWorkCUw": 1200000000,
+          "physicalWorkCUw": 1090909091,
+          "poolId": "owned:colocation:training",
+          "receiptKey": "50973b79",
+          "memoryMU": 2250000000,
+          "staffRequired": 250000000,
+          "staffGranted": 250000000,
+          "supervisedLimitCUw": 1200000000,
+          "completedWorkBefore": 24800000000,
+          "completedWorkAfter": 26000000000,
+          "completedRequestsBefore": 38153,
+          "completedRequestsAfter": 40000,
+          "completedRequests": 1847,
+          "inputTokens": 3694000,
+          "outputTokens": 461750,
+          "explanation": "The requested batch work executed after ordinary workloads."
+        },
+        "workReceiptsHash": "65391e68",
+        "invoice": {
+          "id": "batch-invoice:batch:wave16-natural-command-2",
+          "jobId": "batch:wave16-natural-command-2",
+          "companyId": "company-player",
+          "productId": "product:natural-business-command-67",
+          "orderId": "archive-tagging",
+          "week": 540,
+          "reason": "completed",
+          "modelId": "model-wave15-natural-command-9",
+          "modelFingerprint": "33775861",
+          "requestedRequests": 40000,
+          "completedRequests": 40000,
+          "inputTokens": 80000000,
+          "outputTokens": 10000000,
+          "grossCents": 650000,
+          "creditsCents": 0,
+          "amountCents": 650000
+        },
+        "estimatedGpuCents": 388181,
+        "admissionPosted": true
+      },
+      "training": {
+        "id": "training-wave16-oracle-command-5",
+        "hash": "afe8873b",
+        "status": "complete",
+        "completedWork": 16000000000,
+        "physicalWork": 8888888889,
+        "requiredWork": 16000000000,
+        "planHash": "7305fbb9",
+        "planIdentity": "training-identity-e76dc32a",
+        "evidenceHash": "e7e98a2f",
+        "checkpointModelIds": [
+          "checkpoint-training-wave16-oracle-command-5",
+          "model-wave16-oracle-command-5"
+        ]
+      },
+      "candidate": {
+        "id": "model-wave16-oracle-command-5",
+        "hash": "f7fabbac",
+        "status": "evaluated",
+        "capabilityBps": {
+          "conversation": 4109,
+          "documents": 5566,
+          "coding": 5089,
+          "tools": 2256
+        },
+        "reliabilityBps": 9280,
+        "behavior": {
+          "confidentErrorBps": 525,
+          "falseRefusalBps": 385
+        },
+        "policy": {
+          "protocol": "policy-boundaries-v1",
+          "baselineUnsafeComplianceBps": 1200,
+          "currentUnsafeComplianceBps": 660
+        },
+        "rights": {
+          "hosted": true,
+          "weights": false
+        },
+        "reports": [
+          {
+            "id": "report-evaluation-wave16-oracle-command-10",
+            "suiteId": "expanded-capabilities-1",
+            "week": 547,
+            "hash": "6318cd26"
+          },
+          {
+            "id": "report-evaluation-wave16-oracle-command-11",
+            "suiteId": "policy-boundaries-1",
+            "week": 549,
+            "hash": "7e06ebc7"
+          }
+        ]
+      },
+      "legacy": {
+        "feedbackHash": "fd53f035",
+        "researchHash": "f4bee1d6",
+        "runtimeHash": "774adb6c",
+        "assuranceHash": "7ec0c34f",
+        "oldBatchHash": "72c78626"
+      },
+      "costs": {
+        "hash": "350ce954",
+        "totals": {
+          "cloudRentCents": 1600000,
+          "ownedFixedCents": 78000,
+          "ownedVariableCents": 297000,
+          "attributedCloudRentCents": 1586188,
+          "attributedOwnedVariableCents": 297000,
+          "attributedComputeCents": 1883188,
+          "unallocatedCloudCents": 13812,
+          "sharedCarryCents": 0,
+          "sharedComputeCents": 91812,
+          "totalComputeCents": 1975000,
+          "companyRevenueCents": 4558158,
+          "otherOperatingCents": 370000,
+          "companyOperatingCents": 2345000,
+          "capitalOutlayCents": 0,
+          "operatingSurplusCents": 2213158
+        },
+        "historyWeeks": [
+          553,
+          552,
+          551,
+          550,
+          549,
+          548,
+          547,
+          546
+        ],
+        "initialWeekRetained": false,
+        "workloads": []
+      },
+      "queuedHash": "741638a5",
+      "saveBytes": 1501532
+    }
+  ],
+  "finalWeek": 553,
+  "finalChecksum": "48f10a80",
+  "finalBytes": 1501532
+}

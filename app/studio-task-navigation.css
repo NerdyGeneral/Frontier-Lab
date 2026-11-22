@@ -1,0 +1,33 @@
+/* Named choices keep the retained forms and one explicit review action. */
+.studio-mode .studio-task-entry-actions { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: 12px 0; }
+.studio-mode .studio-task-entry-actions .studio-open-task { margin: 0; }
+.studio-mode .studio-compute-modes { width: fit-content; max-width: 100%; margin: 0 0 18px; }
+.studio-mode .studio-compute-choice { min-width: 0; margin: 20px 0; }
+.studio-mode .studio-compute-choice[hidden] { display: none; }
+.studio-mode .studio-compute-workloads { display: grid; gap: 13px; margin: 20px 0 0; font-size: 13px; }
+.studio-mode .studio-compute-workloads dt { color: var(--fl-text); font-weight: 700; }
+.studio-mode .studio-compute-workloads dd { margin: 3px 0 0; color: var(--fl-muted); }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-staffing-heading { margin-bottom: 14px; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-staffing-heading > div:first-child { display: none; }
+.studio-mode[data-task-modal="true"] .studio-task-surface[data-mode="dialog"] .studio-staffing-decision { margin-top: 18px; }
+.studio-mode[data-task-modal="true"] .studio-staffing > .metrics { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 0 0 16px; }
+.studio-mode[data-task-modal="true"] .studio-staffing > .metrics > .metric { display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; padding: 10px 12px; border: 1px solid var(--fl-line); border-radius: 7px; }
+.studio-mode[data-task-modal="true"] .studio-staffing > .metrics > .metric dd { text-align: left; font-weight: 700; }
+.studio-mode[data-task-modal="true"] .studio-staffing-context { padding: 10px 12px; margin: 12px 0; }
+.studio-mode[data-task-modal="true"] .studio-staffing-context > :is(.small-heading, .small-note) { display: none; }
+.studio-mode[data-task-modal="true"] .studio-staffing-context > p { margin: 0; }
+.studio-mode[data-task-modal="true"] .studio-decision-summary .studio-staffing-commitment { padding: 0; margin: 14px 0; border: 0; background: transparent; }
+.studio-mode[data-task-modal="true"] .studio-decision-summary .studio-staffing-total { text-align: left; margin: 0; }
+.studio-mode[data-task-modal="true"] .studio-compute-choice .allocation-inputs { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; margin: 20px 0; }
+.studio-mode[data-task-modal="true"] .studio-compute-choice .allocation-inputs > label { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.studio-mode[data-task-modal="true"] .studio-compute-choice .allocation-inputs input { width: 112px; max-width: 100%; }
+.studio-mode[data-task-modal="true"] .studio-compute-choice .allocation-table { margin: 18px 0; }
+.studio-mode[data-task-modal="true"] .studio-compute-choice .allocation-table caption { text-align: left; color: var(--fl-muted); font-size: 12px; padding-bottom: 6px; }
+.studio-mode[data-task-modal="true"] .studio-compute-choice .studio-decision-summary > button { margin-top: 12px; }
+@media (max-width: 480px) {
+  .studio-mode[data-task-modal="true"] .studio-staffing > .metrics { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .studio-mode .studio-task-entry-actions > button { width: 100%; justify-content: space-between; }
+  .studio-mode .studio-compute-modes { flex-wrap: wrap; width: 100%; }
+  .studio-mode .studio-compute-modes > button { flex: 1 1 100%; }
+  .studio-mode[data-task-modal="true"] .studio-compute-choice .allocation-inputs > label { flex-wrap: wrap; }
+}

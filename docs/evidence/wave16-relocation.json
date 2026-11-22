@@ -1,0 +1,1587 @@
+{
+  "sourceCommit": "3132248a7e1142a1783d9d352a9bdc889a16c92f",
+  "sourceWeek": 522,
+  "sourceHash": "3c90ef74",
+  "rackId": "rack-wave8-scale-command-11",
+  "destination": "facility-wave8-scale-command-3",
+  "poolId": "owned:colocation:training",
+  "jobId": "batch:wave16-relocation-command-3",
+  "infrastructureHire": {
+    "id": "staff:wave16-relocation-command-1",
+    "companyId": "company-player",
+    "role": "infrastructure",
+    "hiredWeek": 523,
+    "readyWeek": 525,
+    "assignedFte": 1000000000
+  },
+  "originalDeadline": 528,
+  "commonCommands": [
+    {
+      "week": 522,
+      "id": "wave16-relocation-command-1",
+      "payload": {
+        "kind": "hire_staff",
+        "role": "infrastructure"
+      }
+    },
+    {
+      "week": 522,
+      "id": "wave16-relocation-command-2",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 144000000000,
+        "development": 0,
+        "research": 0
+      }
+    },
+    {
+      "week": 522,
+      "id": "wave16-relocation-command-3",
+      "payload": {
+        "kind": "accept_batch_job",
+        "productId": "product:natural-business-command-67",
+        "orderId": "longform-digest",
+        "modelId": "model-wave15-natural-command-9",
+        "weeklyWorkCapCUw": 16000000000,
+        "poolId": "owned:colocation:training"
+      }
+    },
+    {
+      "week": 523,
+      "id": "wave16-relocation-command-4",
+      "payload": {
+        "kind": "start_rack_relocation",
+        "rackId": "rack-wave8-scale-command-11",
+        "destination": "facility-wave8-scale-command-3"
+      }
+    }
+  ],
+  "recoveryCommands": [
+    {
+      "week": 527,
+      "id": "wave16-relocation-recovery-command-1",
+      "payload": {
+        "kind": "set_batch_job_placement",
+        "jobId": "batch:wave16-relocation-command-3",
+        "poolId": "auto"
+      }
+    }
+  ],
+  "relocation": {
+    "id": "rack-relocation:wave16-relocation-command-4",
+    "companyId": "company-player",
+    "rackId": "rack-wave8-scale-command-11",
+    "sourceLocation": "colocation",
+    "destination": "facility-wave8-scale-command-3",
+    "restoreStatus": "installed",
+    "status": "complete",
+    "paused": false,
+    "startedWeek": 524,
+    "readyWeek": 528,
+    "completedWeek": 528,
+    "stageIndex": 3,
+    "stages": [
+      {
+        "startedWeek": 524,
+        "elapsedWeeks": 1,
+        "completedStaff": 250000000,
+        "completedWeek": 524
+      },
+      {
+        "startedWeek": 525,
+        "elapsedWeeks": 2,
+        "completedStaff": 0,
+        "completedWeek": 526
+      },
+      {
+        "startedWeek": 527,
+        "elapsedWeeks": 1,
+        "completedStaff": 750000000,
+        "completedWeek": 527
+      }
+    ],
+    "paidCents": 150000,
+    "paymentId": "rack-relocation-capital:rack-relocation:wave16-relocation-command-4",
+    "hardwareId": "training",
+    "usableCU": 8000000000,
+    "purchaseCents": 3200000,
+    "originalInstalledWeek": 339,
+    "lastBottleneck": ""
+  },
+  "moveQuote": {
+    "accepted": true,
+    "sourceRevision": 895,
+    "summary": "$1,500 to move this rack: four elapsed weeks minimum and one infrastructure staff-week. It supplies no compute or memory during the move. Source upkeep and staff coverage continue until arrival; source and destination slots stay reserved. Destination rack upkeep becomes $40/week. Fabric stays at its location. The rack returns active after commissioning.",
+    "weeklyCostCents": 2083000,
+    "upfrontCostCents": 150000,
+    "weeklyCostDeltaCents": -12000,
+    "cashAfterCommitmentsCents": 555846925,
+    "availableCU": 144000000000
+  },
+  "forecastBeforeCommissioning": {
+    "available": true,
+    "reason": null,
+    "sourceWeek": 527,
+    "startWeek": 528,
+    "horizonWeeks": 1,
+    "jobId": "batch:wave16-relocation-command-3",
+    "jobName": "Long-form digest",
+    "deadlineWeek": 528,
+    "requiredWorkCUw": 90000000000,
+    "completedWorkCUw": 8800000000,
+    "quotedCents": 2250000,
+    "currentPlacementPoolId": "owned:colocation:training",
+    "paused": false,
+    "currentCapacity": {
+      "cloudCU": 80000000000,
+      "ownedCU": 64000000000,
+      "servingCU": 144000000000,
+      "developmentCU": 0,
+      "researchCU": 0,
+      "cloudRentCentsPerWeek": 1600000
+    },
+    "selectedCapacity": {
+      "cloudCU": 80000000000,
+      "ownedCU": 64000000000,
+      "servingCU": 144000000000,
+      "developmentCU": 0,
+      "researchCU": 0,
+      "cloudRentCentsPerWeek": 1600000
+    },
+    "capacityPlanValid": true,
+    "capacityPlanReason": null,
+    "poolOptions": [
+      {
+        "poolId": "auto",
+        "poolName": "Automatic placement",
+        "ownership": "auto",
+        "compatible": true,
+        "reason": null,
+        "nominalCU": 0,
+        "capacityCU": 0,
+        "memoryMU": 0,
+        "servingMultiplierBps": null,
+        "variableCentsPerCUw": null
+      },
+      {
+        "poolId": "general-cloud",
+        "poolName": "General cloud",
+        "ownership": "cloud",
+        "compatible": true,
+        "reason": null,
+        "nominalCU": 80000000000,
+        "capacityCU": 80000000000,
+        "memoryMU": 160000000000,
+        "servingMultiplierBps": 10000,
+        "variableCentsPerCUw": 0
+      },
+      {
+        "poolId": "owned:colocation:training",
+        "poolName": "Training GPU · Colocation",
+        "ownership": "owned",
+        "compatible": false,
+        "reason": "All racks in this pool are parked; installed upkeep continues.",
+        "nominalCU": 8000000000,
+        "capacityCU": 0,
+        "memoryMU": 0,
+        "servingMultiplierBps": 11000,
+        "variableCentsPerCUw": 7500
+      },
+      {
+        "poolId": "owned:facility-wave8-scale-command-3:training",
+        "poolName": "Training GPU · Site 1",
+        "ownership": "owned",
+        "compatible": true,
+        "reason": null,
+        "nominalCU": 56000000000,
+        "capacityCU": 56000000000,
+        "memoryMU": 112000000000,
+        "servingMultiplierBps": 11000,
+        "variableCentsPerCUw": 7500
+      }
+    ],
+    "scenarios": [
+      {
+        "poolId": "auto",
+        "poolName": "Automatic placement",
+        "compatible": true,
+        "reason": "Serving capacity and its headroom limit fulfillment.",
+        "rows": [
+          {
+            "week": 528,
+            "paused": false,
+            "requestedWorkCUw": 16000000000,
+            "effectiveWorkCUw": 11506000000,
+            "physicalWorkCUw": 10460000000,
+            "completedRequests": 7671,
+            "cumulativeRequests": 13537,
+            "cumulativeWorkCUw": 20306000000,
+            "actualPoolId": "owned:facility-wave8-scale-command-3:training",
+            "actualPoolName": "Training GPU · Site 1",
+            "staffRequested": 250000000,
+            "staffGranted": 250000000,
+            "memoryMU": 2250000000,
+            "bottleneck": "Serving capacity and its headroom limit fulfillment.",
+            "ownedVariableCents": 78450,
+            "cloudWorkRentCents": 0
+          }
+        ],
+        "completionWeek": null,
+        "completedRequests": 13537,
+        "remainingRequests": 46463,
+        "projectedInvoiceCents": 507637,
+        "projectedCreditsCents": 1742363,
+        "effectiveWorkCUw": 11506000000,
+        "physicalWorkCUw": 10460000000,
+        "commercialStaffWeeks": 250000000,
+        "ownedVariableCents": 78450,
+        "cloudWorkRentCents": 0,
+        "additionalCloudReservationCents": 0
+      },
+      {
+        "poolId": "general-cloud",
+        "poolName": "General cloud",
+        "compatible": true,
+        "reason": "Serving capacity and its headroom limit fulfillment.",
+        "rows": [
+          {
+            "week": 528,
+            "paused": false,
+            "requestedWorkCUw": 16000000000,
+            "effectiveWorkCUw": 2955384000,
+            "physicalWorkCUw": 2955384000,
+            "completedRequests": 1970,
+            "cumulativeRequests": 7836,
+            "cumulativeWorkCUw": 11755384000,
+            "actualPoolId": "general-cloud",
+            "actualPoolName": "General cloud",
+            "staffRequested": 250000000,
+            "staffGranted": 250000000,
+            "memoryMU": 2250000000,
+            "bottleneck": "Serving capacity and its headroom limit fulfillment.",
+            "ownedVariableCents": 0,
+            "cloudWorkRentCents": 59107
+          }
+        ],
+        "completionWeek": null,
+        "completedRequests": 7836,
+        "remainingRequests": 52164,
+        "projectedInvoiceCents": 293850,
+        "projectedCreditsCents": 1956150,
+        "effectiveWorkCUw": 2955384000,
+        "physicalWorkCUw": 2955384000,
+        "commercialStaffWeeks": 250000000,
+        "ownedVariableCents": 0,
+        "cloudWorkRentCents": 59107,
+        "additionalCloudReservationCents": 0
+      },
+      {
+        "poolId": "owned:colocation:training",
+        "poolName": "Training GPU · Colocation",
+        "compatible": false,
+        "reason": "All racks in this pool are parked; installed upkeep continues.",
+        "rows": [
+          {
+            "week": 528,
+            "paused": false,
+            "requestedWorkCUw": 16000000000,
+            "effectiveWorkCUw": 0,
+            "physicalWorkCUw": 0,
+            "completedRequests": 0,
+            "cumulativeRequests": 5866,
+            "cumulativeWorkCUw": 8800000000,
+            "actualPoolId": null,
+            "actualPoolName": null,
+            "staffRequested": 250000000,
+            "staffGranted": 250000000,
+            "memoryMU": 0,
+            "bottleneck": "All racks in this pool are parked; installed upkeep continues.",
+            "ownedVariableCents": 0,
+            "cloudWorkRentCents": 0
+          }
+        ],
+        "completionWeek": null,
+        "completedRequests": 5866,
+        "remainingRequests": 54134,
+        "projectedInvoiceCents": 219975,
+        "projectedCreditsCents": 2030025,
+        "effectiveWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "commercialStaffWeeks": 250000000,
+        "ownedVariableCents": 0,
+        "cloudWorkRentCents": 0,
+        "additionalCloudReservationCents": 0
+      },
+      {
+        "poolId": "owned:facility-wave8-scale-command-3:training",
+        "poolName": "Training GPU · Site 1",
+        "compatible": true,
+        "reason": "Serving capacity and its headroom limit fulfillment.",
+        "rows": [
+          {
+            "week": 528,
+            "paused": false,
+            "requestedWorkCUw": 16000000000,
+            "effectiveWorkCUw": 11506000000,
+            "physicalWorkCUw": 10460000000,
+            "completedRequests": 7671,
+            "cumulativeRequests": 13537,
+            "cumulativeWorkCUw": 20306000000,
+            "actualPoolId": "owned:facility-wave8-scale-command-3:training",
+            "actualPoolName": "Training GPU · Site 1",
+            "staffRequested": 250000000,
+            "staffGranted": 250000000,
+            "memoryMU": 2250000000,
+            "bottleneck": "Serving capacity and its headroom limit fulfillment.",
+            "ownedVariableCents": 78450,
+            "cloudWorkRentCents": 0
+          }
+        ],
+        "completionWeek": null,
+        "completedRequests": 13537,
+        "remainingRequests": 46463,
+        "projectedInvoiceCents": 507637,
+        "projectedCreditsCents": 1742363,
+        "effectiveWorkCUw": 11506000000,
+        "physicalWorkCUw": 10460000000,
+        "commercialStaffWeeks": 250000000,
+        "ownedVariableCents": 78450,
+        "cloudWorkRentCents": 0,
+        "additionalCloudReservationCents": 0
+      }
+    ],
+    "assumptions": [
+      "This is a conditional comparison of the next service weeks through the original inclusive deadline, not a promise of delivery. Each batch uses one connected compatible pool; memory and capacity at different sites or hardware classes cannot be added together.",
+      "Ordinary workload requests are captured from the next-week reserve handlers and repeat unchanged. They include live products, named services, agents, training, evaluations, research, infrastructure work and research assistance. These projects do not finish or change stages in the comparison.",
+      "Only currently ready, assigned staff and currently available hardware count. Queued commands, future hires, deliveries, commissioning, new rollouts and automatic model releases are excluded. Apply changes and compare again.",
+      "Existing paid accounts and the trial load due next week stay fixed. Named-service load repeats across later term boundaries without promising renewal. Acquisition, churn, competition and changing model, routing, cache or guardrail settings are not predicted.",
+      "All accepted batch jobs compete with their current caps, pauses and placements. Only their finite work progresses; completed jobs and expired deadlines release their later requests. A paused job stays paused. Other actions or new orders can change the result.",
+      "The real staff allocator runs before the real GPU allocator. Batch handling keeps its existing priority before acquisition, and batch GPU work remains after ordinary work. Development and research allocations stay reserved; no allocation, staff, hardware or discount is supplied by the comparison.",
+      "Projected bills include earlier completed requests but earn tokens only from whole completed requests. Future owned usage and attributed cloud work use actual projected physical grants and current tariffs; they are estimates before shared cent rounding, not posted ledger entries.",
+      "Attributed cloud work is already part of reservation rent, not an additional usage bill. Extra reservation cost is the full positive increase in company cloud rent for the entire comparison horizon, even if a job finishes earlier. Existing rent, payroll, fixed upkeep, construction and prior work are separate; lowering a reservation is shown in its weekly price, not counted as job profit.",
+      "Continued operation assumes that weekly bills remain funded. Cash balances and future arrears are not projected; the batch invoice arrives only when the job finishes, expires or is cancelled.",
+      "Every comparison is read-only: it spends nothing, reserves nothing, draws no randomness and changes no saved progress. Admission and capacity commands still need their normal validation at the weekly boundary."
+    ]
+  },
+  "weeks": [
+    {
+      "week": 523,
+      "hash": "03df5c7d",
+      "rack": {
+        "id": "rack-wave8-scale-command-11",
+        "companyId": "company-player",
+        "hardwareId": "training",
+        "location": "colocation",
+        "status": "installed",
+        "orderedWeek": 331,
+        "arrivalWeek": 337,
+        "installationStartedWeek": 338,
+        "completedInstallStaff": 1000000000,
+        "readyWeek": 339,
+        "installedWeek": 339,
+        "purchaseCents": 3200000,
+        "lastBottleneck": "",
+        "purchaseLocation": "colocation"
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "capacityCU": 80000000000,
+          "memoryMU": 160000000000
+        },
+        {
+          "id": "owned:colocation:training",
+          "capacityCU": 8000000000,
+          "memoryMU": 16000000000
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000
+        }
+      ],
+      "job": {
+        "status": "active",
+        "completedWork": 8800000000,
+        "physicalWork": 8000000000,
+        "completedRequests": 5866,
+        "deadlineWeek": 528,
+        "placement": "owned:colocation:training"
+      },
+      "usage": {
+        "week": 523,
+        "paused": false,
+        "remainingBefore": 90000000000,
+        "requestedWorkCUw": 16000000000,
+        "executedWorkCUw": 8800000000,
+        "physicalWorkCUw": 8000000000,
+        "poolId": "owned:colocation:training",
+        "receiptKey": "50973b79",
+        "memoryMU": 2250000000,
+        "staffRequired": 250000000,
+        "staffGranted": 250000000,
+        "supervisedLimitCUw": 16000000000,
+        "completedWorkBefore": 0,
+        "completedWorkAfter": 8800000000,
+        "completedRequestsBefore": 0,
+        "completedRequestsAfter": 5866,
+        "completedRequests": 5866,
+        "inputTokens": 29330000,
+        "outputTokens": 2933000,
+        "explanation": "Partial batch progress: residual serving capacity or commercial supervision limited this week."
+      },
+      "request": {
+        "id": "batch-serve:batch:wave16-relocation-command-3",
+        "companyId": "company-player",
+        "taskId": "batch:wave16-relocation-command-3",
+        "category": "serving",
+        "normalizedWorkCUw": 16000000000,
+        "memoryMU": 2250000000,
+        "priority": 628,
+        "staffPriority": 60,
+        "poolId": "owned:colocation:training",
+        "headroomBps": 0,
+        "modelArchitecture": "dense",
+        "modelFamily": "compact",
+        "workloadKind": "inference",
+        "staffDemand": [
+          {
+            "role": "commercial",
+            "staffWeeks": 250000000
+          }
+        ],
+        "supervision": {
+          "role": "commercial",
+          "workPerStaffWeek": 64000000000
+        }
+      },
+      "grant": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "physicalCUw": 8000000000,
+        "hardwareEffectiveCUw": 8800000000,
+        "memoryMU": 2250000000,
+        "poolId": "owned:colocation:training"
+      },
+      "workload": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "targetId": "batch:batch:wave16-relocation-command-3",
+        "category": "serving",
+        "poolId": "owned:colocation:training",
+        "requestedWorkCUw": 16000000000,
+        "effectiveWorkCUw": 8800000000,
+        "physicalWorkCUw": 8000000000,
+        "reservedCUw": 8000000000,
+        "headroomCUw": 0,
+        "chargedMemoryMU": 2250000000,
+        "cloudRentCents": 0,
+        "ownedVariableCents": 60000,
+        "attributedComputeCents": 60000
+      },
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 357000,
+        "attributedCloudRentCents": 1529123,
+        "attributedOwnedVariableCents": 357000,
+        "attributedComputeCents": 1886123,
+        "unallocatedCloudCents": 70877,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 148877,
+        "totalComputeCents": 2035000,
+        "companyRevenueCents": 4421496,
+        "otherOperatingCents": 580000,
+        "companyOperatingCents": 2615000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 1806496
+      },
+      "publicService": [
+        {
+          "productId": "product:natural-business-command-8",
+          "fulfillmentBps": 10000,
+          "billedCents": 1190400
+        },
+        {
+          "productId": "product:natural-business-command-67",
+          "fulfillmentBps": 10000,
+          "billedCents": 2546096
+        },
+        {
+          "productId": "product:natural-business-command-163",
+          "fulfillmentBps": 10000,
+          "billedCents": 660000
+        }
+      ]
+    },
+    {
+      "week": 524,
+      "hash": "f1f13ee2",
+      "rack": {
+        "id": "rack-wave8-scale-command-11",
+        "companyId": "company-player",
+        "hardwareId": "training",
+        "location": "colocation",
+        "status": "parked",
+        "orderedWeek": 331,
+        "arrivalWeek": 337,
+        "installationStartedWeek": 338,
+        "completedInstallStaff": 1000000000,
+        "readyWeek": 339,
+        "installedWeek": 339,
+        "purchaseCents": 3200000,
+        "lastBottleneck": "Relocating; source upkeep continues and destination space is reserved.",
+        "purchaseLocation": "colocation"
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "capacityCU": 80000000000,
+          "memoryMU": 160000000000
+        },
+        {
+          "id": "owned:colocation:training",
+          "capacityCU": 0,
+          "memoryMU": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000
+        }
+      ],
+      "job": {
+        "status": "active",
+        "completedWork": 8800000000,
+        "physicalWork": 8000000000,
+        "completedRequests": 5866,
+        "deadlineWeek": 528,
+        "placement": "owned:colocation:training"
+      },
+      "usage": {
+        "week": 524,
+        "paused": false,
+        "remainingBefore": 81200000000,
+        "requestedWorkCUw": 16000000000,
+        "executedWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "poolId": null,
+        "receiptKey": null,
+        "memoryMU": 0,
+        "staffRequired": 250000000,
+        "staffGranted": 250000000,
+        "supervisedLimitCUw": 16000000000,
+        "completedWorkBefore": 8800000000,
+        "completedWorkAfter": 8800000000,
+        "completedRequestsBefore": 5866,
+        "completedRequestsAfter": 5866,
+        "completedRequests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "explanation": "All racks in this pool are parked; installed upkeep continues."
+      },
+      "request": {
+        "id": "batch-serve:batch:wave16-relocation-command-3",
+        "companyId": "company-player",
+        "taskId": "batch:wave16-relocation-command-3",
+        "category": "serving",
+        "normalizedWorkCUw": 16000000000,
+        "memoryMU": 2250000000,
+        "priority": 628,
+        "staffPriority": 60,
+        "poolId": "owned:colocation:training",
+        "headroomBps": 0,
+        "modelArchitecture": "dense",
+        "modelFamily": "compact",
+        "workloadKind": "inference",
+        "staffDemand": [
+          {
+            "role": "commercial",
+            "staffWeeks": 250000000
+          }
+        ],
+        "supervision": {
+          "role": "commercial",
+          "workPerStaffWeek": 64000000000
+        }
+      },
+      "grant": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "physicalCUw": 0,
+        "hardwareEffectiveCUw": 0,
+        "memoryMU": 0,
+        "poolId": "owned:colocation:training"
+      },
+      "workload": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "targetId": "batch:batch:wave16-relocation-command-3",
+        "category": "serving",
+        "poolId": "owned:colocation:training",
+        "requestedWorkCUw": 16000000000,
+        "effectiveWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "reservedCUw": 0,
+        "headroomCUw": 0,
+        "chargedMemoryMU": 0,
+        "cloudRentCents": 0,
+        "ownedVariableCents": 0,
+        "attributedComputeCents": 0
+      },
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 286875,
+        "attributedCloudRentCents": 1529563,
+        "attributedOwnedVariableCents": 286875,
+        "attributedComputeCents": 1816438,
+        "unallocatedCloudCents": 70437,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 148437,
+        "totalComputeCents": 1964875,
+        "companyRevenueCents": 4392696,
+        "otherOperatingCents": 405000,
+        "companyOperatingCents": 2369875,
+        "capitalOutlayCents": 150000,
+        "operatingSurplusCents": 2022821
+      },
+      "publicService": [
+        {
+          "productId": "product:natural-business-command-8",
+          "fulfillmentBps": 10000,
+          "billedCents": 1191600
+        },
+        {
+          "productId": "product:natural-business-command-67",
+          "fulfillmentBps": 10000,
+          "billedCents": 2546096
+        },
+        {
+          "productId": "product:natural-business-command-163",
+          "fulfillmentBps": 10000,
+          "billedCents": 630000
+        }
+      ]
+    },
+    {
+      "week": 525,
+      "hash": "c341dc5a",
+      "rack": {
+        "id": "rack-wave8-scale-command-11",
+        "companyId": "company-player",
+        "hardwareId": "training",
+        "location": "colocation",
+        "status": "parked",
+        "orderedWeek": 331,
+        "arrivalWeek": 337,
+        "installationStartedWeek": 338,
+        "completedInstallStaff": 1000000000,
+        "readyWeek": 339,
+        "installedWeek": 339,
+        "purchaseCents": 3200000,
+        "lastBottleneck": "Relocating; source upkeep continues and destination space is reserved.",
+        "purchaseLocation": "colocation"
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "capacityCU": 80000000000,
+          "memoryMU": 160000000000
+        },
+        {
+          "id": "owned:colocation:training",
+          "capacityCU": 0,
+          "memoryMU": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000
+        }
+      ],
+      "job": {
+        "status": "active",
+        "completedWork": 8800000000,
+        "physicalWork": 8000000000,
+        "completedRequests": 5866,
+        "deadlineWeek": 528,
+        "placement": "owned:colocation:training"
+      },
+      "usage": {
+        "week": 525,
+        "paused": false,
+        "remainingBefore": 81200000000,
+        "requestedWorkCUw": 16000000000,
+        "executedWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "poolId": null,
+        "receiptKey": null,
+        "memoryMU": 0,
+        "staffRequired": 250000000,
+        "staffGranted": 250000000,
+        "supervisedLimitCUw": 16000000000,
+        "completedWorkBefore": 8800000000,
+        "completedWorkAfter": 8800000000,
+        "completedRequestsBefore": 5866,
+        "completedRequestsAfter": 5866,
+        "completedRequests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "explanation": "All racks in this pool are parked; installed upkeep continues."
+      },
+      "request": {
+        "id": "batch-serve:batch:wave16-relocation-command-3",
+        "companyId": "company-player",
+        "taskId": "batch:wave16-relocation-command-3",
+        "category": "serving",
+        "normalizedWorkCUw": 16000000000,
+        "memoryMU": 2250000000,
+        "priority": 628,
+        "staffPriority": 60,
+        "poolId": "owned:colocation:training",
+        "headroomBps": 0,
+        "modelArchitecture": "dense",
+        "modelFamily": "compact",
+        "workloadKind": "inference",
+        "staffDemand": [
+          {
+            "role": "commercial",
+            "staffWeeks": 250000000
+          }
+        ],
+        "supervision": {
+          "role": "commercial",
+          "workPerStaffWeek": 64000000000
+        }
+      },
+      "grant": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "physicalCUw": 0,
+        "hardwareEffectiveCUw": 0,
+        "memoryMU": 0,
+        "poolId": "owned:colocation:training"
+      },
+      "workload": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "targetId": "batch:batch:wave16-relocation-command-3",
+        "category": "serving",
+        "poolId": "owned:colocation:training",
+        "requestedWorkCUw": 16000000000,
+        "effectiveWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "reservedCUw": 0,
+        "headroomCUw": 0,
+        "chargedMemoryMU": 0,
+        "cloudRentCents": 0,
+        "ownedVariableCents": 0,
+        "attributedComputeCents": 0
+      },
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 297000,
+        "attributedCloudRentCents": 1529717,
+        "attributedOwnedVariableCents": 297000,
+        "attributedComputeCents": 1826717,
+        "unallocatedCloudCents": 70283,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 148283,
+        "totalComputeCents": 1975000,
+        "companyRevenueCents": 4427497,
+        "otherOperatingCents": 405000,
+        "companyOperatingCents": 2380000,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2047497
+      },
+      "publicService": [
+        {
+          "productId": "product:natural-business-command-8",
+          "fulfillmentBps": 10000,
+          "billedCents": 1196400
+        },
+        {
+          "productId": "product:natural-business-command-67",
+          "fulfillmentBps": 10000,
+          "billedCents": 2546097
+        },
+        {
+          "productId": "product:natural-business-command-163",
+          "fulfillmentBps": 10000,
+          "billedCents": 660000
+        }
+      ]
+    },
+    {
+      "week": 526,
+      "hash": "e6239b23",
+      "rack": {
+        "id": "rack-wave8-scale-command-11",
+        "companyId": "company-player",
+        "hardwareId": "training",
+        "location": "colocation",
+        "status": "parked",
+        "orderedWeek": 331,
+        "arrivalWeek": 337,
+        "installationStartedWeek": 338,
+        "completedInstallStaff": 1000000000,
+        "readyWeek": 339,
+        "installedWeek": 339,
+        "purchaseCents": 3200000,
+        "lastBottleneck": "Relocating; source upkeep continues and destination space is reserved.",
+        "purchaseLocation": "colocation"
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "capacityCU": 80000000000,
+          "memoryMU": 160000000000
+        },
+        {
+          "id": "owned:colocation:training",
+          "capacityCU": 0,
+          "memoryMU": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000
+        }
+      ],
+      "job": {
+        "status": "active",
+        "completedWork": 8800000000,
+        "physicalWork": 8000000000,
+        "completedRequests": 5866,
+        "deadlineWeek": 528,
+        "placement": "owned:colocation:training"
+      },
+      "usage": {
+        "week": 526,
+        "paused": false,
+        "remainingBefore": 81200000000,
+        "requestedWorkCUw": 16000000000,
+        "executedWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "poolId": null,
+        "receiptKey": null,
+        "memoryMU": 0,
+        "staffRequired": 250000000,
+        "staffGranted": 250000000,
+        "supervisedLimitCUw": 16000000000,
+        "completedWorkBefore": 8800000000,
+        "completedWorkAfter": 8800000000,
+        "completedRequestsBefore": 5866,
+        "completedRequestsAfter": 5866,
+        "completedRequests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "explanation": "All racks in this pool are parked; installed upkeep continues."
+      },
+      "request": {
+        "id": "batch-serve:batch:wave16-relocation-command-3",
+        "companyId": "company-player",
+        "taskId": "batch:wave16-relocation-command-3",
+        "category": "serving",
+        "normalizedWorkCUw": 16000000000,
+        "memoryMU": 2250000000,
+        "priority": 628,
+        "staffPriority": 60,
+        "poolId": "owned:colocation:training",
+        "headroomBps": 0,
+        "modelArchitecture": "dense",
+        "modelFamily": "compact",
+        "workloadKind": "inference",
+        "staffDemand": [
+          {
+            "role": "commercial",
+            "staffWeeks": 250000000
+          }
+        ],
+        "supervision": {
+          "role": "commercial",
+          "workPerStaffWeek": 64000000000
+        }
+      },
+      "grant": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "physicalCUw": 0,
+        "hardwareEffectiveCUw": 0,
+        "memoryMU": 0,
+        "poolId": "owned:colocation:training"
+      },
+      "workload": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "targetId": "batch:batch:wave16-relocation-command-3",
+        "category": "serving",
+        "poolId": "owned:colocation:training",
+        "requestedWorkCUw": 16000000000,
+        "effectiveWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "reservedCUw": 0,
+        "headroomCUw": 0,
+        "chargedMemoryMU": 0,
+        "cloudRentCents": 0,
+        "ownedVariableCents": 0,
+        "attributedComputeCents": 0
+      },
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 300375,
+        "attributedCloudRentCents": 1536635,
+        "attributedOwnedVariableCents": 300375,
+        "attributedComputeCents": 1837010,
+        "unallocatedCloudCents": 63365,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 141365,
+        "totalComputeCents": 1978375,
+        "companyRevenueCents": 4441273,
+        "otherOperatingCents": 405000,
+        "companyOperatingCents": 2383375,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2057898
+      },
+      "publicService": [
+        {
+          "productId": "product:natural-business-command-8",
+          "fulfillmentBps": 10000,
+          "billedCents": 1195200
+        },
+        {
+          "productId": "product:natural-business-command-67",
+          "fulfillmentBps": 10000,
+          "billedCents": 2561073
+        },
+        {
+          "productId": "product:natural-business-command-163",
+          "fulfillmentBps": 10000,
+          "billedCents": 660000
+        }
+      ]
+    },
+    {
+      "week": 527,
+      "hash": "436d7e80",
+      "rack": {
+        "id": "rack-wave8-scale-command-11",
+        "companyId": "company-player",
+        "hardwareId": "training",
+        "location": "colocation",
+        "status": "parked",
+        "orderedWeek": 331,
+        "arrivalWeek": 337,
+        "installationStartedWeek": 338,
+        "completedInstallStaff": 1000000000,
+        "readyWeek": 339,
+        "installedWeek": 339,
+        "purchaseCents": 3200000,
+        "lastBottleneck": "Relocating; source upkeep continues and destination space is reserved.",
+        "purchaseLocation": "colocation"
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "capacityCU": 80000000000,
+          "memoryMU": 160000000000
+        },
+        {
+          "id": "owned:colocation:training",
+          "capacityCU": 0,
+          "memoryMU": 0
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "capacityCU": 56000000000,
+          "memoryMU": 112000000000
+        }
+      ],
+      "job": {
+        "status": "active",
+        "completedWork": 8800000000,
+        "physicalWork": 8000000000,
+        "completedRequests": 5866,
+        "deadlineWeek": 528,
+        "placement": "owned:colocation:training"
+      },
+      "usage": {
+        "week": 527,
+        "paused": false,
+        "remainingBefore": 81200000000,
+        "requestedWorkCUw": 16000000000,
+        "executedWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "poolId": null,
+        "receiptKey": null,
+        "memoryMU": 0,
+        "staffRequired": 250000000,
+        "staffGranted": 250000000,
+        "supervisedLimitCUw": 16000000000,
+        "completedWorkBefore": 8800000000,
+        "completedWorkAfter": 8800000000,
+        "completedRequestsBefore": 5866,
+        "completedRequestsAfter": 5866,
+        "completedRequests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "explanation": "All racks in this pool are parked; installed upkeep continues."
+      },
+      "request": {
+        "id": "batch-serve:batch:wave16-relocation-command-3",
+        "companyId": "company-player",
+        "taskId": "batch:wave16-relocation-command-3",
+        "category": "serving",
+        "normalizedWorkCUw": 16000000000,
+        "memoryMU": 2250000000,
+        "priority": 628,
+        "staffPriority": 60,
+        "poolId": "owned:colocation:training",
+        "headroomBps": 0,
+        "modelArchitecture": "dense",
+        "modelFamily": "compact",
+        "workloadKind": "inference",
+        "staffDemand": [
+          {
+            "role": "commercial",
+            "staffWeeks": 250000000
+          }
+        ],
+        "supervision": {
+          "role": "commercial",
+          "workPerStaffWeek": 64000000000
+        }
+      },
+      "grant": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "physicalCUw": 0,
+        "hardwareEffectiveCUw": 0,
+        "memoryMU": 0,
+        "poolId": "owned:colocation:training"
+      },
+      "workload": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "targetId": "batch:batch:wave16-relocation-command-3",
+        "category": "serving",
+        "poolId": "owned:colocation:training",
+        "requestedWorkCUw": 16000000000,
+        "effectiveWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "reservedCUw": 0,
+        "headroomCUw": 0,
+        "chargedMemoryMU": 0,
+        "cloudRentCents": 0,
+        "ownedVariableCents": 0,
+        "attributedComputeCents": 0
+      },
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 78000,
+        "ownedVariableCents": 310500,
+        "attributedCloudRentCents": 1539121,
+        "attributedOwnedVariableCents": 310500,
+        "attributedComputeCents": 1849621,
+        "unallocatedCloudCents": 60879,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 138879,
+        "totalComputeCents": 1988500,
+        "companyRevenueCents": 4472473,
+        "otherOperatingCents": 405000,
+        "companyOperatingCents": 2393500,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2078973
+      },
+      "publicService": [
+        {
+          "productId": "product:natural-business-command-8",
+          "fulfillmentBps": 10000,
+          "billedCents": 1196400
+        },
+        {
+          "productId": "product:natural-business-command-67",
+          "fulfillmentBps": 10000,
+          "billedCents": 2561073
+        },
+        {
+          "productId": "product:natural-business-command-163",
+          "fulfillmentBps": 10000,
+          "billedCents": 690000
+        }
+      ]
+    },
+    {
+      "week": 528,
+      "hash": "29a66ba1",
+      "rack": {
+        "id": "rack-wave8-scale-command-11",
+        "companyId": "company-player",
+        "hardwareId": "training",
+        "location": "facility-wave8-scale-command-3",
+        "status": "installed",
+        "orderedWeek": 331,
+        "arrivalWeek": 337,
+        "installationStartedWeek": 338,
+        "completedInstallStaff": 1000000000,
+        "readyWeek": 339,
+        "installedWeek": 339,
+        "purchaseCents": 3200000,
+        "lastBottleneck": "",
+        "purchaseLocation": "colocation"
+      },
+      "pools": [
+        {
+          "id": "general-cloud",
+          "capacityCU": 80000000000,
+          "memoryMU": 160000000000
+        },
+        {
+          "id": "owned:facility-wave8-scale-command-3:training",
+          "capacityCU": 64000000000,
+          "memoryMU": 128000000000
+        }
+      ],
+      "job": {
+        "status": "expired",
+        "completedWork": 8800000000,
+        "physicalWork": 8000000000,
+        "completedRequests": 5866,
+        "deadlineWeek": 528,
+        "placement": "owned:colocation:training"
+      },
+      "usage": {
+        "week": 528,
+        "paused": false,
+        "remainingBefore": 81200000000,
+        "requestedWorkCUw": 16000000000,
+        "executedWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "poolId": null,
+        "receiptKey": null,
+        "memoryMU": 0,
+        "staffRequired": 250000000,
+        "staffGranted": 250000000,
+        "supervisedLimitCUw": 16000000000,
+        "completedWorkBefore": 8800000000,
+        "completedWorkAfter": 8800000000,
+        "completedRequestsBefore": 5866,
+        "completedRequestsAfter": 5866,
+        "completedRequests": 0,
+        "inputTokens": 0,
+        "outputTokens": 0,
+        "explanation": "The selected batch pool is no longer available or compatible. Choose another pool or restore automatic placement; the deadline continues."
+      },
+      "request": {
+        "id": "batch-serve:batch:wave16-relocation-command-3",
+        "companyId": "company-player",
+        "taskId": "batch:wave16-relocation-command-3",
+        "category": "serving",
+        "normalizedWorkCUw": 16000000000,
+        "memoryMU": 2250000000,
+        "priority": 628,
+        "staffPriority": 60,
+        "poolId": "owned:colocation:training",
+        "headroomBps": 0,
+        "modelArchitecture": "dense",
+        "modelFamily": "compact",
+        "workloadKind": "inference",
+        "staffDemand": [
+          {
+            "role": "commercial",
+            "staffWeeks": 250000000
+          }
+        ],
+        "supervision": {
+          "role": "commercial",
+          "workPerStaffWeek": 64000000000
+        }
+      },
+      "grant": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "physicalCUw": 0,
+        "hardwareEffectiveCUw": 0,
+        "memoryMU": 0,
+        "poolId": "owned:colocation:training"
+      },
+      "workload": {
+        "requestId": "batch-serve:batch:wave16-relocation-command-3",
+        "targetId": "batch:batch:wave16-relocation-command-3",
+        "category": "serving",
+        "poolId": "owned:colocation:training",
+        "requestedWorkCUw": 16000000000,
+        "effectiveWorkCUw": 0,
+        "physicalWorkCUw": 0,
+        "reservedCUw": 0,
+        "headroomCUw": 0,
+        "chargedMemoryMU": 0,
+        "cloudRentCents": 0,
+        "ownedVariableCents": 0,
+        "attributedComputeCents": 0
+      },
+      "totals": {
+        "cloudRentCents": 1600000,
+        "ownedFixedCents": 66000,
+        "ownedVariableCents": 421704,
+        "attributedCloudRentCents": 1182072,
+        "attributedOwnedVariableCents": 421704,
+        "attributedComputeCents": 1603776,
+        "unallocatedCloudCents": 417928,
+        "sharedCarryCents": 0,
+        "sharedComputeCents": 483928,
+        "totalComputeCents": 2087704,
+        "companyRevenueCents": 4706225,
+        "otherOperatingCents": 405000,
+        "companyOperatingCents": 2492704,
+        "capitalOutlayCents": 0,
+        "operatingSurplusCents": 2213521
+      },
+      "publicService": [
+        {
+          "productId": "product:natural-business-command-8",
+          "fulfillmentBps": 10000,
+          "billedCents": 1195200
+        },
+        {
+          "productId": "product:natural-business-command-67",
+          "fulfillmentBps": 10000,
+          "billedCents": 2576050
+        },
+        {
+          "productId": "product:natural-business-command-163",
+          "fulfillmentBps": 10000,
+          "billedCents": 690000
+        }
+      ]
+    }
+  ],
+  "pinned": {
+    "week": 528,
+    "hash": "29a66ba1",
+    "rack": {
+      "id": "rack-wave8-scale-command-11",
+      "companyId": "company-player",
+      "hardwareId": "training",
+      "location": "facility-wave8-scale-command-3",
+      "status": "installed",
+      "orderedWeek": 331,
+      "arrivalWeek": 337,
+      "installationStartedWeek": 338,
+      "completedInstallStaff": 1000000000,
+      "readyWeek": 339,
+      "installedWeek": 339,
+      "purchaseCents": 3200000,
+      "lastBottleneck": "",
+      "purchaseLocation": "colocation"
+    },
+    "pools": [
+      {
+        "id": "general-cloud",
+        "capacityCU": 80000000000,
+        "memoryMU": 160000000000
+      },
+      {
+        "id": "owned:facility-wave8-scale-command-3:training",
+        "capacityCU": 64000000000,
+        "memoryMU": 128000000000
+      }
+    ],
+    "job": {
+      "status": "expired",
+      "completedWork": 8800000000,
+      "physicalWork": 8000000000,
+      "completedRequests": 5866,
+      "deadlineWeek": 528,
+      "placement": "owned:colocation:training"
+    },
+    "usage": {
+      "week": 528,
+      "paused": false,
+      "remainingBefore": 81200000000,
+      "requestedWorkCUw": 16000000000,
+      "executedWorkCUw": 0,
+      "physicalWorkCUw": 0,
+      "poolId": null,
+      "receiptKey": null,
+      "memoryMU": 0,
+      "staffRequired": 250000000,
+      "staffGranted": 250000000,
+      "supervisedLimitCUw": 16000000000,
+      "completedWorkBefore": 8800000000,
+      "completedWorkAfter": 8800000000,
+      "completedRequestsBefore": 5866,
+      "completedRequestsAfter": 5866,
+      "completedRequests": 0,
+      "inputTokens": 0,
+      "outputTokens": 0,
+      "explanation": "The selected batch pool is no longer available or compatible. Choose another pool or restore automatic placement; the deadline continues."
+    },
+    "request": {
+      "id": "batch-serve:batch:wave16-relocation-command-3",
+      "companyId": "company-player",
+      "taskId": "batch:wave16-relocation-command-3",
+      "category": "serving",
+      "normalizedWorkCUw": 16000000000,
+      "memoryMU": 2250000000,
+      "priority": 628,
+      "staffPriority": 60,
+      "poolId": "owned:colocation:training",
+      "headroomBps": 0,
+      "modelArchitecture": "dense",
+      "modelFamily": "compact",
+      "workloadKind": "inference",
+      "staffDemand": [
+        {
+          "role": "commercial",
+          "staffWeeks": 250000000
+        }
+      ],
+      "supervision": {
+        "role": "commercial",
+        "workPerStaffWeek": 64000000000
+      }
+    },
+    "grant": {
+      "requestId": "batch-serve:batch:wave16-relocation-command-3",
+      "physicalCUw": 0,
+      "hardwareEffectiveCUw": 0,
+      "memoryMU": 0,
+      "poolId": "owned:colocation:training"
+    },
+    "workload": {
+      "requestId": "batch-serve:batch:wave16-relocation-command-3",
+      "targetId": "batch:batch:wave16-relocation-command-3",
+      "category": "serving",
+      "poolId": "owned:colocation:training",
+      "requestedWorkCUw": 16000000000,
+      "effectiveWorkCUw": 0,
+      "physicalWorkCUw": 0,
+      "reservedCUw": 0,
+      "headroomCUw": 0,
+      "chargedMemoryMU": 0,
+      "cloudRentCents": 0,
+      "ownedVariableCents": 0,
+      "attributedComputeCents": 0
+    },
+    "totals": {
+      "cloudRentCents": 1600000,
+      "ownedFixedCents": 66000,
+      "ownedVariableCents": 421704,
+      "attributedCloudRentCents": 1182072,
+      "attributedOwnedVariableCents": 421704,
+      "attributedComputeCents": 1603776,
+      "unallocatedCloudCents": 417928,
+      "sharedCarryCents": 0,
+      "sharedComputeCents": 483928,
+      "totalComputeCents": 2087704,
+      "companyRevenueCents": 4706225,
+      "otherOperatingCents": 405000,
+      "companyOperatingCents": 2492704,
+      "capitalOutlayCents": 0,
+      "operatingSurplusCents": 2213521
+    },
+    "publicService": [
+      {
+        "productId": "product:natural-business-command-8",
+        "fulfillmentBps": 10000,
+        "billedCents": 1195200
+      },
+      {
+        "productId": "product:natural-business-command-67",
+        "fulfillmentBps": 10000,
+        "billedCents": 2576050
+      },
+      {
+        "productId": "product:natural-business-command-163",
+        "fulfillmentBps": 10000,
+        "billedCents": 690000
+      }
+    ]
+  },
+  "recovered": {
+    "week": 528,
+    "hash": "7107dd1d",
+    "rack": {
+      "id": "rack-wave8-scale-command-11",
+      "companyId": "company-player",
+      "hardwareId": "training",
+      "location": "facility-wave8-scale-command-3",
+      "status": "installed",
+      "orderedWeek": 331,
+      "arrivalWeek": 337,
+      "installationStartedWeek": 338,
+      "completedInstallStaff": 1000000000,
+      "readyWeek": 339,
+      "installedWeek": 339,
+      "purchaseCents": 3200000,
+      "lastBottleneck": "",
+      "purchaseLocation": "colocation"
+    },
+    "pools": [
+      {
+        "id": "general-cloud",
+        "capacityCU": 80000000000,
+        "memoryMU": 160000000000
+      },
+      {
+        "id": "owned:facility-wave8-scale-command-3:training",
+        "capacityCU": 64000000000,
+        "memoryMU": 128000000000
+      }
+    ],
+    "job": {
+      "status": "expired",
+      "completedWork": 24800000000,
+      "physicalWork": 24000000000,
+      "completedRequests": 16533,
+      "deadlineWeek": 528,
+      "placement": "auto"
+    },
+    "usage": {
+      "week": 528,
+      "paused": false,
+      "remainingBefore": 81200000000,
+      "requestedWorkCUw": 16000000000,
+      "executedWorkCUw": 16000000000,
+      "physicalWorkCUw": 16000000000,
+      "poolId": "general-cloud",
+      "receiptKey": "98ab9ff0",
+      "memoryMU": 2250000000,
+      "staffRequired": 250000000,
+      "staffGranted": 250000000,
+      "supervisedLimitCUw": 16000000000,
+      "completedWorkBefore": 8800000000,
+      "completedWorkAfter": 24800000000,
+      "completedRequestsBefore": 5866,
+      "completedRequestsAfter": 16533,
+      "completedRequests": 10667,
+      "inputTokens": 53335000,
+      "outputTokens": 5333500,
+      "explanation": "The requested batch work executed after ordinary workloads."
+    },
+    "request": {
+      "id": "batch-serve:batch:wave16-relocation-command-3",
+      "companyId": "company-player",
+      "taskId": "batch:wave16-relocation-command-3",
+      "category": "serving",
+      "normalizedWorkCUw": 16000000000,
+      "memoryMU": 2250000000,
+      "priority": 628,
+      "staffPriority": 60,
+      "poolId": "auto",
+      "headroomBps": 0,
+      "modelArchitecture": "dense",
+      "modelFamily": "compact",
+      "workloadKind": "inference",
+      "staffDemand": [
+        {
+          "role": "commercial",
+          "staffWeeks": 250000000
+        }
+      ],
+      "supervision": {
+        "role": "commercial",
+        "workPerStaffWeek": 64000000000
+      }
+    },
+    "grant": {
+      "requestId": "batch-serve:batch:wave16-relocation-command-3",
+      "physicalCUw": 16000000000,
+      "hardwareEffectiveCUw": 16000000000,
+      "memoryMU": 2250000000,
+      "poolId": "general-cloud"
+    },
+    "workload": {
+      "requestId": "batch-serve:batch:wave16-relocation-command-3",
+      "targetId": "batch:batch:wave16-relocation-command-3",
+      "category": "serving",
+      "poolId": "general-cloud",
+      "requestedWorkCUw": 16000000000,
+      "effectiveWorkCUw": 16000000000,
+      "physicalWorkCUw": 16000000000,
+      "reservedCUw": 16000000000,
+      "headroomCUw": 0,
+      "chargedMemoryMU": 2250000000,
+      "cloudRentCents": 320000,
+      "ownedVariableCents": 0,
+      "attributedComputeCents": 320000
+    },
+    "totals": {
+      "cloudRentCents": 1600000,
+      "ownedFixedCents": 66000,
+      "ownedVariableCents": 421704,
+      "attributedCloudRentCents": 1502072,
+      "attributedOwnedVariableCents": 421704,
+      "attributedComputeCents": 1923776,
+      "unallocatedCloudCents": 97928,
+      "sharedCarryCents": 0,
+      "sharedComputeCents": 163928,
+      "totalComputeCents": 2087704,
+      "companyRevenueCents": 5106237,
+      "otherOperatingCents": 405000,
+      "companyOperatingCents": 2492704,
+      "capitalOutlayCents": 0,
+      "operatingSurplusCents": 2613533
+    },
+    "publicService": [
+      {
+        "productId": "product:natural-business-command-8",
+        "fulfillmentBps": 10000,
+        "billedCents": 1195200
+      },
+      {
+        "productId": "product:natural-business-command-67",
+        "fulfillmentBps": 10000,
+        "billedCents": 2576050
+      },
+      {
+        "productId": "product:natural-business-command-163",
+        "fulfillmentBps": 10000,
+        "billedCents": 690000
+      }
+    ]
+  },
+  "pinnedInvoice": {
+    "id": "batch-invoice:batch:wave16-relocation-command-3",
+    "jobId": "batch:wave16-relocation-command-3",
+    "companyId": "company-player",
+    "productId": "product:natural-business-command-67",
+    "orderId": "longform-digest",
+    "week": 528,
+    "reason": "deadline",
+    "modelId": "model-wave15-natural-command-9",
+    "modelFingerprint": "33775861",
+    "requestedRequests": 60000,
+    "completedRequests": 5866,
+    "inputTokens": 29330000,
+    "outputTokens": 2933000,
+    "grossCents": 2250000,
+    "creditsCents": 2030025,
+    "amountCents": 219975
+  },
+  "recoveredInvoice": {
+    "id": "batch-invoice:batch:wave16-relocation-command-3",
+    "jobId": "batch:wave16-relocation-command-3",
+    "companyId": "company-player",
+    "productId": "product:natural-business-command-67",
+    "orderId": "longform-digest",
+    "week": 528,
+    "reason": "deadline",
+    "modelId": "model-wave15-natural-command-9",
+    "modelFingerprint": "33775861",
+    "requestedRequests": 60000,
+    "completedRequests": 16533,
+    "inputTokens": 82665000,
+    "outputTokens": 8266500,
+    "grossCents": 2250000,
+    "creditsCents": 1630013,
+    "amountCents": 619987
+  },
+  "pinnedHash": "29a66ba1",
+  "recoveredHash": "7107dd1d",
+  "assertions": [
+    "Exact earned Week522 continuation uses original Wave15 paid training and evaluation commands",
+    "An ordinary infrastructure hire finishes onboarding before reconnect work while normal payroll and operating coverage continue",
+    "The selected pool executes one paid service week before ordinary rack relocation starts",
+    "Four elapsed move stages consume one infrastructure staff-week and a once-only capital fee",
+    "The batch receives zero work while the selected source rack is offline and does not fall back",
+    "Commissioning removes the original pool before the final service allocation; a zero grant retains its selected pool identity and valid cost evidence",
+    "The retained usage explains that the selected batch pool is unavailable",
+    "An explicit return to automatic placement selects available connected capacity and earns additional completed-request revenue",
+    "Neither branch changes the frozen model, backlog, weekly limit, original deadline, prior paid work, or previously terminal orders",
+    "Both branches retain full public service, real cost reconciliation, no arrears, once-only invoices and exact reloads"
+  ]
+}

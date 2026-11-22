@@ -1,0 +1,365 @@
+{
+  "baselineCommit": "a6208e73dfe0619350dab0571846c80bf545593b",
+  "currentBuild": "0.30.1",
+  "baselineBuild": "0.30.0",
+  "method": "Baseline normalizes each fixture once, then both implementations import the identical serialized bytes. Full command results, states, serialized saves and final browser-storage writes are compared. No browser UI is involved.",
+  "normalization": "Only the newly created company buildVersion header is normalized for the initial-state comparison. Subsequent full results, states, saves and browser-storage bytes use identical imported fixture headers and are compared without normalization.",
+  "newCompanyEqualExceptBuildVersion": true,
+  "checkpoints": [
+    {
+      "scenario": "opening-first-sale",
+      "label": "identical imported baseline",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 0,
+      "checksum": "e026c25a",
+      "serializedBytes": 41831,
+      "sha256": "1812bbc2fffd6f23b6f147b1548e46991ee2d4dbc4be808e0075760af15f79f4"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "reject training on unprepared data",
+      "accepted": false,
+      "rejectionReason": "Every selected packet must belong to your company and be fully prepared.",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 0,
+      "checksum": "e026c25a",
+      "serializedBytes": 41831,
+      "sha256": "1812bbc2fffd6f23b6f147b1548e46991ee2d4dbc4be808e0075760af15f79f4"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "prepare starter data",
+      "accepted": true,
+      "commandId": "command-2",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 1,
+      "checksum": "542321b9",
+      "serializedBytes": 42303,
+      "sha256": "a42b4999efab2e59e26a8b71ee839ae06dedbf23be173c8352958221ee5b9102"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "hire ML engineer",
+      "accepted": true,
+      "commandId": "command-4",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 2,
+      "checksum": "e90e9c05",
+      "serializedBytes": 42742,
+      "sha256": "bfce17ce2c2e5fe521e92bd532a3209ef30728549b26783aaa2d2283733d8f6d"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "allocate development compute",
+      "accepted": true,
+      "commandId": "command-6",
+      "week": 0,
+      "cashCents": 4800000,
+      "queuedCount": 3,
+      "checksum": "2d68c76f",
+      "serializedBytes": 43310,
+      "sha256": "815f293e3e443eea7a3aad249415126a51745a280e3d8b6fae14cc688d8b9376"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "preparation/onboarding 1",
+      "accepted": true,
+      "week": 1,
+      "cashCents": 4420000,
+      "queuedCount": 0,
+      "checksum": "0d67c49a",
+      "serializedBytes": 71802,
+      "sha256": "13bcbbc3edce214a3884f2c535d1f0f73082f4004666f440cef679d04c587b2e"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "preparation/onboarding 2",
+      "accepted": true,
+      "week": 2,
+      "cashCents": 4290000,
+      "queuedCount": 0,
+      "checksum": "347a2b7e",
+      "serializedBytes": 88005,
+      "sha256": "160b3b3dded341f56d351aa97121908bc0c6f6acbdb1f6c38e0edbb7656dcff9"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "assign founder to research",
+      "accepted": true,
+      "commandId": "command-15",
+      "week": 2,
+      "cashCents": 4290000,
+      "queuedCount": 1,
+      "checksum": "1286895e",
+      "serializedBytes": 88624,
+      "sha256": "085f107b429086542c78f5baa492d7add37cc9722360814c313916a2f41c1373"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "train exact starter candidate",
+      "accepted": true,
+      "commandId": "command-17",
+      "week": 2,
+      "cashCents": 4290000,
+      "queuedCount": 2,
+      "checksum": "d8ba7a78",
+      "serializedBytes": 89168,
+      "sha256": "ddd9f635bb5e16183ca3fe2340fa0bc7ac5d38c8ff986c6e8347ee044992f61a"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "training 1",
+      "accepted": true,
+      "week": 3,
+      "cashCents": 4160000,
+      "queuedCount": 0,
+      "checksum": "ece3e10b",
+      "serializedBytes": 108424,
+      "sha256": "9224a3c652f5dd1458007c56beecf96726eda15511d3619255aabec22f80c35d"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "training 2",
+      "accepted": true,
+      "week": 4,
+      "cashCents": 4030000,
+      "queuedCount": 1,
+      "checksum": "d8ed6016",
+      "serializedBytes": 124443,
+      "sha256": "742caf4b47844f99dcce3f13a0a5eb8eaaf48f03694d88874c9103353a17c9ea"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "training 3",
+      "accepted": true,
+      "week": 5,
+      "cashCents": 3900000,
+      "queuedCount": 0,
+      "checksum": "7d58b48e",
+      "serializedBytes": 142057,
+      "sha256": "fc64f30ba1cabcf36664096b61956ba65705ce8dfa0d21c2d48e8d4e01b7052f"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "evaluate exact output",
+      "accepted": true,
+      "commandId": "command-29",
+      "week": 5,
+      "cashCents": 3900000,
+      "queuedCount": 1,
+      "checksum": "ce3fb665",
+      "serializedBytes": 142559,
+      "sha256": "7ac2a4eda33134d9a6babb390c402cdb613fc6c9437821a63056e985fefecc9f"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "evaluation",
+      "accepted": true,
+      "week": 6,
+      "cashCents": 3770000,
+      "queuedCount": 1,
+      "checksum": "86a18dd9",
+      "serializedBytes": 167096,
+      "sha256": "4d389999b242eeed0ecf152157a6810c994088147873471a6e88e3e1128a5948"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deploy Basic Chat",
+      "accepted": true,
+      "commandId": "command-36",
+      "week": 6,
+      "cashCents": 3770000,
+      "queuedCount": 2,
+      "checksum": "2c767bcb",
+      "serializedBytes": 167596,
+      "sha256": "82d6dfe337ce59e9e290b01c7af4730e655bbb00c641d8608e44b1e0d6ec010b"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "allocate serving compute",
+      "accepted": true,
+      "commandId": "command-38",
+      "week": 6,
+      "cashCents": 3770000,
+      "queuedCount": 3,
+      "checksum": "e8e561b2",
+      "serializedBytes": 168166,
+      "sha256": "356b19b7bee3f588505390f2a51f52b18cb6014173130d4f963b9741f8894ac7"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 1",
+      "accepted": true,
+      "week": 7,
+      "cashCents": 3640000,
+      "queuedCount": 0,
+      "checksum": "e050ac8f",
+      "serializedBytes": 188019,
+      "sha256": "e36786b88d4492880dac7c65c673f9703dc5f53f5eceedde6b390c28973e5cdc"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 2",
+      "accepted": true,
+      "week": 8,
+      "cashCents": 3510000,
+      "queuedCount": 2,
+      "checksum": "e834aa85",
+      "serializedBytes": 198568,
+      "sha256": "d49d006d3ef0b07b89f6e608a2596f14dc0d308a2fb7e3bb33775beb1c287edc"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 3",
+      "accepted": true,
+      "week": 9,
+      "cashCents": 3380000,
+      "queuedCount": 0,
+      "checksum": "00e6144a",
+      "serializedBytes": 202451,
+      "sha256": "eb315a6e8106bc13057c6b7ba15750635d4188aee55cebb6174d4eca80d5e3d8"
+    },
+    {
+      "scenario": "opening-first-sale",
+      "label": "deployment through first billing 4",
+      "accepted": true,
+      "week": 10,
+      "cashCents": 3260800,
+      "queuedCount": 0,
+      "checksum": "9266f290",
+      "serializedBytes": 207691,
+      "sha256": "00ed50f99fd3e7588e6c32c493f8835f06fe65357772e28bac8c2af9d1f7b0e7"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "identical imported baseline",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 0,
+      "checksum": "6616c561",
+      "serializedBytes": 1461888,
+      "sha256": "2eb14883512d3e543522106b3459e0c3fbd172f8ee8b2055c30673465274c062"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "reject missing research",
+      "accepted": false,
+      "rejectionReason": "This research is planned for a later wave and has no active project yet.",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 0,
+      "checksum": "6616c561",
+      "serializedBytes": 1461888,
+      "sha256": "2eb14883512d3e543522106b3459e0c3fbd172f8ee8b2055c30673465274c062"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "hire data employee",
+      "accepted": true,
+      "commandId": "command-3150",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 1,
+      "checksum": "9f591af8",
+      "serializedBytes": 1462028,
+      "sha256": "bcb19836a86088cd6b4373393cd4989d84cc076d3259ecff88aef20fd0d660b1"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "rebalance shared capacity",
+      "accepted": true,
+      "commandId": "command-3152",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 2,
+      "checksum": "859599f2",
+      "serializedBytes": 1462245,
+      "sha256": "386a97d65e25716415cbeb19c98e42f88e4693bc48cbaf8d308b687f48532f3d"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "reject terms change while a prepared release owns the exact Chat product",
+      "accepted": false,
+      "rejectionReason": "Finish or discard this product’s prepared release before changing its model, terms, features, session history, retrieval, efficiency, or runtime guardrail settings.",
+      "week": 553,
+      "cashCents": 610337840,
+      "queuedCount": 2,
+      "checksum": "859599f2",
+      "serializedBytes": 1462245,
+      "sha256": "386a97d65e25716415cbeb19c98e42f88e4693bc48cbaf8d308b687f48532f3d"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "advanced settlement 1",
+      "accepted": true,
+      "week": 554,
+      "cashCents": 611674275,
+      "queuedCount": 0,
+      "checksum": "1b57a710",
+      "serializedBytes": 1458949,
+      "sha256": "7666c023612aa502deb9367cc70e716fe1ab86a893747a399e48d621edd9b8fd"
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "label": "advanced settlement 2",
+      "accepted": true,
+      "week": 555,
+      "cashCents": 613140511,
+      "queuedCount": 0,
+      "checksum": "8dec7dbc",
+      "serializedBytes": 1458567,
+      "sha256": "9d4b016cbffb9cc5a1dd6d7e23f400e05147170e09fdd928d6263acd8c25c43b"
+    }
+  ],
+  "fixtures": [
+    {
+      "name": "opening-first-sale",
+      "source": "Baseline-created opening serialized before either implementation imports it",
+      "bytes": 41831,
+      "sha256": "1812bbc2fffd6f23b6f147b1548e46991ee2d4dbc4be808e0075760af15f79f4",
+      "week": 0,
+      "retainedBuildHeader": "0.30.0"
+    },
+    {
+      "name": "advanced-commercial-company",
+      "source": {
+        "path": "tests/fixtures/wave27-canary-published.json",
+        "sourceSha256": "8fbb318b6f1d0a7adf44a97f773992e36d6eb80523cbeb8c92a9334017daf1ac",
+        "normalization": "Baseline migration once; shared content 0.28.0 snapshot imported by both implementations"
+      },
+      "bytes": 1461888,
+      "sha256": "2eb14883512d3e543522106b3459e0c3fbd172f8ee8b2055c30673465274c062",
+      "week": 553,
+      "retainedBuildHeader": "0.30.0"
+    }
+  ],
+  "persistence": [
+    {
+      "scenario": "opening-first-sale",
+      "writesCompared": 2,
+      "keys": [
+        {
+          "key": "frontier-lab.wave0.snapshot",
+          "bytes": 207691,
+          "sha256": "00ed50f99fd3e7588e6c32c493f8835f06fe65357772e28bac8c2af9d1f7b0e7"
+        }
+      ]
+    },
+    {
+      "scenario": "advanced-commercial-company",
+      "writesCompared": 2,
+      "keys": [
+        {
+          "key": "frontier-lab.wave0.snapshot",
+          "bytes": 1458567,
+          "sha256": "9d4b016cbffb9cc5a1dd6d7e23f400e05147170e09fdd928d6263acd8c25c43b"
+        }
+      ]
+    }
+  ],
+  "allEqual": true
+}

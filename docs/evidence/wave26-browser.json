@@ -1,0 +1,189 @@
+{
+  "status": "passed_with_documented_optional_followup_limit",
+  "previewUrl": "http://127.0.0.1:4173/",
+  "wave": 26,
+  "migratedCompany": {
+    "sourceContent": "0.23.0",
+    "targetContent": "0.26.0",
+    "week": 15,
+    "cashCents": 1742800,
+    "team": 2,
+    "computeCU": 8,
+    "paused": true
+  },
+  "research": {
+    "catalogCount": 31,
+    "lanes": 5,
+    "s1": {
+      "feeCents": 600000,
+      "staffRole": "data",
+      "staffWeeks": 3,
+      "researchCUw": 6,
+      "prerequisites": [
+        "R2A",
+        "R10A"
+      ],
+      "lockedActionDisabled": true
+    },
+    "s2": {
+      "feeCents": 900000,
+      "staffRole": "ml",
+      "staffWeeks": 5,
+      "researchCUw": 12,
+      "prerequisites": [
+        "S1",
+        "R4C"
+      ],
+      "lockedActionDisabled": true
+    },
+    "searchRetainsPrerequisiteContext": true,
+    "closingApplicationRestoresSelection": true,
+    "ordinaryResearchQueue": {
+      "researchId": "R1",
+      "queuedWeek": 15,
+      "startsWeek": 16,
+      "reservedCents": 100000,
+      "survivedReload": true,
+      "settledWeek": 16,
+      "cashCents": 1478400,
+      "staffWork": 1,
+      "requiredStaffWork": 2,
+      "computeWork": 0,
+      "requiredComputeWork": 2,
+      "blocker": "Allocate research compute.",
+      "snapshotChecksum": "93f38c56"
+    },
+    "mobileSelectionFocus": "research-tree-details"
+  },
+  "comparison": {
+    "modelA": "Seed 0",
+    "modelB": "Conversation 1",
+    "unmeasuredIndependentReports": "Not evaluated",
+    "corpusAReadyUnits": 220,
+    "corpusBReadyUnits": 120,
+    "sharedSourceCount": 1,
+    "noCommandsQueued": true,
+    "trainedCandidate": {
+      "name": "Targeted synthetic curriculum 20",
+      "baseline": "Seed 0",
+      "documentsBefore": 30,
+      "documentsAfter": 41.55,
+      "otherCapabilitiesUnchanged": true,
+      "reliabilityBefore": 70,
+      "reliabilityAfter": 70,
+      "exactVersionIndependentReportWeek": 556,
+      "actuallyCorrect": "36/100",
+      "incorrectAmongCheckerAccepts": "1/37"
+    }
+  },
+  "responsive": {
+    "method": "Native desktop browser zoom, not device emulation or physical touch hardware",
+    "viewports": [
+      {
+        "width": 1363,
+        "height": 936,
+        "pageOverflow": false
+      },
+      {
+        "width": 779,
+        "height": 535,
+        "pageOverflow": false,
+        "offscreenInputs": 0
+      },
+      {
+        "width": 340,
+        "height": 234,
+        "pageOverflow": false,
+        "offscreenInputs": 0
+      }
+    ],
+    "narrowResearchVisibleMethods": 31,
+    "narrowResearchControlFontPx": 16,
+    "narrowResearchFiltersStack": true,
+    "comparisonTableContainerPx": 269,
+    "comparisonTableScrollWidthPx": 350,
+    "comparisonTableOverflow": "auto"
+  },
+  "syntheticAcceptance": {
+    "status": "completed_in_browser",
+    "entryWeek": 546,
+    "entryChecksum": "79feed5b",
+    "entryCashCents": 600614802,
+    "teacher": "Calibration curriculum 8",
+    "source": "Documents specialist pack \u00b7 curated r1",
+    "domain": "documents",
+    "reservedPolicySourceBlocked": true,
+    "repeatSourceBlocked": true,
+    "generationSurvivedReload": true,
+    "reloadWeek": 547,
+    "generationEffectiveCUw": 16,
+    "generationPhysicalCUw": 8.888888889,
+    "generationMlStaffWeeks": 1.1,
+    "reviewStaffWeeks": 2,
+    "auditDevelopmentCUw": 2,
+    "auditResearchStaffWeeks": 1,
+    "auditWeek": 551,
+    "packetAvailableWeek": 552,
+    "acceptedUniqueUnits": 53,
+    "sourceOverlap": 20,
+    "holdoutOverlap": 10,
+    "answerRejected": 17,
+    "packetQualityPercent": 77,
+    "trainingWorkCUw": 12,
+    "trainingCompletedWeek": 554,
+    "capabilityEvaluationWeek": 555,
+    "independentEvaluationWeek": 556,
+    "independentCases": 100,
+    "actuallyCorrect": 36,
+    "claimedComplete": 48,
+    "independentAccepted": 37,
+    "independentFalseAccepts": 1,
+    "finalWeek": 556,
+    "finalCashCents": 615519786,
+    "commandCount": 5,
+    "commandIds": [
+      "command-3112",
+      "command-3121",
+      "command-3140",
+      "command-3152",
+      "command-3159"
+    ],
+    "finalStateComparison": {
+      "stateIdentical": true,
+      "byteIdentical": true,
+      "checksum": "7e9a62b6",
+      "evidence": "wave26-browser-oracle.json"
+    }
+  },
+  "finalConsoleReview": {
+    "since": "2026-11-09T17:41:40.536Z",
+    "applicationWarningsAndErrors": [],
+    "excludedBrowserExtensionCount": 10
+  },
+  "finalResponsiveCheck": {
+    "width": 340,
+    "height": 234,
+    "pageOverflow": false,
+    "visibleMap": false,
+    "visibleListCards": 31,
+    "controlFontSize": "16px",
+    "offscreenInputs": 0,
+    "desktopWidthRestored": 1363
+  },
+  "postOptimizationFollowup": {
+    "week": 556,
+    "researchId": "R8",
+    "queueAccepted": true,
+    "upfrontFeeCents": 500000,
+    "stateChangedToStartQueued": true,
+    "duplicateActionDisabled": true,
+    "nextWeek": 557,
+    "optionalStepExecuted": false,
+    "optionalStepLimit": "Automatic approval review blocked the optional extra step because it would apply an additional research purchase after the accepted Week556 oracle was already verified. No workaround was attempted. The prior complete paid synthetic acceptance and read-only cache/gate checks remain the release evidence."
+  },
+  "finalImages": [
+    "../images/frontier-lab-wave26-research.png",
+    "../images/frontier-lab-wave26-comparison.png",
+    "../images/frontier-lab-wave26-outcome.png"
+  ]
+}

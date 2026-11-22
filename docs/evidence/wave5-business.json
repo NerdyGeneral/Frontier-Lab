@@ -1,0 +1,637 @@
+{
+  "result": "natural-business",
+  "source": {
+    "entry": "createInitialState(CONTENT)",
+    "seed": "frontier-lab-wave-0",
+    "buildVersion": "0.6.0",
+    "contentVersion": "0.6.0",
+    "schemaVersion": 5,
+    "initialCashCents": 4800000,
+    "directStateMutation": false,
+    "externalFunding": false,
+    "rivals": [
+      {
+        "companyId": "rival-atlas",
+        "lastActionWeek": 24,
+        "withdrawn": false
+      },
+      {
+        "companyId": "rival-swift",
+        "lastActionWeek": 244,
+        "withdrawn": false
+      },
+      {
+        "companyId": "rival-harbor",
+        "lastActionWeek": 186,
+        "withdrawn": true
+      }
+    ]
+  },
+  "reproduce": {
+    "test": "npm test -- wave5-business",
+    "strategy": "playNaturalBusiness()",
+    "exports": "Set BUSINESS_CAMPAIGN_EXPORT to an absolute snapshot path and BUSINESS_CAMPAIGN_RECEIPT to an absolute metrics path."
+  },
+  "commands": 221,
+  "commandKinds": {
+    "prepare_data": 4,
+    "allocate_compute": 88,
+    "assign_founder": 4,
+    "start_training": 8,
+    "evaluate_model": 4,
+    "deploy_product": 3,
+    "set_cloud_capacity": 84,
+    "hire_staff": 6,
+    "start_research": 10,
+    "buy_data": 3,
+    "curate_data": 4,
+    "upgrade_product": 1,
+    "sign_business_contract": 1,
+    "set_business_renewal": 1
+  },
+  "minimumCashCents": 3764800,
+  "cloudCU": 82,
+  "finalWeek": {
+    "week": 252,
+    "revenueCents": 3600400,
+    "operatingExpenseCents": 1850000,
+    "cashCents": 172558409,
+    "baseCostCents": 1850000,
+    "arrearsCents": 0,
+    "consumerAccounts": 1067,
+    "developerAccounts": 129,
+    "businessOrganizations": 13,
+    "paidProductKinds": 3,
+    "serviceBps": 10000,
+    "trustBps": 9390,
+    "agentPenaltyCents": 0,
+    "frontierModelId": null,
+    "frontierScoreBps": 0,
+    "frontierReliabilityBps": 0,
+    "frontierBehaviorTested": false,
+    "specialistModelId": "model-natural-business-command-159",
+    "specialistScoreBps": 7700,
+    "specialistReliabilityBps": 9280,
+    "sustainedContracts": 1
+  },
+  "models": [
+    {
+      "modelId": "model-natural-business-command-68",
+      "family": "compact",
+      "capabilityBps": {
+        "conversation": 4800,
+        "documents": 3056,
+        "coding": 2000,
+        "tools": 2080
+      },
+      "reliabilityBps": 8600,
+      "behavior": {
+        "confidentErrorBps": 600,
+        "falseRefusalBps": 700
+      }
+    },
+    {
+      "modelId": "model-natural-business-command-63",
+      "family": "compact",
+      "capabilityBps": {
+        "conversation": 4088,
+        "documents": 3138,
+        "coding": 5357,
+        "tools": 2741
+      },
+      "reliabilityBps": 9280,
+      "behavior": {
+        "confidentErrorBps": 525,
+        "falseRefusalBps": 700
+      }
+    },
+    {
+      "modelId": "model-natural-business-command-159",
+      "family": "medium",
+      "capabilityBps": {
+        "conversation": 7890,
+        "documents": 7700,
+        "coding": 7460,
+        "tools": 6890
+      },
+      "reliabilityBps": 9280,
+      "behavior": {
+        "confidentErrorBps": 525,
+        "falseRefusalBps": 700
+      }
+    }
+  ],
+  "foundation": {
+    "recipe": "medium-foundation",
+    "usefulTrainingCUw": 240,
+    "physicalTrainingCUw": 240,
+    "workspaceMU": 24,
+    "preparationStaffWeeks": 6,
+    "broadUnits": 500,
+    "qualityBps": {
+      "conversation": 9500,
+      "documents": 9500,
+      "coding": 9500,
+      "tools": 9500
+    }
+  },
+  "license": {
+    "customerId": "vector-studio",
+    "contractKind": "customer-hosted",
+    "modelId": "model-natural-business-command-63",
+    "signedWeek": 201,
+    "weeklyPriceCents": 25000,
+    "lifetimeBilledCents": 1250000,
+    "lifetimeCreditsCents": 0,
+    "playerInferenceWorkCUw": 0,
+    "terms": [
+      {
+        "termIndex": 1,
+        "firstDeliveredWeek": 203,
+        "nextRenewalWeek": 215,
+        "scheduledLastDeliveryWeek": 214,
+        "deliveredThroughWeek": 214
+      },
+      {
+        "termIndex": 2,
+        "firstDeliveredWeek": 215,
+        "nextRenewalWeek": 227,
+        "scheduledLastDeliveryWeek": 226,
+        "deliveredThroughWeek": 226
+      },
+      {
+        "termIndex": 3,
+        "firstDeliveredWeek": 227,
+        "nextRenewalWeek": 239,
+        "scheduledLastDeliveryWeek": 238,
+        "deliveredThroughWeek": 238
+      },
+      {
+        "termIndex": 4,
+        "firstDeliveredWeek": 239,
+        "nextRenewalWeek": 251,
+        "scheduledLastDeliveryWeek": 250,
+        "deliveredThroughWeek": 250
+      },
+      {
+        "termIndex": 5,
+        "firstDeliveredWeek": 251,
+        "nextRenewalWeek": 263,
+        "scheduledLastDeliveryWeek": 262,
+        "deliveredThroughWeek": 252
+      }
+    ],
+    "actualRenewalWeeksInsideSpecialistProof": [
+      251
+    ],
+    "maturitySensitiveProofWeeks": [
+      {
+        "week": 241,
+        "termIndex": 4,
+        "termWeeksServed": 3
+      },
+      {
+        "week": 251,
+        "termIndex": 5,
+        "termWeeksServed": 1
+      },
+      {
+        "week": 252,
+        "termIndex": 5,
+        "termWeeksServed": 2
+      }
+    ],
+    "explanation": "A successful term renews every 12 weeks. Term weeks 1–3 retain maturity earned by the prior fully delivered term. The actual renewal boundary is distinct from these maturity-sensitive weeks."
+  },
+  "endings": [
+    {
+      "id": "platform",
+      "achievedWeek": 188,
+      "proofWindow": {
+        "firstWeek": 177,
+        "lastWeek": 188,
+        "consecutiveWeeks": 12
+      },
+      "proof": [
+        {
+          "week": 177,
+          "revenueCents": 2310000,
+          "operatingExpenseCents": 1270000,
+          "cashCents": 63390809,
+          "reserveRequiredCents": 10160000,
+          "consumers": 975,
+          "developers": 76,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7515,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 178,
+          "revenueCents": 2313600,
+          "operatingExpenseCents": 1290000,
+          "cashCents": 64414409,
+          "reserveRequiredCents": 10320000,
+          "consumers": 978,
+          "developers": 76,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7540,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 179,
+          "revenueCents": 2331000,
+          "operatingExpenseCents": 1290000,
+          "cashCents": 65455409,
+          "reserveRequiredCents": 10320000,
+          "consumers": 980,
+          "developers": 77,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7565,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 180,
+          "revenueCents": 2365800,
+          "operatingExpenseCents": 1310000,
+          "cashCents": 66511209,
+          "reserveRequiredCents": 10480000,
+          "consumers": 984,
+          "developers": 79,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7590,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 181,
+          "revenueCents": 2368200,
+          "operatingExpenseCents": 1310000,
+          "cashCents": 67569409,
+          "reserveRequiredCents": 10480000,
+          "consumers": 986,
+          "developers": 79,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7615,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 182,
+          "revenueCents": 2386800,
+          "operatingExpenseCents": 1310000,
+          "cashCents": 68646209,
+          "reserveRequiredCents": 10480000,
+          "consumers": 989,
+          "developers": 80,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7640,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 183,
+          "revenueCents": 2403000,
+          "operatingExpenseCents": 1310000,
+          "cashCents": 69739209,
+          "reserveRequiredCents": 10480000,
+          "consumers": 990,
+          "developers": 81,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7665,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 184,
+          "revenueCents": 2421600,
+          "operatingExpenseCents": 1330000,
+          "cashCents": 70830809,
+          "reserveRequiredCents": 10640000,
+          "consumers": 993,
+          "developers": 82,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7690,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 185,
+          "revenueCents": 2439000,
+          "operatingExpenseCents": 1330000,
+          "cashCents": 71939809,
+          "reserveRequiredCents": 10640000,
+          "consumers": 995,
+          "developers": 83,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7715,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 186,
+          "revenueCents": 2442600,
+          "operatingExpenseCents": 1330000,
+          "cashCents": 73052409,
+          "reserveRequiredCents": 10640000,
+          "consumers": 998,
+          "developers": 83,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7740,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 187,
+          "revenueCents": 2460000,
+          "operatingExpenseCents": 1350000,
+          "cashCents": 74162409,
+          "reserveRequiredCents": 10800000,
+          "consumers": 1000,
+          "developers": 84,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7765,
+          "sustainedContracts": 0
+        },
+        {
+          "week": 188,
+          "revenueCents": 2481000,
+          "operatingExpenseCents": 1350000,
+          "cashCents": 75293409,
+          "reserveRequiredCents": 10800000,
+          "consumers": 1005,
+          "developers": 85,
+          "businesses": 0,
+          "serviceBps": 10000,
+          "trustBps": 7790,
+          "sustainedContracts": 0
+        }
+      ]
+    },
+    {
+      "id": "specialist",
+      "achievedWeek": 252,
+      "proofWindow": {
+        "firstWeek": 241,
+        "lastWeek": 252,
+        "consecutiveWeeks": 12
+      },
+      "proof": [
+        {
+          "week": 241,
+          "revenueCents": 3470800,
+          "operatingExpenseCents": 1750000,
+          "cashCents": 153369809,
+          "reserveRequiredCents": 14000000,
+          "consumers": 1059,
+          "developers": 123,
+          "businesses": 12,
+          "serviceBps": 10000,
+          "trustBps": 9115,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 242,
+          "revenueCents": 3472000,
+          "operatingExpenseCents": 1750000,
+          "cashCents": 155091809,
+          "reserveRequiredCents": 14000000,
+          "consumers": 1060,
+          "developers": 123,
+          "businesses": 12,
+          "serviceBps": 10000,
+          "trustBps": 9140,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 243,
+          "revenueCents": 3474400,
+          "operatingExpenseCents": 1770000,
+          "cashCents": 156796209,
+          "reserveRequiredCents": 14160000,
+          "consumers": 1062,
+          "developers": 123,
+          "businesses": 12,
+          "serviceBps": 10000,
+          "trustBps": 9165,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 244,
+          "revenueCents": 3503200,
+          "operatingExpenseCents": 1770000,
+          "cashCents": 158529409,
+          "reserveRequiredCents": 14160000,
+          "consumers": 1061,
+          "developers": 125,
+          "businesses": 12,
+          "serviceBps": 10000,
+          "trustBps": 9190,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 245,
+          "revenueCents": 3505600,
+          "operatingExpenseCents": 1770000,
+          "cashCents": 160265009,
+          "reserveRequiredCents": 14160000,
+          "consumers": 1063,
+          "developers": 125,
+          "businesses": 12,
+          "serviceBps": 10000,
+          "trustBps": 9215,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 246,
+          "revenueCents": 3551800,
+          "operatingExpenseCents": 1810000,
+          "cashCents": 162006809,
+          "reserveRequiredCents": 14480000,
+          "consumers": 1064,
+          "developers": 126,
+          "businesses": 13,
+          "serviceBps": 10000,
+          "trustBps": 9240,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 247,
+          "revenueCents": 3565600,
+          "operatingExpenseCents": 1810000,
+          "cashCents": 163762409,
+          "reserveRequiredCents": 14480000,
+          "consumers": 1063,
+          "developers": 127,
+          "businesses": 13,
+          "serviceBps": 10000,
+          "trustBps": 9265,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 248,
+          "revenueCents": 3551800,
+          "operatingExpenseCents": 1810000,
+          "cashCents": 165504209,
+          "reserveRequiredCents": 14480000,
+          "consumers": 1064,
+          "developers": 126,
+          "businesses": 13,
+          "serviceBps": 10000,
+          "trustBps": 9290,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 249,
+          "revenueCents": 3568000,
+          "operatingExpenseCents": 1810000,
+          "cashCents": 167262209,
+          "reserveRequiredCents": 14480000,
+          "consumers": 1065,
+          "developers": 127,
+          "businesses": 13,
+          "serviceBps": 10000,
+          "trustBps": 9315,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 250,
+          "revenueCents": 3614200,
+          "operatingExpenseCents": 1850000,
+          "cashCents": 169026409,
+          "reserveRequiredCents": 14800000,
+          "consumers": 1066,
+          "developers": 128,
+          "businesses": 14,
+          "serviceBps": 10000,
+          "trustBps": 9340,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 251,
+          "revenueCents": 3631600,
+          "operatingExpenseCents": 1850000,
+          "cashCents": 170808009,
+          "reserveRequiredCents": 14800000,
+          "consumers": 1068,
+          "developers": 129,
+          "businesses": 14,
+          "serviceBps": 10000,
+          "trustBps": 9365,
+          "sustainedContracts": 1
+        },
+        {
+          "week": 252,
+          "revenueCents": 3600400,
+          "operatingExpenseCents": 1850000,
+          "cashCents": 172558409,
+          "reserveRequiredCents": 14800000,
+          "consumers": 1067,
+          "developers": 129,
+          "businesses": 13,
+          "serviceBps": 10000,
+          "trustBps": 9390,
+          "sustainedContracts": 1
+        }
+      ]
+    }
+  ],
+  "stages": [
+    {
+      "label": "Basic Chat launched",
+      "week": 8,
+      "cashCents": 3940000,
+      "revenueCents": 0,
+      "expenseCents": 60000,
+      "trustBps": 5000,
+      "nextWeekConsumerCohorts": 0,
+      "nextWeekDeveloperCohorts": 0,
+      "nextWeekBusinessCohorts": 0
+    },
+    {
+      "label": "Consumer revenue funds expansion",
+      "week": 50,
+      "cashCents": 10234400,
+      "revenueCents": 488400,
+      "expenseCents": 180000,
+      "trustBps": 5410,
+      "nextWeekConsumerCohorts": 417,
+      "nextWeekDeveloperCohorts": 0,
+      "nextWeekBusinessCohorts": 0
+    },
+    {
+      "label": "Curation, preference tuning and calibration researched",
+      "week": 83,
+      "cashCents": 15327531,
+      "revenueCents": 793200,
+      "expenseCents": 515000,
+      "trustBps": 5705,
+      "nextWeekConsumerCohorts": 672,
+      "nextWeekDeveloperCohorts": 0,
+      "nextWeekBusinessCohorts": 0
+    },
+    {
+      "label": "Calibrated consumer and developer services live",
+      "week": 112,
+      "cashCents": 21705593,
+      "revenueCents": 970800,
+      "expenseCents": 695000,
+      "trustBps": 5940,
+      "nextWeekConsumerCohorts": 763,
+      "nextWeekDeveloperCohorts": 6,
+      "nextWeekBusinessCohorts": 0
+    },
+    {
+      "label": "Enterprise operations researched",
+      "week": 138,
+      "cashCents": 33306193,
+      "revenueCents": 1584000,
+      "expenseCents": 890000,
+      "trustBps": 6590,
+      "nextWeekConsumerCohorts": 873,
+      "nextWeekDeveloperCohorts": 38,
+      "nextWeekBusinessCohorts": 0
+    },
+    {
+      "label": "Medium document specialist trained and evaluated",
+      "week": 198,
+      "cashCents": 87130209,
+      "revenueCents": 2632200,
+      "expenseCents": 1410000,
+      "trustBps": 8040,
+      "nextWeekConsumerCohorts": 1035,
+      "nextWeekDeveloperCohorts": 94,
+      "nextWeekBusinessCohorts": 0
+    },
+    {
+      "label": "Business subscriptions and named weight license live",
+      "week": 204,
+      "cashCents": 94697409,
+      "revenueCents": 2744200,
+      "expenseCents": 1310000,
+      "trustBps": 8190,
+      "nextWeekConsumerCohorts": 1041,
+      "nextWeekDeveloperCohorts": 99,
+      "nextWeekBusinessCohorts": 1
+    },
+    {
+      "label": "Both business endings earned",
+      "week": 252,
+      "cashCents": 172558409,
+      "revenueCents": 3600400,
+      "expenseCents": 1850000,
+      "trustBps": 9390,
+      "nextWeekConsumerCohorts": 1069,
+      "nextWeekDeveloperCohorts": 130,
+      "nextWeekBusinessCohorts": 13
+    }
+  ],
+  "checkpoint": {
+    "week": 252,
+    "checksum": "be2188bd",
+    "format": "frontier-lab"
+  }
+}

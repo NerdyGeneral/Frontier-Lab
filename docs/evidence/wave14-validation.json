@@ -1,0 +1,29 @@
+{
+  "contentVersion": "0.15.0",
+  "schemaVersion": 5,
+  "tests": {
+    "command": "FRONTIER_WAVE14_OUTPUT=/workspace/scratch/4788498e7ff5/wave14-natural node scripts/test-wave0.mjs",
+    "passed": 535,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 153415.062964
+  },
+  "typescript": {
+    "command": "./node_modules/.bin/tsc --noEmit --incremental false",
+    "exitCode": 0
+  },
+  "build": {
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+    "exitCode": 0
+  },
+  "compatibility": {
+    "sourceCommit": "16ebd574c5feff6bf5cd422c3b474d7fb5606182",
+    "publishedWeeksMatched": 21,
+    "weekFrom": 452,
+    "weekThrough": 472,
+    "focusedPassed": 83
+  },
+  "browserEvidence": "wave14-browser.json",
+  "naturalEvidence": "wave14-progression.json",
+  "note": "All engine tests ran after final implementation and cost-label changes. The final explanatory sentence about deferred revenue timing changed afterward; nonincremental TypeScript, the production build, and visible browser wording were rechecked."
+}

@@ -1,0 +1,989 @@
+{
+  "build": "0.18.0",
+  "testedSurface": "Managed local browser preview at http://127.0.0.1:4173/",
+  "startingWeek": 556,
+  "finalWeek": 563,
+  "checks": [
+    "Imported the genuinely earned Week 556 comparison-ready company through the visible snapshot importer.",
+    "Captured ordinary, 50% two-skill, and 75% two-skill designs; observed 9.9, 19.8, and 39.6 CUw, three Ready admissions, and disabled capture at three drafts.",
+    "Compared document ranges 30.23\u201330.68, 30.23\u201330.68, and 39.65; coding ranges 19.77\u201320.23, 24.17, and 36.25; all designs retain identical conversation/reliability estimates.",
+    "Observed primary-source exclusion and the document replay source excluded from coding replay choices, including its other revision.",
+    "Export after planning was byte-identical to the imported comparison-ready save.",
+    "Captured a complete 75% curriculum, switched to ordinary training, used the captured design, and verified both-track mode, 75% budget, and 39.6 CUw restored without starting training.",
+    "Explicit Start training queued exactly one matching project; comparison readiness changed to Blocked with A matching candidate is already queued.",
+    "Reload preserved the queued curriculum command and cleared the temporary comparison drafts.",
+    "Paid work reached 8 of 39.6 CUw; pause applied at Week 558; export/reload/export preserved the complete paused save byte-for-byte.",
+    "Explicit resume completed39.6 CUw at Week 562, including an ordinary paid 50% checkpoint.",
+    "Separately funded Expanded capabilities evaluation completed at Week 563; the UI showed 62 of 100 held-out cases and the frozen two-track curriculum receipt.",
+    "The trained model shows conversation 50.01, documents 39.65, coding 36.25, tools 20.73, and reliability 89. Policy holdout evidence remains separately required.",
+    "All existing public deployments and all original batch jobs remain unchanged.",
+    "The original Week 0 preview lab was restored through the visible importer and exported byte-for-byte identically."
+  ],
+  "snapshotEvidence": {
+    "original": {
+      "week": 0,
+      "checksum": "59920937",
+      "bytes": 41803,
+      "sha256": "11281914348b2962a869f3aadf47307a4fc5820a278c51d2a2515319fb2e709c"
+    },
+    "comparisonReady": {
+      "week": 556,
+      "checksum": "179d706e",
+      "bytes": 1502248,
+      "sha256": "f5360bb94072753003fb03d6d537d9447c2e75f61acf9162a77c7671f0df368c"
+    },
+    "afterPlanning": {
+      "week": 556,
+      "checksum": "179d706e",
+      "bytes": 1502248,
+      "sha256": "f5360bb94072753003fb03d6d537d9447c2e75f61acf9162a77c7671f0df368c"
+    },
+    "queued": {
+      "week": 556,
+      "checksum": "eddeaf07",
+      "bytes": 1502879,
+      "sha256": "c899d8645982be2de5b113c526e59f13032ae474f47755faf3b72515bee4f077"
+    },
+    "paused": {
+      "week": 558,
+      "checksum": "9a2a0e57",
+      "bytes": 1505979,
+      "sha256": "0ebd5c3da21a3bcc901e2830eef254b3843597d1f258155b6474be5400c48d35"
+    },
+    "pausedReloaded": {
+      "week": 558,
+      "checksum": "9a2a0e57",
+      "bytes": 1505979,
+      "sha256": "0ebd5c3da21a3bcc901e2830eef254b3843597d1f258155b6474be5400c48d35"
+    },
+    "evaluated": {
+      "week": 563,
+      "checksum": "08e3d6af",
+      "bytes": 1535754,
+      "sha256": "cb12dc052a8eec2bab0fdc4da4ef14556f2fc1c9e44891d9eed062277a709352"
+    },
+    "restored": {
+      "week": 0,
+      "checksum": "59920937",
+      "bytes": 41803,
+      "sha256": "11281914348b2962a869f3aadf47307a4fc5820a278c51d2a2515319fb2e709c"
+    }
+  },
+  "training": {
+    "id": "training-command-3174",
+    "companyId": "company-player",
+    "baseModelId": "model-wave15-natural-command-9",
+    "packetId": "curated-wave17-natural-command-4",
+    "outputModelId": "model-command-3174",
+    "recipeId": "compact-conversation-adaptation",
+    "startedWeek": 557,
+    "requiredWork": 39600000000,
+    "completedWork": 39600000000,
+    "physicalWork": 22000000003,
+    "requiredMemory": 4000000000,
+    "status": "complete",
+    "checkpointWork": 39600000000,
+    "checkpointModelId": "model-command-3174",
+    "checkpointModelIds": [
+      "checkpoint-training-command-3174",
+      "model-command-3174"
+    ],
+    "anchorScores": {
+      "conversation": 4000,
+      "documents": 3000,
+      "coding": 2000,
+      "tools": 2000
+    },
+    "anchorReliabilityBps": 7000,
+    "evidence": {
+      "id": "curated-wave17-natural-command-4",
+      "name": "Conversation specialist pack \u00b7 curated r1",
+      "companyId": "company-player",
+      "catalogId": "specialist-conversation-1",
+      "sourceIds": [
+        "specialist-conversation-1"
+      ],
+      "purchaseFactId": "data-purchase-wave17-natural-command-2",
+      "purchasedWeek": 554,
+      "revision": 1,
+      "rawUnits": 120,
+      "readyUnits": 120,
+      "qualityBps": 9500,
+      "coverageBps": {
+        "conversation": 10000,
+        "documents": 2000,
+        "coding": 2000,
+        "tools": 2000
+      },
+      "rights": {
+        "hosted": true,
+        "weights": true,
+        "feedback": false
+      },
+      "behaviorUnits": 100,
+      "broadUnits": 0,
+      "prepared": true,
+      "parentPacketId": "data-company-player-specialist-conversation-1"
+    },
+    "plan": {
+      "recipeName": "Conversation adaptation",
+      "kind": "adaptation",
+      "profile": "stable",
+      "profileApplied": true,
+      "family": "compact",
+      "architecture": "dense",
+      "residentMU": 2000000000,
+      "lineageId": "seed-0",
+      "identity": "training-curriculum-b2b6660c",
+      "corpus": {
+        "sourceIds": [
+          "specialist-conversation-1"
+        ],
+        "packetIds": [
+          "curated-wave17-natural-command-4"
+        ],
+        "distinctUnits": 120,
+        "broadUnits": 0,
+        "relevantUnits": {
+          "conversation": 120000000000,
+          "documents": 24000000000,
+          "coding": 24000000000,
+          "tools": 24000000000
+        },
+        "qualityBps": {
+          "conversation": 9500,
+          "documents": 9500,
+          "coding": 9500,
+          "tools": 9500
+        },
+        "behaviorUnits": 100,
+        "behaviorQualityBps": 9500,
+        "rights": {
+          "hosted": true,
+          "weights": true,
+          "feedback": false
+        },
+        "fingerprint": "corpus-9c1d9456"
+      },
+      "targets": {
+        "conversation": 5000,
+        "documents": 3200,
+        "coding": 2000,
+        "tools": 2400
+      },
+      "ceilings": {
+        "conversation": 7000,
+        "documents": 6500,
+        "coding": 6500,
+        "tools": 6000
+      },
+      "savedAdjustments": {
+        "conversation": 54,
+        "documents": 50,
+        "coding": 16,
+        "tools": -78
+      },
+      "requiredEvidence": 100000000000,
+      "reliabilityTargetBps": 9000,
+      "behaviorAnchor": {
+        "confidentErrorBps": 1000,
+        "falseRefusalBps": 700
+      },
+      "behaviorTarget": {
+        "confidentErrorBps": 550,
+        "falseRefusalBps": 385
+      },
+      "preparationRequired": 0,
+      "checkpointOverheadRequired": 0,
+      "checkpoints": [
+        {
+          "atBps": 5000,
+          "overheadWork": 0
+        },
+        {
+          "atBps": 10000,
+          "overheadWork": 0
+        }
+      ],
+      "methods": [
+        "R4",
+        "R4C"
+      ],
+      "curriculum": {
+        "shareBps": 7500,
+        "baseModelId": "model-wave15-natural-command-9",
+        "baseModelFingerprint": "33775861",
+        "baselineReportId": "report-evaluation-wave15-natural-command-10",
+        "ordinaryIdentity": "training-identity-c06cdcf3",
+        "nominalFocusWorkCUw": 9900000000,
+        "focusWorkCUw": 9900000000,
+        "nominalReplayWorkCUw": 29700000000,
+        "replayWorkCUw": 29700000000,
+        "tracks": [
+          {
+            "domain": "coding",
+            "shareBps": 3750,
+            "baselineScoreBps": 5089,
+            "corpus": {
+              "sourceIds": [
+                "specialist-coding-1"
+              ],
+              "packetIds": [
+                "curated-natural-business-command-54"
+              ],
+              "distinctUnits": 120,
+              "broadUnits": 0,
+              "relevantUnits": {
+                "conversation": 24000000000,
+                "documents": 24000000000,
+                "coding": 120000000000,
+                "tools": 24000000000
+              },
+              "qualityBps": {
+                "conversation": 9500,
+                "documents": 9500,
+                "coding": 9500,
+                "tools": 9500
+              },
+              "behaviorUnits": 100,
+              "behaviorQualityBps": 9500,
+              "rights": {
+                "hosted": true,
+                "weights": true,
+                "feedback": false
+              },
+              "fingerprint": "corpus-35dfb5d1"
+            },
+            "requiredEvidence": 100000000000,
+            "coverageBps": 10000,
+            "qualityBps": 9500,
+            "retentionBps": 7125,
+            "preservationFloorBps": 3625,
+            "nominalReplayWorkCUw": 14850000000,
+            "replayWorkCUw": 14850000000
+          },
+          {
+            "domain": "documents",
+            "shareBps": 3750,
+            "baselineScoreBps": 5566,
+            "corpus": {
+              "sourceIds": [
+                "specialist-documents-1"
+              ],
+              "packetIds": [
+                "curated-natural-business-command-111"
+              ],
+              "distinctUnits": 120,
+              "broadUnits": 0,
+              "relevantUnits": {
+                "conversation": 24000000000,
+                "documents": 120000000000,
+                "coding": 24000000000,
+                "tools": 24000000000
+              },
+              "qualityBps": {
+                "conversation": 9500,
+                "documents": 9500,
+                "coding": 9500,
+                "tools": 9500
+              },
+              "behaviorUnits": 100,
+              "behaviorQualityBps": 9500,
+              "rights": {
+                "hosted": true,
+                "weights": true,
+                "feedback": false
+              },
+              "fingerprint": "corpus-d81e6bcf"
+            },
+            "requiredEvidence": 100000000000,
+            "coverageBps": 10000,
+            "qualityBps": 9500,
+            "retentionBps": 7125,
+            "preservationFloorBps": 3965,
+            "nominalReplayWorkCUw": 14850000000,
+            "replayWorkCUw": 14850000000
+          }
+        ]
+      },
+      "inheritedPolicy": {
+        "protocol": "policy-boundaries-v1",
+        "baselineUnsafeComplianceBps": 1200,
+        "currentUnsafeComplianceBps": 660
+      },
+      "foundationAnchor": {
+        "conversation": 4000,
+        "documents": 3000,
+        "coding": 2000,
+        "tools": 2000
+      }
+    },
+    "preparationCompleted": 0,
+    "checkpointOverheadCompleted": 0,
+    "lastProgress": 7600000000,
+    "lastBottleneck": "",
+    "completedWeek": 562
+  },
+  "candidate": {
+    "id": "model-command-3174",
+    "name": "Conversation 21",
+    "companyId": "company-player",
+    "family": "compact",
+    "architecture": "dense",
+    "status": "evaluated",
+    "capabilityBps": {
+      "conversation": 5001,
+      "documents": 3965,
+      "coding": 3625,
+      "tools": 2073
+    },
+    "reliabilityBps": 8900,
+    "behavior": {
+      "confidentErrorBps": 550,
+      "falseRefusalBps": 385
+    },
+    "policy": {
+      "protocol": "policy-boundaries-v1",
+      "baselineUnsafeComplianceBps": 1200,
+      "currentUnsafeComplianceBps": 660
+    },
+    "residentMU": 2000000000,
+    "source": "Conversation adaptation: 39.6 of 39.6 useful CUw. Evaluation is separate.",
+    "parentModelId": "model-wave15-natural-command-9",
+    "trainingRunId": "training-command-3174",
+    "trainingEvidenceId": "curriculum-evidence-ee73fd1e",
+    "createdWeek": 562,
+    "foundationAnchor": {
+      "conversation": 4000,
+      "documents": 3000,
+      "coding": 2000,
+      "tools": 2000
+    },
+    "evaluationReportId": "report-evaluation-command-3205"
+  },
+  "capabilityReport": {
+    "id": "report-evaluation-command-3205",
+    "companyId": "company-player",
+    "modelId": "model-command-3174",
+    "week": 563,
+    "heldOut": true,
+    "suiteId": "expanded-capabilities-1",
+    "capabilityBps": {
+      "conversation": 5001,
+      "documents": 3965,
+      "coding": 3625,
+      "tools": 2073
+    },
+    "reliabilityBps": 8900,
+    "cases": [
+      {
+        "id": "expanded-capabilities-1:case-01",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-02",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-03",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-04",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-05",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-06",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-07",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-08",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-09",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-10",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-11",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-12",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-13",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-14",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-15",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-16",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-17",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-18",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-19",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-20",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-21",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-22",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-23",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-24",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-25",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-26",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-27",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-28",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-29",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-30",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-31",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-32",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-33",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-34",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-35",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-36",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-37",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-38",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-39",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-40",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-41",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-42",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-43",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-44",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-45",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-46",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-47",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-48",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-49",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-50",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-51",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-52",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-53",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-54",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-55",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-56",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-57",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-58",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-59",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-60",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-61",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-62",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-63",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-64",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-65",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-66",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-67",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-68",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-69",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-70",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-71",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-72",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-73",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-74",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-75",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-76",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-77",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-78",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-79",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-80",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-81",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-82",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-83",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-84",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-85",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-86",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-87",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-88",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-89",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-90",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-91",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-92",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-93",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-94",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-95",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-96",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-97",
+        "domain": "conversation",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-98",
+        "domain": "documents",
+        "difficultyBps": 2000,
+        "passed": true
+      },
+      {
+        "id": "expanded-capabilities-1:case-99",
+        "domain": "coding",
+        "difficultyBps": 2000,
+        "passed": false
+      },
+      {
+        "id": "expanded-capabilities-1:case-100",
+        "domain": "tools",
+        "difficultyBps": 2000,
+        "passed": true
+      }
+    ],
+    "passedCases": 62,
+    "basicChatEligible": true
+  },
+  "screenshots": [
+    "../images/wave17-training-comparison.png",
+    "../images/wave17-curriculum-result.png"
+  ],
+  "verificationBoundary": "The gameplay checks were performed in the managed local preview. Production publication is verified separately by the native Sites deployment result; authenticated production gameplay was not repeated.",
+  "environmentNote": "The browser driver intermittently timed out after successful actions; visible state was inspected before continuing. One preview/browser restart was recovered from the persisted save. No application source change was made to compensate."
+}

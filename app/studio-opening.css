@@ -1,0 +1,20 @@
+.studio-opening-guide .studio-opening-kicker { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
+.studio-opening-clock { font-size: 11px; color: var(--fl-muted); }
+.studio-opening-guide .studio-next-icon { margin-bottom: 14px; }
+.studio-opening-status { display: inline-flex; padding: 4px 9px; border-radius: 20px; font-size: 10px; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; background: var(--fl-raised); color: var(--fl-text); margin-bottom: 8px; }
+.studio-opening-status.journey-blocked, .studio-opening-status.journey-rejected, .studio-opening-status.journey-unavailable { background: var(--fl-danger-tint); color: var(--fl-danger); }
+.studio-opening-status.journey-complete, .studio-opening-status.journey-ready { background: var(--fl-success-tint); color: var(--fl-success); }
+.studio-opening-progress { display: flex; align-items: center; gap: 10px; margin: 0 0 16px; font-size: 11px; font-weight: 700; }
+.studio-opening-progress progress { min-width: 0; width: 100%; height: 6px; accent-color: var(--fl-accent); }
+.studio-opening-choice { display: grid; gap: 7px; margin: 0 0 16px; color: var(--fl-text); font-size: 11px; font-weight: 700; }
+.studio-opening-choice select { min-width: 0; width: 100%; min-height: 44px; border: 1px solid var(--fl-control-border); border-radius: 8px; background: var(--fl-panel); padding: 8px 10px; color: var(--fl-text); font: inherit; font-size: 12px; }
+.studio-opening-secondary { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; width: 100%; margin-top: 8px; padding: 9px 12px; border: 1px solid var(--fl-line); border-radius: 8px; background: transparent; color: var(--fl-text); font-size: 11px; font-weight: 700; text-align: left; }
+.studio-opening-milestone { display: flex; gap: 9px; align-items: center; min-height: 40px; color: var(--fl-muted); font-size: 11px; }
+.studio-opening-milestone > span:nth-child(2) { flex: 1; }
+.is-done .studio-opening-milestone { color: var(--fl-success); }
+.studio-opening-guide :is(button, select):focus-visible { outline: 3px solid var(--fl-accent); outline-offset: 3px; }
+.studio-task-footer-return { margin-right: auto; }
+@media (max-width: 600px) {
+  .studio-opening-guide .studio-opening-kicker { align-items: flex-start; }
+  .studio-task-footer-return { margin-right: 0; }
+}

@@ -1,0 +1,8 @@
+{
+  "result": "passed",
+  "tests": 101,
+  "failed": 0,
+  "command": "node scripts/test-wave0.mjs wave30-task-state wave30-submission wave29-browser-task clock wave30b-task-state wave30b-journey wave30c-results wave29-persistence-cache wave30c-results-persistence wave30d-navigation",
+  "scope": "Task ownership, acknowledgements, exact intents, retained drafts, atomic deferred operations, clock, Results, navigation and save persistence.",
+  "source_scope": "No files changed under src/core, src/modules, src/contracts or src/persistence."
+}

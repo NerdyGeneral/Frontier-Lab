@@ -1,0 +1,107 @@
+{
+  "sourceWeek": 449,
+  "sourceHash": "d2bbbbe0",
+  "sourceBytes": 1915778,
+  "maximumSnapshotBytes": 2000000,
+  "commands": [
+    {
+      "week": 449,
+      "id": "wave12-save-limit-command-1",
+      "payload": {
+        "kind": "install_runtime_guardrail",
+        "productId": "product:natural-business-command-67",
+        "profile": "balanced"
+      }
+    },
+    {
+      "week": 452,
+      "id": "wave12-save-limit-command-2",
+      "payload": {
+        "kind": "install_runtime_guardrail",
+        "productId": "product:natural-business-command-67",
+        "profile": "strict"
+      }
+    },
+    {
+      "week": 455,
+      "id": "wave12-save-limit-command-3",
+      "payload": {
+        "kind": "install_runtime_guardrail",
+        "productId": "product:natural-business-command-67",
+        "profile": "balanced"
+      }
+    },
+    {
+      "week": 458,
+      "id": "wave12-save-limit-command-4",
+      "payload": {
+        "kind": "install_runtime_guardrail",
+        "productId": "product:natural-business-command-67",
+        "profile": "strict"
+      }
+    },
+    {
+      "week": 461,
+      "id": "wave12-save-limit-command-5",
+      "payload": {
+        "kind": "install_runtime_guardrail",
+        "productId": "product:natural-business-command-67",
+        "profile": "balanced"
+      }
+    }
+  ],
+  "observations": [
+    {
+      "week": 452,
+      "installations": 4,
+      "hash": "2861aa30",
+      "prettyBytes": 1962537,
+      "compactBytes": 1106954,
+      "savedBytes": 1962537,
+      "compacted": false
+    },
+    {
+      "week": 455,
+      "installations": 5,
+      "hash": "e301ba8f",
+      "prettyBytes": 2011019,
+      "compactBytes": 1133180,
+      "savedBytes": 1133180,
+      "compacted": true
+    },
+    {
+      "week": 458,
+      "installations": 6,
+      "hash": "212715a7",
+      "prettyBytes": 2062535,
+      "compactBytes": 1161191,
+      "savedBytes": 1161191,
+      "compacted": true
+    },
+    {
+      "week": 461,
+      "installations": 7,
+      "hash": "741ddca9",
+      "prettyBytes": 2108563,
+      "compactBytes": 1186052,
+      "savedBytes": 1186052,
+      "compacted": true
+    },
+    {
+      "week": 464,
+      "installations": 8,
+      "hash": "27816ebd",
+      "prettyBytes": 2154904,
+      "compactBytes": 1211334,
+      "savedBytes": 1211334,
+      "compacted": true
+    }
+  ],
+  "assertions": [
+    "Only ordinary paid alternating-profile rollouts extend the earned company to its eight-installation history cap",
+    "Existing pretty saves retain identical bytes; legal larger histories compact without losing any evidence",
+    "Every compact save reopens and reserializes byte-for-byte within the unchanged two-megabyte UTF-8 limit",
+    "Browser writes archive the exact prior original before storing compact current history",
+    "Truly oversized UTF-8 histories remain rejected and cannot replace the last usable save"
+  ]
+}

@@ -1,0 +1,2066 @@
+{
+  "schemaVersion": 1,
+  "wave": 29,
+  "buildVersion": "0.29.0",
+  "contentVersion": "0.28.0",
+  "generatedAt": "2026-11-09T21:06:42.980988+00:00",
+  "status": "focused-verification-complete",
+  "methodology": {
+    "identity": "Test source path plus exact registered test title. Literal titles are extracted from TypeScript/TSX source using the TypeScript parser, then matched to each successful spec-reporter line.",
+    "counting": "Select complete final passing logs for persistence, UI, task/clock and engine/planning. From the mixed core log, select only its 33 passing tests/wave0.test.ts identities; exclude 18 successful Wave25/Wave29 duplicates covered by the final clean log and exclude its stale W25-P10 failure. Each source/title counts once. Native browser assertions, typecheck, lint, build stages and parity measurements remain separate.",
+    "mixedLogException": "The original mixed core run reported 51 passes and one failure. The 33 passing Wave0 identities are retained as valid evidence. W25-P10 is resolved by the final 19/19 engine/planning run; a new Wave0 run solely for a cleaner log was intentionally not requested.",
+    "scope": "Focused Wave29 verification and selected compatibility checks; not a whole-repository test run."
+  },
+  "totals": {
+    "evidenceLogs": 5,
+    "rawPassingOccurrencesInEvidenceLogs": 167,
+    "excludedDuplicatePassingOccurrences": 18,
+    "selectedPassingOccurrences": 149,
+    "distinctPassingTests": 149,
+    "wave29NewTests": 31,
+    "existingCompatibilityTests": 118,
+    "testSourceFiles": 10,
+    "selectedFailedChecks": 0,
+    "sourceLogFailures": 1,
+    "resolvedSourceLogFailures": 1,
+    "selectedSkipped": 0,
+    "selectedCancelled": 0
+  },
+  "evidenceLogs": [
+    {
+      "file": "docs/evidence/wave29-persistence-checks.txt",
+      "sha256": "6049315d40e7a1b12610154ba7d9285ceaf85e260938179aacc8483b2a9a2f44",
+      "rawSummary": {
+        "tests": 75,
+        "suites": 0,
+        "passed": 75,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "selection": {
+        "mode": "all-tests"
+      },
+      "selectedPassingChecks": 75,
+      "selectedFailedChecks": 0,
+      "testSources": [
+        "tests/wave1-persistence.test.ts",
+        "tests/wave28-migration.test.ts",
+        "tests/wave28-recovery.test.ts",
+        "tests/wave29-persistence-cache.test.ts"
+      ],
+      "testIdentities": [
+        "tests/wave1-persistence.test.ts::browser adapter writes and reads a current save without creating recovery copies",
+        "tests/wave1-persistence.test.ts::first legacy write archives the untouched v1 bytes before updating the primary snapshot",
+        "tests/wave1-persistence.test.ts::an existing original v1 copy is retained across later upgraded writes",
+        "tests/wave1-persistence.test.ts::first Wave 1 upgrade archives its exact bytes separately from the Wave 0 original",
+        "tests/wave1-persistence.test.ts::the first Wave 1 recovery remains unchanged across subsequent migrated writes",
+        "tests/wave1-persistence.test.ts::a failed Wave 1 archive prevents the primary from being replaced",
+        "tests/wave1-persistence.test.ts::a failed current primary write leaves the Wave 1 save and successful archive recoverable",
+        "tests/wave1-persistence.test.ts::first Wave 2 upgrade archives exact v3 bytes independently of earlier originals",
+        "tests/wave1-persistence.test.ts::the first Wave 2 recovery remains untouched across later migrated writes",
+        "tests/wave1-persistence.test.ts::a failed Wave 2 archive prevents any primary replacement",
+        "tests/wave1-persistence.test.ts::a failed Wave 3 primary write retains the Wave 2 save and successful exact archive",
+        "tests/wave1-persistence.test.ts::first Wave 3 upgrade archives exact v4 bytes before the Wave 4 primary write",
+        "tests/wave1-persistence.test.ts::the first Wave 3 recovery remains untouched across subsequent upgraded saves",
+        "tests/wave1-persistence.test.ts::a failed Wave 3 recovery archive leaves the v4 primary untouched",
+        "tests/wave1-persistence.test.ts::a failed Wave 4 primary write retains the exact Wave 3 save and successful archive",
+        "tests/wave1-persistence.test.ts::Wave 4 content upgrade archives exact schema5 bytes before replacing the primary",
+        "tests/wave1-persistence.test.ts::Wave 4 recovery is never overwritten, including a later content upgrade",
+        "tests/wave1-persistence.test.ts::failed Wave 4 backup blocks replacement and a failed primary write retains the original and archive",
+        "tests/wave1-persistence.test.ts::Wave 5 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+        "tests/wave1-persistence.test.ts::Wave 5 original bytes are never overwritten by later saves",
+        "tests/wave1-persistence.test.ts::failed Wave 5 backup blocks replacement; failed primary writes retain both original and archive",
+        "tests/wave1-persistence.test.ts::Wave 6 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+        "tests/wave1-persistence.test.ts::Wave 6 original bytes are never overwritten by later saves",
+        "tests/wave1-persistence.test.ts::failed Wave 6 backup blocks replacement; failed primary writes retain both original and archive",
+        "tests/wave1-persistence.test.ts::Wave 7 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+        "tests/wave1-persistence.test.ts::Wave 7 original bytes are never overwritten by later saves",
+        "tests/wave1-persistence.test.ts::failed Wave 7 backup blocks replacement; failed primary writes retain both original and archive",
+        "tests/wave1-persistence.test.ts::Wave 8 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+        "tests/wave1-persistence.test.ts::Wave 8 original bytes are never overwritten by later saves",
+        "tests/wave1-persistence.test.ts::failed Wave 8 backup blocks replacement; failed primary writes retain both original and archive",
+        "tests/wave1-persistence.test.ts::Wave 9 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+        "tests/wave1-persistence.test.ts::Wave 9 original bytes are never overwritten by later saves",
+        "tests/wave1-persistence.test.ts::failed Wave 9 backup blocks replacement; failed primary writes retain both original and archive",
+        "tests/wave1-persistence.test.ts::Wave 10 upgrade archives exact mid-review bytes before replacing the primary and retains older recovery copies",
+        "tests/wave1-persistence.test.ts::Wave 10 original bytes are never overwritten by later saves",
+        "tests/wave1-persistence.test.ts::failed Wave 10 backup blocks replacement; failed primary writes retain both original and archive",
+        "tests/wave1-persistence.test.ts::Wave 11 upgrade archives exact mid-policy-training bytes before replacing the primary and retains older recovery copies",
+        "tests/wave1-persistence.test.ts::Wave 11 original bytes are never overwritten by later saves",
+        "tests/wave1-persistence.test.ts::failed Wave 11 backup blocks replacement; failed primary writes retain both original and archive",
+        "tests/wave1-persistence.test.ts::Wave 12 upgrade archives exact mid-guardrail-rollout bytes before replacing the primary and retains older recovery copies",
+        "tests/wave1-persistence.test.ts::Wave 12 original bytes are never overwritten by later saves",
+        "tests/wave1-persistence.test.ts::failed Wave 12 backup blocks replacement; failed primary writes retain both original and archive",
+        "tests/wave1-persistence.test.ts::Wave 13 upgrade archives exact active-assurance-term bytes before replacing the primary and retains older recovery copies",
+        "tests/wave1-persistence.test.ts::Wave 13 original bytes are never overwritten by later saves",
+        "tests/wave1-persistence.test.ts::failed Wave 13 backup blocks replacement; failed primary writes retain both original and archive",
+        "tests/wave1-persistence.test.ts::Wave 14 upgrade archives exact active-batch bytes before replacing the primary and retains older recovery copies",
+        "tests/wave1-persistence.test.ts::Wave 14 original bytes are never overwritten by later saves",
+        "tests/wave1-persistence.test.ts::failed Wave 14 backup blocks replacement; failed primary writes retain both original and archive",
+        "tests/wave1-persistence.test.ts::empty, corrupt and unknown-version stored bytes block automatic replacement and remain exportable",
+        "tests/wave1-persistence.test.ts::confirmed replacement keeps the previous raw save before installing the new run",
+        "tests/wave1-persistence.test.ts::failed migration backup leaves the legacy primary untouched",
+        "tests/wave1-persistence.test.ts::failed primary write preserves both the legacy primary and its successful backup",
+        "tests/wave1-persistence.test.ts::failed replacement backup prevents the new run from overwriting the current snapshot",
+        "tests/wave1-persistence.test.ts::unavailable storage and invalid live states fail without promising a saved run",
+        "tests/wave1-persistence.test.ts::UTF-8 snapshot limits match import and prevent an oversized autosave from replacing the usable run",
+        "tests/wave28-migration.test.ts::W28-M01: S5/S6 are paid discoveries with no free profile or successor at company creation",
+        "tests/wave28-migration.test.ts::W28-M02: both published release paths preserve every paid receipt and queued command during migration",
+        "tests/wave28-migration.test.ts::W28-M03: first browser write archives exact 0.27 bytes and aborts if recovery cannot be saved",
+        "tests/wave28-migration.test.ts::W28-M04: historical headers cannot smuggle Campus commands, profile proof or successor targets",
+        "tests/wave28-migration.test.ts::W28-M05: unadopted companies and restored saves continue identically through three ordinary weeks",
+        "tests/wave28-recovery.test.ts::W28-R01: packed recovery returns exact Unicode, whitespace and even unpaired code units",
+        "tests/wave28-recovery.test.ts::W28-R02: ordinary storage keeps the original raw archive and primary path unchanged",
+        "tests/wave28-recovery.test.ts::W28-R03: a real storage quota falls back only for the new archive before the raw primary write",
+        "tests/wave28-recovery.test.ts::W28-R04: generic quota wording and other storage errors never trigger archive compression",
+        "tests/wave28-recovery.test.ts::W28-R05: insufficient room for even the packed archive preserves every existing key and primary",
+        "tests/wave28-recovery.test.ts::W28-R06: a failed primary write retains both its original raw bytes and a completed packed recovery",
+        "tests/wave28-recovery.test.ts::W28-R07: explicit replacement can pack its new previous-run archive without changing older copies",
+        "tests/wave28-recovery.test.ts::W28-R08: malformed packed archives fail actionably without rewriting or hiding the stored primary",
+        "tests/wave29-persistence-cache.test.ts::W29-P01: a validated read primes ordinary saves, while reads still return independent fully parsed states",
+        "tests/wave29-persistence-cache.test.ts::W29-P02: successful writes prime only prior bytes and never exempt even the same supplied GameState from validation",
+        "tests/wave29-persistence-cache.test.ts::W29-P03: changed exact bytes invalidate the cache even with the same checksum/revision; corrupt primaries remain protected until confirmed replacement",
+        "tests/wave29-persistence-cache.test.ts::W29-P04: storage instances are isolated, only the latest primary is retained, and observed emptiness clears cached metadata",
+        "tests/wave29-persistence-cache.test.ts::W29-P05: failed primary writes do not prime proposed bytes and cache hits still require working access to actual storage",
+        "tests/wave29-persistence-cache.test.ts::W29-P06: cached migrated reads retain archive-before-primary ordering through archive failures and never prime an unsuccessful proposal",
+        "tests/wave29-persistence-cache.test.ts::W29-P07: cache hits preserve replacement confirmation, failed backups and quota-compressed exact recovery without evicting other saves"
+      ],
+      "excludedDuplicatePassingChecks": []
+    },
+    {
+      "file": "docs/evidence/wave29-ui-checks.txt",
+      "sha256": "b718809800b8a5f2914577b721c1d9c20e75079aa3c45adc6ac379bbfa0d2888",
+      "rawSummary": {
+        "tests": 8,
+        "suites": 0,
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "selection": {
+        "mode": "all-tests"
+      },
+      "selectedPassingChecks": 8,
+      "selectedFailedChecks": 0,
+      "testSources": [
+        "tests/wave29-workbench-ui.test.tsx"
+      ],
+      "testIdentities": [
+        "tests/wave29-workbench-ui.test.tsx::W29-U01: unvisited Studio workbenches do not execute heavy children or add DOM wrappers",
+        "tests/wave29-workbench-ui.test.tsx::W29-U02: the selected real Data panel retains its direct-child section, quote and current state",
+        "tests/wave29-workbench-ui.test.tsx::W29-U03: Classic renders every legacy section once and excludes Studio-only duplicate workbenches",
+        "tests/wave29-workbench-ui.test.tsx::W29-U04: standalone selection renders one workbench with the props supplied for that render",
+        "tests/wave29-workbench-ui.test.tsx::W29-U05: the actual initial Studio Shell defers legacy, planner and research preview work",
+        "tests/wave29-workbench-ui.test.tsx::W29-U06: pending Shell feedback stays outside the inspector and disables every clock action",
+        "tests/wave29-workbench-ui.test.tsx::W29-U07: action buttons describe the unique accepted, blocked, incomplete and queued quote in one render",
+        "tests/wave29-workbench-ui.test.tsx::W29-U08: memo policy skips hidden prop churn but allows active changes and epoch replacement"
+      ],
+      "excludedDuplicatePassingChecks": []
+    },
+    {
+      "file": "docs/evidence/wave29-task-clock-checks.txt",
+      "sha256": "725f7dee74aec9ac3c5b08ba9b0a63a10e57672f76a097e152b4b3105f6a1228",
+      "rawSummary": {
+        "tests": 14,
+        "suites": 0,
+        "passed": 14,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "selection": {
+        "mode": "all-tests"
+      },
+      "selectedPassingChecks": 14,
+      "selectedFailedChecks": 0,
+      "testSources": [
+        "tests/clock.test.ts",
+        "tests/wave29-browser-task.test.ts"
+      ],
+      "testIdentities": [
+        "tests/clock.test.ts::W0-T01: clock starts paused and ten active seconds advance one week at 1x",
+        "tests/clock.test.ts::W0-T02: supported speeds change active-time rate without changing week size",
+        "tests/clock.test.ts::W0-T03: hidden time pauses rather than catching up or resuming itself",
+        "tests/clock.test.ts::W0-T04: long scheduler suspension is discarded instead of creating overdue weeks",
+        "tests/clock.test.ts::W0-T05: a speed change does not retroactively bill prior wall-clock time",
+        "tests/clock.test.ts::W0-T06: a pause inside the callback prevents later automatic steps",
+        "tests/clock.test.ts::W0-T07: reset and disposal discard elapsed timing state",
+        "tests/wave29-browser-task.test.ts::W29-B01: rapid repeated activation admits one deferred operation",
+        "tests/wave29-browser-task.test.ts::W29-B02: hidden-page cancellation prevents an old callback from changing a later run",
+        "tests/wave29-browser-task.test.ts::W29-B03: an executing step stays atomic and rejects reentrant work",
+        "tests/wave29-browser-task.test.ts::W29-B04: failed work releases the admission guard for an explicit retry",
+        "tests/wave29-browser-task.test.ts::W29-B05: scheduler failure cannot leave the UI permanently busy",
+        "tests/wave29-browser-task.test.ts::W29-B06: work waits for both a frame and a later browser task, and either stage cancels",
+        "tests/wave29-browser-task.test.ts::W29-B07: deferred non-week work preserves partial clock progress without counting its wall time"
+      ],
+      "excludedDuplicatePassingChecks": []
+    },
+    {
+      "file": "docs/evidence/wave29-engine-planning-tests.log",
+      "sha256": "66e4ace5674dd38dcf04dc569321ae749e3ab992e82ee696a62551e2fe81475e",
+      "rawSummary": {
+        "tests": 19,
+        "suites": 0,
+        "passed": 19,
+        "failed": 0,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "selection": {
+        "mode": "all-tests"
+      },
+      "selectedPassingChecks": 19,
+      "selectedFailedChecks": 0,
+      "testSources": [
+        "tests/wave25-planning.test.ts",
+        "tests/wave29-engine.test.ts"
+      ],
+      "testIdentities": [
+        "tests/wave25-planning.test.ts::W25-P01: a real first-sale company fixes assigned ML capacity while preserving live service",
+        "tests/wave25-planning.test.ts::W25-P02: disconnected pools explain a memory-stranded job despite enough aggregate memory",
+        "tests/wave25-planning.test.ts::W25-P03: repeated previews are pure and exact boundary cash, grants and reload continuation agree",
+        "tests/wave25-planning.test.ts::W25-P04: invalid combined plans never leave partial hires, assignments, cash or queue changes",
+        "tests/wave25-planning.test.ts::W25-P05: commit revalidation rolls the complete group back when an earlier queued product resume changes memory needs",
+        "tests/wave25-planning.test.ts::W25-P06: capacity growth and shrink use existing validators in a valid atomic order",
+        "tests/wave25-planning.test.ts::W25-P07: queued staffing decisions and stale reviews cannot be overwritten or duplicated",
+        "tests/wave25-planning.test.ts::W25-P08: shape bounds, complete fee reservations and omitted employee assignments stay authoritative",
+        "tests/wave25-planning.test.ts::W25-P09: actual onboarding boundaries and unpaid next-week bills remain visible",
+        "tests/wave25-planning.test.ts::W25-P10: old snapshots retain their schema and selector purity while planning remains available",
+        "tests/wave29-engine.test.ts::W29-E01: current cash and queued identity are revalidated after every public call, including a retained unaffordable quote",
+        "tests/wave29-engine.test.ts::W29-E02: a paid Studio transaction keeps its exact quote, one recruitment fee and reload continuation",
+        "tests/wave29-engine.test.ts::W29-E03: later handlers see replaced slices, commands, receipts, events and random draws from the same tick",
+        "tests/wave29-engine.test.ts::W29-E04: cached durable views and fresh coordinator/context fields reject attempted writes and preserve rollback identity",
+        "tests/wave29-engine.test.ts::W29-E05: both full validation boundaries still reject invalid caller state and invalid final module output",
+        "tests/wave29-engine.test.ts::W29-E06: a single authoritative commit quote still detects a mismatched charge and rolls back the whole week",
+        "tests/wave29-engine.test.ts::W29-E07: a failed later Studio child discards earlier hiring and fees while the ordinary week settles",
+        "tests/wave29-engine.test.ts::W29-E08: legacy extra Map, Set and Date fields retain per-handler copy isolation despite Object.freeze",
+        "tests/wave29-engine.test.ts::W29-E09: command validation cannot alter exotic fields seen by its quote or command application"
+      ],
+      "excludedDuplicatePassingChecks": []
+    },
+    {
+      "file": "docs/evidence/wave29-engine-initial-tests.log",
+      "sha256": "083d4fd17a4b2b7cc6820989189d8982718d164efdf9eacc1ee5274010db83fa",
+      "rawSummary": {
+        "tests": 52,
+        "suites": 0,
+        "passed": 51,
+        "failed": 1,
+        "skipped": 0,
+        "cancelled": 0,
+        "todo": 0
+      },
+      "selection": {
+        "mode": "source-filter",
+        "source": "tests/wave0.test.ts",
+        "reason": "These 33 existing checks passed in the mixed run. The unrelated stale W25-P10 expectation is resolved by the final clean engine/planning log; no cosmetic rerun is required."
+      },
+      "selectedPassingChecks": 33,
+      "selectedFailedChecks": 0,
+      "testSources": [
+        "tests/wave0.test.ts"
+      ],
+      "testIdentities": [
+        "tests/wave0.test.ts::W0-C01: opening catalog and initial state preserve the authored values",
+        "tests/wave0.test.ts::W0-C02: catalog has sixteen core programs, thirteen applied projects and four Studio discoveries",
+        "tests/wave0.test.ts::W0-C03: catalog validation rejects duplicate IDs, missing references and prerequisite cycles",
+        "tests/wave0.test.ts::W0-C04: content validation rejects negative prices and impossible opening allocation",
+        "tests/wave0.test.ts::W0-E01: one settled week charges $800 rental and $200 overhead with no invented work or revenue",
+        "tests/wave0.test.ts::W0-E02: ten weeks retain $38,000 before any hiring or revenue systems exist",
+        "tests/wave0.test.ts::W0-E03: a real shortfall records unpaid bills without negative cash and blocks optional commands",
+        "tests/wave0.test.ts::W0-E04: phase order is explicit and stable",
+        "tests/wave0.test.ts::W0-E05: a release scheduled by resolve is unavailable until the next weekly commit",
+        "tests/wave0.test.ts::W0-E06: delivery records inventory once without creating usable or rented capacity",
+        "tests/wave0.test.ts::W0-E07: duplicate economic facts settle once",
+        "tests/wave0.test.ts::W0-E08: forbidden cross-domain writes reject the entire tick",
+        "tests/wave0.test.ts::W0-E09: exceptions and direct snapshot mutation cannot partly commit a week",
+        "tests/wave0.test.ts::W0-E10: duplicate registrations and invalid economic facts fail atomically",
+        "tests/wave0.test.ts::W0-E11: an unsafe owned-slice update aborts before settlement can hide it",
+        "tests/wave0.test.ts::W0-E12: a scheduled model release must belong to the model owner",
+        "tests/wave0.test.ts::W0-E13: all reserve requests precede owner grants and execution sees the complete grants",
+        "tests/wave0.test.ts::W0-A01: a queued command applies at the next boundary rather than on submission",
+        "tests/wave0.test.ts::W0-A02: duplicate pending and committed command IDs never create a second action",
+        "tests/wave0.test.ts::W0-A03: allocations are capacity ceilings, preserve rental cost, and perform no fabricated work",
+        "tests/wave0.test.ts::W0-A04: invalid or overcommitted commands spend no resources and consume no IDs or draws",
+        "tests/wave0.test.ts::W0-A05: repeated forecasts and diagnostics are read-only",
+        "tests/wave0.test.ts::W0-A06: command admission rejects exhausted safe counters without changing state",
+        "tests/wave0.test.ts::W0-R01: a hundred-command replay produces identical intermediate and final state",
+        "tests/wave0.test.ts::W0-R02: named random streams replay, survive snapshots, and remain independent",
+        "tests/wave0.test.ts::W0-R03: module draws persist and replay only when their entire tick commits",
+        "tests/wave0.test.ts::W0-N01: work at token scale remains exact and safe",
+        "tests/wave0.test.ts::W0-N02: fractional operating amounts accumulate rather than vanishing each step",
+        "tests/wave0.test.ts::W0-N03: checked addition rejects unsafe operands even when the sum is safe",
+        "tests/wave0.test.ts::W0-S01: snapshot roundtrip preserves commands, schedules, draws, and the next exact week",
+        "tests/wave0.test.ts::W0-S02: bad JSON and a changed payload are rejected without replacing the current state",
+        "tests/wave0.test.ts::W0-S03: incompatible versions and unsafe or impossible state fail validation",
+        "tests/wave0.test.ts::W0-S04: imports reject malformed reports and incomplete model maps even with a matching checksum"
+      ],
+      "excludedDuplicatePassingChecks": [
+        "tests/wave25-planning.test.ts::W25-P01: a real first-sale company fixes assigned ML capacity while preserving live service",
+        "tests/wave25-planning.test.ts::W25-P02: disconnected pools explain a memory-stranded job despite enough aggregate memory",
+        "tests/wave25-planning.test.ts::W25-P03: repeated previews are pure and exact boundary cash, grants and reload continuation agree",
+        "tests/wave25-planning.test.ts::W25-P04: invalid combined plans never leave partial hires, assignments, cash or queue changes",
+        "tests/wave25-planning.test.ts::W25-P05: commit revalidation rolls the complete group back when an earlier queued product resume changes memory needs",
+        "tests/wave25-planning.test.ts::W25-P06: capacity growth and shrink use existing validators in a valid atomic order",
+        "tests/wave25-planning.test.ts::W25-P07: queued staffing decisions and stale reviews cannot be overwritten or duplicated",
+        "tests/wave25-planning.test.ts::W25-P08: shape bounds, complete fee reservations and omitted employee assignments stay authoritative",
+        "tests/wave25-planning.test.ts::W25-P09: actual onboarding boundaries and unpaid next-week bills remain visible",
+        "tests/wave29-engine.test.ts::W29-E01: current cash and queued identity are revalidated after every public call, including a retained unaffordable quote",
+        "tests/wave29-engine.test.ts::W29-E02: a paid Studio transaction keeps its exact quote, one recruitment fee and reload continuation",
+        "tests/wave29-engine.test.ts::W29-E03: later handlers see replaced slices, commands, receipts, events and random draws from the same tick",
+        "tests/wave29-engine.test.ts::W29-E04: cached durable views and fresh coordinator/context fields reject attempted writes and preserve rollback identity",
+        "tests/wave29-engine.test.ts::W29-E05: both full validation boundaries still reject invalid caller state and invalid final module output",
+        "tests/wave29-engine.test.ts::W29-E06: a single authoritative commit quote still detects a mismatched charge and rolls back the whole week",
+        "tests/wave29-engine.test.ts::W29-E07: a failed later Studio child discards earlier hiring and fees while the ordinary week settles",
+        "tests/wave29-engine.test.ts::W29-E08: legacy extra Map, Set and Date fields retain per-handler copy isolation despite Object.freeze",
+        "tests/wave29-engine.test.ts::W29-E09: command validation cannot alter exotic fields seen by its quote or command application"
+      ],
+      "excludedFailure": {
+        "id": "W25-P10",
+        "source": "tests/wave25-planning.test.ts",
+        "message": "The old expectation was 'studio'; the save has already earned 'campus'.",
+        "resolvedBy": "docs/evidence/wave29-engine-planning-tests.log"
+      }
+    }
+  ],
+  "testSources": [
+    {
+      "source": "tests/clock.test.ts",
+      "sha256": "4993e32e84fdf50723b9be06c0d53d65986a5382c0045fa16258582e73c1c595",
+      "registeredLiteralTests": 7,
+      "distinctPassingTests": 7,
+      "checks": [
+        {
+          "id": "W0-T01",
+          "name": "W0-T01: clock starts paused and ten active seconds advance one week at 1x",
+          "identity": "tests/clock.test.ts::W0-T01: clock starts paused and ten active seconds advance one week at 1x",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-T02",
+          "name": "W0-T02: supported speeds change active-time rate without changing week size",
+          "identity": "tests/clock.test.ts::W0-T02: supported speeds change active-time rate without changing week size",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-T03",
+          "name": "W0-T03: hidden time pauses rather than catching up or resuming itself",
+          "identity": "tests/clock.test.ts::W0-T03: hidden time pauses rather than catching up or resuming itself",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-T04",
+          "name": "W0-T04: long scheduler suspension is discarded instead of creating overdue weeks",
+          "identity": "tests/clock.test.ts::W0-T04: long scheduler suspension is discarded instead of creating overdue weeks",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-T05",
+          "name": "W0-T05: a speed change does not retroactively bill prior wall-clock time",
+          "identity": "tests/clock.test.ts::W0-T05: a speed change does not retroactively bill prior wall-clock time",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-T06",
+          "name": "W0-T06: a pause inside the callback prevents later automatic steps",
+          "identity": "tests/clock.test.ts::W0-T06: a pause inside the callback prevents later automatic steps",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-T07",
+          "name": "W0-T07: reset and disposal discard elapsed timing state",
+          "identity": "tests/clock.test.ts::W0-T07: reset and disposal discard elapsed timing state",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        }
+      ]
+    },
+    {
+      "source": "tests/wave0.test.ts",
+      "sha256": "4b1e021827de2af600fb45713032fb7dffa92a85d263e79652d6d6ced147b121",
+      "registeredLiteralTests": 33,
+      "distinctPassingTests": 33,
+      "checks": [
+        {
+          "id": "W0-C01",
+          "name": "W0-C01: opening catalog and initial state preserve the authored values",
+          "identity": "tests/wave0.test.ts::W0-C01: opening catalog and initial state preserve the authored values",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-C02",
+          "name": "W0-C02: catalog has sixteen core programs, thirteen applied projects and four Studio discoveries",
+          "identity": "tests/wave0.test.ts::W0-C02: catalog has sixteen core programs, thirteen applied projects and four Studio discoveries",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-C03",
+          "name": "W0-C03: catalog validation rejects duplicate IDs, missing references and prerequisite cycles",
+          "identity": "tests/wave0.test.ts::W0-C03: catalog validation rejects duplicate IDs, missing references and prerequisite cycles",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-C04",
+          "name": "W0-C04: content validation rejects negative prices and impossible opening allocation",
+          "identity": "tests/wave0.test.ts::W0-C04: content validation rejects negative prices and impossible opening allocation",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E01",
+          "name": "W0-E01: one settled week charges $800 rental and $200 overhead with no invented work or revenue",
+          "identity": "tests/wave0.test.ts::W0-E01: one settled week charges $800 rental and $200 overhead with no invented work or revenue",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E02",
+          "name": "W0-E02: ten weeks retain $38,000 before any hiring or revenue systems exist",
+          "identity": "tests/wave0.test.ts::W0-E02: ten weeks retain $38,000 before any hiring or revenue systems exist",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E03",
+          "name": "W0-E03: a real shortfall records unpaid bills without negative cash and blocks optional commands",
+          "identity": "tests/wave0.test.ts::W0-E03: a real shortfall records unpaid bills without negative cash and blocks optional commands",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E04",
+          "name": "W0-E04: phase order is explicit and stable",
+          "identity": "tests/wave0.test.ts::W0-E04: phase order is explicit and stable",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E05",
+          "name": "W0-E05: a release scheduled by resolve is unavailable until the next weekly commit",
+          "identity": "tests/wave0.test.ts::W0-E05: a release scheduled by resolve is unavailable until the next weekly commit",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E06",
+          "name": "W0-E06: delivery records inventory once without creating usable or rented capacity",
+          "identity": "tests/wave0.test.ts::W0-E06: delivery records inventory once without creating usable or rented capacity",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E07",
+          "name": "W0-E07: duplicate economic facts settle once",
+          "identity": "tests/wave0.test.ts::W0-E07: duplicate economic facts settle once",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E08",
+          "name": "W0-E08: forbidden cross-domain writes reject the entire tick",
+          "identity": "tests/wave0.test.ts::W0-E08: forbidden cross-domain writes reject the entire tick",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E09",
+          "name": "W0-E09: exceptions and direct snapshot mutation cannot partly commit a week",
+          "identity": "tests/wave0.test.ts::W0-E09: exceptions and direct snapshot mutation cannot partly commit a week",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E10",
+          "name": "W0-E10: duplicate registrations and invalid economic facts fail atomically",
+          "identity": "tests/wave0.test.ts::W0-E10: duplicate registrations and invalid economic facts fail atomically",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E11",
+          "name": "W0-E11: an unsafe owned-slice update aborts before settlement can hide it",
+          "identity": "tests/wave0.test.ts::W0-E11: an unsafe owned-slice update aborts before settlement can hide it",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E12",
+          "name": "W0-E12: a scheduled model release must belong to the model owner",
+          "identity": "tests/wave0.test.ts::W0-E12: a scheduled model release must belong to the model owner",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-E13",
+          "name": "W0-E13: all reserve requests precede owner grants and execution sees the complete grants",
+          "identity": "tests/wave0.test.ts::W0-E13: all reserve requests precede owner grants and execution sees the complete grants",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-A01",
+          "name": "W0-A01: a queued command applies at the next boundary rather than on submission",
+          "identity": "tests/wave0.test.ts::W0-A01: a queued command applies at the next boundary rather than on submission",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-A02",
+          "name": "W0-A02: duplicate pending and committed command IDs never create a second action",
+          "identity": "tests/wave0.test.ts::W0-A02: duplicate pending and committed command IDs never create a second action",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-A03",
+          "name": "W0-A03: allocations are capacity ceilings, preserve rental cost, and perform no fabricated work",
+          "identity": "tests/wave0.test.ts::W0-A03: allocations are capacity ceilings, preserve rental cost, and perform no fabricated work",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-A04",
+          "name": "W0-A04: invalid or overcommitted commands spend no resources and consume no IDs or draws",
+          "identity": "tests/wave0.test.ts::W0-A04: invalid or overcommitted commands spend no resources and consume no IDs or draws",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-A05",
+          "name": "W0-A05: repeated forecasts and diagnostics are read-only",
+          "identity": "tests/wave0.test.ts::W0-A05: repeated forecasts and diagnostics are read-only",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-A06",
+          "name": "W0-A06: command admission rejects exhausted safe counters without changing state",
+          "identity": "tests/wave0.test.ts::W0-A06: command admission rejects exhausted safe counters without changing state",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-R01",
+          "name": "W0-R01: a hundred-command replay produces identical intermediate and final state",
+          "identity": "tests/wave0.test.ts::W0-R01: a hundred-command replay produces identical intermediate and final state",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-R02",
+          "name": "W0-R02: named random streams replay, survive snapshots, and remain independent",
+          "identity": "tests/wave0.test.ts::W0-R02: named random streams replay, survive snapshots, and remain independent",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-R03",
+          "name": "W0-R03: module draws persist and replay only when their entire tick commits",
+          "identity": "tests/wave0.test.ts::W0-R03: module draws persist and replay only when their entire tick commits",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-N01",
+          "name": "W0-N01: work at token scale remains exact and safe",
+          "identity": "tests/wave0.test.ts::W0-N01: work at token scale remains exact and safe",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-N02",
+          "name": "W0-N02: fractional operating amounts accumulate rather than vanishing each step",
+          "identity": "tests/wave0.test.ts::W0-N02: fractional operating amounts accumulate rather than vanishing each step",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-N03",
+          "name": "W0-N03: checked addition rejects unsafe operands even when the sum is safe",
+          "identity": "tests/wave0.test.ts::W0-N03: checked addition rejects unsafe operands even when the sum is safe",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-S01",
+          "name": "W0-S01: snapshot roundtrip preserves commands, schedules, draws, and the next exact week",
+          "identity": "tests/wave0.test.ts::W0-S01: snapshot roundtrip preserves commands, schedules, draws, and the next exact week",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-S02",
+          "name": "W0-S02: bad JSON and a changed payload are rejected without replacing the current state",
+          "identity": "tests/wave0.test.ts::W0-S02: bad JSON and a changed payload are rejected without replacing the current state",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-S03",
+          "name": "W0-S03: incompatible versions and unsafe or impossible state fail validation",
+          "identity": "tests/wave0.test.ts::W0-S03: incompatible versions and unsafe or impossible state fail validation",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W0-S04",
+          "name": "W0-S04: imports reject malformed reports and incomplete model maps even with a matching checksum",
+          "identity": "tests/wave0.test.ts::W0-S04: imports reject malformed reports and incomplete model maps even with a matching checksum",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-initial-tests.log"
+          ],
+          "passingOccurrences": 1
+        }
+      ]
+    },
+    {
+      "source": "tests/wave1-persistence.test.ts",
+      "sha256": "fcb81df00aecc70e3a8c4a1a1e30fe606a5cefad396d21bf22d6341e30a0261d",
+      "registeredLiteralTests": 55,
+      "distinctPassingTests": 55,
+      "checks": [
+        {
+          "id": null,
+          "name": "browser adapter writes and reads a current save without creating recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::browser adapter writes and reads a current save without creating recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "first legacy write archives the untouched v1 bytes before updating the primary snapshot",
+          "identity": "tests/wave1-persistence.test.ts::first legacy write archives the untouched v1 bytes before updating the primary snapshot",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "an existing original v1 copy is retained across later upgraded writes",
+          "identity": "tests/wave1-persistence.test.ts::an existing original v1 copy is retained across later upgraded writes",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "first Wave 1 upgrade archives its exact bytes separately from the Wave 0 original",
+          "identity": "tests/wave1-persistence.test.ts::first Wave 1 upgrade archives its exact bytes separately from the Wave 0 original",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "the first Wave 1 recovery remains unchanged across subsequent migrated writes",
+          "identity": "tests/wave1-persistence.test.ts::the first Wave 1 recovery remains unchanged across subsequent migrated writes",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "a failed Wave 1 archive prevents the primary from being replaced",
+          "identity": "tests/wave1-persistence.test.ts::a failed Wave 1 archive prevents the primary from being replaced",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "a failed current primary write leaves the Wave 1 save and successful archive recoverable",
+          "identity": "tests/wave1-persistence.test.ts::a failed current primary write leaves the Wave 1 save and successful archive recoverable",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "first Wave 2 upgrade archives exact v3 bytes independently of earlier originals",
+          "identity": "tests/wave1-persistence.test.ts::first Wave 2 upgrade archives exact v3 bytes independently of earlier originals",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "the first Wave 2 recovery remains untouched across later migrated writes",
+          "identity": "tests/wave1-persistence.test.ts::the first Wave 2 recovery remains untouched across later migrated writes",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "a failed Wave 2 archive prevents any primary replacement",
+          "identity": "tests/wave1-persistence.test.ts::a failed Wave 2 archive prevents any primary replacement",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "a failed Wave 3 primary write retains the Wave 2 save and successful exact archive",
+          "identity": "tests/wave1-persistence.test.ts::a failed Wave 3 primary write retains the Wave 2 save and successful exact archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "first Wave 3 upgrade archives exact v4 bytes before the Wave 4 primary write",
+          "identity": "tests/wave1-persistence.test.ts::first Wave 3 upgrade archives exact v4 bytes before the Wave 4 primary write",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "the first Wave 3 recovery remains untouched across subsequent upgraded saves",
+          "identity": "tests/wave1-persistence.test.ts::the first Wave 3 recovery remains untouched across subsequent upgraded saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "a failed Wave 3 recovery archive leaves the v4 primary untouched",
+          "identity": "tests/wave1-persistence.test.ts::a failed Wave 3 recovery archive leaves the v4 primary untouched",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "a failed Wave 4 primary write retains the exact Wave 3 save and successful archive",
+          "identity": "tests/wave1-persistence.test.ts::a failed Wave 4 primary write retains the exact Wave 3 save and successful archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 4 content upgrade archives exact schema5 bytes before replacing the primary",
+          "identity": "tests/wave1-persistence.test.ts::Wave 4 content upgrade archives exact schema5 bytes before replacing the primary",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 4 recovery is never overwritten, including a later content upgrade",
+          "identity": "tests/wave1-persistence.test.ts::Wave 4 recovery is never overwritten, including a later content upgrade",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 4 backup blocks replacement and a failed primary write retains the original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 4 backup blocks replacement and a failed primary write retains the original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 5 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::Wave 5 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 5 original bytes are never overwritten by later saves",
+          "identity": "tests/wave1-persistence.test.ts::Wave 5 original bytes are never overwritten by later saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 5 backup blocks replacement; failed primary writes retain both original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 5 backup blocks replacement; failed primary writes retain both original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 6 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::Wave 6 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 6 original bytes are never overwritten by later saves",
+          "identity": "tests/wave1-persistence.test.ts::Wave 6 original bytes are never overwritten by later saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 6 backup blocks replacement; failed primary writes retain both original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 6 backup blocks replacement; failed primary writes retain both original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 7 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::Wave 7 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 7 original bytes are never overwritten by later saves",
+          "identity": "tests/wave1-persistence.test.ts::Wave 7 original bytes are never overwritten by later saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 7 backup blocks replacement; failed primary writes retain both original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 7 backup blocks replacement; failed primary writes retain both original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 8 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::Wave 8 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 8 original bytes are never overwritten by later saves",
+          "identity": "tests/wave1-persistence.test.ts::Wave 8 original bytes are never overwritten by later saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 8 backup blocks replacement; failed primary writes retain both original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 8 backup blocks replacement; failed primary writes retain both original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 9 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::Wave 9 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 9 original bytes are never overwritten by later saves",
+          "identity": "tests/wave1-persistence.test.ts::Wave 9 original bytes are never overwritten by later saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 9 backup blocks replacement; failed primary writes retain both original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 9 backup blocks replacement; failed primary writes retain both original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 10 upgrade archives exact mid-review bytes before replacing the primary and retains older recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::Wave 10 upgrade archives exact mid-review bytes before replacing the primary and retains older recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 10 original bytes are never overwritten by later saves",
+          "identity": "tests/wave1-persistence.test.ts::Wave 10 original bytes are never overwritten by later saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 10 backup blocks replacement; failed primary writes retain both original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 10 backup blocks replacement; failed primary writes retain both original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 11 upgrade archives exact mid-policy-training bytes before replacing the primary and retains older recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::Wave 11 upgrade archives exact mid-policy-training bytes before replacing the primary and retains older recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 11 original bytes are never overwritten by later saves",
+          "identity": "tests/wave1-persistence.test.ts::Wave 11 original bytes are never overwritten by later saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 11 backup blocks replacement; failed primary writes retain both original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 11 backup blocks replacement; failed primary writes retain both original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 12 upgrade archives exact mid-guardrail-rollout bytes before replacing the primary and retains older recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::Wave 12 upgrade archives exact mid-guardrail-rollout bytes before replacing the primary and retains older recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 12 original bytes are never overwritten by later saves",
+          "identity": "tests/wave1-persistence.test.ts::Wave 12 original bytes are never overwritten by later saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 12 backup blocks replacement; failed primary writes retain both original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 12 backup blocks replacement; failed primary writes retain both original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 13 upgrade archives exact active-assurance-term bytes before replacing the primary and retains older recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::Wave 13 upgrade archives exact active-assurance-term bytes before replacing the primary and retains older recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 13 original bytes are never overwritten by later saves",
+          "identity": "tests/wave1-persistence.test.ts::Wave 13 original bytes are never overwritten by later saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 13 backup blocks replacement; failed primary writes retain both original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 13 backup blocks replacement; failed primary writes retain both original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 14 upgrade archives exact active-batch bytes before replacing the primary and retains older recovery copies",
+          "identity": "tests/wave1-persistence.test.ts::Wave 14 upgrade archives exact active-batch bytes before replacing the primary and retains older recovery copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "Wave 14 original bytes are never overwritten by later saves",
+          "identity": "tests/wave1-persistence.test.ts::Wave 14 original bytes are never overwritten by later saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed Wave 14 backup blocks replacement; failed primary writes retain both original and archive",
+          "identity": "tests/wave1-persistence.test.ts::failed Wave 14 backup blocks replacement; failed primary writes retain both original and archive",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "empty, corrupt and unknown-version stored bytes block automatic replacement and remain exportable",
+          "identity": "tests/wave1-persistence.test.ts::empty, corrupt and unknown-version stored bytes block automatic replacement and remain exportable",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "confirmed replacement keeps the previous raw save before installing the new run",
+          "identity": "tests/wave1-persistence.test.ts::confirmed replacement keeps the previous raw save before installing the new run",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed migration backup leaves the legacy primary untouched",
+          "identity": "tests/wave1-persistence.test.ts::failed migration backup leaves the legacy primary untouched",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed primary write preserves both the legacy primary and its successful backup",
+          "identity": "tests/wave1-persistence.test.ts::failed primary write preserves both the legacy primary and its successful backup",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "failed replacement backup prevents the new run from overwriting the current snapshot",
+          "identity": "tests/wave1-persistence.test.ts::failed replacement backup prevents the new run from overwriting the current snapshot",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "unavailable storage and invalid live states fail without promising a saved run",
+          "identity": "tests/wave1-persistence.test.ts::unavailable storage and invalid live states fail without promising a saved run",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": null,
+          "name": "UTF-8 snapshot limits match import and prevent an oversized autosave from replacing the usable run",
+          "identity": "tests/wave1-persistence.test.ts::UTF-8 snapshot limits match import and prevent an oversized autosave from replacing the usable run",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        }
+      ]
+    },
+    {
+      "source": "tests/wave25-planning.test.ts",
+      "sha256": "410879867a8679b46a79afaadbd895ed86ea0d4b9558a82f85fb8cdbf18f135e",
+      "registeredLiteralTests": 10,
+      "distinctPassingTests": 10,
+      "checks": [
+        {
+          "id": "W25-P01",
+          "name": "W25-P01: a real first-sale company fixes assigned ML capacity while preserving live service",
+          "identity": "tests/wave25-planning.test.ts::W25-P01: a real first-sale company fixes assigned ML capacity while preserving live service",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W25-P02",
+          "name": "W25-P02: disconnected pools explain a memory-stranded job despite enough aggregate memory",
+          "identity": "tests/wave25-planning.test.ts::W25-P02: disconnected pools explain a memory-stranded job despite enough aggregate memory",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W25-P03",
+          "name": "W25-P03: repeated previews are pure and exact boundary cash, grants and reload continuation agree",
+          "identity": "tests/wave25-planning.test.ts::W25-P03: repeated previews are pure and exact boundary cash, grants and reload continuation agree",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W25-P04",
+          "name": "W25-P04: invalid combined plans never leave partial hires, assignments, cash or queue changes",
+          "identity": "tests/wave25-planning.test.ts::W25-P04: invalid combined plans never leave partial hires, assignments, cash or queue changes",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W25-P05",
+          "name": "W25-P05: commit revalidation rolls the complete group back when an earlier queued product resume changes memory needs",
+          "identity": "tests/wave25-planning.test.ts::W25-P05: commit revalidation rolls the complete group back when an earlier queued product resume changes memory needs",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W25-P06",
+          "name": "W25-P06: capacity growth and shrink use existing validators in a valid atomic order",
+          "identity": "tests/wave25-planning.test.ts::W25-P06: capacity growth and shrink use existing validators in a valid atomic order",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W25-P07",
+          "name": "W25-P07: queued staffing decisions and stale reviews cannot be overwritten or duplicated",
+          "identity": "tests/wave25-planning.test.ts::W25-P07: queued staffing decisions and stale reviews cannot be overwritten or duplicated",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W25-P08",
+          "name": "W25-P08: shape bounds, complete fee reservations and omitted employee assignments stay authoritative",
+          "identity": "tests/wave25-planning.test.ts::W25-P08: shape bounds, complete fee reservations and omitted employee assignments stay authoritative",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W25-P09",
+          "name": "W25-P09: actual onboarding boundaries and unpaid next-week bills remain visible",
+          "identity": "tests/wave25-planning.test.ts::W25-P09: actual onboarding boundaries and unpaid next-week bills remain visible",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W25-P10",
+          "name": "W25-P10: old snapshots retain their schema and selector purity while planning remains available",
+          "identity": "tests/wave25-planning.test.ts::W25-P10: old snapshots retain their schema and selector purity while planning remains available",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        }
+      ]
+    },
+    {
+      "source": "tests/wave28-migration.test.ts",
+      "sha256": "caf6b3526384b4f7131ac1565e70c4241cec7d6e04de44fd6026d4c95350f93e",
+      "registeredLiteralTests": 5,
+      "distinctPassingTests": 5,
+      "checks": [
+        {
+          "id": "W28-M01",
+          "name": "W28-M01: S5/S6 are paid discoveries with no free profile or successor at company creation",
+          "identity": "tests/wave28-migration.test.ts::W28-M01: S5/S6 are paid discoveries with no free profile or successor at company creation",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-M02",
+          "name": "W28-M02: both published release paths preserve every paid receipt and queued command during migration",
+          "identity": "tests/wave28-migration.test.ts::W28-M02: both published release paths preserve every paid receipt and queued command during migration",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-M03",
+          "name": "W28-M03: first browser write archives exact 0.27 bytes and aborts if recovery cannot be saved",
+          "identity": "tests/wave28-migration.test.ts::W28-M03: first browser write archives exact 0.27 bytes and aborts if recovery cannot be saved",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-M04",
+          "name": "W28-M04: historical headers cannot smuggle Campus commands, profile proof or successor targets",
+          "identity": "tests/wave28-migration.test.ts::W28-M04: historical headers cannot smuggle Campus commands, profile proof or successor targets",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-M05",
+          "name": "W28-M05: unadopted companies and restored saves continue identically through three ordinary weeks",
+          "identity": "tests/wave28-migration.test.ts::W28-M05: unadopted companies and restored saves continue identically through three ordinary weeks",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        }
+      ]
+    },
+    {
+      "source": "tests/wave28-recovery.test.ts",
+      "sha256": "50900b5a46b036d1840e89d1f6d3563cff17634a11e84687ff134ff166a2655a",
+      "registeredLiteralTests": 8,
+      "distinctPassingTests": 8,
+      "checks": [
+        {
+          "id": "W28-R01",
+          "name": "W28-R01: packed recovery returns exact Unicode, whitespace and even unpaired code units",
+          "identity": "tests/wave28-recovery.test.ts::W28-R01: packed recovery returns exact Unicode, whitespace and even unpaired code units",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-R02",
+          "name": "W28-R02: ordinary storage keeps the original raw archive and primary path unchanged",
+          "identity": "tests/wave28-recovery.test.ts::W28-R02: ordinary storage keeps the original raw archive and primary path unchanged",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-R03",
+          "name": "W28-R03: a real storage quota falls back only for the new archive before the raw primary write",
+          "identity": "tests/wave28-recovery.test.ts::W28-R03: a real storage quota falls back only for the new archive before the raw primary write",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-R04",
+          "name": "W28-R04: generic quota wording and other storage errors never trigger archive compression",
+          "identity": "tests/wave28-recovery.test.ts::W28-R04: generic quota wording and other storage errors never trigger archive compression",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-R05",
+          "name": "W28-R05: insufficient room for even the packed archive preserves every existing key and primary",
+          "identity": "tests/wave28-recovery.test.ts::W28-R05: insufficient room for even the packed archive preserves every existing key and primary",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-R06",
+          "name": "W28-R06: a failed primary write retains both its original raw bytes and a completed packed recovery",
+          "identity": "tests/wave28-recovery.test.ts::W28-R06: a failed primary write retains both its original raw bytes and a completed packed recovery",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-R07",
+          "name": "W28-R07: explicit replacement can pack its new previous-run archive without changing older copies",
+          "identity": "tests/wave28-recovery.test.ts::W28-R07: explicit replacement can pack its new previous-run archive without changing older copies",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W28-R08",
+          "name": "W28-R08: malformed packed archives fail actionably without rewriting or hiding the stored primary",
+          "identity": "tests/wave28-recovery.test.ts::W28-R08: malformed packed archives fail actionably without rewriting or hiding the stored primary",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        }
+      ]
+    },
+    {
+      "source": "tests/wave29-browser-task.test.ts",
+      "sha256": "2a23a375e8e655a7f0f22e58b333877c17e64e2adcf645e03d5f8727666788bb",
+      "registeredLiteralTests": 7,
+      "distinctPassingTests": 7,
+      "checks": [
+        {
+          "id": "W29-B01",
+          "name": "W29-B01: rapid repeated activation admits one deferred operation",
+          "identity": "tests/wave29-browser-task.test.ts::W29-B01: rapid repeated activation admits one deferred operation",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-B02",
+          "name": "W29-B02: hidden-page cancellation prevents an old callback from changing a later run",
+          "identity": "tests/wave29-browser-task.test.ts::W29-B02: hidden-page cancellation prevents an old callback from changing a later run",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-B03",
+          "name": "W29-B03: an executing step stays atomic and rejects reentrant work",
+          "identity": "tests/wave29-browser-task.test.ts::W29-B03: an executing step stays atomic and rejects reentrant work",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-B04",
+          "name": "W29-B04: failed work releases the admission guard for an explicit retry",
+          "identity": "tests/wave29-browser-task.test.ts::W29-B04: failed work releases the admission guard for an explicit retry",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-B05",
+          "name": "W29-B05: scheduler failure cannot leave the UI permanently busy",
+          "identity": "tests/wave29-browser-task.test.ts::W29-B05: scheduler failure cannot leave the UI permanently busy",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-B06",
+          "name": "W29-B06: work waits for both a frame and a later browser task, and either stage cancels",
+          "identity": "tests/wave29-browser-task.test.ts::W29-B06: work waits for both a frame and a later browser task, and either stage cancels",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-B07",
+          "name": "W29-B07: deferred non-week work preserves partial clock progress without counting its wall time",
+          "identity": "tests/wave29-browser-task.test.ts::W29-B07: deferred non-week work preserves partial clock progress without counting its wall time",
+          "passingLogs": [
+            "docs/evidence/wave29-task-clock-checks.txt"
+          ],
+          "passingOccurrences": 1
+        }
+      ]
+    },
+    {
+      "source": "tests/wave29-engine.test.ts",
+      "sha256": "55fbcbaa0562259ab2cd8a785cdb52bbc9bbd9ff57636c43fb98e7d6c48526ae",
+      "registeredLiteralTests": 9,
+      "distinctPassingTests": 9,
+      "checks": [
+        {
+          "id": "W29-E01",
+          "name": "W29-E01: current cash and queued identity are revalidated after every public call, including a retained unaffordable quote",
+          "identity": "tests/wave29-engine.test.ts::W29-E01: current cash and queued identity are revalidated after every public call, including a retained unaffordable quote",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-E02",
+          "name": "W29-E02: a paid Studio transaction keeps its exact quote, one recruitment fee and reload continuation",
+          "identity": "tests/wave29-engine.test.ts::W29-E02: a paid Studio transaction keeps its exact quote, one recruitment fee and reload continuation",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-E03",
+          "name": "W29-E03: later handlers see replaced slices, commands, receipts, events and random draws from the same tick",
+          "identity": "tests/wave29-engine.test.ts::W29-E03: later handlers see replaced slices, commands, receipts, events and random draws from the same tick",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-E04",
+          "name": "W29-E04: cached durable views and fresh coordinator/context fields reject attempted writes and preserve rollback identity",
+          "identity": "tests/wave29-engine.test.ts::W29-E04: cached durable views and fresh coordinator/context fields reject attempted writes and preserve rollback identity",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-E05",
+          "name": "W29-E05: both full validation boundaries still reject invalid caller state and invalid final module output",
+          "identity": "tests/wave29-engine.test.ts::W29-E05: both full validation boundaries still reject invalid caller state and invalid final module output",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-E06",
+          "name": "W29-E06: a single authoritative commit quote still detects a mismatched charge and rolls back the whole week",
+          "identity": "tests/wave29-engine.test.ts::W29-E06: a single authoritative commit quote still detects a mismatched charge and rolls back the whole week",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-E07",
+          "name": "W29-E07: a failed later Studio child discards earlier hiring and fees while the ordinary week settles",
+          "identity": "tests/wave29-engine.test.ts::W29-E07: a failed later Studio child discards earlier hiring and fees while the ordinary week settles",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-E08",
+          "name": "W29-E08: legacy extra Map, Set and Date fields retain per-handler copy isolation despite Object.freeze",
+          "identity": "tests/wave29-engine.test.ts::W29-E08: legacy extra Map, Set and Date fields retain per-handler copy isolation despite Object.freeze",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-E09",
+          "name": "W29-E09: command validation cannot alter exotic fields seen by its quote or command application",
+          "identity": "tests/wave29-engine.test.ts::W29-E09: command validation cannot alter exotic fields seen by its quote or command application",
+          "passingLogs": [
+            "docs/evidence/wave29-engine-planning-tests.log"
+          ],
+          "passingOccurrences": 1
+        }
+      ]
+    },
+    {
+      "source": "tests/wave29-persistence-cache.test.ts",
+      "sha256": "09017b09369cda5a1b887b139b467aaa75a9df867da1b0a282164bb7ff33576b",
+      "registeredLiteralTests": 7,
+      "distinctPassingTests": 7,
+      "checks": [
+        {
+          "id": "W29-P01",
+          "name": "W29-P01: a validated read primes ordinary saves, while reads still return independent fully parsed states",
+          "identity": "tests/wave29-persistence-cache.test.ts::W29-P01: a validated read primes ordinary saves, while reads still return independent fully parsed states",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-P02",
+          "name": "W29-P02: successful writes prime only prior bytes and never exempt even the same supplied GameState from validation",
+          "identity": "tests/wave29-persistence-cache.test.ts::W29-P02: successful writes prime only prior bytes and never exempt even the same supplied GameState from validation",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-P03",
+          "name": "W29-P03: changed exact bytes invalidate the cache even with the same checksum/revision; corrupt primaries remain protected until confirmed replacement",
+          "identity": "tests/wave29-persistence-cache.test.ts::W29-P03: changed exact bytes invalidate the cache even with the same checksum/revision; corrupt primaries remain protected until confirmed replacement",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-P04",
+          "name": "W29-P04: storage instances are isolated, only the latest primary is retained, and observed emptiness clears cached metadata",
+          "identity": "tests/wave29-persistence-cache.test.ts::W29-P04: storage instances are isolated, only the latest primary is retained, and observed emptiness clears cached metadata",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-P05",
+          "name": "W29-P05: failed primary writes do not prime proposed bytes and cache hits still require working access to actual storage",
+          "identity": "tests/wave29-persistence-cache.test.ts::W29-P05: failed primary writes do not prime proposed bytes and cache hits still require working access to actual storage",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-P06",
+          "name": "W29-P06: cached migrated reads retain archive-before-primary ordering through archive failures and never prime an unsuccessful proposal",
+          "identity": "tests/wave29-persistence-cache.test.ts::W29-P06: cached migrated reads retain archive-before-primary ordering through archive failures and never prime an unsuccessful proposal",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-P07",
+          "name": "W29-P07: cache hits preserve replacement confirmation, failed backups and quota-compressed exact recovery without evicting other saves",
+          "identity": "tests/wave29-persistence-cache.test.ts::W29-P07: cache hits preserve replacement confirmation, failed backups and quota-compressed exact recovery without evicting other saves",
+          "passingLogs": [
+            "docs/evidence/wave29-persistence-checks.txt"
+          ],
+          "passingOccurrences": 1
+        }
+      ]
+    },
+    {
+      "source": "tests/wave29-workbench-ui.test.tsx",
+      "sha256": "079b84a1e085ea172345cdee554fe7f1edeb6496ece2550eb50426b01f0d56a7",
+      "registeredLiteralTests": 8,
+      "distinctPassingTests": 8,
+      "checks": [
+        {
+          "id": "W29-U01",
+          "name": "W29-U01: unvisited Studio workbenches do not execute heavy children or add DOM wrappers",
+          "identity": "tests/wave29-workbench-ui.test.tsx::W29-U01: unvisited Studio workbenches do not execute heavy children or add DOM wrappers",
+          "passingLogs": [
+            "docs/evidence/wave29-ui-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-U02",
+          "name": "W29-U02: the selected real Data panel retains its direct-child section, quote and current state",
+          "identity": "tests/wave29-workbench-ui.test.tsx::W29-U02: the selected real Data panel retains its direct-child section, quote and current state",
+          "passingLogs": [
+            "docs/evidence/wave29-ui-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-U03",
+          "name": "W29-U03: Classic renders every legacy section once and excludes Studio-only duplicate workbenches",
+          "identity": "tests/wave29-workbench-ui.test.tsx::W29-U03: Classic renders every legacy section once and excludes Studio-only duplicate workbenches",
+          "passingLogs": [
+            "docs/evidence/wave29-ui-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-U04",
+          "name": "W29-U04: standalone selection renders one workbench with the props supplied for that render",
+          "identity": "tests/wave29-workbench-ui.test.tsx::W29-U04: standalone selection renders one workbench with the props supplied for that render",
+          "passingLogs": [
+            "docs/evidence/wave29-ui-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-U05",
+          "name": "W29-U05: the actual initial Studio Shell defers legacy, planner and research preview work",
+          "identity": "tests/wave29-workbench-ui.test.tsx::W29-U05: the actual initial Studio Shell defers legacy, planner and research preview work",
+          "passingLogs": [
+            "docs/evidence/wave29-ui-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-U06",
+          "name": "W29-U06: pending Shell feedback stays outside the inspector and disables every clock action",
+          "identity": "tests/wave29-workbench-ui.test.tsx::W29-U06: pending Shell feedback stays outside the inspector and disables every clock action",
+          "passingLogs": [
+            "docs/evidence/wave29-ui-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-U07",
+          "name": "W29-U07: action buttons describe the unique accepted, blocked, incomplete and queued quote in one render",
+          "identity": "tests/wave29-workbench-ui.test.tsx::W29-U07: action buttons describe the unique accepted, blocked, incomplete and queued quote in one render",
+          "passingLogs": [
+            "docs/evidence/wave29-ui-checks.txt"
+          ],
+          "passingOccurrences": 1
+        },
+        {
+          "id": "W29-U08",
+          "name": "W29-U08: memo policy skips hidden prop churn but allows active changes and epoch replacement",
+          "identity": "tests/wave29-workbench-ui.test.tsx::W29-U08: memo policy skips hidden prop churn but allows active changes and epoch replacement",
+          "passingLogs": [
+            "docs/evidence/wave29-ui-checks.txt"
+          ],
+          "passingOccurrences": 1,
+          "coverageLimitation": "Memo comparator policy only. This check does not demonstrate mounted draft retention, reopening freshness or epoch reset."
+        }
+      ]
+    }
+  ],
+  "excludedDuplicateChecks": [
+    {
+      "source": "tests/wave25-planning.test.ts",
+      "name": "W25-P01: a real first-sale company fixes assigned ML capacity while preserving live service",
+      "identity": "tests/wave25-planning.test.ts::W25-P01: a real first-sale company fixes assigned ML capacity while preserving live service",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave25-planning.test.ts",
+      "name": "W25-P02: disconnected pools explain a memory-stranded job despite enough aggregate memory",
+      "identity": "tests/wave25-planning.test.ts::W25-P02: disconnected pools explain a memory-stranded job despite enough aggregate memory",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave25-planning.test.ts",
+      "name": "W25-P03: repeated previews are pure and exact boundary cash, grants and reload continuation agree",
+      "identity": "tests/wave25-planning.test.ts::W25-P03: repeated previews are pure and exact boundary cash, grants and reload continuation agree",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave25-planning.test.ts",
+      "name": "W25-P04: invalid combined plans never leave partial hires, assignments, cash or queue changes",
+      "identity": "tests/wave25-planning.test.ts::W25-P04: invalid combined plans never leave partial hires, assignments, cash or queue changes",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave25-planning.test.ts",
+      "name": "W25-P05: commit revalidation rolls the complete group back when an earlier queued product resume changes memory needs",
+      "identity": "tests/wave25-planning.test.ts::W25-P05: commit revalidation rolls the complete group back when an earlier queued product resume changes memory needs",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave25-planning.test.ts",
+      "name": "W25-P06: capacity growth and shrink use existing validators in a valid atomic order",
+      "identity": "tests/wave25-planning.test.ts::W25-P06: capacity growth and shrink use existing validators in a valid atomic order",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave25-planning.test.ts",
+      "name": "W25-P07: queued staffing decisions and stale reviews cannot be overwritten or duplicated",
+      "identity": "tests/wave25-planning.test.ts::W25-P07: queued staffing decisions and stale reviews cannot be overwritten or duplicated",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave25-planning.test.ts",
+      "name": "W25-P08: shape bounds, complete fee reservations and omitted employee assignments stay authoritative",
+      "identity": "tests/wave25-planning.test.ts::W25-P08: shape bounds, complete fee reservations and omitted employee assignments stay authoritative",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave25-planning.test.ts",
+      "name": "W25-P09: actual onboarding boundaries and unpaid next-week bills remain visible",
+      "identity": "tests/wave25-planning.test.ts::W25-P09: actual onboarding boundaries and unpaid next-week bills remain visible",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave29-engine.test.ts",
+      "name": "W29-E01: current cash and queued identity are revalidated after every public call, including a retained unaffordable quote",
+      "identity": "tests/wave29-engine.test.ts::W29-E01: current cash and queued identity are revalidated after every public call, including a retained unaffordable quote",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave29-engine.test.ts",
+      "name": "W29-E02: a paid Studio transaction keeps its exact quote, one recruitment fee and reload continuation",
+      "identity": "tests/wave29-engine.test.ts::W29-E02: a paid Studio transaction keeps its exact quote, one recruitment fee and reload continuation",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave29-engine.test.ts",
+      "name": "W29-E03: later handlers see replaced slices, commands, receipts, events and random draws from the same tick",
+      "identity": "tests/wave29-engine.test.ts::W29-E03: later handlers see replaced slices, commands, receipts, events and random draws from the same tick",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave29-engine.test.ts",
+      "name": "W29-E04: cached durable views and fresh coordinator/context fields reject attempted writes and preserve rollback identity",
+      "identity": "tests/wave29-engine.test.ts::W29-E04: cached durable views and fresh coordinator/context fields reject attempted writes and preserve rollback identity",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave29-engine.test.ts",
+      "name": "W29-E05: both full validation boundaries still reject invalid caller state and invalid final module output",
+      "identity": "tests/wave29-engine.test.ts::W29-E05: both full validation boundaries still reject invalid caller state and invalid final module output",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave29-engine.test.ts",
+      "name": "W29-E06: a single authoritative commit quote still detects a mismatched charge and rolls back the whole week",
+      "identity": "tests/wave29-engine.test.ts::W29-E06: a single authoritative commit quote still detects a mismatched charge and rolls back the whole week",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave29-engine.test.ts",
+      "name": "W29-E07: a failed later Studio child discards earlier hiring and fees while the ordinary week settles",
+      "identity": "tests/wave29-engine.test.ts::W29-E07: a failed later Studio child discards earlier hiring and fees while the ordinary week settles",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave29-engine.test.ts",
+      "name": "W29-E08: legacy extra Map, Set and Date fields retain per-handler copy isolation despite Object.freeze",
+      "identity": "tests/wave29-engine.test.ts::W29-E08: legacy extra Map, Set and Date fields retain per-handler copy isolation despite Object.freeze",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    },
+    {
+      "source": "tests/wave29-engine.test.ts",
+      "name": "W29-E09: command validation cannot alter exotic fields seen by its quote or command application",
+      "identity": "tests/wave29-engine.test.ts::W29-E09: command validation cannot alter exotic fields seen by its quote or command application",
+      "excludedFrom": "docs/evidence/wave29-engine-initial-tests.log",
+      "coveredBy": "docs/evidence/wave29-engine-planning-tests.log"
+    }
+  ],
+  "excludedEvidence": [
+    {
+      "file": "docs/evidence/wave29-ui-checks-initial.txt",
+      "reason": "Superseded incomplete integration run: catalog had Wave29 while roadmap validation still required 0\u201328. Four state-backed tests failed; the final log passes all eight. No passing occurrences from this initial log are counted."
+    },
+    {
+      "file": "docs/evidence/wave29-task-clock-initial.txt",
+      "reason": "Initial runner command used the wrong existing clock suite filename; final task/clock log is selected instead."
+    },
+    {
+      "file": "docs/evidence/wave29-typecheck-initial.txt",
+      "reason": "Superseded test-only TypeScript errors; final typecheck passes. Typecheck diagnostics are not test identities."
+    }
+  ],
+  "resolvedInitialCoreFailure": {
+    "log": "docs/evidence/wave29-engine-initial-tests.log",
+    "id": "W25-P10",
+    "source": "tests/wave25-planning.test.ts",
+    "reason": "Historical saved company now satisfies the earned Campus scene milestone; the old room-tier assertion expected 'studio'.",
+    "resolution": "The current expectation is covered by a passing W25-P10 in the final clean 19-check engine/planning log.",
+    "passingEvidence": "docs/evidence/wave29-engine-planning-tests.log"
+  },
+  "nonTestVerification": {
+    "typescript": {
+      "status": "passed",
+      "command": "npm run typecheck",
+      "exitCode": 0,
+      "log": "docs/evidence/wave29-typecheck.txt"
+    },
+    "productionBuild": {
+      "status": "passed",
+      "evidence": "docs/evidence/wave29-build.json",
+      "exitCode": 0,
+      "stagesPassed": 5,
+      "log": "docs/evidence/wave29-build.txt",
+      "postBuildApplicationEdits": false
+    },
+    "scopedLint": [
+      {
+        "scope": "Controller",
+        "status": "passed",
+        "exitCode": 0,
+        "diagnostics": 0,
+        "log": "docs/evidence/wave29-controller-lint.txt"
+      },
+      {
+        "scope": "Retained context, action controls, UI checks and runner",
+        "status": "passed",
+        "log": "docs/evidence/wave29-ui-lint.txt",
+        "diagnostics": 0
+      },
+      {
+        "scope": "Persistence cache",
+        "status": "passed",
+        "log": "docs/evidence/wave29-persistence-lint.txt",
+        "diagnostics": 0
+      },
+      {
+        "scope": "Engine/read snapshots and focused engine tests",
+        "status": "passed",
+        "log": "docs/evidence/wave29-core-lint.txt",
+        "diagnostics": 0
+      }
+    ],
+    "browser": {
+      "status": "completed-with-explicit-final-reload-limitation",
+      "evidence": "docs/evidence/wave29-browser.json",
+      "nativeObservedChecks": 11,
+      "allRecordedLifecycleChecksPassed": true,
+      "lifecycleChecks": [
+        {
+          "check": "Unsubmitted Compute draft survives workstation navigation",
+          "observed": "Development changed from8 to9; visited People and reopened Compute with9 still in the field. Repeated on final source with11 after W614;11 remained.",
+          "passed": true
+        },
+        {
+          "check": "Hidden workbench reopens with current game and action availability",
+          "observed": "After W613 settled on the Research screen, reopened Compute table shows development9 and last serving work112.4328; Queue allocation enabled. Existing unsent form values remain drafts.",
+          "passed": true
+        },
+        {
+          "check": "Research search retained",
+          "observed": "Entered silicon, visited Studio/Compute and reopened Research with silicon still in the search box.",
+          "passed": true
+        },
+        {
+          "check": "Classic single live instance",
+          "observed": "Classic has one Compute region and retains development draft10.",
+          "passed": true
+        },
+        {
+          "check": "Company replacement resets local drafts",
+          "observed": "After restoring original W556 through visible import/confirmation, development draft is8, not the test company draft11.",
+          "passed": true
+        },
+        {
+          "check": "Campus hash opens Campus",
+          "observed": "Initial and HMR reloads at #campus select Campus inspector. Final explicit reload observation was blocked separately.",
+          "passed": true
+        },
+        {
+          "check": "Persistent operation error outside inspector",
+          "observed": "Ordinary invalid snapshot import reports unsupported format; navigation to Research Tree keeps the alert visible above Research workspace.",
+          "passed": true,
+          "screenshot": "docs/images/wave29-research-error.png"
+        },
+        {
+          "check": "Import stops running time before selection",
+          "observed": "Pressed Resume at W613, then Import snapshot; before supplying the file, status says The lab is paused while you choose a snapshot. Week remains613.",
+          "passed": true
+        },
+        {
+          "check": "Same-week save truthfulness",
+          "observed": "Queued the second test allocation at W613; status observed Saving decisions \u00b7 Week613\u2026 then Saved in this browser \u00b7 Week613.",
+          "passed": true
+        },
+        {
+          "check": "Painted weekly feedback",
+          "observed": "Settling Week614\u2026 and Working visible before state changed; Run, Step and speed controls disabled. Completion says Week614 settled. The lab remains paused. followed by Saved in this browser \u00b7 Week614.",
+          "passed": true,
+          "screenshot": "docs/images/wave29-settling-feedback.png"
+        },
+        {
+          "check": "Action quote description",
+          "observed": "Visible Hire employee control has a generated aria-describedby target. Focused SSR checks separately verify unique existing targets for accepted, blocked, incomplete and queued actions.",
+          "passed": true
+        }
+      ],
+      "advancedReplay": {
+        "week": 613,
+        "checksum": "bc84a4ff",
+        "bytes": 1465122,
+        "sha256": "5f0e28199e891dcbcf1a6a51210b793ea0f5fcc59011dc2bd7b464be241357da",
+        "exactStateAndByteMatch": true,
+        "referenceCreatedBeforeActualExportRead": true
+      },
+      "restoration": {
+        "performedThroughUi": true,
+        "confirmedSavedWeek": 556,
+        "paused": true,
+        "queuedPlayerActions": 1,
+        "queuedForWeek": 557,
+        "originalAdvanced": false,
+        "draftResetConfirmed": true,
+        "postRestoreReloadRequested": true,
+        "postReloadExportVerified": false,
+        "limitation": "The browser URL policy denied further page observation immediately after the final reload. No alternate browser surface or workaround was attempted. The original was visibly restored, paused and saved before that reload; exact bytes after that final reload are not claimed."
+      },
+      "limitations": [
+        "Wide desktop UI reviewed. This wave does not claim a new narrow-screen or full accessibility certification.",
+        "Native screenshots and DOM state prove observed transitions, not a browser performance benchmark.",
+        "Synchronous simulation and validation still occupy the main thread after the busy state is painted."
+      ],
+      "relationshipToUnitTests": "Mounted draft retention, current-state reopening, Classic single instance and import epoch reset are supported by native observations in browser evidence, not by W29-U08."
+    },
+    "finalCoreParity": {
+      "status": "passed",
+      "evidence": "docs/evidence/wave29-core-parity.json",
+      "performanceEvidence": "docs/evidence/wave29-core-performance.json",
+      "completedReplayLog": "docs/evidence/wave29-core-final-replay.log",
+      "rawProfiles": [
+        "docs/evidence/wave29-core-baseline.json",
+        "docs/evidence/wave29-core-after.json"
+      ],
+      "publishedBaselineCommit": "6b82a6dd08e2d2ab7b78bd066a0cd043167dec38",
+      "fullCommandCases": 8,
+      "weeklyContinuationCheckpoints": 19,
+      "fullCanonicalStateSha256Equal": true,
+      "serializedSnapshotBytesEqual": true,
+      "allInputsUnchanged": true,
+      "allWeeklySnapshotsValidated": true,
+      "allWeeklyRoundtripsByteEqual": true,
+      "finalSourceSha256": {
+        "src/core/engine.ts": "04e1cebedbe62bcedb50f5014fdd04c0bfa8a2c5e32edaf29f331bead0a32560",
+        "src/core/read-snapshot.ts": "5b1214741c8f86a9ea252a2365d1e31020c438671a2b37809ef23c7a4dae5520"
+      },
+      "sourceHashesMatchCurrentFrozenFiles": true,
+      "countingNote": "These eight command cases and 19 continuation checkpoints are parity evidence, not additional source test identities; the distinct passing-test total remains 149.",
+      "performanceLimit": "Node timings are not browser latency, and not every measured operation improved: the rejected W612 preview median changed from 17.95 ms to 29.64 ms while retaining one whole-state clone."
+    }
+  },
+  "pending": []
+}

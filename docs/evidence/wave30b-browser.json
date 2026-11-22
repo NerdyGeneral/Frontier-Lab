@@ -1,0 +1,84 @@
+{
+  "phase": "30B",
+  "uiBuild": "0.30.1",
+  "baselineCommit": "a6208e73dfe0619350dab0571846c80bf545593b",
+  "environment": "Managed Chrome preview, http://127.0.0.1:4173/",
+  "scope": "Mounted opening journey; no direct GameState edits or grants.",
+  "observed": {
+    "dataPreparedWeek": 2,
+    "trainingBlockedWeek": 3,
+    "blocker": "Waiting for assigned ML supervision.",
+    "trainingProgressWeek4": "4 / 13.2 effective CUw",
+    "training": {
+      "id": "training-command-9",
+      "completedWeek": 7,
+      "outputModelId": "model-command-9",
+      "guidedAdvancedProfileRetained": "stable"
+    },
+    "evaluation": {
+      "id": "report-evaluation-command-29",
+      "modelId": "model-command-9",
+      "suiteId": "basic-conversation-1",
+      "week": 8,
+      "basicChatEligible": true
+    },
+    "launch": {
+      "doubleClickAcceptedCommand": "command-41",
+      "deploymentCount": 1,
+      "productId": "product:command-41",
+      "deploymentId": "deployment:command-41",
+      "modelId": "model-command-9",
+      "startedWeek": 9,
+      "readyWeek": 10,
+      "activeObservedWeek": 10,
+      "productStatus": "active",
+      "priceCents": 1250,
+      "allowance": 125,
+      "firstSaleStillSeparate": true
+    },
+    "retention": [
+      "Stable training profile after Guided/Advanced toggles and Training \u2192 Data \u2192 resources \u2192 training.",
+      "Exact starter-public dataset retained through preparation detour.",
+      "Evaluation kept model-command-9 after resource detour.",
+      "Price 12.50, allowance 125 and model-command-9 retained after resources, Escape and Resume."
+    ],
+    "keyboard": {
+      "shiftTabFromCloseWrappedTo": "Reset this draft",
+      "focusRemainedInsideDialog": true,
+      "escapeReturnedToOpener": true
+    },
+    "reflow": [
+      {
+        "viewportWidth": 681,
+        "viewportHeight": 468,
+        "dialogWidth": 649.5,
+        "dialogHeight": 436,
+        "dialogCount": 1
+      },
+      {
+        "viewportWidth": 340,
+        "viewportHeight": 234,
+        "dialogWidth": 340.75,
+        "dialogHeight": 234,
+        "scrollHeight": 1516,
+        "dialogCount": 1
+      }
+    ],
+    "acceptedImportClearedDraftsAndJourneyFocus": true,
+    "zoomRestored": "100%",
+    "finalPreviewWeek": 0,
+    "finalPreviewPaused": true
+  },
+  "restoration": {
+    "equalBytes": true,
+    "originalBytes": 41831,
+    "restoredBytes": 41831,
+    "sha256": "1812bbc2fffd6f23b6f147b1548e46991ee2d4dbc4be808e0075760af15f79f4"
+  },
+  "limits": [
+    "Zoom-based responsive checks; no device emulation or physical mobile keyboard.",
+    "Older-of-two, unavailable and foreign targets, weekly rejections, cancellation and deterministic continuation are covered by automated suites; not all were independently induced in Chrome.",
+    "Snapshot build header remains 0.30.0 from the original imported opening; UI and code under test are 0.30.1.",
+    "Production publication is verified separately by the native Sites deployment result."
+  ]
+}

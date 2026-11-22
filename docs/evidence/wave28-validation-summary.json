@@ -1,0 +1,2951 @@
+{
+  "wave": 28,
+  "packageVersion": "0.28.0",
+  "generatedAt": "2026-11-09T19:52:02.575423+00:00",
+  "scope": "Selected final focused logs, independently reconciled; no full repository test-suite claim. Browser acceptance remains separately reported in design-qa.md.",
+  "method": "Identify checks by stable W*-ID, or exact normalized title for the 55 existing persistence cases. Count each once across wholly passing final logs, retaining the latest evidence per check. The final 16-case rehearsal/canary run supersedes those historical passes in the initial mixed log. Named Node describe-suite count is not used; suiteFiles means distinct source test files.",
+  "totals": {
+    "selectedFinalRuns": 9,
+    "suiteFiles": 16,
+    "passingOccurrences": 209,
+    "duplicatePassingOccurrencesExcluded": 14,
+    "distinctChecks": 195,
+    "passed": 195,
+    "failed": 0,
+    "skipped": 0,
+    "newWave28Checks": 40,
+    "existingChecks": 155
+  },
+  "finalLogs": [
+    {
+      "path": "docs/evidence/wave28-engine-migration-tests.log",
+      "sha256": "e5c503df263e76c954be186f1bd7ed21c54d88634962359d431c17c7635ae640",
+      "modifiedAt": "2026-11-09T19:46:10.280442+00:00",
+      "totals": {
+        "tests": 51,
+        "pass": 51,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "docs/evidence/wave28-facilities-rerun.txt",
+      "sha256": "2f8b3b74c6cc3257eecf13c9d06ef768aa57a3f1a652b42d4ae23f5e0cc935c1",
+      "modifiedAt": "2026-11-09T19:40:31.282577+00:00",
+      "totals": {
+        "tests": 9,
+        "pass": 9,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "docs/evidence/wave28-facility-public-route-check.txt",
+      "sha256": "a7087008001a422c87cfec0498266858952184117a6ceb6d63020bc0e70996a7",
+      "modifiedAt": "2026-11-09T19:44:41.555063+00:00",
+      "totals": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "docs/evidence/wave28-gen1-regression.log",
+      "sha256": "0b236ee6c3f5136c2ca6c7f661b91bc0ce6310276360a4be9a6fd86c5451261c",
+      "modifiedAt": "2026-11-09T19:32:14.944306+00:00",
+      "totals": {
+        "tests": 14,
+        "pass": 14,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "docs/evidence/wave28-receipt-final-tests.log",
+      "sha256": "8397e956be5a779693f63d5c0601169a2ceb8afaada3985fd4208a78a4aa391a",
+      "modifiedAt": "2026-11-09T19:46:10.282231+00:00",
+      "totals": {
+        "tests": 36,
+        "pass": 36,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "docs/evidence/wave28-recovery-checks.txt",
+      "sha256": "ae6d9cc5d80e0fb632144aa63f54a6e7abe1ce166b8a5bb1d5cf005f47566f1f",
+      "modifiedAt": "2026-11-09T19:35:28.773607+00:00",
+      "totals": {
+        "tests": 68,
+        "pass": 68,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "docs/evidence/wave28-resource-boundary-tests.log",
+      "sha256": "9be237594922f71d5d646ad1749be75cdc333305965401016b498de951f84747",
+      "modifiedAt": "2026-11-09T19:42:04.282232+00:00",
+      "totals": {
+        "tests": 6,
+        "pass": 6,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "docs/evidence/wave28-silicon-tests.log",
+      "sha256": "7b48b0d85a51fbdbd45b7c9fe583803167cb542904b5e11fc8e06d9e79eedcd4",
+      "modifiedAt": "2026-11-09T19:32:14.943586+00:00",
+      "totals": {
+        "tests": 8,
+        "pass": 8,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "docs/evidence/wave28-release-receipt-final.log",
+      "sha256": "aa6f25bed11fd3acda8402de320d019b3e17dfc7d42de9d490aefc8742ccba29",
+      "modifiedAt": "2026-11-09T19:51:35.196156+00:00",
+      "totals": {
+        "tests": 16,
+        "pass": 16,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      }
+    }
+  ],
+  "suites": [
+    {
+      "file": "tests/wave0.test.ts",
+      "checks": 33,
+      "passed": 33,
+      "newInWave28": false,
+      "checkIds": [
+        "W0-C01",
+        "W0-C02",
+        "W0-C03",
+        "W0-C04",
+        "W0-E01",
+        "W0-E02",
+        "W0-E03",
+        "W0-E04",
+        "W0-E05",
+        "W0-E06",
+        "W0-E07",
+        "W0-E08",
+        "W0-E09",
+        "W0-E10",
+        "W0-E11",
+        "W0-E12",
+        "W0-E13",
+        "W0-A01",
+        "W0-A02",
+        "W0-A03",
+        "W0-A04",
+        "W0-A05",
+        "W0-A06",
+        "W0-R01",
+        "W0-R02",
+        "W0-R03",
+        "W0-N01",
+        "W0-N02",
+        "W0-N03",
+        "W0-S01",
+        "W0-S02",
+        "W0-S03",
+        "W0-S04"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ]
+    },
+    {
+      "file": "tests/wave1-persistence.test.ts",
+      "checks": 55,
+      "passed": 55,
+      "newInWave28": false,
+      "checkIds": [
+        "browser adapter writes and reads a current save without creating recovery copies",
+        "first legacy write archives the untouched v1 bytes before updating the primary snapshot",
+        "an existing original v1 copy is retained across later upgraded writes",
+        "first Wave 1 upgrade archives its exact bytes separately from the Wave 0 original",
+        "the first Wave 1 recovery remains unchanged across subsequent migrated writes",
+        "a failed Wave 1 archive prevents the primary from being replaced",
+        "a failed current primary write leaves the Wave 1 save and successful archive recoverable",
+        "first Wave 2 upgrade archives exact v3 bytes independently of earlier originals",
+        "the first Wave 2 recovery remains untouched across later migrated writes",
+        "a failed Wave 2 archive prevents any primary replacement",
+        "a failed Wave 3 primary write retains the Wave 2 save and successful exact archive",
+        "first Wave 3 upgrade archives exact v4 bytes before the Wave 4 primary write",
+        "the first Wave 3 recovery remains untouched across subsequent upgraded saves",
+        "a failed Wave 3 recovery archive leaves the v4 primary untouched",
+        "a failed Wave 4 primary write retains the exact Wave 3 save and successful archive",
+        "Wave 4 content upgrade archives exact schema5 bytes before replacing the primary",
+        "Wave 4 recovery is never overwritten, including a later content upgrade",
+        "failed Wave 4 backup blocks replacement and a failed primary write retains the original and archive",
+        "Wave 5 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+        "Wave 5 original bytes are never overwritten by later saves",
+        "failed Wave 5 backup blocks replacement; failed primary writes retain both original and archive",
+        "Wave 6 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+        "Wave 6 original bytes are never overwritten by later saves",
+        "failed Wave 6 backup blocks replacement; failed primary writes retain both original and archive",
+        "Wave 7 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+        "Wave 7 original bytes are never overwritten by later saves",
+        "failed Wave 7 backup blocks replacement; failed primary writes retain both original and archive",
+        "Wave 8 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+        "Wave 8 original bytes are never overwritten by later saves",
+        "failed Wave 8 backup blocks replacement; failed primary writes retain both original and archive",
+        "Wave 9 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+        "Wave 9 original bytes are never overwritten by later saves",
+        "failed Wave 9 backup blocks replacement; failed primary writes retain both original and archive",
+        "Wave 10 upgrade archives exact mid-review bytes before replacing the primary and retains older recovery copies",
+        "Wave 10 original bytes are never overwritten by later saves",
+        "failed Wave 10 backup blocks replacement; failed primary writes retain both original and archive",
+        "Wave 11 upgrade archives exact mid-policy-training bytes before replacing the primary and retains older recovery copies",
+        "Wave 11 original bytes are never overwritten by later saves",
+        "failed Wave 11 backup blocks replacement; failed primary writes retain both original and archive",
+        "Wave 12 upgrade archives exact mid-guardrail-rollout bytes before replacing the primary and retains older recovery copies",
+        "Wave 12 original bytes are never overwritten by later saves",
+        "failed Wave 12 backup blocks replacement; failed primary writes retain both original and archive",
+        "Wave 13 upgrade archives exact active-assurance-term bytes before replacing the primary and retains older recovery copies",
+        "Wave 13 original bytes are never overwritten by later saves",
+        "failed Wave 13 backup blocks replacement; failed primary writes retain both original and archive",
+        "Wave 14 upgrade archives exact active-batch bytes before replacing the primary and retains older recovery copies",
+        "Wave 14 original bytes are never overwritten by later saves",
+        "failed Wave 14 backup blocks replacement; failed primary writes retain both original and archive",
+        "empty, corrupt and unknown-version stored bytes block automatic replacement and remain exportable",
+        "confirmed replacement keeps the previous raw save before installing the new run",
+        "failed migration backup leaves the legacy primary untouched",
+        "failed primary write preserves both the legacy primary and its successful backup",
+        "failed replacement backup prevents the new run from overwriting the current snapshot",
+        "unavailable storage and invalid live states fail without promising a saved run",
+        "UTF-8 snapshot limits match import and prevent an oversized autosave from replacing the usable run"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ]
+    },
+    {
+      "file": "tests/wave12-guardrails.test.ts",
+      "checks": 9,
+      "passed": 9,
+      "newInWave28": false,
+      "checkIds": [
+        "W12-G01",
+        "W12-G02",
+        "W12-G03",
+        "W12-G04",
+        "W12-G05",
+        "W12-G06",
+        "W12-G07",
+        "W12-G08",
+        "W12-G09"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "file": "tests/wave13-assurance.test.ts",
+      "checks": 8,
+      "passed": 8,
+      "newInWave28": false,
+      "checkIds": [
+        "W13-A01",
+        "W13-A02",
+        "W13-A03",
+        "W13-A04",
+        "W13-A05",
+        "W13-A06",
+        "W13-A07",
+        "W13-A08"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "file": "tests/wave14-batch.test.ts",
+      "checks": 7,
+      "passed": 7,
+      "newInWave28": false,
+      "checkIds": [
+        "W14-B01",
+        "W14-B02",
+        "W14-B03",
+        "W14-B04",
+        "W14-B05",
+        "W14-B06",
+        "W14-B07"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "file": "tests/wave26-synthetic.test.ts",
+      "checks": 9,
+      "passed": 9,
+      "newInWave28": false,
+      "checkIds": [
+        "W26-S01",
+        "W26-S02",
+        "W26-S03",
+        "W26-S04",
+        "W26-S05",
+        "W26-S06",
+        "W26-S07",
+        "W26-S08",
+        "W26-S09"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "file": "tests/wave27-canary.test.ts",
+      "checks": 9,
+      "passed": 9,
+      "newInWave28": false,
+      "checkIds": [
+        "W27-C01",
+        "W27-C02",
+        "W27-C03",
+        "W27-C04",
+        "W27-C05",
+        "W27-C06",
+        "W27-C07",
+        "W27-C08",
+        "W27-C09"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ]
+    },
+    {
+      "file": "tests/wave27-migration.test.ts",
+      "checks": 4,
+      "passed": 4,
+      "newInWave28": false,
+      "checkIds": [
+        "W27-M01",
+        "W27-M02",
+        "W27-M03",
+        "W27-M04"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ]
+    },
+    {
+      "file": "tests/wave28-facilities.test.ts",
+      "checks": 10,
+      "passed": 10,
+      "newInWave28": true,
+      "checkIds": [
+        "W28-F01",
+        "W28-F02",
+        "W28-F03",
+        "W28-F04",
+        "W28-F05",
+        "W28-F06",
+        "W28-F07",
+        "W28-F08",
+        "W28-F09",
+        "W28-F10"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-facilities-rerun.txt",
+        "docs/evidence/wave28-facility-public-route-check.txt"
+      ]
+    },
+    {
+      "file": "tests/wave28-migration.test.ts",
+      "checks": 5,
+      "passed": 5,
+      "newInWave28": true,
+      "checkIds": [
+        "W28-M01",
+        "W28-M02",
+        "W28-M03",
+        "W28-M04",
+        "W28-M05"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ]
+    },
+    {
+      "file": "tests/wave28-recovery.test.ts",
+      "checks": 8,
+      "passed": 8,
+      "newInWave28": true,
+      "checkIds": [
+        "W28-R01",
+        "W28-R02",
+        "W28-R03",
+        "W28-R04",
+        "W28-R05",
+        "W28-R06",
+        "W28-R07",
+        "W28-R08"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ]
+    },
+    {
+      "file": "tests/wave28-resource-boundary.test.ts",
+      "checks": 6,
+      "passed": 6,
+      "newInWave28": true,
+      "checkIds": [
+        "W28-RB01",
+        "W28-RB02",
+        "W28-RB03",
+        "W28-RB04",
+        "W28-RB05",
+        "W28-RB06"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-resource-boundary-tests.log"
+      ]
+    },
+    {
+      "file": "tests/wave28-silicon.test.ts",
+      "checks": 8,
+      "passed": 8,
+      "newInWave28": true,
+      "checkIds": [
+        "W28-S01",
+        "W28-S02",
+        "W28-S03",
+        "W28-S04",
+        "W28-S05",
+        "W28-S06",
+        "W28-S07",
+        "W28-S08"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-silicon-tests.log"
+      ]
+    },
+    {
+      "file": "tests/wave28-tariffs.test.ts",
+      "checks": 3,
+      "passed": 3,
+      "newInWave28": true,
+      "checkIds": [
+        "W28-T01",
+        "W28-T02",
+        "W28-T03"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "file": "tests/wave4-hardware.test.ts",
+      "checks": 14,
+      "passed": 14,
+      "newInWave28": false,
+      "checkIds": [
+        "W4-H01",
+        "W4-H02",
+        "W4-H03",
+        "W4-H04",
+        "W4-H05",
+        "W4-H06",
+        "W4-H07",
+        "W4-H08",
+        "W4-H09",
+        "W4-H10",
+        "W4-H11",
+        "W22-F01",
+        "W23-S01",
+        "W23-S02"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ]
+    },
+    {
+      "file": "tests/wave9-rehearsals.test.ts",
+      "checks": 7,
+      "passed": 7,
+      "newInWave28": false,
+      "checkIds": [
+        "W9-H01",
+        "W9-H02",
+        "W9-H03",
+        "W9-H04",
+        "W9-H05",
+        "W9-H06",
+        "W9-H07"
+      ],
+      "evidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ]
+    }
+  ],
+  "deduplicatedChecks": [
+    {
+      "id": "W28-M01",
+      "evidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ]
+    },
+    {
+      "id": "W28-M02",
+      "evidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ]
+    },
+    {
+      "id": "W28-M03",
+      "evidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ]
+    },
+    {
+      "id": "W28-M04",
+      "evidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ]
+    },
+    {
+      "id": "W28-M05",
+      "evidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ]
+    },
+    {
+      "id": "W26-S01",
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "id": "W26-S02",
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "id": "W26-S03",
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "id": "W26-S04",
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "id": "W26-S05",
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "id": "W26-S06",
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "id": "W26-S07",
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "id": "W26-S08",
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "id": "W26-S09",
+      "evidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    }
+  ],
+  "supersededLogs": [
+    {
+      "path": "docs/evidence/wave28-facilities-checks.txt",
+      "sha256": "7acd1571dbda72e932d269f02b59e6b7c01494e8f94848205b534bd3080e1fee",
+      "recordedTotals": {
+        "tests": 9,
+        "pass": 5,
+        "fail": 4,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "reasonExcluded": "Initial facility assumptions; wholly superseded by F01\u2013F09 final rerun.",
+      "initialFailureIds": [
+        "W28-F01",
+        "W28-F03",
+        "W28-F06",
+        "W28-F07"
+      ]
+    },
+    {
+      "path": "docs/evidence/wave28-receipt-initial-tests.log",
+      "sha256": "94258c072aaa3169969233ad4e87237c646c1ef436f324ba596340a9f6488ef5",
+      "recordedTotals": {
+        "tests": 40,
+        "pass": 17,
+        "fail": 23,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "reasonExcluded": "Initial mixed regression probe; all checks superseded by final receipt and final release-receipt runs.",
+      "initialFailureIds": [
+        "W12-G01",
+        "W12-G02",
+        "W12-G03",
+        "W12-G04",
+        "W12-G05",
+        "W12-G06",
+        "W12-G08",
+        "W12-G09",
+        "W13-A01",
+        "W13-A02",
+        "W13-A03",
+        "W13-A04",
+        "W13-A05",
+        "W13-A06",
+        "W13-A07",
+        "W13-A08",
+        "W14-B01",
+        "W14-B02",
+        "W14-B03",
+        "W14-B04",
+        "W14-B05",
+        "W14-B06",
+        "W14-B07"
+      ]
+    },
+    {
+      "path": "docs/evidence/wave28-receipt-corrected-tests.log",
+      "sha256": "16fbb9ba7572e855c5a8832440d8c5b104231bb7ae9c3620a2dc3b6ff6e52132",
+      "recordedTotals": {
+        "tests": 26,
+        "pass": 26,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "reasonExcluded": "Passing intermediate receipt run superseded by the final 36-check receipt run.",
+      "initialFailureIds": []
+    },
+    {
+      "path": "docs/evidence/wave28-resource-boundary-tests-initial.log",
+      "sha256": "1c3053e41b64ae680732831da51e7e06bf630a49e5ee424431476e3236a384d0",
+      "recordedTotals": {
+        "tests": 6,
+        "pass": 5,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0
+      },
+      "reasonExcluded": "Initial probe expectation reached the workload-class guard before the requested legacy physical guard; final six-check run supersedes it.",
+      "initialFailureIds": [
+        "W28-RB06"
+      ]
+    }
+  ],
+  "resolvedFindings": [
+    {
+      "finding": "Browser recovery archive exhausted localStorage.",
+      "resolution": "Try raw first; on a real QuotaExceededError only, encode the new archive losslessly. Preserve existing copies and primary-before-archive ordering; validate packed exports and expose actionable decode failure.",
+      "evidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-browser-recovery.json"
+      ]
+    },
+    {
+      "finding": "Shared resource boundary did not independently enforce the aggregate facility workload ceiling.",
+      "resolution": "Accumulate per-pool serving/training/general reservations, including headroom, across collector calls; retain physical and memory checks.",
+      "evidence": [
+        "docs/evidence/wave28-resource-boundary.json",
+        "docs/evidence/wave28-resource-boundary-tests.log"
+      ]
+    },
+    {
+      "finding": "A checksum-valid cumulative rehearsal receipt could remove its paid serving-profile binding and restore the base tariff.",
+      "resolution": "Validate actual known grant pool and week with assertFacilityTariffGrant, including missing-binding cases, across rehearsal, guardrail, synthetic and batch consumers. Independent W590 forge now fails validation and import.",
+      "evidence": [
+        "docs/evidence/wave28-tariff-proof-review.json",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "finding": "Historical isolated policy fixtures granted every newly implemented discovery without a commissioned site or shipment.",
+      "resolution": "Keep S5/S6 out of those old isolated fixtures; final guardrail, assurance and batch regressions pass under real eligibility rules.",
+      "evidence": [
+        "docs/evidence/wave28-receipt-initial-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ]
+    },
+    {
+      "finding": "Initial facility tests assumed retained ledger facts, floating-point equality and compute-limited work despite real ML supervision.",
+      "resolution": "Respect bounded ledger retention, integer conversion and the real staff limit; ordinary funded branches retain actual payments and readiness.",
+      "evidence": [
+        "docs/evidence/wave28-facilities-checks.txt",
+        "docs/evidence/wave28-facilities-rerun.txt",
+        "docs/evidence/wave28-facility-routes.json"
+      ]
+    },
+    {
+      "finding": "A progressing retrofit displayed an instruction to assign staff.",
+      "resolution": "Render positive current staff work and elapsed-only waiting as neutral progress without changing persisted core state.",
+      "evidence": [
+        "docs/evidence/wave28-ui-progress-copy.json"
+      ]
+    }
+  ],
+  "additionalVerificationNotAddedToTestCount": {
+    "ssr": {
+      "scenarios": 19,
+      "passed": 19,
+      "evidence": "docs/evidence/wave28-ui-checks.json"
+    },
+    "targetedProgressCopyRerun": {
+      "scenarios": 4,
+      "passed": 4,
+      "includedInSsrDistinctScenarios": true,
+      "evidence": "docs/evidence/wave28-ui-progress-copy.json"
+    },
+    "contrast": {
+      "meaningfulPairs": 50,
+      "failed": 0,
+      "minimumRatio": 5.101,
+      "evidence": "docs/evidence/wave28-ui-contrast.json"
+    },
+    "typecheck": {
+      "status": "pass",
+      "evidence": "docs/evidence/wave28-typecheck.log"
+    },
+    "productionBuild": {
+      "status": "pass",
+      "stages": 5,
+      "evidence": "docs/evidence/wave28-build.json"
+    },
+    "lint": {
+      "campusAndRecovery": "No ESLint errors or warnings in final scoped logs.",
+      "facilityScope": "No errors; six existing cost-validator unused-variable warnings recorded.",
+      "repositoryWideCleanClaim": false
+    },
+    "facilityBrowserOracle": {
+      "status": "pass",
+      "week": 593,
+      "exactBytes": true,
+      "exactState": true,
+      "checksum": "c046a694",
+      "evidence": "docs/evidence/wave28-facility-browser-oracle.json"
+    }
+  },
+  "checks": [
+    {
+      "id": "W28-S01",
+      "title": "W28-S01: published-company continuation pays research, ships a buyer order, independently qualifies Gen2, fabricates and installs real memory",
+      "suiteFile": "tests/wave28-silicon.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-silicon-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-silicon-tests.log"
+    },
+    {
+      "id": "W28-S02",
+      "title": "W28-S02: the other paid target raises only compatible throughput, preserving memory, footprint, yield and operating tariff",
+      "suiteFile": "tests/wave28-silicon.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-silicon-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-silicon-tests.log"
+    },
+    {
+      "id": "W28-S03",
+      "title": "W28-S03: quote, queue, reload and commit agree on one frozen target and reject renamed, alternate and recursive successors",
+      "suiteFile": "tests/wave28-silicon.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-silicon-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-silicon-tests.log"
+    },
+    {
+      "id": "W28-S04",
+      "title": "W28-S04: a paid redesign cannot borrow parent staff; pause/resume preserves its own work and charges the fee once",
+      "suiteFile": "tests/wave28-silicon.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-silicon-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-silicon-tests.log"
+    },
+    {
+      "id": "W28-S05",
+      "title": "W28-S05: source, fee, work, evaluated-runtime and original-parent tampering cannot create qualification",
+      "suiteFile": "tests/wave28-silicon.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-silicon-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-silicon-tests.log"
+    },
+    {
+      "id": "W28-S06",
+      "title": "W28-S06: completed engineering survives ordinary staff dismissal; history does not require today\u2019s roster",
+      "suiteFile": "tests/wave28-silicon.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-silicon-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-silicon-tests.log"
+    },
+    {
+      "id": "W28-S07",
+      "title": "W28-S07: both generations reserve the same foundry capacity and Gen1 state/values remain byte-identical",
+      "suiteFile": "tests/wave28-silicon.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-silicon-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-silicon-tests.log"
+    },
+    {
+      "id": "W28-S08",
+      "title": "W28-S08: old headers and malformed payloads cannot admit Gen2, while rejected funding leaves the source unchanged",
+      "suiteFile": "tests/wave28-silicon.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-silicon-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-silicon-tests.log"
+    },
+    {
+      "id": "W4-H01",
+      "title": "W4-H01: paid specification and prototype require separate staff/work meters and next-boundary qualification; duplicate specifications cannot reroll",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W4-H02",
+      "title": "W4-H02: manufacturing payment yields finite inventory after lead time; installation is the only path to staffed capacity",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W4-H03",
+      "title": "W4-H03: compatible custom silicon accelerates actual work, bills physical usage, and cannot execute training or sparse work on its inference compiler",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W4-H04",
+      "title": "W4-H04: sparse work is rejected without fabric, then admitted only after a paid three-meter installation; the independent resource boundary rejects forged grants",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W4-H05",
+      "title": "W4-H05: fabric pause preserves paid work and elapsed time; staffing and parking still constrain a wired pool",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W4-H06",
+      "title": "W4-H06: eight distinct real customer-serving weeks establish feasibility; idle allocations and internal assistant/teacher calls do not",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W4-H07",
+      "title": "W4-H07: qualified yield, fabrication payment, inventory capacity and prototype evidence reject checksum-independent tampering",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W4-H08",
+      "title": "W4-H08: save/reload preserves production lead time and hardware availability; repeated stepping stays deterministic",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W4-H09",
+      "title": "W4-H09: payback uses explicit utilization and fixed operating costs; low utilization cannot manufacture positive savings",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W4-H10",
+      "title": "W4-H10: incoming custom batches share the same finite site slots as ordinary GPU orders and wait for commissioning",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W4-H11",
+      "title": "W4-H11: cloud shrink cannot replace active inference memory with a training-only custom pool",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W22-F01",
+      "title": "W22-F01: alternate foundries freeze price, delivery and useful output on real rack orders",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W23-S01",
+      "title": "W23-S01: qualified orders compete with internal fabrication, then pay once on direct shipment",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "W23-S02",
+      "title": "W23-S02: memory-heavy inference and training buyers accept different qualified designs",
+      "suiteFile": "tests/wave4-hardware.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-gen1-regression.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-gen1-regression.log"
+    },
+    {
+      "id": "browser adapter writes and reads a current save without creating recovery copies",
+      "title": "browser adapter writes and reads a current save without creating recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "first legacy write archives the untouched v1 bytes before updating the primary snapshot",
+      "title": "first legacy write archives the untouched v1 bytes before updating the primary snapshot",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "an existing original v1 copy is retained across later upgraded writes",
+      "title": "an existing original v1 copy is retained across later upgraded writes",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "first Wave 1 upgrade archives its exact bytes separately from the Wave 0 original",
+      "title": "first Wave 1 upgrade archives its exact bytes separately from the Wave 0 original",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "the first Wave 1 recovery remains unchanged across subsequent migrated writes",
+      "title": "the first Wave 1 recovery remains unchanged across subsequent migrated writes",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "a failed Wave 1 archive prevents the primary from being replaced",
+      "title": "a failed Wave 1 archive prevents the primary from being replaced",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "a failed current primary write leaves the Wave 1 save and successful archive recoverable",
+      "title": "a failed current primary write leaves the Wave 1 save and successful archive recoverable",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "first Wave 2 upgrade archives exact v3 bytes independently of earlier originals",
+      "title": "first Wave 2 upgrade archives exact v3 bytes independently of earlier originals",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "the first Wave 2 recovery remains untouched across later migrated writes",
+      "title": "the first Wave 2 recovery remains untouched across later migrated writes",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "a failed Wave 2 archive prevents any primary replacement",
+      "title": "a failed Wave 2 archive prevents any primary replacement",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "a failed Wave 3 primary write retains the Wave 2 save and successful exact archive",
+      "title": "a failed Wave 3 primary write retains the Wave 2 save and successful exact archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "first Wave 3 upgrade archives exact v4 bytes before the Wave 4 primary write",
+      "title": "first Wave 3 upgrade archives exact v4 bytes before the Wave 4 primary write",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "the first Wave 3 recovery remains untouched across subsequent upgraded saves",
+      "title": "the first Wave 3 recovery remains untouched across subsequent upgraded saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "a failed Wave 3 recovery archive leaves the v4 primary untouched",
+      "title": "a failed Wave 3 recovery archive leaves the v4 primary untouched",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "a failed Wave 4 primary write retains the exact Wave 3 save and successful archive",
+      "title": "a failed Wave 4 primary write retains the exact Wave 3 save and successful archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 4 content upgrade archives exact schema5 bytes before replacing the primary",
+      "title": "Wave 4 content upgrade archives exact schema5 bytes before replacing the primary",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 4 recovery is never overwritten, including a later content upgrade",
+      "title": "Wave 4 recovery is never overwritten, including a later content upgrade",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 4 backup blocks replacement and a failed primary write retains the original and archive",
+      "title": "failed Wave 4 backup blocks replacement and a failed primary write retains the original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 5 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+      "title": "Wave 5 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 5 original bytes are never overwritten by later saves",
+      "title": "Wave 5 original bytes are never overwritten by later saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 5 backup blocks replacement; failed primary writes retain both original and archive",
+      "title": "failed Wave 5 backup blocks replacement; failed primary writes retain both original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 6 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+      "title": "Wave 6 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 6 original bytes are never overwritten by later saves",
+      "title": "Wave 6 original bytes are never overwritten by later saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 6 backup blocks replacement; failed primary writes retain both original and archive",
+      "title": "failed Wave 6 backup blocks replacement; failed primary writes retain both original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 7 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+      "title": "Wave 7 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 7 original bytes are never overwritten by later saves",
+      "title": "Wave 7 original bytes are never overwritten by later saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 7 backup blocks replacement; failed primary writes retain both original and archive",
+      "title": "failed Wave 7 backup blocks replacement; failed primary writes retain both original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 8 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+      "title": "Wave 8 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 8 original bytes are never overwritten by later saves",
+      "title": "Wave 8 original bytes are never overwritten by later saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 8 backup blocks replacement; failed primary writes retain both original and archive",
+      "title": "failed Wave 8 backup blocks replacement; failed primary writes retain both original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 9 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+      "title": "Wave 9 upgrade archives exact bytes before replacing the primary and retains older recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 9 original bytes are never overwritten by later saves",
+      "title": "Wave 9 original bytes are never overwritten by later saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 9 backup blocks replacement; failed primary writes retain both original and archive",
+      "title": "failed Wave 9 backup blocks replacement; failed primary writes retain both original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 10 upgrade archives exact mid-review bytes before replacing the primary and retains older recovery copies",
+      "title": "Wave 10 upgrade archives exact mid-review bytes before replacing the primary and retains older recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 10 original bytes are never overwritten by later saves",
+      "title": "Wave 10 original bytes are never overwritten by later saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 10 backup blocks replacement; failed primary writes retain both original and archive",
+      "title": "failed Wave 10 backup blocks replacement; failed primary writes retain both original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 11 upgrade archives exact mid-policy-training bytes before replacing the primary and retains older recovery copies",
+      "title": "Wave 11 upgrade archives exact mid-policy-training bytes before replacing the primary and retains older recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 11 original bytes are never overwritten by later saves",
+      "title": "Wave 11 original bytes are never overwritten by later saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 11 backup blocks replacement; failed primary writes retain both original and archive",
+      "title": "failed Wave 11 backup blocks replacement; failed primary writes retain both original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 12 upgrade archives exact mid-guardrail-rollout bytes before replacing the primary and retains older recovery copies",
+      "title": "Wave 12 upgrade archives exact mid-guardrail-rollout bytes before replacing the primary and retains older recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 12 original bytes are never overwritten by later saves",
+      "title": "Wave 12 original bytes are never overwritten by later saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 12 backup blocks replacement; failed primary writes retain both original and archive",
+      "title": "failed Wave 12 backup blocks replacement; failed primary writes retain both original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 13 upgrade archives exact active-assurance-term bytes before replacing the primary and retains older recovery copies",
+      "title": "Wave 13 upgrade archives exact active-assurance-term bytes before replacing the primary and retains older recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 13 original bytes are never overwritten by later saves",
+      "title": "Wave 13 original bytes are never overwritten by later saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 13 backup blocks replacement; failed primary writes retain both original and archive",
+      "title": "failed Wave 13 backup blocks replacement; failed primary writes retain both original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 14 upgrade archives exact active-batch bytes before replacing the primary and retains older recovery copies",
+      "title": "Wave 14 upgrade archives exact active-batch bytes before replacing the primary and retains older recovery copies",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "Wave 14 original bytes are never overwritten by later saves",
+      "title": "Wave 14 original bytes are never overwritten by later saves",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed Wave 14 backup blocks replacement; failed primary writes retain both original and archive",
+      "title": "failed Wave 14 backup blocks replacement; failed primary writes retain both original and archive",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "empty, corrupt and unknown-version stored bytes block automatic replacement and remain exportable",
+      "title": "empty, corrupt and unknown-version stored bytes block automatic replacement and remain exportable",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "confirmed replacement keeps the previous raw save before installing the new run",
+      "title": "confirmed replacement keeps the previous raw save before installing the new run",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed migration backup leaves the legacy primary untouched",
+      "title": "failed migration backup leaves the legacy primary untouched",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed primary write preserves both the legacy primary and its successful backup",
+      "title": "failed primary write preserves both the legacy primary and its successful backup",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "failed replacement backup prevents the new run from overwriting the current snapshot",
+      "title": "failed replacement backup prevents the new run from overwriting the current snapshot",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "unavailable storage and invalid live states fail without promising a saved run",
+      "title": "unavailable storage and invalid live states fail without promising a saved run",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "UTF-8 snapshot limits match import and prevent an oversized autosave from replacing the usable run",
+      "title": "UTF-8 snapshot limits match import and prevent an oversized autosave from replacing the usable run",
+      "suiteFile": "tests/wave1-persistence.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "W28-M01",
+      "title": "W28-M01: S5/S6 are paid discoveries with no free profile or successor at company creation",
+      "suiteFile": "tests/wave28-migration.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W28-M02",
+      "title": "W28-M02: both published release paths preserve every paid receipt and queued command during migration",
+      "suiteFile": "tests/wave28-migration.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W28-M03",
+      "title": "W28-M03: first browser write archives exact 0.27 bytes and aborts if recovery cannot be saved",
+      "suiteFile": "tests/wave28-migration.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W28-M04",
+      "title": "W28-M04: historical headers cannot smuggle Campus commands, profile proof or successor targets",
+      "suiteFile": "tests/wave28-migration.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W28-M05",
+      "title": "W28-M05: unadopted companies and restored saves continue identically through three ordinary weeks",
+      "suiteFile": "tests/wave28-migration.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt",
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W28-R01",
+      "title": "W28-R01: packed recovery returns exact Unicode, whitespace and even unpaired code units",
+      "suiteFile": "tests/wave28-recovery.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "W28-R02",
+      "title": "W28-R02: ordinary storage keeps the original raw archive and primary path unchanged",
+      "suiteFile": "tests/wave28-recovery.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "W28-R03",
+      "title": "W28-R03: a real storage quota falls back only for the new archive before the raw primary write",
+      "suiteFile": "tests/wave28-recovery.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "W28-R04",
+      "title": "W28-R04: generic quota wording and other storage errors never trigger archive compression",
+      "suiteFile": "tests/wave28-recovery.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "W28-R05",
+      "title": "W28-R05: insufficient room for even the packed archive preserves every existing key and primary",
+      "suiteFile": "tests/wave28-recovery.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "W28-R06",
+      "title": "W28-R06: a failed primary write retains both its original raw bytes and a completed packed recovery",
+      "suiteFile": "tests/wave28-recovery.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "W28-R07",
+      "title": "W28-R07: explicit replacement can pack its new previous-run archive without changing older copies",
+      "suiteFile": "tests/wave28-recovery.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "W28-R08",
+      "title": "W28-R08: malformed packed archives fail actionably without rewriting or hiding the stored primary",
+      "suiteFile": "tests/wave28-recovery.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-recovery-checks.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-recovery-checks.txt"
+    },
+    {
+      "id": "W28-F01",
+      "title": "W28-F01: an ordinary published company pays S5 and two independent retrofits; benefit and tradeoff start only at the following boundary",
+      "suiteFile": "tests/wave28-facilities.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-facilities-rerun.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-facilities-rerun.txt"
+    },
+    {
+      "id": "W28-F02",
+      "title": "W28-F02: a reviewed profile reserves one capital payment, preserves queued identity on reload and rejects duplicate, foreign and unearned work",
+      "suiteFile": "tests/wave28-facilities.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-facilities-rerun.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-facilities-rerun.txt"
+    },
+    {
+      "id": "W28-F03",
+      "title": "W28-F03: elapsed time cannot replace staff or GPU qualification; pause and real reassignment preserve paid progress",
+      "suiteFile": "tests/wave28-facilities.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-facilities-rerun.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-facilities-rerun.txt"
+    },
+    {
+      "id": "W28-F04",
+      "title": "W28-F04: serving specialization bills only actual eligible work once; live Chat, API and delivered enterprise support retain their ordinary obligations",
+      "suiteFile": "tests/wave28-facilities.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-facilities-rerun.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-facilities-rerun.txt"
+    },
+    {
+      "id": "W28-F05",
+      "title": "W28-F05: training penalties aggregate across requests and categories; research/general, cloud and colocation retain original behavior",
+      "suiteFile": "tests/wave28-facilities.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-facilities-rerun.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-facilities-rerun.txt"
+    },
+    {
+      "id": "W28-F06",
+      "title": "W28-F06: the training profile improves compatible cross-rack updates only and its shared serving ceiling includes headroom",
+      "suiteFile": "tests/wave28-facilities.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-facilities-rerun.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-facilities-rerun.txt"
+    },
+    {
+      "id": "W28-F07",
+      "title": "W28-F07: a separately paid real foundation receives the exact training gain while public service and enterprise support continue",
+      "suiteFile": "tests/wave28-facilities.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-facilities-rerun.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-facilities-rerun.txt"
+    },
+    {
+      "id": "W28-F08",
+      "title": "W28-F08: historical profile receipts and rates survive a paid switch, exact reload and a following ordinary week",
+      "suiteFile": "tests/wave28-facilities.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-facilities-rerun.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-facilities-rerun.txt"
+    },
+    {
+      "id": "W28-F09",
+      "title": "W28-F09: state validation rejects forged price, work, future activation, overlapping or erased profiles; the Campus selector stays pure",
+      "suiteFile": "tests/wave28-facilities.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-facilities-rerun.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-facilities-rerun.txt"
+    },
+    {
+      "id": "W28-RB01",
+      "title": "W28-RB01: concurrent serving grants cannot exceed the shared training-profile ceiling, including across collector calls",
+      "suiteFile": "tests/wave28-resource-boundary.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-resource-boundary-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-resource-boundary-tests.log"
+    },
+    {
+      "id": "W28-RB02",
+      "title": "W28-RB02: explicit inference shares one ceiling across serving, development and research allocations",
+      "suiteFile": "tests/wave28-resource-boundary.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-resource-boundary-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-resource-boundary-tests.log"
+    },
+    {
+      "id": "W28-RB03",
+      "title": "W28-RB03: the class ceiling counts reserved headroom and admits its exact boundary",
+      "suiteFile": "tests/wave28-resource-boundary.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-resource-boundary-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-resource-boundary-tests.log"
+    },
+    {
+      "id": "W28-RB04",
+      "title": "W28-RB04: explicit training retains its shared serving-profile tradeoff across allocation categories",
+      "suiteFile": "tests/wave28-resource-boundary.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-resource-boundary-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-resource-boundary-tests.log"
+    },
+    {
+      "id": "W28-RB05",
+      "title": "W28-RB05: general work can use the remaining physical pool and a separate unprofiled pool keeps its own capacity",
+      "suiteFile": "tests/wave28-resource-boundary.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-resource-boundary-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-resource-boundary-tests.log"
+    },
+    {
+      "id": "W28-RB06",
+      "title": "W28-RB06: existing physical and connected-memory conservation remain independently enforced",
+      "suiteFile": "tests/wave28-resource-boundary.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-resource-boundary-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-resource-boundary-tests.log"
+    },
+    {
+      "id": "W28-F10",
+      "title": "W28-F10: reduced cloud exposes real placement limits; a paid existing-rack move lets Chat use the serving profile without starving API",
+      "suiteFile": "tests/wave28-facilities.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-facility-public-route-check.txt"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-facility-public-route-check.txt"
+    },
+    {
+      "id": "W0-C01",
+      "title": "W0-C01: opening catalog and initial state preserve the authored values",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-C02",
+      "title": "W0-C02: catalog has sixteen core programs, thirteen applied projects and four Studio discoveries",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-C03",
+      "title": "W0-C03: catalog validation rejects duplicate IDs, missing references and prerequisite cycles",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-C04",
+      "title": "W0-C04: content validation rejects negative prices and impossible opening allocation",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E01",
+      "title": "W0-E01: one settled week charges $800 rental and $200 overhead with no invented work or revenue",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E02",
+      "title": "W0-E02: ten weeks retain $38,000 before any hiring or revenue systems exist",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E03",
+      "title": "W0-E03: a real shortfall records unpaid bills without negative cash and blocks optional commands",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E04",
+      "title": "W0-E04: phase order is explicit and stable",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E05",
+      "title": "W0-E05: a release scheduled by resolve is unavailable until the next weekly commit",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E06",
+      "title": "W0-E06: delivery records inventory once without creating usable or rented capacity",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E07",
+      "title": "W0-E07: duplicate economic facts settle once",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E08",
+      "title": "W0-E08: forbidden cross-domain writes reject the entire tick",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E09",
+      "title": "W0-E09: exceptions and direct snapshot mutation cannot partly commit a week",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E10",
+      "title": "W0-E10: duplicate registrations and invalid economic facts fail atomically",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E11",
+      "title": "W0-E11: an unsafe owned-slice update aborts before settlement can hide it",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E12",
+      "title": "W0-E12: a scheduled model release must belong to the model owner",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-E13",
+      "title": "W0-E13: all reserve requests precede owner grants and execution sees the complete grants",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-A01",
+      "title": "W0-A01: a queued command applies at the next boundary rather than on submission",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-A02",
+      "title": "W0-A02: duplicate pending and committed command IDs never create a second action",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-A03",
+      "title": "W0-A03: allocations are capacity ceilings, preserve rental cost, and perform no fabricated work",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-A04",
+      "title": "W0-A04: invalid or overcommitted commands spend no resources and consume no IDs or draws",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-A05",
+      "title": "W0-A05: repeated forecasts and diagnostics are read-only",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-A06",
+      "title": "W0-A06: command admission rejects exhausted safe counters without changing state",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-R01",
+      "title": "W0-R01: a hundred-command replay produces identical intermediate and final state",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-R02",
+      "title": "W0-R02: named random streams replay, survive snapshots, and remain independent",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-R03",
+      "title": "W0-R03: module draws persist and replay only when their entire tick commits",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-N01",
+      "title": "W0-N01: work at token scale remains exact and safe",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-N02",
+      "title": "W0-N02: fractional operating amounts accumulate rather than vanishing each step",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-N03",
+      "title": "W0-N03: checked addition rejects unsafe operands even when the sum is safe",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-S01",
+      "title": "W0-S01: snapshot roundtrip preserves commands, schedules, draws, and the next exact week",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-S02",
+      "title": "W0-S02: bad JSON and a changed payload are rejected without replacing the current state",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-S03",
+      "title": "W0-S03: incompatible versions and unsafe or impossible state fail validation",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W0-S04",
+      "title": "W0-S04: imports reject malformed reports and incomplete model maps even with a matching checksum",
+      "suiteFile": "tests/wave0.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W26-S01",
+      "title": "W26-S01: old companies migrate with synthetic support without grants, clock changes or new synthetic records",
+      "suiteFile": "tests/wave26-synthetic.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W26-S02",
+      "title": "W26-S02: the first content upgrade exposes untouched original bytes and never overwrites on archive failure",
+      "suiteFile": "tests/wave26-synthetic.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W26-S03",
+      "title": "W26-S03: paid method, teacher qualification, licensed sources and pure previews control generation admission",
+      "suiteFile": "tests/wave26-synthetic.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W26-S04",
+      "title": "W26-S04: an ordinary paid company generates, reviews, quarantines, trains and independently evaluates a distinct candidate",
+      "suiteFile": "tests/wave26-synthetic.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W26-S05",
+      "title": "W26-S05: alternate teachers, curated aliases and partially overlapping source sets cannot mint a second target slice",
+      "suiteFile": "tests/wave26-synthetic.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W26-S06",
+      "title": "W26-S06: generation needs actual ML and connected compute grants, and paid progress resumes exactly after pause and reload",
+      "suiteFile": "tests/wave26-synthetic.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W26-S07",
+      "title": "W26-S07: review and audit are separate paid stages that cannot finish from elapsed time or a single resource alone",
+      "suiteFile": "tests/wave26-synthetic.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W26-S08",
+      "title": "W26-S08: only a separate student may use audited evidence through S2, without ordinary-recipe or recursive shortcuts",
+      "suiteFile": "tests/wave26-synthetic.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W26-S09",
+      "title": "W26-S09: correctly checksummed imports cannot forge paid work, audit acceptance, source provenance or synthetic targets",
+      "suiteFile": "tests/wave26-synthetic.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log",
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W27-M01",
+      "title": "W27-M01: S3/S4 are ordinary paid discoveries and a new company receives no release artifacts",
+      "suiteFile": "tests/wave27-migration.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W27-M02",
+      "title": "W27-M02: the published synthetic campaign migrates with every existing slice, command and receipt intact",
+      "suiteFile": "tests/wave27-migration.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W27-M03",
+      "title": "W27-M03: first upgraded browser write archives exact 0.26 bytes before replacing the primary save",
+      "suiteFile": "tests/wave27-migration.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W27-M04",
+      "title": "W27-M04: correctly checksummed historical envelopes cannot smuggle new research, canary receipts or appliance contracts",
+      "suiteFile": "tests/wave27-migration.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-engine-migration-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-engine-migration-tests.log"
+    },
+    {
+      "id": "W12-G01",
+      "title": "W12-G01: rollout admission requires prior research, exact paid model reports and compatible resident capacity",
+      "suiteFile": "tests/wave12-guardrails.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W12-G02",
+      "title": "W12-G02: compute and ML finish independently, obey weekly caps, and expose no audit before the next boundary",
+      "suiteFile": "tests/wave12-guardrails.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W12-G03",
+      "title": "W12-G03: paired audit separates allowed mistakes from correct policy refusals and preserves a nested profile tradeoff",
+      "suiteFile": "tests/wave12-guardrails.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W12-G04",
+      "title": "W12-G04: time, identifiers, mutable names and simulation random state cannot reroll a paid audit",
+      "suiteFile": "tests/wave12-guardrails.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W12-G05",
+      "title": "W12-G05: actual routed audits cover each model and require the secondary\u2019s own paid policy report",
+      "suiteFile": "tests/wave12-guardrails.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W12-G06",
+      "title": "W12-G06: replacement is staged, returning to a prior profile reuses identical cases, and retained history is bounded",
+      "suiteFile": "tests/wave12-guardrails.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W12-G07",
+      "title": "W12-G07: partial requests spend checking work but produce no completed check or false-refusal outcome",
+      "suiteFile": "tests/wave12-guardrails.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W12-G08",
+      "title": "W12-G08: forged paid work, model evidence, audit outcomes, memory and serving counts fail checksum-correct import",
+      "suiteFile": "tests/wave12-guardrails.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W12-G09",
+      "title": "W12-G09: source changes during rollout preserve paid audit history but cannot activate a mismatched checker",
+      "suiteFile": "tests/wave12-guardrails.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W13-A01",
+      "title": "W13-A01: exact paid audit, buyer thresholds, research and owned active API govern admission without preview side effects",
+      "suiteFile": "tests/wave13-assurance.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W13-A02",
+      "title": "W13-A02: real commercial grants accrue independently, pause without staff, and bill only after the following boundary",
+      "suiteFile": "tests/wave13-assurance.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W13-A03",
+      "title": "W13-A03: unfinished request work consumes GPUs but cannot invent completed requests, tokens or retainer fulfillment",
+      "suiteFile": "tests/wave13-assurance.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W13-A04",
+      "title": "W13-A04: onboarding, exact qualification and once-only setup provenance resist valid-checksum forged saves",
+      "suiteFile": "tests/wave13-assurance.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W13-A05",
+      "title": "W13-A05: retained invoices reconcile actual physical grants, independent support and historical accepted evidence",
+      "suiteFile": "tests/wave13-assurance.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W13-A06",
+      "title": "W13-A06: cancellation before onboarding preserves the paid setup while preventing a term, workloads and invoices",
+      "suiteFile": "tests/wave13-assurance.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W13-A07",
+      "title": "W13-A07: public cache changes do not change an accepted separate-tenant workload or finite audit fingerprint",
+      "suiteFile": "tests/wave13-assurance.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W13-A08",
+      "title": "W13-A08: larger explicit requalification must fit real capacity and queued promises replace the old meter exactly once",
+      "suiteFile": "tests/wave13-assurance.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W14-B01",
+      "title": "W14-B01: scheduler fees, independent capped GPU and ML grants, and the activation boundary are paid through ordinary commands",
+      "suiteFile": "tests/wave14-batch.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W14-B02",
+      "title": "W14-B02: admission requires prior paid API demand and the selected exact paid model; queued and cancelled claims remain finite",
+      "suiteFile": "tests/wave14-batch.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W14-B03",
+      "title": "W14-B03: first scheduler grants cannot invent earlier GPU or ML work, even under a valid checksum and matching latest grants",
+      "suiteFile": "tests/wave14-batch.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W14-B04",
+      "title": "W14-B04: frozen batch admission, calendar carry and physical resource provenance reject forged retained jobs",
+      "suiteFile": "tests/wave14-batch.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W14-B05",
+      "title": "W14-B05: partial commercial supervision clips an owned GPU integer conversion rather than creating a free final work unit",
+      "suiteFile": "tests/wave14-batch.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W14-B06",
+      "title": "W14-B06: batch inference keeps sparse fabric and custom compiler compatibility at the physical allocator boundary",
+      "suiteFile": "tests/wave14-batch.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W14-B07",
+      "title": "W14-B07: the terminal invoice is immutable, bills whole completed requests once, and retains its exact paid source",
+      "suiteFile": "tests/wave14-batch.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W28-T01",
+      "title": "W28-T01: paid serving profiles apply only to eligible owned inference and preserve legacy tariff keys",
+      "suiteFile": "tests/wave28-tariffs.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W28-T02",
+      "title": "W28-T02: historical discounted receipts survive switching but cannot move to another pool, company or week",
+      "suiteFile": "tests/wave28-tariffs.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W28-T03",
+      "title": "W28-T03: removing paid facility proof from an actual rehearsal cannot restore the base tariff under a valid checksum",
+      "suiteFile": "tests/wave28-tariffs.test.ts",
+      "status": "pass",
+      "newInWave28": true,
+      "passingEvidence": [
+        "docs/evidence/wave28-receipt-final-tests.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-receipt-final-tests.log"
+    },
+    {
+      "id": "W27-C01",
+      "title": "W27-C01 paid regression canary observes disjoint traffic, restores the incumbent and invoices once",
+      "suiteFile": "tests/wave27-canary.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W27-C02",
+      "title": "W27-C02 queue and stopped-save reloads preserve exact continuation and duplicate commands cannot charge again",
+      "suiteFile": "tests/wave27-canary.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W27-C03",
+      "title": "W27-C03 explicit protocol limits and both queued command orders reject stale full rollout",
+      "suiteFile": "tests/wave27-canary.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W27-C04",
+      "title": "W27-C04 sufficient nonregressing evidence permits the existing paid handover and retained-source rollback",
+      "suiteFile": "tests/wave27-canary.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W27-C05",
+      "title": "W27-C05 compressed API candidate keeps its paid policy/runtime identity and shares one executed-token carry",
+      "suiteFile": "tests/wave27-canary.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W27-C06",
+      "title": "W27-C06 actual work respects its hard allowance and eight insufficient samples never unlock rollout",
+      "suiteFile": "tests/wave27-canary.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W27-C07",
+      "title": "W27-C07 loss of connected memory stops actual zero-grant traffic without rejecting the settlement",
+      "suiteFile": "tests/wave27-canary.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W27-C08",
+      "title": "W27-C08 checksummed imports reject stopped-canary resurrection, fabricated qualification and changed cohort billing",
+      "suiteFile": "tests/wave27-canary.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W27-C09",
+      "title": "W27-C09 pure release views and frozen paid identities preserve state, RNG and canonical reload ordering",
+      "suiteFile": "tests/wave27-canary.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W9-H01",
+      "title": "W9-H01: both finite arms and ML review consume normal resources; outcomes arrive next boundary while incumbent invoices continue",
+      "suiteFile": "tests/wave9-rehearsals.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W9-H02",
+      "title": "W9-H02: starvation and pause cannot create work; paid progress survives exact save continuation",
+      "suiteFile": "tests/wave9-rehearsals.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W9-H03",
+      "title": "W9-H03: names and weeks cannot reroll cases; configuration changes stale qualification but preserve valid history",
+      "suiteFile": "tests/wave9-rehearsals.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W9-H04",
+      "title": "W9-H04: import validation rejects outcome, work, memory, tariff, report and early-availability fabrication",
+      "suiteFile": "tests/wave9-rehearsals.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W9-H05",
+      "title": "W9-H05: exact evaluated ownership, R12 timing and actual unshared resident grants remain mandatory",
+      "suiteFile": "tests/wave9-rehearsals.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W9-H06",
+      "title": "W9-H06: owned GPUs convert useful work into actual physical execution and reconcile with the existing cost meter",
+      "suiteFile": "tests/wave9-rehearsals.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    },
+    {
+      "id": "W9-H07",
+      "title": "W9-H07: installed evidence and retrieval identities are captured; runtime optimizations do not alter standard work",
+      "suiteFile": "tests/wave9-rehearsals.test.ts",
+      "status": "pass",
+      "newInWave28": false,
+      "passingEvidence": [
+        "docs/evidence/wave28-release-receipt-final.log"
+      ],
+      "latestPassingEvidence": "docs/evidence/wave28-release-receipt-final.log"
+    }
+  ],
+  "independentCountReview": {
+    "result": "confirmed",
+    "method": "A second agent independently reconciled the same nine completed saved logs without rerunning tests or editing source.",
+    "passingOccurrences": 209,
+    "duplicateOccurrences": 14,
+    "distinctChecks": 195,
+    "newWave28Checks": 40,
+    "existingChecks": 155,
+    "allFinalLogsZeroFailuresAndSkips": true,
+    "sourceFileCountMethod": "Each stable test ID, or exact persistence title, was matched to exactly one tests/*.test.ts source file by the summary generator;16 unique files."
+  }
+}

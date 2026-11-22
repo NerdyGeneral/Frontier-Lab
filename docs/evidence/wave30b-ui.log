@@ -1,0 +1,48 @@
+✔ W30B-L01: exact data intent selects the requested packet on the first render without changing the company (78.427887ms)
+✔ W30B-L02: missing, foreign, and unavailable data intents expose recovery without preparing another packet (8.384328ms)
+✔ W30B-L03: guided training uses the exact dataset and keeps one copy of every draft control (20.491421ms)
+✔ W30B-L04: training never replaces a missing or foreign explicit dataset with starter data (23.050565ms)
+✔ W30B-L05: Classic training keeps its full recipe list and original controls (24.896116ms)
+✔ W30B-L06: qualifying report handoff names the exact older candidate and report (945.467055ms)
+✔ W30B-L07: a nonqualifying exact report cannot borrow eligibility from another report on the same model (451.582636ms)
+✔ W30B-L08: diagnostic evidence never becomes a capability handoff even if a passing flag or another report exists (615.170892ms)
+✔ W30B-L09: policy admission remains a real gate after qualifying capability evidence (1479.391365ms)
+✔ W30B-L10: an existing Basic Chat product is opened rather than presented as another first launch (748.52936ms)
+✔ W29-U01: unvisited Studio workbenches do not execute heavy children or add DOM wrappers (13.717028ms)
+✔ W29-U02: the selected real Data panel retains its direct-child section, quote and current state (80.187905ms)
+✔ W29-U03: Classic renders every legacy section once and excludes Studio-only duplicate workbenches (22.364006ms)
+✔ W29-U04: standalone selection renders one workbench with the props supplied for that render (3.40959ms)
+✔ W29-U05: the actual initial Studio Shell defers legacy, planner and research preview work (141.968626ms)
+✔ W29-U06: pending Shell feedback stays outside the inspector and disables every clock action (68.541571ms)
+✔ W29-U07: action buttons describe the unique accepted, blocked, incomplete and queued quote in one render (30.447899ms)
+✔ W29-U08: memo policy skips hidden prop churn but allows active changes and epoch replacement (0.430827ms)
+✔ W30-U01: opening and advanced cold shells keep every unvisited workbench lazy and leave the company intact (2264.827513ms)
+✔ W30-U02: a read-only cold shell exposes its status while disabling all clock commitments (44.171954ms)
+✔ W30-U03: registered task titles name their dialog and only a concise introduction describes it (11.19588ms)
+✔ W30-U04: hidden and inline surfaces keep one child tree without exposing another modal (5.586305ms)
+✔ W30-U05: busy task status stays outside its busy body and unsafe Close and Back are disabled (3.416857ms)
+✔ W30-U06: a read-only commitment keeps its current quote and never calls the review dispatcher during rendering (11.363693ms)
+✔ W30-U07: contextual menu reuses one named native trigger and exposes its current expansion state (4.385829ms)
+✔ W30-U08: inspector and result primitives remain named nonmodal context with exact supplied identity (2.698766ms)
+✔ W30-U09: a resolved older training result selects its actual output in the real Models panel (846.670181ms)
+✔ W30-U10: an exact report intent selects both its model and its real evaluation suite (660.441043ms)
+✔ W30-U11: explicit missing or foreign candidates show a recovery choice without selecting the newest model (550.944027ms)
+✔ W30-U12: a mismatched report keeps the requested candidate and does not display a different report as its result (622.161406ms)
+✔ W30-U13: commitment review names the captured setup and describes acceptance timing without claiming it was queued (13.416228ms)
+✔ W30-U14: stale commitment review preserves the setup and only enables refresh when it is safe (6.075804ms)
+✔ W30B-L01: first launch carries the older candidate and its exact report while leaving game state intact (350.136266ms)
+✔ W30B-L02: missing and foreign explicit candidates require selection instead of falling back to the newer candidate (35.835305ms)
+✔ W30B-L03: unavailable and mismatched reports cannot be replaced by another candidate’s qualifying evidence (78.860868ms)
+✔ W30B-L04: a non-capability report never enables a launch even when that model has a separate qualifying report (6.666415ms)
+✔ W30B-L05: an explicit nonqualifying capability report stays nonqualifying (8.494333ms)
+✔ W30B-L06: an unavailable launch intent is visible even before the company has an evaluated candidate (5.288181ms)
+✔ W30B-L07: Basic Chat launch intentions do not override the separate Developer API form (20.831651ms)
+✔ W30B-L08: an existing Basic Chat stays in its product workspace without a second first-launch form (38.499734ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8256.662511

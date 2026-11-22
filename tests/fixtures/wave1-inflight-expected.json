@@ -1,0 +1,253 @@
+{
+  "sourceCommit": "a74d3b3a804d062d3bb29764604c59a0361780e8",
+  "sourceSchema": 2,
+  "sourceContent": "0.2.0",
+  "snapshotChecksum": "24beb853",
+  "runId": "training-fixture-train",
+  "checkpointId": "checkpoint-training-fixture-train",
+  "trace": [
+    {
+      "week": 7,
+      "cashCents": 3490000,
+      "lastWeek": {
+        "revenueCents": 0,
+        "operatingExpenseCents": 280000,
+        "cashChangeCents": -280000
+      },
+      "work": {
+        "status": "running",
+        "completedWork": 9000000000,
+        "physicalWork": 9000000000,
+        "checkpointWork": 6000000000,
+        "checkpointModelId": "checkpoint-training-fixture-train",
+        "lastProgress": 3000000000
+      },
+      "allocation": {
+        "serving": 1000000000,
+        "development": 3000000000,
+        "research": 0
+      },
+      "executedWork": {
+        "serving": 0,
+        "development": 3000000000,
+        "research": 0
+      },
+      "postedThisWeek": [
+        {
+          "id": "company-player:cloud-rent:7",
+          "amountCents": 80000,
+          "paidCents": 80000,
+          "unpaidCents": 0,
+          "sourceId": "general-cloud-reservation",
+          "category": "rent",
+          "kind": "expense"
+        },
+        {
+          "id": "company-player:overhead:7",
+          "amountCents": 20000,
+          "paidCents": 20000,
+          "unpaidCents": 0,
+          "sourceId": "founder-and-basic-overhead",
+          "category": "overhead",
+          "kind": "expense"
+        },
+        {
+          "id": "recruit:fixture-data-hire",
+          "amountCents": 125000,
+          "paidCents": 125000,
+          "unpaidCents": 0,
+          "sourceId": "fixture-data-hire",
+          "category": "operating",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:fixture-data-hire:payroll:7",
+          "amountCents": 25000,
+          "paidCents": 25000,
+          "unpaidCents": 0,
+          "sourceId": "staff:fixture-data-hire",
+          "category": "operating",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:fixture-ml:payroll:7",
+          "amountCents": 30000,
+          "paidCents": 30000,
+          "unpaidCents": 0,
+          "sourceId": "staff:fixture-ml",
+          "category": "operating",
+          "kind": "expense"
+        }
+      ],
+      "model": null,
+      "checkpointStatus": "evaluated",
+      "readyDataStaff": 0
+    },
+    {
+      "week": 8,
+      "cashCents": 3335000,
+      "lastWeek": {
+        "revenueCents": 0,
+        "operatingExpenseCents": 155000,
+        "cashChangeCents": -155000
+      },
+      "work": {
+        "status": "complete",
+        "completedWork": 12000000000,
+        "physicalWork": 12000000000,
+        "checkpointWork": 12000000000,
+        "checkpointModelId": "model-fixture-train",
+        "lastProgress": 3000000000,
+        "completedWeek": 8
+      },
+      "allocation": {
+        "serving": 1000000000,
+        "development": 3000000000,
+        "research": 0
+      },
+      "executedWork": {
+        "serving": 0,
+        "development": 3000000000,
+        "research": 0
+      },
+      "postedThisWeek": [
+        {
+          "id": "company-player:cloud-rent:8",
+          "amountCents": 80000,
+          "paidCents": 80000,
+          "unpaidCents": 0,
+          "sourceId": "general-cloud-reservation",
+          "category": "rent",
+          "kind": "expense"
+        },
+        {
+          "id": "company-player:overhead:8",
+          "amountCents": 20000,
+          "paidCents": 20000,
+          "unpaidCents": 0,
+          "sourceId": "founder-and-basic-overhead",
+          "category": "overhead",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:fixture-data-hire:payroll:8",
+          "amountCents": 25000,
+          "paidCents": 25000,
+          "unpaidCents": 0,
+          "sourceId": "staff:fixture-data-hire",
+          "category": "operating",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:fixture-ml:payroll:8",
+          "amountCents": 30000,
+          "paidCents": 30000,
+          "unpaidCents": 0,
+          "sourceId": "staff:fixture-ml",
+          "category": "operating",
+          "kind": "expense"
+        }
+      ],
+      "model": {
+        "capabilityBps": {
+          "conversation": 4800,
+          "documents": 3056,
+          "coding": 2000,
+          "tools": 2080
+        },
+        "reliabilityBps": 8600,
+        "residentMU": 2000000000,
+        "family": "compact",
+        "architecture": "dense",
+        "status": "checkpoint",
+        "parentModelId": "seed-0",
+        "trainingRunId": "training-fixture-train"
+      },
+      "checkpointStatus": "evaluated",
+      "readyDataStaff": 0
+    },
+    {
+      "week": 9,
+      "cashCents": 3180000,
+      "lastWeek": {
+        "revenueCents": 0,
+        "operatingExpenseCents": 155000,
+        "cashChangeCents": -155000
+      },
+      "work": {
+        "status": "complete",
+        "completedWork": 12000000000,
+        "physicalWork": 12000000000,
+        "checkpointWork": 12000000000,
+        "checkpointModelId": "model-fixture-train",
+        "lastProgress": 3000000000,
+        "completedWeek": 8
+      },
+      "allocation": {
+        "serving": 1000000000,
+        "development": 3000000000,
+        "research": 0
+      },
+      "executedWork": {
+        "serving": 0,
+        "development": 0,
+        "research": 0
+      },
+      "postedThisWeek": [
+        {
+          "id": "company-player:cloud-rent:9",
+          "amountCents": 80000,
+          "paidCents": 80000,
+          "unpaidCents": 0,
+          "sourceId": "general-cloud-reservation",
+          "category": "rent",
+          "kind": "expense"
+        },
+        {
+          "id": "company-player:overhead:9",
+          "amountCents": 20000,
+          "paidCents": 20000,
+          "unpaidCents": 0,
+          "sourceId": "founder-and-basic-overhead",
+          "category": "overhead",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:fixture-data-hire:payroll:9",
+          "amountCents": 25000,
+          "paidCents": 25000,
+          "unpaidCents": 0,
+          "sourceId": "staff:fixture-data-hire",
+          "category": "operating",
+          "kind": "expense"
+        },
+        {
+          "id": "staff:fixture-ml:payroll:9",
+          "amountCents": 30000,
+          "paidCents": 30000,
+          "unpaidCents": 0,
+          "sourceId": "staff:fixture-ml",
+          "category": "operating",
+          "kind": "expense"
+        }
+      ],
+      "model": {
+        "capabilityBps": {
+          "conversation": 4800,
+          "documents": 3056,
+          "coding": 2000,
+          "tools": 2080
+        },
+        "reliabilityBps": 8600,
+        "residentMU": 2000000000,
+        "family": "compact",
+        "architecture": "dense",
+        "status": "checkpoint",
+        "parentModelId": "seed-0",
+        "trainingRunId": "training-fixture-train"
+      },
+      "checkpointStatus": "evaluated",
+      "readyDataStaff": 1
+    }
+  ]
+}

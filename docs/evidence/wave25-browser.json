@@ -1,0 +1,121 @@
+{
+  "wave": 25,
+  "packageVersion": "0.25.0",
+  "contentVersion": "0.23.0",
+  "saveSchema": 5,
+  "previewUrl": "http://127.0.0.1:4173/",
+  "productionUrl": "https://frontier-lab.nerdygeneral.chatgpt.site",
+  "previewOnlyCampaignActions": true,
+  "initial": {
+    "week": 10,
+    "cashCents": 3257200,
+    "checksum": "a929777b"
+  },
+  "studio": {
+    "unlock": "earnedRevenueCents > 0",
+    "assetBytes": 136834,
+    "visualComparison": "Compared Wave 24 and Wave 25 screenshots; room/sprites/labels aligned; no collision or clipping."
+  },
+  "invalidPreview": {
+    "sourceWeek": 10,
+    "cloudCU": 2,
+    "servingCU": 4,
+    "result": "Plan blocked; Apply disabled; cash and source week unchanged"
+  },
+  "staleReview": {
+    "inputChangeDisablesApply": true,
+    "draftSurvivesStudioAndClassic": true,
+    "importResetsDraft": true
+  },
+  "shortage": {
+    "sourceWeek": 14,
+    "sourceChecksum": "d87991e9",
+    "sourceCashCents": 1912000,
+    "change": "Existing ML employee assigned from 0 to 1 FTE",
+    "trainingCUwBefore": 0,
+    "trainingCUwAfter": 4,
+    "chatCUwBefore": 0.43,
+    "chatCUwAfter": 0.43,
+    "settledWeek": 15,
+    "settledCashCents": 1742800,
+    "settledRevenueCents": 40800,
+    "settledOperatingExpenseCents": 210000,
+    "paidDemandFulfilledPercent": 100,
+    "browserAndAutomatedChecksum": "5d5311e3",
+    "queuedPlanSurvivesReload": true
+  },
+  "memory": {
+    "sourceWeek": 544,
+    "sourceChecksum": "3bb4fea4",
+    "compatiblePoolMU": [
+      16,
+      16,
+      16
+    ],
+    "aggregateMU": 48,
+    "requestMU": 24,
+    "grantedCUw": 0,
+    "explanation": "This workload needs 24 MU together. The largest compatible pool provides 16 MU; separate pools cannot combine their memory.",
+    "signedCustomerHostedCount": 1,
+    "signedSupportFTE": 0.25,
+    "alternative": {
+      "cloudCU": 12,
+      "cloudMU": 24,
+      "trainingGrantedCUw": 8
+    }
+  },
+  "navigation": {
+    "journalHidesPlanner": true,
+    "journalSkipTarget": "#studio-inspector",
+    "allProjectsShowsWorkQueue": true
+  },
+  "responsive": [
+    {
+      "cssWidth": 1363,
+      "cssHeight": 936,
+      "method": "native browser zoom 100%"
+    },
+    {
+      "cssWidth": 779,
+      "cssHeight": 535,
+      "documentScrollWidth": 770,
+      "method": "native browser zoom 175%"
+    },
+    {
+      "cssWidth": 340,
+      "cssHeight": 234,
+      "documentScrollWidth": 337,
+      "offscreenInputs": 0,
+      "tableClientWidth": 275,
+      "tableScrollWidth": 500,
+      "tableOverflowX": "auto",
+      "method": "native browser zoom 400%"
+    }
+  ],
+  "touchDeviceTested": false,
+  "targetedChecksPassed": 142,
+  "console": {
+    "cleanReloadAt": "2026-11-09T16:42:29.323Z",
+    "applicationErrors": 0,
+    "applicationWarnings": 0,
+    "excludedBrowserExtensionMessages": 14,
+    "scope": "Clean load, hydration and final planning preview after source freeze."
+  },
+  "screenshots": [
+    "../images/frontier-lab-wave25-studio.png",
+    "../images/frontier-lab-wave25-planner.png",
+    "../images/frontier-lab-wave25-memory.png"
+  ],
+  "finalPreview": {
+    "sourceWeek": 15,
+    "forecastWeek": 16,
+    "draftApplied": false,
+    "founderML": 1,
+    "cloudCU": 12,
+    "developmentCU": 8,
+    "trainingCUwCurrentPlan": 4,
+    "trainingCUwProposedPlan": 8,
+    "chatCUwBothPlans": 0.47,
+    "purpose": "Finished-interface screenshot; acceptance settlement evidence remains the earlier Week 15 comparison."
+  }
+}

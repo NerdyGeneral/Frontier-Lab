@@ -1,0 +1,58 @@
+
+/workspace/sites/frontier-lab/.sites-checkout/src/core/wave4-hardware-validation.ts
+   4:28  warning  'U' is defined but never used       @typescript-eslint/no-unused-vars
+  12:26  warning  'mulDiv' is defined but never used  @typescript-eslint/no-unused-vars
+
+/workspace/sites/frontier-lab/.sites-checkout/src/core/wave8-costs-validation.ts
+  182:44  warning  '_paid' is assigned a value but never used        @typescript-eslint/no-unused-vars
+  182:64  warning  '_unpaid' is assigned a value but never used      @typescript-eslint/no-unused-vars
+  207:26  warning  '_workloads' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  207:49  warning  '_poolUsage' is assigned a value but never used   @typescript-eslint/no-unused-vars
+  207:73  warning  '_activities' is assigned a value but never used  @typescript-eslint/no-unused-vars
+  207:94  warning  '_totals' is assigned a value but never used      @typescript-eslint/no-unused-vars
+
+/workspace/sites/frontier-lab/.sites-checkout/src/modules/products.ts
+  4:42   warning  'taskScore' is defined but never used          @typescript-eslint/no-unused-vars
+  6:125  warning  'SegmentDefinition' is defined but never used  @typescript-eslint/no-unused-vars
+
+/workspace/sites/frontier-lab/.sites-checkout/src/ui/studio-shell.tsx
+   94:5    error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/workspace/sites/frontier-lab/.sites-checkout/src/ui/studio-shell.tsx:94:5
+  92 |     let stored: Record<string, unknown> = {};
+  93 |     try { stored = JSON.parse(localStorage.getItem(PREFERENCE_KEY) ?? '{}') ?? {}; } catch { /* Visual preferences are optional. */ }
+> 94 |     setMode(stored.mode === 'classic' ? 'classic' : 'studio');
+     |     ^^^^^^^ Avoid calling setState() directly within an effect
+  95 |     setReducedMotion(typeof stored.reducedMotion === 'boolean' ? stored.reducedMotion : media.matches);
+  96 |     setSound(stored.sound === true);
+  97 |     setSceneVisible(stored.sceneVisible !== false);  react-hooks/set-state-in-effect
+  159:42   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/workspace/sites/frontier-lab/.sites-checkout/src/ui/studio-shell.tsx:159:42
+  157 |   }, [mode, panel, closePanel]);
+  158 |
+> 159 |   useEffect(() => { if (forceSaveOpen) { setPanel('save'); setScreen('save'); } }, [forceSaveOpen]);
+      |                                          ^^^^^^^^ Avoid calling setState() directly within an effect
+  160 |
+  161 |   useEffect(() => {
+  162 |     const now = new Map(studio.projects.map(project => [project.id, project.status]));                                                                                                                                                      react-hooks/set-state-in-effect
+  299:13   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @next/next/no-img-element
+  300:158  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @next/next/no-img-element
+  301:200  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @next/next/no-img-element
+
+✖ 15 problems (2 errors, 13 warnings)
+
+
+ESLint exit code: 1

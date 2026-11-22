@@ -1,0 +1,34 @@
+{
+  "issue": "Shared current-frame validation did not enforce the facility workload-class ceiling.",
+  "before": {
+    "week": 593,
+    "poolId": "owned:facility-wave8-scale-command-3:training",
+    "profile": "training",
+    "physicalCapacityCU": 56000000000,
+    "servingCeilingCU": 50400000000,
+    "submittedServingPhysicalCU": 52000000000,
+    "acceptedBySharedBoundary": true,
+    "error": null,
+    "sourceUnchanged": true
+  },
+  "fix": {
+    "file": "src/core/resources.ts",
+    "behavior": "Accumulate per-pool serving/training/general reservations using facilityWorkClass and enforce getPoolWorkCapacityCU, including ceil-rounded headroom. Preserve total physical and connected-memory checks. Failure leaves the frame/source unchanged."
+  },
+  "verification": {
+    "suite": "tests/wave28-resource-boundary.test.ts",
+    "passed": 6,
+    "failed": 0,
+    "typecheck": "passed",
+    "focusedEslint": "passed",
+    "cases": [
+      "Concurrent serving grants across collector calls",
+      "Explicit inference across allocation categories",
+      "Reserved headroom and exact class boundary",
+      "Explicit training ceiling across allocation categories",
+      "Remaining general capacity and separate unprofiled pool",
+      "Existing total physical and connected-memory conservation"
+    ]
+  },
+  "initialTestNote": "First run passed the five new ceiling cases; the legacy physical-capacity probe encountered the serving-class ceiling before the expected physical check. Corrected test request composition; production fix unchanged. Final six-case suite passed."
+}

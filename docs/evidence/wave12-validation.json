@@ -1,0 +1,55 @@
+{
+  "wave": 12,
+  "contentVersion": "0.13.0",
+  "schemaVersion": 5,
+  "fullSuite": {
+    "command": "node scripts/test-wave0.mjs",
+    "tests": 478,
+    "pass": 478,
+    "fail": 0,
+    "durationMs": 100713.3417,
+    "note": "Passed before the final compact-save fallback; the affected natural/persistence suites were rerun after that targeted fix."
+  },
+  "finalSaveRegression": {
+    "tests": 47,
+    "pass": 47,
+    "fail": 0,
+    "evidence": "docs/evidence/wave12-save-budget.json"
+  },
+  "focusedCoverage": {
+    "guardrailCoreTests": 9,
+    "servingAndReleaseIntegrationTests": 11,
+    "compatibilityAndArchiveTests": 78,
+    "note": "These counts overlap the full suite and are not additional independent totals."
+  },
+  "typecheck": {
+    "command": "npx tsc --noEmit --incremental false",
+    "exitCode": 0,
+    "afterFinalSourceChange": true
+  },
+  "productionBuild": {
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+    "exitCode": 0,
+    "afterFinalSourceChange": true,
+    "warnings": [
+      "Client bundle exceeds500kB minified; existing build warning.",
+      "vinext route static classification is unknown; build succeeded."
+    ]
+  },
+  "diffCheck": {
+    "command": "git diff --check",
+    "exitCode": 0
+  },
+  "naturalProgression": "docs/evidence/wave12-progression.json",
+  "browserVerification": "docs/evidence/wave12-browser.json",
+  "compatibility": {
+    "originalWave11FutureStateHashesMatched": 25,
+    "nativeWave11ArchiveRetainedExactly": true,
+    "oldSavesDoNotAdoptGuardrailsImplicitly": true
+  },
+  "limits": [
+    "Audit results are finite authored game cases, not a guarantee about future traffic.",
+    "Runtime guardrails cover Basic Chat and Developer API; licensed weights, private hosted contracts and agents retain their existing scopes.",
+    "Production browser remains behind the existing owner-private sign-in gate."
+  ]
+}

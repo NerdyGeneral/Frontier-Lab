@@ -1,0 +1,34 @@
+✔ research review converts authored staff-weeks and agrees with authoritative requirements for every role (1021.386998ms)
+✔ public canary review binds exact prepared source and candidate, traffic, cohort floor and work allowance (471.154247ms)
+✔ stopping a canary shows its own consumed allowance and keeps archived evidence read only (428.319456ms)
+✔ rollback review exposes the original retained source, exact deadline and separate preparation (515.048599ms)
+✔ rollback pause and handover show rollback work and restore target instead of completed forward work (21.300456ms)
+✔ missing and foreign selections never substitute a latest owned entity or expose a rival identity (2445.373057ms)
+✔ Campus review shows selected site, authored benefits and physical resource tradeoffs (842.173125ms)
+✔ rack parking and relocation distinguish installed assets from immediately usable capacity (1014.144274ms)
+✔ infrastructure reviews use the same player role label for rack, fabric and retrofit effort (25.431869ms)
+✔ chip batch and successor reviews use exact parent identity and actual production terms (812.164472ms)
+✔ private appliance review separates fabrication cost, customer receipt, support and lab capacity (428.164387ms)
+✔ synthetic review retains the exact teacher and source and shows later paid review and audit (1035.01006ms)
+✔ agent review shows selected intake, allowed tools, action permissions and hard execution bounds (376.824011ms)
+✔ retained agent choices stay unavailable across a real intake change until explicitly selected again (3184.456052ms)
+✔ batch and commercial commitments preserve captured models and real deadlines (986.175494ms)
+✔ API terms and launch show reference token billing rather than subscription pricing (963.961805ms)
+✔ direct product replacement review explains deployment interruption separately from prepared handover (412.919365ms)
+✔ W32-U01: every hire card displays its actual specialty and two secondary weekly outputs (135.677398ms)
+✔ W32-U02: founder point choices preserve saved fractions and the shared twenty-point limit (18.696972ms)
+✔ W32-U03: real paid onboarding displays zero current output until the actual ready week (93.219634ms)
+✔ W32-U04: fractional current and proposed employee output remain distinct without changing payroll (73.986621ms)
+✔ W32-U05: assignment review projects next week without falsely showing an onboarding employee as ready now (53.41702ms)
+✔ W32-U06: selecting an older employee keeps that person’s point profile and one review summary (78.590602ms)
+✔ W32-U07: invalid founder and employee output stays blocked without inventing a valid point preview (63.772638ms)
+✔ W32-U08: observers can read employee output but cannot submit a point change or hire (54.590082ms)
+✔ W32-U09: the team table adds secondary output to the founder and separates allocation from completed work (47.02676ms)
+ℹ tests 26
+ℹ suites 0
+ℹ pass 26
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15724.596398

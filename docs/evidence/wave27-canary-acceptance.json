@@ -1,0 +1,189 @@
+{
+  "commands": [
+    {
+      "week": 538,
+      "id": "wave27-canary-ready-command-1",
+      "payload": {
+        "kind": "set_cloud_capacity",
+        "cu": 112000000000
+      }
+    },
+    {
+      "week": 539,
+      "id": "wave27-canary-ready-command-2",
+      "payload": {
+        "kind": "allocate_compute",
+        "serving": 160000000000,
+        "development": 8000000000,
+        "research": 8000000000
+      }
+    },
+    {
+      "week": 539,
+      "id": "wave27-canary-ready-command-3",
+      "payload": {
+        "kind": "assign_founder",
+        "allocations": {
+          "research": 1000000000,
+          "ml": 0,
+          "data": 0,
+          "infrastructure": 0,
+          "commercial": 0,
+          "hardware": 0
+        }
+      }
+    },
+    {
+      "week": 540,
+      "id": "wave27-canary-ready-command-4",
+      "payload": {
+        "kind": "start_research",
+        "researchId": "S3"
+      }
+    },
+    {
+      "week": 543,
+      "id": "wave27-canary-regression-ready-command-1",
+      "payload": {
+        "kind": "upgrade_product",
+        "productId": "product:natural-business-command-8",
+        "modelId": "model-natural-business-command-159"
+      }
+    },
+    {
+      "week": 545,
+      "id": "wave27-canary-regression-ready-command-2",
+      "payload": {
+        "kind": "start_release_rehearsal",
+        "productId": "product:natural-business-command-8",
+        "candidateModelId": "model-natural-business-command-4"
+      }
+    },
+    {
+      "week": 547,
+      "id": "wave27-canary-regression-ready-command-3",
+      "payload": {
+        "kind": "start_prepared_release",
+        "productId": "product:natural-business-command-8",
+        "candidateModelId": "model-natural-business-command-4"
+      }
+    },
+    {
+      "week": 550,
+      "id": "wave27-canary-regression-flow-command-1",
+      "payload": {
+        "kind": "start_release_canary",
+        "releaseId": "prepared-release:wave27-canary-regression-ready-command-3",
+        "shareBps": 1000,
+        "sampleFloor": 100,
+        "budgetCUw": 4000000000
+      }
+    }
+  ],
+  "milestones": [
+    {
+      "label": "Published company",
+      "week": 537,
+      "cashCents": 587882908,
+      "revenueCents": 4493404,
+      "expenseCents": 2405000,
+      "consumers": 1005,
+      "developers": 174,
+      "businesses": 22,
+      "trustBps": 10000
+    },
+    {
+      "label": "Inherited batch queue settled",
+      "week": 538,
+      "cashCents": 589711538,
+      "revenueCents": 4497005,
+      "expenseCents": 2668375,
+      "consumers": 1004,
+      "developers": 174,
+      "businesses": 23,
+      "trustBps": 10000
+    },
+    {
+      "label": "Paid Release telemetry available",
+      "week": 543,
+      "cashCents": 596821623,
+      "revenueCents": 4541982,
+      "expenseCents": 2998500,
+      "consumers": 1004,
+      "developers": 175,
+      "businesses": 23,
+      "trustBps": 10000
+    },
+    {
+      "label": "Stronger incumbent serving",
+      "week": 545,
+      "cashCents": 598609210,
+      "revenueCents": 4451981,
+      "expenseCents": 3001875,
+      "consumers": 935,
+      "developers": 176,
+      "businesses": 23,
+      "trustBps": 10000
+    },
+    {
+      "label": "Paid prepared candidate before canary",
+      "week": 550,
+      "cashCents": 605987447,
+      "revenueCents": 4473536,
+      "expenseCents": 2985000,
+      "consumers": 952,
+      "developers": 177,
+      "businesses": 22,
+      "trustBps": 10000
+    }
+  ],
+  "inheritedQueuedCommands": [
+    {
+      "id": "wave16-oracle-command-1",
+      "companyId": "company-player",
+      "issuedForWeek": 538,
+      "payload": {
+        "kind": "set_batch_capacity",
+        "cloudCU": 96000000000,
+        "servingCU": 160000000000
+      },
+      "reservedCents": 0
+    },
+    {
+      "id": "wave16-oracle-command-2",
+      "companyId": "company-player",
+      "issuedForWeek": 538,
+      "payload": {
+        "kind": "set_batch_job_placement",
+        "jobId": "batch:wave16-natural-command-2",
+        "poolId": "general-cloud"
+      },
+      "reservedCents": 0
+    },
+    {
+      "id": "wave16-oracle-command-3",
+      "companyId": "company-player",
+      "issuedForWeek": 538,
+      "payload": {
+        "kind": "set_batch_job_paused",
+        "jobId": "batch:wave16-natural-command-2",
+        "paused": true
+      },
+      "reservedCents": 0
+    }
+  ],
+  "originalWeek": 537,
+  "originalChecksum": "97dad50f",
+  "minimumCashCents": 587882908,
+  "productId": "product:natural-business-command-8",
+  "sourceModelId": "model-natural-business-command-159",
+  "candidateModelId": "model-natural-business-command-4",
+  "releaseId": "prepared-release:wave27-canary-regression-ready-command-3",
+  "options": {
+    "releaseId": "prepared-release:wave27-canary-regression-ready-command-3",
+    "shareBps": 1000,
+    "sampleFloor": 100,
+    "budgetCUw": 4000000000
+  },
+  "canaryId": "canary:wave27-canary-regression-flow-command-1"
+}

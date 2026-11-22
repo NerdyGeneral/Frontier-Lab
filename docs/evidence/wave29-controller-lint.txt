@@ -1,0 +1,6 @@
+
+/workspace/sites/frontier-lab/.sites-checkout/src/ui/FrontierLab.tsx
+  185:19  warning  The ref value 'taskGateRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'taskGateRef.current' to a variable inside the effect, and use that variable in the cleanup function  react-hooks/exhaustive-deps
+
+✖ 1 problem (0 errors, 1 warning)
+

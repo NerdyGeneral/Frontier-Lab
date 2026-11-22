@@ -1,0 +1,95 @@
+{
+  "scope": "Cold React server render of the actual StudioShell with the same advanced campaign and 20 eligible legacy panels. The initial Studio view is active; none of those panels, Tree, or Planner has been visited.",
+  "sourceSnapshot": "wave28-silicon-browser-actual.json",
+  "snapshotWeek": 612,
+  "snapshotHash": "627fa28e",
+  "before": {
+    "source": "/workspace/shared/frontier-lab/wave28-silicon-browser-actual.json",
+    "phase": "before retained gates",
+    "contentVersion": "0.28.0",
+    "week": 612,
+    "hashBefore": "627fa28e",
+    "hashAfter": "627fa28e",
+    "gated": false,
+    "legacyPanelCount": 20,
+    "fullStateClones": 103,
+    "elapsedMs": 3427.728999,
+    "markupBytes": 513119,
+    "renderedLegacySectionIds": [
+      "business",
+      "people",
+      "market",
+      "campaign",
+      "agents",
+      "data",
+      "lab-projects",
+      "models",
+      "synthetic-data",
+      "model-corpus-compare",
+      "research",
+      "applied-research",
+      "compute",
+      "compute-costs",
+      "capacity-forecast",
+      "product",
+      "developer-api",
+      "business-commitments",
+      "infrastructure",
+      "chips"
+    ],
+    "plannerRendered": true,
+    "researchRendered": true,
+    "queuedCalls": 0,
+    "scope": "Cold server render of the actual StudioShell with the same advanced-state legacy panel composition; not a browser interaction or weekly engine benchmark."
+  },
+  "after": {
+    "source": "/workspace/shared/frontier-lab/wave28-silicon-browser-actual.json",
+    "phase": "retained gates",
+    "contentVersion": "0.28.0",
+    "week": 612,
+    "hashBefore": "627fa28e",
+    "hashAfter": "627fa28e",
+    "gated": true,
+    "legacyPanelCount": 20,
+    "fullStateClones": 0,
+    "elapsedMs": 44.71246800000017,
+    "markupBytes": 30199,
+    "renderedLegacySectionIds": [],
+    "plannerRendered": false,
+    "researchRendered": false,
+    "queuedCalls": 0,
+    "scope": "Cold server render of the actual StudioShell with the same advanced-state legacy panel composition; not a browser interaction or weekly engine benchmark."
+  },
+  "observedSavings": {
+    "fullStateClonesAvoided": 103,
+    "elapsedMsDifference": 3383.017,
+    "markupBytesAvoided": 482920
+  },
+  "readOnly": true,
+  "limitations": [
+    "Timing is a single cold SSR observation, not a browser paint, interaction, autosave, or weekly simulation benchmark.",
+    "The core optimization work was concurrent; zero hidden work follows from panel deferral, while total application responsiveness also depends on engine and persistence costs.",
+    "Server rendering cannot prove retained React hook drafts, active reopening freshness, keyboard visibility, or import epoch reset. Native browser acceptance covers those lifecycle behaviors."
+  ],
+  "uiCheckCommand": "node scripts/check-wave29-ui.mjs",
+  "uiChecks": {
+    "finalLog": "docs/evidence/wave29-ui-checks.txt",
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "initialLog": "docs/evidence/wave29-ui-checks-initial.txt",
+    "initialFailureExplanation": "Four state-backed checks ran while the root-owned catalog had Wave 29 but the roadmap validator still required waves 0\u201328. Those checks passed after the metadata update completed; no test or application behavior was weakened.",
+    "scope": "Seven SSR output/admission checks and one explicitly labeled memo-policy unit check. Mounted hook retention, reopen freshness, keyboard behavior and epoch reset require native browser acceptance.",
+    "typecheckFollowup": "Root TypeScript identified throw-only JSX probes inferred as void. Explicit never return annotations corrected the test-only types; the final focused run passed 8/8 with the throw assertions intact."
+  },
+  "lint": {
+    "command": "eslint src/ui/studio-workbench-context.tsx src/ui/components.tsx tests/wave29-workbench-ui.test.tsx scripts/check-wave29-ui.mjs",
+    "log": "docs/evidence/wave29-ui-lint.txt",
+    "diagnostics": 0
+  },
+  "independentReadReview": {
+    "reviewer": "graphics_plan_review",
+    "scope": "Retained-workbench context, StudioShell lifecycle gates and busy/live-region placement",
+    "result": "No concrete P1/P2 found. No code edits, test runs or browser actions were performed by the reviewer."
+  }
+}

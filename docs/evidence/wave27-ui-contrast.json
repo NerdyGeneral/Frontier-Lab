@@ -1,0 +1,369 @@
+{
+  "scope": "Authored meaningful text/status foreground-background pairs in app/release-desk.css, including cream Classic wrapper and card/table/history/receipt surfaces. This is a source-color calculation; root owns live computed-style, keyboard and responsive verification. Disabled controls and decorative icons/borders are outside this text check.",
+  "method": "sRGB channels are linearized using v/12.92 at v<=0.04045, else ((v+0.055)/1.055)^2.4. Relative luminance=0.2126R+0.7152G+0.0722B; ratio=(lighter+0.05)/(darker+0.05). Threshold: 4.5:1 for all included labels.",
+  "threshold": 4.5,
+  "pairs": 49,
+  "failedBefore": 7,
+  "foregroundConstantsAdjusted": 4,
+  "failedAfter": 0,
+  "minimumFinalRatio": 4.616,
+  "results": [
+    {
+      "label": "Body / paper",
+      "foreground": "#122f2d",
+      "background": "#fffdf7",
+      "ratio": 14.042,
+      "pass": true
+    },
+    {
+      "label": "Body / Classic cream",
+      "foreground": "#122f2d",
+      "background": "#f7f3e9",
+      "ratio": 12.89,
+      "pass": true
+    },
+    {
+      "label": "Muted / card",
+      "foreground": "#5d7066",
+      "background": "#fffdf7",
+      "ratio": 5.194,
+      "pass": true
+    },
+    {
+      "label": "Muted / cream",
+      "foreground": "#5d7066",
+      "background": "#f7f3e9",
+      "ratio": 4.768,
+      "pass": true
+    },
+    {
+      "label": "Mode / mint",
+      "foreground": "#496052",
+      "background": "#e8eee0",
+      "ratio": 5.762,
+      "pass": true
+    },
+    {
+      "label": "Selected mode / paper",
+      "foreground": "#176a61",
+      "background": "#fffdf7",
+      "ratio": 6.312,
+      "pass": true
+    },
+    {
+      "label": "Form label / paper",
+      "foreground": "#3e584b",
+      "background": "#fffdf7",
+      "ratio": 7.64,
+      "pass": true
+    },
+    {
+      "label": "Input value / paper",
+      "foreground": "#122f2d",
+      "background": "#fffef9",
+      "ratio": 14.145,
+      "pass": true
+    },
+    {
+      "label": "Neutral status",
+      "foreground": "#5b6d61",
+      "background": "#edf0e6",
+      "ratio": 4.785,
+      "pass": true
+    },
+    {
+      "label": "Good status",
+      "foreground": "#176a61",
+      "background": "#e2efdf",
+      "ratio": 5.395,
+      "pass": true
+    },
+    {
+      "label": "Active status",
+      "foreground": "#2d6280",
+      "background": "#e3edf0",
+      "ratio": 5.563,
+      "pass": true
+    },
+    {
+      "label": "Warning status",
+      "foreground": "#86512c",
+      "background": "#f5e9d5",
+      "ratio": 5.423,
+      "pass": true
+    },
+    {
+      "label": "Heading caption / mint",
+      "foreground": "#536b5a",
+      "background": "#e8eee0",
+      "ratio": 4.902,
+      "pass": true
+    },
+    {
+      "label": "Kicker / mint",
+      "foreground": "#4f6848",
+      "background": "#e8eee0",
+      "ratio": 5.207,
+      "pass": true,
+      "previousForeground": "#57734f",
+      "previousRatio": 4.467
+    },
+    {
+      "label": "Fact label / paper",
+      "foreground": "#64765f",
+      "background": "#fffdf7",
+      "ratio": 4.803,
+      "pass": true
+    },
+    {
+      "label": "Fact value / paper",
+      "foreground": "#214f42",
+      "background": "#fffdf7",
+      "ratio": 9.128,
+      "pass": true
+    },
+    {
+      "label": "Neutral notice",
+      "foreground": "#526a54",
+      "background": "#f1f4e8",
+      "ratio": 5.311,
+      "pass": true
+    },
+    {
+      "label": "Good notice",
+      "foreground": "#225d47",
+      "background": "#edf5e8",
+      "ratio": 6.91,
+      "pass": true
+    },
+    {
+      "label": "Active notice",
+      "foreground": "#2d6280",
+      "background": "#edf3f2",
+      "ratio": 5.899,
+      "pass": true
+    },
+    {
+      "label": "Warning notice",
+      "foreground": "#805326",
+      "background": "#faf3e5",
+      "ratio": 5.974,
+      "pass": true
+    },
+    {
+      "label": "Links / paper",
+      "foreground": "#176a61",
+      "background": "#fffdf7",
+      "ratio": 6.312,
+      "pass": true
+    },
+    {
+      "label": "Links / empty card",
+      "foreground": "#176a61",
+      "background": "#f0f3e6",
+      "ratio": 5.708,
+      "pass": true
+    },
+    {
+      "label": "Progress label / paper",
+      "foreground": "#546c58",
+      "background": "#fffdf7",
+      "ratio": 5.636,
+      "pass": true
+    },
+    {
+      "label": "Table caption",
+      "foreground": "#61765a",
+      "background": "#f7f8ed",
+      "ratio": 4.616,
+      "pass": true
+    },
+    {
+      "label": "Table header",
+      "foreground": "#536e50",
+      "background": "#f0f3e7",
+      "ratio": 5.029,
+      "pass": true
+    },
+    {
+      "label": "Table row labels",
+      "foreground": "#61735d",
+      "background": "#fffdf7",
+      "ratio": 5.013,
+      "pass": true
+    },
+    {
+      "label": "Table values",
+      "foreground": "#224d40",
+      "background": "#fffdf7",
+      "ratio": 9.369,
+      "pass": true
+    },
+    {
+      "label": "Table values / candidate",
+      "foreground": "#224d40",
+      "background": "#f1f6e9",
+      "ratio": 8.667,
+      "pass": true
+    },
+    {
+      "label": "Table notes / paper",
+      "foreground": "#5e7058",
+      "background": "#fffdf7",
+      "ratio": 5.247,
+      "pass": true,
+      "previousForeground": "#6a7d64",
+      "previousRatio": 4.364
+    },
+    {
+      "label": "Table notes / candidate",
+      "foreground": "#5e7058",
+      "background": "#f1f6e9",
+      "ratio": 4.854,
+      "pass": true,
+      "previousForeground": "#6a7d64",
+      "previousRatio": 4.038
+    },
+    {
+      "label": "Incumbent cohort label",
+      "foreground": "#5b705c",
+      "background": "#fffdf7",
+      "ratio": 5.271,
+      "pass": true
+    },
+    {
+      "label": "Candidate cohort label",
+      "foreground": "#2d6280",
+      "background": "#fffdf7",
+      "ratio": 6.512,
+      "pass": true
+    },
+    {
+      "label": "Primary button",
+      "foreground": "#fffdf7",
+      "background": "#176a61",
+      "ratio": 6.312,
+      "pass": true
+    },
+    {
+      "label": "Primary button hover",
+      "foreground": "#fffdf7",
+      "background": "#125c54",
+      "ratio": 7.69,
+      "pass": true
+    },
+    {
+      "label": "Quote costs",
+      "foreground": "#365e45",
+      "background": "#fffdf7",
+      "ratio": 7.26,
+      "pass": true
+    },
+    {
+      "label": "Blocked quote",
+      "foreground": "#805326",
+      "background": "#fffdf7",
+      "ratio": 6.486,
+      "pass": true
+    },
+    {
+      "label": "Summary / paper",
+      "foreground": "#3d674f",
+      "background": "#fffdf7",
+      "ratio": 6.35,
+      "pass": true
+    },
+    {
+      "label": "Summary / cream",
+      "foreground": "#3d674f",
+      "background": "#f7f3e9",
+      "ratio": 5.829,
+      "pass": true
+    },
+    {
+      "label": "History copy",
+      "foreground": "#61735e",
+      "background": "#f3f5eb",
+      "ratio": 4.627,
+      "pass": true
+    },
+    {
+      "label": "Empty state copy",
+      "foreground": "#5d705e",
+      "background": "#f0f3e6",
+      "ratio": 4.732,
+      "pass": true
+    },
+    {
+      "label": "Gate copy",
+      "foreground": "#536b57",
+      "background": "#fffdf7",
+      "ratio": 5.721,
+      "pass": true
+    },
+    {
+      "label": "Gate title",
+      "foreground": "#34553f",
+      "background": "#fffdf7",
+      "ratio": 8.202,
+      "pass": true
+    },
+    {
+      "label": "Future step / paper",
+      "foreground": "#5f7057",
+      "background": "#fffdf7",
+      "ratio": 5.237,
+      "pass": true,
+      "previousForeground": "#6c7b63",
+      "previousRatio": 4.439
+    },
+    {
+      "label": "Complete step / paper",
+      "foreground": "#426b4b",
+      "background": "#fffdf7",
+      "ratio": 6.008,
+      "pass": true
+    },
+    {
+      "label": "Current step / paper",
+      "foreground": "#2d6280",
+      "background": "#fffdf7",
+      "ratio": 6.512,
+      "pass": true
+    },
+    {
+      "label": "Receipt copy",
+      "foreground": "#225d46",
+      "background": "#eaf2e2",
+      "ratio": 6.722,
+      "pass": true
+    },
+    {
+      "label": "Identity / paper",
+      "foreground": "#5f6e55",
+      "background": "#fffdf7",
+      "ratio": 5.365,
+      "pass": true,
+      "previousForeground": "#6e7a63",
+      "previousRatio": 4.462
+    },
+    {
+      "label": "Identity / receipt",
+      "foreground": "#5f6e55",
+      "background": "#eaf2e2",
+      "ratio": 4.755,
+      "pass": true,
+      "previousForeground": "#6e7a63",
+      "previousRatio": 3.955
+    },
+    {
+      "label": "Identity / history",
+      "foreground": "#5f6e55",
+      "background": "#f3f5eb",
+      "ratio": 4.956,
+      "pass": true,
+      "previousForeground": "#6e7a63",
+      "previousRatio": 4.122
+    }
+  ]
+}

@@ -1,0 +1,367 @@
+{
+  "input": "/workspace/shared/frontier-lab/wave26-before-generation.json",
+  "startingStateHash": "79feed5b",
+  "snapshotPath": "/workspace/shared/frontier-lab/wave26-browser-expected.json",
+  "finalChecksum": "7e9a62b6",
+  "teacherModelId": "model-natural-business-command-159",
+  "sourcePacketId": "curated-natural-business-command-111",
+  "domain": "documents",
+  "generationCommandId": "command-3112",
+  "reviewCommandId": "command-3121",
+  "trainingCommandId": "command-3140",
+  "capabilityCommandId": "command-3152",
+  "independentCommandId": "command-3159",
+  "jobId": "synthetic-job:command-3112",
+  "packetId": "synthetic-data:command-3112",
+  "trainingRunId": "training-command-3140",
+  "modelId": "model-command-3140",
+  "stages": {
+    "before-generation": {
+      "week": 546,
+      "revision": 932,
+      "nextId": 3112,
+      "checksum": "79feed5b",
+      "cashCents": 600614802,
+      "arrearsCents": 0,
+      "revenueCents": 4552159,
+      "operatingExpenseCents": 2998500,
+      "cashChangeCents": 1553659
+    },
+    "generation-queued": {
+      "week": 546,
+      "revision": 933,
+      "nextId": 3114,
+      "checksum": "6bbc4df0",
+      "cashCents": 600614802,
+      "arrearsCents": 0,
+      "revenueCents": 4552159,
+      "operatingExpenseCents": 2998500,
+      "cashChangeCents": 1553659
+    },
+    "generating": {
+      "week": 547,
+      "revision": 934,
+      "nextId": 3118,
+      "checksum": "bc24fb21",
+      "cashCents": 601958460,
+      "arrearsCents": 0,
+      "revenueCents": 4552158,
+      "operatingExpenseCents": 3208500,
+      "cashChangeCents": 1343658
+    },
+    "generated": {
+      "week": 548,
+      "revision": 935,
+      "nextId": 3121,
+      "checksum": "04f4138b",
+      "cashCents": 603503053,
+      "arrearsCents": 0,
+      "revenueCents": 4549759,
+      "operatingExpenseCents": 3005166,
+      "cashChangeCents": 1544593
+    },
+    "review-queued": {
+      "week": 548,
+      "revision": 936,
+      "nextId": 3123,
+      "checksum": "3a437b7e",
+      "cashCents": 603503053,
+      "arrearsCents": 0,
+      "revenueCents": 4549759,
+      "operatingExpenseCents": 3005166,
+      "cashChangeCents": 1544593
+    },
+    "reviewing": {
+      "week": 549,
+      "revision": 937,
+      "nextId": 3128,
+      "checksum": "f0edecda",
+      "cashCents": 605004311,
+      "arrearsCents": 0,
+      "revenueCents": 4549758,
+      "operatingExpenseCents": 3048500,
+      "cashChangeCents": 1501258
+    },
+    "accepted": {
+      "week": 552,
+      "revision": 940,
+      "nextId": 3140,
+      "checksum": "60a418dc",
+      "cashCents": 609605630,
+      "arrearsCents": 0,
+      "revenueCents": 4514959,
+      "operatingExpenseCents": 2985000,
+      "cashChangeCents": 1529959
+    },
+    "training-queued": {
+      "week": 552,
+      "revision": 941,
+      "nextId": 3142,
+      "checksum": "e446d38f",
+      "cashCents": 609605630,
+      "arrearsCents": 0,
+      "revenueCents": 4514959,
+      "operatingExpenseCents": 2985000,
+      "cashChangeCents": 1529959
+    },
+    "training": {
+      "week": 553,
+      "revision": 942,
+      "nextId": 3148,
+      "checksum": "0c44e453",
+      "cashCents": 611002255,
+      "arrearsCents": 0,
+      "revenueCents": 4514958,
+      "operatingExpenseCents": 3118333,
+      "cashChangeCents": 1396625
+    },
+    "trained": {
+      "week": 554,
+      "revision": 943,
+      "nextId": 3152,
+      "checksum": "51130cf4",
+      "cashCents": 612511623,
+      "arrearsCents": 0,
+      "revenueCents": 4497535,
+      "operatingExpenseCents": 2988167,
+      "cashChangeCents": 1509368
+    },
+    "capability-evaluated": {
+      "week": 555,
+      "revision": 945,
+      "nextId": 3159,
+      "checksum": "548a58f5",
+      "cashCents": 614019793,
+      "arrearsCents": 0,
+      "revenueCents": 4496336,
+      "operatingExpenseCents": 2988166,
+      "cashChangeCents": 1508170
+    },
+    "evaluated": {
+      "week": 556,
+      "revision": 947,
+      "nextId": 3167,
+      "checksum": "7e9a62b6",
+      "cashCents": 615519786,
+      "arrearsCents": 0,
+      "revenueCents": 4491535,
+      "operatingExpenseCents": 2991542,
+      "cashChangeCents": 1499993
+    }
+  },
+  "weeks": [
+    {
+      "week": 547,
+      "revision": 934,
+      "nextId": 3118,
+      "checksum": "bc24fb21",
+      "cashCents": 601958460,
+      "arrearsCents": 0,
+      "revenueCents": 4552158,
+      "operatingExpenseCents": 3208500,
+      "cashChangeCents": 1343658
+    },
+    {
+      "week": 548,
+      "revision": 935,
+      "nextId": 3121,
+      "checksum": "04f4138b",
+      "cashCents": 603503053,
+      "arrearsCents": 0,
+      "revenueCents": 4549759,
+      "operatingExpenseCents": 3005166,
+      "cashChangeCents": 1544593
+    },
+    {
+      "week": 549,
+      "revision": 937,
+      "nextId": 3128,
+      "checksum": "f0edecda",
+      "cashCents": 605004311,
+      "arrearsCents": 0,
+      "revenueCents": 4549758,
+      "operatingExpenseCents": 3048500,
+      "cashChangeCents": 1501258
+    },
+    {
+      "week": 550,
+      "revision": 938,
+      "nextId": 3131,
+      "checksum": "9bbc8ea0",
+      "cashCents": 606552847,
+      "arrearsCents": 0,
+      "revenueCents": 4533536,
+      "operatingExpenseCents": 2985000,
+      "cashChangeCents": 1548536
+    },
+    {
+      "week": 551,
+      "revision": 939,
+      "nextId": 3136,
+      "checksum": "62c49191",
+      "cashCents": 608075671,
+      "arrearsCents": 0,
+      "revenueCents": 4516158,
+      "operatingExpenseCents": 2993334,
+      "cashChangeCents": 1522824
+    },
+    {
+      "week": 552,
+      "revision": 940,
+      "nextId": 3140,
+      "checksum": "60a418dc",
+      "cashCents": 609605630,
+      "arrearsCents": 0,
+      "revenueCents": 4514959,
+      "operatingExpenseCents": 2985000,
+      "cashChangeCents": 1529959
+    },
+    {
+      "week": 553,
+      "revision": 942,
+      "nextId": 3148,
+      "checksum": "0c44e453",
+      "cashCents": 611002255,
+      "arrearsCents": 0,
+      "revenueCents": 4514958,
+      "operatingExpenseCents": 3118333,
+      "cashChangeCents": 1396625
+    },
+    {
+      "week": 554,
+      "revision": 943,
+      "nextId": 3152,
+      "checksum": "51130cf4",
+      "cashCents": 612511623,
+      "arrearsCents": 0,
+      "revenueCents": 4497535,
+      "operatingExpenseCents": 2988167,
+      "cashChangeCents": 1509368
+    },
+    {
+      "week": 555,
+      "revision": 945,
+      "nextId": 3159,
+      "checksum": "548a58f5",
+      "cashCents": 614019793,
+      "arrearsCents": 0,
+      "revenueCents": 4496336,
+      "operatingExpenseCents": 2988166,
+      "cashChangeCents": 1508170
+    },
+    {
+      "week": 556,
+      "revision": 947,
+      "nextId": 3167,
+      "checksum": "7e9a62b6",
+      "cashCents": 615519786,
+      "arrearsCents": 0,
+      "revenueCents": 4491535,
+      "operatingExpenseCents": 2991542,
+      "cashChangeCents": 1499993
+    }
+  ],
+  "commands": [
+    {
+      "week": 546,
+      "commandId": "command-3112",
+      "payload": {
+        "kind": "start_synthetic_generation",
+        "teacherModelId": "model-natural-business-command-159",
+        "sourcePacketId": "curated-natural-business-command-111",
+        "domain": "documents"
+      }
+    },
+    {
+      "week": 548,
+      "commandId": "command-3121",
+      "payload": {
+        "kind": "start_synthetic_review",
+        "jobId": "synthetic-job:command-3112"
+      }
+    },
+    {
+      "week": 552,
+      "commandId": "command-3140",
+      "payload": {
+        "kind": "start_training",
+        "baseModelId": "seed-0",
+        "packetId": "synthetic-data:command-3112",
+        "recipeId": "targeted-synthetic"
+      }
+    },
+    {
+      "week": 554,
+      "commandId": "command-3152",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-command-3140",
+        "suiteId": "expanded-capabilities-1"
+      }
+    },
+    {
+      "week": 555,
+      "commandId": "command-3159",
+      "payload": {
+        "kind": "evaluate_model",
+        "modelId": "model-command-3140",
+        "suiteId": "independent-holdouts-1"
+      }
+    }
+  ],
+  "audit": {
+    "acceptedUnits": 53,
+    "sourceOverlapUnits": 20,
+    "holdoutOverlapUnits": 10,
+    "qualityRejectedUnits": 17,
+    "qualityBps": 7700,
+    "fingerprint": "6b24fd8c"
+  },
+  "work": {
+    "generationEffectiveCUw": 16000000000,
+    "generationPhysicalCUw": 8888888889,
+    "generationStaff": 1100000000,
+    "reviewStaff": 2000000000,
+    "auditEffectiveCUw": 2000000000,
+    "auditPhysicalCUw": 1111111112,
+    "auditResearchStaff": 1000000000,
+    "trainingEffectiveCUw": 12000000000,
+    "trainingPhysicalCUw": 6666666668
+  },
+  "rights": {
+    "hosted": true,
+    "weights": true,
+    "feedback": false
+  },
+  "capabilityBps": {
+    "conversation": 4000,
+    "documents": 4155,
+    "coding": 2000,
+    "tools": 2000
+  },
+  "reliabilityBps": 7000,
+  "capabilityReport": {
+    "id": "report-evaluation-command-3152",
+    "week": 555,
+    "passedCases": 45,
+    "cases": 100
+  },
+  "independentReport": {
+    "id": "report-evaluation-command-3159",
+    "week": 556,
+    "totals": {
+      "cases": 100,
+      "claimedCompletions": 48,
+      "actualSuccesses": 36,
+      "unsuccessfulCases": 64,
+      "basicAccepted": 41,
+      "basicFalseAccepts": 5,
+      "independentAccepted": 37,
+      "independentFalseAccepts": 1,
+      "necessaryLookups": 166,
+      "plannedLookups": 209,
+      "repeatedLookups": 43,
+      "outOfScopeProposals": 6
+    }
+  }
+}

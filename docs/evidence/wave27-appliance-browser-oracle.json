@@ -1,0 +1,43 @@
+{
+  "status": "pass",
+  "actualFile": "wave27-appliance-browser-actual.json",
+  "expectedFile": "wave27-appliance-browser-expected.json",
+  "byteEqual": true,
+  "stateEqual": true,
+  "actual": {
+    "fileBytes": 1463152,
+    "sha256": "a8bdcb00861bb8223f3303aff0611a0a9a129a2590a3f6c97508f4394a68b780",
+    "declaredChecksum": "0e2eb06a",
+    "canonicalChecksum": "0e2eb06a",
+    "validSnapshot": true,
+    "validationError": null,
+    "week": 579,
+    "revision": 972,
+    "nextId": 3259,
+    "cashCents": 645031779
+  },
+  "expected": {
+    "fileBytes": 1463152,
+    "sha256": "a8bdcb00861bb8223f3303aff0611a0a9a129a2590a3f6c97508f4394a68b780",
+    "declaredChecksum": "0e2eb06a",
+    "canonicalChecksum": "0e2eb06a",
+    "validSnapshot": true,
+    "validationError": null,
+    "week": 579,
+    "revision": 972,
+    "nextId": 3259,
+    "cashCents": 645031779
+  },
+  "differences": [],
+  "command": {
+    "id": "command-3218",
+    "kind": "accept_private_appliance_order",
+    "buyerId": "cedar-records"
+  },
+  "outcome": {
+    "acceptedWeek": 578,
+    "settledWeek": 578,
+    "bundleReceipts": 1,
+    "serviceInvoices": 2
+  }
+}

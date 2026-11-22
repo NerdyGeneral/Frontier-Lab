@@ -1,0 +1,384 @@
+{
+  "scope": "Bounded Wave27 visibility-memo fix only. Studio summary and engine simulation were left unchanged. Timings are Node SSR diagnostics under shared load, not browser input latency or a claim to fix the full advanced-campaign settlement stall.",
+  "change": "StudioReleaseDesk and its inactive inner tab mount on first visit, then retain mounted drafts while hidden. Game/canAct/action/navigation changes refresh on visible renders.",
+  "before": {
+    "method": "Bounded Node SSR and pure-selector measurements, current source versus extracted HEAD Studio selector under the same current engine. No browser action, no mutation or simulation steps. Timings are diagnostic and share machine load with acceptance tests.",
+    "results": [
+      {
+        "file": "/workspace/shared/frontier-lab/wave27-appliance-ordered.json",
+        "week": 570,
+        "models": 48,
+        "reports": 31,
+        "rehearsals": 4,
+        "preparedReleases": 3,
+        "stateUnchanged": true,
+        "releaseDeskFullStateClones": 0,
+        "timings": {
+          "studioCurrent": {
+            "samplesMs": [
+              16.8,
+              3.3,
+              2.7
+            ],
+            "medianMs": 3.3
+          },
+          "studioHEAD": {
+            "samplesMs": [
+              3,
+              1.7,
+              1.1
+            ],
+            "medianMs": 1.7
+          },
+          "canaryView": {
+            "samplesMs": [
+              0.4,
+              0,
+              0
+            ],
+            "medianMs": 0
+          },
+          "preparedReleaseView": {
+            "samplesMs": [
+              29.6,
+              36.4,
+              22.3
+            ],
+            "medianMs": 29.6
+          },
+          "applianceView": {
+            "samplesMs": [
+              62.8,
+              51,
+              46.6
+            ],
+            "medianMs": 51
+          },
+          "emptyApplianceDraftPreview": {
+            "samplesMs": [
+              0.6,
+              0,
+              0
+            ],
+            "medianMs": 0
+          },
+          "stateValidation": {
+            "samplesMs": [
+              246.8
+            ],
+            "medianMs": 246.8
+          },
+          "applianceSSR": {
+            "samplesMs": [
+              102.1
+            ],
+            "medianMs": 102.1
+          },
+          "releaseDeskColdSSR": {
+            "samplesMs": [
+              147.7
+            ],
+            "medianMs": 147.7
+          }
+        }
+      },
+      {
+        "file": "/workspace/shared/frontier-lab/wave27-canary-observed.json",
+        "week": 552,
+        "models": 48,
+        "reports": 31,
+        "rehearsals": 5,
+        "preparedReleases": 4,
+        "stateUnchanged": true,
+        "releaseDeskFullStateClones": 4,
+        "timings": {
+          "studioCurrent": {
+            "samplesMs": [
+              2.3,
+              1.8,
+              1.1
+            ],
+            "medianMs": 1.8
+          },
+          "studioHEAD": {
+            "samplesMs": [
+              1,
+              1.2,
+              2.7
+            ],
+            "medianMs": 1.2
+          },
+          "canaryView": {
+            "samplesMs": [
+              2,
+              0.4,
+              0.7
+            ],
+            "medianMs": 0.7
+          },
+          "preparedReleaseView": {
+            "samplesMs": [
+              19,
+              24.1,
+              18
+            ],
+            "medianMs": 19
+          },
+          "applianceView": {
+            "samplesMs": [
+              43.3,
+              35.7,
+              35.5
+            ],
+            "medianMs": 35.7
+          },
+          "emptyApplianceDraftPreview": {
+            "samplesMs": [
+              0.1,
+              0,
+              0
+            ],
+            "medianMs": 0
+          },
+          "stateValidation": {
+            "samplesMs": [
+              182.8
+            ],
+            "medianMs": 182.8
+          },
+          "applianceSSR": {
+            "samplesMs": [
+              56.2
+            ],
+            "medianMs": 56.2
+          },
+          "releaseDeskColdSSR": {
+            "samplesMs": [
+              228.2
+            ],
+            "medianMs": 228.2
+          }
+        }
+      }
+    ]
+  },
+  "after": {
+    "method": "Bounded Node SSR and pure-selector measurements after visibility memo gates, current source versus extracted HEAD Studio selector under the same current engine. No browser action, no mutation or simulation steps. Timings are diagnostic and share machine load with acceptance tests.",
+    "results": [
+      {
+        "file": "/workspace/shared/frontier-lab/wave27-appliance-ordered.json",
+        "week": 570,
+        "models": 48,
+        "reports": 31,
+        "rehearsals": 4,
+        "preparedReleases": 3,
+        "stateUnchanged": true,
+        "releaseDeskFullStateClones": 0,
+        "memoFreshnessAssertions": 6,
+        "timings": {
+          "studioCurrent": {
+            "samplesMs": [
+              7.6,
+              4.7,
+              1.2
+            ],
+            "medianMs": 4.7
+          },
+          "studioHEAD": {
+            "samplesMs": [
+              2.8,
+              1.1,
+              1.2
+            ],
+            "medianMs": 1.2
+          },
+          "canaryView": {
+            "samplesMs": [
+              0.3,
+              0,
+              0
+            ],
+            "medianMs": 0
+          },
+          "preparedReleaseView": {
+            "samplesMs": [
+              28.9,
+              15.6,
+              23.2
+            ],
+            "medianMs": 23.2
+          },
+          "applianceView": {
+            "samplesMs": [
+              44.6,
+              43.3,
+              35.2
+            ],
+            "medianMs": 43.3
+          },
+          "emptyApplianceDraftPreview": {
+            "samplesMs": [
+              0.8,
+              0,
+              0
+            ],
+            "medianMs": 0
+          },
+          "stateValidation": {
+            "samplesMs": [
+              241.2
+            ],
+            "medianMs": 241.2
+          },
+          "applianceSSR": {
+            "samplesMs": [
+              84.5
+            ],
+            "medianMs": 84.5
+          },
+          "applianceInactiveSSR": {
+            "samplesMs": [
+              0.2
+            ],
+            "medianMs": 0.2
+          },
+          "releaseDeskInactiveSSR": {
+            "samplesMs": [
+              0.3
+            ],
+            "medianMs": 0.3
+          },
+          "releaseDeskColdSSR": {
+            "samplesMs": [
+              63.3
+            ],
+            "medianMs": 63.3
+          }
+        }
+      },
+      {
+        "file": "/workspace/shared/frontier-lab/wave27-canary-observed.json",
+        "week": 552,
+        "models": 48,
+        "reports": 31,
+        "rehearsals": 5,
+        "preparedReleases": 4,
+        "stateUnchanged": true,
+        "releaseDeskFullStateClones": 4,
+        "memoFreshnessAssertions": 6,
+        "timings": {
+          "studioCurrent": {
+            "samplesMs": [
+              2.5,
+              1.5,
+              1.2
+            ],
+            "medianMs": 1.5
+          },
+          "studioHEAD": {
+            "samplesMs": [
+              1.1,
+              1.2,
+              1.2
+            ],
+            "medianMs": 1.2
+          },
+          "canaryView": {
+            "samplesMs": [
+              3.3,
+              1.2,
+              0.5
+            ],
+            "medianMs": 1.2
+          },
+          "preparedReleaseView": {
+            "samplesMs": [
+              52.1,
+              27.6,
+              25.2
+            ],
+            "medianMs": 27.6
+          },
+          "applianceView": {
+            "samplesMs": [
+              68.3,
+              82.4,
+              56.9
+            ],
+            "medianMs": 68.3
+          },
+          "emptyApplianceDraftPreview": {
+            "samplesMs": [
+              0.1,
+              0,
+              0
+            ],
+            "medianMs": 0
+          },
+          "stateValidation": {
+            "samplesMs": [
+              219.9
+            ],
+            "medianMs": 219.9
+          },
+          "applianceSSR": {
+            "samplesMs": [
+              68.2
+            ],
+            "medianMs": 68.2
+          },
+          "applianceInactiveSSR": {
+            "samplesMs": [
+              0.2
+            ],
+            "medianMs": 0.2
+          },
+          "releaseDeskInactiveSSR": {
+            "samplesMs": [
+              0.2
+            ],
+            "medianMs": 0.2
+          },
+          "releaseDeskColdSSR": {
+            "samplesMs": [
+              233.9
+            ],
+            "medianMs": 233.9
+          }
+        }
+      }
+    ]
+  },
+  "comparison": [
+    {
+      "week": 570,
+      "priorAlwaysMountedDeskMs": 147.7,
+      "hiddenDeskMs": 0.3,
+      "activePublicDeskMs": 63.3,
+      "inactiveApplianceMs": 0.2,
+      "priorDeskFullStateClones": 0,
+      "hiddenDeskFullStateClones": 0,
+      "visibleDeskFullStateClones": 0,
+      "memoFreshnessAssertions": 6
+    },
+    {
+      "week": 552,
+      "priorAlwaysMountedDeskMs": 228.2,
+      "hiddenDeskMs": 0.2,
+      "activePublicDeskMs": 233.9,
+      "inactiveApplianceMs": 0.2,
+      "priorDeskFullStateClones": 4,
+      "hiddenDeskFullStateClones": 0,
+      "visibleDeskFullStateClones": 4,
+      "memoFreshnessAssertions": 6
+    }
+  ],
+  "verification": {
+    "originalStatesUnchanged": true,
+    "freshnessAssertions": 12,
+    "hiddenInitialDeskIsPlaceholder": true,
+    "hiddenInitialApplianceIsEmpty": true,
+    "focusedUiEslint": "passed",
+    "liveReopenDraftChecks": "owned by root browser acceptance"
+  }
+}

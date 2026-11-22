@@ -1,0 +1,53 @@
+{
+  "wave": 17,
+  "contentVersion": "0.18.0",
+  "schemaVersion": 5,
+  "baselineCommit": "1ab56a80d4501ba214eb778a2ab20a38a6dc5547",
+  "fullAcceptance": {
+    "command": "node scripts/test-wave0.mjs",
+    "tests": 600,
+    "passed": 600,
+    "failed": 0,
+    "skipped": 0,
+    "cancelled": 0,
+    "durationMs": 221942.535928,
+    "status": "passed"
+  },
+  "typescript": {
+    "command": "node node_modules/typescript/bin/tsc --noEmit --incremental false",
+    "status": "passed"
+  },
+  "whitespace": {
+    "command": "git diff --check",
+    "status": "passed"
+  },
+  "productionBuild": {
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.4/scripts/build-site.mjs",
+    "status": "passed",
+    "proof": "This record is written by the ordered source workflow only after the build command exits successfully."
+  },
+  "compatibility": {
+    "priorSaveGenerations": 17,
+    "independentWave16FutureStates": 16,
+    "record": "wave17-compatibility.json"
+  },
+  "naturalProgression": {
+    "startWeek": 553,
+    "finalWeek": 571,
+    "ordinaryCommands": 12,
+    "finalChecksum": "b6aaffe4",
+    "snapshotBytes": 1593344,
+    "record": "wave17-progression.json"
+  },
+  "browser": {
+    "startWeek": 556,
+    "finalWeek": 563,
+    "planningSaveUnchanged": true,
+    "pausedSaveReloadExact": true,
+    "originalPreviewSaveRestoredExact": true,
+    "finalChecksum": "08e3d6af",
+    "record": "wave17-browser.json"
+  },
+  "releaseBoundary": "The helper builds, records validation, checks whitespace, commits, pushes, and packages this source. The following native Sites deployment result separately verifies production publication.",
+  "recordedAt": "2026-11-07T23:12:23.744Z"
+}

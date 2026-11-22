@@ -1,0 +1,87 @@
+{
+  "wave": 24,
+  "date": "2026-11-09",
+  "environment": "Sites-managed preview in Chrome; test campaign on preview origin",
+  "first_sale": {
+    "week": 10,
+    "cash_cents": 3257200,
+    "revenue_cents": 7200,
+    "paid_customers": 6,
+    "trial_customers": 19,
+    "fulfillment_percent": 100
+  },
+  "state_preservation": {
+    "fingerprint_before": "a929777b",
+    "fingerprint_after_classic_round_trip": "a929777b",
+    "fingerprint_after_reload": "a929777b",
+    "finance_text_identical": true,
+    "compute_form_draft_survived_classic_round_trip": true,
+    "reload_paused_no_elapsed_weeks": true
+  },
+  "journey": [
+    "prepare starter sample",
+    "hire ML engineer",
+    "allocate 4 development CU",
+    "two preparation weeks",
+    "assign founder to research",
+    "train conversation adaptation",
+    "evaluate selected Conversation 1 model",
+    "deploy Basic Chat",
+    "allocate 4 serving CU",
+    "reach first paid Chat week"
+  ],
+  "responsive": {
+    "method": "Native Chrome page zoom; DevTools is blocked by organization policy, so device emulation was not used. Zoom restored after checks.",
+    "viewports": [
+      {
+        "width": 1363,
+        "height": 936,
+        "document_width": 1348
+      },
+      {
+        "width": 779,
+        "height": 535,
+        "document_width": 770
+      },
+      {
+        "width": 340,
+        "height": 234,
+        "document_width": 337
+      }
+    ],
+    "horizontal_document_overflow": false,
+    "narrow_data_and_staff_controls_overflow": false,
+    "narrow_selected_inspector_hides_scene": true
+  },
+  "interaction_checks": {
+    "project_complete_filter": true,
+    "pin_and_remove_final_pin": true,
+    "list_view_and_room_restore": true,
+    "racks_facilities_reachable": true,
+    "escape_returns_to_original_station_after_related_navigation": true,
+    "skip_to_workbench_focuses_visible_inspector": true,
+    "reduced_motion_animation_names_none": true,
+    "reset_review_cannot_be_dismissed_with_escape": true,
+    "reset_review_cancel_preserves_campaign": true
+  },
+  "console": {
+    "stable_reload_after": "2026-11-09T16:11:12.116Z",
+    "application_errors_or_warnings_after_reload": 0,
+    "notes": "Earlier development hot-reload produced a transient duplicate-React hook error at 15:55; resolved by reload. Browser-extension metadata errors excluded. No application messages after clean reload and hydration."
+  },
+  "automated": "84 distinct targeted checks passed: 79 existing clock/persistence/integration/compatibility checks plus 5 Studio checks. Full regression run was interrupted and is not claimed passing.",
+  "separate_automated_path": {
+    "model": "completed training output",
+    "week": 10,
+    "revenue_cents": 10800,
+    "cash_cents": 3260800,
+    "note": "Different selected-model journey from browser; outcomes are not asserted identical."
+  },
+  "screenshot": "../images/frontier-lab-wave24-studio.png",
+  "releaseChecks": {
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "simulationVersion": "0.23.0",
+    "uiPackageVersion": "0.24.0"
+  }
+}

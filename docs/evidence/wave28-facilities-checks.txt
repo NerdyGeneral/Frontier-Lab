@@ -1,0 +1,105 @@
+✖ W28-F01: an ordinary published company pays S5 and two independent retrofits; benefit and tradeoff start only at the following boundary (28726.227306ms)
+✔ W28-F02: a reviewed profile reserves one capital payment, preserves queued identity on reload and rejects duplicate, foreign and unearned work (6048.754949ms)
+✖ W28-F03: elapsed time cannot replace staff or GPU qualification; pause and real reassignment preserve paid progress (19392.63111ms)
+✔ W28-F04: serving specialization bills only actual eligible work once; live Chat, API and delivered enterprise support retain their ordinary obligations (510.313362ms)
+✔ W28-F05: training penalties aggregate across requests and categories; research/general, cloud and colocation retain original behavior (340.560399ms)
+✖ W28-F06: the training profile improves compatible cross-rack updates only and its shared serving ceiling includes headroom (237.68016ms)
+✖ W28-F07: a separately paid real foundation receives the exact training gain while public service and enterprise support continue (20140.329154ms)
+✔ W28-F08: historical profile receipts and rates survive a paid switch, exact reload and a following ordinary week (4836.586519ms)
+✔ W28-F09: state validation rejects forged price, work, future activation, overlapping or erased profiles; the Campus selector stays pure (1445.953443ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 5
+ℹ fail 4
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 82626.906854
+
+✖ failing tests:
+
+test at tests/wave28-facilities.test.js:48:25
+✖ W28-F01: an ordinary published company pays S5 and two independent retrofits; benefit and tradeoff start only at the following boundary (28726.227306ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-pRtwk1/tests/wave28-facilities.test.js:81:26)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave28-facilities.test.js:116:25
+✖ W28-F03: elapsed time cannot replace staff or GPU qualification; pause and real reassignment preserve paid progress (19392.63111ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  0 !== 1
+  
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-pRtwk1/tests/wave28-facilities.test.js:144:22)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 0,
+    expected: 1,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave28-facilities.test.js:202:25
+✖ W28-F06: the training profile improves compatible cross-rack updates only and its shared serving ceiling includes headroom (237.68016ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 13860
+  - 13860.000000000002
+  
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-pRtwk1/tests/wave28-facilities.test.js:204:22)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 13860,
+    expected: 13860.000000000002,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/wave28-facilities.test.js:219:25
+✖ W28-F07: a separately paid real foundation receives the exact training gain while public service and enterprise support continue (20140.329154ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 5772005773
+  - 6349206350
+  
+      at TestContext.<anonymous> (/tmp/frontier-lab-wave0-pRtwk1/tests/wave28-facilities.test.js:244:22)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 5772005773,
+    expected: 6349206350,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

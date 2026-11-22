@@ -1,0 +1,17 @@
+✔ W28-F01: an ordinary published company pays S5 and two independent retrofits; benefit and tradeoff start only at the following boundary (60559.348657ms)
+✔ W28-F02: a reviewed profile reserves one capital payment, preserves queued identity on reload and rejects duplicate, foreign and unearned work (7172.443829ms)
+✔ W28-F03: elapsed time cannot replace staff or GPU qualification; pause and real reassignment preserve paid progress (55748.37326ms)
+✔ W28-F04: serving specialization bills only actual eligible work once; live Chat, API and delivered enterprise support retain their ordinary obligations (237.693148ms)
+✔ W28-F05: training penalties aggregate across requests and categories; research/general, cloud and colocation retain original behavior (262.460236ms)
+✔ W28-F06: the training profile improves compatible cross-rack updates only and its shared serving ceiling includes headroom (419.259335ms)
+✔ W28-F07: a separately paid real foundation receives the exact training gain while public service and enterprise support continue (15712.737286ms)
+✔ W28-F08: historical profile receipts and rates survive a paid switch, exact reload and a following ordinary week (3425.678236ms)
+✔ W28-F09: state validation rejects forged price, work, future activation, overlapping or erased profiles; the Campus selector stays pure (1114.892171ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 145003.049309

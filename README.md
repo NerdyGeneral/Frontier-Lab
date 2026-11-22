@@ -1,0 +1,294 @@
+# Frontier Lab
+
+**Gameplay and workflow polish — build/content 0.36.0.** Model drafts and named blueprints now survive browser reloads, and manual designs can move into delegated development without losing their training choices. The custom designer has compact sections, visible forecasts, comparison and undo controls, and direct links to the exact research requirement. Four specialist customer briefs reward models that deliver real paid work; new campaigns vary announced market opportunities and give rivals visible strategic approaches. Existing 0.35 saves preserve their paid plans and current campaigns. [Gameplay and compatibility QA](docs/GAMEPLAY_POLISH_QA.md) records the fixes, migration evidence, and verification limits. Save schema remains **5**.
+
+**Expanded research and model customization — build/content 0.35.0.** Thirteen paid discoveries unlock attention designs, context capacity, weight precision, specialist training objectives and response behavior. Five editable purpose presets, live resource/skill/behavior forecasts, direct research-to-design links and saved model profiles support both manual training and delegated development plans. [Release notes and verification](MODEL_CUSTOMIZATION_0.35.0.md) describe the choices, tradeoffs and preserved-save behavior. Save schema remains **5**.
+
+**Delegated development and campaign strategy — build/content 0.34.0.** Projects now connects data preparation, custom or preset training, and evaluation within explicit fee, reserve, and deadline limits. Live products have routing and audience choices; Company has lasting chapter goals; Research has focus choices and three harder challenge tiers; Market shows funded rival plans and announced buying windows. [Release notes and verification](STRATEGY_DEVELOPMENT_0.34.0.md) describe the gameplay, workflow, and preserved-save behavior. Save schema remains **5**.
+
+**Dark Studio UI — build 0.30.5.** Navy and slate surfaces, cyan actions, and matching night artwork now cover all three lab tiers. Menus keep their primary review action in view, research separates unlocked methods from assigned resources, and the header opens the matching management screen. Scheduled actions offer an explicit choice to keep planning or advance a week. [Dark UI QA](docs/DARK_UI_QA.md) records the changes and verification. Content remains **0.28.0** and save schema **5**.
+
+**Plain-English UI update — build 0.30.4.** Menus, research descriptions, reviews and feedback now explain choices in more natural game language. All 35 research descriptions have been rewritten; player-facing costs, timing, work units and restrictions remain accurate. [Copy-update QA](docs/PLAIN_LANGUAGE_QA.md) records the 88 rendered UI checks, 101 focused core checks, TypeScript and production build. The [player wording guide](docs/PLAYER_COPY.md) keeps future additions consistent. Content remains **0.28.0** and save schema **5**.
+
+**Phase 30D — Remaining decision menus and navigation** is implemented in build **0.30.3**, retaining content **0.28.0** and save schema **5**. Studio, Projects, Research, Products, Operations and Company organize the existing workspaces; Results, Save and settings remain global utilities. Focused research methods and the remaining product, release, infrastructure, Campus, chip, agent and company decisions share the retained setup → commitment review → accepted-command flow. Existing panel links and exact selected entities remain supported. [The migration inventory](docs/WAVE30D_MIGRATION_INVENTORY.md) maps every retained owner and command family; [current design QA](DESIGN_QA.md) distinguishes automated parity from mounted browser journeys. The scoped release gate passes **101 core checks and 88 rendered UI checks**, TypeScript and the production build. Representative desktop, narrow/400% and advanced review paths passed, and the original preview snapshot was restored byte for byte. Native publication is tracked separately.
+
+**Phase 30C — Results and resource decisions** shipped in build **0.30.2**, retaining content **0.28.0** and save schema **5**. Results provides a global, retained view of completed work with exact follow-up actions, local reviewed/dismissed flags and a separate current-attention list. Focused Hire and Assign time menus explain recruitment, payroll, onboarding and shared role capacity, while resource detours preserve the originating draft. [Phase 30C release notes](docs/WAVE30C_RELEASE.md) describe the contracts and focused automated evidence; [30C design QA](docs/WAVE30C_DESIGN_QA.md) preserves that release’s mounted checks.
+
+**Phase 30B — Guided opening journey** shipped in build **0.30.1**, retaining content **0.28.0** and save schema **5**. Follow selected data through one Guided/Advanced training draft, actual queued and active work, exact candidate evaluation, and the first Basic Chat launch. Preparation and resource detours retain the original task; launch terms and current commitments are reviewed before a real accepted command. Deployment and the later first sale remain separate. [Phase 30B release notes](docs/WAVE30B_RELEASE.md) and [30B design QA](docs/WAVE30B_DESIGN_QA.md) record the scope and evidence.
+
+**Phase 30A — Shared decision menus** shipped in build **0.30.0**. Workstation menus, retained decision dialogs, commitment reviews, bounded resource detours and exact result navigation remain the shared foundation. [Phase 30A release notes](docs/WAVE30A_RELEASE.md) describe those contracts.
+
+**Wave 29 — Responsive workbenches** shipped in build **0.29.0**, retaining content **0.28.0** and save schema **5**. Studio opens workbenches when visited, preserves unsent drafts between visits, and refreshes their current company data when reopened. Decisions, weekly settlement and local saving now show explicit feedback. The engine avoids repeated full-state copies and duplicate quotes while retaining its validation and rollback boundaries. [Wave 29 release notes](docs/WAVE29_RELEASE.md) explain the changes, measured scope and compatibility evidence.
+
+**Wave 28 — Campus specialization and Gen 2 silicon** shipped in build/content **0.28.0**, retaining save schema **5**. A commissioned owned site earns the new original Campus room. Open **Campus** to compare and fund one site profile at a time, or design, prototype, fabricate and install a successor to a qualified first-generation chip. Serving profiles reduce eligible owned inference variable costs by 10% with a training-capacity tradeoff; training profiles improve compatible cross-rack training by 10% with a serving-capacity tradeoff. The catalog now contains **35 paid research programs**. [Wave 28 release notes](docs/WAVE28_RELEASE.md) describe the exact work, historical receipts and compatibility rules.
+
+**Wave 27 — Release desk and private appliance** shipped in build/content **0.27.0**, retaining save schema **5**. Open **Release** for a dedicated workspace connecting paid rehearsal and preparation to a metered public canary, incident decisions and explicit handover. The Private appliance tab qualifies one frozen model/hardware package for Cedar Records, tracks foundry shipment and actual installation work, and separates the acceptance payment from ongoing license/support invoices. [Wave 27 release notes](docs/WAVE27_RELEASE.md) document the rules, compatibility and verification evidence.
+
+**Wave 26 — Research tree and synthetic data** remains available in the full-width Research notebook. Its 31 discoveries were joined by Release telemetry (S3) and Private appliance (S4) in Wave 27, and Facility specialization (S5) and Second-generation silicon (S6) in Wave 28. The paid synthetic generation, review, quarantine, targeted training and comparison workflows retain their existing evidence. [Wave 26 release notes](docs/WAVE26_RELEASE.md) record that release.
+
+**Wave 25 — Projects, staffing and compute** supplies the shared planning workspace. The first earned revenue unlocks the larger Studio. Open **Projects → Plan week** to review founder time, employee allocations, hiring and compute together, compare the actual next boundary, inspect connected memory and signed commitments, and queue one atomic plan. [Wave 25 release notes](docs/WAVE25_RELEASE.md) include compatibility details and acceptance evidence.
+
+**Wave 18 — Persistent consumer sessions** shipped after Wave 19 in build **0.21.0**. Open **Basic Chat → Persistent sessions** to choose Off, Brief (400 tokens), or Extended (1,200 tokens). Paid, fulfilled service builds aggregate history for surviving subscriber cohorts. Returning customers use more of their allowance, incur extra inference work and connected memory, and benefit from continuity in quality and retention. Trials and new subscribers start without history. Full outages clear existing history, and underprovisioned usage earns the ordinary subscription credits. Earlier saves start with history Off and retain their existing coding-agent work.
+
+**Wave 19 — Coding agent business** shipped in build **0.20.0**. In **Agent services → Coding order board**, an evaluated model with coding 50, tools 25, reliability 85 and hosted rights can take simulated repository maintenance orders after Outcome verification (R10). Each intake supports reviewed drafts, human-approved delivery, or bounded autonomy with R11. Scoped tools, paid smoke tests, independent verification, and a post-publication customer audit share the company’s serving capacity. Action-receipt recovery can resume eligible stopped work without reopening an intake or repeating a side effect.
+
+Each order costs $75 to accept. A reviewed draft earns $650, and a verified delivery earns $1,800. A published patch that fails its customer audit earns no fee and incurs a $900 penalty. These are in-game prices. Prior saves migrate under schema 5.
+
+A Universal Paperclips-inspired AI-company strategy game. **Wave 17 — Training experiments and deeper curricula** shipped in build **0.18.0**. [The Wave 17 handoff](docs/WAVE17_RELEASE.md) explains design comparison, two-skill replay, real training costs, evidence and rights, bounded outcomes, and save compatibility.
+
+In **Lab → Compare training experiments**, capture up to **three designs** from the training controls. Compare update and checkpoint work, connected workspace, preparation, recipe fees, capability ranges, inherited rights, and current readiness. Drafts are local to the open lab and spend nothing; **Use design** fills the controls, followed by a separate **Start training** action. They clear on reload or opening another lab. Estimates use the current company and do not replace paid held-out reports.
+
+The existing **Replay curricula (R4C)** research now supports **Preserve two skills** during ordinary conversation, document, or coding/tools adaptation. Choose two evaluated skills outside the adaptation's focus, each with a separate prepared corpus, and a **50% or 75% total replay budget**. These choices require **twice or four times the ordinary nominal update work**, split equally across the replay tracks before their independent cleanup savings. The base needs its own paid Expanded capabilities report; the primary corpus and both replay corpora must have different underlying sources. Real development GPUs, connected memory, ML supervision, cash, fresh evaluation, and inherited licensing restrictions still apply.
+
+[The earned Wave 17 continuation](docs/evidence/wave17-progression.json) advances the independently verified company from **Week 553 to 571 using 12 ordinary commands**. It purchases and prepares separate conversation data, then trains three candidates from compact model 19. Ordinary, 50% two-skill replay, and 75% replay use **9.9, 19.8, and 39.6 effective CUw**, recording **$412.49, $824.99, and $1,649.98** of owned GPU variable usage. Those figures exclude rent, payroll, data processing, and later reports. All three reach **50.01 conversation**. Documents/coding finish at **30.57/20.04**, **30.57/24.17**, and **39.65/36.25**. The 50% document floor is below the ordinary outcome, so paid replay does not improve that skill in this design. Stronger replay still preserves less than the base's **55.66 documents and 50.89 coding**. Each candidate receives a separate paid Expanded report; none automatically replaces a live product. Final checksum: **`b6aaffe4`**, with an exactly reloadable **1,593,344-byte** save.
+
+[Independent compatibility evidence](docs/evidence/wave17-compatibility.json) preserves the exact published Wave 16 source and matches **16 future full-state outcomes** after changing only version headers. All **17 prior save generations** remain supported, and the browser archives the exact Wave 16 original before upgrading. New curricula require explicit adoption. The release gate passes **600 tests** and nonincremental TypeScript. The [Wave 17 validation record](docs/evidence/wave17-validation.json) is written after the required production build succeeds. [Browser play testing](docs/evidence/wave17-browser.json) verifies three-design comparison, unchanged planning saves, explicit design restoration and admission, queued-work reload, a byte-identical paused reload, paid completion and evaluation, and byte-identical restoration of the original preview lab.
+
+**Wave 16 — Compute planning and profitability** remains available. [The Wave 16 handoff](docs/WAVE16_RELEASE.md) explains pool selection, conditional delivery, atomic capacity plans, cost assumptions, and its historical save-compatibility evidence.
+
+In **Developer API → Batch inference**, select automatic dispatch or a specific connected GPU pool. Open **Placement and cost forecast** to compare delivery, invoices, credits, physical work and future GPU costs. Change hypothetical total cloud and serving capacity, press **Compare capacity**, then use **Apply compared capacity** to queue the rental/allocation change. New orders capture the selected pool; live orders can change pools or return to automatic placement without resetting paid progress, model terms or the deadline.
+
+The forecast uses the real resource allocators with fixed ordinary demand and current readiness over at most six remaining service weeks. It includes competing live, training, research, agent and infrastructure requests, but excludes queued actions, future market changes, new readiness and cash depletion. Weekly bills must remain funded. Cloud-work attribution is already included in rent; the full extra company reservation is shown separately and continues until changed. Payroll, existing rent, fixed facility costs and prior work remain outside the displayed future contribution.
+
+The Wave 16 compatibility gate preserved automatic behavior: all 24 independently captured future Wave 15 states matched after changing only version headers, and all sixteen then-prior save generations were supported. Its browser upgrade archived the exact Wave 15 original.
+
+[The earned Wave 16 continuation](docs/evidence/wave16-progression.json) advances the published company from **Week 535 to 540 using two ordinary commands**. It reduces cloud reservation from **96 to 80 CU** and serving allocation from **160 to 144 CU**, then places a **40,000-request archive order** on the existing colocation training pool. The order earns its full **$6,500** at Week 539, before the original Week 540 deadline. An alternative branch retaining 96 cloud CU finishes the same order on cloud at Week 538. Over the common **Weeks 536–540** window, company operating expenses are **$119,123.97** for the selected owned plan and **$133,351.25** for cloud, with identical **$231,290.21** company revenue. The measured expense reduction is **$14,227.28**. The owned batch uses **23.636363637 physical CUw** and **$1,772.72** of variable usage; the cloud branch's **$5,200** workload attribution is already included in its reservation bill. Both keep all three public products fully served and incur no arrears. The selected final checksum is **`6e77d37e`**, and its **1,456,012-byte** save reloads exactly.
+
+[The paid relocation continuation](docs/evidence/wave16-relocation.json) tests a selected pool disappearing after a real rack move. Keeping the missing pool completes **5,866 of 60,000 requests** for **$2,199.75**. Explicitly restoring automatic placement completes **16,533 requests** for **$6,199.87** by the same Week 528 deadline, with no silent fallback or progress reset. [The independent forecast audit](docs/evidence/wave16-forecast-audit.json) preserves an authentic late-game save and matches a real first-week grant exactly; four-pool, six-week comparisons take **33.55–41.16 ms** in that recorded environment.
+
+The Wave 16 acceptance gate passed **584 tests**, nonincremental TypeScript, and whitespace checks. The publication workflow requires the production build before committing and packaging; [its validation record](docs/evidence/wave16-validation.json) is written after that build succeeds. [Browser play testing](docs/evidence/wave16-browser.json) completes capacity planning, explicit placement, a byte-identical paused reload, a live switch to automatic dispatch, and full final billing. The original preview lab is restored byte-for-byte afterward.
+
+**Wave 15 — Replay curricula** remains available. [Its release handoff](docs/WAVE15_RELEASE.md) explains paid skill preservation, separate training data, actual GPU work, licensing, fresh evaluation, and compatibility.
+
+After **Efficient adaptation (R4)**, research **Replay curricula (R4C)** for **$3,000**, **6 research CUw**, and **3 research staff-weeks**. In **Lab → Model design and training method**, select one evaluated skill outside an ordinary adaptation's focus, a separate prepared replay corpus, and a **25% or 50% nominal replay budget**. The preview shows total update work, the finite retention floor, data quality, and combined rights. Replay uses the existing development GPUs and ML supervision; it does not replace a live model or certify its output.
+
+[The earned Wave 15 continuation](docs/evidence/wave15-progression.json) takes the published company from **Week 500 to 535 using 18 ordinary commands**. Stable document adaptation with curated coding replay requires **26.4 CUw at 25%** or **39.6 CUw at 50%**, compared with **19.8 CUw ordinarily**. Coding ends at **25.44** or **50.89**, respectively, while documents retain the identical **55.66** outcome. Recorded owned GPU variable costs are **$1,099.99** and **$1,649.98**, separate from rent, payroll, research, and later evaluation. A further paid reliability tune raises reliability to **92.80**, and fresh capability and policy reports qualify the same model for both code and digest work.
+
+The Wave 15 campaign also demonstrates a delivery constraint: a code order earns **$15,000**, but the simultaneous digest finishes **38,808 of 60,000 requests**, earning **$14,553** and crediting **$7,947**. Renting and allocating **16 additional cloud CU** creates a larger connected pool and lets the final digest earn its full **$22,500**. The seven-week additional reservation costs **$22,400**, so the recovery is a real cost decision. Its final checksum is **`9a5b6de8`**; its **1,451,812-byte** save reloads byte-for-byte. The [Wave 15 release validation](docs/evidence/wave15-validation.json) and [Wave 15 visible browser checks](docs/evidence/wave15-browser.json) retain that historical release evidence.
+
+The Wave 15 release gate passed **564 tests**, nonincremental TypeScript, and the production build. Its browser play testing ran the new curriculum from Week 504 through Week 512, paid for both candidate reports, proved an exact paused-save reload, and restored the preview’s original lab byte-for-byte.
+
+Wave 14 adds batch inference. After **Enterprise operations (R12)**, pay **$1,500**, **two development CUw**, and **two ML staff-weeks** to install a batch scheduler. Its two work meters advance independently, at most one unit each per week, and it activates at the following boundary. An active Developer API with actual paying customers can then accept finite archive-tagging, code-index, or long-form-digest orders. Select a separately evaluated, eligible model and a fixed **2, 4, 8, or 16 CUw weekly limit**. Three claims of each order are available per company; completed, expired, and cancelled work retains its claim and receipt.
+
+Batch jobs use the **remaining serving allocation after ordinary workloads**, their own resident model and workspace, and **0.25 commercial FTE** while running. Partial handling limits actual GPU execution. The four- or six-week delivery window continues while paused or short of resources. A frozen model and token rates determine the once-only final bill for whole completed requests; unfinished quoted work is credited without an extra fine. Public routing, caching, runtime guardrails, token billing, and consented feedback keep their own boundaries. A backlog summary shows current work and deadlines; the recurring twelve-week capacity forecast does not predict batch completion.
+
+[The earned Wave 14 continuation](docs/evidence/wave14-progression.json) advances the published company from **Week 472 to 500 with 16 ordinary commands**. Five jobs earn **$57,999.88** and record **$7,500.12** of unfinished-work credits. A compressed model completes all **60,000 code requests** with **48 normalized CUw**, while the original completes **48,000 requests** under the same weekly limit and deadline. Actual physical GPU work remains distinct: **45.090909092 CUw** for the original and **48 CUw** for the compressed job because the fleet assigned different pools. Paid document adaptation, reliability training, and fresh capability and policy reports then qualify a compact specialist for the larger digest order. The final **Week 500** checksum is **`38350449`**, and its **1,300,835-byte** save reloads byte-for-byte.
+
+Wave 13 adds assured contracts after **Enterprise operations (R12)** and runtime-guardrail research. An active Developer API can serve two finite enterprise buyers. **Continuity Systems** requires at least **42/50 useful allowed answers** and at most **2/50 restricted compliances**, paying **$1,200 per week** for **4,000 requests** and **0.25 commercial FTE**. **Sentinel Services** requires at least **40/50 useful answers** and **0/50 restricted compliances**, paying **$2,200 per week** for **8,000 requests** and **0.5 commercial FTE**. Each new term costs **$750** and **one commercial staff-week** of onboarding; its fixed **eight-week** calendar starts at the following boundary. Buyers judge the actual paid audit, so different model/profile choices can satisfy different requirements.
+
+Each tenant consumes separate serving work, checker overhead, resident memory, and **10% capacity headroom**. Recurring support competes for real commercial staff. The retainer follows the lower of completed-request fulfillment and supplied support; a paused API or unmatched accepted audit earns a full service credit. The 98% service target adds no separate fine. Model, route, feature, or checker changes can suspend a tenant until the player explicitly accepts another qualifying paid audit. Requalification preserves the original expiry, prior invoices, and earlier accepted evidence. Disabling and restoring the exact accepted checker can resume service without another acceptance. Public token invoices and consented feedback retain their own usage boundaries.
+
+[The earned Wave 13 continuation](docs/evidence/wave13-progression.json) advances the published company from **Week 449 to 472 using ten ordinary commands**. Its strict audit wins Sentinel, its balanced audit later wins Continuity, a stale qualification stops service until explicit acceptance, and a GPU-starved week earns a full credit. Both terms finish with exactly eight invoices: **$15,000 total retainers** and **$12,200 total service credits**. Final checksum: **`653fbcd2`**. The company retains its existing model, public deployment, billing contract, and feedback evidence.
+
+Wave 12 supplies the runtime-guardrail foundation. After **Behavior cases (R1A)** and **Preference tuning (R5)**, Basic Chat and Developer API can implement balanced or strict runtime guardrails. Each rollout pays **two development CUw and two ML staff-weeks**, capped at one of each per week, then activates at the next boundary. Balanced checks add **0.02 CUw per 1,000 requests and 1 MU** of resident memory; strict checks add **0.05 CUw and 2 MU**. They add no billable customer tokens. Both primary and routed models need their own exact paid capability and policy reports. A separate fixed paired audit reports useful allowed answers, false refusals and restricted compliances; stricter checking catches more restricted compliance and withholds more otherwise useful allowed answers.
+
+The checker remains a product operating choice. It preserves model weights, runs after routing and caching, uses real serving capacity, and can affect ordinary retention and consented feedback through false refusals. Model, route and conversation-option changes require matching runtime evidence. Existing protection continues while a replacement is built; prepared releases freeze checker settings. [The earned continuation](docs/evidence/wave12-progression.json) takes the published company from **Week 432 to 449 in ten ordinary commands**, exposes a **99.69%** capacity shortfall under strict checking, and restores full fulfillment by purchasing and allocating more cloud capacity. The [save-budget continuation](docs/evidence/wave12-save-budget.json) reaches all **eight paid rollouts** for one product without losing retained audit evidence or exceeding the portable save limit.
+
+Build on the first-sale loop by researching new methods, buying and curating distinct datasets, designing and training model families, comparing held-out capability and behavior reports, and operating consumer subscriptions or a metered developer API. Rival companies compete for finite customer segments. Purchased GPU racks and staged data centers introduce installation, staffing, connected memory, power, cooling, and physical-work costs.
+
+Wave 3 adds support workflows and bounded agents with explicit permissions, work and retry budgets, independent outcome checks, human review, and action receipts. Business Documents can use an installed retrieval index with preparation and upkeep costs. Private business deployments reserve capacity and carry service commitments, while customer-hosted model licenses require distribution rights, delivery work, and ongoing support on buyer-provided compute. These are simulated company products with finite customers and real resource competition inside the game.
+
+Wave 4 turns later research into paid applications: separately evaluated compression and memory variants, two-model request routing, prefix caching, teacher-to-student distillation, sparse foundations, training supervision, and reviewed research assistance. Custom chips move through specification, prototype qualification, production yield, fabrication, delivery, and installation. Fast fabric is a separate installed asset. Three campaign routes reward sustained frontier performance, a trusted consumer/developer platform, or dependable business specialization; earning an ending records the achievement and keeps the company running.
+
+Wave 5 adds reproducible campaigns from the ordinary $48,000 opening, with all three rivals operating and no extra funding or direct state grants. One company earns Trusted platform in Week 188 and Essential specialist in Week 252; another earns Frontier laboratory in Week 235 after funding its own hardware, data, research, training, evaluation, and paid service. The receipts retain settled financial results, campaign proof windows, model evidence, and save checksums. These are tested strategies, not guaranteed or optimal completion times.
+
+Release balance makes company trust rise by 0.10 points for a qualifying paid-service week, or 0.25 points when every observed paid product also meets the calibration condition; a poor paid-service week loses 0.25 points. Trust changes once per company, not once per product. Successful contract renewals preserve a named business relationship’s earned maturity, while current service and the new term’s average must still meet its SLA.
+
+Wave 6 adds paid data deduplication for future training, metered document citation checks with withholding and retention tradeoffs, and a read-only twelve-week capacity forecast based on current staff, hardware, and signed commitments. Each method has a separate implementation step after its research unlock. A natural continuation of the published business campaign adopts all three with ordinary commands and no grants; its receipt is in `docs/evidence/wave6-operations.json`.
+
+Wave 7 completes the four remaining authored research branches: paid frozen-base adapters with pool-local memory sharing, independent outcome holdouts, a finite budgeted planner curriculum, and paid recovery across agent executions. The integration campaign continues the published Wave 6 company through 59 ordinary weeks and 22 commands, with no state grants or arrears. It compares the same 100 reserved cases before and after planner training (43 to 36 repeated lookups, 48 correct outcomes in both), serves two adapters using 2.5 MU of bank weights instead of 4.5 MU, and recovers an already applied action into one paid audit and invoice. Its full receipt is in `docs/evidence/wave7-progression.json`.
+
+Wave 8 connects physical investment to operating decisions. After Enterprise operations, independently fund a **$18,000 power feed extension** or **$14,000 cooling loop expansion**, pay their infrastructure staff effort, and wait for commissioning. Each raises its own site limit from 64 to 112 units. The facility retains **64 CU of rack space: eight 8-CU rack footprints**. A **$1,500 rack relocation** takes four elapsed weeks minimum and one infrastructure staff-week, keeping that paid equipment offline while both locations retain its footprint. Purchase evidence, custom-chip yield and original installation remain intact; fabric stays at its location.
+
+After Capacity forecast research, a separate **one-ML-staff-week, one-development-CUw** cost-accounting rollout exposes the last eight settled weeks of actual cloud rent, owned GPU usage, idle reservations, shared infrastructure upkeep and product contribution. It reconciles to the existing company ledger. These three mechanics are optional applications; imported companies receive no automatic upgrades or projects. [The integration receipt](docs/evidence/wave8-progression.json) continues the published company from **Week 326 to 370 in 31 ordinary commands**, reducing its cloud reservation from **112 to 56 CU** and fully serving all three public offers in the final week. Its measured weekly operating surplus changes from **$9,334.25 to $19,891.46**. The release handoff distinguishes this demonstrated continuation from a controlled savings comparison and records the final snapshot checksum **`b70a084d`**.
+
+Wave 9 adds **Release operations** beside each public product after Enterprise operations (R12). A paid rehearsal compares the current model and an evaluated candidate on the same **100 reserved benign cases**, representing **10,000 standard exchanges per model**, using development GPUs, separate resident memory and **one ML staff-week**. It reports useful answers, confident errors, false refusals and clarification alongside actual physical work. This finite model comparison excludes routing, prefix caching, retrieval and evidence links; it does not test harmful-request policy or certify future service capacity.
+
+A matching rehearsal permits a **two-CUw, two-ML-staff-week** prepared bundle while the current product keeps serving. Preparation is capped at one CUw and one ML staff-week per week, then the player explicitly queues a later handover. A ready bundle reserves no future capacity or memory. One rollback costs another **one CUw and one ML staff-week** and must finish within the original **six-week** retention window. Product identity, billing contracts and fractional token-bill carry continue through the switch; normal resource limits and billing still apply. [The earned progression receipt](docs/evidence/wave9-progression.json) continues the Week 371 company to **Week 389 in nine ordinary commands**. Its compressed candidate uses **4 rather than 5 normalized CUw**, with **74 rather than 76 useful answers** in the finite comparison. The funded API remains fully served through the Week 385 forward handover and Week 389 rollback, with one invoice each observed week. Final checksum: **`4dff9002`**.
+
+Wave 10 connects customer usage back to the Lab. Preference tuning (R5) unlocks a **four-week prospective feedback study** inside Basic Chat and Developer API. Hosted-only consent has **25% modeled participation**; consent permitting weight distribution has **10%**. Only actually served paid accounts and responses contribute, with **25 cases per week and 100 per study**. Trials, rehearsals, business documents, private contracts, and customer-hosted licenses are excluded. A source change stops further captures in that study, and ending early preserves only previously collected cases. Collection does not improve a model or create a training-ready packet.
+
+Each nonempty closed study can receive one paid review. Per 100 cases, **quick review needs one data staff-week and 0.5 development CUw for 65% quality**, while **verified review needs two data staff-weeks and one development CUw for 90% quality**. Data review is capped at one staff-week per week; GPU processing uses a separate **1 MU** workspace. Representative samples produce 80% product-domain coverage and 50 behavior units; failure-focused samples produce 45% coverage and 100 behavior units. Neither supplies broad foundation units. The finished dataset arrives at the following weekly boundary and participates in ordinary curation, source deduplication, frozen training plans, held-out evaluation and prepared release. Consent and the inherited rights of every sampled model constrain weight licensing.
+
+The interface remains a sparse unfolding page with ordinary buttons, short tables, and details sections. A compact section navigation, an expandable play guide, links from unmet ambition requirements, and links from completed research help connect each discovery to its application. Milestones recognize an already earned first sale or ending before revisiting opening steps. Shared command previews explain prerequisites, costs, and bottlenecks. Form drafts survive weekly ticks, and every system uses the same deterministic weekly engine and company ledger.
+
+### Waves 22–23 · Foundries and accelerator sales
+
+Prototype-qualified chips can use the standard foundry, pay a 25% premium for Express (two weeks faster), or pay a 15% premium for High-yield (two weeks slower, up to 12.5 percentage points more usable capacity). Each specialty line has four simultaneous rack slots shared by company and buyer orders. The quoted batch captures lead time, yield and cost. Company racks still need installation and operating capacity.
+
+Three one-time buyers have different workloads, memory requirements and deadlines. Choose a qualified design and foundry under **Chips and networking → Accelerator sales**. Fabrication is paid at acceptance and the foundry delivers directly to the buyer. The ledger recognizes the buyer’s payment once on shipment. The quoted batch contribution excludes chip design, prototype work, and company overhead.
+
+### Waves 20–21 · Competition and campaign release
+
+New browser labs use the release campaign. Atlas prioritizes funded model improvements, Swiftworks discounts its API when paid usage covers serving costs and its cash reserve can support the move, and Harbor pursues a buyer-hosted license with Northline Operations. The same command, evaluation, staffing, rights and renewal rules govern rival agreements. The Market panel compares qualified offers and shows named commitments. Price-sensitive shoppers favor lower bills, quality-sensitive buyers favor relevant capability and reliability, and recent fulfillment matters. Strong alternatives can reduce renewals for generic business subscriptions.
+
+The release platform route needs 550 paid consumer accounts and 50 paid developers. The specialist route needs 10 served organizations and a sustained named contract. The frontier route now needs a 5% operating margin alongside paid service on a broad model and independent behavior evidence. Existing campaigns retain their original rules and proofs. The weekly summary uses settled revenue, expenses and service, with current runway and queued decisions. Review the previous saved run under **Your lab → Recovery copies** before confirming a restore.
+
+Run `npm test -- wave21-release` to reproduce all three routes from fresh, ordinarily funded companies and check rival licensing, pricing, finite market accounting and prior-save migration.
+
+- `npm test` runs simulation, resources, migration, clock, billing, rival, and browser-storage acceptance suites.
+- `npm test -- wave5-business` and `npm test -- wave5-frontier` reproduce the natural campaigns; their recorded results are in `docs/evidence/`.
+- `npm run typecheck` checks all TypeScript source.
+- `npm test -- wave8-progression` reproduces the physical-scale continuation. The focused Wave 8 suites cover retrofits, standard and custom rack relocation, settled cost attribution, migration and progression.
+- `npm test -- wave9-progression` reproduces the paid comparison, API handover and rollback. `wave9-rehearsals`, `wave9-releases` and `wave9-compatibility` cover work, chronology, billing, historical proof, save validation and the published-engine oracle.
+- `npm test -- wave10-progression` reproduces the paid usage → review → calibration → evaluation → rehearsal → prepared release loop. `wave10-feedback`, `wave10-feedback-review`, and `wave10-compatibility` cover finite sampling, licensing, resource grants, chronology, history and prior-engine behavior.
+
+Wave 11 adds licensed **100 allowed/restricted policy pairs**, purchased for **$8,000** and prepared with **three data staff-weeks**. After R5 and R1A, **boundary discrimination (24 CUw)** reduces unnecessary refusals while **conservative refusal (16 CUw)** targets fewer restricted compliances at the cost of refusing more legitimate work. Both preserve capability, reliability, confident-error behavior and per-request inference work. Generic feedback does not supply policy labels, and fixed lineage targets prevent compounding. A separate **4-CUw / 1-research-staff-week policy holdout** tests **50 allowed and 50 restricted cases**. Newly policy-trained models, descendants and runtime variants need their own paid report with at most **5/50 restricted compliances** before commercial admission; capability evidence and rights remain separate. Existing model protocols, invoices and clocks are unchanged until adoption.
+
+- `npm test -- wave17-progression` reproduces separate data preparation, three paid training designs, two-skill retention, exact pause/reload, and fresh reports. `wave17-curriculum` and `wave17-compatibility` cover source and report provenance, independent cleanup, bounded outcomes, actual GPU/staff constraints, rights, frozen receipts, forged saves, browser archive recovery, and the independent published-engine oracle.
+- [Wave 17 release handoff](docs/WAVE17_RELEASE.md) records the comparison bench, curriculum choices, cost boundaries, earned Week 553–571 continuation, and compatibility contract.
+- `npm test -- wave16-progression` reproduces the earned capacity and placement comparison; `npm test -- wave16-relocation` reproduces the paid rack move, missing-pool zero grant, and explicit recovery. `wave16-placement`, `wave16-planning`, and `wave16-compatibility` cover placement history, atomic capacity commands, conditional forecasts, cost boundaries, snapshots, and the published-engine oracle.
+- [Wave 16 release handoff](docs/WAVE16_RELEASE.md) records the connected-pool decisions, forecasts, measured operating comparison, relocation recovery, and compatibility contract.
+- `npm test -- wave15-progression` reproduces paid replay research, the two retention budgets, checkpoint pause/reload, fresh evaluations, ordinary reliability tuning, finite customer work, and a connected-capacity repair. `wave15-replay`, `wave15-replay-integration`, and `wave15-compatibility` cover source/report provenance, bounded outcomes, actual ML/GPU constraints, rights through descendants, independent cleanup, forged saves, and the published-engine oracle.
+- [Wave 15 release handoff](docs/WAVE15_RELEASE.md) records the training decisions, frozen evidence, separate work and rights, earned campaign, and compatibility contract.
+- `npm test -- wave14-progression` reproduces scheduler installation, five finite orders, the compression comparison, pause/resume/cancellation, and a paid specialist-training path. `wave14-batch`, `wave14-batch-integration`, and `wave14-compatibility` cover actual staff and GPU grants, memory and hardware compatibility, fractional request carry, terminal invoices, historical proof, forged saves, and the published-engine oracle.
+- [Wave 14 release handoff](docs/WAVE14_RELEASE.md) records model and capacity tradeoffs, fixed delivery windows, the Week 472–500 campaign, and independent compatibility evidence.
+- `npm test -- wave13-progression` reproduces the two earned assurance terms, actual GPU charges, qualification suspension and restoration, capacity credits, and fixed expiry. `wave13-assurance`, `wave13-assurance-integration`, and `wave13-compatibility` cover bounded commercial work, physical receipts, historical qualifications, cross-contract capacity admission, finite buyers, forged saves, and the published-engine oracle.
+- [Wave 13 release handoff](docs/WAVE13_RELEASE.md) records the buyer tradeoffs, exact acceptance and service lifecycle, Week 449–472 campaign, and independent compatibility evidence.
+- `npm test -- wave12-progression` reproduces paid runtime audits, actual serving costs, feedback attribution, configuration changes, capacity repair, and the full eight-rollout save history. `wave12-guardrails`, `wave12-serving`, `wave12-releases`, and `wave12-compatibility` cover exact reports, resource receipts, paired cases, billing, release locks, forged saves, and the prior-engine oracle.
+- [Wave 12 release handoff](docs/WAVE12_RELEASE.md) records runtime operating choices, finite audit scope, the Week 432–449 campaign, and lossless save compaction within the existing size limit.
+- [Wave 11 release handoff](docs/WAVE11_RELEASE.md) records the two policy tradeoffs, independent 50/50 holdouts, paid commercial gates, and the earned Week 408–432 continuation.
+- [Wave 10 release handoff](docs/WAVE10_RELEASE.md) records the feedback choices, costs, boundaries, integration evidence and compatibility.
+- [Wave 9 release handoff](docs/WAVE9_RELEASE.md) records costs, tradeoffs, exact boundary timing, earned progression and compatibility. [Wave 8](docs/WAVE8_RELEASE.md), [Wave 7](docs/WAVE7_RELEASE.md), [Wave 6](docs/WAVE6_RELEASE.md) and [Wave 5](docs/WAVE5_RELEASE.md) retain their historical mechanics and evidence. [Wave 4 architecture](docs/WAVE4_ARCHITECTURE.md) describes the established mechanics, module ownership and extension points.
+- `src/content/catalog.ts` and the `src/content/wave*-*.ts` catalogs hold authored coefficients, including `src/content/wave5-balance.ts` for release trust pacing. The UI uses shared simulation helpers rather than a second economy.
+- Saves are browser-local with portable JSON export. Valid Wave 0–16 snapshots migrate without advancing time; exact original browser bytes are archived before an upgraded write. A Wave 16 import retains schema 5 and changes only content/build headers from **0.17.0 to 0.18.0**, preserving its original under **`frontier-lab.wave16.original`**. Two-skill curriculum evidence remains absent until explicit adoption; existing training, one-skill replay, rights, batch placements, costs, and pending commands are preserved. The new engine matches **16 independently captured full-state outcomes** from the published Wave 16 engine across **Weeks 538–553**, including capacity and placement changes, original batch deadlines and invoices, paused/resumed ordinary training, fresh reports, public billing carry, and rental reduction. All earlier compatibility suites remain in place. Pretty JSON remains byte-identical while it fits the **2,000,000-byte UTF-8 limit**; larger legal histories omit formatting whitespace without removing evidence. The same limit applies to compact saves and imports. Oversized saves, archive failures, and storage failures preserve the previous usable save.
+
+Playable research includes evaluation, curation, checkpoints, efficient adaptation, preference tuning, calibration, retrieval, workflows, independent verification, bounded agents, enterprise operations, compression, routing, distillation, sparse architecture, research assistance, and chip feasibility. The run-supervisor, memory-format, and prefix-cache subbranches are active. Deduplication, Evidence links, Capacity forecast, Adapter bank, Action receipts across resumed jobs, Independent holdouts, and Budgeted planner are playable. Replay curricula adds paid preservation during adaptation. All 29 authored programs are implemented; each still requires its discovery and the appropriate paid application, training, evaluation, or deployment steps. The three established rivals receive explicit one-time scenario assets and then use ordinary operating rules.
+
+All economics, AI scores, token prices, and hardware quantities are fictional game parameters. There are no live model API calls, real GPU purchases, payment integrations, or account-synchronized game saves.
+
+The maintained Sites/Vinext runtime documentation follows.
+
+## Sites runtime
+
+A clean full-stack starter running on [vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and Drizzle support.
+
+## Prerequisites
+
+- Node.js `>=22.13.0`
+- Portable: Windows, macOS, or Linux; no Bash required
+- Managed Linux: managed Linux runtime with Bash, `flock`, `curl`, `sha256sum`, and GNU `timeout`
+- Git and `tar` (including Windows `tar.exe`) are required for publishing; portable publication does not require Bash
+
+## Sites Lifecycle
+
+The Sites initializer copies the shared starter and selects managed-linux only when `SITES_MANAGED_LINUX_CONTAINER=1`; otherwise it selects portable. It saves the selection only in ignored `.sites-runtime/execution-profile.json`. Both profiles copy/configure first, then use the plugin's separate `install-dependencies.mjs` step to measure installation independently. Edit source under `app/` and follow the Sites skill for installation, preview, builds, and publishing.
+
+Run `node <plugin-root>/scripts/configure-execution-profile.mjs` only when the profile is unknown for the current checkout and environment. Profile changes do not alter tracked source or require reinstalling otherwise-valid dependencies; restart an existing preview to use the new selection. Do not commit or upload `.sites-runtime/`.
+
+This starter does not use `wrangler.jsonc`.
+
+Publish archives outside the source checkout or under its ignored `outputs/` directory. Local `.env*`, `.dev.vars*`, TypeScript build state, and tool runtime directories are ignored; keep the hosting manifest, migrations, and authored scripts in source control.
+
+`install:ci` runs `npm ci` once against the shared lockfile, disables parent-workspace discovery, and includes required dev/optional dependencies despite production/omit settings. Sharp defaults to prebuilt binaries unless explicitly configured otherwise. Do not overlap installers.
+
+- **Portable:** Preserve host HOME, npm cache, registry, proxy, temporary paths, retry/concurrency settings, and lifecycle-script policy. Use `--prefer-offline --no-audit --no-fund`.
+- **Managed Linux:** Use the existing project-local HOME/cache/tmp setup and Linux install lock, tarball preflight, and timeout. Restore the image-seeded npm cache only when its lockfile hash matches; retain network fallback. Builds keep their existing timeout. These helpers are not invoked by the portable profile.
+
+`scripts/sites-env.mjs` preserves the caller's HOME, npm cache, proxy, XDG, and temporary-directory configuration while defaulting Wrangler and Miniflare state to the checkout. If npm reports an unwritable cache, select a writable path with `npm_config_cache` for that install. The `dev` and `start` scripts also keep Wrangler logs inside the checkout. Generated `.sites-runtime/` and `.wrangler/` directories are disposable and ignored by Git.
+
+On portable, `npm run dev` uses `vinext dev` with HMR, starting at port 5173. Vinext records the running server in ignored `.vinext/` state, rejects an ordinary duplicate launch, and recovers stale state after a stopped process; exactly simultaneous starts can race. Pass `--port <port>` or `--hostname <host>` after `npm run dev --` when needed; keep portable previews on loopback.
+
+For managed Linux browser QA, follow the Sites skill's managed preview reference. The daemon runs the project's Vite dev script with `--host 0.0.0.0 --port 4173 --strictPort`; use the CLI's returned URL. The ignored local profile survives the daemon's cleared environment.
+
+The portable profile simulates ChatGPT sign-in only for loopback development requests. Visit `/signin-with-chatgpt?return_to=/` to sign in as `local_seedy` (`seedy@sites.test`, display name `Seedy`) and `/signout-with-chatgpt?return_to=/` to sign out. The development cookie preserves that identity across server restarts. Mock auth is disabled in the managed-linux profile and is not included in production builds; hosted authentication remains dispatch-owned.
+
+The Worker uses `vinext/server/fetch-handler`, including Vinext's config-aware image handling. After building, `npm start` runs that Worker locally through Wrangler on `127.0.0.1`, sharing `.wrangler/state` with dev preview and local D1 migrations; it does not deploy the site or simulate sign-in. Use the URL printed by the server. Pass `npm start -- --port <port>` to select a different built-preview port.
+
+Local previews use Miniflare's placeholder `Request.cf` metadata without a network lookup. Set `CLOUDFLARE_CF_FETCH_ENABLED=true` to opt into fetching preview metadata; this setting does not change hosted request metadata.
+
+Local tool usage metrics are disabled by default. Set `WRANGLER_SEND_METRICS=true` to opt in.
+
+## Included Shape
+
+- edit site code under `app/`
+- `app/chatgpt-auth.ts` provides optional dispatch-owned ChatGPT sign-in helpers
+- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
+- `vite.config.ts` simulates declared bindings for local development
+- `worker/index.ts` is the production Worker entrypoint and preserves request-scoped connector bindings
+- `scripts/vite/` contains the maintained Vite integrations and the vendored Sites plugin license
+- `scripts/connector-preview/` contains the local connector preview Worker and session helpers
+- the remaining `scripts/` files select execution profiles and run installation, development, and builds; the plugin's helpers orchestrate the Sites lifecycle
+- `dist/` contains generated deployment output; `.vinext/`, `.wrangler/`, and `.sites-runtime/` contain ignored local tool state
+- `db/index.ts` reads the D1 binding from the Cloudflare Worker environment
+- `db/schema.ts` starts intentionally empty
+- `@cloudflare/workers-types` provides Worker types; `cloudflare-env.d.ts` declares optional `DB`/`BUCKET` bindings—update these declarations if binding names change
+- `examples/d1/` contains an optional D1 example surface
+- `drizzle.config.ts` supports local migration generation when needed
+
+## Workspace Auth Headers
+
+Signed-in visitors receive both `oai-authenticated-user-id` and `oai-authenticated-user-email`. Private Sites require every visitor to sign in; public Sites may also have anonymous visitors, for whom neither header is present.
+
+The user ID is stable for the same user on the same Site and different across Sites. Use it as the durable user key; use email and name for display or contact purposes.
+
+SIWC-authenticated workspace sites may also receive `oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty `name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by `oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
+
+Treat the full name as optional and fall back to email when it is absent:
+
+```tsx
+import { headers } from "next/headers";
+
+export default async function Home() {
+  const requestHeaders = await headers();
+  const userId = requestHeaders.get("oai-authenticated-user-id");
+  const email = requestHeaders.get("oai-authenticated-user-email");
+  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
+  const fullName =
+    encodedFullName &&
+    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
+      "percent-encoded-utf-8"
+      ? decodeURIComponent(encodedFullName)
+      : null;
+
+  const displayName = fullName ?? email;
+  // ...
+}
+```
+
+## Optional Dispatch-Owned ChatGPT Sign-In
+
+Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs optional or required ChatGPT sign-in:
+
+- Use `getChatGPTUser()` for optional signed-in UI.
+- Use the returned `userId` as the stable user key for user-owned records; do not use email as a durable identifier.
+- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send anonymous visitors through Sign in with ChatGPT.
+- In a Server Component, start sign-in with `<a href={chatGPTSignInPath(returnTo)} target="_top">`. The auth helper module is server-only; do not import it into a Client Component.
+- Do not use `fetch`, XHR, a client-side router, or a framework link that can prefetch the sign-in route. SIWC must start as a top-level navigation.
+- Never request the AuthAPI authorization endpoint directly. The dispatch-owned `/signin-with-chatgpt` route must start the SIWC flow.
+- Use `chatGPTSignOutPath(returnTo)` for browser sign-out links or actions.
+- Pass a same-origin relative `returnTo` path for the destination after sign-in or sign-out. The helper validates and safely encodes it.
+- Mark protected pages with `export const dynamic = "force-dynamic"` because they depend on per-request identity headers.
+
+Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the OAuth cookies, and identity header injection. Do not implement app routes for those reserved paths. Routes that do not import and call the helper remain anonymous-compatible.
+
+SIWC establishes identity only; it does not prove workspace membership. Use the Sites hosting platform's access policy controls for workspace-wide restrictions, or enforce explicit server-side membership or allowlist checks.
+
+Use SIWC for account pages, user-specific dashboards, saved records, and write actions tied to the current ChatGPT user. Leave public content anonymous.
+
+## Local D1 migrations
+
+For a D1-backed local preview, generate SQL with `npm run db:generate`. Build once through the Sites skill's build entrypoint (or `npm run build` for standalone use) to generate `dist/server/wrangler.json`, rebuilding if bindings change. From the project root, apply each pending migration in order:
+
+```sh
+node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0000_example.sql
+```
+
+Replace the filename with the pending migration and `DB` with your D1 binding name if different. Use `.wrangler/state`, not `.wrangler/state/v3`; Wrangler adds the versioned directories. Do not replay migrations already applied locally. This updates only the preview database; publishing applies production migrations separately.
+
+## Diagnostic Commands
+
+- `npm run install:ci`: perform the one locked dependency install
+- `npm run dev`: start the Vite/Vinext development server
+- `npm run build`: build the deployable Sites artifact
+- `npm run start`: preview the built Worker locally with D1/R2 support
+- `npm run db:generate`: generate Drizzle migrations after schema changes
+
+When using the Sites plugin, follow its skill instructions for installation, builds, and publishing. These npm commands remain available for standalone use.
+
+The portable build runs Vinext directly without a host `timeout` command. The managed-linux build uses `scripts/build-verified.sh` and its existing `SITES_BUILD_TIMEOUT` setting.
+
+## Learn More
+
+- [vinext Documentation](https://github.com/cloudflare/vinext)
+- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)

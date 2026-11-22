@@ -1,0 +1,40 @@
+
+/workspace/sites/frontier-lab/.sites-checkout/src/ui/studio-shell.tsx
+   93:5    error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/workspace/sites/frontier-lab/.sites-checkout/src/ui/studio-shell.tsx:93:5
+  91 |     let stored: Record<string, unknown> = {};
+  92 |     try { stored = JSON.parse(localStorage.getItem(PREFERENCE_KEY) ?? '{}') ?? {}; } catch { /* Visual preferences are optional. */ }
+> 93 |     setMode(stored.mode === 'classic' ? 'classic' : 'studio');
+     |     ^^^^^^^ Avoid calling setState() directly within an effect
+  94 |     setReducedMotion(typeof stored.reducedMotion === 'boolean' ? stored.reducedMotion : media.matches);
+  95 |     setSound(stored.sound === true);
+  96 |     setSceneVisible(stored.sceneVisible !== false);  react-hooks/set-state-in-effect
+  156:42   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/workspace/sites/frontier-lab/.sites-checkout/src/ui/studio-shell.tsx:156:42
+  154 |   }, [mode, panel, closePanel]);
+  155 |
+> 156 |   useEffect(() => { if (forceSaveOpen) { setPanel('save'); setScreen('save'); } }, [forceSaveOpen]);
+      |                                          ^^^^^^^^ Avoid calling setState() directly within an effect
+  157 |
+  158 |   useEffect(() => {
+  159 |     const now = new Map(studio.projects.map(project => [project.id, project.status]));                                                                                                                                                      react-hooks/set-state-in-effect
+  296:13   warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @next/next/no-img-element
+  297:158  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @next/next/no-img-element
+  298:200  warning  Using `<img>` could result in slower LCP and higher bandwidth. Consider using `<Image />` from `next/image` or a custom image loader to automatically optimize images. This may incur additional usage or cost from your provider. See: https://nextjs.org/docs/messages/no-img-element                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @next/next/no-img-element
+
+✖ 5 problems (2 errors, 3 warnings)
+

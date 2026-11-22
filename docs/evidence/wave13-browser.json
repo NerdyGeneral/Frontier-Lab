@@ -1,0 +1,47 @@
+{
+  "environment": "Managed Sites preview in cloud Chrome",
+  "previewUrl": "http://127.0.0.1:4173/",
+  "sourceSave": {
+    "contentVersion": "0.13.0",
+    "week": 449,
+    "sourceCommit": "aeb403c6ed2982840030076ebd2da96d4e1dc0ed",
+    "upgradeConfirmedInUI": true
+  },
+  "scope": "Actual file chooser import and normal visible game controls; no injected game state.",
+  "finalWeek": 464,
+  "finalChecksum": "828d459a",
+  "snapshotBytes": 1156099,
+  "observations": [
+    "Strict audit 41/50 useful and 0/50 restricted compliance qualifies Sentinel and fails Continuity.",
+    "Sentinel sign pays $750, uses one commercial staff-week at Week450, starts Weeks451\u2013458.",
+    "Week451 delivers 8000 requests, 4.2909 physical CUw, 0.5 support FTE and $2200 net retainer.",
+    "Week452 disabled checker suspends tenant GPU work, keeps 0.5 support FTE and records a $2200 full credit.",
+    "Restoring the same checker resumes paid service at Week453 without another qualification version.",
+    "Disabling conversation memory at Week454 makes the original binding stale.",
+    "Paid strict replacement completes and activates at Week457; the contract remains suspended until explicit acceptance.",
+    "Week458 accepts qualification version2, delivers 8000 requests using 4 physical CUw and earns $2200.",
+    "The eight Sentinel invoices retain their original weeks and credits; total earned $6600 and credited $11000.",
+    "Sentinel expires at Week459 without automatic renewal.",
+    "Balanced audit 43/50 useful and 2/50 restricted compliance qualifies Continuity and fails Sentinel.",
+    "Continuity pays its integration fee and onboards at Week463; Week464 starts its original Weeks464\u2013471 term.",
+    "Week464 delivers 4000 requests, 1.8909 physical CUw, 0.25 support FTE and $1200 net retainer."
+  ],
+  "invoicesRetained": 9,
+  "reload": {
+    "byteIdentical": true,
+    "sha256": "5ba33792b03eb74d43032d7a8d99306f3cee0ebc7012733ff9deb6a76c27c1ce",
+    "paused": true
+  },
+  "originalPreviewSave": {
+    "week": 0,
+    "restoredByteIdentically": true
+  },
+  "console": {
+    "capturedWarningOrErrorCount": 83,
+    "applicationOriginErrors": 0,
+    "otherMessages": "All captured errors were Chrome extension metadata delivery errors."
+  },
+  "productionObservation": "Existing production URL displays the expected private Sign in required gate; no production gameplay or login was attempted.",
+  "screenshot": "../images/frontier-lab-wave13-contracts.png",
+  "executionNotes": "The browser control layer sometimes timed out after an input had already applied; each next action used fresh rendered state. A development hot reload restored the last saved boundary and released its tab lease; the single preview tab reclaimed control before continuing. No duplicate commands were queued."
+}

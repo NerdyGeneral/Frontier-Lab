@@ -1,0 +1,199 @@
+{
+  "sourceCommit": "0dea6af3946645d25e33b81430b86edf380cebcd",
+  "sourceContent": "0.6.0",
+  "checksum": "be2188bd",
+  "weeks": [
+    {
+      "week": 253,
+      "hash": "a6340471",
+      "cashCents": 174356209,
+      "revenueCents": 3647800,
+      "expenseCents": 1850000,
+      "trustBps": 9415,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 5,
+          "termWeeksServed": 3,
+          "lifetimeBilledCents": 1275000
+        }
+      ]
+    },
+    {
+      "week": 254,
+      "hash": "f5656c7b",
+      "cashCents": 176155209,
+      "revenueCents": 3649000,
+      "expenseCents": 1850000,
+      "trustBps": 9440,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 5,
+          "termWeeksServed": 4,
+          "lifetimeBilledCents": 1300000
+        }
+      ]
+    },
+    {
+      "week": 255,
+      "hash": "098b031f",
+      "cashCents": 177969835,
+      "revenueCents": 3664626,
+      "expenseCents": 1850000,
+      "trustBps": 9415,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 5,
+          "termWeeksServed": 5,
+          "lifetimeBilledCents": 1325000
+        }
+      ]
+    },
+    {
+      "week": 256,
+      "hash": "00faff87",
+      "cashCents": 179783096,
+      "revenueCents": 3663261,
+      "expenseCents": 1850000,
+      "trustBps": 9440,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 5,
+          "termWeeksServed": 6,
+          "lifetimeBilledCents": 1350000
+        }
+      ]
+    },
+    {
+      "week": 257,
+      "hash": "0019a2e3",
+      "cashCents": 181576096,
+      "revenueCents": 3643000,
+      "expenseCents": 1850000,
+      "trustBps": 9465,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 5,
+          "termWeeksServed": 7,
+          "lifetimeBilledCents": 1375000
+        }
+      ]
+    },
+    {
+      "week": 258,
+      "hash": "bf0c1122",
+      "cashCents": 183371496,
+      "revenueCents": 3645400,
+      "expenseCents": 1850000,
+      "trustBps": 9490,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 5,
+          "termWeeksServed": 8,
+          "lifetimeBilledCents": 1400000
+        }
+      ]
+    },
+    {
+      "week": 259,
+      "hash": "8149a535",
+      "cashCents": 185169296,
+      "revenueCents": 3647800,
+      "expenseCents": 1850000,
+      "trustBps": 9515,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 5,
+          "termWeeksServed": 9,
+          "lifetimeBilledCents": 1425000
+        }
+      ]
+    },
+    {
+      "week": 260,
+      "hash": "a911f01c",
+      "cashCents": 186938296,
+      "revenueCents": 3619000,
+      "expenseCents": 1850000,
+      "trustBps": 9540,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 5,
+          "termWeeksServed": 10,
+          "lifetimeBilledCents": 1450000
+        }
+      ]
+    },
+    {
+      "week": 261,
+      "hash": "dd727d75",
+      "cashCents": 188709696,
+      "revenueCents": 3621400,
+      "expenseCents": 1850000,
+      "trustBps": 9565,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 5,
+          "termWeeksServed": 11,
+          "lifetimeBilledCents": 1475000
+        }
+      ]
+    },
+    {
+      "week": 262,
+      "hash": "8b379012",
+      "cashCents": 190482296,
+      "revenueCents": 3622600,
+      "expenseCents": 1850000,
+      "trustBps": 9590,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 5,
+          "termWeeksServed": 12,
+          "lifetimeBilledCents": 1500000
+        }
+      ]
+    },
+    {
+      "week": 263,
+      "hash": "a02e4a3e",
+      "cashCents": 192287470,
+      "revenueCents": 3655174,
+      "expenseCents": 1850000,
+      "trustBps": 9565,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 6,
+          "termWeeksServed": 1,
+          "lifetimeBilledCents": 1525000
+        }
+      ]
+    },
+    {
+      "week": 264,
+      "hash": "151af047",
+      "cashCents": 194088270,
+      "revenueCents": 3650800,
+      "expenseCents": 1850000,
+      "trustBps": 9590,
+      "contracts": [
+        {
+          "id": "business:vector-studio",
+          "termIndex": 6,
+          "termWeeksServed": 2,
+          "lifetimeBilledCents": 1550000
+        }
+      ]
+    }
+  ]
+}
