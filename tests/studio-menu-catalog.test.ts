@@ -5,76 +5,71 @@ import { serializeState } from '../src/core/snapshot';
 import { freezeDeep } from '../src/core/canonical';
 import { getStudioDestinationForPanel, getStudioScreenTarget, resolveStudioHash } from '../src/core/studio-navigation';
 import { STUDIO_PANEL_TITLES, STUDIO_TASKS, resolveStudioIntent } from '../src/core/studio-tasks';
-import type { StudioPanelId, StudioTaskId } from '../src/core/studio-tasks';
 import { STUDIO_MENU_ENTRIES, STUDIO_MENU_GROUPS, findStudioMenuEntries } from '../src/core/studio-menu-catalog';
 
-test('menu directory retains exactly one entry for every registered panel and named task', () => {
+test('directory has one canonical row per feature while every panel and task name remains searchable', () => {
   assert.equal(new Set(STUDIO_MENU_ENTRIES.map(entry => entry.id)).size, STUDIO_MENU_ENTRIES.length);
-  for (const panel of Object.keys(STUDIO_PANEL_TITLES) as StudioPanelId[]) {
-    const entries = STUDIO_MENU_ENTRIES.filter(entry => entry.target.kind === 'panel' && entry.target.panel === panel);
-    assert.equal(entries.length, 1, panel + ' has one direct directory entry');
-    assert.equal(entries[0].workspace, getStudioDestinationForPanel(panel));
-    assert.equal(entries[0].panel, panel);
+  assert.equal(new Set(STUDIO_MENU_ENTRIES.map(entry => entry.label)).size, STUDIO_MENU_ENTRIES.length);
+  assert.ok(STUDIO_MENU_ENTRIES.every(entry => entry.target.kind !== 'task'), 'Task shortcuts do not repeat destination rows');
+  for (const id of ['task:train-model', 'panel:development-plans', 'panel:research', 'panel:compute', 'panel:compute-costs', 'panel:capacity-forecast']) {
+    assert.equal(STUDIO_MENU_ENTRIES.some(entry => entry.id === id), false, id + ' belongs to a canonical feature');
   }
-  for (const task of Object.keys(STUDIO_TASKS) as StudioTaskId[]) {
-    const entries = STUDIO_MENU_ENTRIES.filter(entry => entry.target.kind === 'task' && entry.target.task === task);
-    assert.equal(entries.length, 1, task + ' has one direct task entry');
-    const owner = STUDIO_TASKS[task].owner;
-    assert.equal(entries[0].workspace, owner === 'planner' ? 'projects' : getStudioDestinationForPanel(owner));
-  }
+  for (const label of Object.values(STUDIO_PANEL_TITLES)) assert.ok(findStudioMenuEntries({ query: label }).length, label);
+  for (const task of Object.values(STUDIO_TASKS)) assert.ok(findStudioMenuEntries({ query: task.title }).length, task.title);
   assert.ok(STUDIO_MENU_ENTRIES.every(entry => entry.label.trim() && entry.description.trim() && entry.keywords.trim()));
   assert.ok(STUDIO_MENU_ENTRIES.every(entry => STUDIO_MENU_GROUPS.some(group => group.id === entry.workspace)));
 });
 
-test('menu navigation preserves exact owners and cannot schedule work or change a company', () => {
+test('feature links and contextual shortcuts preserve their exact owners without scheduling work', () => {
   const game = createInitialState(), before = serializeState(game);
   freezeDeep(game);
   for (const entry of STUDIO_MENU_ENTRIES) {
-    const target = entry.target;
-    if (target.kind === 'task') {
-      assert.deepEqual(resolveStudioIntent(game, target), { ok: true, panel: STUDIO_TASKS[target.task].owner, task: target.task }, entry.id);
-    } else if (target.kind === 'panel') {
-      assert.deepEqual(resolveStudioHash('#' + target.panel), { screen: entry.workspace, panel: target.panel }, entry.id);
-    } else {
-      assert.equal(getStudioScreenTarget(target.screen).screen, entry.workspace);
+    for (const target of [entry.target, ...entry.actions.map(action => action.target)]) {
+      if (target.kind === 'task') {
+        assert.deepEqual(resolveStudioIntent(game, target), { ok: true, panel: STUDIO_TASKS[target.task].owner, task: target.task }, entry.id);
+      } else if (target.kind === 'panel') {
+        assert.deepEqual(resolveStudioHash('#' + target.panel), { screen: getStudioDestinationForPanel(target.panel), panel: target.panel }, entry.id);
+      } else {
+        assert.equal(getStudioScreenTarget(target.screen).screen, entry.workspace);
+      }
+      assert.equal(Object.keys(target).length, 2, 'Directory targets contain navigation only');
     }
-    assert.equal(Object.keys(target).length, 2, 'Directory entries contain navigation only');
   }
   assert.equal(serializeState(game), before);
 });
 
-test('search finds ordinary language for data acquisition, custom models, advanced skills, hiring, and rollback', () => {
+test('ordinary action phrases find the canonical feature rather than duplicate menu and task results', () => {
   const cases = [
-    ['buy data', 'panel:data'],
-    ['custom model', 'panel:lab-projects'],
-    ['training bench', 'panel:lab-projects'],
-    ['test station', 'panel:models'],
-    ['long-context', 'panel:models'],
-    ['multimodal', 'panel:models'],
-    ['hire specialist', 'task:hire-staff'],
-    ['rollback', 'panel:release-desk'],
-    ['frontier', 'task:architecture-research'],
-    ['save backup', 'panel:save'],
+    ['buy data', 'panel:data'], ['custom model', 'panel:lab-projects'], ['training bench', 'panel:lab-projects'],
+    ['test station', 'panel:models'], ['long-context', 'panel:models'], ['multimodal', 'panel:models'],
+    ['hire specialist', 'panel:people'], ['rollback', 'panel:release-desk'], ['save backup', 'panel:save'],
+    ['development plans', 'screen:projects'], ['research pathways', 'screen:research'], ['research catalog', 'screen:research'],
   ];
   for (const [query, id] of cases) assert.ok(findStudioMenuEntries({ query }).some(entry => entry.id === id), query);
+  for (const query of ['allocate compute', 'rent or release compute', 'plan people and compute', 'compute costs', 'capacity forecast', 'compute rack']) {
+    assert.deepEqual(findStudioMenuEntries({ query }).map(entry => entry.id), ['panel:capacity'], query);
+  }
+  for (const query of ['research programs', 'manage research programs', 'systems experiment', 'experiments', 'efficient systems', 'persistent systems', 'verified systems', 'architecture research']) {
+    assert.ok(findStudioMenuEntries({ query }).some(entry => entry.id === 'panel:research-programs'), query);
+  }
+  assert.deepEqual(findStudioMenuEntries({ query: 'experiments' }).map(entry => entry.id), ['panel:research-programs']);
   assert.deepEqual(findStudioMenuEntries({ query: '  MODEL   custom ' }), findStudioMenuEntries({ query: 'custom model' }));
   assert.deepEqual(findStudioMenuEntries({ query: 'no-such-feature-39751' }), []);
 });
 
-test('workspace and task filters compose without dropping matching unavailable features', () => {
-  const all = findStudioMenuEntries();
-  assert.deepEqual(all, STUDIO_MENU_ENTRIES);
-  const researchTasks = findStudioMenuEntries({ workspace: 'research', kind: 'task' });
-  assert.deepEqual(researchTasks.map(entry => entry.id).sort(), [
-    'task:apply-research', 'task:architecture-research', 'task:model-challenge', 'task:research-method', 'task:synthetic-data',
-  ]);
-  const panels = findStudioMenuEntries({ workspace: 'research', kind: 'menu' });
-  assert.ok(panels.some(entry => entry.id === 'screen:research'), 'Pathways keeps its own destination');
-  assert.ok(panels.some(entry => entry.id === 'panel:research'), 'The legacy catalog remains separately addressable');
-  assert.ok(panels.some(entry => entry.id === 'panel:applied-research'));
-  assert.ok(panels.some(entry => entry.id === 'panel:synthetic-data'));
-  assert.ok(panels.some(entry => entry.id === 'panel:model-challenges'));
-  assert.ok(findStudioMenuEntries({ workspace: 'projects', kind: 'task' }).some(entry => entry.id === 'task:development-plan'));
-  assert.deepEqual(findStudioMenuEntries({ workspace: 'research', kind: 'task', query: 'frontier' }).map(entry => entry.id), ['task:model-challenge', 'task:architecture-research']);
-  assert.equal(findStudioMenuEntries().length, all.length, 'Searching does not mutate the catalog');
+test('workspace filtering keeps programs and locked report shortcuts discoverable in their canonical home', () => {
+  const before = JSON.stringify(STUDIO_MENU_ENTRIES);
+  assert.deepEqual(findStudioMenuEntries(), STUDIO_MENU_ENTRIES);
+  const research = findStudioMenuEntries({ workspace: 'research' });
+  for (const id of ['screen:research', 'panel:research-programs', 'panel:applied-research', 'panel:synthetic-data', 'panel:model-challenges']) {
+    assert.ok(research.some(entry => entry.id === id), id);
+  }
+  const programs = research.find(entry => entry.id === 'panel:research-programs')!;
+  assert.ok(programs.actions.some(action => action.target.kind === 'task' && action.target.task === 'research-program'));
+  assert.ok(programs.actions.some(action => action.target.kind === 'task' && action.target.task === 'architecture-research'));
+  const capacity = findStudioMenuEntries({ workspace: 'operations', query: 'compute costs' });
+  assert.deepEqual(capacity.map(entry => entry.id), ['panel:capacity']);
+  assert.deepEqual(capacity[0].actions.map(action => action.panel), ['compute', 'capacity-forecast', 'compute-costs']);
+  assert.deepEqual(findStudioMenuEntries({ workspace: 'company', query: 'compute costs' }), []);
+  assert.equal(JSON.stringify(STUDIO_MENU_ENTRIES), before, 'Searching does not mutate the catalog');
 });

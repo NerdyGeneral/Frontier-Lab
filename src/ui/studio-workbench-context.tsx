@@ -13,6 +13,10 @@ export interface StudioWorkbenchVisibility {
 
 // Panels rendered outside Studio keep the ordinary Classic behavior.
 const StudioWorkbenchContext = createContext<StudioWorkbenchVisibility>({ mode: 'classic', panel: null, standalone: null, epoch: 0 });
+// This local value is published only when the retained subtree renders. Panels
+// can choose a focused presentation without subscribing to live visibility.
+const StudioWorkbenchPresentationContext = createContext<StudioWorkbenchVisibility['mode']>('classic');
+export function useStudioWorkbenchPresentation() { return useContext(StudioWorkbenchPresentationContext); }
 
 export function StudioWorkbenchProvider({ value, children }: { value: StudioWorkbenchVisibility; children: ReactNode }) {
   return <StudioWorkbenchContext.Provider value={value}>{children}</StudioWorkbenchContext.Provider>;
@@ -26,26 +30,27 @@ export function isStudioWorkbenchActive(visibility: StudioWorkbenchVisibility, p
 export interface RetainedWorkbenchProps {
   active: boolean;
   epoch: number;
+  presentation?: StudioWorkbenchVisibility['mode'];
   children: ReactNode;
 }
 
 export function retainedWorkbenchPropsEqual(previous: RetainedWorkbenchProps, next: RetainedWorkbenchProps): boolean {
   if (previous.epoch !== next.epoch) return false;
   if (!next.active) return true;
-  return previous.active && previous.children === next.children;
+  return previous.active && previous.children === next.children && previous.presentation === next.presentation;
 }
 
 /** An inactive update retains the last rendered subtree; existing CSS hides it.
  * A never-visited panel renders null. Reopening receives the latest child props.
  * Only the outer gate consumes visibility, so context updates cannot bypass this memo.
  */
-const RetainedWorkbench = memo(function RetainedWorkbench({ active, children }: RetainedWorkbenchProps) {
-  return active ? children : null;
+const RetainedWorkbench = memo(function RetainedWorkbench({ active, presentation = 'classic', children }: RetainedWorkbenchProps) {
+  return active ? <StudioWorkbenchPresentationContext.Provider value={presentation}>{children}</StudioWorkbenchPresentationContext.Provider> : null;
 }, retainedWorkbenchPropsEqual);
 
 export function StudioWorkbenchPanel({ panelId, studioOnly = false, children }: { panelId: string; studioOnly?: boolean; children: ReactNode }) {
   const visibility = useContext(StudioWorkbenchContext);
   const active = isStudioWorkbenchActive(visibility, panelId, studioOnly);
   // Importing or starting another company resets even previously visited forms.
-  return <RetainedWorkbench key={visibility.epoch + ':' + panelId + ':' + (visibility.draftGenerations?.[panelId] ?? 0)} epoch={visibility.epoch} active={active}>{children}</RetainedWorkbench>;
+  return <RetainedWorkbench key={visibility.epoch + ':' + panelId + ':' + (visibility.draftGenerations?.[panelId] ?? 0)} epoch={visibility.epoch} active={active} presentation={visibility.mode}>{children}</RetainedWorkbench>;
 }

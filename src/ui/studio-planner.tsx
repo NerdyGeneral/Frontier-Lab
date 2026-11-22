@@ -5,7 +5,7 @@ import { AlertTriangle, ArrowRight, CheckCircle2, Clock3, Eye, RefreshCw, Server
 import { CONTENT } from '../content/catalog';
 import type { Allocation, GameState, StaffRole } from '../contracts/types';
 import { RESOURCE_SCALE as U } from '../contracts/types';
-import type { StudioBoundaryView, StudioPlanDraft, StudioPlanPreview } from '../contracts/wave25-studio';
+import type { StudioBoundaryView, StudioPlanDraft, StudioPlanPreview, StudioRequestView } from '../contracts/wave25-studio';
 import { STUDIO_PLAN_MAX_HIRES, STUDIO_PLAN_MAX_HIRES_PER_ROLE } from '../contracts/wave25-studio';
 import { createStudioPlanDraft, previewStudioPlan } from '../core/studio-planning';
 import { formatMoney, formatUnits } from '../core/math';
@@ -59,10 +59,21 @@ function ComparedValue({ before, after, money = false, points = false, unit = ''
   return <span className="studio-planner-compared"><span>{format(before)}{unit}</span><ArrowRight size={12} aria-label="changes to" /><strong>{format(after)}{unit}</strong></span>;
 }
 
+function isConstrained(request: StudioRequestView): boolean {
+  return request.grantedWork < request.requestedWork || request.grantedMemory < request.requestedMemory
+    || request.staff.some(staff => staff.granted < staff.requested);
+}
+
 function BoundaryComparison({ baseline, proposed }: { baseline: StudioBoundaryView; proposed: StudioBoundaryView }) {
   const staffDemand = (boundary: StudioBoundaryView, role: StaffRole) => boundary.requests.reduce((sum, request) => sum + request.staff.filter(staff => staff.role === role).reduce((total, staff) => total + staff.requested, 0), 0);
   const roles = ALL_ROLES.filter(role => baseline.workforce.capacity[role] > 0 || proposed.workforce.capacity[role] > 0 || staffDemand(proposed, role) > 0);
   const signedCount = proposed.commitments.privateHosted + proposed.commitments.customerHosted + proposed.commitments.assured;
+  const constrainedJobs = proposed.requests.filter(isConstrained);
+  const staffConstrained = roles.some(role => staffDemand(proposed, role) > proposed.workforce.granted[role]);
+  const serviceConstrained = constrainedJobs.some(request => request.liveServing || request.category === 'serving');
+  const poolsConstrained = proposed.requests.some(request => request.requestedMemory > request.largestCompatibleMemory)
+    || proposed.pools.some(pool => pool.nominalCU > 0 && (pool.capacityCU < pool.nominalCU || pool.staffCoverageBps < 10000
+      || pool.powerCoverageBps < 10000 || pool.coolingCoverageBps < 10000));
   const rows = [
     { label: 'Cash after next week', before: baseline.cashCents, after: proposed.cashCents },
     ...(baseline.arrearsCents > 0 || proposed.arrearsCents > 0 ? [{ label: 'Unpaid bills after next week', before: baseline.arrearsCents, after: proposed.arrearsCents }] : []),
@@ -74,17 +85,16 @@ function BoundaryComparison({ baseline, proposed }: { baseline: StudioBoundaryVi
   ];
   return <div className="studio-planner-comparison">
     <p className="studio-planner-note">Compare next week with your <strong>current plan → new plan</strong>. Both estimates include actions you have already queued.</p>
-    {proposed.arrearsCents > 0 && <p className="studio-planner-alert" role="status"><AlertTriangle size={18} /><span>Week {proposed.week} leaves <strong>{formatMoney(proposed.arrearsCents)} in unpaid bills</strong> under this plan. The game will pause at the end of that week because you cannot pay all your bills.</span></p>}
-    <details className="studio-planner-detail" open><summary>Cash & ongoing costs</summary><dl className="studio-planner-compare-metrics">{rows.map(row => <div key={row.label}><dt>{row.label}</dt><dd><ComparedValue before={row.before} after={row.after} money /></dd></div>)}</dl><p className="studio-planner-note">Base costs include salaries and cloud rent. Total running costs also include GPU use and other charges for that week.</p></details>
+    <details className="studio-planner-detail" open={proposed.arrearsCents > 0}><summary>Cash & ongoing costs{proposed.arrearsCents > 0 && <span>Unpaid bills forecast</span>}</summary><dl className="studio-planner-compare-metrics">{rows.map(row => <div key={row.label}><dt>{row.label}</dt><dd><ComparedValue before={row.before} after={row.after} money /></dd></div>)}</dl><p className="studio-planner-note">Base costs include salaries and cloud rent. Total running costs also include GPU use and other charges for that week.</p></details>
 
-    <details className="studio-planner-detail" open><summary>Weekly points and planned work</summary><p className="studio-planner-note">{proposed.workforce.ready} ready employee{proposed.workforce.ready === 1 ? '' : 's'} · {proposed.workforce.onboarding} onboarding. Point totals include the founder. Active jobs draw from the same weekly supply.</p><div className="table-scroll"><table className="studio-planner-table"><caption>Week {proposed.week} workforce: current plan versus proposed plan</caption><thead><tr><th scope="col">Role</th><th scope="col">Available points</th><th scope="col">Needed points</th><th scope="col">Allocated points</th></tr></thead><tbody>{roles.map(role => <tr key={role} className={staffDemand(proposed, role) > proposed.workforce.granted[role] ? 'is-constrained' : ''}><th scope="row">{WORK_POINT_LABELS[role]}</th><td><ComparedValue before={baseline.workforce.capacity[role]} after={proposed.workforce.capacity[role]} points /></td><td>{formatWorkPoints(staffDemand(proposed, role))}</td><td><ComparedValue before={baseline.workforce.granted[role]} after={proposed.workforce.granted[role]} points /></td></tr>)}</tbody></table></div><p className="studio-planner-note">Active jobs draw matching points automatically. Training still needs GPUs and memory; allocated supervision alone does not complete it. Unused points expire at the end of the week.</p></details>
+    <details className="studio-planner-detail" open={staffConstrained}><summary>Weekly points and planned work{staffConstrained && <span>Staff shortage</span>}</summary><p className="studio-planner-note">{proposed.workforce.ready} ready employee{proposed.workforce.ready === 1 ? '' : 's'} · {proposed.workforce.onboarding} onboarding. Point totals include the founder. Active jobs draw from the same weekly supply.</p><div className="table-scroll"><table className="studio-planner-table"><caption>Week {proposed.week} workforce: current plan versus proposed plan</caption><thead><tr><th scope="col">Role</th><th scope="col">Available points</th><th scope="col">Needed points</th><th scope="col">Allocated points</th></tr></thead><tbody>{roles.map(role => <tr key={role} className={staffDemand(proposed, role) > proposed.workforce.granted[role] ? 'is-constrained' : ''}><th scope="row">{WORK_POINT_LABELS[role]}</th><td><ComparedValue before={baseline.workforce.capacity[role]} after={proposed.workforce.capacity[role]} points /></td><td>{formatWorkPoints(staffDemand(proposed, role))}</td><td><ComparedValue before={baseline.workforce.granted[role]} after={proposed.workforce.granted[role]} points /></td></tr>)}</tbody></table></div><p className="studio-planner-note">Active jobs draw matching points automatically. Training still needs GPUs and memory; allocated supervision alone does not complete it. Unused points expire at the end of the week.</p></details>
 
-    {signedCount > 0 && <section className="studio-planner-commitments" aria-label="Customer contracts"><h4>Keep your customers covered</h4><p>{proposed.commitments.privateHosted} private-hosted · {proposed.commitments.customerHosted} customer-hosted · {proposed.commitments.assured} assured API</p><dl><div><dt>Reserved delivery work</dt><dd>{formatUnits(proposed.commitments.reservedWorkCUw)} CUw</dd></div><div><dt>Business points for support</dt><dd>{formatWorkPoints(proposed.commitments.supportFte)} points / week</dd></div></dl><p className="studio-planner-note">The forecast includes these contracts. Check that each service has enough resources before cutting its capacity.</p></section>}
+    {signedCount > 0 && <details className="studio-planner-detail" open={serviceConstrained}><summary>Customer contracts <span>{signedCount} signed{serviceConstrained ? ' · Service capacity constrained' : ''}</span></summary><div className="studio-planner-commitments" aria-label="Customer contracts"><p>{proposed.commitments.privateHosted} private-hosted · {proposed.commitments.customerHosted} customer-hosted · {proposed.commitments.assured} assured API</p><dl><div><dt>Reserved delivery work</dt><dd>{formatUnits(proposed.commitments.reservedWorkCUw)} CUw</dd></div><div><dt>Business points for support</dt><dd>{formatWorkPoints(proposed.commitments.supportFte)} points / week</dd></div></dl><p className="studio-planner-note">The forecast includes these contracts. Check that each service has enough resources before cutting its capacity.</p></div></details>}
 
-    <details className="studio-planner-detail" open><summary>Resources by job <span>{proposed.requests.length} request{proposed.requests.length === 1 ? '' : 's'}</span></summary>
+    <details className="studio-planner-detail" open={constrainedJobs.length > 0}><summary>Resources by job <span>{constrainedJobs.length ? constrainedJobs.length + ' constrained · ' : ''}{proposed.requests.length} request{proposed.requests.length === 1 ? '' : 's'}</span></summary>
       {proposed.requests.length ? <div className="studio-planner-requests">{proposed.requests.map(request => {
         const before = baseline.requests.find(item => item.id === request.id);
-        const constrained = request.grantedWork < request.requestedWork || request.grantedMemory < request.requestedMemory || request.staff.some(staff => staff.granted < staff.requested);
+        const constrained = isConstrained(request);
         return <article className={'studio-planner-request ' + (constrained ? 'is-constrained' : '')} key={request.id}>
           <div className="studio-planner-request-heading"><h4>{request.label}</h4><span>{request.liveServing ? 'Live service' : ALLOCATION_LABELS[request.category] ?? request.category}</span></div>
           <dl className="studio-planner-compare-metrics"><div><dt>Work needed / available</dt><dd>{formatUnits(request.requestedWork)} / <strong>{formatUnits(request.grantedWork)} CUw</strong></dd></div><div><dt>Work with current plan</dt><dd>{before ? formatUnits(before.grantedWork) + ' CUw' : 'New request'}</dd></div><div><dt>Physical GPU work</dt><dd>{formatUnits(request.physicalWork)} CUw</dd></div><div><dt>Memory needed / available</dt><dd>{formatUnits(request.requestedMemory)} / <strong>{formatUnits(request.grantedMemory)} MU</strong></dd></div><div><dt>Connected pool</dt><dd>{request.poolName ?? 'No suitable hardware pool'}</dd></div></dl>
@@ -95,11 +105,39 @@ function BoundaryComparison({ baseline, proposed }: { baseline: StudioBoundaryVi
       })}</div> : <p className="studio-planner-note">No active jobs need resources next week. Extra capacity will be ready for your next project.</p>}
     </details>
 
-    <details className="studio-planner-detail" open><summary>Connected compute pools</summary><div className="studio-planner-pools">{proposed.pools.map(pool => {
+    <details className="studio-planner-detail" open={poolsConstrained}><summary>Connected compute pools{poolsConstrained && <span>Capacity or memory constraint</span>}</summary><div className="studio-planner-pools">{proposed.pools.map(pool => {
       const before = baseline.pools.find(item => item.id === pool.id);
       return <article className="studio-planner-pool" key={pool.id}><div className="studio-planner-request-heading"><h4>{pool.name}</h4><span>{pool.ownership === 'cloud' ? 'Cloud' : 'Owned'}</span></div><dl className="studio-planner-compare-metrics"><div><dt>Usable capacity</dt><dd><ComparedValue before={before?.capacityCU ?? 0} after={pool.capacityCU} unit=" CU" /></dd></div><div><dt>Total capacity</dt><dd>{formatUnits(pool.nominalCU)} CU</dd></div><div><dt>Connected memory</dt><dd>{formatUnits(pool.memoryMU)} MU</dd></div></dl>{pool.ownership === 'owned' && <div className="studio-planner-coverage">{([{ label: 'Staff', value: pool.staffCoverageBps }, { label: 'Power', value: pool.powerCoverageBps }, { label: 'Cooling', value: pool.coolingCoverageBps }] as const).map(coverage => <div key={coverage.label}><span>{coverage.label}<strong>{Number((coverage.value / 100).toFixed(1))}%</strong></span><progress value={coverage.value} max={10000} aria-label={pool.name + ' ' + coverage.label.toLowerCase() + ' coverage'} /></div>)}</div>}{pool.bottleneck && <p className="studio-planner-request-reason">{pool.bottleneck}</p>}</article>;
     })}</div><p className="studio-planner-note">Capacity depends on ready racks, enough staff, power, and cooling. Each job must fit in one compatible hardware pool. Parked racks and racks awaiting delivery or installation cannot work.</p></details>
   </div>;
+}
+
+/** The reviewed forecast stays separate from the editable draft. Rendering this
+ * summary never recomputes the boundary or submits any of its changes. */
+export function StudioPlannerReview({ preview, stale = false, companyChanged = false, applied = false, canAct, paused, previewing = false, onApply }: {
+  preview: StudioPlanPreview; stale?: boolean; companyChanged?: boolean; applied?: boolean;
+  canAct: boolean; paused: boolean; previewing?: boolean; onApply: () => void;
+}) {
+  const proposed = preview.proposed;
+  const constrainedJobs = proposed?.requests.filter(isConstrained) ?? [];
+  const services = proposed?.requests.filter(request => request.liveServing) ?? [];
+  const constrainedServices = services.filter(isConstrained);
+  return <>
+    <div className="studio-planner-preview-heading"><h3>Week {preview.effectiveWeek} forecast</h3><span className={'studio-planner-review-state ' + (applied ? 'is-ready' : stale ? 'is-stale' : preview.valid ? 'is-ready' : 'is-blocked')}>{applied ? 'Queued' : stale ? 'Review needed' : preview.valid ? 'Ready to apply' : 'Plan blocked'}</span></div>
+    {stale && !applied && <p className="studio-planner-alert" role="status"><RefreshCw size={16} />{companyChanged ? 'The company changed. Preview again before applying.' : 'Your inputs changed. Preview again to update these estimates.'}</p>}
+    {!preview.valid && <p className="studio-planner-alert" role="status"><AlertTriangle size={17} />{preview.reason ?? 'This plan cannot be applied.'}</p>}
+    <div className="studio-planner-costs studio-planner-summary" role="group" aria-label="Plan impact">
+      <div><Wallet size={17} /><span>Upfront cost<strong>{formatMoney(preview.upfrontCostCents)}</strong></span></div>
+      <div><Clock3 size={17} /><span>Weekly cost change<strong>{preview.weeklyCostDeltaCents > 0 ? '+' : ''}{formatMoney(preview.weeklyCostDeltaCents)}</strong></span></div>
+      <div><Wallet size={17} /><span>Cash after next week<strong>{proposed ? formatMoney(proposed.cashCents) : 'Unavailable'}</strong>{proposed && proposed.arrearsCents > 0 && <small>{formatMoney(proposed.arrearsCents)} unpaid bills</small>}</span></div>
+      <div>{constrainedJobs.length ? <AlertTriangle size={17} /> : <CheckCircle2 size={17} />}<span>Constrained jobs<strong>{proposed ? constrainedJobs.length : 'Unavailable'}</strong>{proposed && <small>of {proposed.requests.length} scheduled requests</small>}</span></div>
+      <div><Server size={17} /><span>Live service capacity<strong>{!proposed ? 'Unavailable' : services.length ? (services.length - constrainedServices.length) + ' / ' + services.length + ' covered' : 'None active'}</strong></span></div>
+    </div>
+    {preview.warnings.length > 0 && <div className="studio-planner-warnings"><h4><AlertTriangle size={16} />What this plan affects</h4><ul>{preview.warnings.map((warning, index) => <li key={index}>{warning}</li>)}</ul></div>}
+    <div className="studio-planner-apply"><p>Queue all changes for Week {preview.effectiveWeek}. The game stays paused until you resume or step forward.</p><button type="button" className="studio-primary" onClick={onApply} disabled={!preview.valid || stale || !canAct || !paused || previewing || applied}><CheckCircle2 size={16} />{applied ? 'Plan queued' : 'Apply plan for Week ' + preview.effectiveWeek}</button></div>
+    {preview.changes.length > 0 && <details className="studio-planner-changes"><summary>{preview.changes.length} planned change{preview.changes.length === 1 ? '' : 's'}</summary><ul>{preview.changes.map((change, index) => <li key={index}>{change}</li>)}</ul></details>}
+    {preview.baseline && proposed && <BoundaryComparison baseline={preview.baseline} proposed={proposed} />}
+  </>;
 }
 
 /** A planning draft is local UI state; only the reviewed atomic command reaches the campaign. */
@@ -126,7 +164,6 @@ export function StudioPlanner({ game, canAct, paused, onApplyPlan, context }: St
   const eligibleHire = (role: typeof CONTENT.staff[number]) => !role.availableOnResearchEntry || completedResearch.includes(role.availableOnResearchEntry)
     || Object.values(game.slices.research.projects).some(project => project.companyId === game.playerCompanyId && project.researchId === role.availableOnResearchEntry);
   const inputsLocked = !canAct || previewing || applied;
-  const unchangedReview = review && !stale ? review.result : null;
 
   function refresh() {
     if (previewing) return;
@@ -156,7 +193,7 @@ export function StudioPlanner({ game, canAct, paused, onApplyPlan, context }: St
   }
 
   return <section className="studio-planner" aria-label="Workforce and compute plan" aria-busy={previewing}>
-    <div className="studio-planner-heading"><div><span className="studio-eyebrow">PLAN THE NEXT WEEK</span><h2>Put your resources to work.</h2><p>Plan your staff, GPUs, and costs for next week.</p></div><button type="button" onClick={refresh} disabled={previewing || !canAct}><RefreshCw size={14} />Reset to current settings</button></div>
+    <div className="studio-planner-heading"><div><h2>Plan resources</h2><p>Adjust hiring and compute, then check next week’s cost and capacity.</p></div><button type="button" onClick={refresh} disabled={previewing || !canAct}><RefreshCw size={14} />Reset to current settings</button></div>
     {context && <aside className="studio-planner-context" aria-label="Selected resource constraint"><p className="studio-journey-eyebrow">REVIEW RESOURCES FOR</p><h3>{context.title}</h3><p>{context.reason}</p><p className="studio-planner-note">Your earlier choices are kept while you plan. Review the costs before confirming hires or compute changes.</p></aside>}
     {!paused && <p className="studio-planner-alert" role="status"><Clock3 size={16} />Pause the game to preview or confirm this plan. Your choices will stay here.</p>}
     {draftSource !== game && (!review || review.game !== game) && !applied && <p className="studio-planner-note" role="status">Your company has changed since you started planning. Preview again to keep your edits, or reset to use the current settings.</p>}
@@ -189,14 +226,7 @@ export function StudioPlanner({ game, canAct, paused, onApplyPlan, context }: St
     {message && !applied && <p className="studio-planner-note" role="status">{message}</p>}
 
     {review && <section className={'studio-planner-preview ' + (stale && !applied ? 'is-stale' : '')} ref={previewRef} tabIndex={-1} aria-label={'Plan preview for Week ' + review.result.effectiveWeek}>
-      <div className="studio-planner-preview-heading"><div><span className="studio-eyebrow">{applied ? 'PLAN QUEUED' : 'CHECK YOUR PLAN'}</span><h3>Week {review.result.effectiveWeek} forecast</h3></div><span className={'studio-planner-review-state ' + (applied ? 'is-ready' : stale ? 'is-stale' : review.result.valid ? 'is-ready' : 'is-blocked')}>{applied ? 'Queued' : stale ? 'Review needed' : review.result.valid ? 'Ready to apply' : 'Plan blocked'}</span></div>
-      {stale && !applied && <p className="studio-planner-alert" role="status"><RefreshCw size={16} />{review.game !== game ? 'The company changed. Preview again before applying.' : 'Your inputs changed. Preview again to update these estimates.'}</p>}
-      {!review.result.valid && <p className="studio-planner-alert" role="status"><AlertTriangle size={17} />{review.result.reason ?? 'This plan cannot be applied.'}</p>}
-      <div className="studio-planner-costs"><div><Wallet size={17} /><span>Upfront cost<strong>{formatMoney(review.result.upfrontCostCents)}</strong></span></div><div><Clock3 size={17} /><span>Weekly cost change<strong>{review.result.weeklyCostDeltaCents > 0 ? '+' : ''}{formatMoney(review.result.weeklyCostDeltaCents)}</strong></span></div></div>
-      {review.result.changes.length > 0 && <details className="studio-planner-changes" open><summary>{review.result.changes.length} planned change{review.result.changes.length === 1 ? '' : 's'}</summary><ul>{review.result.changes.map((change, index) => <li key={index}>{change}</li>)}</ul></details>}
-      {review.result.warnings.length > 0 && <div className="studio-planner-warnings"><h4><AlertTriangle size={16} />What this plan affects</h4><ul>{review.result.warnings.map((warning, index) => <li key={index}>{warning}</li>)}</ul></div>}
-      {review.result.baseline && review.result.proposed && <BoundaryComparison baseline={review.result.baseline} proposed={review.result.proposed} />}
-      <div className="studio-planner-apply"><p>Confirm all changes for Week {review.result.effectiveWeek}. The game stays paused until you resume or step forward.</p><button type="button" className="studio-primary" onClick={apply} disabled={!unchangedReview?.valid || !canAct || !paused || previewing || applied}><CheckCircle2 size={16} />{applied ? 'Plan queued' : 'Apply plan for Week ' + review.result.effectiveWeek}</button></div>
+      <StudioPlannerReview preview={review.result} stale={stale} companyChanged={review.game !== game} applied={applied} canAct={canAct} paused={paused} previewing={previewing} onApply={apply} />
     </section>}
   </section>;
 }

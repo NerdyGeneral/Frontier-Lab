@@ -7,6 +7,7 @@ import { CONTENT } from '../src/content/catalog';
 import { DEFAULT_MODEL_DESIGN } from '../src/modules/model-design';
 import { ModelDesigner, ModelDesignForecast } from '../src/ui/model-designer';
 import { LabPanel, ModelsPanel, ResearchPanel } from '../src/ui/lab-panels';
+import { ResearchProgramsWorkspace } from '../src/ui/research-programs-workspace';
 import { canonicalStateHash, deserializeState, getGameView } from '../src/core/index';
 import { StudioModelSelectionProvider } from '../src/ui/studio-interaction-context';
 
@@ -97,11 +98,14 @@ test('advanced report cases have readable labels and remain separate from a rele
   assert.doesNotMatch(html, /undefined/);
 });
 
-test('Classic research exposes the repeatable architecture program', () => {
+test('Classic research links to the canonical programs workspace instead of mounting another architecture draft', () => {
   const game = createInitialState();
   const html = renderToStaticMarkup(<ResearchPanel game={game} view={getGameView(game)} canAct onQueue={() => assert.fail('Rendering cannot submit a command')} />);
-  assert.match(html, /Architecture research/);
-  assert.match(html, /Unlocks at level 1/);
-  assert.match(html, /Unlocks at level 3/);
-  assert.match(html, /Fund architecture level 1/);
+  assert.match(html, /href="#research-programs">Open Research programs/);
+  assert.doesNotMatch(html, /aria-label="Architecture research"|Fund architecture level/);
+  const programs = renderToStaticMarkup(<ResearchProgramsWorkspace game={game} canAct onQueue={() => assert.fail('Rendering cannot submit a command')} />);
+  assert.match(programs, /Architecture research/);
+  assert.match(programs, /Unlocks at level 1/);
+  assert.match(programs, /Unlocks at level 3/);
+  assert.match(programs, /Fund architecture level 1/);
 });

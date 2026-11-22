@@ -1,0 +1,63 @@
+/* Shared workspace refinements. Forms retain one owner and their existing gates. */
+.studio-workspace-title { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; }
+.studio-mode .studio-workspace-title > button { min-height: 44px; padding: 10px 18px; font-size: 1rem; }
+.studio-mode .studio-workspace-sections button { font-size: .875rem; }
+.studio-capacity-navigation { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; grid-column: 1 / -1; margin: -8px 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--fl-line); }
+.studio-mode .studio-capacity-navigation button { min-height: 44px; padding: 9px 14px; font-size: .875rem; color: var(--fl-muted); background: transparent; border: 1px solid var(--fl-control-border); }
+.studio-mode .studio-capacity-navigation button[aria-current="page"] { background: var(--fl-selected); border-color: var(--fl-accent); color: var(--fl-accent); }
+.studio-mode[data-studio-panel="capacity"] .studio-inspector { display: none; }
+.studio-mode[data-studio-panel="capacity"] .studio-planner-host { width: 100%; max-width: 1180px; margin-inline: auto; padding-bottom: 24px; }
+.studio-mode[data-screen="projects"][data-studio-panel=""]:not([data-task-modal="true"]) .studio-play-area { grid-template-columns: minmax(0, 1fr); }
+.studio-mode[data-screen="projects"][data-studio-panel=""]:not([data-task-modal="true"]) .studio-inspector:not(.has-selection) { display: none; }
+.studio-project-toolbar { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin: 16px 0; }
+.studio-project-toolbar .studio-filter-row { margin: 0; }
+.studio-mode .studio-project-toolbar button, .studio-mode .studio-project-ready { min-height: 44px; font-size: .875rem; }
+.studio-project-ready { margin-bottom: 16px; }
+.development-plan-list { display: grid; gap: 16px; margin-bottom: 20px; }
+.studio-mode .development-plan-list { color: var(--fl-text); font-size: 1rem; }
+.studio-mode .development-plan-list :is(button, input, select, summary) { min-height: 44px; font-size: .875rem; }
+.studio-mode .development-plan-list :is(input, select) { font-size: 1rem; }
+.studio-plan-stage-jobs { margin-top: 16px; border-top: 1px solid var(--fl-line); padding-top: 8px; }
+.studio-plan-stage-jobs > summary { cursor: pointer; padding: 10px 0; }
+.studio-plan-stage-jobs .studio-project-grid { margin-top: 10px; }
+.studio-mode .studio-content > #research-programs { display: none; }
+.studio-mode[data-studio-panel="research-programs"] .studio-content > #research-programs { display: block; }
+.research-programs-workspace { min-width: 0; }
+.studio-mode .research-programs-intro h2 { display: none; }
+.research-programs-intro > p { margin-top: 0; }
+.research-programs-types { margin: 12px 0 20px; }
+.studio-mode .research-programs-workspace :is(button, input, select, summary) { min-height: 44px; font-size: .875rem; }
+.studio-mode .research-programs-workspace :is(p, .small-note, input, select) { font-size: 1rem; line-height: 1.55; }
+.research-tree-programs-link { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; padding: 12px 16px; margin: 14px 0; border: 1px solid var(--fl-control-border); border-radius: 10px; background: var(--fl-panel); }
+.research-tree-programs-link p { margin: 0; }
+.research-program-candidate-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.studio-surface-title-group { min-width: 0; flex: 1; }
+.studio-mode .studio-desktop-task .studio-surface-header { padding: 12px 20px; }
+.studio-mode .studio-desktop-task .studio-surface-heading { margin: 0; font-size: clamp(1.25rem, 2.2vw, 1.65rem); line-height: 1.25; }
+.studio-mode .studio-surface-topline { align-items: center; }
+.studio-mode .studio-desktop-task .studio-surface-description { margin-top: 8px; font-size: .875rem; }
+.studio-mode .studio-chrome .migration-note { align-items: center; margin: 4px 0; padding: 4px 10px; border: 1px solid var(--fl-line); border-radius: 8px; font-size: .875rem; line-height: 1.4; }
+.studio-chrome .migration-note p { margin: 0; }
+.studio-mode .studio-chrome .migration-note button { min-height: 40px; font-size: .875rem; }
+.studio-mode .development-workspace-header { padding: 12px 16px; margin: 0 0 14px; }
+.studio-mode .development-workspace-heading h3 { margin: 0; font-size: 1rem; }
+.studio-mode .development-workspace-header > .small-note { margin: 8px 0; font-size: .875rem; }
+.studio-mode .development-goal-selector { margin-top: 10px; }
+.studio-mode .development-workspace-mode button { min-height: 42px; }
+.studio-mode .studio-decision-bar { position: static; margin-bottom: 12px; }
+.studio-mode .studio-planner-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 12px; }
+.studio-mode .studio-planner-summary > div { min-width: 0; }
+.studio-mode .studio-planner-apply { margin: 14px 0; }
+@media (max-width: 699px) {
+  .studio-mode .studio-desktop-task .studio-surface-header { padding: 12px; }
+  .studio-mode .studio-surface-close { padding: 8px 10px; }
+  .studio-mode .studio-capacity-navigation button { flex: 1 1 120px; }
+  .studio-mode .development-workspace-header { padding: 12px; }
+  .studio-workspace-title > button { width: 100%; }
+  .studio-mode .studio-planner-summary { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 380px) {
+  .studio-mode .studio-surface-topline { align-items: flex-start; flex-direction: column; }
+  .studio-mode .studio-surface-close { align-self: flex-end; }
+  .studio-mode .studio-planner-summary { grid-template-columns: minmax(0, 1fr); }
+}

@@ -98,7 +98,7 @@ export function AppliedResearchPanel(props: PanelProps) {
     {(applied.available.distillation || applied.available.sparse) && <p className="small-note">{applied.available.distillation ? 'Distillation is available as a training recipe in the Lab. ' : ''}{applied.available.sparse ? 'Sparse architecture is available for new foundation runs; it needs connected fast fabric.' : ''}</p>}
     {applied.available.deduplication && <p className="small-note">Install deduplication and clean prepared revisions under <a href="#data">Data</a>.</p>}
     {applied.available.evidenceLinks && <p className="small-note">Install source-support checks beside <a href="#business-commitments">Business Documents and retrieval</a>.</p>}
-    {applied.available.capacityForecast && <p className="small-note">Install the planning tool and compare twelve weeks of growth under <a href="#compute">Compute</a>.</p>}
+    {applied.available.capacityForecast && <p className="small-note">Install the planning tool and compare twelve weeks of growth under <a href="#capacity-forecast">Capacity forecast</a>.</p>}
     {applied.available.actionReceipts && <p className="small-note">Install action recovery and resume interrupted jobs under <a href="#agents">Agents</a>.</p>}
     {applied.available.independentHoldouts && <p className="small-note">Run the independent test after a capability test under <a href="#models">Models</a>.</p>}
     {applied.available.budgetedPlanner && <p className="small-note">Apply the budgeted planner curriculum to prepared behavior cases in the <a href="#lab-projects">Lab</a>.</p>}

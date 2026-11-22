@@ -37,18 +37,19 @@ function multipleCandidates(): GameState {
 }
 
 test('W30-T01: named task registry maps each task to one retained owner and rejects unknown anchors', () => {
-  assert.equal(Object.keys(STUDIO_TASKS).length, 29);
-  assert.equal(new Set(Object.values(STUDIO_TASKS).map(task => task.owner)).size, 23);
+  assert.equal(Object.keys(STUDIO_TASKS).length, 30);
+  assert.equal(new Set(Object.values(STUDIO_TASKS).map(task => task.owner)).size, 24);
   assert.equal(getStudioTaskForPanel('customer-briefs'), 'customer-brief');
   assert.deepEqual(Object.entries(STUDIO_TASKS).filter(([, task]) => task.owner === 'product').map(([id]) => id), ['launch-basic-chat', 'manage-basic-chat']);
-  assert.deepEqual(Object.entries(STUDIO_TASKS).filter(([, task]) => task.owner === 'research').map(([id]) => id), ['research-method', 'architecture-research']);
-  assert.deepEqual(STUDIO_TASKS['architecture-research'], { owner: 'research', title: 'Architecture research', pauseOnEntry: true });
+  assert.deepEqual(Object.entries(STUDIO_TASKS).filter(([, task]) => task.owner === 'research').map(([id]) => id), ['research-method']);
+  assert.deepEqual(Object.entries(STUDIO_TASKS).filter(([, task]) => task.owner === 'research-programs').map(([id]) => id), ['research-program', 'architecture-research']);
+  assert.deepEqual(STUDIO_TASKS['architecture-research'], { owner: 'research-programs', title: 'Architecture research', pauseOnEntry: true });
   assert.deepEqual(STUDIO_TASKS['development-plan'], { owner: 'development-plans', title: 'Develop a model · delegated', pauseOnEntry: true });
   assert.deepEqual(STUDIO_TASKS['model-challenge'], { owner: 'model-challenges', title: 'Run a research challenge', pauseOnEntry: true });
   for (const [id, task] of Object.entries(STUDIO_TASKS)) {
     assert.ok(task.title.trim());
     assert.equal(task.pauseOnEntry, true);
-    const defaultTask = task.owner === 'product' ? 'launch-basic-chat' : task.owner === 'people' ? 'staffing' : task.owner === 'compute' ? 'compute-decision' : task.owner === 'research' ? 'research-method' : id;
+    const defaultTask = task.owner === 'product' ? 'launch-basic-chat' : task.owner === 'people' ? 'staffing' : task.owner === 'compute' ? 'compute-decision' : task.owner === 'research' ? 'research-method' : task.owner === 'research-programs' ? 'research-program' : id;
     assert.equal(getStudioTaskForPanel(task.owner), defaultTask);
     assert.equal(isStudioTaskId(id), true);
   }
@@ -61,7 +62,7 @@ test('W30-T01: named task registry maps each task to one retained owner and reje
   assert.equal(getStudioTaskForPanel('product'), 'launch-basic-chat', '30B registers the ordinary first Basic Chat launch form');
   const game = createInitialState(CONTENT, 'release');
   assert.deepEqual(resolveStudioIntent(game, { kind: 'task', task: 'architecture-research' }), {
-    ok: true, panel: 'research', task: 'architecture-research',
+    ok: true, panel: 'research-programs', task: 'architecture-research',
   });
   for (const [task, owner, payload] of [
     ['development-plan', 'development-plans', { kind: 'set_development_plan_paused', planId: 'development-owned', paused: true }],
@@ -74,9 +75,9 @@ test('W30-T01: named task registry maps each task to one retained owner and reje
     assert.equal(getStudioSubmissionContext(session)!.owner, owner);
   }
   const architecture = reviewed(open('architecture-research'), { kind: 'start_model_research' }, game.revision);
-  assert.equal(getActiveStudioTask(architecture)!.owner, 'research');
+  assert.equal(getActiveStudioTask(architecture)!.owner, 'research-programs');
   assert.deepEqual(getActiveStudioTask(architecture)!.review!.payload, { kind: 'start_model_research' });
-  assert.equal(getStudioSubmissionContext(architecture)!.owner, 'research');
+  assert.equal(getStudioSubmissionContext(architecture)!.owner, 'research-programs');
   const paused = reviewed(open('architecture-research'), { kind: 'set_model_research_paused', projectId: 'model-research-owned', paused: true }, game.revision);
   assert.deepEqual(getActiveStudioTask(paused)!.review!.payload, { kind: 'set_model_research_paused', projectId: 'model-research-owned', paused: true });
 });

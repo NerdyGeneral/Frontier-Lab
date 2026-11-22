@@ -94,7 +94,8 @@ export function validateDevelopmentCommand(state: Readonly<GameState>, command: 
   if (!plan || plan.companyId !== command.companyId) return reject('Choose one of your saved development plans.', 'NOT_READY');
   if (['review', 'cancelled'].includes(plan.status)) return reject('This plan has ended. Its outputs remain available.', 'NO_IMPROVEMENT');
   if (p.kind === 'revise_development_plan') {
-    if (p.deadlineWeek < command.issuedForWeek + 1 || p.deadlineWeek > command.issuedForWeek + 519) return reject('Choose a future deadline within 520 weeks.');
+    const unchangedDeadline = p.resume === false && p.deadlineWeek === plan.deadlineWeek;
+    if (!unchangedDeadline && (p.deadlineWeek < command.issuedForWeek + 1 || p.deadlineWeek > command.issuedForWeek + 519)) return reject('Choose a future deadline within 520 weeks.');
     if (p.feeBudgetCents < developmentFeeSpent(state, plan)) return reject('The revised fee budget must cover fees already paid.');
     if (hasConnectedCompanyRules(state.contentVersion)) {
       const issue = developmentPortfolioIssue(state, { ...plan, ...p }, command, plan.id); if (issue) return reject(issue, 'NOT_READY');
@@ -110,7 +111,7 @@ export function quoteDevelopmentCommand(state: Readonly<GameState>, command: Gam
   return { upfrontCostCents: 0, weeklyCostDeltaCents: 0, summary: p.kind === 'start_development_plan'
     ? `Delegate preparation, training and ${evaluationSuite(p.suiteId)?.name}${developmentObjectiveChallenge(p.objective) ? ', followed by the objective’s paid systems challenge' : ''}. Up to ${formatMoney(p.feeBudgetCents)} in project fees, ${formatMoney(p.cashReserveCents)} cash reserve, deadline Week ${p.deadlineWeek}. Rent, salaries and metered work continue separately. Review the result before release or customer delivery.`
     : p.kind === 'cancel_development_plan' ? 'Stop future handoffs and pause unfinished work. Keep every completed dataset, model and report.'
-    : p.kind === 'revise_development_plan' ? 'Update the limits and resume this development plan with its saved work.'
+    : p.kind === 'revise_development_plan' ? p.resume === false ? 'Update the limits without changing whether this plan is running or stopped. Resume a stopped plan separately.' : 'Update the limits and resume this development plan with its saved work.'
     : p.kind === 'set_development_plan_paused' && p.paused ? 'Pause the plan and its current work. Weekly operating bills continue.' : 'Resume the plan from its saved stage.' };
 }
 export function setDevelopmentJobsPaused(state: GameState, plan: DevelopmentPlan, paused: boolean) {
@@ -153,14 +154,21 @@ export function applyDevelopmentCommand(state: Readonly<GameState>, command: Gam
   } else if ('planId' in p) {
     const plan = models.developmentPlans[p.planId]!;
     if (p.kind === 'revise_development_plan') {
-      plan.feeBudgetCents = p.feeBudgetCents; plan.cashReserveCents = p.cashReserveCents; plan.deadlineWeek = p.deadlineWeek; plan.status = 'running';
+      plan.feeBudgetCents = p.feeBudgetCents; plan.cashReserveCents = p.cashReserveCents; plan.deadlineWeek = p.deadlineWeek;
+      // Historical revisions resume. New limit-only edits preserve the existing
+      // plan and job states, including individually paused or resumed work.
+      if (p.resume !== false) plan.status = 'running';
       if (p.leadStaffId !== undefined) plan.leadStaffId = p.leadStaffId;
       if (p.capacityShareBps !== undefined) plan.capacityShareBps = p.capacityShareBps;
     }
     if (p.kind === 'set_development_plan_paused') plan.status = p.paused ? 'paused' : 'running';
     if (p.kind === 'cancel_development_plan') { plan.status = 'cancelled'; plan.decisionWeek = state.week; }
-    plan.message = plan.status === 'cancelled' ? 'Plan stopped. Completed outputs and paid work are preserved.' : plan.status === 'paused' ? 'Paused by you. Change the limits or resume when ready.' : 'Resumed with saved progress and current limits.';
-    setDevelopmentJobsPaused(next, plan, plan.status !== 'running');
+    if (p.kind === 'revise_development_plan' && p.resume === false) {
+      plan.message = plan.status === 'running' ? 'Limits updated. The plan continues with its saved progress.' : 'Limits updated. The plan remains stopped; resume it separately when ready.';
+    } else {
+      plan.message = plan.status === 'cancelled' ? 'Plan stopped. Completed outputs and paid work are preserved.' : plan.status === 'paused' ? 'Paused by you. Change the limits or resume when ready.' : 'Resumed with saved progress and current limits.';
+      setDevelopmentJobsPaused(next, plan, plan.status !== 'running');
+    }
   }
   return { updates: { models, data: next.slices.data }, ...(facts.length ? { facts } : {}), messages: [{ companyId: command.companyId, category: 'project', message: p.kind === 'start_development_plan' ? `Development plan “${p.name.trim()}” authorized. Routine handoffs will run within its limits.` : 'Development plan updated; existing outputs are preserved.' }] };
 }

@@ -222,20 +222,21 @@ export function ModelDesigner({ game, baseModelId, packetIds, value, onChange, c
       </label>
 
       <section className="model-design-section" aria-labelledby={`${id}-purpose`}>
-        <header><Sparkles size={18} aria-hidden="true" /><h4 id={`${id}-purpose`}>Purpose</h4></header>
-        <div className="model-design-purpose-presets" role="group" aria-label="Model purpose starting points">
+        <header><Sparkles size={18} aria-hidden="true" /><h4 id={`${id}-purpose`}>Starting design</h4></header>
+        <p id={`${id}-template-help`} className="model-design-help">Apply a template to set the training mix, compute budget, learning focus and response style.{foundations ? ' A new foundation also takes its attention, context and precision choices.' : ' This model keeps its inherited hardware.'} Undo restores the previous design.</p>
+        <div className="model-design-purpose-presets" role="group" aria-label="Starting design templates" aria-describedby={`${id}-template-help`}>
           {MODEL_DESIGN_PURPOSES.map(purpose => {
             const next = applyModelDesignPurpose(value, purpose, base);
             const locked = lockedCustomizationResearch(game, next.customization!);
             const selected = value.computeBudgetCUw === next.computeBudgetCUw && DOMAINS.every(domain => value.dataMix[domain.id] === next.dataMix[domain.id])
               && MODEL_CUSTOMIZATION_KEYS.every(key => customization[key] === next.customization![key]);
-            return <button type="button" key={purpose.id} title={purpose.description} aria-pressed={selected} onClick={() => applyChange(next)}>
+            return <button type="button" key={purpose.id} title={purpose.description} aria-label={'Apply ' + purpose.name + ' starting design' + (locked.length ? ' · ' + locked.length + ' research ' + (locked.length === 1 ? 'unlock' : 'unlocks') + ' needed' : '')} aria-pressed={selected} onClick={() => applyChange(next)}>
               <strong>{purpose.name}</strong>
+              <span>Apply template</span>
               {locked.length > 0 && <small><LockKeyhole size={12} aria-hidden="true" />{locked.length} to research</small>}
             </button>;
           })}
         </div>
-        <p className="model-design-help">Starting points change the settings below. Inherited hardware stays fixed; Undo restores the previous design.</p>
         <details className="model-design-section-disclosure" open={openSection === 'learning'} onToggle={event => toggleSection('learning', event.currentTarget.open)}>
           <summary><span>Learning & responses<small>{customizationOptionName('objective', customization.objective)} · {customizationOptionName('behavior', customization.behavior)}</small></span><b>8 choices</b></summary>
           <CustomizationChoices game={game} field="objective" value={customization} onChange={setCustomization} />

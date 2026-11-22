@@ -21,9 +21,6 @@ import { researchApplicationLink } from './guide-links';
 import { AI_SYSTEM_RESEARCH, AI_SYSTEM_RESEARCH_GROUPS, AI_SYSTEM_RESEARCH_IDS } from '../content/ai-systems';
 import { useModelWorkspace } from './model-workspace-context';
 import { developmentGoalName, developmentGoalResearch } from './development-goals';
-import { ModelResearchPanel } from './model-research-panel';
-import { ResearchProgramsPanel } from './research-programs-panel';
-import { getModelResearchLevel } from '../modules/model-research';
 import { humanizeDesignRequirement } from './model-design-insights';
 
 export interface StudioResearchTreeProps {
@@ -450,11 +447,10 @@ export function StudioResearchTree({ game, canAct, onQueue, onOpenPanel, onOpenM
       }}><Network size={16} aria-hidden="true" />AI systems<span>{AI_SYSTEM_RESEARCH_IDS.length}</span></button>
     </div>
     {scope === 'systems' && <div className="research-tree-customization-intro"><p>Three ways to operate an AI: route specialist experts, preserve a working state, or spend effort searching and verifying. Each path has four discoveries and its own costs.</p><StudioResearchDesignerShortcut onOpenDesigner={onOpenDesigner} onOpenPanel={onOpenPanel} /></div>}
-    {developmentGoal && <div className="research-development-goal"><Compass size={16} aria-hidden="true" /><span>Working toward <strong>{developmentGoalName(developmentGoal)}</strong>. Relevant discoveries and prerequisites appear first.</span><StudioResearchDesignerShortcut onOpenDesigner={onOpenDesigner} onOpenPanel={onOpenPanel} /></div>}
+    {developmentGoal && <div className="research-development-goal"><Compass size={16} aria-hidden="true" /><span>Project objective: <strong>{developmentGoalName(developmentGoal)}</strong>. Relevant discoveries and prerequisites appear first.</span><StudioResearchDesignerShortcut onOpenDesigner={onOpenDesigner} onOpenPanel={onOpenPanel} /></div>}
     {scope === 'customization' && <div className="research-tree-customization-intro"><p>Choose how your model learns, responds and uses hardware. Select a discovery to see its tradeoff.</p><StudioResearchDesignerShortcut onOpenDesigner={onOpenDesigner} onOpenPanel={onOpenPanel} /></div>}
 
-    {scope === 'all' && <ResearchProgramsPanel game={game} canAct={canAct} onQueue={onQueue} />}
-    {scope === 'all' && <details className="research-tree-architecture-program"><summary><span>Architecture program<strong>Level {getModelResearchLevel(game, game.playerCompanyId)}</strong></span><small>Repeatable research · unlock families and improve future designs</small></summary><ModelResearchPanel game={game} canAct={canAct} onQueue={onQueue} /></details>}
+    <div className="research-tree-programs-link"><p className="small-note">Repeatable architecture research and paid systems experiments are available in Programs.</p><button type="button" className="training-text-action" onClick={() => onOpenPanel('research-programs')}>Open research programs<ArrowRight size={14} aria-hidden="true" /></button></div>
 
     <section className="research-available-now" aria-labelledby={uniqueId + '-available-title'}>
       <div className="research-available-heading"><h3 id={uniqueId + '-available-title'}>Available now</h3><span>{availableChoices.length} {availableChoices.length === 1 ? 'choice' : 'choices'}</span></div>

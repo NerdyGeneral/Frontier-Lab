@@ -6,12 +6,13 @@ import { Activity, ArrowUpRight, Building2, Check, CheckCircle2, ChevronRight, C
 import { CONTENT } from '../content/catalog';
 import type { CommandPayload, GameState, StaffRole } from '../contracts/types';
 import type { DevelopmentTrainingOrder } from '../contracts/development-plans';
-import type { ModelBlueprint } from '../persistence/model-workspace';
+import type { DevelopmentProjectDraft, ModelBlueprint } from '../persistence/model-workspace';
 import { useModelWorkspace } from './model-workspace-context';
 import { recommendedDesignEvaluation } from '../core/model-evaluation-goal';
 import { RESOURCE_SCALE } from '../contracts/types';
 import { formatMoney } from '../core/index';
 import { getStudioView } from '../core/studio';
+import { getStudioWorkQueue } from '../core/studio-work-queue';
 import type { StudioProject, StudioStationId, StudioStatus } from '../core/studio';
 import { getStudioJourney } from '../core/studio-journey';
 import type { StudioJourneyAction, StudioJourneyFocus } from '../core/studio-journey';
@@ -19,13 +20,14 @@ import { getGameSectionVisibility } from './guide-links';
 import { getGameView } from '../core/selectors';
 import { actionCostLabel, commandLabel, isQueued, ROLE_LABELS } from './components';
 import { StudioPlanner } from './studio-planner';
+import { DevelopmentPlanList, developmentPlanCounts } from './development-plans-panel';
+import { ResearchProgramsWorkspace } from './research-programs-workspace';
 import { StudioResearchTree } from './studio-research-tree';
 import { createResearchTrainingSelection } from './research-training-intent';
 import { StudioResearchMethod } from './studio-research-method';
 import { getResearchMethodNavigation } from './research-method-navigation';
-import { ModelResearchPanel } from './model-research-panel';
 import { getStudioDestinationForPanel, getStudioScreenTarget, resolveStudioHash } from '../core/studio-navigation';
-import { StudioNavigation, StudioResearchNavigation, StudioWorkspaceHeader, StudioLockedWorkbench, getStudioPanelLock } from './studio-navigation';
+import { StudioNavigation, StudioResearchNavigation, StudioWorkspaceHeader, StudioCapacityNavigation, StudioLockedWorkbench, getStudioPanelLock } from './studio-navigation';
 import { StudioMenuDirectory } from './studio-menu-directory';
 import type { StudioMenuTarget } from '../core/studio-menu-catalog';
 import { StudioReleaseDesk } from './studio-release-desk';
@@ -81,7 +83,6 @@ const TASK_PRIMARY_ACTIONS: Partial<Record<StudioTaskId, string>> = {
   'evaluate-model': 'evaluate-model',
   'launch-basic-chat': 'launch-basic-chat',
   'research-method': 'research-method',
-  'architecture-research': 'architecture-research',
   'hire-staff': 'hire-staff',
   'assign-staff': 'assign-staff',
   'allocate-compute': 'allocate-compute',
@@ -102,6 +103,9 @@ interface StudioShellProps {
   results?: StudioResultsInbox;
   children: ReactNode;
   decisionControls?: ReactNode;
+  decisionRunActive?: boolean;
+  onRunToDecision?: () => void;
+  migrationNotice?: ReactNode;
 }
 
 function Status({ status }: { status: StudioStatus }) {
@@ -110,7 +114,7 @@ function Status({ status }: { status: StudioStatus }) {
 }
 
 /** The scene owns only presentation preferences. All commands, forms and saves remain in FrontierLab. */
-export function StudioShell({ game, paused, speed, canAct, isController, notice, saveMessage, forceSaveOpen, busyMessage, errorMessage, saveKind, onToggleRunning, onStep, onSpeed, plannerEpoch, onPause, onQueue, onApplyPlan, onSubmitTask, results, children, decisionControls }: StudioShellProps) {
+export function StudioShell({ game, paused, speed, canAct, isController, notice, saveMessage, forceSaveOpen, busyMessage, errorMessage, saveKind, onToggleRunning, onStep, onSpeed, plannerEpoch, onPause, onQueue, onApplyPlan, onSubmitTask, results, children, decisionControls, decisionRunActive = false, onRunToDecision, migrationNotice }: StudioShellProps) {
   const studio = useMemo(() => getStudioView(game, CONTENT), [game]);
   const resultEntries = useMemo(() => selectStudioResults(game), [game]);
   const resultAttention = useMemo(() => {
@@ -140,10 +144,12 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   const [trainingSelection, setTrainingSelection] = useState<StudioTrainingSelection | null>(null);
   const [developmentSelection, setDevelopmentSelection] = useState<StudioDevelopmentSelection | null>(null);
   const modelWorkspace = useModelWorkspace();
+  const [modelDraftEpoch, setModelDraftEpoch] = useState(0);
   const [launchSelection, setLaunchSelection] = useState<StudioLaunchSelection | null>(null);
   const [staffingSelection, setStaffingSelection] = useState<StudioStaffingSelection | null>(null);
   const [plannerContext, setPlannerContext] = useState<{ title: string; reason: string }>();
   const [researchSelection, setResearchSelection] = useState<{ intentId: number; researchId: string } | null>(null);
+  const [programSelection, setProgramSelection] = useState<{ intentId: number; programType: 'systems' | 'architecture' }>();
   const resultsReturnFocusRef = useRef<HTMLElement | null>(null);
   const [journeyFocus, setJourneyFocus] = useState<StudioJourneyFocus>({});
   const journey = useMemo(() => getStudioJourney(game, journeyFocus, studio.projects), [game, journeyFocus, studio.projects]);
@@ -155,11 +161,16 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   const inFlight = useRef<object | null>(null);
   const revision = useRef({ game, value: 0 });
   if (revision.current.game !== game) revision.current = { game, value: revision.current.value + 1 };
-  const draftGenerations = useMemo(() => Object.fromEntries(Object.entries(taskSession.tasks).map(([owner, record]) => [owner, record.draftGeneration])), [taskSession.tasks]);
+  const draftGenerations = useMemo<Record<string, number>>(() => ({
+    ...Object.fromEntries(Object.entries(taskSession.tasks).map(([owner, record]) => [owner, record.draftGeneration])),
+    'lab-projects': (taskSession.tasks['lab-projects']?.draftGeneration ?? 0) + modelDraftEpoch,
+    'development-plans': (taskSession.tasks['development-plans']?.draftGeneration ?? 0) + modelDraftEpoch,
+  }), [taskSession.tasks, modelDraftEpoch]);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [sound, setSound] = useState(false);
   const [sceneVisible, setSceneVisible] = useState(true);
   const [prefsReady, setPrefsReady] = useState(false);
+  const initialCapacityRoute = useRef(false);
   const [pinned, setPinned] = useState<string[]>([]);
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>('active');
   const [projectTab, setProjectTab] = useState<'work' | 'plan'>('work');
@@ -179,7 +190,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   const workbenchVisibility = useMemo<StudioWorkbenchVisibility>(() => ({
     mode, panel: resultsOpen || menusOpen || (taskModal && (commandReviewVisible || task.owner === 'research')) ? null : panel, epoch: plannerEpoch, draftGenerations,
     standalone: resultsOpen || menusOpen ? null : panel === null && screen === 'research' ? 'research-tree'
-      : panel === null && screen === 'projects' && projectTab === 'plan' ? 'planner' : null,
+      : panel === 'capacity' || panel === null && screen === 'projects' && projectTab === 'plan' ? 'planner' : null,
   }), [mode, panel, screen, projectTab, plannerEpoch, draftGenerations, taskModal, commandReviewVisible, task?.owner, resultsOpen, menusOpen]);
 
   // Keep the sidebar below the real header even when a mature company's large
@@ -244,7 +255,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     setSceneVisible(stored.sceneVisible !== false);
     setPinned(Array.isArray(stored.pinned) ? stored.pinned.filter((id): id is string => typeof id === 'string').slice(0, 4) : []);
     const initialTarget = resolveStudioHash(window.location.hash);
-    if (initialTarget) { setPanel(initialTarget.panel); setScreen(initialTarget.screen); }
+    if (initialTarget) { setPanel(initialTarget.panel); setScreen(initialTarget.screen); initialCapacityRoute.current = initialTarget.panel === 'capacity'; }
     setPrefsReady(true);
     const onPreferenceChange = (event: MediaQueryListEvent) => { if (event.matches) setReducedMotion(true); };
     media.addEventListener('change', onPreferenceChange);
@@ -255,7 +266,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     dispatchTask({ type: 'resetCompany', companyEpoch: plannerEpoch });
     reviewedStates.current = {}; inFlight.current = null;
     setModelSelection(null); setDataSelection(null); setTrainingSelection(null); setDevelopmentSelection(null); setLaunchSelection(null);
-    setStaffingSelection(null); setPlannerContext(undefined); setResultsOpen(false); setMenusOpen(false); setResearchSelection(null);
+    setStaffingSelection(null); setPlannerContext(undefined); setResultsOpen(false); setMenusOpen(false); setResearchSelection(null); setProgramSelection(undefined);
     setResultActionError(''); setCommandError(''); setCompletion(''); previousAnnouncement.current = null;
     setJourneyFocus({}); setInspectedProjectId(null); setNavigationMessage('');
   }, [plannerEpoch]);
@@ -265,10 +276,40 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     try { localStorage.setItem(PREFERENCE_KEY, JSON.stringify({ mode, reducedMotion, sound, sceneVisible, pinned })); } catch { /* Playing still works without preference storage. */ }
   }, [mode, reducedMotion, sound, sceneVisible, pinned, prefsReady]);
 
+  const openPlannerWithContext = useCallback((context?: { title: string; reason: string }) => {
+    if (forceSaveOpen || busy || inFlight.current || task?.phase === 'submitting') return;
+    setPlannerContext(context); setMenusOpen(false); setResultsOpen(false); setResultActionError('');
+    setInspectedProjectId(null); setNavigationMessage(''); setCommandError('');
+    if (taskSession.detour?.owner === 'planner') {
+      dispatchTask({ type: 'return' });
+    } else if (task?.owner === 'planner') {
+      // All Capacity entry points refer to this same retained resource plan.
+    } else if (task && !taskSession.detour) {
+      dispatchTask({ type: 'detour', destination: { screen: 'operations', panel: 'capacity', focusId: 'studio-plan-workbench' } });
+    } else if (taskSession.detour && task) {
+      dispatchTask({ type: 'close' });
+    } else if (!taskSession.detour) {
+      dispatchTask({ type: 'open', task: 'plan-week', returnTo: { screen, panel, projectTab } });
+    }
+    onPause(); setScreen('operations'); setPanel('capacity');
+    requestAnimationFrame(() => { document.getElementById('studio-plan-workbench')?.focus({ preventScroll: true }); shellRef.current?.querySelector<HTMLElement>('.studio-play-area')?.scrollTo({ top: 0, behavior: 'auto' }); window.scrollTo({ top: 0, behavior: 'auto' }); });
+  }, [forceSaveOpen, busy, task, taskSession.detour, screen, panel, projectTab, onPause]);
+
+  useEffect(() => {
+    if (!prefsReady || !initialCapacityRoute.current) return;
+    initialCapacityRoute.current = false;
+    if (forceSaveOpen) return;
+    dispatchTask({ type: 'open', task: 'plan-week', returnTo: { screen: 'operations', panel: 'people' } });
+    onPause();
+  }, [prefsReady, forceSaveOpen, onPause]);
+
   const openPanel = useCallback((id: string, _legacyScreen?: Screen) => {
     if (!isStudioPanelId(id) || task?.phase === 'submitting') return;
     if (forceSaveOpen && id !== 'save') return;
-    const destination: StudioReturnTarget = { screen: getStudioDestinationForPanel(id), panel: id, projectTab };
+    if (id === 'capacity') { openPlannerWithContext(); return; }
+    const destination: StudioReturnTarget = id === 'development-plans'
+      ? { screen: 'projects', panel: null, projectTab: 'work' }
+      : { screen: getStudioDestinationForPanel(id), panel: id, projectTab };
     if (task && task.owner !== id && !taskSession.detour) dispatchTask({ type: 'detour', destination });
     else if (task) dispatchTask({ type: 'close' });
     setInspectedProjectId(null); setNavigationMessage('');
@@ -278,8 +319,13 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     }
     focusRequested.current = true;
     setScreen(destination.screen);
-    setPanel(id);
-  }, [panel, forceSaveOpen, task, taskSession.detour, screen, projectTab]);
+    setPanel(destination.panel);
+    if (id === 'development-plans') {
+      setProjectTab('work');
+      const plans = developmentPlanCounts(game);
+      setProjectFilter(plans.active > 0 || plans.complete === 0 ? 'active' : 'complete');
+    }
+  }, [panel, forceSaveOpen, task, taskSession.detour, screen, projectTab, openPlannerWithContext, game]);
 
   function openResearchPanel(panelId: string, researchId?: string) {
     const selection = createResearchTrainingSelection(panelId, researchId, nextIntentId.current);
@@ -291,7 +337,8 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     const followHash = () => {
       const target = resolveStudioHash(window.location.hash);
       if (!target || forceSaveOpen || task?.phase === 'submitting') return;
-      if (target.panel) openPanel(target.panel);
+      if (window.location.hash === '#development-plans') openPanel('development-plans');
+      else if (target.panel) openPanel(target.panel);
       else { dispatchTask({ type: 'close' }); setScreen(target.screen); setPanel(null); if (target.screen === 'projects') setProjectTab('work'); }
     };
     window.addEventListener('hashchange', followHash);
@@ -315,7 +362,8 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     if ((panel || inspectedProjectId) && mode === 'studio' && !taskModal && focusRequested.current) {
       focusRequested.current = false;
       const id = requestAnimationFrame(() => {
-        inspectorRef.current?.focus({ preventScroll: true });
+        if (panel === 'capacity') document.getElementById('studio-plan-workbench')?.focus({ preventScroll: true });
+        else inspectorRef.current?.focus({ preventScroll: true });
         if (window.matchMedia('(max-width: 899px)').matches) inspectorRef.current?.scrollIntoView({ block: 'start', behavior: 'auto' });
       });
       return () => cancelAnimationFrame(id);
@@ -511,24 +559,30 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     openResultTask('train-model', { kind: 'task', task: 'train-model' });
   }
 
-  function delegateTraining(training: DevelopmentTrainingOrder) {
+  function delegateTraining(training: DevelopmentTrainingOrder, project?: DevelopmentProjectDraft) {
     if (forceSaveOpen || busy || task?.phase === 'submitting' || inFlight.current) return;
     setDevelopmentSelection({ intentId: nextIntentId.current++, blueprint: {
-      id: 'current-design', name: training.modelDesign?.name || 'Delegated training',
-      training: structuredClone(training), suiteId: recommendedDesignEvaluation(training).suiteId,
-    } });
+      id: 'current-design', name: project?.name ?? training.modelDesign?.name ?? 'Delegated training',
+      training: structuredClone(training), suiteId: project?.suiteId ?? recommendedDesignEvaluation(training).suiteId,
+    }, ...(project ? { project: structuredClone(project) } : {}) });
     openResultTask('development-plan', { kind: 'task', task: 'development-plan' });
   }
 
-  function editTraining(blueprint: ModelBlueprint) {
+  function editTraining(blueprint: ModelBlueprint, project?: DevelopmentProjectDraft) {
     if (forceSaveOpen || busy || task?.phase === 'submitting' || inFlight.current) return;
-    setTrainingSelection({ intentId: nextIntentId.current++, blueprint: structuredClone(blueprint) });
+    setTrainingSelection({ intentId: nextIntentId.current++, blueprint: structuredClone(blueprint), ...(project ? { project: structuredClone(project) } : {}) });
     openResultTask('train-model', { kind: 'task', task: 'train-model' });
   }
 
   function resetTaskDraft() {
-    if (task?.owner === 'lab-projects') { modelWorkspace?.setDraft('manual', null); setTrainingSelection(null); }
-    if (task?.owner === 'development-plans') { modelWorkspace?.setDraft('delegated', null); setDevelopmentSelection(null); }
+    if (task?.owner === 'lab-projects' || task?.owner === 'development-plans') {
+      modelWorkspace?.setDraft('manual', null); modelWorkspace?.setDraft('delegated', null);
+      modelWorkspace?.setDevelopmentGoal(null); setTrainingSelection(null); setDevelopmentSelection(null);
+      setModelDraftEpoch(value => value + 1);
+      dispatchTask({ type: 'resetDraft', owner: 'lab-projects' });
+      dispatchTask({ type: 'resetDraft', owner: 'development-plans' });
+      return;
+    }
     dispatchTask({ type: 'resetDraft' });
   }
 
@@ -551,20 +605,6 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
       : task && task.owner !== 'planner' ? { title: STUDIO_TASKS[task.task].title, reason: 'Check your staff and compute, then return to your choices.' } : undefined);
   }
 
-  function openPlannerWithContext(context?: { title: string; reason: string }) {
-    if (forceSaveOpen || task?.phase === 'submitting') return;
-    setPlannerContext(context);
-    if (task && task.owner !== 'planner' && !taskSession.detour) {
-      dispatchTask({ type: 'detour', destination: { screen: 'projects', panel: null, projectTab: 'plan', focusId: 'studio-plan-workbench' } });
-    } else if (taskSession.detour && task) {
-      // A helper can visit resources without replacing the original parent.
-      dispatchTask({ type: 'close' });
-    } else if (!taskSession.detour && task?.owner !== 'planner') {
-      dispatchTask({ type: 'open', task: 'plan-week', returnTo: { screen, panel, projectTab } });
-    }
-    onPause(); setScreen('projects'); setPanel(null); setProjectTab('plan');
-    requestAnimationFrame(() => { document.getElementById('studio-plan-workbench')?.focus({ preventScroll: true }); shellRef.current?.querySelector<HTMLElement>('.studio-play-area')?.scrollTo({ top: 0, behavior: 'auto' }); window.scrollTo({ top: 0, behavior: 'auto' }); });
-  }
 
   function applyReturnTarget(target: StudioReturnTarget) {
     setScreen(target.panel ? getStudioDestinationForPanel(target.panel) : getStudioScreenTarget(target.screen).screen); setPanel(target.panel);
@@ -591,6 +631,9 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     if (taskId === 'launch-basic-chat' && taskForPanel('product') === 'manage-basic-chat') { openPanel('product'); return; }
     const resolved = resolveStudioIntent(game, intent ?? { kind: 'task', task: taskId });
     if (!resolved.ok) { showUnavailableTarget(resolved.reason, intent); return; }
+    if (taskId === 'architecture-research' || taskId === 'research-program') {
+      setProgramSelection({ intentId: nextIntentId.current++, programType: taskId === 'architecture-research' ? 'architecture' : 'systems' });
+    }
     if (resolved.target?.kind === 'research-method') {
       setResearchSelection({ intentId: nextIntentId.current++, researchId: resolved.target.researchId });
     } else if (resolved.target?.kind === 'staffing') {
@@ -666,7 +709,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     const parent = taskSession.detour && taskSession.tasks[taskSession.detour.owner];
     if (!parent || forceSaveOpen || busy || inFlight.current) return;
     dispatchTask({ type: 'return' }); onPause();
-    if (parent.owner === 'planner') { setScreen('projects'); setPanel(null); setProjectTab('plan'); }
+    if (parent.owner === 'planner') { setScreen('operations'); setPanel('capacity'); }
     else { setPanel(parent.owner); setScreen(getStudioDestinationForPanel(parent.owner)); }
   }
 
@@ -766,7 +809,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
 
   function viewQueuedDecision() {
     if (forceSaveOpen || busy || task?.phase === 'submitting' || inFlight.current) return;
-    dispatchTask({ type: 'close' }); setScreen('projects'); setProjectTab('work'); setPanel(null); setInspectedProjectId(null);
+    dispatchTask({ type: 'close' }); setScreen('projects'); setProjectTab('work'); setProjectFilter('active'); setPanel(null); setInspectedProjectId(null);
     if (taskSession.detour) dispatchTask({ type: 'clearDetour' });
     requestAnimationFrame(() => {
       const queue = document.getElementById('studio-work-queue');
@@ -834,8 +877,8 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   // policy when another task opens, the clock changes or a hidden form is kept.
   const reviewHandler = useRef<(payload: CommandPayload, label: string, quotedState?: GameState) => boolean>(() => false);
   reviewHandler.current = (payload, _label, quotedState) => {
-    const ownerTask = payload.kind === 'start_research_experiment' ? (panel === 'applied-research' ? 'architecture-research' : 'research-method')
-      : payload.kind === 'start_model_research' || payload.kind === 'set_model_research_paused' ? 'architecture-research'
+    const ownerTask = payload.kind === 'start_research_experiment' ? 'research-program'
+      : payload.kind === 'start_model_research' || payload.kind === 'set_model_research_paused' ? 'research-program'
       : task?.task ?? (panel ? taskForPanel(panel) : screen === 'research' ? 'research-method' : null);
     if (mode !== 'studio' || !ownerTask || ownerTask === 'plan-week') return false;
     if (forceSaveOpen || busy || !canAct || inFlight.current || task?.phase === 'submitting') return true;
@@ -891,8 +934,8 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     openTask: taskId => actionHandlers.current.openTask?.(taskId),
     openResearch: researchId => actionHandlers.current.openResearch?.(researchId),
     openModelDesigner: () => actionHandlers.current.openModelDesigner?.(),
-    delegateTraining: training => actionHandlers.current.delegateTraining?.(training),
-    editTraining: blueprint => actionHandlers.current.editTraining?.(blueprint),
+    delegateTraining: (training, project) => actionHandlers.current.delegateTraining?.(training, project),
+    editTraining: (blueprint, project) => actionHandlers.current.editTraining?.(blueprint, project),
   }), []);
 
   function inspectProject(project: StudioProject) {
@@ -924,6 +967,8 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     if (!anchor) return;
     const id = anchor.getAttribute('href')?.slice(1) ?? '';
     if (id === 'lab') { event.preventDefault(); if (taskModal) closeTask(); else closePanel(); return; }
+    if (id === 'planner' || id === 'studio-plan-workbench') { event.preventDefault(); openPlanner(); return; }
+    if (id === 'development-plans') { event.preventDefault(); openPanel(id); return; }
     const target = resolveStudioHash(id);
     if (target) { event.preventDefault(); if (target.panel) openPanel(target.panel); else selectScreen(target.screen); }
   }
@@ -933,13 +978,19 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   }
 
   const s = studio.summary;
-  const activeProjects = studio.projects.filter(project => project.status !== 'complete');
+  const ownDevelopmentPlans = Object.values(game.slices.models.developmentPlans ?? {}).filter(plan => plan.companyId === game.playerCompanyId);
+  const { individualProjects, planStageJobs, blockedPlanIds } = getStudioWorkQueue(game, studio.projects);
+  const planCounts = developmentPlanCounts(game, blockedPlanIds);
+  const projectMatches = (project: StudioProject, filter: ProjectFilter) => filter === 'complete' ? project.status === 'complete' : filter === 'blocked' ? project.status === 'blocked' : project.status !== 'complete';
+  const projectCounts = Object.fromEntries((['active', 'blocked', 'complete'] as const).map(filter => [filter, individualProjects.filter(project => projectMatches(project, filter)).length + planCounts[filter]])) as Record<ProjectFilter, number>;
+  const activeProjects = individualProjects.filter(project => project.status !== 'complete');
   const pinnedProjects = pinned.map(id => studio.projects.find(project => project.id === id)).filter((item): item is StudioProject => !!item).slice(0, 4);
-  const skipTarget = menusOpen ? 'studio-menu-directory' : surfaceModal ? 'studio-decision-title' : !panel && screen === 'studio' ? 'studio-workstations' : !panel && screen === 'projects' ? projectTab === 'plan' ? 'studio-plan-workbench' : 'studio-project-board' : !panel && screen === 'research' ? 'studio-research-tree' : 'studio-inspector';
+  const skipTarget = menusOpen ? 'studio-menu-directory' : surfaceModal ? 'studio-decision-title' : panel === 'capacity' ? 'studio-plan-workbench' : !panel && screen === 'studio' ? 'studio-workstations' : !panel && screen === 'projects' ? projectTab === 'plan' ? 'studio-plan-workbench' : 'studio-project-board' : !panel && screen === 'research' ? 'studio-research-tree' : 'studio-inspector';
   const expandedStudio = studio.roomTier !== 'garage';
   const campusStudio = studio.roomTier === 'campus';
   const pendingCommands = game.queuedCommands.filter(command => command.companyId === game.playerCompanyId);
-  const filteredProjects = studio.projects.filter(project => projectFilter === 'complete' ? project.status === 'complete' : projectFilter === 'blocked' ? project.status === 'blocked' : project.status !== 'complete');
+  const queuedChanges = pendingCommands.filter(command => command.payload.kind !== 'start_development_plan');
+  const filteredProjects = individualProjects.filter(project => projectMatches(project, projectFilter));
   const inspectedProject = inspectedProjectId ? studio.projects.find(project => project.id === inspectedProjectId) : null;
   const resultIntent: StudioIntent | null = inspectedProject?.status === 'complete' && inspectedProject.kind === 'training'
     ? { kind: 'training-result', runId: inspectedProject.id }
@@ -960,7 +1011,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
             : detourParent?.task === 'plan-week' ? 'Return to resource plan'
               : detourParent ? 'Back to your choices' : 'Return to task';
   const taskTitle = commandReviewVisible ? 'Review: ' + commandLabel(task!.review!.payload)
-    : task ? STUDIO_TASKS[task.task].title : 'Company workbench';
+    : task?.owner === 'research-programs' ? 'Manage research programs' : task ? STUDIO_TASKS[task.task].title : 'Company workbench';
   const taskBusy = busy || task?.phase === 'submitting';
   const staleReview = !!task?.review && !isStudioTaskReviewCurrent(task, revision.current.value);
   const reviewAccepted = !!task?.review && (task.phase === 'review' || task.phase === 'submitting') && getUiCommandPreview(game, task.review.payload, CONTENT).accepted;
@@ -995,15 +1046,16 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
 
   return <StudioWorkbenchProvider value={workbenchVisibility}><StudioCommandReviewProvider value={mode === 'studio' ? reviewCommand : null}><main id="lab" ref={shellRef} className={'lab-shell ' + (mode === 'studio' ? 'studio-mode' : 'classic-mode') + (reducedMotion ? ' reduced-motion' : '')} data-studio-panel={panel ?? ''} data-screen={screen} data-project-tab={projectTab} data-task-modal={surfaceModal || undefined} onClickCapture={followLink}>
     <div className="studio-classic-entry"><button type="button" onClick={() => setMode('studio')}><LayoutGrid size={15} /> Open Studio</button><span>The same company, in a new light.</span><button type="button" className="studio-results-toggle" onClick={openResults} disabled={forceSaveOpen || busy} aria-label={'Open Results, ' + (results?.unreadCount ?? 0) + ' unreviewed'}><Inbox size={16} />Results<strong>{results?.unreadCount ?? 0}</strong></button></div>
+    {mode === 'classic' && migrationNotice}
     <div className="studio-only studio-chrome" ref={chromeRef}>
       <a className="skip-link" href={'#' + skipTarget}>{skipTarget === 'studio-workstations' ? 'Skip to workstations' : skipTarget === 'studio-project-board' ? 'Skip to projects' : 'Skip to workbench'}</a>
       <header className="studio-header" ref={headerRef}>
         <button className="studio-brand" type="button" onClick={() => selectScreen('studio')} aria-label="Frontier Lab studio home"><span className="studio-brand-symbol"><FlaskConical size={24} strokeWidth={1.7} /></span><span><strong>Frontier Lab<span className="studio-brand-dot">.</span></strong><small>THE STUDIO ERA</small></span></button>
         <StudioCompanySummary summary={s} disabled={forceSaveOpen || busy} onOpenPanel={openPanel} />
-        <div className="studio-clock" aria-busy={busy}><span className="studio-week">Week <strong>{String(game.week).padStart(2, '0')}</strong></span><span className={'studio-clock-label ' + (!busy && !paused ? 'is-running' : '')}><span />{busy ? 'Working' : paused ? 'Paused' : 'Running'}</span><button className="studio-play" type="button" onClick={() => { activateSound(); onToggleRunning(); }} disabled={!canAct || busy} aria-label={paused ? 'Resume simulation' : 'Pause simulation'}>{paused ? <Play size={15} fill="currentColor" /> : <Pause size={15} fill="currentColor" />}</button><div className="studio-speeds" role="group" aria-label="Simulation speed">{([1, 2, 5] as const).map(value => <button type="button" key={value} aria-pressed={speed === value} onClick={() => onSpeed(value)} disabled={!isController || busy}>{value}×</button>)}</div><button className="studio-step" type="button" onClick={() => { activateSound(); onStep(); }} disabled={!canAct || busy}>Next week <ChevronRight size={15} /></button></div>
+        <div className="studio-clock" aria-busy={busy}><span className="studio-week">Week <strong>{String(game.week).padStart(2, '0')}</strong></span><span className={'studio-clock-label ' + (!busy && !paused ? 'is-running' : '')}><span />{busy ? 'Working' : paused ? 'Paused' : decisionRunActive ? 'Decision run' : 'Continuous play'}</span><button className="studio-play" type="button" onClick={() => { activateSound(); onToggleRunning(); }} disabled={!canAct || busy} aria-label={paused ? 'Resume simulation' : 'Pause simulation'}>{paused ? <Play size={15} fill="currentColor" /> : <Pause size={15} fill="currentColor" />}</button><div className="studio-speeds" role="group" aria-label="Simulation speed">{([1, 2, 5] as const).map(value => <button type="button" key={value} aria-pressed={speed === value} onClick={() => onSpeed(value)} disabled={!isController || busy}>{value}×</button>)}</div><button className="studio-step" type="button" onClick={() => { activateSound(); onStep(); }} disabled={!canAct || busy}>Next week <ChevronRight size={15} /></button></div>
       </header>
       <div className="studio-sidebar" ref={sidebarRef}>
-        <StudioNavigation screen={screen} disabled={forceSaveOpen || task?.phase === 'submitting'} projectCount={activeProjects.length} onSelect={selectScreen} />
+        <StudioNavigation screen={screen} disabled={forceSaveOpen || task?.phase === 'submitting'} projectCount={activeProjects.length + planCounts.active} onSelect={selectScreen} />
         <div className="studio-utilities" aria-label="Lab utilities"><button type="button" className="studio-all-menus-toggle" aria-expanded={menusOpen} aria-controls="studio-menu-directory" aria-keyshortcuts="Control+K Meta+K" onClick={menusOpen ? closeMenus : openMenus} disabled={forceSaveOpen || busy}><LayoutGrid size={17} />All menus</button><button type="button" className="studio-results-toggle" onClick={openResults} disabled={forceSaveOpen || busy} aria-label={'Open Results, ' + (results?.unreadCount ?? 0) + ' unreviewed'}><Inbox size={17} />Results<strong>{results?.unreadCount ?? 0}</strong></button>
           <button type="button" onClick={() => openPanel('save')}><Save size={15} />Save</button>
           <StudioContextMenu label="Settings and utilities" trigger={<button type="button" aria-label="Settings and utilities"><Settings size={15} />Settings</button>} items={preferenceItems} />
@@ -1011,6 +1063,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
       </div>
       <div className="studio-status-line" role="status" aria-live="polite" aria-atomic="true"><span><span className="studio-status-dot" />{busyMessage || notice}</span>{s.queuedCount > 0 && <button type="button" onClick={viewQueuedDecision} disabled={forceSaveOpen || busy}>{s.queuedCount} queued for W{game.week + 1}<ChevronRight size={13} /></button>}</div>
       {decisionControls}
+      {mode === 'studio' && migrationNotice}
       {(errorMessage || commandError) && <p className="error-message studio-operation-error" role="alert">{commandError || errorMessage}</p>}
       {navigationMessage && <p className="studio-task-navigation-note" role="status">{navigationMessage}</p>}
       {completion && <div className="studio-result-announcement" role="status" aria-live="polite"><CheckCircle2 size={17} aria-hidden="true" /><span>{completion}</span><button type="button" onClick={openResults} disabled={forceSaveOpen || busy}>View results<ChevronRight size={14} /></button></div>}
@@ -1020,11 +1073,12 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
 
     {menusOpen && <div className="studio-menu-host studio-only" id="studio-menu-directory" role="region" aria-label="All menus workspace" tabIndex={-1}><StudioMenuDirectory sections={sections} disabled={forceSaveOpen || busy} onNavigate={navigateMenuTarget} onClose={closeMenus} /></div>}
     <div className="studio-play-area" hidden={menusOpen}>
-      <StudioWorkspaceHeader screen={screen} panel={panel} projectTab={projectTab} sections={sections} disabled={forceSaveOpen || task?.phase === 'submitting'} onSelect={id => {
-        if (id === 'plan') openPlanner();
+      <StudioWorkspaceHeader screen={screen} panel={panel} projectTab={projectTab} sections={sections} disabled={forceSaveOpen || task?.phase === 'submitting'} onDevelop={openModelDesigner} onSelect={id => {
+        if (id === 'plan' || id === 'capacity') openPlanner();
         else if (id === 'work') { setProjectTab('work'); selectScreen('projects'); }
         else openPanel(id);
       }} />
+      {screen === 'operations' && <StudioCapacityNavigation panel={panel} sections={sections} disabled={forceSaveOpen || task?.phase === 'submitting'} onSelect={id => id === 'capacity' ? openPlanner() : openPanel(id)} />}
       <section className="studio-research-heading studio-only" hidden={screen !== 'research'} aria-label="Research workspace">
         <span className="studio-eyebrow">THE RESEARCH NOTEBOOK</span>
         <div className="studio-project-heading"><div><h1>Find your next breakthrough.</h1><p>Choose a discovery, check what it needs, and put it to work.</p></div><span className="studio-research-count">{CONTENT.research.length}<small>discoveries</small></span></div>
@@ -1059,16 +1113,23 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
             <button type="button" aria-pressed={projectTab === 'plan'} onClick={openPlanner}><SlidersHorizontal size={15} />Plan week</button>
           </div>
           <div hidden={projectTab !== 'work'}>
-            {pendingCommands.length > 0 && <section id="studio-work-queue" className="studio-command-queue" tabIndex={-1} aria-label="Changes queued for next week"><div className="studio-block-title"><h2>Queued for Week {game.week + 1}<small>{pendingCommands.length} change{pendingCommands.length === 1 ? '' : 's'}</small></h2><span>{formatMoney(pendingCommands.reduce((total, command) => total + (command.reservedCents ?? 0), 0))} reserved</span></div><ol>{pendingCommands.map((command, index) => <li key={command.id}><span className="studio-queue-number">{String(index + 1).padStart(2, '0')}</span><div><strong>{commandLabel(command.payload)}</strong><small>{command.payload.kind === 'apply_studio_plan' ? command.payload.commands.length + (command.payload.commands.length === 1 ? ' change' : ' changes') + ' · all changes must be possible for this plan to go ahead' : 'Checked when next week starts'}</small></div><span>{command.reservedCents ? formatMoney(command.reservedCents) : 'No upfront fee'}</span></li>)}</ol></section>}
-            <div className="studio-filter-row" role="group" aria-label="Filter projects">{(['active', 'blocked', 'complete'] as const).map(filter => <button type="button" key={filter} aria-pressed={projectFilter === filter} onClick={() => setProjectFilter(filter)}>{filter === 'active' ? 'Active' : filter === 'blocked' ? 'Blocked' : 'Complete'} <small>{studio.projects.filter(project => filter === 'complete' ? project.status === 'complete' : filter === 'blocked' ? project.status === 'blocked' : project.status !== 'complete').length}</small></button>)}</div>
+            {queuedChanges.length > 0 && <section id="studio-work-queue" className="studio-command-queue" tabIndex={-1} aria-label="Changes queued for next week"><div className="studio-block-title"><h2>Queued for Week {game.week + 1}<small>{queuedChanges.length} change{queuedChanges.length === 1 ? '' : 's'}</small></h2><span>{formatMoney(queuedChanges.reduce((total, command) => total + (command.reservedCents ?? 0), 0))} reserved</span></div><ol>{queuedChanges.map((command, index) => <li key={command.id}><span className="studio-queue-number">{String(index + 1).padStart(2, '0')}</span><div><strong>{commandLabel(command.payload)}</strong><small>{command.payload.kind === 'apply_studio_plan' ? command.payload.commands.length + (command.payload.commands.length === 1 ? ' change' : ' changes') + ' · all changes must be possible for this plan to go ahead' : 'Checked when next week starts'}</small></div><span>{command.reservedCents ? formatMoney(command.reservedCents) : 'No upfront fee'}</span></li>)}</ol></section>}
+            <div className="studio-project-toolbar"><div className="studio-filter-row" role="group" aria-label="Filter projects">{(['active', 'blocked', 'complete'] as const).map(filter => <button type="button" key={filter} aria-pressed={projectFilter === filter} onClick={() => setProjectFilter(filter)}>{filter === 'active' ? 'Active' : filter === 'blocked' ? 'Blocked' : 'Complete'} <small>{projectCounts[filter]}</small></button>)}</div><button type="button" onClick={openPlanner}>Review capacity</button></div>
+            {ownDevelopmentPlans.some(plan => plan.status === 'review') && projectFilter !== 'complete' && <button type="button" className="studio-project-ready" onClick={() => setProjectFilter('complete')}>Review completed development plans ({ownDevelopmentPlans.filter(plan => plan.status === 'review').length})</button>}
+            {planCounts[projectFilter] > 0 && <DevelopmentNavigationProvider value={developmentNavigation}><StudioTaskActionsProvider value={taskActions}>
+              <DevelopmentPlanList game={game} canAct={canAct} onQueue={onQueue} paused={paused} decisionRunActive={decisionRunActive} onRun={onRunToDecision} filter={projectFilter} blockedPlanIds={blockedPlanIds} renderStages={plan => {
+                const jobs = planStageJobs[plan.id] ?? [];
+                return jobs.length > 0 ? <details className="studio-plan-stage-jobs"><summary>Stage jobs ({jobs.length})</summary><div className="studio-project-grid">{jobs.map(project => projectCard(project, true))}</div></details> : null;
+              }} />
+            </StudioTaskActionsProvider></DevelopmentNavigationProvider>}
             <div className="studio-project-grid">{filteredProjects.map(project => projectCard(project))}</div>
-            {!filteredProjects.length && <div className="studio-empty-board"><ListTodo size={30} /><h2>{projectFilter === 'blocked' ? 'No blocked projects' : projectFilter === 'complete' ? 'No finished projects yet' : 'No projects running'}</h2><p>{projectFilter === 'blocked' ? 'Projects with a missing resource will appear here.' : 'Prepare data, train a model, or begin a discovery at a workstation.'}</p><button className="studio-primary" type="button" onClick={() => { const nextTask = taskForPanel(studio.nextAction.targetPanel); if (nextTask) openTask(nextTask); else openPanel(studio.nextAction.targetPanel); }}>{studio.nextAction.actionLabel}<ArrowUpRight size={14} /></button></div>}
+            {projectCounts[projectFilter] === 0 && <div className="studio-empty-board"><ListTodo size={30} /><h2>{projectFilter === 'blocked' ? 'No blocked projects' : projectFilter === 'complete' ? 'No finished projects yet' : 'No projects running'}</h2><p>{projectFilter === 'blocked' ? 'Projects with a missing resource will appear here.' : 'Prepare data, develop a model, or begin a discovery. Individual jobs and delegated plans appear together here.'}</p><button className="studio-primary" type="button" onClick={() => { const nextTask = taskForPanel(studio.nextAction.targetPanel); if (nextTask) openTask(nextTask); else openPanel(studio.nextAction.targetPanel); }}>{studio.nextAction.actionLabel}</button></div>}
             <div className="studio-workbench-shortcuts">{studio.stations.map(item => <button type="button" key={item.id} onClick={() => openPanel(item.targetPanel)}>{item.title}<ChevronRight size={13} /></button>)}</div>
           </div>
         </section>}
       </div>
 
-      <div className="studio-planner-host studio-only" id="studio-plan-workbench" tabIndex={-1} hidden={screen !== 'projects' || projectTab !== 'plan' || panel !== null}>
+      <div className="studio-planner-host studio-only" id="studio-plan-workbench" tabIndex={-1} hidden={panel !== 'capacity' && (screen !== 'projects' || projectTab !== 'plan' || panel !== null)}>
         {task?.owner === 'planner' && <div className="studio-task-return"><span>Planning keeps the lab paused.</span><button type="button" onClick={closeTask} disabled={busy}>Back and keep plan<ChevronRight size={15} /></button><button type="button" onClick={resetTaskDraft} disabled={busy}>Reset plan</button></div>}
         <div className="studio-workbench-shortcuts" aria-label="Focused staffing decisions"><button type="button" disabled={forceSaveOpen || busy} onClick={() => hireStaff(undefined, plannerContext?.reason)}>Hire staff<ChevronRight size={14} /></button><button type="button" disabled={forceSaveOpen || busy} onClick={() => assignStaff(undefined, plannerContext?.reason)}>Team output<ChevronRight size={14} /></button></div>
         <StudioWorkbenchPanel panelId="planner" studioOnly><StudioPlanner key={plannerEpoch} game={game} paused={paused} canAct={canAct} onApplyPlan={onApplyPlan} context={plannerContext} /></StudioWorkbenchPanel>
@@ -1093,7 +1154,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
             {forceSaveOpen && <p className="studio-review-note">Finish or cancel loading this save to return to your lab.</p>}
             <div className="studio-inspector-title"><h2>{PANEL_TITLES[panel]}</h2>{station && <Status status={station.status} />}</div>
             {station && <p className={'studio-inspector-subtitle ' + (station.bottleneck ? 'has-blocker' : '')}>{station.bottleneck || station.detail}</p>}
-            {taskForPanel(panel) && !panelLock && <div className="studio-task-entry-actions">
+            {taskForPanel(panel) && !panelLock && !['people', 'compute', 'research-programs'].includes(panel) && <div className="studio-task-entry-actions">
               {panel === 'people' ? <><button type="button" className="studio-primary studio-open-task" disabled={forceSaveOpen || busy} onClick={() => hireStaff()}>Hire staff<ArrowUpRight size={15} /></button><button type="button" className="studio-surface-button" disabled={forceSaveOpen || busy} onClick={() => assignStaff()}>Team output<ArrowUpRight size={15} /></button></>
                 : panel === 'compute' ? <><button type="button" className="studio-primary studio-open-task" disabled={forceSaveOpen || busy} onClick={() => openNamedTask('allocate-compute')}>Allocate compute<ArrowUpRight size={15} /></button><button type="button" className="studio-surface-button" disabled={forceSaveOpen || busy} onClick={() => openNamedTask('rent-compute')}>Rent or release compute<ArrowUpRight size={15} /></button></>
                 : <button type="button" className="studio-primary studio-open-task" disabled={forceSaveOpen || busy} onClick={() => openTask(taskForPanel(panel)!)}>{STUDIO_TASKS[taskForPanel(panel)!].title}<ArrowUpRight size={15} /></button>}
@@ -1112,7 +1173,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
           <StudioTaskSurface docked={mode === 'studio'} id="studio-decision" className={'studio-desktop-task studio-task-' + (task?.task ?? 'inspect') + ' studio-task-phase-' + (task?.phase ?? 'inspect')} mode={surfaceModal ? 'dialog' : 'inline'} title={resultsOpen ? 'Results' : taskTitle} eyebrow={resultsOpen ? 'Your lab notebook' : commandReviewVisible ? 'Review your choice' : 'Make a plan'} description={resultsOpen ? 'Catch up on finished work and choose what to do next.' : task?.phase === 'editing' && !TASK_PRIMARY_ACTIONS[task.task] ? 'Choose your settings and schedule the action at the quoted cost.' : undefined}
             returnFocusRef={resultsOpen ? resultsReturnFocusRef : taskReturnFocusRef} fallbackFocusRef={inspectorRef} busy={resultsOpen ? false : taskBusy} closeDisabled={resultsOpen ? false : taskBusy || forceSaveOpen} onClose={resultsOpen ? closeResults : closeTask} closeLabel={resultsOpen ? 'Close Results' : 'Close and keep draft'}
             onBack={resultsOpen ? closeResults : task?.phase === 'review' ? () => dispatchTask({ type: 'back' }) : closeTask} backLabel={resultsOpen ? task && task.owner !== 'planner' ? 'Back to ' + STUDIO_TASKS[task.task].title.toLowerCase() : 'Back to lab' : task?.phase === 'review' ? 'Back to setup' : detourParent ? returnLabel : 'Back'}
-            status={<><span className="studio-task-clock">Week {game.week} · {busy ? 'Working' : paused ? 'Lab paused' : 'Running'}</span><span role="status" aria-live="polite">{busyMessage || saveMessage}</span>{!isController && <span className="studio-task-warning">You can look around. To make changes, wait for the lab to load or take control from the other tab.</span>}{errorMessage && errorMessage !== (task?.acknowledgement?.status !== 'accepted' ? task?.acknowledgement?.reason : '') && <span role="alert" className="studio-task-warning">{errorMessage}</span>}</>}
+            status={busyMessage || !isController || errorMessage ? <>{busyMessage && <span role="status" aria-live="polite">{busyMessage}</span>}{!isController && <span className="studio-task-warning">You can look around. To make changes, wait for the lab to load or take control from the other tab.</span>}{errorMessage && errorMessage !== (task?.acknowledgement?.status !== 'accepted' ? task?.acknowledgement?.reason : '') && <span role="alert" className="studio-task-warning">{errorMessage}</span>}</> : undefined}
             editingAction={taskModal && task && !commandReviewVisible ? {
               key: task.owner + ':' + task.instanceId + ':' + task.draftGeneration,
               actionKey: TASK_PRIMARY_ACTIONS[task.task],
@@ -1133,9 +1194,8 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
             </section>}
             {taskModal && commandError && <p className="error-message" role="alert">{commandError}</p>}
             <div className="studio-task-setup" hidden={resultsOpen || (taskModal && commandReviewVisible)}>
-              <div className="studio-content" hidden={methodTask}>{children}<StudioReleaseDesk key={'release-' + plannerEpoch + ':' + (draftGenerations['release-desk'] ?? 0)} game={game} active={mode === 'classic' || workbenchVisibility.panel === 'release-desk'} canAct={canAct} onQueue={onQueue} onOpenPanel={openPanel} /><StudioCampus key={'campus-' + plannerEpoch + ':' + (draftGenerations.campus ?? 0)} game={game} active={mode === 'classic' || workbenchVisibility.panel === 'campus'} canAct={canAct} onQueue={onQueue} onOpenPanel={openPanel} /></div>
-              {methodTask && task?.task === 'architecture-research' && <ModelResearchPanel game={game} canAct={canAct} onQueue={onQueue} />}
-              {methodTask && task?.task !== 'architecture-research' && <StudioResearchMethod game={game} canAct={canAct} onQueue={onQueue} researchId={researchSelection?.researchId ?? null} onOpenMethod={openResearchMethod} onOpenPanel={openResearchPanel} onReviewResources={openPlanner} onReviewStaff={reviewResearchStaff} onReviewCompute={() => openNamedTask('allocate-compute')} onBrowse={() => openResearchTree()} />}
+              <div className="studio-content" hidden={methodTask}>{children}<StudioWorkbenchPanel panelId="research-programs"><ResearchProgramsWorkspace game={game} canAct={canAct} onQueue={onQueue} selection={programSelection} /></StudioWorkbenchPanel><StudioReleaseDesk key={'release-' + plannerEpoch + ':' + (draftGenerations['release-desk'] ?? 0)} game={game} active={mode === 'classic' || workbenchVisibility.panel === 'release-desk'} canAct={canAct} onQueue={onQueue} onOpenPanel={openPanel} /><StudioCampus key={'campus-' + plannerEpoch + ':' + (draftGenerations.campus ?? 0)} game={game} active={mode === 'classic' || workbenchVisibility.panel === 'campus'} canAct={canAct} onQueue={onQueue} onOpenPanel={openPanel} /></div>
+              {methodTask && <StudioResearchMethod game={game} canAct={canAct} onQueue={onQueue} researchId={researchSelection?.researchId ?? null} onOpenMethod={openResearchMethod} onOpenPanel={openResearchPanel} onReviewResources={openPlanner} onReviewStaff={reviewResearchStaff} onReviewCompute={() => openNamedTask('allocate-compute')} onBrowse={() => openResearchTree()} />}
             </div>
             <div hidden={!resultsOpen}>{resultsOpen && <>{resultActionError && <p className="error-message" role="alert">{resultActionError}</p>}<StudioResultsPanel results={resultEntries} flags={results?.flags ?? {}} attention={resultAttention} ready={results?.ready ?? false} persistenceNotice={results?.notice} disabled={busy || forceSaveOpen} onReview={keys => results?.markReviewed(keys)} onDismiss={key => results?.dismiss(key)} onRestore={key => results?.restore(key)} onAction={followResult} /></>}</div>
             {taskModal && task?.phase === 'editing' && task.acknowledgement && task.acknowledgement.status !== 'accepted' && <p className="error-message" role="alert">{task.acknowledgement.reason}</p>}
@@ -1147,6 +1207,6 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
         {mode === 'studio' && panel && (screen === 'studio' || screen === 'projects') && <div className="studio-inspector-related"><span>Also in your studio</span>{['data', 'models', 'lab-projects'].includes(panel) && <><button type="button" onClick={() => openPanel('synthetic-data', 'research')}><Sparkles size={14} />Synthetic data<ChevronRight size={13} /></button><button type="button" onClick={() => openPanel('model-corpus-compare', 'research')}><ClipboardCheck size={14} />Compare models & data<ChevronRight size={13} /></button></>}<button type="button" onClick={openPlanner}><SlidersHorizontal size={14} />Plan people & compute<ChevronRight size={13} /></button><button type="button" onClick={() => openPanel(panel === 'people' ? 'compute' : 'people')}>{panel === 'people' ? <Server size={14} /> : <Users size={14} />}{panel === 'people' ? 'Compute allocation' : 'Staff & team output'}<ChevronRight size={13} /></button>{sections.infrastructure && <button type="button" onClick={() => openPanel('infrastructure')}><Server size={14} />Racks & facilities<ChevronRight size={13} /></button>}{sections.chips && <button type="button" onClick={() => openPanel('chips')}><FlaskConical size={14} />Chips & networking<ChevronRight size={13} /></button>}{sections.capacityForecast && <button type="button" onClick={() => openPanel('capacity-forecast')}><Activity size={14} />Capacity forecast<ChevronRight size={13} /></button>}</div>}
       </aside>
     </div>
-    <footer className="studio-footer studio-only"><button type="button" data-save-kind={saveKind} aria-label={'Open save controls. ' + saveMessage} onClick={() => openPanel('save', 'save')}>{saveKind === 'waiting' || saveKind === 'dirty' || saveKind === 'saving' ? <Activity size={12} aria-hidden="true" /> : saveKind === 'failed' ? <LockKeyhole size={12} aria-hidden="true" /> : <Save size={12} aria-hidden="true" />}<span role="status" aria-live="polite" aria-atomic="true">{saveMessage}</span></button><span>The computers are expensive. The ambition is yours.</span><span>Studio {CONTENT.buildVersion.split('.').slice(0, 2).join('.')} · {CONTENT.clock.secondsPerWeek}s / week</span></footer>
+    <footer className="studio-footer studio-only"><button type="button" data-save-kind={saveKind} aria-label={'Open save controls. ' + saveMessage} onClick={() => openPanel('save', 'save')}>{saveKind === 'waiting' || saveKind === 'dirty' || saveKind === 'saving' ? <Activity size={12} aria-hidden="true" /> : saveKind === 'failed' ? <LockKeyhole size={12} aria-hidden="true" /> : <Save size={12} aria-hidden="true" />}<span role="status" aria-live="polite" aria-atomic="true">{saveMessage}</span></button><span>The computers are expensive. The ambition is yours.</span><span>Studio {CONTENT.buildVersion} · {CONTENT.clock.secondsPerWeek}s / week</span></footer>
   </main></StudioCommandReviewProvider></StudioWorkbenchProvider>;
 }

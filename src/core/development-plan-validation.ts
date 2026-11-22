@@ -48,7 +48,8 @@ export function assertDevelopmentPlanCommand(payload: CommandPayload) {
     assertCommandShape(payload.training);
     if (!['basic-conversation-1', 'expanded-capabilities-1', 'advanced-capabilities-1', 'behavior-cases-1'].includes(payload.suiteId)) fail('choose a capability or behavior test.');
   } else if (payload.kind === 'revise_development_plan') {
-    keys(payload, ['kind', 'planId', 'feeBudgetCents', 'cashReserveCents', 'deadlineWeek'], ['leadStaffId', 'capacityShareBps']); id(payload.planId); limits(payload); responsibility(payload);
+    keys(payload, ['kind', 'planId', 'feeBudgetCents', 'cashReserveCents', 'deadlineWeek'], ['leadStaffId', 'capacityShareBps', 'resume']); id(payload.planId); limits(payload); responsibility(payload);
+    if (Object.hasOwn(payload, 'resume') && typeof payload.resume !== 'boolean') fail('choose whether to resume after changing limits.');
   } else if (payload.kind === 'set_development_plan_paused') {
     keys(payload, ['kind', 'planId', 'paused']); id(payload.planId); if (typeof payload.paused !== 'boolean') fail('choose pause or resume.');
   } else if (payload.kind === 'cancel_development_plan') { keys(payload, ['kind', 'planId']); id(payload.planId); }

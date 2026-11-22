@@ -9,6 +9,7 @@ import { getComputeCostView } from '../modules/compute-costs';
 import { getPoolWorkCostRate } from '../modules/compute-pools';
 import { ActionControl, Metric, Metrics, Section } from './components';
 import type { PanelProps } from './panels';
+import { useStudioWorkbenchPresentation } from './studio-workbench-context';
 
 const pct = (bps: number) => (bps / 100).toLocaleString('en-US', { maximumFractionDigits: 2 }) + '%';
 
@@ -91,9 +92,17 @@ function SettledReport({ report }: { report: ComputeCostReport }) {
 
 export function ComputeCostsPanel({ game, canAct, onQueue }: PanelProps) {
   const view = getComputeCostView(game);
+  const focused = useStudioWorkbenchPresentation() === 'studio';
+  const [open, setOpen] = useState(false);
   const [selectedWeek, setSelectedWeek] = useState<number | null>(null);
   const report = view.reports.find(item => item.week === selectedWeek) ?? view.latest;
   const rollout = view.rollout;
+  const reportContent = report && (focused || open) && <>
+    <label className="line-control" htmlFor="compute-cost-week">Week<select id="compute-cost-week" value={report.week} onChange={event => setSelectedWeek(Number(event.target.value))}>
+      {view.reports.map(item => <option key={item.week} value={item.week}>Week {item.week}</option>)}
+    </select></label>
+    <SettledReport report={report} />
+  </>;
   return <Section title="Compute costs" id="compute-costs">
     <p className="small-note">See GPU bills, unused rentals, and each product’s contribution for the last eight completed weeks.</p>
     {!view.researched ? <p className="planned-note">Research Capacity forecast (R12A), then install cost accounting here. <a href="#research">Review research</a>.</p>
@@ -103,11 +112,8 @@ export function ComputeCostsPanel({ game, canAct, onQueue }: PanelProps) {
           <p className="small-note">{formatWorkPoints(rollout.completedStaff)} / {formatWorkPoints(rollout.requiredStaff)} Design points; {formatUnits(rollout.completedWork)} / {formatUnits(rollout.requiredWork)} development CUw.</p>
           {rollout.lastBottleneck && <p className="bottleneck">{rollout.lastBottleneck}</p>}
         </div>
-          : report ? <details className="inline-details"><summary>View compute costs · Week {report.week}</summary>
-            <label className="line-control" htmlFor="compute-cost-week">Week<select id="compute-cost-week" value={report.week} onChange={event => setSelectedWeek(Number(event.target.value))}>
-              {view.reports.map(item => <option key={item.week} value={item.week}>Week {item.week}</option>)}
-            </select></label>
-            <SettledReport report={report} />
-          </details> : <p className="small-note">Your first report arrives after the next week ends. Reports start when cost accounting is installed.</p>}
+          : report ? focused ? <div className="compute-cost-report" aria-label={'Compute costs for Week ' + report.week}>{reportContent}</div>
+            : <details className="inline-details" open={open} onToggle={event => setOpen(event.currentTarget.open)}><summary>View compute costs · Week {report.week}</summary>{reportContent}</details>
+            : <p className="small-note">Your first report arrives after the next week ends. Reports start when cost accounting is installed.</p>}
   </Section>;
 }

@@ -10,6 +10,7 @@ import { capacityForecastAvailability, getCapacityForecast } from '../modules/ca
 import { ActionControl, Metric, Metrics, parseFixed, ROLE_LABELS, Section } from './components';
 import type { PanelProps } from './panels';
 import { BatchQueueSummary } from './batch-inference-panel';
+import { useStudioWorkbenchPresentation } from './studio-workbench-context';
 
 const pct = (bps: number) => (bps / 100).toLocaleString('en-US', { maximumFractionDigits: 2 }) + '%';
 
@@ -57,16 +58,30 @@ function Scenario({ scenario, selectedWeek, onSelect }: { scenario: CapacityFore
 
 export function CapacityForecastPanel({ game, canAct, onQueue }: PanelProps) {
   const status = capacityForecastAvailability(game);
+  const focused = useStudioWorkbenchPresentation() === 'studio';
   const [open, setOpen] = useState(false);
   const [baseGrowth, setBaseGrowth] = useState(String(RULES.defaultBaseGrowthBps / 100));
   const [stressGrowth, setStressGrowth] = useState(String(RULES.defaultStressGrowthBps / 100));
   const [baseWeek, setBaseWeek] = useState(game.week + 1), [stressWeek, setStressWeek] = useState(game.week + RULES.horizonWeeks);
   const baseGrowthBps = parseFixed(baseGrowth, 2), stressGrowthBps = parseFixed(stressGrowth, 2);
   const valid = baseGrowthBps !== null && stressGrowthBps !== null && baseGrowthBps <= RULES.maximumGrowthBps && stressGrowthBps <= RULES.maximumGrowthBps && stressGrowthBps >= baseGrowthBps;
-  const forecast = useMemo(() => open && status.available && valid
+  const showTool = focused || open;
+  const forecast = useMemo(() => showTool && status.available && valid
     ? getCapacityForecast(game, { baseGrowthBps: baseGrowthBps!, stressGrowthBps: stressGrowthBps! }, CONTENT) : null,
-  [open, status.available, valid, game, baseGrowthBps, stressGrowthBps]);
+  [showTool, status.available, valid, game, baseGrowthBps, stressGrowthBps]);
   const rollout = status.rollout;
+  const tool = showTool && <>
+    <label className="line-control" htmlFor="forecast-base-growth">Expected customer growth<span className="unit-input"><input id="forecast-base-growth" type="number" min="0" max="10" step="0.25" value={baseGrowth} onChange={event => setBaseGrowth(event.target.value)} />% / week</span></label>
+    <label className="line-control" htmlFor="forecast-stress-growth">Higher-growth scenario<span className="unit-input"><input id="forecast-stress-growth" type="number" min="0" max="10" step="0.25" value={stressGrowth} onChange={event => setStressGrowth(event.target.value)} />% / week</span></label>
+    {!valid && <p className="invalid-preview" role="status">Enter 0–10% growth per week. The higher-growth scenario must be at least as high as the expected rate.</p>}
+    {forecast && <>
+      <Metrics><Metric label="Current cloud rental">{formatUnits(forecast.currentCloudCU)} CU · {formatMoney(forecast.currentCloudRentCents)} / week</Metric><Metric label="Development / research kept aside">{formatUnits(forecast.developmentAllocationCU)} / {formatUnits(forecast.researchAllocationCU)} CU</Metric></Metrics>
+      <p className="small-note">This forecast uses today’s hardware and ready staff, with resources set aside for signed contracts. It excludes future deliveries, hires, construction, and queued changes. Previewing costs nothing.</p>
+      <Scenario scenario={forecast.scenarios[0]} selectedWeek={baseWeek} onSelect={setBaseWeek} />
+      <Scenario scenario={forecast.scenarios[1]} selectedWeek={stressWeek} onSelect={setStressWeek} />
+      <details className="inline-details"><summary>Forecast assumptions and limits</summary><ul>{forecast.assumptions.map(assumption => <li key={assumption} className="small-note">{assumption}</li>)}</ul></details>
+    </>}
+  </>;
   return <Section title="Capacity forecast" id="capacity-forecast">
     <p className="small-note">Check whether your staff, GPUs, and memory can handle the next twelve weeks of customers and contracts.</p>
     <BatchQueueSummary game={game} />
@@ -76,17 +91,7 @@ export function CapacityForecastPanel({ game, canAct, onQueue }: PanelProps) {
           <progress value={Math.min(rollout.completedStaff / rollout.requiredStaff, rollout.completedWork / rollout.requiredWork) * 10000} max={10000} aria-label="Capacity forecast rollout progress" />
           <p className="small-note">{formatWorkPoints(rollout.completedStaff)} / {formatWorkPoints(rollout.requiredStaff)} Design points; {formatUnits(rollout.completedWork)} / {formatUnits(rollout.requiredWork)} development CUw.</p>
           {rollout.lastBottleneck && <p className="bottleneck">{rollout.lastBottleneck}</p>}
-        </div> : <details className="inline-details" onToggle={event => setOpen(event.currentTarget.open)}><summary>Plan the next twelve weeks</summary>
-          <label className="line-control" htmlFor="forecast-base-growth">Expected customer growth<span className="unit-input"><input id="forecast-base-growth" type="number" min="0" max="10" step="0.25" value={baseGrowth} onChange={event => setBaseGrowth(event.target.value)} />% / week</span></label>
-          <label className="line-control" htmlFor="forecast-stress-growth">Higher-growth scenario<span className="unit-input"><input id="forecast-stress-growth" type="number" min="0" max="10" step="0.25" value={stressGrowth} onChange={event => setStressGrowth(event.target.value)} />% / week</span></label>
-          {!valid && <p className="invalid-preview" role="status">Enter 0–10% growth per week. The higher-growth scenario must be at least as high as the expected rate.</p>}
-          {forecast && <>
-            <Metrics><Metric label="Current cloud rental">{formatUnits(forecast.currentCloudCU)} CU · {formatMoney(forecast.currentCloudRentCents)} / week</Metric><Metric label="Development / research kept aside">{formatUnits(forecast.developmentAllocationCU)} / {formatUnits(forecast.researchAllocationCU)} CU</Metric></Metrics>
-            <p className="small-note">This forecast uses today’s hardware and ready staff, with resources set aside for signed contracts. It excludes future deliveries, hires, construction, and queued changes. Previewing costs nothing.</p>
-            <Scenario scenario={forecast.scenarios[0]} selectedWeek={baseWeek} onSelect={setBaseWeek} />
-            <Scenario scenario={forecast.scenarios[1]} selectedWeek={stressWeek} onSelect={setStressWeek} />
-            <details className="inline-details"><summary>Forecast assumptions and limits</summary><ul>{forecast.assumptions.map(assumption => <li key={assumption} className="small-note">{assumption}</li>)}</ul></details>
-          </>}
-        </details>}
+        </div> : focused ? <div className="capacity-forecast-tool" aria-label="Twelve-week capacity planning">{tool}</div>
+          : <details className="inline-details" open={open} onToggle={event => setOpen(event.currentTarget.open)}><summary>Plan the next twelve weeks</summary>{tool}</details>}
   </Section>;
 }

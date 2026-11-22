@@ -80,7 +80,7 @@ function isolateTask(host: HTMLElement, docked = false): () => void {
         if (docked && sibling.matches('.studio-chrome')) {
           parents.add(sibling);
           for (const child of Array.from(sibling.children)) {
-            if (child instanceof HTMLElement && !child.matches('.studio-header, .studio-sidebar, .studio-status-line, .decision-clock-controls, .studio-operation-error, .skip-link')) conceal(child);
+            if (child instanceof HTMLElement && !child.matches('.studio-header, .studio-sidebar, .studio-status-line, .decision-clock-controls, .studio-operation-error, .migration-note, .skip-link')) conceal(child);
           }
         } else conceal(sibling);
       }
@@ -270,13 +270,15 @@ export function StudioTaskSurface({
       aria-labelledby={titleId} aria-describedby={description ? descriptionId : undefined}>
       <header className="studio-surface-header" hidden={!shown}>
         <div className="studio-surface-topline">
-          <span className="studio-surface-eyebrow" hidden={!eyebrow}>{eyebrow}</span>
+          <div className="studio-surface-title-group">
+            {!docked && eyebrow && <span className="studio-surface-eyebrow">{eyebrow}</span>}
+            <h2 id={titleId} className="studio-surface-heading" ref={headingRef} tabIndex={-1}>{title}</h2>
+          </div>
           <button type="button" className="studio-surface-button studio-surface-close"
             disabled={closeDisabled} onClick={() => onClose('close')}>
             <span>{closeLabel}</span><X size={17} aria-hidden="true" />
           </button>
         </div>
-        <h2 id={titleId} className="studio-surface-heading" ref={headingRef} tabIndex={-1}>{title}</h2>
         <div id={descriptionId} className="studio-surface-description" hidden={!description}>{description}</div>
         <div className="studio-surface-status" hidden={!status && !busy}>
           {status ?? (busy ? <span role="status">Working…</span> : null)}

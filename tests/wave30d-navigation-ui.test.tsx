@@ -10,7 +10,7 @@ import { STUDIO_TASKS } from '../src/core/studio-tasks';
 import type { StudioPanelId } from '../src/core/studio-tasks';
 import { getGameSectionVisibility } from '../src/ui/guide-links';
 import type { GameSectionVisibility } from '../src/ui/guide-links';
-import { StudioNavigation, StudioWorkspaceHeader, StudioLockedWorkbench, getStudioWorkspaceSections, getStudioPanelLock } from '../src/ui/studio-navigation';
+import { StudioNavigation, StudioWorkspaceHeader, StudioCapacityNavigation, StudioResearchNavigation, StudioLockedWorkbench, getStudioWorkspaceSections, getStudioPanelLock } from '../src/ui/studio-navigation';
 import { StudioShell } from '../src/ui/studio-shell';
 
 const noAction = () => assert.fail('Rendering navigation must not invoke an action');
@@ -44,7 +44,7 @@ test('W30D-NU02: legacy screens highlight their canonical destination and pendin
   assert.doesNotMatch(save, /aria-current="page"/);
 });
 
-test('W30D-NU03: workspace sections expose every management owner in its advertised destination', () => {
+test('W30D-NU03: workspace sections group related management owners under one canonical destination', () => {
   const all = STUDIO_DESTINATIONS.flatMap(destination => getStudioWorkspaceSections(destination.id).map(section => ({ destination: destination.id, section })));
   for (const { destination, section } of all) {
     assert.ok(section.label.trim());
@@ -52,13 +52,53 @@ test('W30D-NU03: workspace sections expose every management owner in its adverti
   }
   const ids = all.map(item => item.section.id);
   assert.equal(new Set(ids).size, ids.length, 'A workbench has one canonical section');
+  const groupedOwners: Record<string, string> = { planner: 'capacity', 'development-plans': 'work', compute: 'capacity', 'compute-costs': 'capacity', 'capacity-forecast': 'capacity' };
   for (const task of Object.values(STUDIO_TASKS)) {
-    if (task.owner === 'planner') assert.ok(ids.includes('plan'));
-    else if (getStudioDestinationForPanel(task.owner) !== 'research') assert.ok(ids.includes(task.owner), task.owner);
+    if (task.owner === 'lab-projects') continue; // Model development is the workspace's primary action.
+    if (task.owner === 'planner' || getStudioDestinationForPanel(task.owner) !== 'research') {
+      assert.ok(new Set<string>(ids).has(groupedOwners[task.owner] ?? task.owner), task.owner);
+    }
   }
   assert.deepEqual(getStudioWorkspaceSections('save'), []);
-  assert.ok(getStudioWorkspaceSections('projects').some(section => section.id === 'development-plans' && section.label === 'Development plans'));
+  assert.deepEqual(getStudioWorkspaceSections('projects').map(section => section.label), ['Work queue', 'Models', 'Datasets', 'Compare']);
+  assert.ok(getStudioWorkspaceSections('operations').some(section => section.id === 'capacity'));
+  assert.equal(getStudioWorkspaceSections('company').some(section => section.id === 'compute-costs' || section.id === 'capacity-forecast'), false);
   assert.ok(getStudioWorkspaceSections('company').some(section => section.id === 'campaign' && section.label === 'Chapters & ambitions'));
+});
+
+test('Capacity keeps allocation, forecast and costs within Operations with visible locked report links', () => {
+  const game = createInitialState(), sections = getGameSectionVisibility(game, getGameView(game, CONTENT));
+  for (const panel of ['capacity', 'compute', 'capacity-forecast', 'compute-costs'] as const) {
+    const header = renderToStaticMarkup(<StudioWorkspaceHeader screen="operations" panel={panel} projectTab="work" sections={sections} disabled={false} onSelect={noAction} />);
+    assert.deepEqual(buttons(header).filter(item => item.attributes.includes('aria-pressed="true"')).map(item => item.text), ['Capacity']);
+    const html = renderToStaticMarkup(<StudioCapacityNavigation panel={panel} sections={sections} disabled={false} onSelect={noAction} />);
+    const views = buttons(html);
+    assert.deepEqual(views.map(item => item.text.replace(/ — locked$/, '')), ['Plan resources', 'Allocation & rental', 'Forecast', 'Costs']);
+    assert.equal(views.filter(item => item.attributes.includes('aria-current="page"')).length, 1);
+    for (const label of ['Forecast', 'Costs']) {
+      const report = views.find(item => item.text.startsWith(label))!;
+      assert.match(report.attributes, /aria-description="Research Enterprise operations/);
+      assert.doesNotMatch(report.attributes, /disabled/);
+    }
+  }
+});
+
+test('Programs stays visible before unlocks and owns both programs and architecture research navigation', () => {
+  const game = createInitialState(), sections = getGameSectionVisibility(game, getGameView(game, CONTENT));
+  const cases = [
+    { panel: null, activeTask: undefined, selected: 'Discoveries' },
+    { panel: 'research-programs', activeTask: undefined, selected: 'Programs' },
+    { panel: 'research-programs', activeTask: 'research-program', selected: 'Programs' },
+    { panel: 'research', activeTask: 'architecture-research', selected: 'Programs' },
+  ] as const;
+  for (const { panel, activeTask, selected } of cases) {
+    const html = renderToStaticMarkup(<StudioResearchNavigation panel={panel} activeTask={activeTask} sections={sections} disabled={false} onNavigate={noAction} />);
+    const items = buttons(html);
+    assert.deepEqual(items.map(item => item.text.replace(/ — locked$/, '')), ['Discoveries', 'Programs', 'Challenges', 'Applications', 'Synthetic data', 'Compare']);
+    assert.deepEqual(items.filter(item => item.attributes.includes('aria-pressed="true"')).map(item => item.text), [selected]);
+    assert.doesNotMatch(items.find(item => item.text === 'Programs')!.attributes, /disabled/);
+    assert.equal(items.some(item => item.text === 'Architecture' || item.text === 'Catalog'), false);
+  }
 });
 
 test('strategy workbenches expose the chapter and market briefing from the opening, with stable visible panel hosts', () => {

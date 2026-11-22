@@ -51,7 +51,7 @@ export interface DevelopmentPlanArchive {
 export type DevelopmentPlanCommand =
   | ({ kind: 'start_development_plan' } & DevelopmentPlanSpec)
   | { kind: 'set_development_plan_paused'; planId: string; paused: boolean }
-  | { kind: 'revise_development_plan'; planId: string; feeBudgetCents: number; cashReserveCents: number; deadlineWeek: number; leadStaffId?: string; capacityShareBps?: number }
+  | { kind: 'revise_development_plan'; planId: string; feeBudgetCents: number; cashReserveCents: number; deadlineWeek: number; leadStaffId?: string; capacityShareBps?: number; resume?: boolean }
   | { kind: 'cancel_development_plan'; planId: string };
 
 export const DEVELOPMENT_PLAN_COMMANDS = ['start_development_plan', 'set_development_plan_paused', 'revise_development_plan', 'cancel_development_plan'] as const;

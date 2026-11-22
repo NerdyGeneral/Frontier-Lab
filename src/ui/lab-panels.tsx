@@ -14,8 +14,9 @@ import { VARIANT_RULES } from '../content/wave4-research';
 import { formatMoney, formatUnits } from '../core/index';
 import { getTrainingPreview, packetSources } from '../modules/lab-planner';
 import type { TrainingOptions } from '../modules/lab-planner';
-import type { ManualTrainingDraft } from '../persistence/model-workspace';
+import type { DevelopmentProjectDraft, ManualTrainingDraft, ModelBlueprint } from '../persistence/model-workspace';
 import { useModelWorkspace } from './model-workspace-context';
+import { recommendedDesignEvaluation } from '../core/model-evaluation-goal';
 import { ModelBlueprintTools } from './model-blueprint-tools';
 import { getAvailableRoleCapacity } from '../modules/workforce';
 import { getResearchView, hasResearch } from '../modules/research';
@@ -53,7 +54,6 @@ import { ModelProfile } from './model-profile';
 import { AdvancedSkillsPanel } from './advanced-skills-panel';
 import { ADVANCED_DOMAINS, ADVANCED_EVALUATION_SUITE, ADVANCED_SKILL_LABELS } from '../content/advanced-skills';
 import { DevelopmentWorkspaceHeader } from './development-workspace';
-import { ModelResearchPanel } from './model-research-panel';
 import { DataCatalog } from './data-catalog';
 import type { AdvancedDomain } from '../contracts/advanced-skills';
 
@@ -207,8 +207,10 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
   const [architecture, setArchitecture] = useState<'dense' | 'sparse'>('dense');
   const [teacherId, setTeacherId] = useState('');
   const [teacherDomain, setTeacherDomain] = useState<CapabilityDomain>('conversation');
+  const [projectDraft, setProjectDraft] = useState<DevelopmentProjectDraft | null>(null);
   if (modelWorkspace?.ready && restoredDraftEpoch !== modelWorkspace.epoch) {
     const saved = modelWorkspace.manual;
+    setProjectDraft(saved?.project ? structuredClone(saved.project) : null);
     if (saved) {
       setRecipeId(saved.recipeId); setDesignRoute(saved.designRoute); setDesignDraft(saved.designDraft && structuredClone(saved.designDraft));
       setBaseId(saved.baseId); setPacketId(saved.packetId); setExplicitPacket(saved.explicitPacket); setExtraPackets([...saved.extraPackets]);
@@ -224,7 +226,7 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
   }
   const savedDraftText = JSON.stringify({ recipeId, designRoute, designDraft, baseId, packetId, explicitPacket, extraPackets,
     profile, workspace, automated, asAdapter, retentionMode, replayChoice, curriculumChoice, architecture, teacherId,
-    teacherDomain, trainingView, designOpen } satisfies ManualTrainingDraft);
+    teacherDomain, trainingView, designOpen, ...(projectDraft ? { project: projectDraft } : {}) } satisfies ManualTrainingDraft);
   useEffect(() => {
     if (modelWorkspace?.ready && restoredDraftEpoch === modelWorkspace.epoch) modelWorkspace.setDraft('manual', JSON.parse(savedDraftText) as ManualTrainingDraft);
   }, [savedDraftText, modelWorkspace?.ready, modelWorkspace?.epoch, modelWorkspace?.setDraft, restoredDraftEpoch]);
@@ -248,6 +250,7 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
   }
   const incomingParent = draftReady && trainingSelection && 'baseModelId' in trainingSelection && trainingSelection.intentId !== appliedIntent ? trainingSelection : null;
   if (incomingParent) {
+    setProjectDraft(null);
     setBaseId(incomingParent.baseModelId ?? '');
     const parent = versions.find(model => model.id === incomingParent.baseModelId);
     setDesignDraft(parent ? getModelDesignForBase(parent) : null);
@@ -361,8 +364,19 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
     if (options.replay) setReplayChoice(structuredClone(options.replay));
     if (options.curriculum) setCurriculumChoice(structuredClone(options.curriculum));
   };
+  const loadBlueprint = (blueprint: ModelBlueprint, project?: DevelopmentProjectDraft) => {
+    useExperiment(structuredClone(blueprint.training));
+    const previous = projectDraft ?? modelWorkspace?.delegated;
+    setProjectDraft(project ? structuredClone(project) : {
+      name: blueprint.name, suiteId: blueprint.suiteId ?? recommendedDesignEvaluation(blueprint.training).suiteId,
+      budget: previous?.budget ?? '5000', reserve: previous?.reserve ?? '5000', duration: previous?.duration ?? '32',
+      ...(previous?.leadStaffId ? { leadStaffId: previous.leadStaffId } : {}),
+      ...(previous?.capacityShareBps !== undefined ? { capacityShareBps: previous.capacityShareBps } : {}),
+      objective: blueprint.objective ?? null,
+    });
+  };
   if (draftReady && trainingSelection && 'blueprint' in trainingSelection && trainingSelection.intentId !== appliedIntent) {
-    useExperiment(structuredClone(trainingSelection.blueprint.training));
+    loadBlueprint(trainingSelection.blueprint, trainingSelection.project);
     setAppliedIntent(trainingSelection.intentId);
   }
   const allocation = game.slices.compute.fleets[game.playerCompanyId]?.allocation;
@@ -375,13 +389,16 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
     : <a href="#data">Browse data catalog</a>);
   return <Section title="Develop a model" id="lab-projects">
     <DevelopmentWorkspaceHeader game={game} mode="manual" canAct={canAct}
-      onDelegate={taskActions?.delegateTraining && payload?.kind === 'start_training' ? () => { pinDraftInputs(); taskActions.delegateTraining?.(payload); } : undefined} />
+      onDelegate={draftReady && taskActions?.delegateTraining && payload?.kind === 'start_training' ? () => {
+        pinDraftInputs();
+        taskActions.delegateTraining?.(payload, projectDraft ? { ...projectDraft, objective: modelWorkspace ? modelWorkspace.developmentGoal ?? null : projectDraft.objective ?? null } : undefined);
+      } : undefined} />
     <div className="model-design-route" role="group" aria-label="Training approach">
       <button type="button" aria-pressed={customMode} onClick={() => { pinDraftInputs(); setDesignRoute('custom'); }}>Design your own<small>Shape architecture, skills and responses</small></button>
       <button type="button" aria-pressed={!customMode} onClick={() => { pinDraftInputs(); setDesignRoute('methods'); }}>Training methods<small>Guided training and specialist methods</small></button>
     </div>
-    <ModelBlueprintTools training={payload?.kind === 'start_training' ? payload : null} canAct={canAct}
-      onLoad={blueprint => useExperiment(blueprint.training)} />
+    <ModelBlueprintTools training={payload?.kind === 'start_training' ? payload : null} suiteId={projectDraft?.suiteId} canAct={canAct}
+      onLoad={blueprint => loadBlueprint(blueprint)} />
     <StudioDecisionLayout focused={focusedTraining} className="studio-training-task training-builder" decisionSummary={customMode && base ? <ModelDesignDecisionSummary game={game} baseModelId={base.id} packetIds={packetIds} value={modelDesign} /> : undefined} summaryLabel="Training forecast and requirements" summary={<>
       <TrainingStepTitle step={4}>Preview this run</TrainingStepTitle>
       {customMode ? base ? <ModelDesignForecast game={game} baseModelId={base.id} packetIds={packetIds} value={modelDesign} />
@@ -610,7 +627,7 @@ export function ResearchPanel({ game, canAct, onQueue }: PanelProps) {
   const locked = research.filter(item => item.implemented && item.status === 'locked');
   const renderOption = (item: (typeof research)[number]) => <div className="research-option" key={item.id}><p className="small-heading">{item.name}</p><p className="small-note">{item.description}</p><ActionControl game={game} payload={{ kind: 'start_research', researchId: item.id }} label={'Research ' + item.name.toLowerCase()} canAct={canAct} onQueue={onQueue} /></div>;
   return <Section title="Research" id="research">
-    <ModelResearchPanel game={game} canAct={canAct} onQueue={onQueue} />
+    <p className="guide-actions"><a href="#research-programs">Open Research programs</a><span className="small-note">Run systems experiments or invest in model architecture.</span></p>
     <p className="small-note">Discoveries unlock new projects. Your team supplies the points. Set a research compute limit so the GPUs can work alongside them.</p>
     {active.map(item => <div className="project-row" key={item.id}><div className="project-heading"><strong>{item.name}</strong><span>{item.status === 'pending' ? 'Available next week' : item.status === 'paused' ? 'Paused' : score(item.progressBps) + '%'}</span></div><progress value={item.progressBps} max={10000} aria-label={item.name + ' progress'} />{item.project && <><Metrics><Metric label="Research work">{formatUnits(item.project.completedWork)} / {formatUnits(item.requiredWork)} CUw</Metric><Metric label={WORK_POINT_LABELS[item.role] + ' points'}>{formatWorkPoints(item.project.completedStaff)} / {formatWorkPoints(item.requiredStaff)} points</Metric></Metrics>{item.project.lastBottleneck && <p className="bottleneck">{item.project.lastBottleneck}</p>}{item.status !== 'pending' && <ActionControl game={game} payload={{ kind: 'set_research_paused', projectId: item.project.id, paused: item.status !== 'paused' }} label={(item.status === 'paused' ? 'Resume ' : 'Pause ') + item.name.toLowerCase()} canAct={canAct} onQueue={onQueue} compact />}</>}</div>)}
     {available.slice(0, 5).map(renderOption)}

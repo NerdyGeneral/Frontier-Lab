@@ -19,7 +19,8 @@ test('all thirteen customization choices remain visible and searchable in the fu
   assert.match(html, /data-scope="all"/);
   assert.match(html, /aria-label="Research collection"/);
   assert.match(textOnly(html), /All research 66 Model customization 13 AI systems 12/);
-  assert.ok(html.indexOf('aria-label="Research collection"') < html.indexOf('model-architecture-research-'), 'The new collection is reachable before the architecture panel');
+  assert.ok(html.indexOf('aria-label="Research collection"') < html.indexOf('class="research-available-now"'), 'Collections remain reachable before the discovery cards');
+  assert.doesNotMatch(html, /model-architecture-research-/, 'Repeatable programs live in their own workspace');
   assert.match(html, /type="search"/);
   for (const definition of CUSTOMIZATION_RESEARCH) {
     assert.ok(html.includes('aria-label="' + definition.id + ': ' + definition.name), definition.id);

@@ -79,7 +79,7 @@ test('short viewport keeps an explicitly named, scrollable All menus path to eve
   for (const variable of ['--studio-visual-viewport-top', '--studio-measured-header-height', '--studio-visual-viewport-bottom', '--studio-measured-sidebar-height']) assert.ok(host.includes(variable));
   const game = createInitialState(), sections = getGameSectionVisibility(game, getGameView(game));
   const html = renderToStaticMarkup(<StudioMenuDirectory sections={sections} onNavigate={noAction} onClose={noAction} />);
-  assert.match(html, /aria-label="Find a menu or task"/);
+  assert.match(html, /aria-label="Find a feature or action"/);
   assert.match(textOnly(html), /All menus/);
   for (const group of STUDIO_MENU_GROUPS) assert.ok(textOnly(html).includes(group.label), group.label);
 });

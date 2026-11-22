@@ -1,0 +1,90 @@
+{
+  "release": "0.38.1",
+  "contentVersion": "0.38.0",
+  "saveSchema": 5,
+  "recordedAtUtc": "2026-11-22T22:19:45.999834+00:00",
+  "sourceBaseline": {
+    "sitesCommit": "2644b276aa625f6980c9aaebf3e17f232acab8fb",
+    "githubCommit": "4ddd9bcb3fb661b33ba73ba1c1606536c08ae73c",
+    "sharedTree": "67dd46bdfff9684b358317fa12b75a35896bcf2c"
+  },
+  "scope": [
+    "Full-project manual/delegated handoffs",
+    "Exact deadline and explicit resume semantics",
+    "Decision-run versus continuous-play labels",
+    "Canonical feature directory with search aliases",
+    "Permanent Programs workspace and shared architecture draft",
+    "Project objective versus starting design wording",
+    "Compact task headers",
+    "Combined Work queue with delegated stages, exact archived results and visible unfinished work",
+    "Operations Capacity with resource planning, allocation/rental, forecast and costs"
+  ],
+  "automatedGates": [
+    {
+      "command": "node --import tsx --test --test-reporter=spec tests/*.test.tsx src/ui/*.test.tsx",
+      "scope": "Complete UI suite on the release implementation.",
+      "counts": {
+        "tests": 243,
+        "pass": 243,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "44e3c9b452820ff359f4dd5b37479a096e61eda56aabf58f5505a5428ea95bbc"
+    },
+    {
+      "command": "node scripts/test-wave0.mjs studio-work-queue model-workspace development-plans wave30-task-state wave31b-task-navigation wave30d-navigation studio-menu-catalog studio-project-coverage decision-clock",
+      "scope": "Targeted engine, persistence, navigation, task lifecycle, grouping and clock suite. One old assertion still expected architecture to belong to the catalog owner.",
+      "counts": {
+        "tests": 83,
+        "pass": 82,
+        "fail": 1,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "131a3fdc2fd9208722c3adfedf3114878b6c898c50518c6f79913b0920eeae11"
+    },
+    {
+      "command": "node scripts/test-wave0.mjs wave30-task-state",
+      "scope": "Final task-state rerun after updating the remaining historical assertion to the shared research-programs owner. All 17 cases pass; production code unchanged from the combined run.",
+      "counts": {
+        "tests": 17,
+        "pass": 17,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "logSha256": "ebff87504ee80bf9002547bc3c49da0cb2c7a498262f9c41e12c661bc39755ae"
+    }
+  ],
+  "testAccounting": "243 unique UI tests passed. Of 83 targeted core tests, 82 passed in the combined run; the remaining stale architecture-owner assertion was updated and passed in the final 17-test task-state rerun. All 83 unique targeted core cases are verified. Focused agent runs overlap these totals and are not added. The full engine suite was not rerun for this UI maintenance release.",
+  "typecheck": {
+    "command": "node node_modules/typescript/bin/tsc --noEmit",
+    "result": "passed",
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "productionBuild": {
+    "command": "node <Sites plugin>/scripts/build-site.mjs",
+    "result": "passed",
+    "logSha256": "501d9449976871fab1b678f341715b0f2b92b4a1b84d8f55c94e1adc3477e8f9",
+    "notes": "Nonblocking bundler plugin-timing/chunk notices and the existing route-classification notice remain."
+  },
+  "compatibility": {
+    "saveSchemaChanged": false,
+    "contentVersionChanged": false,
+    "draftMetadata": "New manual project metadata is optional. Existing drafts remain valid. Shared objective and both drafts clear only on explicit Reset draft; named blueprints remain.",
+    "commands": "revise_development_plan accepts optional resume. Omitted resume retains legacy behavior; the limits editor sends resume:false and preserves stopped state."
+  },
+  "preview": {
+    "status": "unavailable",
+    "reason": "The managed local preview URL was previously rejected by browser URL security policy. No alternate transport, host or browser-control workaround was used.",
+    "browserVerification": "Public HTTPS verification follows deployment and is reported separately from this prepublication source record. No phone-device playthrough is claimed."
+  },
+  "publication": "Commit and push this source, package its built worker, deploy to the existing public Site, and mirror the complete source tree to NerdyGeneral/Frontier-Lab. Preserve site audience and project identity.",
+  "deferred": [
+    "Larger Portfolio/Customers reorganization"
+  ]
+}

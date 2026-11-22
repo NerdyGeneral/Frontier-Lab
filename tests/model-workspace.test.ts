@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { ModelWorkspaceController, isTrainingBlueprintOrder, parseModelWorkspace, isModelWorkspaceData, modelWorkspaceDataForExport } from '../src/persistence/model-workspace';
-import type { ManualTrainingDraft, DelegatedTrainingDraft, ModelWorkspacePersistence } from '../src/persistence/model-workspace';
+import type { DevelopmentProjectDraft, ManualTrainingDraft, DelegatedTrainingDraft, ModelWorkspacePersistence } from '../src/persistence/model-workspace';
 import type { SavedByteBinding } from '../src/persistence/studio-results';
 import { hashSavedSnapshotSync } from '../src/persistence/saved-snapshot-hash';
 import { DEFAULT_MODEL_DESIGN } from '../src/modules/model-design';
@@ -50,6 +50,42 @@ test('unfinished manual and delegated forms survive reload without becoming comm
   assert.equal(restarted.getSnapshot().persistent,true);
   const external = structuredClone(order); restarted.saveBlueprint('Replay specialist',external); external.packetIds!.push('injected-later');
   assert.deepEqual(restarted.getSnapshot().blueprints[0].training,order,'Later caller changes cannot mutate the saved blueprint.');
+});
+
+test('a project edited manually retains its explicit name, evaluation, limits and objective through reload and export', async () => {
+  const project: DevelopmentProjectDraft = { name: 'Customer pilot with its own project name', suiteId: 'behavior-cases-1',
+    budget: '7234.50', reserve: '8400.', duration: '19', leadStaffId: 'project-lead', capacityShareBps: 4500,
+    objective: { kind: 'purpose', id: 'coding' } };
+  const store = storage(), controller = new ModelWorkspaceController(store.io);
+  controller.open({ playerId: 'player', mode: 'owner', savedBytes: store.primary }); await flush();
+  const draft = { ...manual(), project: structuredClone(project) };
+  controller.setDraft('manual', draft); controller.setDevelopmentGoal(project.objective!);
+  draft.project.name = 'Caller mutation';
+  const reopened = new ModelWorkspaceController(store.io);
+  reopened.open({ playerId: 'player', mode: 'owner', savedBytes: store.primary }); await flush();
+  assert.deepEqual(reopened.getSnapshot().manual?.project, project);
+  assert.deepEqual(reopened.getSnapshot().developmentGoal, project.objective);
+  const portable = modelWorkspaceDataForExport(reopened.getSnapshot());
+  assert.equal(isModelWorkspaceData(portable), true);
+  const restored = new ModelWorkspaceController(store.io);
+  restored.open({ playerId: 'player', mode: 'memory' });
+  assert.equal(await restored.restoreData(portable), true);
+  assert.deepEqual(restored.getSnapshot().manual?.project, project);
+  restored.setDevelopmentGoal(null);
+  assert.equal(restored.getSnapshot().developmentGoal, null, 'Clearing the current objective must remain distinct from the saved handoff objective.');
+  restored.setDraft('manual', null);
+  assert.equal(restored.getSnapshot().manual, null, 'Resetting the manual draft also discards its project association.');
+  assert.equal(store.primary, 'original campaign');
+});
+
+test('project handoffs retain old draft compatibility while rejecting injected or malformed settings', () => {
+  const old = { manual: manual(), delegated: delegated(), blueprints: [] };
+  assert.equal(isModelWorkspaceData(old), true);
+  const project: DevelopmentProjectDraft = { name: '', suiteId: 'expanded-capabilities-1', budget: '', reserve: '', duration: '', objective: null };
+  assert.equal(isModelWorkspaceData({ ...old, manual: { ...manual(), project } }), true, 'Unfinished project fields can still be saved.');
+  for (const invalid of [{ ...project, capacityShareBps: 4750 }, { ...project, suiteId: 'invented-test' }, { ...project, objective: { kind: 'purpose', id: 'invented' } }, { ...project, grantResearch: true }]) {
+    assert.equal(isModelWorkspaceData({ ...old, manual: { ...manual(), project: invalid } }), false);
+  }
 });
 
 test('draft metadata follows only successful primary saves and refuses a foreign campaign', async () => {

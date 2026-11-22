@@ -35,7 +35,10 @@ test('30D-N02 historical links keep their exact workbench after consolidation', 
     ['#infrastructure', 'operations', 'infrastructure'],
     ['#chips', 'operations', 'chips'],
     ['#model-corpus-compare', 'projects', 'model-corpus-compare'],
-    ['#capacity-forecast', 'company', 'capacity-forecast'],
+    ['#capacity-forecast', 'operations', 'capacity-forecast'],
+    ['#compute-costs', 'operations', 'compute-costs'],
+    ['#capacity', 'operations', 'capacity'],
+    ['#research-programs', 'research', 'research-programs'],
     ['#company-log', 'company', 'company-log'],
   ];
   for (const [hash, screen, panel] of links) assert.deepEqual(resolveStudioHash(hash), { screen, panel }, hash);
@@ -54,11 +57,11 @@ test('30D-N03 research map and market screen defaults do not overwrite legacy ca
   assert.deepEqual(resolveStudioHash('#lab'), home);
 });
 
-test('30D-N04 every existing panel remains explicitly addressable without a task side effect', () => {
+test('30D-N04 every existing panel link remains addressable through its canonical workspace without a task side effect', () => {
   for (const panel of Object.keys(STUDIO_PANEL_TITLES) as StudioPanelId[]) {
     const route = resolveStudioHash('#' + panel);
     assert.ok(route, panel + ' must retain its direct link');
-    assert.equal(route.panel, panel, panel + ' must not select a different workbench');
+    assert.equal(route.panel, panel === 'development-plans' ? null : panel, panel + ' must select its canonical workbench');
     assert.equal(route.screen, getStudioDestinationForPanel(panel));
     assert.deepEqual(Object.keys(route).sort(), ['panel', 'screen'], 'Navigation must not encode a queued action');
   }
@@ -66,6 +69,19 @@ test('30D-N04 every existing panel remains explicitly addressable without a task
     assert.equal(resolveStudioHash(hash), null, 'Unrecognized/internal detail anchor: ' + hash);
   }
   assert.deepEqual(resolveStudioHash('#release%2Ddesk'), resolveStudioHash('#release-desk'));
+});
+
+test('legacy planner and delegated-plan links resolve to Capacity and the shared work queue', () => {
+  const game = createInitialState(), before = serializeState(game);
+  for (const hash of ['#planner', 'planner', '#studio-plan-workbench', '#studio%2Dplan%2Dworkbench']) {
+    assert.deepEqual(resolveStudioHash(hash), { screen: 'operations', panel: 'capacity' }, hash);
+  }
+  assert.deepEqual(resolveStudioHash('#development-plans'), { screen: 'projects', panel: null });
+  assert.deepEqual(resolveStudioHash('#development%2Dplans'), resolveStudioHash('#studio-project-board'));
+  for (const panel of ['capacity', 'compute', 'compute-costs', 'capacity-forecast'] as const) {
+    assert.equal(getStudioDestinationForPanel(panel), 'operations', panel);
+  }
+  assert.equal(serializeState(game), before, 'Following a legacy route cannot queue work or change a company');
 });
 
 test('30D-N05 research intent preserves an exact locked catalog method without inventing eligibility', () => {
@@ -149,7 +165,7 @@ test('30D-N09 management review survives ordinary close/reopen as an editable dr
 });
 
 test('30D-N10 remaining command owners have retained tasks; read-only workspaces and system replacement do not', () => {
-  const owners: StudioPanelId[] = ['research', 'applied-research', 'synthetic-data', 'release-desk', 'compute',
+  const owners: StudioPanelId[] = ['research', 'research-programs', 'applied-research', 'synthetic-data', 'release-desk', 'compute',
     'infrastructure', 'chips', 'campus', 'developer-api', 'business-commitments', 'agents', 'business', 'compute-costs', 'capacity-forecast'];
   let session = createStudioTaskSession();
   for (const owner of owners) {

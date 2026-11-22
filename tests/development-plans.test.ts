@@ -117,7 +117,7 @@ test('the advertised minimum deadline survives admission and permits the last ev
 });
 
 test('pause and resume preserve a paid training run and charge its setup only once', () => {
-  let game = start(initial(true), spec(initial(true), 96 * U));
+  let game = initial(true); game = start(game, spec(game, 96 * U));
   game = until(game, state => !!trainingRun(state)); const run = trainingRun(game)!;
   game = step(queue(game, { kind: 'set_development_plan_paused', planId: plan(game).id, paused: true }));
   const work = game.slices.models.trainingRuns[run.id].completedWork;
@@ -185,6 +185,44 @@ test('deadline stops active work after its final week and an extension resumes t
   const run = trainingRun(game)!; assert.equal(run.status, 'paused'); assert.ok(run.completedWork > 0 && run.completedWork < run.requiredWork);
   game = finish(queue(game, { kind: 'revise_development_plan', planId: plan(game).id, feeBudgetCents: chosen.feeBudgetCents, cashReserveCents: 0, deadlineWeek: game.week + 20 }));
   assert.equal(plan(game).steps.filter(item => item.key === 'train').length, 1); assert.equal(game.slices.company.ledger.filter(fact => fact.id === run.id + ':setup').length, 1);
+});
+
+test('saving limits without resuming preserves the exact deadline and paid paused work across reload', () => {
+  let game = start(initial(true), spec(initial(true), 96 * U));
+  game = until(game, state => !!trainingRun(state));
+  game = step(queue(game, { kind: 'set_development_plan_paused', planId: plan(game).id, paused: true }));
+  const deadline = plan(game).deadlineWeek, completedWork = trainingRun(game)!.completedWork;
+  game = step(queue(game, { kind: 'revise_development_plan', planId: plan(game).id,
+    feeBudgetCents: plan(game).feeBudgetCents + 10_000, cashReserveCents: 0, deadlineWeek: deadline, resume: false }));
+  assert.equal(plan(game).status, 'paused');
+  assert.equal(plan(game).deadlineWeek, deadline);
+  assert.equal(trainingRun(game)!.status, 'paused');
+  assert.equal(trainingRun(game)!.completedWork, completedWork);
+  assert.deepEqual(reload(game), game);
+  game = step(queue(game, { kind: 'set_development_plan_paused', planId: plan(game).id, paused: false }));
+  assert.equal(plan(game).status, 'running');
+  assert.ok(trainingRun(game)!.completedWork > completedWork, 'Only the explicit resume restarts work.');
+});
+
+test('a blocked plan can save another limit with its original expired deadline without restarting or moving the deadline', () => {
+  let game = initial(true); const chosen = { ...spec(game, 96 * U), deadlineWeek: game.week + 3 };
+  game = until(start(game, chosen), state => plan(state).status === 'blocked');
+  const completedWork = trainingRun(game)!.completedWork;
+  game = step(queue(game, { kind: 'revise_development_plan', planId: plan(game).id,
+    feeBudgetCents: chosen.feeBudgetCents + 10_000, cashReserveCents: 0, deadlineWeek: chosen.deadlineWeek, resume: false }));
+  assert.equal(plan(game).status, 'blocked'); assert.equal(plan(game).deadlineWeek, chosen.deadlineWeek);
+  assert.equal(trainingRun(game)!.status, 'paused'); assert.equal(trainingRun(game)!.completedWork, completedWork);
+  const resume = submitCommand(game, { kind: 'set_development_plan_paused', planId: plan(game).id, paused: false }, CONTENT);
+  assert.equal(resume.accepted, false); assert.match(resume.reason!.message, /deadline/);
+  const invalid = submitCommand(game, { kind: 'revise_development_plan', planId: plan(game).id,
+    feeBudgetCents: chosen.feeBudgetCents, cashReserveCents: 0, deadlineWeek: chosen.deadlineWeek - 1, resume: false }, CONTENT);
+  assert.equal(invalid.accepted, false, 'Keeping the existing deadline is permitted; selecting a different expired deadline is not.');
+  game = step(queue(game, { kind: 'revise_development_plan', planId: plan(game).id,
+    feeBudgetCents: chosen.feeBudgetCents, cashReserveCents: 0, deadlineWeek: game.week + 20, resume: false }));
+  assert.equal(plan(game).status, 'blocked'); assert.equal(trainingRun(game)!.completedWork, completedWork);
+  game = finish(queue(game, { kind: 'set_development_plan_paused', planId: plan(game).id, paused: false }));
+  assert.equal(plan(game).steps.filter(item => item.key === 'train').length, 1);
+  assert.deepEqual(reload(game), game);
 });
 
 test('review preserves the real report date if an individually resumed evaluation finishes while the plan is paused', () => {

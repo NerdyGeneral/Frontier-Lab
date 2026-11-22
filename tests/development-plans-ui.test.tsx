@@ -5,9 +5,10 @@ import { CONTENT } from '../src/content/catalog';
 import type { GameState } from '../src/contracts/types';
 import { advanceWeek, submitCommand, validateState } from '../src/core/engine';
 import { canonicalStateHash } from '../src/core/canonical';
-import { DevelopmentPlansPanel } from '../src/ui/development-plans-panel';
+import { DevelopmentPlanLimitEditor, DevelopmentPlanList, DevelopmentPlansPanel, developmentPlanCounts } from '../src/ui/development-plans-panel';
 import { ModelChallengesPanel } from '../src/ui/model-challenges-panel';
-import { StudioTaskActionsProvider } from '../src/ui/studio-interaction-context';
+import { StudioDevelopmentSelectionProvider, StudioTaskActionsProvider } from '../src/ui/studio-interaction-context';
+import type { DevelopmentProjectDraft } from '../src/persistence/model-workspace';
 import { createPlayerOnlyState } from './fixtures/player-only';
 import { withPassiveWorkforce } from '../src/modules/workforce';
 import { DevelopmentProjectResult } from '../src/ui/development-project-result';
@@ -52,6 +53,97 @@ test('running plan exposes one Run until a decision control and keeps paid stage
   assert.ok(controls.some(button => button.text === 'Stop plan · keep outputs'));
   assert.doesNotMatch(html, /development-plan-builder/);
   assert.equal(canonicalStateHash(game), before);
+});
+
+test('returning from manual editing restores explicit project metadata instead of a new name, recommended test or defaults', () => {
+  const game = createPlayerOnlyState();
+  const project: DevelopmentProjectDraft = { name: 'Customer pilot project', suiteId: 'behavior-cases-1', budget: '7234.50',
+    reserve: '8400.', duration: '19', leadStaffId: 'founder', capacityShareBps: 4500, objective: { kind: 'purpose', id: 'coding' } };
+  const html = renderToStaticMarkup(<StudioDevelopmentSelectionProvider value={{ intentId: 1, project, blueprint: {
+    id: 'current-design', name: 'New model name', suiteId: 'basic-conversation-1',
+    training: { kind: 'start_training', baseModelId: CONTENT.seedModel.id, packetId: CONTENT.starterData.id },
+  } }}><DevelopmentPlansPanel game={game} canAct onQueue={noAction} /></StudioDevelopmentSelectionProvider>);
+  assert.match(html, /Project name<input[^>]*value="Customer pilot project"/);
+  assert.match(html, /<option[^>]*value="behavior-cases-1"[^>]*selected=""/);
+  assert.match(html, /Project-fee budget \(\$\)<input[^>]*value="7234\.50"/);
+  assert.match(html, /Keep cash reserve \(\$\)<input[^>]*value="8400\."/);
+  assert.match(html, /Finish within \(weeks\)<input[^>]*value="19"/);
+  assert.match(html, /<option[^>]*value="4500"[^>]*selected=""/);
+});
+
+test('editing limits shows the exact saved deadline and saves without an implied resume', () => {
+  const game = planScenario(3, 'blocked'), plan = game.slices.models.developmentPlans!['development-ui-plan'];
+  const html = renderToStaticMarkup(<DevelopmentPlanLimitEditor game={game} plan={plan} canAct onQueue={noAction} />);
+  assert.match(html, new RegExp('Deadline week<input[^>]*value="' + plan.deadlineWeek + '"'));
+  assert.match(html, /Saving limits keeps this plan stopped/);
+  const save = buttons(html).find(button => button.text === 'Save limits'); assert.ok(save);
+  assert.doesNotMatch(save.attributes, /disabled/, 'An unchanged expired deadline does not force a hidden extension to save other limits.');
+  assert.doesNotMatch(html, /Save limits and resume/);
+});
+
+test('plan controls distinguish continuous play from an actual decision run', () => {
+  const game = planScenario(32, 'running');
+  const continuous = renderToStaticMarkup(<DevelopmentPlanList game={game} canAct onQueue={noAction} onRun={noAction} paused={false} decisionRunActive={false} />);
+  assert.match(continuous, /Continuous play is running/); assert.doesNotMatch(continuous, /Running until a decision/);
+  const decision = renderToStaticMarkup(<DevelopmentPlanList game={game} canAct onQueue={noAction} onRun={noAction} paused={false} decisionRunActive />);
+  assert.match(decision, /Running until a decision/); assert.doesNotMatch(decision, /Continuous play is running/);
+});
+
+test('a running development plan with a blocked stage appears in both Active and Blocked without changing its engine status', () => {
+  const game = planScenario(32, 'running'), plan = game.slices.models.developmentPlans!['development-ui-plan'];
+  const blockedPlanIds = new Set([plan.id]);
+  assert.deepEqual(developmentPlanCounts(game, blockedPlanIds), { active: 1, blocked: 1, complete: 0 });
+  for (const filter of ['active', 'blocked'] as const) {
+    const html = renderToStaticMarkup(<DevelopmentPlanList game={game} canAct onQueue={noAction} filter={filter} blockedPlanIds={blockedPlanIds} />);
+    assert.match(html, /Measured candidate/);
+  }
+  assert.equal(plan.status, 'running');
+  const complete = planScenario(32, 'review');
+  assert.deepEqual(developmentPlanCounts(complete, blockedPlanIds), { active: 0, blocked: 0, complete: 1 });
+  const completed = renderToStaticMarkup(<DevelopmentPlanList game={complete} canAct onQueue={noAction} filter="blocked" blockedPlanIds={blockedPlanIds} />);
+  assert.doesNotMatch(completed, /Measured candidate/);
+});
+
+test('the project list includes queued and completed plans in their filters without a second builder', () => {
+  const initial = createPlayerOnlyState();
+  const queued = submitCommand(initial, { kind: 'start_development_plan', name: 'Scheduled candidate',
+    training: { kind: 'start_training', baseModelId: CONTENT.seedModel.id, packetId: CONTENT.starterData.id },
+    suiteId: 'basic-conversation-1', feeBudgetCents: 500_000, cashReserveCents: 0, deadlineWeek: 32 }, CONTENT, 'queued-ui-plan');
+  assert.ok(queued.accepted, queued.reason?.message);
+  assert.deepEqual(developmentPlanCounts(queued.state), { active: 1, blocked: 0, complete: 0 });
+  const scheduled = renderToStaticMarkup(<DevelopmentPlanList game={queued.state} canAct onQueue={noAction} filter="active" />);
+  assert.match(scheduled, /Scheduled candidate/); assert.match(scheduled, /DEVELOPMENT PLAN · SCHEDULED/);
+  assert.doesNotMatch(scheduled, /development-plan-builder|Schedule development plan/);
+  const complete = planScenario(32, 'review');
+  assert.deepEqual(developmentPlanCounts(complete), { active: 0, blocked: 0, complete: 1 });
+  const completed = renderToStaticMarkup(<DevelopmentPlanList game={complete} canAct onQueue={noAction} filter="complete" renderStages={plan => <details data-plan={plan.id}><summary>Stage jobs</summary></details>} />);
+  assert.match(completed, /READY FOR YOUR DECISION/); assert.match(completed, /data-plan="development-ui-plan"/); assert.match(completed, /Stage jobs/);
+  assert.doesNotMatch(completed, /development-plan-builder|Schedule development plan/);
+  const blocked = planScenario(3, 'blocked');
+  assert.deepEqual(developmentPlanCounts(blocked), { active: 1, blocked: 1, complete: 0 });
+  for (const filter of ['active', 'blocked'] as const) {
+    const html = renderToStaticMarkup(<DevelopmentPlanList game={blocked} canAct onQueue={noAction} filter={filter} />);
+    assert.match(html, /Measured candidate/); assert.match(html, /status-blocked/);
+  }
+});
+
+test('archived projects offer their saved evaluation, fall back to their exact model, and keep ordinary links without task actions', () => {
+  const game = planScenario(32, 'review'), plan = game.slices.models.developmentPlans!['development-ui-plan'];
+  game.slices.models.developmentPlanArchive = { [plan.id]: { id: plan.id, companyId: plan.companyId, name: plan.name,
+    createdWeek: plan.createdWeek, endedWeek: plan.completedWeek!, archivedWeek: game.week, status: 'review',
+    feeSpentCents: plan.steps.reduce((sum, step) => sum + step.feeCents, 0), stageCommandIds: plan.steps.map(step => step.commandId),
+    modelId: plan.modelId, reportId: plan.reportId, challengeReportId: 'unavailable-challenge-report' } };
+  delete game.slices.models.developmentPlans![plan.id];
+  const actions = { prepareData: noAction, evaluateModel: noAction, launchBasicChat: noAction,
+    reviewReport: noAction, reviewResources: noAction, hireStaff: noAction, assignStaff: noAction };
+  const render = () => renderToStaticMarkup(<StudioTaskActionsProvider value={actions}><DevelopmentPlanList game={game} canAct onQueue={noAction} filter="complete" /></StudioTaskActionsProvider>);
+  const report = render();
+  assert.match(report, /Archived project history \(1\)/); assert.match(report, /Review saved evaluation/);
+  assert.doesNotMatch(report, /href="#models"|Review saved challenge report/);
+  delete game.slices.models.reports[plan.reportId!];
+  const model = render(); assert.match(model, /Review saved model/); assert.doesNotMatch(model, /Review saved evaluation|href="#models"/);
+  const classic = renderToStaticMarkup(<DevelopmentPlanList game={game} canAct onQueue={noAction} filter="complete" />);
+  assert.match(classic, /href="#models">Review models and reports/);
 });
 
 test('a real deadline-blocked plan surfaces its reason and edit limits, while ordinary resume stays unavailable until extended', () => {

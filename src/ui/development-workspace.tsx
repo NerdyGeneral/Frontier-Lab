@@ -18,31 +18,30 @@ export function DevelopmentWorkspaceHeader({ game, mode, canAct, onManual, onDel
 }) {
   const id = useId(), workspace = useModelWorkspace();
   const goal = workspace?.developmentGoal;
-  const actions = useStudioTaskActions();
   useEffect(() => {
     if (workspace?.ready && goal?.kind === 'renewable-brief' && !goal.terms) {
       const pinned = pinDevelopmentGoal(game, goal); if (pinned) workspace.setDevelopmentGoal(pinned);
     }
   }, [game, goal, workspace?.ready, workspace?.setDevelopmentGoal]);
   return <section className="development-workspace-header" aria-label="Develop a model">
-    <div className="development-workspace-heading"><div><span className="strategy-eyebrow">DEVELOP A MODEL</span><h3>Choose the outcome. Shape the system.</h3></div>
+    <div className="development-workspace-heading"><h3>Project setup</h3>
       <div className="development-workspace-mode" role="group" aria-label="Development workflow">
         <button type="button" aria-pressed={mode === 'manual'} disabled={!canAct || mode !== 'manual' && !onManual} onClick={onManual}><GitBranch size={16} aria-hidden="true" />Manual</button>
         <button type="button" aria-pressed={mode === 'delegated'} disabled={!canAct || mode !== 'delegated' && !onDelegate} onClick={onDelegate}><Route size={16} aria-hidden="true" />Delegated</button>
       </div>
     </div>
-    <p>{mode === 'manual' ? 'Choose each training step yourself, or hand this exact design and data to a delegated plan.' : 'Keep your design and data together. Set a budget and deadline; your team prepares, trains and evaluates before your final decision.'}</p>
-    <label className="development-goal-selector" htmlFor={id + '-goal'}><span><Compass size={16} aria-hidden="true" />Working toward</span><select id={id + '-goal'} aria-label="Working toward" value={goal ? goal.kind + ':' + goal.id : ''} disabled={!canAct || !workspace?.ready} onChange={event => {
+    <p className="small-note">{mode === 'manual' ? 'Choose each step, or delegate this project to your team.' : 'Your team prepares, trains and evaluates within your budget and deadline.'}</p>
+    <label className="development-goal-selector" htmlFor={id + '-goal'}><span><Compass size={16} aria-hidden="true" />Project objective</span><select id={id + '-goal'} aria-label="Project objective" aria-describedby={id + '-goal-help'} value={goal ? goal.kind + ':' + goal.id : ''} disabled={!canAct || !workspace?.ready} onChange={event => {
       if (!event.target.value) { workspace?.setDevelopmentGoal(null); return; }
       const [kind, goalId] = event.target.value.split(':'); const next = { kind, id: goalId };
       if (isDevelopmentGoal(next)) workspace?.setDevelopmentGoal(pinDevelopmentGoal(game, next) ?? next);
     }}><option value="">Open exploration</option>
-      <optgroup label="Model purpose">{MODEL_DESIGN_PURPOSES.map(item => <option key={item.id} value={'purpose:' + item.id}>{item.name}</option>)}</optgroup>
+      <optgroup label="General objectives">{MODEL_DESIGN_PURPOSES.map(item => <option key={item.id} value={'purpose:' + item.id}>{item.name}</option>)}</optgroup>
       <optgroup label="Systems challenges">{Object.entries(SYSTEMS_GOAL_NAMES).map(([key, name]) => <option key={key} value={'system-challenge:' + key}>{name}</option>)}</optgroup>
       <optgroup label="Renewable customer briefs">{Object.entries(BRIEF_GOAL_NAMES).map(([key, name]) => <option key={key} value={'renewable-brief:' + key}>{name}</option>)}</optgroup>
     </select></label>
+    <p id={id + '-goal-help'} className="small-note development-objective-help">Guides research suggestions and success checks. Apply a starting design separately to change model settings.</p>
     {goal && <DevelopmentGoalSummary game={game} goal={goal} compact />}
-    {goal && actions?.openResearch && <p className="small-note">Your objective stays selected when you visit research, datasets or a delegated plan.</p>}
   </section>;
 }
 

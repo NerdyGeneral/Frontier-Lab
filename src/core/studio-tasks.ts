@@ -10,6 +10,7 @@ import type { StudioScreen } from './studio-navigation';
  * simulation, stores form fields, or reads/writes browser persistence. */
 
 export const STUDIO_PANEL_TITLES = {
+  'research-programs': 'Research programs', capacity: 'Capacity',
   'development-plans': 'Development plans', 'model-challenges': 'Research challenges',
   data: 'Data desk', 'lab-projects': 'Develop a model', models: 'Test station', people: 'Your team',
   compute: 'Compute rack', product: 'Basic Chat', 'release-desk': 'Release desk', research: 'Research catalog',
@@ -28,6 +29,7 @@ export function isStudioPanelId(value: string): value is StudioPanelId {
 /** Each task has one existing retained form owner. Guided setup and inline
  * inspection use those same forms and drafts. */
 export const STUDIO_TASKS = {
+  'research-program': { owner: 'research-programs', title: 'Manage research programs', pauseOnEntry: true },
   'development-plan': { owner: 'development-plans', title: 'Develop a model · delegated', pauseOnEntry: true },
   'model-challenge': { owner: 'model-challenges', title: 'Run a research challenge', pauseOnEntry: true },
   'prepare-data': { owner: 'data', title: 'Prepare data', pauseOnEntry: true },
@@ -38,7 +40,7 @@ export const STUDIO_TASKS = {
   staffing: { owner: 'people', title: 'Manage your team', pauseOnEntry: true },
   'plan-week': { owner: 'planner', title: 'Plan people and compute', pauseOnEntry: true },
   'research-method': { owner: 'research', title: 'Research a method', pauseOnEntry: true },
-  'architecture-research': { owner: 'research', title: 'Architecture research', pauseOnEntry: true },
+  'architecture-research': { owner: 'research-programs', title: 'Architecture research', pauseOnEntry: true },
   'apply-research': { owner: 'applied-research', title: 'Apply a discovery', pauseOnEntry: true },
   'synthetic-data': { owner: 'synthetic-data', title: 'Create training data', pauseOnEntry: true },
   'release-decision': { owner: 'release-desk', title: 'Manage releases', pauseOnEntry: true },

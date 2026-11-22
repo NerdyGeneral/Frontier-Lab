@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Check, ClipboardCheck, Database, FlaskConical, Pause, Play, Route } from 'lucide-react';
 import type { CapabilityDomain, CommandPayload, EvaluationSuiteId, GameState, TrainingProfile } from '../contracts/types';
-import type { DevelopmentPlan, DevelopmentPlanSpec, DevelopmentTrainingOrder } from '../contracts/development-plans';
+import type { DevelopmentPlan, DevelopmentPlanArchive, DevelopmentPlanSpec, DevelopmentTrainingOrder } from '../contracts/development-plans';
 import { CONTENT } from '../content/catalog';
 import { EVALUATION_SUITES, TRAINING_PROFILES, TRAINING_RECIPES } from '../content/wave2-lab';
 import { developmentFeeSpent, developmentPreviewState, developmentQuote, developmentFeasibility, developmentLeadOptions, developmentLeadName, developmentCapacityShare, unfinishedDevelopmentPlans, pinDevelopmentGoal } from '../modules/development-plans';
@@ -23,28 +23,32 @@ import { buildDevelopmentTrainingOrder } from './development-plan-draft';
 import { customizationOptionName, inheritModelDesignDraft } from './model-design-draft';
 import { ModelBlueprintTools } from './model-blueprint-tools';
 import { useModelWorkspace } from './model-workspace-context';
-import type { DelegatedTrainingDraft, ModelBlueprint } from '../persistence/model-workspace';
+import type { DelegatedTrainingDraft, DevelopmentProjectDraft, ModelBlueprint } from '../persistence/model-workspace';
 import { DevelopmentWorkspaceHeader, DevelopmentGoalSummary } from './development-workspace';
 import { recommendedDesignEvaluation } from '../core/model-evaluation-goal';
 import { isCapabilitySuite } from '../modules/evaluation-classification';
 
 const STAGES = [{ id: 'prepare', label: 'Prepare data', Icon: Database }, { id: 'train', label: 'Train model', Icon: FlaskConical }, { id: 'evaluate', label: 'Evaluate', Icon: ClipboardCheck }, { id: 'challenge', label: 'Paid challenge', Icon: ClipboardCheck }, { id: 'review', label: 'Your decision', Icon: Check }] as const;
-interface Props { game: GameState; canAct: boolean; onQueue: (payload: CommandPayload) => void; onRun?: () => void; paused?: boolean }
+interface Props { game: GameState; canAct: boolean; onQueue: (payload: CommandPayload) => void; onRun?: () => void; paused?: boolean; decisionRunActive?: boolean; blockedPlanIds?: ReadonlySet<string>; renderStages?: (plan: DevelopmentPlan) => ReactNode }
 
-function PlanCard({ plan, game, canAct, onQueue, onRun, paused }: Props & { plan: DevelopmentPlan }) {
+export function DevelopmentPlanLimitEditor({ plan, game, canAct, onQueue }: Props & { plan: DevelopmentPlan }) {
   const [budget, setBudget] = useState(String(plan.feeBudgetCents / 100));
   const [reserve, setReserve] = useState(String(plan.cashReserveCents / 100));
-  const [deadline, setDeadline] = useState(String(Math.max(game.week + 16, plan.deadlineWeek)));
-  const [editing, setEditing] = useState(false);
-  const finished = plan.status === 'review' || plan.status === 'cancelled';
-  const stages = STAGES.filter(item => item.id !== 'challenge' || !!developmentObjectiveChallenge(plan.objective));
-  const stage = stages.findIndex(item => item.id === plan.stage);
+  const [deadline, setDeadline] = useState(String(plan.deadlineWeek));
   const connected = hasConnectedCompanyRules(game.contentVersion);
   const [leadStaffId, setLeadStaffId] = useState(plan.leadStaffId ?? 'founder');
   const [capacityShareBps, setCapacityShareBps] = useState(developmentCapacityShare(plan));
   const feeBudgetCents = parseFixed(budget, 2), cashReserveCents = parseFixed(reserve, 2), deadlineWeek = Number(deadline);
   const revised: CommandPayload | null = feeBudgetCents !== null && cashReserveCents !== null && Number.isSafeInteger(deadlineWeek)
-    ? { kind: 'revise_development_plan', planId: plan.id, feeBudgetCents, cashReserveCents, deadlineWeek, ...(connected ? { leadStaffId, capacityShareBps } : {}) } : null;
+    ? { kind: 'revise_development_plan', planId: plan.id, feeBudgetCents, cashReserveCents, deadlineWeek, resume: false, ...(connected ? { leadStaffId, capacityShareBps } : {}) } : null;
+  return <div className="development-limit-editor"><div className="form-grid"><label>Project-fee budget ($)<input inputMode="decimal" value={budget} disabled={!canAct} onChange={e => setBudget(e.target.value)} /></label><label>Cash reserve ($)<input inputMode="decimal" value={reserve} disabled={!canAct} onChange={e => setReserve(e.target.value)} /></label><label>Deadline week<input type="number" min={Math.min(plan.deadlineWeek, game.week + 2)} max={game.week + 520} value={deadline} disabled={!canAct} onChange={e => setDeadline(e.target.value)} /></label></div>{connected && <ProjectResponsibility game={game} leadStaffId={leadStaffId} capacityShareBps={capacityShareBps} onLead={setLeadStaffId} onShare={setCapacityShareBps} />}<p className="small-note">{plan.status === 'running' ? 'Saving limits keeps this plan running.' : 'Saving limits keeps this plan stopped. Resume it separately when you are ready.'}</p><ActionControl game={game} payload={revised} label="Save limits" canAct={canAct} onQueue={onQueue} /></div>;
+}
+
+function PlanCard({ plan, game, canAct, onQueue, onRun, paused, decisionRunActive, renderStages }: Props & { plan: DevelopmentPlan }) {
+  const [editing, setEditing] = useState(false);
+  const finished = plan.status === 'review' || plan.status === 'cancelled';
+  const stages = STAGES.filter(item => item.id !== 'challenge' || !!developmentObjectiveChallenge(plan.objective));
+  const stage = stages.findIndex(item => item.id === plan.stage);
   const report = plan.reportId ? game.slices.models.reports[plan.reportId] : null;
   const savedDesign = plan.training.modelDesign;
   return <article className={'development-plan-card status-' + plan.status} aria-label={plan.name}>
@@ -58,13 +62,70 @@ function PlanCard({ plan, game, canAct, onQueue, onRun, paused }: Props & { plan
     {plan.objective && !report && <DevelopmentGoalSummary game={game} goal={plan.objective} compact />}
     {report && <DevelopmentProjectResult plan={plan} game={game} canAct={canAct} onQueue={onQueue} />}
     {!finished && <><div className="strategy-actions">
-      {plan.status === 'running' && onRun && <button type="button" className="primary-action" onClick={onRun} disabled={!canAct || !paused}><Play size={15} />{paused ? 'Run until a decision' : 'Running until a decision'}</button>}
+      {plan.status === 'running' && onRun && <button type="button" className="primary-action" onClick={onRun} disabled={!canAct || paused === false}><Play size={15} />{decisionRunActive ? 'Running until a decision' : paused === false ? 'Continuous play is running' : 'Run until a decision'}</button>}
       <ActionControl game={game} payload={{ kind: 'set_development_plan_paused', planId: plan.id, paused: plan.status === 'running' }} label={plan.status === 'running' ? 'Pause plan' : 'Resume plan'} canAct={canAct} onQueue={onQueue} compact />
       <button type="button" aria-expanded={editing} onClick={() => setEditing(!editing)}>Edit limits</button>
       <ActionControl game={game} payload={{ kind: 'cancel_development_plan', planId: plan.id }} label="Stop plan · keep outputs" canAct={canAct} onQueue={onQueue} compact />
-    </div>{editing && <div className="development-limit-editor"><div className="form-grid"><label>Project-fee budget ($)<input inputMode="decimal" value={budget} onChange={e => setBudget(e.target.value)} /></label><label>Cash reserve ($)<input inputMode="decimal" value={reserve} onChange={e => setReserve(e.target.value)} /></label><label>Deadline week<input type="number" min={game.week + 2} max={game.week + 520} value={deadline} onChange={e => setDeadline(e.target.value)} /></label></div>{connected && <ProjectResponsibility game={game} leadStaffId={leadStaffId} capacityShareBps={capacityShareBps} onLead={setLeadStaffId} onShare={setCapacityShareBps} />}<ActionControl game={game} payload={revised} label="Save limits and resume" canAct={canAct} onQueue={onQueue} /></div>}</>}
+    </div>{editing && <DevelopmentPlanLimitEditor key={[plan.id, plan.feeBudgetCents, plan.cashReserveCents, plan.deadlineWeek, plan.leadStaffId, plan.capacityShareBps].join(':')} plan={plan} game={game} canAct={canAct} onQueue={onQueue} />}</>}
+    {renderStages?.(plan)}
     <p className="small-note">The fee limit covers preparation and training setup. Rent, salaries and metered compute continue separately. Cash-reserve checks include known weekly base costs; market revenue and variable costs can change.</p>
   </article>;
+}
+
+export type DevelopmentPlanFilter = 'active' | 'blocked' | 'complete';
+function isBlockedDevelopmentPlan(plan: DevelopmentPlan, blockedPlanIds?: ReadonlySet<string>): boolean {
+  return plan.status !== 'review' && plan.status !== 'cancelled' && (plan.status === 'blocked' || !!blockedPlanIds?.has(plan.id));
+}
+export function developmentPlanCounts(game: GameState, blockedPlanIds?: ReadonlySet<string>): Record<DevelopmentPlanFilter, number> {
+  const plans = Object.values(game.slices.models.developmentPlans ?? {}).filter(plan => plan.companyId === game.playerCompanyId);
+  return {
+    active: plans.filter(plan => plan.status !== 'review' && plan.status !== 'cancelled').length
+      + game.queuedCommands.filter(command => command.companyId === game.playerCompanyId && command.payload.kind === 'start_development_plan').length,
+    blocked: plans.filter(plan => isBlockedDevelopmentPlan(plan, blockedPlanIds)).length,
+    complete: plans.filter(plan => plan.status === 'review' || plan.status === 'cancelled').length
+      + Object.values(game.slices.models.developmentPlanArchive ?? {}).filter(plan => plan.companyId === game.playerCompanyId).length,
+  };
+}
+
+function DevelopmentPlanArchiveHistory({ game, archive }: { game: GameState; archive: DevelopmentPlanArchive[] }) {
+  const actions = useStudioTaskActions();
+  if (!archive.length) return null;
+  return <details className="inline-details"><summary>Archived project history ({archive.length})</summary><p className="small-note">Their paid models, reports and work receipts remain available.</p><ol>{archive.map(item => {
+    const report = [item.challengeReportId, item.reportId].map(id => id ? game.slices.models.reports[id] : undefined)
+      .find(candidate => candidate && candidate.companyId === game.playerCompanyId && candidate.modelId === item.modelId);
+    const model = item.modelId ? game.slices.models.versions[item.modelId] : undefined;
+    return <li key={item.id}><strong>{item.name}</strong> · Week {item.createdWeek}–{item.endedWeek} · {item.status === 'review' ? 'Completed' : 'Stopped'} · {formatMoney(item.feeSpentCents)} in fees{' '}
+      {report && actions?.reviewReport ? <button type="button" className="training-text-action" onClick={() => actions.reviewReport?.(report.id)}>{report.id === item.challengeReportId ? 'Review saved challenge report' : 'Review saved evaluation'}</button>
+        : model?.companyId === game.playerCompanyId && actions ? <button type="button" className="training-text-action" onClick={() => actions.evaluateModel(model.id)}>Review saved model</button>
+        : (item.reportId || item.modelId) && <a href="#models">Review models and reports</a>}
+    </li>;
+  })}</ol></details>;
+}
+
+/** The Work queue owns project status; this list deliberately contains no builder. */
+export function DevelopmentPlanList({ filter, ...props }: Props & { filter?: DevelopmentPlanFilter }) {
+  const { game } = props;
+  const [showHistory, setShowHistory] = useState(false);
+  const plans = Object.values(game.slices.models.developmentPlans ?? {}).filter(plan => plan.companyId === game.playerCompanyId)
+    .sort((a, b) => (b.completedWeek ?? b.decisionWeek ?? b.createdWeek) - (a.completedWeek ?? a.decisionWeek ?? a.createdWeek) || a.id.localeCompare(b.id));
+  const queued = !filter || filter === 'active' ? game.queuedCommands.filter(command => command.companyId === game.playerCompanyId && command.payload.kind === 'start_development_plan') : [];
+  const visible = plans.filter(plan => !filter || (filter === 'active' ? plan.status !== 'review' && plan.status !== 'cancelled'
+    : filter === 'blocked' ? isBlockedDevelopmentPlan(plan, props.blockedPlanIds) : plan.status === 'review' || plan.status === 'cancelled'));
+  const archive = !filter || filter === 'complete' ? Object.values(game.slices.models.developmentPlanArchive ?? {}).filter(plan => plan.companyId === game.playerCompanyId)
+    .sort((a, b) => b.endedWeek - a.endedWeek || a.id.localeCompare(b.id)) : [];
+  const limited = filter === 'complete' && !showHistory ? visible.slice(0, 5) : visible;
+  return <div className="development-plan-list" aria-label="Development plans">
+    {queued.map(command => command.payload.kind === 'start_development_plan' && <article key={command.id} className="development-plan-card status-queued" aria-label={command.payload.name}>
+      <header><div><span className="strategy-eyebrow">DEVELOPMENT PLAN · SCHEDULED</span><h3>{command.payload.name}</h3></div><span className="development-deadline">Week {command.issuedForWeek}<small>starts</small></span></header>
+      <p>The project starts when the lab advances. Its preparation, training and evaluation will use the saved design and limits.</p>
+      <Metrics><Metric label="Project-fee budget">{formatMoney(command.payload.feeBudgetCents)}</Metric><Metric label="Cash reserve">{formatMoney(command.payload.cashReserveCents)}</Metric><Metric label="Deadline">Week {command.payload.deadlineWeek}</Metric></Metrics>
+      {command.payload.objective && <DevelopmentGoalSummary game={game} goal={command.payload.objective} compact />}
+    </article>)}
+    {limited.map(plan => <PlanCard key={plan.id} {...props} plan={plan} />)}
+    {filter === 'complete' && visible.length > 5 && <button type="button" onClick={() => setShowHistory(!showHistory)} aria-expanded={showHistory}>{showHistory ? 'Show recent plans' : `Show all ${visible.length} saved plans`}</button>}
+    <DevelopmentPlanArchiveHistory game={game} archive={archive} />
+    {!visible.length && !queued.length && !archive.length && <p className="small-note">{filter === 'blocked' ? 'No development plans need a limit or resource fix.' : filter === 'complete' ? 'Completed development plans will appear here.' : 'No development plans are scheduled or running.'}</p>}
+  </div>;
 }
 
 export function DevelopmentPlansPanel(props: Props) {
@@ -107,16 +168,21 @@ export function DevelopmentPlansPanel(props: Props) {
     }
     setRestoredDraftEpoch(workspace.epoch);
   }
-  const loadBlueprint = (blueprint: ModelBlueprint) => {
+  const loadBlueprint = (blueprint: ModelBlueprint, project?: DevelopmentProjectDraft) => {
     const order = structuredClone(blueprint.training);
-    if (blueprint.objective) workspace?.setDevelopmentGoal(blueprint.objective);
-    setName(blueprint.name); setBaseId(order.baseModelId); setSelected(order.packetIds ?? [order.packetId]);
+    if (project && Object.hasOwn(project, 'objective')) workspace?.setDevelopmentGoal(project.objective ?? null);
+    else if (blueprint.objective) workspace?.setDevelopmentGoal(blueprint.objective);
+    setName(project?.name ?? blueprint.name); setBaseId(order.baseModelId); setSelected(order.packetIds ?? [order.packetId]);
     setMethod(order.modelDesign ? 'custom' : order.recipeId ?? CONTENT.firstTraining.id); setProfile(order.profile ?? 'balanced');
     if (order.modelDesign) setDesign(structuredClone(order.modelDesign));
     setTeacherId(order.teacherModelId ?? ''); setTeacherDomain(order.teacherDomain ?? 'conversation');
-    setSuiteId(blueprint.suiteId ?? recommendedDesignEvaluation(order).suiteId); setImportedTraining(order);
+    setSuiteId(project?.suiteId ?? blueprint.suiteId ?? recommendedDesignEvaluation(order).suiteId); setImportedTraining(order);
+    if (project) {
+      setBudget(project.budget); setReserve(project.reserve); setDuration(project.duration);
+      setLeadStaffId(project.leadStaffId ?? 'founder'); setCapacityShareBps(project.capacityShareBps ?? 10000);
+    }
   };
-  if (draftReady && selection && selection.intentId !== appliedIntent) { loadBlueprint(selection.blueprint); setAppliedIntent(selection.intentId); }
+  if (draftReady && selection && selection.intentId !== appliedIntent) { loadBlueprint(selection.blueprint, selection.project); setAppliedIntent(selection.intentId); }
   const savedDraftText = JSON.stringify({ name, baseId, selected, method, profile, teacherId, teacherDomain, design, suiteId,
     budget, reserve, duration, importedTraining, ...(connected ? { leadStaffId, capacityShareBps } : {}) } satisfies DelegatedTrainingDraft);
   useEffect(() => {
@@ -144,7 +210,9 @@ export function DevelopmentPlansPanel(props: Props) {
   const suggestedSuite = EVALUATION_SUITES.find(s => s.id === evaluationAdvice?.suiteId);
   const evaluationResearch = suggestedSuite?.requiredResearch && !hasResearch(game, owner, suggestedSuite.requiredResearch)
     ? CONTENT.research.find(node => node.id === suggestedSuite.requiredResearch) : undefined;
-  const editCurrentTraining = actions?.editTraining && training ? () => actions.editTraining?.({ id: 'delegated-design', name, training, suiteId }) : undefined;
+  const editCurrentTraining = draftReady && actions?.editTraining && training ? () => actions.editTraining?.({ id: 'delegated-design', name, training, suiteId }, {
+    name, suiteId, budget, reserve, duration, ...(connected ? { leadStaffId, capacityShareBps } : {}), objective: workspace?.developmentGoal ?? null,
+  }) : undefined;
   const queuedPlan = game.queuedCommands.some(command => command.companyId === owner && command.payload.kind === 'start_development_plan');
   return <Section title="Develop a model · delegated" id="development-plans" className="development-plans-panel">
     <DevelopmentWorkspaceHeader game={game} mode="delegated" canAct={canAct} onManual={editCurrentTraining} />
@@ -182,9 +250,9 @@ export function DevelopmentPlansPanel(props: Props) {
       {feasibility && <section className="development-feasibility" aria-label="Project feasibility"><h4>Can this project reach its target?</h4><Metrics><Metric label="Planning duration">{feasibility.nominalWeeks === null ? 'Capacity needed' : `${feasibility.nominalWeeks}–${feasibility.cautiousWeeks} weeks`}</Metric><Metric label="Operating cost estimate">{feasibility.operatingLowCents === null || feasibility.operatingHighCents === null ? 'Capacity needed' : `${formatMoney(feasibility.operatingLowCents)}–${formatMoney(feasibility.operatingHighCents)}`}</Metric></Metrics><p className="small-note">Setup fees are separate. This planning range uses current team shares, weekly company bills and estimated metered work. Revenue, competing jobs, hardware speed and future changes can alter the result.{feasibility.includesChallenge ? ' The paid systems challenge is included.' : ''}</p>{feasibility.issues.length > 0 && <ul>{feasibility.issues.map((issue, index) => <li key={index}>{issue}</li>)}</ul>}</section>}
       <p className="small-note">Your design and data choices are retained. Every stage uses the normal paid simulation and checks its prerequisites again. The plan stops for your review after its baseline and any objective challenge.</p>
       <ActionControl game={game} payload={spec ? { kind: 'start_development_plan', ...spec } : null} label="Schedule development plan" canAct={canAct} onQueue={onQueue} emptyReason="Choose a model, data, budget and deadline." taskAction="development-plan" />
-      {queuedPlan && props.onRun && <div className="development-run-next"><p>Your plan is scheduled. Continue until its result or a limit needs your decision.</p><button type="button" className="primary-action" disabled={!canAct || !props.paused} onClick={props.onRun}><Play size={16} aria-hidden="true" />{props.paused ? 'Resume clock · run this plan' : 'Running until a decision'}</button></div>}
+      {queuedPlan && props.onRun && <div className="development-run-next"><p>Your plan is scheduled. Advance the lab until a selected stop rule needs your decision.</p><button type="button" className="primary-action" disabled={!canAct || props.paused === false} onClick={props.onRun}><Play size={16} aria-hidden="true" />{props.decisionRunActive ? 'Running until a decision' : props.paused === false ? 'Continuous play is running' : 'Run until a decision'}</button></div>}
     </div>}
-    {archive.length > 0 && <details className="inline-details"><summary>Archived project history ({archive.length})</summary><p className="small-note">Finished projects are compacted automatically. Their paid models, reports and work receipts remain available.</p><ol>{archive.map(item => <li key={item.id}><strong>{item.name}</strong> · Week {item.createdWeek}–{item.endedWeek} · {item.status === 'review' ? 'Completed' : 'Stopped'} · {formatMoney(item.feeSpentCents)} in fees{item.reportId && <a href="#models"> · Review saved model and reports</a>}</li>)}</ol></details>}
+    <DevelopmentPlanArchiveHistory game={game} archive={archive} />
     {history.length > 0 && <div className="development-history"><h3>Saved plans and results</h3>{(showHistory ? history : history.slice(0, 5)).map(plan => <PlanCard key={plan.id} {...props} plan={plan} />)}{history.length > 5 && <button type="button" onClick={() => setShowHistory(!showHistory)} aria-expanded={showHistory}>{showHistory ? 'Show recent plans' : `Show all ${history.length} saved plans`}</button>}</div>}
   </Section>;
 }

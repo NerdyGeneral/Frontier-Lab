@@ -26,6 +26,7 @@ import "./data-catalog.css";
 import "./strategy-development.css";
 import "./ai-systems.css";
 import "./connected-company.css";
+import "./workflow-refinement.css";
 
 export const metadata: Metadata = {
   title: "Frontier Lab - AI Company Strategy",

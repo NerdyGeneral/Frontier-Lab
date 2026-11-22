@@ -37,7 +37,7 @@ export function commandLabel(payload: CommandPayload): string {
     case 'retire_product': return 'Retire empty product';
     case 'start_development_plan': return 'Start development plan';
     case 'set_development_plan_paused': return payload.paused ? 'Pause development plan' : 'Resume development plan';
-    case 'revise_development_plan': return 'Save limits and resume development';
+    case 'revise_development_plan': return payload.resume === false ? 'Save development limits' : 'Save limits and resume development';
     case 'cancel_development_plan': return 'Stop development plan';
     case 'set_product_strategy': return 'Apply product strategy';
     case 'select_chapter': return 'Choose chapter goal';

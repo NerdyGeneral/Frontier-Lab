@@ -170,11 +170,12 @@ test('research requirements route the exact invention and explain named prerequi
   assert.equal(humanizeDesignRequirement('Research M1, M10 and M12 first.'), 'Research Grouped-query attention, Grounded curriculum and Careful responses first.');
 });
 
-test('research keeps the architecture program behind a named summary and all methods discoverable', () => {
+test('research offers one programs destination while keeping all discovery methods inspectable', () => {
   const game = createInitialState();
   const html = renderToStaticMarkup(<StudioResearchTree game={game} canAct onQueue={noAction} onOpenPanel={noAction} onOpenDesigner={noAction} />);
-  assert.match(html, /<details class="research-tree-architecture-program"><summary>/);
-  assert.match(textOnly(html), /Architecture program Level 0/);
+  assert.match(textOnly(html), /Repeatable architecture research and paid systems experiments are available in Programs/);
+  assert.match(textOnly(html), /Open research programs/);
+  assert.doesNotMatch(html, /research-tree-architecture-program|Fund architecture level/);
   for (const id of ['M1', 'M6', 'M13']) assert.ok(html.includes(`aria-label="${id}:`));
   assert.match(html, /aria-label="Review /);
   assert.doesNotMatch(textOnly(html), /Research M\d/);

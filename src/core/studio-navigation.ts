@@ -4,11 +4,11 @@ import type { StudioPanelId } from './studio-tasks';
  * in the existing selectors and engine; a route does not queue a decision. */
 export const STUDIO_DESTINATIONS = [
   { id: 'studio', label: 'Studio', description: 'Your room, current goal and pinned work.' },
-  { id: 'projects', label: 'Projects', description: 'Runs, models, datasets and next-week planning.' },
+  { id: 'projects', label: 'Projects', description: 'Your work queue, development plans, models and datasets.' },
   { id: 'research', label: 'Research', description: 'Discoveries, applications and synthetic data.' },
   { id: 'products', label: 'Products', description: 'Services, customers, releases and the market.' },
-  { id: 'operations', label: 'Operations', description: 'People, compute, racks, Campus and chips.' },
-  { id: 'company', label: 'Company', description: 'Finances, costs, history and ambitions.' },
+  { id: 'operations', label: 'Operations', description: 'People, capacity planning, facilities and hardware.' },
+  { id: 'company', label: 'Company', description: 'Finances, history and ambitions.' },
 ] as const;
 
 export type StudioDestination = (typeof STUDIO_DESTINATIONS)[number]['id'];
@@ -23,6 +23,7 @@ export interface StudioNavigationTarget {
 }
 
 export const STUDIO_PANEL_DESTINATIONS = {
+  'research-programs': 'research', capacity: 'operations',
   'development-plans': 'projects', 'model-challenges': 'research',
   data: 'projects', 'lab-projects': 'projects', models: 'projects',
   'model-corpus-compare': 'projects',
@@ -30,7 +31,7 @@ export const STUDIO_PANEL_DESTINATIONS = {
   product: 'products', 'developer-api': 'products', 'business-commitments': 'products', 'customer-briefs': 'products',
   agents: 'products', 'release-desk': 'products', market: 'products',
   people: 'operations', compute: 'operations', infrastructure: 'operations', chips: 'operations', campus: 'operations',
-  business: 'company', 'compute-costs': 'company', 'capacity-forecast': 'company',
+  business: 'company', 'compute-costs': 'operations', 'capacity-forecast': 'operations',
   'company-log': 'company', campaign: 'company', save: 'save',
 } as const satisfies Readonly<Record<StudioPanelId, StudioCanonicalScreen>>;
 
@@ -58,6 +59,8 @@ export function resolveStudioHash(hash: string): StudioNavigationTarget | null {
   let id: string;
   try { id = decodeURIComponent(hash.startsWith('#') ? hash.slice(1) : hash); }
   catch { return null; }
+  if (id === 'planner' || id === 'studio-plan-workbench') return { screen: 'operations', panel: 'capacity' };
+  if (id === 'development-plans') return { screen: 'projects', panel: null };
   if (Object.hasOwn(STUDIO_PANEL_DESTINATIONS, id)) {
     const panel = id as StudioPanelId;
     return { screen: getStudioDestinationForPanel(panel), panel };

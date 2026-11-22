@@ -3,7 +3,7 @@
 import { createContext, useContext } from 'react';
 import type { CommandPayload, GameState, StaffRole } from '../contracts/types';
 import type { StudioTaskId } from '../core/studio-tasks';
-import type { ModelBlueprint } from '../persistence/model-workspace';
+import type { DevelopmentProjectDraft, ModelBlueprint } from '../persistence/model-workspace';
 import type { DevelopmentTrainingOrder } from '../contracts/development-plans';
 import type { ProductKind } from '../contracts/wave2-market';
 
@@ -46,9 +46,9 @@ export function useStudioDataSelection() { return useContext(DataSelectionContex
 export type StudioTrainingSelection = StudioDataSelection
   | { intentId: number; designResearchId: string }
   | { intentId: number; designer: 'custom' }
-  | { intentId: number; blueprint: ModelBlueprint }
+  | { intentId: number; blueprint: ModelBlueprint; project?: DevelopmentProjectDraft }
   | { intentId: number; baseModelId: string | null; unavailableReason?: string };
-export type StudioDevelopmentSelection = { intentId: number; blueprint: ModelBlueprint };
+export type StudioDevelopmentSelection = { intentId: number; blueprint: ModelBlueprint; project?: DevelopmentProjectDraft };
 const DevelopmentSelectionContext = createContext<StudioDevelopmentSelection | null>(null);
 export const StudioDevelopmentSelectionProvider = DevelopmentSelectionContext.Provider;
 export function useStudioDevelopmentSelection() { return useContext(DevelopmentSelectionContext); }
@@ -99,8 +99,8 @@ export interface StudioTaskActions {
   openTask?: (taskId: StudioTaskId) => void;
   openResearch?: (researchId: string) => void;
   openModelDesigner?: () => void;
-  delegateTraining?: (training: DevelopmentTrainingOrder) => void;
-  editTraining?: (blueprint: ModelBlueprint) => void;
+  delegateTraining?: (training: DevelopmentTrainingOrder, project?: DevelopmentProjectDraft) => void;
+  editTraining?: (blueprint: ModelBlueprint, project?: DevelopmentProjectDraft) => void;
 }
 const TaskActionsContext = createContext<StudioTaskActions | null>(null);
 export const StudioTaskActionsProvider = TaskActionsContext.Provider;

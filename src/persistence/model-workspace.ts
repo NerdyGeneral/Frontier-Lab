@@ -22,6 +22,8 @@ export interface ManualTrainingDraft {
   retentionMode: 'none' | 'replay' | 'curriculum'; replayChoice: ReplayTrainingChoice; curriculumChoice: TrainingCurriculumChoice;
   architecture: 'dense' | 'sparse'; teacherId: string; teacherDomain: CapabilityDomain;
   trainingView: 'guided' | 'advanced'; designOpen: boolean;
+  /** The project being edited survives a manual/delegated round trip and reload. */
+  project?: DevelopmentProjectDraft;
 }
 export interface DelegatedTrainingDraft {
   name: string; baseId: string; selected: string[]; method: string; profile: TrainingProfile;
@@ -30,6 +32,11 @@ export interface DelegatedTrainingDraft {
   leadStaffId?: string; capacityShareBps?: number;
   /** A manual handoff preserves every advanced option until explicitly edited. */
   importedTraining: DevelopmentTrainingOrder | null;
+}
+export interface DevelopmentProjectDraft {
+  name: string; suiteId: EvaluationSuiteId; budget: string; reserve: string; duration: string;
+  leadStaffId?: string; capacityShareBps?: number;
+  objective?: DevelopmentGoal | null;
 }
 export interface ModelBlueprint { id: string; name: string; training: DevelopmentTrainingOrder; suiteId?: EvaluationSuiteId; objective?: DevelopmentGoal }
 export interface ModelWorkspaceData {
@@ -71,13 +78,21 @@ export function isTrainingBlueprintOrder(value: unknown): value is DevelopmentTr
   try { assertCommandShape(value as unknown as DevelopmentTrainingOrder); return true; } catch { return false; }
 }
 export function isManualTrainingDraft(v: unknown): v is ManualTrainingDraft {
-  return object(v) && exact(v, ['recipeId','designRoute','designDraft','baseId','packetId','explicitPacket','extraPackets','profile','workspace','automated','asAdapter','retentionMode','replayChoice','curriculumChoice','architecture','teacherId','teacherDomain','trainingView','designOpen'])
+  return object(v) && exact(v, ['recipeId','designRoute','designDraft','baseId','packetId','explicitPacket','extraPackets','profile','workspace','automated','asAdapter','retentionMode','replayChoice','curriculumChoice','architecture','teacherId','teacherDomain','trainingView','designOpen', ...(Object.hasOwn(v, 'project') ? ['project'] : [])])
     && text(v.recipeId) && oneOf(v.designRoute, ['custom','methods',null]) && (v.designDraft === null || design(v.designDraft))
     && (v.baseId === null || text(v.baseId)) && (v.packetId === null || text(v.packetId)) && ids(v.extraPackets)
     && typeof v.explicitPacket === 'boolean' && typeof v.automated === 'boolean' && typeof v.asAdapter === 'boolean' && typeof v.designOpen === 'boolean'
     && oneOf(v.profile, ['reference','stable','balanced','ambitious']) && oneOf(v.workspace, ['','recompute','large-batch'])
     && oneOf(v.retentionMode, ['none','replay','curriculum']) && replay(v.replayChoice) && curriculum(v.curriculumChoice)
-    && oneOf(v.architecture, ['dense','sparse']) && text(v.teacherId) && oneOf(v.teacherDomain, domains) && oneOf(v.trainingView, ['guided','advanced']);
+    && oneOf(v.architecture, ['dense','sparse']) && text(v.teacherId) && oneOf(v.teacherDomain, domains) && oneOf(v.trainingView, ['guided','advanced'])
+    && (!Object.hasOwn(v, 'project') || isDevelopmentProjectDraft(v.project));
+}
+export function isDevelopmentProjectDraft(v: unknown): v is DevelopmentProjectDraft {
+  return object(v) && exact(v, ['name','suiteId','budget','reserve','duration', ...['leadStaffId','capacityShareBps','objective'].filter(key => Object.hasOwn(v, key))])
+    && text(v.name,60) && oneOf(v.suiteId, suites) && text(v.budget,40) && text(v.reserve,40) && text(v.duration,40)
+    && (v.leadStaffId === undefined || text(v.leadStaffId) && !!v.leadStaffId)
+    && (v.capacityShareBps === undefined || Number.isSafeInteger(v.capacityShareBps) && (v.capacityShareBps as number) >= 1000 && (v.capacityShareBps as number) <= 10000 && (v.capacityShareBps as number) % 500 === 0)
+    && (v.objective === undefined || v.objective === null || isDevelopmentGoal(v.objective));
 }
 export function isDelegatedTrainingDraft(v: unknown): v is DelegatedTrainingDraft {
   return object(v) && exact(v, ['name','baseId','selected','method','profile','teacherId','teacherDomain','design','suiteId','budget','reserve','duration','importedTraining', ...['leadStaffId','capacityShareBps'].filter(key => Object.hasOwn(v,key))])

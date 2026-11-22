@@ -10,14 +10,23 @@ export type StudioMenuTarget =
   | { kind: 'panel'; panel: StudioPanelId }
   | { kind: 'task'; task: StudioTaskId };
 
+export interface StudioMenuAction {
+  id: string;
+  label: string;
+  description: string;
+  target: StudioMenuTarget;
+  /** A shortcut can have a stricter gate than its parent workspace. */
+  panel?: StudioPanelId;
+}
+
 export interface StudioMenuEntry {
   id: string;
   label: string;
   description: string;
   keywords: string;
   workspace: StudioCanonicalScreen;
-  kind: 'menu' | 'task';
   target: StudioMenuTarget;
+  actions: readonly StudioMenuAction[];
   /** The existing workbench gate, if any. Locked entries remain discoverable. */
   panel?: StudioPanelId;
 }
@@ -26,14 +35,16 @@ interface MenuCopy { label?: string; description: string; keywords: string }
 const PANEL_COPY = {
   'development-plans': { description: 'Delegate data preparation, model training and evaluation within a fee budget, reserve and deadline.', keywords: 'automation automatic pipeline prepare train test evaluate delegate handoff plan budget deadline' },
   'model-challenges': { description: 'Test combined skills, serving costs, memory, case retention and verified completion to earn lasting titles.', keywords: 'applied frontier horizon benchmark difficulty trophy title achievement seven skills challenge systems cost memory retention verification' },
-  data: { label: 'Datasets & marketplace', description: 'Prepare data, acquire new sources, improve quality, and inspect skill coverage.', keywords: 'buy purchase acquire curate curation marketplace advanced reasoning long context multimodal sources licenses' },
-  'lab-projects': { label: 'Develop a model', description: 'Keep an objective, design an AI system, and choose manual or delegated development.', keywords: 'custom designer training bench foundation adaptation parameters sparsity budget recipes checkpoints experiments replay curriculum retention experts stateful adaptive verification systems' },
-  models: { label: 'Models & evaluations', description: 'Compare saved versions, test their skills, and inspect reports and training history.', keywords: 'benchmark test advanced reasoning long context multimodal held out report checkpoints behavior policy holdout' },
+  data: { label: 'Datasets & marketplace', description: 'Prepare data, acquire new sources, improve quality, and inspect skill coverage.', keywords: 'data desk buy purchase acquire curate curation marketplace advanced reasoning long context multimodal sources licenses' },
+  'lab-projects': { label: 'Develop a model', description: 'Keep an objective, design an AI system, and choose manual or delegated development.', keywords: 'custom designer training bench foundation adaptation parameters sparsity budget recipes checkpoints replay curriculum retention experts stateful adaptive verification systems' },
+  models: { label: 'Models & evaluations', description: 'Compare saved versions, test their skills, and inspect reports and training history.', keywords: 'test station benchmark advanced reasoning long context multimodal held out report checkpoints behavior policy holdout' },
   people: { label: 'Team & hiring', description: 'Recruit specialists and see the work points your team produces each week.', keywords: 'staff hire employees wages salary roles points assignment allocation onboarding' },
-  compute: { label: 'Compute & cloud rental', description: 'Allocate GPUs to projects and services, or rent and release cloud capacity.', keywords: 'allocation rent rental capacity gpu memory cu cuw mu serving development research' },
+  compute: { label: 'Compute & cloud rental', description: 'Allocate GPUs to projects and services, or rent and release cloud capacity.', keywords: 'compute rack allocation rent rental capacity gpu memory cu cuw mu serving development research' },
+  capacity: { label: 'Capacity', description: 'Plan people and compute, adjust allocation and rental, and review costs and future demand.', keywords: 'resource plan resources planner plan week next week staffing allocation rent rental cloud gpu forecast utilization costs' },
   product: { description: 'Launch Basic Chat and manage its model, price, allowance, and service settings.', keywords: 'consumer chat launch deploy price allowance pause resume routing feedback efficiency' },
   'release-desk': { description: 'Prepare releases, monitor canaries, roll back a model, and manage private appliances.', keywords: 'launch promotion rollback deployment telemetry canary appliance private rehearsal' },
   research: { description: 'Browse discovery requirements, start research, and review completed methods.', keywords: 'catalog methods discovery prerequisites technology unlock r1 evaluation r3 automation' },
+  'research-programs': { label: 'Research programs', description: 'Run systems experiments for accreditation and repeat architecture research to unlock model families.', keywords: 'programs experiments efficient persistent verified systems accreditation pilot production fleet frontier architecture edge families repeatable' },
   'applied-research': { label: 'Research applications', description: 'Turn discoveries into deployment variants, adapters, training supervision, and assistance.', keywords: 'compression memory format adapter bank install supervisor assistant variant efficiency' },
   market: { description: 'See forecastable demand opportunities, rival plans, and the wider market for your products.', keywords: 'rivals competitors competition market share trust opportunity forecast demand calendar plans' },
   'developer-api': { description: 'Manage your API, token pricing, batch work, feedback, and service safeguards.', keywords: 'developer tokens batch inference scheduler assured api guardrails feedback review' },
@@ -64,6 +75,7 @@ const TASK_COPY = {
   staffing: 'Review your staff and the work your team can support.',
   'plan-week': 'Review project needs and plan next week’s people and compute.',
   'research-method': 'Choose a discovery and check its costs and prerequisites.',
+  'research-program': 'Choose an evaluated model and fund an efficient, persistent, or verified systems experiment.',
   'architecture-research': 'Repeat research to unlock Edge and Frontier families. Start after Evaluation suite (R1).',
   'apply-research': 'Install a discovered system or create a deployment variant.',
   'synthetic-data': 'Choose a teacher and produce new examples for a training curriculum.',
@@ -90,38 +102,77 @@ export const STUDIO_MENU_GROUPS: readonly { id: StudioCanonicalScreen; label: st
   { id: 'save', label: 'Save & session', description: 'Protect your progress and manage this browser session.' },
 ];
 
-const panelEntries: StudioMenuEntry[] = (Object.keys(STUDIO_PANEL_TITLES) as StudioPanelId[]).map(panel => {
+/** Old routes remain valid. The directory groups them under the feature where
+ * the player can make the whole decision, instead of showing each form twice. */
+const PANEL_FEATURES: Partial<Record<StudioPanelId, string>> = {
+  'development-plans': 'screen:projects',
+  research: 'screen:research',
+  compute: 'panel:capacity',
+  'compute-costs': 'panel:capacity',
+  'capacity-forecast': 'panel:capacity',
+};
+const TASK_FEATURES: Partial<Record<StudioTaskId, string>> = {
+  'development-plan': 'panel:lab-projects',
+  'architecture-research': 'panel:research-programs',
+  'plan-week': 'panel:capacity',
+};
+
+function panelAction(panel: StudioPanelId, label?: string): StudioMenuAction {
   const copy: MenuCopy = PANEL_COPY[panel];
-  return {
-    id: 'panel:' + panel, label: copy.label ?? STUDIO_PANEL_TITLES[panel], description: copy.description,
-    keywords: copy.keywords + ' ' + STUDIO_PANEL_TITLES[panel], workspace: getStudioDestinationForPanel(panel), kind: 'menu',
-    target: { kind: 'panel', panel }, panel,
-  };
-});
+  return { id: 'panel:' + panel, label: label ?? copy.label ?? STUDIO_PANEL_TITLES[panel],
+    description: copy.description, target: { kind: 'panel', panel }, panel };
+}
 
-const taskEntries: StudioMenuEntry[] = (Object.keys(STUDIO_TASKS) as StudioTaskId[]).map(task => {
+function taskAction(task: StudioTaskId, label?: string): StudioMenuAction {
   const owner = STUDIO_TASKS[task].owner;
-  const panel = owner === 'planner' ? undefined : owner;
-  return {
-    id: 'task:' + task, label: STUDIO_TASKS[task].title, description: TASK_COPY[task],
-    keywords: panel ? PANEL_COPY[panel].keywords : 'planner plan staffing resources people compute allocation',
-    workspace: panel ? getStudioDestinationForPanel(panel) : 'projects', kind: 'task',
-    target: { kind: 'task', task }, ...(panel ? { panel } : {}),
-  };
-});
+  return { id: 'task:' + task, label: label ?? STUDIO_TASKS[task].title, description: TASK_COPY[task],
+    target: { kind: 'task', task }, ...(owner === 'planner' ? {} : { panel: owner }) };
+}
 
-export const STUDIO_MENU_ENTRIES: readonly StudioMenuEntry[] = [
-  { id: 'screen:studio', label: 'Studio home', description: 'Return to your room, current goal, and pinned projects.', keywords: 'home room garage next goal', workspace: 'studio', kind: 'menu', target: { kind: 'screen', screen: 'studio' } },
-  { id: 'screen:projects', label: 'Work queue', description: 'See running, blocked, completed, and scheduled projects.', keywords: 'projects queue progress pending work results', workspace: 'projects', kind: 'menu', target: { kind: 'screen', screen: 'projects' } },
-  { id: 'screen:research', label: 'Research pathways', description: 'Explore every discovery, its prerequisites, and what it unlocks.', keywords: 'research tree map technology branches discovery', workspace: 'research', kind: 'menu', target: { kind: 'screen', screen: 'research' } },
-  ...panelEntries,
-  ...taskEntries,
-];
+/** Shortcuts are the distinct decisions within a feature. Generic "manage"
+ * task names remain search aliases without becoming another visible row. */
+const FEATURE_ACTIONS: Readonly<Record<string, readonly StudioMenuAction[]>> = {
+  'screen:research': [panelAction('research', 'Open catalog')],
+  'panel:lab-projects': [taskAction('train-model', 'Manual development'), taskAction('development-plan', 'Delegated development')],
+  'panel:data': [taskAction('prepare-data')],
+  'panel:models': [taskAction('evaluate-model')],
+  'panel:people': [taskAction('hire-staff'), taskAction('assign-staff')],
+  'panel:capacity': [panelAction('compute', 'Allocation & rental'), panelAction('capacity-forecast', 'Forecast'), panelAction('compute-costs', 'Costs')],
+  'panel:research-programs': [taskAction('research-program', 'Systems experiment'), taskAction('architecture-research', 'Architecture research')],
+};
+
+function createMenuEntries(): StudioMenuEntry[] {
+  const screens: StudioMenuEntry[] = [
+    { id: 'screen:studio', label: 'Studio home', description: 'Return to your room, current goal, and pinned projects.', keywords: 'home room garage next goal', workspace: 'studio', target: { kind: 'screen', screen: 'studio' }, actions: [] },
+    { id: 'screen:projects', label: 'Work queue', description: 'See running, blocked, completed, and scheduled work, including delegated development plans.', keywords: 'projects queue progress pending work results development plans', workspace: 'projects', target: { kind: 'screen', screen: 'projects' }, actions: [] },
+    { id: 'screen:research', label: 'Discoveries', description: 'Explore every discovery, its prerequisites, and what it unlocks.', keywords: 'research pathways tree map technology branches discovery discoveries catalog', workspace: 'research', target: { kind: 'screen', screen: 'research' }, actions: [] },
+  ];
+  const panels = (Object.keys(STUDIO_PANEL_TITLES) as StudioPanelId[]).filter(panel => !PANEL_FEATURES[panel]).map((panel): StudioMenuEntry => {
+    const copy: MenuCopy = PANEL_COPY[panel];
+    return { id: 'panel:' + panel, label: copy.label ?? STUDIO_PANEL_TITLES[panel], description: copy.description,
+      keywords: copy.keywords, workspace: getStudioDestinationForPanel(panel), target: { kind: 'panel', panel }, panel, actions: [] };
+  });
+  const entries = [...screens, ...panels];
+  const byId = new Map(entries.map(entry => [entry.id, entry]));
+  for (const panel of Object.keys(STUDIO_PANEL_TITLES) as StudioPanelId[]) {
+    const entry = byId.get(PANEL_FEATURES[panel] ?? 'panel:' + panel)!;
+    const copy: MenuCopy = PANEL_COPY[panel];
+    entry.keywords += ' ' + [STUDIO_PANEL_TITLES[panel], copy.label, copy.description, copy.keywords].filter(Boolean).join(' ');
+  }
+  for (const task of Object.keys(STUDIO_TASKS) as StudioTaskId[]) {
+    const owner = STUDIO_TASKS[task].owner;
+    const feature = TASK_FEATURES[task] ?? (owner === 'planner' ? 'panel:capacity' : PANEL_FEATURES[owner] ?? 'panel:' + owner);
+    const entry = byId.get(feature)!;
+    entry.keywords += ' ' + STUDIO_TASKS[task].title + ' ' + TASK_COPY[task];
+  }
+  return entries.map(entry => ({ ...entry, actions: FEATURE_ACTIONS[entry.id] ?? [] }));
+}
+
+export const STUDIO_MENU_ENTRIES: readonly StudioMenuEntry[] = createMenuEntries();
 
 export interface StudioMenuFilter {
   query?: string;
   workspace?: StudioCanonicalScreen | 'all';
-  kind?: StudioMenuEntry['kind'] | 'all';
 }
 
 function normalize(value: string): string {
@@ -130,13 +181,13 @@ function normalize(value: string): string {
 
 /** All query words must match, regardless of order. Filters never mutate the
  * registry or remove unavailable features from the catalog. */
-export function findStudioMenuEntries({ query = '', workspace = 'all', kind = 'all' }: StudioMenuFilter = {}): StudioMenuEntry[] {
+export function findStudioMenuEntries({ query = '', workspace = 'all' }: StudioMenuFilter = {}): StudioMenuEntry[] {
   const words = normalize(query).split(/\s+/).filter(Boolean);
   return STUDIO_MENU_ENTRIES.filter(entry => {
     if (workspace !== 'all' && entry.workspace !== workspace) return false;
-    if (kind !== 'all' && entry.kind !== kind) return false;
     const group = STUDIO_MENU_GROUPS.find(item => item.id === entry.workspace);
-    const text = normalize([entry.label, entry.description, entry.keywords, group?.label ?? ''].join(' '));
+    const text = normalize([entry.label, entry.description, entry.keywords, group?.label ?? '',
+      ...entry.actions.flatMap(action => [action.label, action.description])].join(' '));
     return words.every(word => text.includes(word));
   });
 }
