@@ -22,6 +22,7 @@ import { actionCostLabel, commandLabel, isQueued, ROLE_LABELS } from './componen
 import { StudioPlanner } from './studio-planner';
 import { DevelopmentPlanList, developmentPlanCounts } from './development-plans-panel';
 import { ResearchProgramsWorkspace } from './research-programs-workspace';
+import type { ResearchProgramsSelection } from './research-programs-workspace';
 import { StudioResearchTree } from './studio-research-tree';
 import { createResearchTrainingSelection } from './research-training-intent';
 import { StudioResearchMethod } from './studio-research-method';
@@ -149,7 +150,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   const [staffingSelection, setStaffingSelection] = useState<StudioStaffingSelection | null>(null);
   const [plannerContext, setPlannerContext] = useState<{ title: string; reason: string }>();
   const [researchSelection, setResearchSelection] = useState<{ intentId: number; researchId: string } | null>(null);
-  const [programSelection, setProgramSelection] = useState<{ intentId: number; programType: 'systems' | 'architecture' }>();
+  const [programSelection, setProgramSelection] = useState<ResearchProgramsSelection>();
   const resultsReturnFocusRef = useRef<HTMLElement | null>(null);
   const [journeyFocus, setJourneyFocus] = useState<StudioJourneyFocus>({});
   const journey = useMemo(() => getStudioJourney(game, journeyFocus, studio.projects), [game, journeyFocus, studio.projects]);
@@ -171,6 +172,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   const [sceneVisible, setSceneVisible] = useState(true);
   const [prefsReady, setPrefsReady] = useState(false);
   const initialCapacityRoute = useRef(false);
+  const initialNavigationIntent = useRef<StudioIntent | null>(null);
   const [pinned, setPinned] = useState<string[]>([]);
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>('active');
   const [projectTab, setProjectTab] = useState<'work' | 'plan'>('work');
@@ -255,7 +257,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     setSceneVisible(stored.sceneVisible !== false);
     setPinned(Array.isArray(stored.pinned) ? stored.pinned.filter((id): id is string => typeof id === 'string').slice(0, 4) : []);
     const initialTarget = resolveStudioHash(window.location.hash);
-    if (initialTarget) { setPanel(initialTarget.panel); setScreen(initialTarget.screen); initialCapacityRoute.current = initialTarget.panel === 'capacity'; }
+    if (initialTarget) { setPanel(initialTarget.panel); setScreen(initialTarget.screen); initialCapacityRoute.current = initialTarget.panel === 'capacity'; initialNavigationIntent.current = initialTarget.intent ?? null; }
     setPrefsReady(true);
     const onPreferenceChange = (event: MediaQueryListEvent) => { if (event.matches) setReducedMotion(true); };
     media.addEventListener('change', onPreferenceChange);
@@ -303,6 +305,13 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     onPause();
   }, [prefsReady, forceSaveOpen, onPause]);
 
+  useEffect(() => {
+    if (!prefsReady || !initialNavigationIntent.current || forceSaveOpen || busy) return;
+    const intent = initialNavigationIntent.current;
+    initialNavigationIntent.current = null;
+    openNavigationIntent(intent);
+  }, [prefsReady, forceSaveOpen, busy]);
+
   const openPanel = useCallback((id: string, _legacyScreen?: Screen) => {
     if (!isStudioPanelId(id) || task?.phase === 'submitting') return;
     if (forceSaveOpen && id !== 'save') return;
@@ -337,7 +346,8 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     const followHash = () => {
       const target = resolveStudioHash(window.location.hash);
       if (!target || forceSaveOpen || task?.phase === 'submitting') return;
-      if (window.location.hash === '#development-plans') openPanel('development-plans');
+      if (target.intent) openNavigationIntent(target.intent);
+      else if (window.location.hash === '#development-plans') openPanel('development-plans');
       else if (target.panel) openPanel(target.panel);
       else { dispatchTask({ type: 'close' }); setScreen(target.screen); setPanel(null); if (target.screen === 'projects') setProjectTab('work'); }
     };
@@ -477,6 +487,13 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     if (task && task.owner !== owner && !taskSession.detour) dispatchTask({ type: 'detour', destination: { screen, panel: owner === 'planner' ? null : owner, projectTab } });
     openTask(taskId, intent, keepParent);
     revealClassicPanel(owner);
+  }
+
+  function openNavigationIntent(intent: StudioIntent) {
+    if (busy || forceSaveOpen || task?.phase === 'submitting' || inFlight.current) return;
+    const resolved = resolveStudioIntent(game, intent);
+    if (!resolved.ok) { showUnavailableTarget(resolved.reason, intent); return; }
+    if (resolved.task) openResultTask(resolved.task, intent);
   }
 
   function followResult(target: StudioResultTarget) {
@@ -632,7 +649,8 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     const resolved = resolveStudioIntent(game, intent ?? { kind: 'task', task: taskId });
     if (!resolved.ok) { showUnavailableTarget(resolved.reason, intent); return; }
     if (taskId === 'architecture-research' || taskId === 'research-program') {
-      setProgramSelection({ intentId: nextIntentId.current++, programType: taskId === 'architecture-research' ? 'architecture' : 'systems' });
+      setProgramSelection({ intentId: nextIntentId.current++, programType: taskId === 'architecture-research' ? 'architecture' : 'systems',
+        ...(resolved.target?.kind === 'research-experiment' ? { experimentId: resolved.target.experimentId } : {}) });
     }
     if (resolved.target?.kind === 'research-method') {
       setResearchSelection({ intentId: nextIntentId.current++, researchId: resolved.target.researchId });
@@ -674,6 +692,9 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     if (intent?.kind === 'research-method') {
       setResearchSelection({ intentId, researchId: intent.researchId });
       openTask('research-method');
+    } else if (intent?.kind === 'research-experiment') {
+      setProgramSelection({ intentId, programType: 'systems', experimentId: intent.experimentId });
+      openPanel('research-programs');
     } else if (intent?.kind === 'staffing') {
       setStaffingSelection({ intentId, mode: intent.mode, staffId: null, unavailableReason: reason });
       openPanel('people', 'studio');
@@ -962,14 +983,16 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   }
 
   function followLink(event: MouseEvent<HTMLElement>) {
-    if (mode !== 'studio' || !(event.target instanceof Element)) return;
+    if (!(event.target instanceof Element)) return;
     const anchor = event.target.closest<HTMLAnchorElement>('a[href^="#"]');
     if (!anchor) return;
     const id = anchor.getAttribute('href')?.slice(1) ?? '';
+    const target = resolveStudioHash(id);
+    if (target?.intent) { event.preventDefault(); openNavigationIntent(target.intent); return; }
+    if (mode !== 'studio') return;
     if (id === 'lab') { event.preventDefault(); if (taskModal) closeTask(); else closePanel(); return; }
     if (id === 'planner' || id === 'studio-plan-workbench') { event.preventDefault(); openPlanner(); return; }
     if (id === 'development-plans') { event.preventDefault(); openPanel(id); return; }
-    const target = resolveStudioHash(id);
     if (target) { event.preventDefault(); if (target.panel) openPanel(target.panel); else selectScreen(target.screen); }
   }
 
@@ -1161,7 +1184,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
             </div>}
             {panelLock && <StudioLockedWorkbench title={PANEL_TITLES[panel]} reason={panelLock} onResearch={() => openResearchTree()} onStudio={() => selectScreen('studio')} />}
 
-          </> : inspectedProject ? <StudioInspector title={inspectedProject.title} status={<Status status={inspectedProject.status} />} description={inspectedProject.bottleneck || inspectedProject.detail} onClose={closePanel} actions={<><button type="button" className="studio-surface-button" onClick={() => openPanel(inspectedProject.targetPanel)}>Open project menu<ArrowUpRight size={15} /></button><button type="button" className="studio-surface-button" onClick={openPlanner}>Review people and compute</button>{inspectedProject.status !== 'complete' && <><button type="button" className="studio-surface-button" onClick={() => hireStaff(undefined, inspectedProject.bottleneck || inspectedProject.detail)}>Review hiring</button><button type="button" className="studio-surface-button" onClick={() => assignStaff(undefined, inspectedProject.bottleneck || inspectedProject.detail)}>View team output</button></>}</>}>
+          </> : inspectedProject ? <StudioInspector title={inspectedProject.title} status={<Status status={inspectedProject.status} />} description={inspectedProject.bottleneck || inspectedProject.detail} onClose={closePanel} actions={<><button type="button" className="studio-surface-button" onClick={() => inspectedProject.targetIntent ? openNavigationIntent(inspectedProject.targetIntent) : inspectedProject.targetTask ? openNamedTask(inspectedProject.targetTask) : openPanel(inspectedProject.targetPanel)}>Open project menu<ArrowUpRight size={15} /></button><button type="button" className="studio-surface-button" onClick={openPlanner}>Review people and compute</button>{inspectedProject.status !== 'complete' && <><button type="button" className="studio-surface-button" onClick={() => hireStaff(undefined, inspectedProject.bottleneck || inspectedProject.detail)}>Review hiring</button><button type="button" className="studio-surface-button" onClick={() => assignStaff(undefined, inspectedProject.bottleneck || inspectedProject.detail)}>View team output</button></>}</>}>
             <progress value={inspectedProject.progressBps} max={10000} aria-label={inspectedProject.title + ' progress'} />
             {resultIntent && <StudioResultCard title={inspectedProject.kind === 'training' ? 'Model ready' : 'Test complete'} identity={inspectedProject.title} summary={inspectedProject.kind === 'training' ? 'Your trained model is ready to inspect. Test it before choosing where to launch.' : 'See this model and its test results.'} action={{ label: inspectedProject.kind === 'training' ? 'View this model' : 'View this report', onClick: () => openEntity(resultIntent) }} />}
             {resultIntent?.kind === 'training-result' && <button type="button" className="studio-surface-button studio-surface-primary" onClick={() => openEntity(resultIntent, true)} disabled={busy}>Test this model<ArrowUpRight size={15} /></button>}

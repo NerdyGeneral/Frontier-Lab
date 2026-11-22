@@ -6,6 +6,8 @@ import ts from 'typescript';
 import { advanceWeek, createInitialState } from '../src/core/engine';
 import { SnapshotTooLargeError } from '../src/core/snapshot';
 import { CONTENT } from '../src/content/catalog';
+import { DEFAULT_DECISION_CLOCK_POLICY, decisionStartGuard } from '../src/core/decision-clock';
+import type { DecisionClockPolicy, DecisionStop } from '../src/core/decision-clock';
 import { readBrowserSnapshotWithBytes, writeBrowserSnapshotWithBytes, browserRecoveryOptions } from '../src/persistence/wave0-browser';
 
 // Execute the component's real lifecycle callbacks with browser storage and live
@@ -80,6 +82,43 @@ function session(t: TestContext) {
     paused: () => paused,
   };
 }
+
+test('Next decision adopts guarded stop rules during continuous play and its stop control pauses the run', t => {
+  const s = session(t);
+  const decisionRunRef: { current: { policy: DecisionClockPolicy; startedWeek: number } | null } = { current: null };
+  let active = false;
+  let stop: DecisionStop | null = null;
+  const closure = {
+    ...s.closure, CONTENT, decisionPolicy: { ...DEFAULT_DECISION_CLOCK_POLICY }, decisionStartGuard,
+    decisionRunRef, setDecisionRunActive: (value: boolean) => { active = value; },
+    setDecisionStop: (value: DecisionStop | null) => { stop = value; },
+    toggleRunning: s.toggle,
+  };
+  const pause = bindCallback('pause', closure);
+  const run = bindCallback('runToDecision', { ...closure, pause });
+  s.toggle();
+  assert.equal(s.closure.runningRef.current, true);
+  assert.equal(active, false);
+  run();
+  assert.equal(s.closure.runningRef.current, true, 'Continuous play must stay running when adopting stop rules.');
+  assert.equal(s.paused(), false);
+  assert.equal(active, true);
+  assert.deepEqual(decisionRunRef.current, { policy: closure.decisionPolicy, startedWeek: s.closure.gameRef.current.week });
+  assert.equal(stop, null);
+  assert.equal(s.closure.gameRef.current.week, 0, 'Changing clock mode does not itself advance the simulation.');
+  run();
+  assert.equal(active, false);
+  assert.equal(decisionRunRef.current, null);
+  assert.equal(s.closure.runningRef.current, false);
+  assert.equal(s.paused(), true);
+
+  s.toggle();
+  closure.decisionPolicy.cashReserveCents = s.closure.gameRef.current.slices.company.companies[s.closure.gameRef.current.playerCompanyId].cashCents;
+  run();
+  assert.equal(s.closure.runningRef.current, false, 'An unsafe decision run must still stop continuous play.');
+  assert.equal(active, false);
+  assert.ok(stop);
+});
 
 test('an unstarted origin picker stays unsaved when the page is hidden; a started origin can persist', t => {
   const s = session(t);

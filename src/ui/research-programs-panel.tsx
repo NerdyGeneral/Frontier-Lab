@@ -11,14 +11,31 @@ import { ActionControl, Metric, Metrics, Section } from './components';
 import type { PanelProps } from './panels';
 import { useContinueTraining, useStudioTaskActions } from './studio-interaction-context';
 
-export function ResearchProgramsPanel({ game, canAct, onQueue }: Pick<PanelProps, 'game' | 'canAct' | 'onQueue'>) {
+export function ResearchProgramsPanel({ game, canAct, onQueue, selection }: Pick<PanelProps, 'game' | 'canAct' | 'onQueue'> & {
+  selection?: { intentId: number; experimentId: string };
+}) {
   const uid = useId().replaceAll(':', '');
   const [selected, setSelected] = useState<ResearchProgramId>('efficient-systems');
   const [modelChoice, setModelChoice] = useState('');
+  const [selectedExperimentId, setSelectedExperimentId] = useState<string | null>(null);
+  const [consumedSelection, setConsumedSelection] = useState<number | null>(null);
   const continueTraining = useContinueTraining(), actions = useStudioTaskActions();
   const progression = game.slices.campaign.progression;
+  const ownedExperiment = (id: string) => {
+    const experiment = progression?.experiments[id];
+    return experiment?.id === id && experiment.companyId === game.playerCompanyId && RESEARCH_PROGRAM_IDS.includes(experiment.programId) ? experiment : undefined;
+  };
+  if (selection && selection.intentId !== consumedSelection) {
+    setConsumedSelection(selection.intentId); setSelectedExperimentId(selection.experimentId);
+    const experiment = ownedExperiment(selection.experimentId);
+    if (experiment) { setSelected(experiment.programId); setModelChoice(experiment.modelId); }
+  }
+  const selectedExperiment = selectedExperimentId ? ownedExperiment(selectedExperimentId) : undefined;
   const definition = RESEARCH_PROGRAMS[selected];
-  const programChoices = <div className="guide-actions" role="group" aria-label="Choose a systems research program">{RESEARCH_PROGRAM_IDS.map(id => <button key={id} type="button" aria-pressed={id === selected} onClick={() => { setSelected(id); setModelChoice(''); }}>{RESEARCH_PROGRAMS[id].name} · {getResearchProgramLevel(game, id)}/4</button>)}</div>;
+  const programChoices = <div className="guide-actions" role="group" aria-label="Choose a systems research program">{RESEARCH_PROGRAM_IDS.map(id => <button key={id} type="button" aria-pressed={id === selected} onClick={() => { setSelected(id); setModelChoice(''); setSelectedExperimentId(null); }}>{RESEARCH_PROGRAMS[id].name} · {getResearchProgramLevel(game, id)}/4</button>)}</div>;
+  if (selectedExperimentId && !selectedExperiment) return <Section title="Systems research programs" id={'systems-research-programs-' + uid}>
+    <p className="bottleneck" role="status">This research experiment is unavailable in the current lab. Choose another program or result.</p>{programChoices}
+  </Section>;
   if (!progression) return <Section title="Systems research programs" id={'systems-research-programs-' + uid}>
     <p className="small-note">Develop a useful system, then fund an independent experiment against published operating constraints. Passed stages earn accreditation for matching products.</p>
     {programChoices}
@@ -29,17 +46,18 @@ export function ResearchProgramsPanel({ game, canAct, onQueue }: Pick<PanelProps
       : 'Systems programs require a current campaign. Architecture research remains available for this campaign.'}</p>
     <p className="guide-actions"><a href="#campaign">Review company milestones</a></p>
   </Section>;
-  const experiments = Object.values(progression.experiments), active = experiments.find(experiment => experiment.status === 'running');
+  const experiments = Object.values(progression.experiments).filter(experiment => experiment.companyId === game.playerCompanyId), active = experiments.find(experiment => experiment.status === 'running');
   const level = getResearchProgramLevel(game, selected), planningLevel = getResearchProgramLevel(game, selected, game.week + 1), stage = Math.min(4, planningLevel + 1);
   const terms = createResearchExperimentTerms(game, selected, stage, game.week + 1);
   const models = Object.values(game.slices.models.versions).filter(model => model.companyId === game.playerCompanyId && researchExperimentBaseline(game, model.id));
   const ranked = models.map(model => ({ model, checks: researchExperimentChecks(model, selected, terms) }))
     .sort((a, b) => b.checks.filter(check => check.passed).length - a.checks.filter(check => check.passed).length || a.model.name.localeCompare(b.model.name));
-  const chosen = ranked.find(row => row.model.id === modelChoice) ?? ranked[0];
+  const chosen = modelChoice ? ranked.find(row => row.model.id === modelChoice) : ranked[0];
   const candidateReport = chosen ? researchExperimentBaseline(game, chosen.model.id) : undefined;
   const reason = researchProgramGate(game, selected, chosen?.model.id ?? '', game.week + 1);
   const history = experiments.filter(experiment => experiment.programId === selected).sort((a, b) => b.startedWeek - a.startedWeek);
-  const latest = history.find(experiment => experiment.status === 'complete');
+  const latest = selectedExperimentId ? selectedExperiment?.status === 'complete' ? selectedExperiment : undefined
+    : history.find(experiment => experiment.status === 'complete');
   return <Section title="Systems research programs" id={'systems-research-programs-' + uid}>
     <p className="small-note">Develop a useful system, then fund an independent experiment against published operating constraints. Every passed stage earns accreditation for matching products and opens a harder workload. Staff and compute come from your existing research allocation.</p>
     {programChoices}
@@ -73,8 +91,8 @@ export function ResearchProgramsPanel({ game, canAct, onQueue }: Pick<PanelProps
       <p className="small-note">The entry fee includes your world grant and earned company benefits. Payroll and physical compute still cost money. Finish both meters; the result and next stage become available the following week.</p>
     </article>}
     {level === 4 && <p className="campaign-achievement">All four stages earned. This program’s full accreditation remains with the company when you release new models.</p>}
-    {latest && <article className="project-row" aria-label="Latest experiment evidence"><div className="project-heading"><strong>Latest paid evidence · {RESEARCH_PROGRAM_STAGES[latest.terms.stage - 1]}</strong><span>{latest.passed ? 'Passed' : 'Constraints unmet'} · Week {latest.completedWeek}</span></div><p className="small-note">{game.slices.models.versions[latest.modelId]?.name} · {formatUnits(latest.physicalWork)} physical CUw and {formatWorkPoints(latest.completedStaff)} Research points delivered. {latest.availableWeek! > game.week ? `Available in Week ${latest.availableWeek}.` : 'Saved with the exact model and paid baseline evaluation.'}</p>
-      <details className="inline-details"><summary>Inspect experiment evidence and previous attempts</summary>{history.map(experiment => <div key={experiment.id}><p className="small-note"><strong>{RESEARCH_PROGRAM_STAGES[experiment.terms.stage - 1]} · {game.slices.models.versions[experiment.modelId]?.name}</strong> · {experiment.status === 'running' ? 'Running' : experiment.passed ? 'Passed' : 'Constraints unmet'}</p><ul className="small-note">{researchExperimentChecks(game.slices.models.versions[experiment.modelId], experiment.programId, experiment.terms).map(check => <li key={check.id}>{check.passed ? '✓' : '·'} {check.label}: {check.detail}</li>)}</ul></div>)}</details>
+    {latest && <article className="project-row" aria-label={selectedExperimentId ? 'Selected experiment evidence' : 'Latest experiment evidence'} data-experiment-id={latest.id}><div className="project-heading"><strong>{selectedExperimentId ? 'Selected' : 'Latest'} paid evidence · {RESEARCH_PROGRAM_STAGES[latest.terms.stage - 1]}</strong><span>{latest.passed ? 'Passed' : 'Constraints unmet'} · Week {latest.completedWeek}</span></div><p className="small-note">{game.slices.models.versions[latest.modelId]?.name ?? 'Candidate unavailable'} · {formatUnits(latest.physicalWork)} physical CUw and {formatWorkPoints(latest.completedStaff)} Research points delivered. {latest.availableWeek! > game.week ? `Available in Week ${latest.availableWeek}.` : 'Saved with the exact model and paid baseline evaluation.'}</p>
+      <details className="inline-details"><summary>Inspect experiment evidence and previous attempts</summary>{history.map(experiment => <div key={experiment.id} data-experiment-id={experiment.id}><p className="small-note"><strong>{RESEARCH_PROGRAM_STAGES[experiment.terms.stage - 1]} · {game.slices.models.versions[experiment.modelId]?.name ?? 'Candidate unavailable'}</strong> · {experiment.status === 'running' ? 'Running' : experiment.passed ? 'Passed' : 'Constraints unmet'}</p>{game.slices.models.versions[experiment.modelId] && <ul className="small-note">{researchExperimentChecks(game.slices.models.versions[experiment.modelId], experiment.programId, experiment.terms).map(check => <li key={check.id}>{check.passed ? '✓' : '·'} {check.label}: {check.detail}</li>)}</ul>}</div>)}</details>
     </article>}
   </Section>;
 }

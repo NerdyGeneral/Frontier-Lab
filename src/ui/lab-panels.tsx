@@ -294,17 +294,20 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
   const adapterApplies = adapterInstalled && recipe.kind === 'adaptation' && effectiveArchitecture === 'dense';
   const packet = incoming ? packets.find(item => item.id === selection.packetId)
     : packetId === null ? customMode ? suggestedDesignPacket(packets, modelDesign) : suggestedTrainingPacket(packets, recipe) : packets.find(item => item.id === packetId);
-  const packetIds = packet ? [packet.id, ...extraPackets.filter(id => id !== packet.id && packets.some(item => item.id === id && item.prepared))] : [];
+  // Preparation changes whether the order can start, not the player's selected
+  // data. Keep raw sources when switching from an automatically prepared plan.
+  const packetIds = packet ? [packet.id, ...extraPackets.filter(id => id !== packet.id && packets.some(item => item.id === id))] : [];
   const pinDraftInputs = () => {
     if (baseId === null && base) setBaseId(base.id);
     if (packetId === null && packet) setPacketId(packet.id);
   };
-  const preparedExtras = packets.filter(item => item.prepared && item.id !== packet?.id);
+  const additionalPackets = packets.filter(item => item.id !== packet?.id);
+  const rawExtraSelected = additionalPackets.some(item => !item.prepared && extraPackets.includes(item.id));
   const parentPackets = baseRun?.plan?.corpus.packetIds ?? (baseRun ? [baseRun.packetId] : []);
   const previousSources = baseRun ? new Set(baseRun.plan?.corpus.sourceIds ?? packetSources(baseRun.evidence)) : null;
   const selectedSources = packet ? packetSources(packet) : [];
   const newSources = previousSources ? selectedSources.filter(source => !previousSources.has(source)).length : 0;
-  const missingParentPackets = parentPackets.filter(id => preparedExtras.some(item => item.id === id) && !packetIds.includes(id));
+  const missingParentPackets = parentPackets.filter(id => additionalPackets.some(item => item.id === id && item.prepared) && !packetIds.includes(id));
   const replayUnlocked = hasResearch(game, game.playerCompanyId, 'R4C');
   const replayFocus = REPLAY_FOCUS_DOMAINS[recipe.id];
   const replayAvailable = !!replayFocus && !(asAdapter && adapterApplies);
@@ -352,7 +355,7 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
   const active = view.labJobs.filter(job => job.status !== 'complete');
   const completed = view.labJobs.filter(job => job.status === 'complete');
   const runs = Object.values(game.slices.models.trainingRuns).filter(run => run.companyId === game.playerCompanyId);
-  const useExperiment = (options: TrainingOptions) => {
+  const applyExperiment = (options: TrainingOptions) => {
     choosePacket(options.packetId); setBaseId(options.baseModelId);
     setExtraPackets((options.packetIds ?? []).filter(id => id !== options.packetId));
     if (options.modelDesign) { setDesignRoute('custom'); setDesignDraft(structuredClone(options.modelDesign)); return; }
@@ -365,7 +368,7 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
     if (options.curriculum) setCurriculumChoice(structuredClone(options.curriculum));
   };
   const loadBlueprint = (blueprint: ModelBlueprint, project?: DevelopmentProjectDraft) => {
-    useExperiment(structuredClone(blueprint.training));
+    applyExperiment(structuredClone(blueprint.training));
     const previous = projectDraft ?? modelWorkspace?.delegated;
     setProjectDraft(project ? structuredClone(project) : {
       name: blueprint.name, suiteId: blueprint.suiteId ?? recommendedDesignEvaluation(blueprint.training).suiteId,
@@ -462,8 +465,12 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
           {packet.prepared && previousSources && <p className="training-source-note">{newSources === 0 ? 'The parent run used the same data source.' : newSources === selectedSources.length ? 'New training data for this version.' : 'Includes new examples and sources used by the parent run.'}</p>}
           {!packet.prepared && (taskActions ? <button type="button" className="training-text-action" disabled={!canAct} onClick={() => { pinDraftInputs(); taskActions.prepareData(packet.id); }}>Prepare this dataset</button> : <a href="#data">Prepare this dataset</a>)}
         </div>}
-        {packet && preparedExtras.length > 0 && <section className="inline-details training-mix" aria-label="Additional training datasets"><h4>Add prepared datasets · {packetIds.length - 1} selected</h4>
-          <fieldset className="plain-fieldset"><legend>Include prepared examples from</legend>{preparedExtras.map(item => <label className="checkbox-control" key={item.id}><input type="checkbox" checked={extraPackets.includes(item.id)} disabled={!canAct} onChange={event => setExtraPackets(current => event.target.checked ? [...current, item.id] : current.filter(id => id !== item.id))} /><span>{item.name}</span></label>)}</fieldset>
+        {packet && additionalPackets.length > 0 && <section className="inline-details training-mix" aria-label="Additional training datasets"><h4>Additional datasets · {packetIds.length - 1} selected</h4>
+          <fieldset className="plain-fieldset"><legend>Include examples from</legend>{additionalPackets.map(item => <div key={item.id}>
+            <label className="checkbox-control"><input type="checkbox" value={item.id} checked={extraPackets.includes(item.id)} disabled={!canAct} onChange={event => setExtraPackets(current => event.target.checked ? [...current, item.id] : current.filter(id => id !== item.id))} /><span>{item.name}{item.prepared ? '' : ' · needs preparation'}</span></label>
+            {!item.prepared && extraPackets.includes(item.id) && (taskActions ? <button type="button" className="training-text-action" disabled={!canAct} onClick={() => { pinDraftInputs(); taskActions.prepareData(item.id); }}>Prepare {item.name}</button> : <a href="#data">Prepare {item.name}</a>)}
+          </div>)}</fieldset>
+          {rawExtraSelected && <p className="small-note" role="status">Prepare every selected dataset before manual training. Delegated plans prepare selected data automatically.</p>}
         </section>}
         {packet && missingParentPackets.length > 0 && <button type="button" className="training-text-action" disabled={!canAct} onClick={() => { pinDraftInputs(); setExtraPackets(current => [...new Set([...current, ...missingParentPackets])]); }}>Include data from the parent run ({missingParentPackets.length})</button>}
         {development?.nextAction !== 'data' && browseData}
@@ -502,7 +509,7 @@ export function LabPanel({ game, view, canAct, onQueue }: PanelProps) {
       </>}
       {!replayUnlocked && hasResearch(game, game.playerCompanyId, 'R4') && <p className="small-note"><a href="#research">Research Replay curricula</a> to preserve one or two evaluated skills while adapting another.</p>}
     </details>}
-    {!customMode && <div className="studio-training-experiments"><TrainingExperimentsPanel game={game} choices={choices} canAct={canAct} onUse={useExperiment} /></div>}
+    {!customMode && <div className="studio-training-experiments"><TrainingExperimentsPanel game={game} choices={choices} canAct={canAct} onUse={applyExperiment} /></div>}
     </div>
     </StudioDecisionLayout>
     <div className="studio-training-records" hidden={focusedTraining}>

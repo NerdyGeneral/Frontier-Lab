@@ -1,4 +1,6 @@
 import type { CommandPayload, EvaluationSuiteId, GameState, StaffRole } from '../contracts/types';
+import type { ResearchProgramId } from '../contracts/company-progression';
+import { RESEARCH_PROGRAM_IDS } from '../content/company-progression';
 import { canonicalStringify } from './canonical';
 import { CONTENT } from '../content/catalog';
 import { trainingBaseUnavailableReason } from '../modules/lab-planner';
@@ -87,6 +89,7 @@ export type StudioIntent =
   | { kind: 'training-result'; runId: string }
   | { kind: 'first-launch'; candidateId: string; reportId?: string }
   | { kind: 'research-method'; researchId: string }
+  | { kind: 'research-experiment'; experimentId: string }
   | { kind: 'staffing'; mode: 'hire' | 'assign'; role?: StaffRole; staffId?: string; reason?: string }
   | { kind: 'product-candidate'; productId: string; candidateId: string };
 
@@ -98,6 +101,7 @@ export type StudioResolvedTarget =
   | { kind: 'training-result'; runId: string; modelId: string }
   | { kind: 'first-launch'; modelId: string; reportId?: string; existingProductId?: string }
   | { kind: 'research-method'; researchId: string }
+  | { kind: 'research-experiment'; experimentId: string; programId: ResearchProgramId }
   | { kind: 'staffing'; mode: 'hire' | 'assign'; role?: StaffRole; staffId?: string; reason?: string }
   | { kind: 'product-candidate'; productId: string; candidateId: string };
 
@@ -180,6 +184,14 @@ export function resolveStudioIntent(game: GameState, intent: StudioIntent): Reso
       // resolved by the research view and ordinary command quote, not navigation.
       return { ok: true, panel: 'research', task: 'research-method',
         target: { kind: 'research-method', researchId: intent.researchId } };
+    }
+    case 'research-experiment': {
+      const experiment = game.slices.campaign.progression?.experiments[intent.experimentId];
+      if (!experiment || experiment.id !== intent.experimentId || experiment.companyId !== owner || !RESEARCH_PROGRAM_IDS.includes(experiment.programId)) {
+        return { ok: false, reason: 'This research experiment is unavailable in the current lab. Choose another program or result.' };
+      }
+      return { ok: true, panel: 'research-programs', task: 'research-program',
+        target: { kind: 'research-experiment', experimentId: experiment.id, programId: experiment.programId } };
     }
     case 'product-candidate': {
       const product = game.slices.products.offers[intent.productId];
@@ -339,6 +351,7 @@ function intentOwner(intent: StudioIntent): StudioPanelId | 'planner' {
     case 'model': case 'report': case 'training-result': return 'models';
     case 'first-launch': return 'product';
     case 'research-method': return 'research';
+    case 'research-experiment': return 'research-programs';
     case 'product-candidate': return 'release-desk';
   }
 }

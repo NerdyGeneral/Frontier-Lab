@@ -225,6 +225,86 @@ test('a blocked plan can save another limit with its original expired deadline w
   assert.deepEqual(reload(game), game);
 });
 
+test('cancelling a capacity-limited plan releases paid work while paused and blocked plans retain their limits', () => {
+  for (const stoppedStatus of ['paused', 'blocked'] as const) {
+    let game = initial(true);
+    const chosen = { ...spec(game, 96 * U), leadStaffId: 'founder', capacityShareBps: 5000,
+      ...(stoppedStatus === 'blocked' ? { deadlineWeek: game.week + 3 } : {}) };
+    game = until(start(game, chosen), state => !!trainingRun(state));
+    const jobId = trainingRun(game)!.id;
+    game = stoppedStatus === 'blocked' ? until(game, state => plan(state).status === 'blocked')
+      : step(queue(game, { kind: 'set_development_plan_paused', planId: plan(game).id, paused: true }));
+    const completedWork = trainingRun(game)!.completedWork;
+    assert.ok(completedWork > 0 && completedWork < trainingRun(game)!.requiredWork);
+    game = step(queue(game, { kind: 'set_job_paused', jobId, paused: false }));
+    assert.equal(trainingRun(game)!.status, 'running');
+    assert.equal(plan(game).status, stoppedStatus);
+    assert.equal(trainingRun(game)!.completedWork, completedWork, `${stoppedStatus} plans still own and stop their paid work.`);
+    game = step(queue(game, { kind: 'revise_development_plan', planId: plan(game).id,
+      feeBudgetCents: chosen.feeBudgetCents + 10_000, cashReserveCents: 0, deadlineWeek: chosen.deadlineWeek, resume: false }));
+    assert.equal(plan(game).status, stoppedStatus);
+    assert.equal(trainingRun(game)!.completedWork, completedWork, 'Saving limits does not bypass a stopped plan.');
+    game = step(queue(game, { kind: 'cancel_development_plan', planId: plan(game).id }));
+    const cancelled = structuredClone(plan(game)), paidFees = developmentFeeSpent(game, plan(game));
+    assert.equal(trainingRun(game)!.status, 'paused', 'Cancellation still pauses unfinished work.');
+    game = step(queue(game, { kind: 'set_job_paused', jobId, paused: false }));
+    assert.equal(trainingRun(game)!.status, 'running');
+    assert.ok(trainingRun(game)!.completedWork > completedWork, 'Explicitly resumed paid work progresses after its plan is cancelled.');
+    assert.deepEqual(plan(game), cancelled, 'Ordinary work does not restart automatic handoffs or rewrite cancelled history.');
+    assert.equal(developmentFeeSpent(game, plan(game)), paidFees);
+    assert.equal(game.slices.company.ledger.filter(fact => fact.id === jobId + ':setup').length, 1);
+    assert.deepEqual(reload(game), game);
+  }
+});
+
+test('cancelled preparation resumes and completes without restarting automatic training', () => {
+  let game = initial();
+  game = start(game, { ...spec(game), leadStaffId: 'founder', capacityShareBps: 2500 });
+  game = until(game, state => Object.values(state.slices.data.preparationJobs).some(job => job.status === 'running'));
+  const preparation = plan(game).steps.find(item => item.key === 'prepare:' + CONTENT.starterData.id)!;
+  const jobId = 'preparation-' + preparation.commandId;
+  const completedStaff = game.slices.data.preparationJobs[jobId].completedStaff;
+  assert.ok(completedStaff > 0 && completedStaff < game.slices.data.preparationJobs[jobId].requiredStaff);
+  game = step(queue(game, { kind: 'cancel_development_plan', planId: plan(game).id }));
+  const cancelled = structuredClone(plan(game)), paidFees = developmentFeeSpent(game, plan(game));
+  assert.equal(game.slices.data.preparationJobs[jobId].status, 'paused');
+  game = step(queue(reload(game), { kind: 'set_job_paused', jobId, paused: false }));
+  assert.ok(game.slices.data.preparationJobs[jobId].completedStaff > completedStaff);
+  game = until(game, state => state.slices.data.preparationJobs[jobId].status === 'complete');
+  game = step(step(reload(game)));
+  assert.deepEqual(plan(game), cancelled, 'Completing ordinary paid work does not restart the cancelled plan.');
+  assert.equal(Object.keys(game.slices.models.trainingRuns).length, 0, 'Completed data does not trigger a cancelled training handoff.');
+  assert.equal(developmentFeeSpent(game, plan(game)), paidFees);
+  assert.equal(game.slices.company.ledger.filter(fact => fact.id === jobId + ':fee').length, 1);
+  assert.equal(game.slices.data.packets[CONTENT.starterData.id].prepared, true);
+  assert.deepEqual(reload(game), game);
+});
+
+test('cancelled evaluation resumes to one paid report without rewriting the cancelled plan', () => {
+  let game = initial(true);
+  game = start(game, { ...spec(game), leadStaffId: 'founder', capacityShareBps: 2500 });
+  game = until(game, state => plan(state).steps.some(item => item.key === 'evaluate'));
+  game = step(queue(game, { kind: 'allocate_compute', serving: 0, development: U, research: 0 }));
+  const evaluation = plan(game).steps.find(item => item.key === 'evaluate')!;
+  const jobId = 'evaluation-' + evaluation.commandId;
+  const completedWork = game.slices.models.evaluationRuns[jobId].completedWork;
+  assert.ok(completedWork > 0 && completedWork < game.slices.models.evaluationRuns[jobId].requiredWork);
+  game = step(queue(game, { kind: 'cancel_development_plan', planId: plan(game).id }));
+  const cancelled = structuredClone(plan(game)), paidFees = developmentFeeSpent(game, plan(game));
+  assert.equal(game.slices.models.evaluationRuns[jobId].status, 'paused');
+  game = step(queue(reload(game), { kind: 'set_job_paused', jobId, paused: false }));
+  assert.ok(game.slices.models.evaluationRuns[jobId].completedWork > completedWork);
+  game = until(game, state => state.slices.models.evaluationRuns[jobId].status === 'complete');
+  game = step(step(reload(game)));
+  assert.deepEqual(plan(game), cancelled, 'The completed report remains individual evidence instead of reopening the plan.');
+  assert.equal(developmentFeeSpent(game, plan(game)), paidFees);
+  const job = game.slices.models.evaluationRuns[jobId];
+  assert.ok(job.reportId);
+  assert.equal(game.slices.models.reports[job.reportId].modelId, job.modelId);
+  assert.equal(Object.values(game.slices.models.reports).filter(report => report.modelId === job.modelId).length, 1);
+  assert.deepEqual(reload(game), game);
+});
+
 test('review preserves the real report date if an individually resumed evaluation finishes while the plan is paused', () => {
   let game = start(initial(true)); game = until(game, state => plan(state).steps.some(item => item.key === 'evaluate'));
   game = step(queue(game, { kind: 'allocate_compute', serving: 0, development: U, research: 0 }));
@@ -313,6 +393,13 @@ test('parallel projects reserve distinct senior leads and real capacity, and los
 test('finished plans compact before the 101st authorization without losing paid outputs or archived proof', () => {
   let game = finish(start(initial(true))); game.slices.company.companies[game.playerCompanyId].cashCents = 1_000_000_000;
   const first = structuredClone(plan(game)), originalModel = structuredClone(game.slices.models.versions[first.modelId!]);
+  const cancelledId = 'development-archive-paid-work';
+  game = step(queue(game, { kind: 'start_development_plan', ...spec(game, 160 * U), leadStaffId: 'founder', capacityShareBps: 5000 }, 'archive-paid-work'));
+  game = until(game, state => state.slices.models.developmentPlans![cancelledId].steps.some(item => item.key === 'train' && state.commandReceipts[item.commandId]?.status === 'accepted'));
+  const paidStep = game.slices.models.developmentPlans![cancelledId].steps.find(item => item.key === 'train')!;
+  const paidJobId = 'training-' + paidStep.commandId;
+  game = step(queue(game, { kind: 'cancel_development_plan', planId: cancelledId }));
+  const paidWork = game.slices.models.trainingRuns[paidJobId].completedWork;
   for (let i = 0; i < 100; i++) {
     const id = 'archive-history-' + i;
     game = step(queue(game, { kind: 'start_development_plan', ...spec(game, (32 + i) * U) }, id));
@@ -323,6 +410,15 @@ test('finished plans compact before the 101st authorization without losing paid 
   assert.equal(archived.modelId, first.modelId); assert.equal(archived.reportId, first.reportId);
   assert.deepEqual(game.slices.models.versions[first.modelId!], originalModel);
   assert.equal(game.slices.company.postedFacts[developmentArchiveProofId(archived)], true);
+  const cancelledArchive = structuredClone(game.slices.models.developmentPlanArchive![cancelledId]);
+  assert.ok(cancelledArchive); assert.equal(cancelledArchive.status, 'cancelled');
+  assert.deepEqual(cancelledArchive.stageCommandIds, [paidStep.commandId]);
+  assert.equal(game.slices.models.trainingRuns[paidJobId].status, 'paused');
+  assert.equal(game.slices.models.trainingRuns[paidJobId].completedWork, paidWork);
+  game = step(queue(game, { kind: 'set_job_paused', jobId: paidJobId, paused: false }));
+  assert.ok(game.slices.models.trainingRuns[paidJobId].completedWork > paidWork, 'Archived cancelled work can still be resumed and progress.');
+  assert.deepEqual(game.slices.models.developmentPlanArchive![cancelledId], cancelledArchive);
+  assert.equal(game.slices.company.postedFacts[developmentArchiveProofId(cancelledArchive)], true);
   const restored = reload(game); assert.deepEqual(restored, game);
   const changed = structuredClone(game); changed.slices.models.developmentPlanArchive![first.id].feeSpentCents++;
   assert.throws(() => assertDevelopmentPlansState(changed), /archiv/);

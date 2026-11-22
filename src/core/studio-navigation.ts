@@ -1,4 +1,4 @@
-import type { StudioPanelId } from './studio-tasks';
+import type { StudioIntent, StudioPanelId } from './studio-tasks';
 
 /** Navigation is presentation only. Availability and command admission remain
  * in the existing selectors and engine; a route does not queue a decision. */
@@ -20,6 +20,7 @@ export type StudioScreen = StudioCanonicalScreen | 'release' | 'campus' | 'marke
 export interface StudioNavigationTarget {
   screen: StudioCanonicalScreen;
   panel: StudioPanelId | null;
+  intent?: StudioIntent;
 }
 
 export const STUDIO_PANEL_DESTINATIONS = {
@@ -59,6 +60,10 @@ export function resolveStudioHash(hash: string): StudioNavigationTarget | null {
   let id: string;
   try { id = decodeURIComponent(hash.startsWith('#') ? hash.slice(1) : hash); }
   catch { return null; }
+  if (id === 'architecture-research') return { screen: 'research', panel: 'research-programs', intent: { kind: 'task', task: 'architecture-research' } };
+  if (id.startsWith('research-experiment/') && id.length > 'research-experiment/'.length) {
+    return { screen: 'research', panel: 'research-programs', intent: { kind: 'research-experiment', experimentId: id.slice('research-experiment/'.length) } };
+  }
   if (id === 'planner' || id === 'studio-plan-workbench') return { screen: 'operations', panel: 'capacity' };
   if (id === 'development-plans') return { screen: 'projects', panel: null };
   if (Object.hasOwn(STUDIO_PANEL_DESTINATIONS, id)) {

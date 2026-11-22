@@ -15,7 +15,7 @@ import type { GameContent } from '../contracts/types';
  */
 export const CONTENT: GameContent = {
   version: CONNECTED_COMPANY_CONTENT_VERSION,
-  buildVersion: '0.38.1',
+  buildVersion: '0.38.2',
   infrastructure: INFRASTRUCTURE_CONTENT,
   title: 'Frontier Lab',
   opening: {

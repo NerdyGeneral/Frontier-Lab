@@ -75,8 +75,13 @@ export function developmentObjectiveIssue(state: Readonly<GameState>, spec: Deve
 export function limitDevelopmentRequests(state: Readonly<GameState>, requests: WorkRequest[]): WorkRequest[] {
   if (!hasConnectedCompanyRules(state.contentVersion)) return requests;
   const byJob = new Map<string, DevelopmentPlan>();
-  for (const plan of Object.values(state.slices.models.developmentPlans ?? {})) for (const step of plan.steps)
-    byJob.set((step.payload.kind === 'start_training' ? 'training-' : step.payload.kind === 'evaluate_model' ? 'evaluation-' : 'preparation-') + step.commandId, plan);
+  for (const plan of Object.values(state.slices.models.developmentPlans ?? {})) {
+    // Cancellation ends the plan's ownership. Its unfinished paid jobs can be
+    // explicitly resumed as ordinary work, just as they can after archival.
+    if (plan.status === 'cancelled') continue;
+    for (const step of plan.steps)
+      byJob.set((step.payload.kind === 'start_training' ? 'training-' : step.payload.kind === 'evaluate_model' ? 'evaluation-' : 'preparation-') + step.commandId, plan);
+  }
   return requests.flatMap(request => {
     const plan = byJob.get(request.taskId);
     if (!plan || plan.capacityShareBps === undefined) return [request];

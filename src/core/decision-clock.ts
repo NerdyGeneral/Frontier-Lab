@@ -118,8 +118,9 @@ export function nextDecisionStop(before: GameState, after: GameState, policy: De
     const discovery = newlyCompleted(before.slices.research.projects, after.slices.research.projects, owner, before.week, after.week);
     const architecture = newlyCompleted(before.slices.research.modelResearch ?? {}, after.slices.research.modelResearch ?? {}, owner, before.week, after.week);
     const experiment = newlyCompleted(before.slices.campaign.progression?.experiments ?? {}, after.slices.campaign.progression?.experiments ?? {}, owner, before.week, after.week);
-    if (experiment) return { reason: 'A research experiment finished. Review its exact-model evidence and the next program stage.', target: '#research' };
-    if (discovery || architecture) return { reason: 'Research is ready to use. Review the new design options before continuing.', target: '#research' };
+    if (experiment) return { reason: 'A research experiment finished. Review its exact-model evidence and the next program stage.', target: '#research-experiment/' + encodeURIComponent(experiment) };
+    if (architecture) return { reason: 'Architecture research is ready to use. Review the new design options before continuing.', target: '#architecture-research' };
+    if (discovery) return { reason: 'Research is ready to use. Review the new design options before continuing.', target: '#research' };
   }
   if (policy.projects) {
     // A delegated plan owns its intermediate handoffs. Its completion or blocked

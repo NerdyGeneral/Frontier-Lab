@@ -8,7 +8,7 @@ import { RESOURCE_SCALE as U } from '../src/contracts/types';
 import { canonicalStateHash, createInitialState, getGameView } from '../src/core/index';
 import { getModelDesignForBase } from '../src/modules/model-design';
 import { getTrainingPreview } from '../src/modules/lab-planner';
-import { previewCommand } from '../src/core/engine';
+import { advanceWeek, previewCommand, submitCommand } from '../src/core/engine';
 import { LabPanel } from '../src/ui/lab-panels';
 import { DevelopmentPlansPanel } from '../src/ui/development-plans-panel';
 import { ModelDesigner, ModelDesignResearchRequirement } from '../src/ui/model-designer';
@@ -22,6 +22,7 @@ import type { ManualTrainingDraft, ModelBlueprint } from '../src/persistence/mod
 import { getCustomizationReadyFixture } from './fixtures/model-customization';
 import { getSyntheticFixture } from './fixtures/wave26-synthetic';
 import { buildDevelopmentTrainingOrder } from '../src/ui/development-plan-draft';
+import { createPlayerOnlyState } from './fixtures/player-only';
 
 const noAction = () => assert.fail('Rendering and comparing must not queue a command.');
 const textOnly = (html: string) => html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ');
@@ -142,6 +143,55 @@ test('an audited synthetic order stays admissible across manual and delegated fo
   assert.doesNotMatch(finalAction, /disabled=""|data-studio-blocked-reason=/, 'Returning to the manual workbench does not add a forbidden profile.');
   assert.doesNotMatch(returned, /id="training-profile"|>Automated checkpoints /);
   assert.equal(canonicalStateHash(game), before);
+});
+
+test('manual handoffs and restored drafts retain raw secondary datasets and require their preparation', () => {
+  let game = createPlayerOnlyState();
+  for (const [index, payload] of [
+    { kind: 'prepare_data' as const, packetId: CONTENT.starterData.id },
+    { kind: 'buy_data' as const, catalogId: 'specialist-coding-1' },
+    { kind: 'buy_data' as const, catalogId: 'specialist-documents-1' },
+  ].entries()) {
+    const queued = submitCommand(game, payload, CONTENT, 'handoff-data-' + index);
+    assert.ok(queued.accepted, queued.reason?.message); game = queued.state;
+  }
+  for (let week = 0; week < 12 && !game.slices.data.packets[CONTENT.starterData.id].prepared; week++) {
+    const next = advanceWeek(game); assert.ok(next.accepted, next.reason?.message); game = next.state;
+  }
+  assert.equal(game.slices.data.packets[CONTENT.starterData.id].prepared, true);
+  const extras = ['specialist-documents-1', 'specialist-coding-1'].map(catalogId => {
+    const packet = Object.values(game.slices.data.packets).find(item => item.id.endsWith(catalogId));
+    assert.ok(packet); assert.equal(packet.prepared, false); return packet;
+  });
+  const training = { kind: 'start_training' as const, baseModelId: CONTENT.seedModel.id, packetId: CONTENT.starterData.id,
+    packetIds: [CONTENT.starterData.id, ...extras.map(packet => packet.id)], recipeId: CONTENT.firstTraining.id, profile: 'balanced' as const };
+  const blueprint: ModelBlueprint = { id: 'raw-extra-handoff', name: 'Full data mix', training, suiteId: 'basic-conversation-1' };
+  const saved: ManualTrainingDraft = { ...savedManual(CONTENT.starterData.id), designRoute: 'methods', designDraft: null,
+    extraPackets: extras.map(packet => packet.id), profile: 'balanced' };
+  const before = canonicalStateHash(game);
+  const render = (restore: boolean) => renderToStaticMarkup(<StudioTaskActionsProvider value={actions}>
+    {restore ? <ModelWorkspaceProvider value={storedWorkspace(saved)}>
+      <LabPanel game={game} view={getGameView(game)} canAct onQueue={noAction} />
+    </ModelWorkspaceProvider> : <StudioTrainingSelectionProvider value={{ intentId: 90, blueprint }}>
+      <LabPanel game={game} view={getGameView(game)} canAct onQueue={noAction} />
+    </StudioTrainingSelectionProvider>}
+  </StudioTaskActionsProvider>);
+  for (const restore of [false, true]) {
+    const html = render(restore);
+    const additional = html.match(/aria-label="Additional training datasets"([\s\S]*?)<\/section>/)?.[1];
+    assert.ok(additional, 'The raw secondary selections remain visible after handoff and reload.');
+    assert.match(additional, /2 selected/);
+    for (const packet of extras) {
+      const choice = [...additional.matchAll(/<input\b[^>]*>/g)].find(match => match[0].includes(`value="${packet.id}"`))?.[0];
+      assert.ok(choice); assert.match(choice, /checked=""/);
+      assert.ok(additional.includes('Prepare ' + packet.name), 'The exact raw dataset has a preparation action.');
+    }
+    const primary = [...html.matchAll(/<button\b[^>]*>/g)].find(match => match[0].includes('data-studio-primary-for="train-model"'))?.[0];
+    assert.ok(primary); assert.match(primary, /disabled=""/);
+    assert.match(primary, /fully prepare every selected dataset/,
+      'A raw secondary source must block manual training, even when the primary source is ready.');
+  }
+  assert.equal(canonicalStateHash(game), before, 'Opening either form does not prepare data or submit work.');
 });
 
 test('research requirements route the exact invention and explain named prerequisites without raw IDs', () => {

@@ -346,10 +346,12 @@ export default function FrontierLab() {
 
   function runToDecision() {
     if (!canAct || taskGateRef.current.busy) return;
-    if (runningRef.current) { pause('The lab is paused.'); return; }
+    if (decisionRunRef.current) { pause('The lab is paused.'); return; }
     const guard = decisionStartGuard(gameRef.current, decisionPolicy, CONTENT);
     if (guard) { setDecisionStop(guard); pause(guard.reason); return; }
-    toggleRunning();
+    // Choosing Next decision during continuous play adopts the stop rules for
+    // this run; toggling an already running clock would only pause it.
+    if (!runningRef.current) toggleRunning();
     if (runningRef.current) {
       decisionRunRef.current = { policy: { ...decisionPolicy }, startedWeek: gameRef.current.week };
       setDecisionRunActive(true); setDecisionStop(null);

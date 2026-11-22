@@ -9,6 +9,7 @@ import type { PanelProps } from './panels';
 export interface ResearchProgramsSelection {
   intentId: number;
   programType: 'systems' | 'architecture';
+  experimentId?: string;
 }
 export type ResearchProgramsWorkspaceProps = Pick<PanelProps, 'game' | 'canAct' | 'onQueue'> & {
   selection?: ResearchProgramsSelection | null;
@@ -31,7 +32,7 @@ export function ResearchProgramsWorkspace({ selection, ...props }: ResearchProgr
       <button type="button" aria-pressed={programType === 'systems'} aria-controls={id + '-systems'} onClick={() => setProgramType('systems')}><FlaskConical size={16} aria-hidden="true" />Systems experiments</button>
       <button type="button" aria-pressed={programType === 'architecture'} aria-controls={id + '-architecture'} onClick={() => setProgramType('architecture')}><Layers3 size={16} aria-hidden="true" />Architecture program</button>
     </div>
-    <div id={id + '-systems'} hidden={programType !== 'systems'}><ResearchProgramsPanel {...props} /></div>
+    <div id={id + '-systems'} hidden={programType !== 'systems'}><ResearchProgramsPanel {...props} selection={selection?.programType === 'systems' && selection.experimentId ? { intentId: selection.intentId, experimentId: selection.experimentId } : undefined} /></div>
     <div id={id + '-architecture'} hidden={programType !== 'architecture'}><ModelResearchPanel {...props} /></div>
   </section>;
 }

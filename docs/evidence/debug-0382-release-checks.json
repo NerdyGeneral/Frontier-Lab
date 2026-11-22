@@ -1,0 +1,140 @@
+{
+  "release": "0.38.2",
+  "contentVersion": "0.38.0",
+  "saveSchema": 5,
+  "recordedAtUtc": "2026-11-22T23:03:19.295240+00:00",
+  "sourceBaseline": {
+    "sitesCommit": "d9e18e2dabbf5c16c9b55097d31480b22239c4b7",
+    "githubCommit": "410c130ce7aec32d9479d0d5a231ef6f13f123d3",
+    "sharedTree": "0282080d0af435ac79023abfbf1cba45255135a0"
+  },
+  "finalSourceFingerprint": {
+    "scope": "All files under src, scripts and tests, sorted by path; SHA-256 of compact sorted-key JSON entries with each path and its SHA-256.",
+    "fileCount": 662,
+    "sha256": "ac37b3062ac39edb2247d78c3c90888e5cae3fea655d2d5b4c39b63e6bbbc76e"
+  },
+  "scope": [
+    "Resume individually paid preparation, training and evaluation after plan cancellation without new fees or automatic handoffs",
+    "Preserve raw secondary datasets across manual/delegated handoffs and restored drafts",
+    "Show owned paid systems experiments in Projects and Results at their actual availability week",
+    "Retain the exact experiment, program and historical evidence through Projects, Results and decision stops; select Architecture explicitly",
+    "Adopt decision-run stop rules from continuous play and honor unsafe-start guards"
+  ],
+  "automatedGates": [
+    {
+      "command": "node scripts/test-wave0.mjs",
+      "scope": "Complete pure-engine suite on the final patched production source.",
+      "exitCode": 0,
+      "counts": {
+        "tests": 1046,
+        "pass": 1046,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 569152.57819
+      },
+      "log": "docs/evidence/debug-0382/engine.log",
+      "logSha256": "1a4cf27c2ce0fa31d7761d317452baa714795c1b0412b8b3643eea010cb69807"
+    },
+    {
+      "command": "node --import tsx --test --test-reporter=spec tests/*.test.tsx src/ui/*.test.tsx",
+      "scope": "Complete UI suite: all 245 existing cases pass. The three added navigation cases used a fixture that repeated the same model at the same stage, which the game correctly rejects.",
+      "exitCode": 1,
+      "counts": {
+        "tests": 248,
+        "pass": 245,
+        "fail": 3,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 93782.630869
+      },
+      "log": "docs/evidence/debug-0382/ui-combined.log",
+      "logSha256": "8671ef6525fc69876b95fe4d861fd27fbf2bf6459733ac44cc1322ca739b5b2c"
+    },
+    {
+      "command": "node --import tsx --test --test-reporter=spec tests/research-program-navigation-ui.test.tsx",
+      "scope": "Final added navigation cases after the fixture was corrected to train and evaluate a distinct second model. Production implementation unchanged.",
+      "exitCode": 0,
+      "counts": {
+        "tests": 3,
+        "pass": 3,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 0,
+        "todo": 0,
+        "duration_ms": 8783.395522
+      },
+      "log": "docs/evidence/debug-0382/ui-navigation-final.log",
+      "logSha256": "36635f7ea105ae63e9179afed4ad786ae9e6f85322db9c9d4ba498221bf854aa"
+    }
+  ],
+  "testAccounting": "1,046 unique engine cases pass. 248 unique UI cases are verified: the 245 existing UI cases pass in the complete run, and all three added navigation cases pass in their final focused rerun after correcting the test fixture. The rerun is overlapping coverage, not three extra cases. No production code changed between the complete UI run and that rerun.",
+  "typecheck": {
+    "command": "node node_modules/typescript/bin/tsc --noEmit",
+    "scope": "Final source and corrected test fixture.",
+    "exitCode": 0,
+    "counts": {},
+    "log": "docs/evidence/debug-0382/typecheck.log",
+    "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "productionBuild": {
+    "command": "node <Sites plugin>/scripts/build-site.mjs",
+    "scope": "Isolated production build after the full test processes exited.",
+    "exitCode": 0,
+    "counts": {},
+    "log": "docs/evidence/debug-0382/build.log",
+    "logSha256": "13f32b93ff73ad0e815fa694c47449fbeebce2bfb5c76ae4fcd1726c4db818d6"
+  },
+  "initialBuildAttempt": {
+    "command": "node <Sites plugin>/scripts/build-site.mjs",
+    "scope": "Initial parallel build was killed by the execution environment with exit 137. No application compile diagnostic was produced; the isolated retry succeeded.",
+    "exitCode": 137,
+    "counts": {},
+    "log": "docs/evidence/debug-0382/build-initial-stopped.log",
+    "logSha256": "1bc4766ceae395666f09ee611bba3b2e714ba11f37439a8862f7b81e9336875a"
+  },
+  "previousRepositoryLintAudit": {
+    "status": "unresolved backlog",
+    "errors": 62,
+    "warnings": 98,
+    "logSha256": "76a71ac0b6a16988e6fdcd2a1222d9753583db6fa9aa00635c86493db5bf522e",
+    "scope": "Earlier complete repository audit before the final exact-experiment routing additions. It is not a fresh lint count for this final tree. Mostly pre-existing React Hooks/ref, memoization, naming and test-typing findings; these are not a count of reproduced gameplay failures."
+  },
+  "compatibility": {
+    "contentVersionChanged": false,
+    "saveSchemaChanged": false,
+    "existingPaidHistory": "Retained, including archived plan proof and exact reports.",
+    "newDependencies": false
+  },
+  "productionErrorSample": {
+    "scope": "Most recent three hours, errors-only query, maximum 25 events.",
+    "events": [
+      {
+        "path": "/robots.txt",
+        "status": 404,
+        "outcome": "ok"
+      },
+      {
+        "path": "/sitemap.xml",
+        "status": 404,
+        "outcome": "ok"
+      }
+    ],
+    "gamePageCrashesInSample": 0,
+    "workerExceptionsInSample": 0
+  },
+  "browserVerification": {
+    "prepublication": "Current 0.38.1 public UI loaded; save controls, canonical menu search and architecture navigation inspected. Second-tab write protection observed. No simulation time advanced.",
+    "localPreview": "Previously rejected by browser URL security policy; no alternate host or transport used to bypass it.",
+    "releaseSmokeTest": "Public HTTPS checks on 0.38.2 follow publication and are reported separately.",
+    "limits": "No phone-device playthrough or full manual campaign is claimed. Automated paid campaigns cover progression and save compatibility."
+  },
+  "remainingFindings": [
+    "Existing repository lint backlog",
+    "Nonblocking large client chunk and framework route-classification build notices",
+    "Missing robots.txt and sitemap.xml crawler routes"
+  ],
+  "publication": "Commit and push the exact verified source; package the successful worker build; deploy to the existing public Frontier Lab Site; mirror the full committed source tree to NerdyGeneral/Frontier-Lab without changing its audience."
+}

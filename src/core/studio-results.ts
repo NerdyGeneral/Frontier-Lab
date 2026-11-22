@@ -7,6 +7,7 @@ import { getSystemsBriefOrders, systemsBriefRequirementText } from '../modules/s
 import { getModelDevelopmentRows } from '../modules/model-development';
 import { modelScoreHighlights } from './model-score-highlights';
 import { CONTENT } from '../content/catalog';
+import { RESEARCH_PROGRAMS, RESEARCH_PROGRAM_STAGES } from '../content/company-progression';
 import type { GameState } from '../contracts/types';
 import { RESOURCE_SCALE } from '../contracts/types';
 import { evaluationSuite } from '../modules/lab-evaluation';
@@ -159,6 +160,20 @@ export function selectStudioResults(game: GameState): readonly StudioResult[] {
       title: 'Architecture discovery available', summary: `Level ${project.level} · ${modelResearchQuoteForLevel(project.level).unlock}`,
       details: [{ label: 'Focus', value: MODEL_RESEARCH_FOCUSES[project.focus ?? 'balanced'].name }, { label: 'Available', value: `Week ${week}` }, { label: 'Research work', value: `${units(project.completedWork)} CUw · ${formatWorkPoints(project.completedStaff)} Research points` }],
       action: { label: 'Explore architecture research', target: { kind: 'intent', intent: { kind: 'task', task: 'architecture-research' } } },
+    });
+  }
+  for (const experiment of Object.values(game.slices.campaign.progression?.experiments ?? {})) {
+    if (experiment.companyId !== owner || experiment.status !== 'complete' || !realWeek(experiment.availableWeek)) continue;
+    const week = experiment.availableWeek, model = own(game.slices.models.versions, experiment.modelId);
+    const program = RESEARCH_PROGRAMS[experiment.programId].name, stage = RESEARCH_PROGRAM_STAGES[experiment.terms.stage - 1];
+    add({ key: resultKey('research', experiment.id, week, `${experiment.programId}:${experiment.terms.stage}:${experiment.modelId}`), kind: 'research', week, sourceId: experiment.id,
+      title: experiment.passed ? 'Systems research accreditation earned' : 'Systems experiment complete · constraints unmet',
+      summary: `${program} · ${stage} · ${model?.name ?? experiment.modelId}`,
+      details: [{ label: 'Candidate', value: model?.name ?? experiment.modelId },
+        { label: 'Outcome', value: experiment.passed ? 'Passed · accreditation earned' : 'Constraints unmet · paid evidence retained' },
+        { label: 'Evidence available', value: `Week ${week}` }, { label: 'Entry fee paid', value: formatMoney(experiment.terms.feeCents) },
+        { label: 'Work delivered', value: `${units(experiment.physicalWork)} physical CUw · ${formatWorkPoints(experiment.completedStaff)} Research points` }],
+      action: { label: 'Review experiment evidence', target: { kind: 'intent', intent: { kind: 'research-experiment', experimentId: experiment.id } } },
     });
   }
   for (const deployment of Object.values(game.slices.products.deployments)) {

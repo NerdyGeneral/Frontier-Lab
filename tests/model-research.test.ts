@@ -5,6 +5,7 @@ import type { CommandPayload, GameState } from '../src/contracts/types';
 import { RESOURCE_SCALE as U } from '../src/contracts/types';
 import { advanceWeek, submitCommand, validateState } from '../src/core/engine';
 import { getStudioView } from '../src/core/studio';
+import { DEFAULT_DECISION_CLOCK_POLICY, nextDecisionStop } from '../src/core/decision-clock';
 import { assertModelResearchState } from '../src/core/model-research-validation';
 import { deserializeState, serializeState } from '../src/core/snapshot';
 import { createCompanyModule } from '../src/modules/company';
@@ -63,7 +64,7 @@ test('architecture research gates admission, reserves one escalating fee, and re
   const project = game.slices.research.modelResearch!['model-research-first-architecture'];
   assert.equal(project.level, 1);
   const visible = getStudioView(game).projects.find(item => item.id === project.id);
-  assert.ok(visible); assert.equal(visible.targetPanel, 'research'); assert.match(visible.title, /Architecture research/);
+  assert.ok(visible); assert.equal(visible.targetPanel, 'research-programs'); assert.equal(visible.targetTask, 'architecture-research'); assert.match(visible.title, /Architecture research/);
   assert.equal(game.slices.company.ledger.filter(fact => fact.id === project.id + ':fee').length, 1);
   assert.equal(game.slices.company.ledger.find(fact => fact.id === project.id + ':fee')!.amountCents, 250_000);
   assert.equal(getModelResearchLevel(game, owner), 0, 'Admission is not earned knowledge.');
@@ -88,8 +89,10 @@ test('architecture research requires both paid meters, preserves pause progress,
   assert.equal(getModelResearchLevel(game, owner), 0);
   assert.equal(submitCommand(game, { kind: 'start_model_research' }, CONTENT).reason?.code, 'ALREADY_ACTIVE');
   const completedWeek = game.week;
+  const beforeAvailable = game;
   game = step(game);
   assert.equal(getModelResearchLevel(game, owner), 1); assert.equal(getModelFamilyGate(game, owner, 'edge'), null);
+  assert.equal(nextDecisionStop(beforeAvailable, game, { ...DEFAULT_DECISION_CLOCK_POLICY, cashReserveCents: 0, opportunities: false }, completedWeek)?.target, '#architecture-research');
   assert.equal(getModelResearchLevel(game, owner, completedWeek), 0, 'Historical admission cannot borrow later knowledge.');
   assert.equal(getModelResearchLevel(game, owner, game.week), 1);
   assert.equal(game.slices.company.ledger.filter(fact => fact.id === id + ':fee').length, 1, 'Resume does not charge a second entry fee.');

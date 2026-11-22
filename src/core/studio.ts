@@ -2,6 +2,7 @@ import { formatWorkPoints, WORK_POINT_LABELS } from '../modules/workforce-points
 import type { CommandPayload, GameContent, GameState, JobStatus } from '../contracts/types';
 import { RESOURCE_SCALE } from '../contracts/types';
 import { CONTENT } from '../content/catalog';
+import { RESEARCH_PROGRAMS, RESEARCH_PROGRAM_STAGES } from '../content/company-progression';
 import { SYSTEM_RULES, VARIANT_RULES } from '../content/wave4-research';
 import type { SystemRolloutKind } from '../contracts/wave4-research';
 import { getCampaignView } from '../modules/campaign-progress';
@@ -9,15 +10,18 @@ import { getComputePools } from '../modules/compute-pools';
 import { freezeDeep } from './canonical';
 import { mulDiv } from './math';
 import { getGameView } from './selectors';
+import type { StudioIntent } from './studio-tasks';
 
 export type StudioStatus = 'idle' | 'working' | 'waiting' | 'blocked' | 'complete';
 export type StudioStationId = 'data' | 'lab' | 'models' | 'people' | 'compute' | 'product';
-export type StudioPanelId = 'data' | 'lab-projects' | 'models' | 'people' | 'compute' | 'product' | 'developer-api' | 'research' | 'infrastructure' | 'chips' | 'campaign' | 'synthetic-data' | 'release-desk' | 'campus' | 'applied-research' | 'capacity-forecast' | 'agents' | 'compute-costs';
+export type StudioPanelId = 'data' | 'lab-projects' | 'models' | 'people' | 'compute' | 'product' | 'developer-api' | 'research' | 'research-programs' | 'infrastructure' | 'chips' | 'campaign' | 'synthetic-data' | 'release-desk' | 'campus' | 'applied-research' | 'capacity-forecast' | 'agents' | 'compute-costs';
 export type StudioProjectKind = 'data' | 'synthetic data' | 'training' | 'evaluation' | 'deployment' | 'research' | 'facility' | 'site profile' | 'rack' | 'chip' | 'fabrication' | 'canary' | 'private appliance' | 'model application' | 'system rollout' | 'handover' | 'rollback';
 export interface StudioProject {
   id: string; title: string; kind: StudioProjectKind; status: StudioStatus;
   progressBps: number; detail: string; bottleneck: string;
   targetPanel: StudioPanelId; stationId: StudioStationId; startedWeek: number;
+  targetTask?: 'architecture-research' | 'research-program';
+  targetIntent?: StudioIntent;
 }
 export interface StudioStation {
   id: StudioStationId; title: string; subtitle: string; status: StudioStatus;
@@ -199,7 +203,20 @@ export function getStudioView(state: GameState, content: GameContent = CONTENT):
       progressBps: Math.min(percent(project.completedWork, project.requiredWork), percent(project.completedStaff, project.requiredStaff)),
       detail: pending ? `Architecture knowledge available in Week ${project.availableWeek}`
         : `${units(project.completedWork)} / ${units(project.requiredWork)} CUw · ${formatWorkPoints(project.completedStaff)} / ${formatWorkPoints(project.requiredStaff)} Research points`,
-      bottleneck: project.lastBottleneck, targetPanel: 'research', stationId: 'models', startedWeek: project.startedWeek });
+      bottleneck: project.lastBottleneck, targetPanel: 'research-programs', targetTask: 'architecture-research', stationId: 'models', startedWeek: project.startedWeek });
+  }
+  for (const experiment of mine(state.slices.campaign.progression?.experiments ?? {})) {
+    const complete = experiment.status === 'complete', pending = complete && (experiment.availableWeek ?? Infinity) > state.week;
+    const grant = experiment.grants.at(-1), progress = grant?.week === state.week ? grant.work + grant.staff : 0;
+    const candidate = state.slices.models.versions[experiment.modelId]?.name ?? experiment.modelId;
+    projects.push({ id: experiment.id, title: `${RESEARCH_PROGRAMS[experiment.programId].name} · ${RESEARCH_PROGRAM_STAGES[experiment.terms.stage - 1]}`,
+      kind: 'research', status: pending ? 'waiting' : jobStatus(experiment.status, progress, experiment.lastBottleneck),
+      progressBps: Math.min(percent(experiment.completedWork, experiment.terms.requiredWork), percent(experiment.completedStaff, experiment.terms.requiredStaff)),
+      detail: `${candidate} · ` + (pending ? `Experiment evidence available in Week ${experiment.availableWeek}`
+        : complete ? experiment.passed ? 'Passed · accreditation earned' : 'Constraints unmet · review the paid evidence'
+          : `${units(experiment.completedWork)} / ${units(experiment.terms.requiredWork)} CUw · ${formatWorkPoints(experiment.completedStaff)} / ${formatWorkPoints(experiment.terms.requiredStaff)} Research points`),
+      bottleneck: complete ? '' : experiment.lastBottleneck, targetPanel: 'research-programs', targetTask: 'research-program',
+      targetIntent: { kind: 'research-experiment', experimentId: experiment.id }, stationId: 'models', startedWeek: experiment.startedWeek });
   }
   for (const rack of mine(state.slices.compute.racks)) {
     const delivered = rack.status !== 'ordered', installed = rack.status === 'installed' || rack.status === 'parked';
