@@ -55,8 +55,12 @@ export function assertWave1State(state: GameState, content: GameContent): void {
   const origin = state.slices.campaign.origin;
   if (origin !== undefined) {
     check(Object.hasOwn(CAMPAIGN_ORIGINS, origin) && state.slices.campaign.rules === 'release' && [WORKFORCE_POINTS_CONTENT_VERSION, MODEL_DESIGN_CONTENT_VERSION, STRATEGY_CONTENT_VERSION, MODEL_CUSTOMIZATION_CONTENT_VERSION, GAMEPLAY_POLISH_CONTENT_VERSION, AI_SYSTEMS_CONTENT_VERSION, CONNECTED_COMPANY_CONTENT_VERSION].includes(content.version), 'Campaign origin is invalid.');
-    const seed = origin === 'garage' ? content.opening.seed : content.opening.seed + ':' + origin;
-    check(state.seed === seed, 'Campaign origin seed is invalid.');
+    // The saved seed drives replay; the content default is only one possible
+    // opening. New labs also use randomized or caller-supplied base seeds.
+    // Retain the origin suffix and the same base-seed bounds as validateContent.
+    const suffix = ':' + origin;
+    const baseSeed = origin === 'garage' ? state.seed : state.seed.endsWith(suffix) ? state.seed.slice(0, -suffix.length) : '';
+    check(baseSeed.trim().length > 0 && baseSeed.length <= 128, 'Campaign origin seed is invalid.');
     check(CAMPAIGN_ORIGINS[origin].knowledge.every(id => state.slices.research.completedByCompany[state.playerCompanyId]?.includes(id)), 'Founding research is missing.');
   }
   record(company.staff, 'Staff'); record(company.founderAssignments, 'Founder assignments'); record(company.lastStaff, 'Staff grants');

@@ -1,0 +1,13 @@
+docs/evidence/debug-0383/opening-scenarios.mts(3,25): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+docs/evidence/debug-0383/opening-scenarios.mts(4,37): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+docs/evidence/debug-0383/opening-scenarios.mts(5,64): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+docs/evidence/debug-0383/opening-scenarios.mts(6,36): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+docs/evidence/debug-0383/opening-scenarios.mts(7,50): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+docs/evidence/debug-0383/opening-scenarios.mts(8,42): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+docs/evidence/debug-0383/opening-scenarios.mts(9,41): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+docs/evidence/debug-0383/opening-scenarios.mts(15,9): error TS7034: Variable 'reloads' implicitly has type 'any[]' in some locations where its type cannot be determined.
+docs/evidence/debug-0383/opening-scenarios.mts(67,115): error TS7005: Variable 'reloads' implicitly has an 'any[]' type.
+docs/evidence/debug-0384/before-reserve-admission.mts(2,25): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+docs/evidence/debug-0384/before-reserve-admission.mts(3,79): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+docs/evidence/debug-0384/before-reserve-admission.mts(4,36): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.
+docs/evidence/debug-0384/before-reserve-admission.mts(5,50): error TS5097: An import path can only end with a '.ts' extension when 'allowImportingTsExtensions' is enabled.

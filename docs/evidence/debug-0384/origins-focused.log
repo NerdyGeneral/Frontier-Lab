@@ -1,0 +1,13 @@
+✔ default and explicit garage replay the original opening without a scenario record (86.014049ms)
+✔ origins have authored opening budgets, payroll, competitive positions and no unearned revenue (683.338315ms)
+✔ only the selected origin supplies earned starting research and fully onboarded employees (7.448892ms)
+✔ randomized and custom opening seeds survive normal saves and paid weekly progression for every origin (2468.323719ms)
+✔ origin seed validation still rejects a wrong suffix and bases outside the opening seed contract (23.391375ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3957.625827

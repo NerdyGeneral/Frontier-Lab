@@ -4,7 +4,7 @@ import { CONTENT } from '../src/content/catalog';
 import type { CommandPayload, GameState } from '../src/contracts/types';
 import type { DevelopmentPlanSpec } from '../src/contracts/development-plans';
 import { RESOURCE_SCALE as U } from '../src/contracts/types';
-import { advanceWeek, submitCommand, validateState } from '../src/core/engine';
+import { advanceWeek, createInitialState, submitCommand, validateState } from '../src/core/engine';
 import { deserializeState, serializeState } from '../src/core/snapshot';
 import { assertDevelopmentPlansState } from '../src/core/development-plan-validation';
 import { getWeeklyBaseCost } from '../src/core/selectors';
@@ -176,6 +176,121 @@ test('cash reserve considers known weekly bills and earlier committed fees befor
   assert.match(game.commandReceipts[stage.commandId].reason!.message, /reserve/);
   assert.equal(plan(game).status, 'blocked'); assert.equal(trainingRun(game), undefined);
   assert.equal(game.slices.company.companies[game.playerCompanyId].cashCents, chosen.cashReserveCents + stage.feeCents - 1);
+});
+
+function reserveOpening(cashReserveCents: number, source = createInitialState(CONTENT, 'release', 'garage')) {
+  const queued = queue(source, { kind: 'start_development_plan', name: 'Keep a cash reserve',
+    training: { kind: 'start_training', baseModelId: CONTENT.seedModel.id, packetId: CONTENT.starterData.id },
+    suiteId: 'basic-conversation-1', feeBudgetCents: CONTENT.preparation.feeCents, cashReserveCents,
+    deadlineWeek: source.week + 30 }, 'reserve-plan');
+  const tick = advanceWeek(queued); assert.ok(tick.accepted, tick.reason?.message);
+  const game = tick.state, record = game.slices.models.developmentPlans!['development-reserve-plan'];
+  assert.equal(record.steps.length, 1); assert.equal(record.steps[0].payload.kind, 'prepare_data');
+  return { game, record, stage: record.steps[0] };
+}
+function settleReserveOrders(game: GameState) {
+  assert.deepEqual(validateState(game), []);
+  const tick = advanceWeek(reload(game)); assert.ok(tick.accepted, tick.reason?.message);
+  return tick.state;
+}
+
+test('a delegated stage protects its reserve from a later queued purchase in ordinary and purchase-first order', () => {
+  for (const purchaseFirst of [false, true]) {
+    const opening = reserveOpening(3_990_000); let game = opening.game;
+    assert.equal(game.slices.company.companies[game.playerCompanyId].cashCents, 4_700_000);
+    game = queue(game, { kind: 'buy_data', catalogId: 'specialist-coding-1' }, 'later-purchase');
+    if (purchaseFirst) game.queuedCommands.sort((a, b) => Number(b.id === 'later-purchase') - Number(a.id === 'later-purchase'));
+    game = settleReserveOrders(game);
+    assert.equal(game.commandReceipts['later-purchase'].status, 'accepted');
+    assert.equal(game.commandReceipts[opening.stage.commandId].status, 'rejected');
+    assert.match(game.commandReceipts[opening.stage.commandId].reason!.message, /reserve/);
+    assert.equal(game.slices.models.developmentPlans![opening.record.id].status, 'blocked');
+    assert.equal(game.slices.data.preparationJobs['preparation-' + opening.stage.commandId], undefined);
+    assert.equal(game.slices.company.companies[game.playerCompanyId].cashCents, 4_000_000);
+  }
+});
+
+test('multiple due purchases reserve their combined fees without double-counting a purchase already committed', () => {
+  for (const firstPurchaseAlreadyCommitted of [false, true]) {
+    const opening = reserveOpening(3_390_000); let game = opening.game;
+    game = queue(game, { kind: 'buy_data', catalogId: 'specialist-coding-1' }, 'first-purchase');
+    game = queue(game, { kind: 'buy_data', catalogId: 'specialist-conversation-1' }, 'second-purchase');
+    if (firstPurchaseAlreadyCommitted) game.queuedCommands.sort((a, b) => Number(b.id === 'first-purchase') - Number(a.id === 'first-purchase'));
+    game = settleReserveOrders(game);
+    assert.equal(game.commandReceipts['first-purchase'].status, 'accepted');
+    assert.equal(game.commandReceipts['second-purchase'].status, 'accepted');
+    assert.equal(game.commandReceipts[opening.stage.commandId].status, 'rejected');
+    assert.equal(game.slices.company.companies[game.playerCompanyId].cashCents, 3_400_000);
+  }
+});
+
+test('queued cloud, payroll and atomic Studio increases count in a delegated stage cash reserve', () => {
+  const cases: Array<{ reserve: number; cash: number; command: CommandPayload }> = [
+    { reserve: 3_990_000, cash: 4_040_000, command: { kind: 'set_cloud_capacity', cu: 32 * U } },
+    { reserve: 4_360_000, cash: 4_450_000, command: { kind: 'hire_staff', role: 'data' } },
+    { reserve: 4_320_000, cash: 4_410_000, command: { kind: 'apply_studio_plan', commands: [
+      { kind: 'hire_staff', role: 'data' }, { kind: 'set_cloud_capacity', cu: 6 * U },
+      { kind: 'allocate_compute', serving: 0, development: 4 * U, research: 0 },
+    ] } },
+  ];
+  for (const scenario of cases) {
+    const opening = reserveOpening(scenario.reserve);
+    const game = settleReserveOrders(queue(opening.game, scenario.command, 'known-bill-change'));
+    assert.equal(game.commandReceipts['known-bill-change'].status, 'accepted');
+    assert.equal(game.commandReceipts[opening.stage.commandId].status, 'rejected');
+    assert.match(game.commandReceipts[opening.stage.commandId].reason!.message, /reserve/);
+    assert.equal(game.slices.company.companies[game.playerCompanyId].cashCents, scenario.cash);
+  }
+});
+
+test('a later rejected capacity reduction cannot hide a pending rent increase from delegated admission', () => {
+  const opening = reserveOpening(4_500_000); let game = opening.game;
+  game = queue(game, { kind: 'set_cloud_capacity', cu: 6 * U }, 'rent-increase');
+  game = queue(game, { kind: 'allocate_compute', serving: 0, development: 4 * U, research: 0 }, 'larger-allocation');
+  game = queue(game, { kind: 'set_cloud_capacity', cu: 2 * U }, 'rejected-reduction');
+  game = settleReserveOrders(game);
+  assert.equal(game.commandReceipts[opening.stage.commandId].status, 'rejected');
+  assert.equal(game.commandReceipts['rent-increase'].status, 'accepted');
+  assert.equal(game.commandReceipts['larger-allocation'].status, 'accepted');
+  assert.equal(game.commandReceipts['rejected-reduction'].status, 'rejected');
+  assert.equal(game.commandReceipts['rejected-reduction'].reason!.code, 'CAPACITY_EXCEEDED');
+  assert.equal(game.slices.compute.fleets[game.playerCompanyId].cloudCU, 6 * U);
+  assert.equal(game.slices.company.companies[game.playerCompanyId].cashCents, 4_560_000);
+});
+
+test('zero-fee pending orders do not double-charge a stage that exactly meets its cash reserve', () => {
+  const opening = reserveOpening(4_500_000);
+  const game = settleReserveOrders(queue(opening.game, { kind: 'rename_company', name: 'Exact reserve' }, 'free-order'));
+  assert.equal(game.commandReceipts['free-order'].status, 'accepted');
+  assert.equal(game.commandReceipts[opening.stage.commandId].status, 'accepted');
+  assert.equal(game.slices.company.companies[game.playerCompanyId].cashCents, 4_500_000);
+  assert.equal(game.slices.company.ledger.filter(fact => fact.id === 'preparation-' + opening.stage.commandId + ':fee').length, 1);
+});
+
+test('rejected earlier paid orders release their reservation and already-applied payroll savings count', () => {
+  const hired = advanceWeek(queue(createInitialState(CONTENT, 'release', 'garage'), { kind: 'hire_staff', role: 'data' }, 'temporary-staff'));
+  assert.ok(hired.accepted, hired.reason?.message);
+  const opening = reserveOpening(4_150_000, hired.state); let game = opening.game;
+  game = queue(game, { kind: 'dismiss_staff', staffId: 'staff:temporary-staff' }, 'first-dismissal');
+  game = queue(game, { kind: 'dismiss_staff', staffId: 'staff:temporary-staff' }, 'repeated-dismissal');
+  // Valid order control: the first dismissal commits; the second must reject
+  // before the stage and release its reserved severance fee without charging it.
+  game.queuedCommands.sort((a, b) => Number(a.id === opening.stage.commandId) - Number(b.id === opening.stage.commandId));
+  game = settleReserveOrders(game);
+  assert.equal(game.commandReceipts['first-dismissal'].status, 'accepted');
+  assert.equal(game.commandReceipts['repeated-dismissal'].status, 'rejected');
+  assert.equal(game.commandReceipts[opening.stage.commandId].status, 'accepted');
+  assert.equal(game.slices.company.staff['staff:temporary-staff'], undefined);
+  assert.equal(game.slices.company.companies[game.playerCompanyId].cashCents, 4_175_000);
+});
+
+test('a plan reserve does not revoke an explicit manual purchase that chooses to spend below it', () => {
+  const opening = reserveOpening(4_500_000);
+  const game = settleReserveOrders(queue(opening.game, { kind: 'buy_data', catalogId: 'specialist-coding-1' }, 'manual-budget-choice'));
+  assert.equal(game.commandReceipts[opening.stage.commandId].status, 'rejected');
+  assert.equal(game.commandReceipts['manual-budget-choice'].status, 'accepted');
+  assert.equal(game.slices.company.companies[game.playerCompanyId].cashCents, 4_000_000);
+  assert.equal(game.slices.company.companies[game.playerCompanyId].arrearsCents, 0);
 });
 
 test('deadline stops active work after its final week and an extension resumes the same paid run', () => {

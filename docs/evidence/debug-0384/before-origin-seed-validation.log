@@ -1,0 +1,206 @@
+{
+  "baselineWeek": 0,
+  "baselineCash": 4800000,
+  "rows": [
+    {
+      "base": "campaign-0123456789abcdef00000000ffffffff",
+      "origin": "garage",
+      "validation": [],
+      "serializeError": null,
+      "writer": "ok",
+      "storageWrites": 2,
+      "primaryUnchanged": false,
+      "previousUnchanged": false
+    },
+    {
+      "base": "campaign-0123456789abcdef00000000ffffffff",
+      "origin": "university",
+      "validation": [
+        {
+          "code": "INVALID_STATE",
+          "message": "Campaign origin seed is invalid."
+        }
+      ],
+      "serializeError": "Campaign origin seed is invalid.",
+      "writer": "Local save failed. Export a snapshot to keep this run.",
+      "storageWrites": 0,
+      "primaryUnchanged": true,
+      "previousUnchanged": true
+    },
+    {
+      "base": "campaign-0123456789abcdef00000000ffffffff",
+      "origin": "consultancy",
+      "validation": [
+        {
+          "code": "INVALID_STATE",
+          "message": "Campaign origin seed is invalid."
+        }
+      ],
+      "serializeError": "Campaign origin seed is invalid.",
+      "writer": "Local save failed. Export a snapshot to keep this run.",
+      "storageWrites": 0,
+      "primaryUnchanged": true,
+      "previousUnchanged": true
+    },
+    {
+      "base": "campaign-57e9b5dba479faf960151a00db33d141",
+      "origin": "garage",
+      "validation": [],
+      "serializeError": null,
+      "writer": "ok",
+      "storageWrites": 2,
+      "primaryUnchanged": false,
+      "previousUnchanged": false
+    },
+    {
+      "base": "campaign-57e9b5dba479faf960151a00db33d141",
+      "origin": "university",
+      "validation": [
+        {
+          "code": "INVALID_STATE",
+          "message": "Campaign origin seed is invalid."
+        }
+      ],
+      "serializeError": "Campaign origin seed is invalid.",
+      "writer": "Local save failed. Export a snapshot to keep this run.",
+      "storageWrites": 0,
+      "primaryUnchanged": true,
+      "previousUnchanged": true
+    },
+    {
+      "base": "campaign-57e9b5dba479faf960151a00db33d141",
+      "origin": "consultancy",
+      "validation": [
+        {
+          "code": "INVALID_STATE",
+          "message": "Campaign origin seed is invalid."
+        }
+      ],
+      "serializeError": "Campaign origin seed is invalid.",
+      "writer": "Local save failed. Export a snapshot to keep this run.",
+      "storageWrites": 0,
+      "primaryUnchanged": true,
+      "previousUnchanged": true
+    },
+    {
+      "base": "campaign-2520b13e91d36a8cef435609247d15fb",
+      "origin": "garage",
+      "validation": [],
+      "serializeError": null,
+      "writer": "ok",
+      "storageWrites": 2,
+      "primaryUnchanged": false,
+      "previousUnchanged": false
+    },
+    {
+      "base": "campaign-2520b13e91d36a8cef435609247d15fb",
+      "origin": "university",
+      "validation": [
+        {
+          "code": "INVALID_STATE",
+          "message": "Campaign origin seed is invalid."
+        }
+      ],
+      "serializeError": "Campaign origin seed is invalid.",
+      "writer": "Local save failed. Export a snapshot to keep this run.",
+      "storageWrites": 0,
+      "primaryUnchanged": true,
+      "previousUnchanged": true
+    },
+    {
+      "base": "campaign-2520b13e91d36a8cef435609247d15fb",
+      "origin": "consultancy",
+      "validation": [
+        {
+          "code": "INVALID_STATE",
+          "message": "Campaign origin seed is invalid."
+        }
+      ],
+      "serializeError": "Campaign origin seed is invalid.",
+      "writer": "Local save failed. Export a snapshot to keep this run.",
+      "storageWrites": 0,
+      "primaryUnchanged": true,
+      "previousUnchanged": true
+    },
+    {
+      "base": "my-custom-seed",
+      "origin": "garage",
+      "validation": [],
+      "serializeError": null,
+      "writer": "ok",
+      "storageWrites": 2,
+      "primaryUnchanged": false,
+      "previousUnchanged": false
+    },
+    {
+      "base": "my-custom-seed",
+      "origin": "university",
+      "validation": [
+        {
+          "code": "INVALID_STATE",
+          "message": "Campaign origin seed is invalid."
+        }
+      ],
+      "serializeError": "Campaign origin seed is invalid.",
+      "writer": "Local save failed. Export a snapshot to keep this run.",
+      "storageWrites": 0,
+      "primaryUnchanged": true,
+      "previousUnchanged": true
+    },
+    {
+      "base": "my-custom-seed",
+      "origin": "consultancy",
+      "validation": [
+        {
+          "code": "INVALID_STATE",
+          "message": "Campaign origin seed is invalid."
+        }
+      ],
+      "serializeError": "Campaign origin seed is invalid.",
+      "writer": "Local save failed. Export a snapshot to keep this run.",
+      "storageWrites": 0,
+      "primaryUnchanged": true,
+      "previousUnchanged": true
+    },
+    {
+      "base": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+      "origin": "garage",
+      "validation": [],
+      "serializeError": null,
+      "writer": "ok",
+      "storageWrites": 2,
+      "primaryUnchanged": false,
+      "previousUnchanged": false
+    },
+    {
+      "base": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+      "origin": "university",
+      "validation": [
+        {
+          "code": "INVALID_STATE",
+          "message": "Campaign origin seed is invalid."
+        }
+      ],
+      "serializeError": "Campaign origin seed is invalid.",
+      "writer": "Local save failed. Export a snapshot to keep this run.",
+      "storageWrites": 0,
+      "primaryUnchanged": true,
+      "previousUnchanged": true
+    },
+    {
+      "base": "zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz",
+      "origin": "consultancy",
+      "validation": [
+        {
+          "code": "INVALID_STATE",
+          "message": "Campaign origin seed is invalid."
+        }
+      ],
+      "serializeError": "Campaign origin seed is invalid.",
+      "writer": "Local save failed. Export a snapshot to keep this run.",
+      "storageWrites": 0,
+      "primaryUnchanged": true,
+      "previousUnchanged": true
+    }
+  ]
+}

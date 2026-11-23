@@ -8,6 +8,7 @@ import { SnapshotTooLargeError, serializeState } from '../src/core/snapshot';
 import { canonicalStateHash } from '../src/core/canonical';
 import type { GameState } from '../src/contracts/types';
 import { CONTENT } from '../src/content/catalog';
+import { CAMPAIGN_ORIGINS } from '../src/content/campaign-origins';
 import { DEFAULT_DECISION_CLOCK_POLICY, decisionStartGuard } from '../src/core/decision-clock';
 import type { DecisionClockPolicy, DecisionStop } from '../src/core/decision-clock';
 import { readBrowserSnapshotWithBytes, writeBrowserSnapshotWithBytes, browserRecoveryOptions, browserSnapshotMatches, readBrowserRecovery, RecoveryArchiveError } from '../src/persistence/wave0-browser';
@@ -344,6 +345,41 @@ test('previous-run review and restore retain paid work, queued decisions and the
   if (restored.kind !== 'loaded') return;
   assert.deepEqual(parseModelWorkspace(s.storage.getItem(MODEL_WORKSPACE_KEY))?.binding, hashSavedSnapshotSync(restored.savedBytes));
   assert.equal(s.error(), ''); assert.equal(s.commits(), 2);
+});
+
+for (const origin of ['garage', 'university', 'consultancy'] as const) test(`the actual new-lab callback creates a savable randomized ${origin} while preserving the previous workspace`, async t => {
+  const s = await recoverySession(t);
+  const before = canonicalStateHash(s.original);
+  let randomCalls = 0, replacement: unknown;
+  const start = bindCallback('startOrigin', {
+    CONTENT, CAMPAIGN_ORIGINS, createInitialState,
+    crypto: { getRandomValues: (values: Uint32Array) => {
+      assert.ok(values instanceof Uint32Array); assert.equal(values.length, 4); randomCalls++;
+      values.set([0x01234567, 0x89abcdef, 0x00000000, 0xffffffff]); return values;
+    } },
+    replaceRun: (...args: unknown[]) => { replacement = s.replace(...args); return replacement; },
+  });
+  start(origin); await replacement;
+  assert.equal(randomCalls, 1);
+  assert.equal(s.error(), '', 'The browser-generated origin must pass ordinary snapshot admission.');
+  assert.equal(s.commits(), 1);
+  const saved = readBrowserSnapshotWithBytes(); assert.equal(saved.kind, 'loaded');
+  if (saved.kind !== 'loaded') return;
+  const game = s.closure.gameRef.current;
+  assert.equal(game.seed, 'campaign-0123456789abcdef00000000ffffffff' + (origin === 'garage' ? '' : ':' + origin));
+  assert.equal(game.slices.campaign.origin, origin === 'garage' ? undefined : origin);
+  assert.equal(game.slices.company.companies[game.playerCompanyId].cashCents, CAMPAIGN_ORIGINS[origin].cashCents);
+  assert.equal(canonicalStateHash(saved.state), canonicalStateHash(game));
+  const copy = readBrowserRecovery('previous'); assert.ok(copy);
+  const previous = deserializePortableSave(copy.text); assert.ok(previous.ok);
+  assert.equal(canonicalStateHash(previous.state), before);
+  assert.deepEqual(previous.workspace, s.workspace);
+  const queued = submitCommand(saved.state, { kind: 'prepare_data', packetId: CONTENT.starterData.id }, CONTENT, 'randomized-opening-' + origin);
+  assert.ok(queued.accepted, queued.reason?.message);
+  const reloaded = deserializePortableSave(serializeState(queued.state)); assert.ok(reloaded.ok, reloaded.ok ? undefined : reloaded.error);
+  const advanced = advanceWeek(queued.state), resumed = advanceWeek(reloaded.state);
+  assert.ok(advanced.accepted, advanced.reason?.message);
+  assert.deepEqual(resumed, advanced, 'The chosen origin resumes the same paid first week after saving.');
 });
 
 test('previous-run review accepts historical engine-only backups without borrowing current drafts', async t => {

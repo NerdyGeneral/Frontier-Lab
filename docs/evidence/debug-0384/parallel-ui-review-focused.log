@@ -1,0 +1,29 @@
+✔ distinct responsible leads keep a second admissible project actionable while the Founder duplicate stays scheduled (696.064573ms)
+✔ queued pause applies only to its exact development plan in the rendered controls (412.301162ms)
+✔ queued resume applies only to its exact development plan in the rendered controls (454.34794ms)
+✔ queued revise applies only to its exact development plan in the rendered controls (465.421263ms)
+✔ queued cancel applies only to its exact development plan in the rendered controls (385.14524ms)
+✔ development plan builder exposes data, model, method, evaluation and budget choices with a stable workspace target (31.551553ms)
+✔ running plan exposes one Run until a decision control and keeps paid stages visible without starting the clock during render (49.350626ms)
+✔ returning from manual editing restores explicit project metadata instead of a new name, recommended test or defaults (34.584397ms)
+✔ editing limits shows the exact saved deadline and saves without an implied resume (126.583698ms)
+✔ plan controls distinguish continuous play from an actual decision run (29.883832ms)
+✔ a running development plan with a blocked stage appears in both Active and Blocked without changing its engine status (437.143185ms)
+✔ the project list includes queued and completed plans in their filters without a second builder (531.365195ms)
+✔ archived projects offer their saved evaluation, fall back to their exact model, and keep ordinary links without task actions (428.371854ms)
+✔ a real deadline-blocked plan surfaces its reason and edit limits, while ordinary resume stays unavailable until extended (86.295946ms)
+✔ finished plan displays its actual evaluation and explicit release link without a claim dialog or automatic launch (389.533489ms)
+✔ challenge workbench keeps its stable panel id and exposes locked tiers with prerequisites before any paid evidence (27.156839ms)
+✔ completed projects retain their own goal and route specialist releases without reading the current draft goal (376.170483ms)
+✔ routine editor action states its action and authoritative cost without a review prefix (132.372721ms)
+✔ queued action remains visible, disabled and identified by its actual effective week (46.026981ms)
+✔ permanent staff choice retains a concise explicit review (16.149037ms)
+✔ review policy covers irreversible work removal and leaves ordinary quoted work direct (0.48829ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7824.66659

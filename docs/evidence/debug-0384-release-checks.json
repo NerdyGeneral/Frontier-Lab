@@ -1,0 +1,419 @@
+{
+  "release": "0.38.4",
+  "contentVersion": "0.38.0",
+  "saveSchemaVersion": 5,
+  "updatedAtUtc": "2026-11-23T00:07:22.304149+00:00",
+  "verificationStatus": "Source verification complete: 1,065 unique engine cases passed across two invocations; full UI 267/267, serial typecheck and isolated production build passed. The complete engine invocation retains exit 1 with an unclassified file-level failure; all five cases from that file passed unchanged in isolation. Post-publication browser validation is separate and is not claimed here.",
+  "source": {
+    "baselineCommit": "c59acc1d4668895c11a60cf4eb99a14eb00428d9",
+    "finalEngineManifestArtifact": "engineSource",
+    "engineManifestFileCount": 504,
+    "engineManifestAggregateSha256": "5e12562dea1533a421c975ae22e0574332209961a8b3b16384b966edf888576c",
+    "engineManifestMatchesCurrentFiles": true,
+    "postTestToolingChange": "Only the docs/evidence exclusion in tsconfig.json changed after engine/UI tests; application runtime source stayed frozen. Serial typecheck and production build passed with that exclusion."
+  },
+  "baseline0383": {
+    "engine": {
+      "status": "passed",
+      "command": "node scripts/test-wave0.mjs",
+      "scope": "Complete pure-engine suite on clean 0.38.3 baseline.",
+      "exitCode": 0,
+      "tests": 1054,
+      "suites": 0,
+      "pass": 1054,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 593752.471168,
+      "artifact": "baselineEngine"
+    },
+    "ui": {
+      "status": "passed",
+      "command": "node --import tsx --test --test-reporter=spec tests/*.test.tsx src/ui/*.test.tsx",
+      "scope": "Complete UI suite on clean 0.38.3 baseline.",
+      "exitCode": 0,
+      "tests": 259,
+      "suites": 0,
+      "pass": 259,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 101041.535617,
+      "artifact": "baselineUi"
+    }
+  },
+  "focusedFixVerification": {
+    "origins": {
+      "status": "passed",
+      "command": "node scripts/test-wave0.mjs campaign-origins",
+      "scope": "All three origins with default, browser-width randomized, custom and boundary-length seeds; save and paid-progress reload parity; malformed seeds rejected.",
+      "exitCode": 0,
+      "tests": 5,
+      "suites": 0,
+      "pass": 5,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 3957.625827,
+      "artifact": "originsFocused"
+    },
+    "savingCallbacks": {
+      "status": "passed",
+      "command": "node --import tsx --test --test-reporter=spec tests/campaign-saving-ui.test.tsx",
+      "scope": "Actual autosave/recovery/replacement callbacks, including three randomized startOrigin paths with previous campaign/workspace retention.",
+      "exitCode": 0,
+      "tests": 22,
+      "suites": 0,
+      "pass": 22,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 7908.671458,
+      "artifact": "callbacksFocused"
+    },
+    "parallelUiAndReview": {
+      "status": "passed",
+      "command": "node --import tsx --test --test-reporter=spec tests/development-plans-ui.test.tsx tests/studio-command-flow-ui.test.tsx",
+      "scope": "Rendered parallel lead and plan controls, duplicate scheduled controls, review/quote/command flow.",
+      "exitCode": 0,
+      "tests": 21,
+      "suites": 0,
+      "pass": 21,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 7824.66659,
+      "artifact": "parallelUiFocused"
+    },
+    "reserveAndClock": {
+      "status": "passed",
+      "command": "node scripts/test-wave0.mjs development-plans decision-clock",
+      "scope": "All development-plan and decision-clock engine cases, including due fees, projected increases, rejected reductions and conservative pending-savings guards.",
+      "exitCode": 0,
+      "tests": 38,
+      "suites": 0,
+      "pass": 38,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 13112.634906,
+      "artifact": "reserveClockFocused"
+    }
+  },
+  "final0384Gates": {
+    "engine": {
+      "status": "failed",
+      "command": "node scripts/test-wave0.mjs",
+      "scope": "Entire pure-engine suite on frozen final 0.38.4 source.",
+      "exitCode": 1,
+      "tests": 1061,
+      "suites": 0,
+      "pass": 1060,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 575749.837741,
+      "artifact": "finalEngine",
+      "failure": {
+        "scope": "File-level tests/company-progression.test.js:1:1",
+        "duration_ms": 34940.586739,
+        "diagnostic": "test failed",
+        "namedAssertionExposed": false,
+        "signalExposed": false,
+        "causeConfirmed": false,
+        "note": "No SIGKILL, OOM or specific assertion cause is established by the retained terminal diagnostic. All five company-progression case names are absent from the full run’s passing output."
+      }
+    },
+    "ui": {
+      "status": "passed",
+      "command": "node --import tsx --test --test-reporter=spec tests/*.test.tsx src/ui/*.test.tsx",
+      "scope": "Entire UI suite on frozen final 0.38.4 source.",
+      "exitCode": 0,
+      "tests": 267,
+      "suites": 0,
+      "pass": 267,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 103901.405494,
+      "artifact": "finalUi"
+    },
+    "typecheck": {
+      "status": "passed",
+      "command": "node node_modules/typescript/bin/tsc --noEmit",
+      "exitCode": 0,
+      "diagnostics": 0,
+      "artifact": "finalTypecheck",
+      "scope": "Application source, tests and active scripts remain typechecked. Archived reproduction scripts in docs/evidence are excluded.",
+      "priorAttempts": [
+        {
+          "exitCode": 137,
+          "diagnostics": 0,
+          "context": "Concurrent with full test suites; no passing typecheck result is inferred from this interrupted process."
+        },
+        {
+          "exitCode": 2,
+          "diagnostics": 13,
+          "artifact": "typecheckBeforeEvidenceExclusion",
+          "cause": "Archive-only .mts reproduction scripts were included in application typecheck: .ts import suffixes and untyped temporary reloads arrays. No application source diagnostic was emitted."
+        }
+      ]
+    },
+    "build": {
+      "status": "passed",
+      "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.7/scripts/build-site.mjs",
+      "scope": "Production build run alone after all tests and the successful serial typecheck.",
+      "exitCode": 0,
+      "completedStages": 5,
+      "artifact": "finalBuild",
+      "nonFatalWarnings": [
+        "Some minified chunks exceed 500 kB.",
+        "Routine proxy environment, plugin timing and route-classification notices."
+      ]
+    },
+    "companyProgressionIsolated": {
+      "status": "passed",
+      "command": "node scripts/test-wave0.mjs company-progression",
+      "scope": "All five tests in the only file that failed at file level during the complete engine run. Frozen source is unchanged.",
+      "exitCode": 0,
+      "tests": 5,
+      "suites": 0,
+      "pass": 5,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 17684.380371,
+      "artifact": "companyProgressionIsolated"
+    }
+  },
+  "independentReserveReview": {
+    "status": "passed",
+    "command": "node /tmp/frontier-independent-reserve-review.cjs",
+    "passed": 5,
+    "logArtifact": "independentReserve",
+    "generatorArtifact": "independentGenerator",
+    "scenarioNames": [
+      "exact-reserve-boundary",
+      "zero-fee-rename",
+      "explicit-manual-purchase",
+      "rejected-rent-reduction",
+      "reviewed-valid-cut-and-resume"
+    ],
+    "reloadAndNextWeekParityScenarios": 4,
+    "sourceImmutabilityAssertions": "All first four scenarios compare the source canonical hash after continuation; the fifth checks that the initial clock guard leaves state unchanged.",
+    "scope": "Fresh release Garage campaigns using ordinary accepted commands. The fifth scenario verifies manual application of a valid cut, followed by continuation with the same reserve; it does not assert a separate reload parity comparison.",
+    "exitCode": 0
+  },
+  "beforeFixDiagnostics": [
+    {
+      "artifact": "beforeOrigin",
+      "finding": "Alternate-origin randomized/custom seeds fail serialization before any storage writes; existing primary and previous backups remain unchanged.",
+      "provenance": "Source reproduction against an exported real W0 campaign. Only diagnostic results are retained; the private save is excluded."
+    },
+    {
+      "artifact": "beforeParallel",
+      "finding": "Engine accepts a distinct second lead/plan action while the rendered UI incorrectly reports it already queued.",
+      "provenance": "Valid established senior-lead fixture; not a naturally earned browser campaign."
+    },
+    {
+      "artifact": "beforeReserve",
+      "generatorArtifact": "beforeReserveGenerator",
+      "command": "node --import tsx /tmp/frontier-recheck-0383-reserve-probe.mts",
+      "finding": "Automatic preparation plus later queued manual data purchase crosses the 39,900-dollar reserve in ordinary order, while purchase-first rejects the stage.",
+      "provenance": "Clean 0.38.3 fresh Garage campaign with ordinary accepted commands. The control changes only queued command order."
+    },
+    {
+      "artifact": "beforeRejectedCut",
+      "finding": "Rejected final capacity reduction understates the accepted 6-CU bill if projected as though it will succeed.",
+      "provenance": "Diagnostic made during reserve-fix review before final conservative projection; not labelled as a clean baseline run."
+    }
+  ],
+  "accounting": "Focused cases overlap the final full suites and are not added to their unique totals. Independent diagnostic scenarios are reported separately from Node test counts.",
+  "browserVerification": {
+    "baselineObserved": "Published 0.38.3 New lab → University Spinout → Replace lab failed with a generic local-save error; existing W0 campaign remained open.",
+    "final0384Status": "Post-publication live University delegated and Consultancy start/recovery checks are pending and will be reported separately.",
+    "privateSaveIncluded": false,
+    "additionalBaselineObservation": {
+      "source": "Root operator observation during published 0.38.3 setup.",
+      "event": "Cloud browser Runtime.evaluate timed out and then explicitly reported renderer crashed.",
+      "recovery": "One reload recovered; reserve-scenario setup subsequently worked.",
+      "applicationCauseEstablished": false,
+      "classification": "Browser-session observation; not established as a game defect or a crash-free browser pass."
+    },
+    "preparedReserveScenario": {
+      "build": "0.38.3",
+      "week": 1,
+      "cashCents": 4700000,
+      "reservedCents": 700000,
+      "queueOrder": "Preparation before manual data purchase.",
+      "status": "Prepared through live UI and paused pending deployment; not final 0.38.4 verification."
+    }
+  },
+  "freshFinalCampaignMilestones": {
+    "status": "passed_in_final_engine_run",
+    "artifact": "finalEngine",
+    "milestones": [
+      {
+        "test": "W21-R01",
+        "campaign": "platform",
+        "earnedWeek": 203
+      },
+      {
+        "test": "W21-R02",
+        "campaign": "specialist",
+        "earnedWeek": 208
+      },
+      {
+        "test": "W21-R03",
+        "campaign": "frontier",
+        "earnedWeek": 214
+      }
+    ],
+    "scope": "These are fresh natural campaign-ending tests emitted by the final 0.38.4 engine run, despite the unrelated file-level failure. They are automated tests, not browser playthroughs.",
+    "advancedPaidContinuation": {
+      "testName": "a published business funds all three system paths and earns all four new challenge and client outcomes",
+      "status": "passed",
+      "duration_ms": 322050.078564,
+      "scope": "Automated earned-business continuation; not a fresh beginning-to-end browser campaign.",
+      "startFixtureWeek": 574,
+      "finalWeekLogged": false
+    },
+    "seed": "frontier-lab-wave-0",
+    "origin": "garage",
+    "rules": "release"
+  },
+  "artifacts": {
+    "baselineEngine": {
+      "path": "docs/evidence/debug-0384/baseline-0383-engine.log",
+      "bytes": 131286,
+      "sha256": "91d38ab1f35b68878503184b4bda4c24ed0c3926bdc519fbfbdc200ffaa998dd"
+    },
+    "baselineUi": {
+      "path": "docs/evidence/debug-0384/baseline-0383-ui.log",
+      "bytes": 29485,
+      "sha256": "b0b5eda1b98c3055648413251c1045362669f4fd9c4e021a3352c4a96e893870"
+    },
+    "originsFocused": {
+      "path": "docs/evidence/debug-0384/origins-focused.log",
+      "bytes": 671,
+      "sha256": "d1d04de24fa25bf15964976894116566ea2f615f88eddb0cff5224eeebae1046"
+    },
+    "callbacksFocused": {
+      "path": "docs/evidence/debug-0384/saving-callbacks-focused.log",
+      "bytes": 2601,
+      "sha256": "ab12fef03ea515e62f05531f7d3bc849c3e50bf2bc4c6cd12217b9f426744576"
+    },
+    "parallelUiFocused": {
+      "path": "docs/evidence/debug-0384/parallel-ui-review-focused.log",
+      "bytes": 2566,
+      "sha256": "8f9efcb6de51df3f6ac04351e226a6e47b286f73a5a530cfbf1a6d8b6788e087"
+    },
+    "reserveClockFocused": {
+      "path": "docs/evidence/debug-0384/reserve-clock-focused.log",
+      "bytes": 4480,
+      "sha256": "52bda9d0b2e7c0b31b4e30ac72477bb0b2af36bbe06aa432fecaf61616b88eab"
+    },
+    "independentReserve": {
+      "path": "docs/evidence/debug-0384/independent-reserve-review.log",
+      "bytes": 1981,
+      "sha256": "1e354658ba0910644cf4cf01d12e892107a6fde25e9af361ec87b6db3998beff"
+    },
+    "independentGenerator": {
+      "path": "docs/evidence/debug-0384/independent-reserve-review.cjs",
+      "bytes": 6444,
+      "sha256": "a26fe51879fc9e8b047438cd231ff75c0fe3d35ba1b0c18ab2ca5ad7c9bf8e3d"
+    },
+    "beforeOrigin": {
+      "path": "docs/evidence/debug-0384/before-origin-seed-validation.log",
+      "bytes": 6262,
+      "sha256": "24c15a179002c892d0d26d695c72d14468b3a8ff9f158696bf4a7bad05ead014"
+    },
+    "beforeParallel": {
+      "path": "docs/evidence/debug-0384/before-parallel-controls.log",
+      "bytes": 446,
+      "sha256": "4e57c92975bfdac545b9b9a39f6dc7f3a2fa60ccfdbe90272e15e273b8f01d52"
+    },
+    "beforeReserve": {
+      "path": "docs/evidence/debug-0384/before-reserve-admission.log",
+      "bytes": 1347,
+      "sha256": "2014f40a38ccefdafcd050270458fd7cc5ba91573537516e6d27745a2834fc43"
+    },
+    "beforeReserveGenerator": {
+      "path": "docs/evidence/debug-0384/before-reserve-admission.mts",
+      "bytes": 2767,
+      "sha256": "6551cfe8b27bc6bba13f9ff0a71a8878ffb626e6d6ecae95e70eb98dc936e216"
+    },
+    "beforeRejectedCut": {
+      "path": "docs/evidence/debug-0384/before-rejected-capacity-cut.log",
+      "bytes": 1573,
+      "sha256": "b8c46986c7aed1da99b2d47e054b4c24f1a1bf2e86a21d8145678e2315f5de9e"
+    },
+    "engineSource": {
+      "path": "docs/evidence/debug-0384/engine-source.json",
+      "bytes": 74031,
+      "sha256": "3f0eb5d5e80b58fb070c71aeea09209a467be3de55c577c9c11a2f3af2e8a20a"
+    },
+    "finalUi": {
+      "path": "docs/evidence/debug-0384/final-ui.log",
+      "bytes": 30421,
+      "sha256": "67e2eb0c2d2399b82284491096ea612942512fe918fd050e2062e810df634fcb"
+    },
+    "finalEngine": {
+      "path": "docs/evidence/debug-0384/final-engine.log",
+      "bytes": 132215,
+      "sha256": "b3d1e6ce7abd6cc0ef46f657e347f294a965c094a561dde79b899f120b9e8469"
+    },
+    "companyProgressionIsolated": {
+      "path": "docs/evidence/debug-0384/company-progression-isolated.log",
+      "bytes": 759,
+      "sha256": "32ab72fccebf03e87954064647386a14d2d634e638330c9859b46a3802a23cd3"
+    },
+    "engineAccounting": {
+      "path": "docs/evidence/debug-0384/engine-accounting.json",
+      "bytes": 3155,
+      "sha256": "74c4eb8e9a1a17058b7382c8e74b8c3d46d3b2c0570cbb8978a4b903723747c1"
+    },
+    "typecheckBeforeEvidenceExclusion": {
+      "path": "docs/evidence/debug-0384/typecheck-before-evidence-exclusion.log",
+      "bytes": 2134,
+      "sha256": "8e8b79d134fa380ac433676b1b076e32464345a61991100f1e128dfeec34a8ba"
+    },
+    "finalTypecheck": {
+      "path": "docs/evidence/debug-0384/final-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "finalBuild": {
+      "path": "docs/evidence/debug-0384/final-build.log",
+      "bytes": 2437,
+      "sha256": "29b0ecfa33b307e6a1a597584d0a09989dcc12bd0aac9f92edfeaa9429129411"
+    }
+  },
+  "engineCoverageAccounting": {
+    "fullRunPassingCases": 1060,
+    "isolatedPassingCases": 5,
+    "overlappingCases": 0,
+    "uniquePassingCases": 1065,
+    "excludedHarnessFailureEntries": 1,
+    "accountingArtifact": "engineAccounting",
+    "interpretation": "The complete invocation exited 1. Its sole failed file passes all five tests unchanged in isolation. This is complete case coverage across two invocations, not a clean single full-suite pass. The original file-level failure cause remains unclassified."
+  },
+  "toolingAdjustment": {
+    "file": "tsconfig.json",
+    "change": "Added only docs/evidence to the existing excludes so retained diagnostic reproductions are not compiled as application source.",
+    "runtimeCodeChanged": false,
+    "fileSha256": "b3da388cf63ff8f291344b75f0709777e066dceafb5cc0af0cd338fbe1c07506",
+    "engineManifestIncludesTsconfig": false,
+    "all504EngineManifestFilesStillMatch": true
+  },
+  "completedAtUtc": "2026-11-23T00:07:22.304149+00:00"
+}

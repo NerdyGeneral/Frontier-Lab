@@ -1,0 +1,69 @@
+{
+  "build": "0.38.3",
+  "beforeWeek": 1,
+  "cash": 4700000,
+  "reserve": 3990000,
+  "stage": {
+    "kind": "prepare_data",
+    "packetId": "starter-public"
+  },
+  "queued": [
+    {
+      "id": "development-stage-9",
+      "payload": {
+        "kind": "prepare_data",
+        "packetId": "starter-public"
+      },
+      "reservedCents": 100000
+    },
+    {
+      "id": "reserve-probe-data",
+      "payload": {
+        "kind": "buy_data",
+        "catalogId": "specialist-coding-1"
+      },
+      "reservedCents": 600000
+    }
+  ],
+  "valid": []
+}
+{
+  "order": "ordinary",
+  "week": 2,
+  "cash": 3900000,
+  "reserve": 3990000,
+  "stageReceipt": {
+    "id": "development-stage-9",
+    "week": 2,
+    "status": "accepted"
+  },
+  "purchaseReceipt": {
+    "id": "reserve-probe-data",
+    "week": 2,
+    "status": "accepted"
+  },
+  "plan": "blocked",
+  "arrears": 0
+}
+{
+  "order": "purchase-first-control",
+  "week": 2,
+  "cash": 4000000,
+  "reserve": 3990000,
+  "stageReceipt": {
+    "id": "development-stage-9",
+    "week": 2,
+    "status": "rejected",
+    "reason": {
+      "code": "INSUFFICIENT_FUNDS",
+      "message": "Starting this stage would threaten the cash reserve after known weekly bills."
+    }
+  },
+  "purchaseReceipt": {
+    "id": "reserve-probe-data",
+    "week": 2,
+    "status": "accepted"
+  },
+  "plan": "blocked",
+  "arrears": 0
+}

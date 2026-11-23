@@ -1,0 +1,65 @@
+{
+  "build": "0.38.4",
+  "passed": 5,
+  "results": [
+    {
+      "scenario": "exact-reserve-boundary",
+      "stage": "accepted",
+      "cashCents": 4500000,
+      "reserveCents": 4500000,
+      "weeklyCostCents": 100000,
+      "nextWeek": 2,
+      "clockGuardBefore": null,
+      "deterministicReload": true,
+      "sourceCampaignUnchanged": true
+    },
+    {
+      "scenario": "zero-fee-rename",
+      "stage": "accepted",
+      "cashCents": 4500000,
+      "reserveCents": 4500000,
+      "weeklyCostCents": 100000,
+      "nextWeek": 2,
+      "clockGuardBefore": null,
+      "deterministicReload": true,
+      "sourceCampaignUnchanged": true
+    },
+    {
+      "scenario": "explicit-manual-purchase",
+      "stage": "rejected",
+      "cashCents": 4000000,
+      "reserveCents": 4500000,
+      "weeklyCostCents": 100000,
+      "nextWeek": 2,
+      "clockGuardBefore": {
+        "reason": "Queued spending and current or scheduled higher bills could cross your cash reserve. Pending savings count after they apply. Review the budget or adjust the decision-run reserve.",
+        "target": "#business"
+      },
+      "deterministicReload": true,
+      "sourceCampaignUnchanged": true
+    },
+    {
+      "scenario": "rejected-rent-reduction",
+      "stage": "rejected",
+      "cashCents": 4560000,
+      "reserveCents": 4500000,
+      "weeklyCostCents": 140000,
+      "nextWeek": 2,
+      "clockGuardBefore": {
+        "reason": "Queued spending and current or scheduled higher bills could cross your cash reserve. Pending savings count after they apply. Review the budget or adjust the decision-run reserve.",
+        "target": "#business"
+      },
+      "deterministicReload": true,
+      "sourceCampaignUnchanged": true
+    },
+    {
+      "scenario": "reviewed-valid-cut-and-resume",
+      "beforeBlocked": true,
+      "manualCommandsAccepted": true,
+      "unchangedReserveResumes": true,
+      "cashCents": 4520000,
+      "reserveCents": 4520000,
+      "nextWeek": 2
+    }
+  ]
+}

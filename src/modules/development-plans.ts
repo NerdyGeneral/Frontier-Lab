@@ -4,8 +4,8 @@ import { DEVELOPMENT_PLAN_LIMIT, DEVELOPMENT_PLAN_RETAINED } from '../contracts/
 import { developmentObjectiveChallenge } from '../contracts/development-objectives';
 import { canonicalStateHash } from '../core/canonical';
 import { hasConnectedCompanyRules } from '../core/connected-company-version';
-import { formatMoney } from '../core/math';
-import { getWeeklyBaseCost, reservedCash } from '../core/selectors';
+import { checkedAdd, formatMoney } from '../core/math';
+import { getKnownWeeklyBaseCost, getWeeklyBaseCost, reservedCash } from '../core/selectors';
 import { evaluationSuite } from './lab-evaluation';
 import { getTrainingPreview, packetOwnedBy, validateTrainingOptions } from './lab-planner';
 import { preparationTerms } from './lab-data';
@@ -40,7 +40,7 @@ function reject(message: string, code: Rejection['code'] = 'INVALID_COMMAND'): R
 export function developmentPlanForCommand(state: Readonly<GameState>, commandId: string): DevelopmentPlan | undefined {
   return Object.values(state.slices.models.developmentPlans ?? {}).find(p => p.steps.some(step => step.commandId === commandId));
 }
-export function developmentStageAdmission(state: Readonly<GameState>, command: GameCommand, content: GameContent, availableCash?: number): Rejection | undefined {
+export function developmentStageAdmission(state: Readonly<GameState>, command: GameCommand, content: GameContent, availableCash?: number, pendingDue?: readonly GameCommand[]): Rejection | undefined {
   const plan = developmentPlanForCommand(state, command.id);
   if (!plan) return;
   if (plan.status !== 'running') return reject('The development plan is stopped. Its unstarted stage was not charged.', 'NOT_READY');
@@ -55,7 +55,16 @@ export function developmentStageAdmission(state: Readonly<GameState>, command: G
   if (canonicalStateHash(step.payload) !== canonicalStateHash(command.payload)) return reject('The queued stage differs from the authorized development plan.');
   if (developmentFeeSpent(state, plan) + step.feeCents > plan.feeBudgetCents) return reject('The next stage exceeds the project-fee budget.', 'INSUFFICIENT_FUNDS');
   const cash = availableCash ?? state.slices.company.companies[plan.companyId].cashCents - reservedCash(state, plan.companyId);
-  if (cash - step.feeCents - getWeeklyBaseCost(state, content, plan.companyId) < plan.cashReserveCents)
+  // Due commands are detached from the public queue during commit. Keep their
+  // remaining reservations visible to automatic work without restricting the
+  // player's explicit spending or counting earlier settled/rejected fees twice.
+  const pending = pendingDue?.filter(other => other.companyId === plan.companyId && other.id !== command.id && !Object.hasOwn(state.commandReceipts, other.id));
+  const pendingFees = pending?.reduce((sum, other) => checkedAdd(sum, other.reservedCents ?? 0), 0) ?? 0;
+  // A pending cut can still fail its own admission. It creates room for an
+  // automatic fee only after it has actually reduced the company's bills.
+  const weeklyCost = getKnownWeeklyBaseCost(state, content, { companyId: plan.companyId,
+    ...(pending ? { commands: pending, week: state.week } : {}) });
+  if (cash - pendingFees - step.feeCents - weeklyCost < plan.cashReserveCents)
     return reject('Starting this stage would threaten the cash reserve after known weekly bills.', 'INSUFFICIENT_FUNDS');
 }
 export function validateDevelopmentCommand(state: Readonly<GameState>, command: GameCommand, content: GameContent): Rejection | undefined {

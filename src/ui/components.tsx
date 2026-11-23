@@ -136,6 +136,10 @@ export function commandLabel(payload: CommandPayload): string {
 /** This only groups pending UI actions; admission remains in the engine. */
 function actionKey(payload: CommandPayload): string {
   switch (payload.kind) {
+    case 'start_development_plan': return payload.kind + ':' + (payload.leadStaffId ?? 'founder');
+    case 'set_development_plan_paused':
+    case 'revise_development_plan':
+    case 'cancel_development_plan': return payload.kind + ':' + payload.planId;
     case 'accept_customer_brief': return payload.kind + ':' + payload.briefId;
     case 'accept_systems_brief': return payload.kind + ':' + payload.offerId;
     case 'start_facility_specialization': return payload.kind + ':' + payload.facilityId;

@@ -1,0 +1,76 @@
+{
+  "beforeWeek": 1,
+  "cash": 4700000,
+  "reserve": 4500000,
+  "stageId": "development-stage-9",
+  "currentWeekly": 100000,
+  "decisionGuard": null,
+  "queued": [
+    {
+      "id": "development-stage-9",
+      "payload": {
+        "kind": "prepare_data",
+        "packetId": "starter-public"
+      },
+      "reservedCents": 100000
+    },
+    {
+      "id": "reserve-cloud-increase",
+      "payload": {
+        "kind": "set_cloud_capacity",
+        "cu": 6000000000
+      },
+      "reservedCents": 0
+    },
+    {
+      "id": "reserve-allocation-increase",
+      "payload": {
+        "kind": "allocate_compute",
+        "development": 4000000000,
+        "research": 0,
+        "serving": 0
+      },
+      "reservedCents": 0
+    },
+    {
+      "id": "reserve-cloud-invalid-reduction",
+      "payload": {
+        "kind": "set_cloud_capacity",
+        "cu": 2000000000
+      },
+      "reservedCents": 0
+    }
+  ]
+}
+{
+  "afterWeek": 2,
+  "cash": 4460000,
+  "weekly": 140000,
+  "cloudCU": 6000000000,
+  "stageReceipt": {
+    "id": "development-stage-9",
+    "week": 2,
+    "status": "accepted"
+  },
+  "capacityReceipts": [
+    {
+      "id": "reserve-cloud-increase",
+      "week": 2,
+      "status": "accepted"
+    },
+    {
+      "id": "reserve-allocation-increase",
+      "week": 2,
+      "status": "accepted"
+    },
+    {
+      "id": "reserve-cloud-invalid-reduction",
+      "week": 2,
+      "status": "rejected",
+      "reason": {
+        "code": "CAPACITY_EXCEEDED",
+        "message": "Reduce compute allocations before shrinking the cloud reservation."
+      }
+    }
+  ]
+}

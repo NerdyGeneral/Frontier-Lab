@@ -1,0 +1,13 @@
+✔ company chapters earn in the background without pinning and keep their permanent research access (725.183607ms)
+✔ a funded experiment waits for real resources, charges once, and a failing candidate earns no free accreditation (304.209732ms)
+✔ an existing paid company earns accreditation through independent work, unlocks a harder stage, and freezes its costs (8164.320341ms)
+✔ chapter continuity follows qualifying company outcomes across model changes and alternative efficiency paths (7469.174728ms)
+✔ visible seed conditions and lasting origin advantages change paid experiment terms without changing old models (35.752421ms)
+ℹ tests 5
+ℹ suites 0
+ℹ pass 5
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17684.380371

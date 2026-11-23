@@ -67,3 +67,56 @@ test('only the selected origin supplies earned starting research and fully onboa
   garage.slices.campaign.origin = 'unknown' as CampaignOrigin;
   assert.match(validateState(garage)[0].message, /origin is invalid/i);
 });
+
+test('randomized and custom opening seeds survive normal saves and paid weekly progression for every origin', () => {
+  const bases = [
+    'campaign-0123456789abcdef00000000ffffffff',
+    'campaign-ffffffff000000001234567890abcdef',
+    'Custom replay seed: November 2026',
+    'x'.repeat(128),
+  ];
+  for (const base of bases) for (const origin of ['garage', 'university', 'consultancy'] as const) {
+    const content = { ...CONTENT, opening: { ...CONTENT.opening, seed: base } };
+    const initial = createInitialState(content, 'release', origin);
+    const seed = origin === 'garage' ? base : base + ':' + origin;
+    assert.equal(initial.seed, seed);
+    assert.deepEqual(createInitialState(content, 'release', origin), initial, 'An identical opening remains deterministic.');
+    assert.deepEqual(validateState(initial, CONTENT), [], origin + ' must use its saved seed, not the current content default.');
+
+    const queued = submitCommand(initial, { kind: 'prepare_data', packetId: CONTENT.starterData.id }, CONTENT, 'seeded-first-project');
+    assert.ok(queued.accepted, queued.reason?.message);
+    const saved = serializeState(queued.state, CONTENT);
+    const loaded = deserializeState(saved, CONTENT);
+    assert.ok(loaded.ok, loaded.ok ? undefined : loaded.error);
+    assert.equal(loaded.state.seed, seed);
+    assert.deepEqual(loaded.state, queued.state, 'Saving retains the queued paid work and the original seed.');
+
+    const next = advanceWeek(queued.state, CONTENT), replay = advanceWeek(loaded.state, CONTENT);
+    assert.ok(next.accepted, next.reason?.message);
+    assert.deepEqual(replay, next, 'Reloading cannot reroll the first ordinary week.');
+    assert.equal(next.state.week, 1);
+    assert.equal(next.state.seed, seed);
+    const project = Object.values(next.state.slices.data.preparationJobs)[0];
+    assert.ok(project && project.completedStaff > 0, 'The real queued data project receives paid work.');
+    const reopened = deserializeState(serializeState(next.state, CONTENT), CONTENT);
+    assert.ok(reopened.ok, reopened.ok ? undefined : reopened.error);
+    assert.deepEqual(reopened.state, next.state);
+  }
+});
+
+test('origin seed validation still rejects a wrong suffix and bases outside the opening seed contract', () => {
+  for (const origin of ['university', 'consultancy'] as const) {
+    const initial = createInitialState(CONTENT, 'release', origin);
+    const wrongOrigin = origin === 'university' ? 'consultancy' : 'university';
+    for (const seed of [CONTENT.opening.seed, 'campaign-0123456789abcdef00000000ffffffff:' + wrongOrigin,
+      ':' + origin, '   :' + origin, 'x'.repeat(129) + ':' + origin, initial.seed + ':extra']) {
+      const invalid = structuredClone(initial);
+      invalid.seed = seed;
+      assert.match(validateState(invalid, CONTENT)[0].message, /origin seed/i);
+      assert.throws(() => serializeState(invalid, CONTENT), /origin seed/i);
+    }
+  }
+  for (const origin of ['garage', 'university', 'consultancy'] as const) for (const seed of ['', '   ', 'x'.repeat(129)]) {
+    assert.throws(() => createInitialState({ ...CONTENT, opening: { ...CONTENT.opening, seed } }, 'release', origin), /opening\.seed/);
+  }
+});

@@ -1,11 +1,9 @@
-import { RESOURCE_SCALE, type CommandPayload, type GameContent, type GameState } from '../contracts/types';
+import type { GameContent, GameState } from '../contracts/types';
 import { CONTENT } from '../content/catalog';
 import { BUSINESS_BY_ID } from '../content/wave3-commerce';
 import { ASSURANCE_BY_ID } from '../content/wave13-assurance';
-import { getWeeklyBaseCost } from './selectors';
+import { getKnownWeeklyBaseCost } from './selectors';
 import { getMarketOpportunityView } from '../modules/market-opportunities';
-import { careerSalary } from '../modules/staff-careers';
-import { checkedAdd, mulDiv } from './math';
 
 export interface DecisionClockPolicy {
   cashReserveCents: number;
@@ -22,40 +20,15 @@ export const DEFAULT_DECISION_CLOCK_POLICY: DecisionClockPolicy = {
 };
 export interface DecisionStop { reason: string; target: string }
 
-/** Only known boundary changes to recurring bills are projected. This does not
- * execute projects, simulate revenue, or publish a speculative engine tick.
- * Replacing a cloud reservation twice leaves the final reservation; employees
- * and grouped plan hires use the same stable IDs as the normal commit path. */
-function nextKnownWeeklyCost(state: GameState, content: GameContent): number {
-  const owner = state.playerCompanyId, fleet = state.slices.compute.fleets[owner];
-  const salaries = new Map(Object.values(state.slices.company.staff).filter(member => member.companyId === owner)
-    .map(member => [member.id, careerSalary(member, content.staff.find(role => role.id === member.role)!.weeklyCents)]));
-  const payroll = () => [...salaries.values()].reduce(checkedAdd, 0);
-  const currentPayroll = payroll(), rent = (cu: number) => mulDiv(cu, content.opening.rentCentsPerCUWeek, RESOURCE_SCALE);
-  let cloudCU = fleet.cloudCU;
-  const project = (payload: CommandPayload, id: string) => {
-    if (payload.kind === 'apply_studio_plan') payload.commands.forEach((member, index) => project(member, `${id}:plan:${index}`));
-    else if (payload.kind === 'set_cloud_capacity') cloudCU = payload.cu;
-    else if (payload.kind === 'set_batch_capacity') cloudCU = payload.cloudCU;
-    else if (payload.kind === 'hire_staff') {
-      const role = content.staff.find(role => role.id === payload.role);
-      if (role) salaries.set(`staff:${id}`, role.weeklyCents);
-    } else if (payload.kind === 'dismiss_staff') salaries.delete(payload.staffId);
-  };
-  for (const command of state.queuedCommands) if (command.companyId === owner && command.issuedForWeek <= state.week + 1
-    && !Object.hasOwn(state.commandReceipts, command.id)) project(command.payload, command.id);
-  return checkedAdd(getWeeklyBaseCost(state, content, owner), checkedAdd(rent(cloudCU) - rent(fleet.cloudCU), payroll() - currentPayroll));
-}
-
 /** This guard uses known bills and queued cash, not speculative future revenue.
  * Metered work and completed installations can add cost, so the settled week is
- * checked again afterward. Recurring queued changes are included before play. */
+ * checked again afterward. Pending bill increases count; savings wait until applied. */
 export function decisionCashGuard(state: GameState, policy: DecisionClockPolicy, content: GameContent = CONTENT): DecisionStop | null {
   const company = state.slices.company.companies[state.playerCompanyId];
   const reserved = state.queuedCommands.filter(c => c.companyId === state.playerCompanyId).reduce((n, c) => n + (c.reservedCents ?? 0), 0);
   if (company.arrearsCents) return { reason: 'This run has ended with unpaid bills. Review or export the company before starting a new lab.', target: '#save' };
-  if (company.cashCents - reserved - nextKnownWeeklyCost(state, content) < policy.cashReserveCents)
-    return { reason: 'The next week’s queued spending and known bills would cross your cash reserve. Review the budget or adjust the decision-run reserve.', target: '#business' };
+  if (company.cashCents - reserved - getKnownWeeklyBaseCost(state, content) < policy.cashReserveCents)
+    return { reason: 'Queued spending and current or scheduled higher bills could cross your cash reserve. Pending savings count after they apply. Review the budget or adjust the decision-run reserve.', target: '#business' };
   return null;
 }
 

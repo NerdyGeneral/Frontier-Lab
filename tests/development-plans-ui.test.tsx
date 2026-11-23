@@ -2,8 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { CONTENT } from '../src/content/catalog';
-import type { GameState } from '../src/contracts/types';
-import { advanceWeek, submitCommand, validateState } from '../src/core/engine';
+import type { CommandPayload, GameState } from '../src/contracts/types';
+import { RESOURCE_SCALE as U } from '../src/contracts/types';
+import { advanceWeek, previewCommand, submitCommand, validateState } from '../src/core/engine';
 import { canonicalStateHash } from '../src/core/canonical';
 import { DevelopmentPlanLimitEditor, DevelopmentPlanList, DevelopmentPlansPanel, developmentPlanCounts } from '../src/ui/development-plans-panel';
 import { ModelChallengesPanel } from '../src/ui/model-challenges-panel';
@@ -13,6 +14,10 @@ import { createPlayerOnlyState } from './fixtures/player-only';
 import { withPassiveWorkforce } from '../src/modules/workforce';
 import { DevelopmentProjectResult } from '../src/ui/development-project-result';
 import { ModelWorkspaceProvider } from '../src/ui/model-workspace-context';
+import { ActionControl, isQueued } from '../src/ui/components';
+import { DEFAULT_MODEL_DESIGN } from '../src/modules/model-design';
+import { CAREER_RANKS } from '../src/modules/staff-careers';
+import type { DevelopmentPlan } from '../src/contracts/development-plans';
 
 const noAction = () => assert.fail('Rendering must not start work or advance time');
 const buttons = (html: string) => [...html.matchAll(/<button\b([^>]*)>([\s\S]*?)<\/button>/g)].map(match => ({ attributes: match[1], text: match[2].replace(/<[^>]*>/g, '') }));
@@ -28,6 +33,89 @@ function planScenario(deadline: number, target: 'running' | 'blocked' | 'review'
   assert.equal(game.slices.models.developmentPlans?.['development-ui-plan']?.status, target, game.slices.models.developmentPlans?.['development-ui-plan']?.message);
   assert.deepEqual(validateState(game), []); return game;
 }
+
+function parallelPlanScenario() {
+  let game = withPassiveWorkforce(createPlayerOnlyState());
+  for (let index = 0; index < 6; index++) { const next = advanceWeek(game); assert.ok(next.accepted); game = next.state; }
+  const preparation = submitCommand(game, { kind: 'prepare_data', packetId: CONTENT.starterData.id }, CONTENT, 'parallel-ui-data');
+  assert.ok(preparation.accepted, preparation.reason?.message); game = preparation.state;
+  for (let index = 0; index < 2; index++) { const next = advanceWeek(game); assert.ok(next.accepted); game = next.state; }
+  assert.equal(game.slices.data.packets[CONTENT.starterData.id].prepared, true);
+  const owner = game.playerCompanyId;
+  // A validated senior-lead fixture isolates portfolio controls; both plans
+  // below are still admitted and advanced through the ordinary paid engine.
+  game.slices.company.staff['senior-reviewer'] = { id: 'senior-reviewer', companyId: owner, role: 'research', hiredWeek: 0, readyWeek: 2, assignedFte: U,
+    career: { experience: CAREER_RANKS[1].threshold, lastEarned: U / 100, earnedWeek: game.week } };
+  game.slices.company.companies[owner].activeStaff++;
+  assert.deepEqual(validateState(game), []);
+  const start = (name: string, work: number, leadStaffId?: string) => ({ kind: 'start_development_plan' as const, name,
+    training: { kind: 'start_training' as const, baseModelId: CONTENT.seedModel.id, packetId: CONTENT.starterData.id,
+      recipeId: 'custom-model-adaptation', modelDesign: { ...structuredClone(DEFAULT_MODEL_DESIGN), name, computeBudgetCUw: work } },
+    suiteId: 'basic-conversation-1' as const, feeBudgetCents: 500_000, cashReserveCents: 0, deadlineWeek: game.week + 40,
+    capacityShareBps: 5000, ...(leadStaffId ? { leadStaffId } : {}) });
+  return { game, first: start('Founder model line', 160 * U), second: start('Senior model line', 120 * U, 'senior-reviewer') };
+}
+
+test('distinct responsible leads keep a second admissible project actionable while the Founder duplicate stays scheduled', () => {
+  const { game, first, second } = parallelPlanScenario();
+  const queued = submitCommand(game, first, CONTENT, 'parallel-ui-first'); assert.ok(queued.accepted, queued.reason?.message);
+  const next = queued.state, before = canonicalStateHash(next);
+  assert.ok(previewCommand(next, second).accepted);
+  assert.ok(submitCommand(next, second, CONTENT, 'parallel-ui-second').accepted);
+  const project: DevelopmentProjectDraft = { name: second.name, suiteId: second.suiteId, budget: '5000', reserve: '0', duration: '40', leadStaffId: 'senior-reviewer', capacityShareBps: 5000 };
+  const html = renderToStaticMarkup(<StudioDevelopmentSelectionProvider value={{ intentId: 2, project,
+    blueprint: { id: 'second-project', name: second.name, training: second.training, suiteId: second.suiteId } }}>
+    <DevelopmentPlansPanel game={next} canAct onQueue={noAction} />
+  </StudioDevelopmentSelectionProvider>);
+  const start = buttons(html).find(button => button.text === 'Schedule development plan'); assert.ok(start);
+  assert.doesNotMatch(start.attributes, /disabled/);
+  assert.match(start.attributes, /data-studio-action-flow="direct"/);
+  assert.equal(isQueued(next, second), false);
+  for (const duplicate of [first, { ...first, leadStaffId: 'founder' }]) {
+    assert.equal(isQueued(next, duplicate), true, 'Implicit and explicit Founder refer to the same scheduled lead.');
+    const duplicateHtml = renderToStaticMarkup(<ActionControl game={next} payload={duplicate} label="Schedule development plan" canAct onQueue={noAction} />);
+    assert.match(duplicateHtml, /disabled=""[^>]*>Scheduled for Week 9/);
+  }
+  assert.equal(canonicalStateHash(next), before, 'Rendering the next plan must not change its quote or submit it.');
+});
+
+for (const action of ['pause', 'resume', 'revise', 'cancel'] as const) test(`queued ${action} applies only to its exact development plan in the rendered controls`, () => {
+  const scenario = parallelPlanScenario(); let game = scenario.game;
+  for (const [payload, id] of [[scenario.first, 'parallel-ui-first'], [scenario.second, 'parallel-ui-second']] as const) {
+    const queued = submitCommand(game, payload, CONTENT, id); assert.ok(queued.accepted, queued.reason?.message); game = queued.state;
+  }
+  const advance = () => { const next = advanceWeek(game); assert.ok(next.accepted, next.reason?.message); game = next.state; };
+  advance();
+  if (action === 'resume') {
+    for (const planId of ['development-parallel-ui-first', 'development-parallel-ui-second']) {
+      const paused = submitCommand(game, { kind: 'set_development_plan_paused', planId, paused: true }, CONTENT, 'pause-' + planId);
+      assert.ok(paused.accepted, paused.reason?.message); game = paused.state;
+    }
+    advance();
+  }
+  const plans = ['development-parallel-ui-first', 'development-parallel-ui-second'].map(id => game.slices.models.developmentPlans![id]);
+  assert.ok(plans.every(plan => plan.status === (action === 'resume' ? 'paused' : 'running')));
+  const payload = (plan: DevelopmentPlan): CommandPayload => action === 'cancel' ? { kind: 'cancel_development_plan', planId: plan.id }
+    : action === 'revise' ? { kind: 'revise_development_plan', planId: plan.id, feeBudgetCents: plan.feeBudgetCents, cashReserveCents: plan.cashReserveCents,
+      deadlineWeek: plan.deadlineWeek, resume: false, leadStaffId: plan.leadStaffId ?? 'founder', capacityShareBps: plan.capacityShareBps ?? 10000 }
+    : { kind: 'set_development_plan_paused', planId: plan.id, paused: action === 'pause' };
+  const first = payload(plans[0]), second = payload(plans[1]);
+  const queued = submitCommand(game, first, CONTENT, action + '-first'); assert.ok(queued.accepted, queued.reason?.message); game = queued.state;
+  const before = canonicalStateHash(game);
+  assert.ok(previewCommand(game, second).accepted);
+  assert.ok(submitCommand(game, second, CONTENT, action + '-second').accepted);
+  const html = action === 'revise' ? renderToStaticMarkup(<DevelopmentPlanLimitEditor game={game} plan={plans[1]} canAct onQueue={noAction} />)
+    : renderToStaticMarkup(<DevelopmentPlanList game={game} canAct onQueue={noAction} filter="active" />);
+  const label = { pause: 'Pause plan', resume: 'Resume plan', revise: 'Save limits', cancel: 'Stop plan · keep outputs' }[action];
+  const available = buttons(html).filter(button => button.text === label);
+  assert.equal(available.length, 1, 'Only the unscheduled plan keeps its action label.');
+  assert.doesNotMatch(available[0].attributes, /disabled/);
+  assert.match(available[0].attributes, /data-studio-action-flow="direct"/);
+  assert.equal(isQueued(game, second), false);
+  const duplicate = renderToStaticMarkup(<ActionControl game={game} payload={first} label={label} canAct onQueue={noAction} />);
+  assert.match(duplicate, new RegExp('disabled=""[^>]*>Scheduled for Week ' + (game.week + 1)));
+  assert.equal(canonicalStateHash(game), before);
+});
 
 test('development plan builder exposes data, model, method, evaluation and budget choices with a stable workspace target', () => {
   const game = createPlayerOnlyState(), before = canonicalStateHash(game);

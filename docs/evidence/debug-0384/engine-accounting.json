@@ -1,0 +1,102 @@
+{
+  "release": "0.38.4",
+  "fullInvocation": {
+    "path": "/tmp/frontier-recheck-0384-engine-final.log",
+    "command": "node scripts/test-wave0.mjs",
+    "exitCode": 1,
+    "counts": {
+      "tests": 1061,
+      "suites": 0,
+      "pass": 1060,
+      "fail": 1,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 575749.837741
+    },
+    "sha256": "b3d1e6ce7abd6cc0ef46f657e347f294a965c094a561dde79b899f120b9e8469"
+  },
+  "isolatedRerun": {
+    "path": "/tmp/frontier-recheck-0384-company-progression-isolated.log",
+    "command": "node scripts/test-wave0.mjs company-progression",
+    "exitCode": 0,
+    "counts": {
+      "tests": 5,
+      "suites": 0,
+      "pass": 5,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 17684.380371
+    },
+    "sha256": "32ab72fccebf03e87954064647386a14d2d634e638330c9859b46a3802a23cd3"
+  },
+  "fileFailure": {
+    "path": "tests/company-progression.test.js",
+    "diagnostic": "'test failed' at file:1:1, duration34940.586739ms; no signal or named assertion exposed by retained reporter output.",
+    "classification": "Unclassified file-level worker failure; isolated exact-source rerun passes. SIGKILL/OOM is not confirmed by this log."
+  },
+  "accounting": {
+    "fullPassingCases": 1060,
+    "isolatedPassingCases": 5,
+    "overlappingPassingCases": 0,
+    "uniquePassingEngineCases": 1065,
+    "cleanSingleFullInvocation": false,
+    "explanation": "The failed file-level harness entry is excluded. No company-progression case was emitted as passing in the full invocation; the isolated run covers all five. No source changed between runs."
+  },
+  "sourceFingerprint": {
+    "path": "/tmp/frontier-recheck-0384-engine-source.json",
+    "fileCount": 504,
+    "sha256": "5e12562dea1533a421c975ae22e0574332209961a8b3b16384b966edf888576c",
+    "unchangedAcrossRuns": true
+  },
+  "freshFinalGameplay": {
+    "seed": "frontier-lab-wave-0",
+    "origin": "garage",
+    "rules": "release",
+    "endings": [
+      {
+        "route": "platform",
+        "week": 203,
+        "test": "W21-R01",
+        "status": "passed"
+      },
+      {
+        "route": "specialist",
+        "week": 208,
+        "test": "W21-R02",
+        "status": "passed"
+      },
+      {
+        "route": "frontier",
+        "week": 214,
+        "test": "W21-R03",
+        "status": "passed"
+      }
+    ],
+    "advancedSystemsContinuation": {
+      "status": "passed",
+      "test": "a published business funds all three system paths and earns all four new challenge and client outcomes",
+      "duration_ms": 322050.078564,
+      "startFixtureWeek": 574,
+      "finalWeekLogged": false
+    }
+  },
+  "targetedReserveAndClock": {
+    "path": "/tmp/frontier-recheck-0384-reserve-targeted-final.log",
+    "command": "node scripts/test-wave0.mjs development-plans decision-clock",
+    "exitCode": 0,
+    "counts": {
+      "tests": 38,
+      "suites": 0,
+      "pass": 38,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 0,
+      "todo": 0,
+      "duration_ms": 13112.634906
+    },
+    "sha256": "52bda9d0b2e7c0b31b4e30ac72477bb0b2af36bbe06aa432fecaf61616b88eab"
+  }
+}

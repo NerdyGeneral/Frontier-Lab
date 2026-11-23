@@ -56,18 +56,23 @@ test('cash guard catches a zero-upfront cloud increase before known rent crosses
   assert.ok(settled.state.slices.company.companies[owner].cashCents < reserve, 'The guarded bill is an actual charge on the next ordinary week.');
 });
 
-test('multiple queued cloud changes use the last reservation rather than adding original-state deltas', () => {
+test('the cash guard retains pending peak rent and credits a valid lower reservation after manual settlement', () => {
   const game = createInitialState(), owner = game.playerCompanyId, initialCU = game.slices.compute.fleets[owner].cloudCU;
   const queued = queue(queue(game, { kind: 'set_cloud_capacity', cu: initialCU + 10 * U }), { kind: 'set_cloud_capacity', cu: initialCU + 2 * U });
   const finalCost = getWeeklyBaseCost(game) + 2 * CONTENT.opening.rentCentsPerCUWeek;
-  const reserve = game.slices.company.companies[owner].cashCents - finalCost;
-  assert.equal(decisionCashGuard(queued, { ...policy, cashReserveCents: reserve }), null);
-  assert.ok(decisionCashGuard(queued, { ...policy, cashReserveCents: reserve + 1 }));
+  const cash = game.slices.company.companies[owner].cashCents;
+  const peakCost = getWeeklyBaseCost(game) + 10 * CONTENT.opening.rentCentsPerCUWeek;
+  assert.equal(decisionCashGuard(queued, { ...policy, cashReserveCents: cash - peakCost }), null);
+  assert.ok(decisionCashGuard(queued, { ...policy, cashReserveCents: cash - peakCost + 1 }));
+  const reserve = cash - 2 * finalCost;
+  assert.ok(decisionCashGuard(queued, { ...policy, cashReserveCents: reserve }), 'Uncommitted savings cannot fund an automatic advance.');
   const settled = advanceWeek(queued); assert.ok(settled.accepted, settled.reason?.message);
-  assert.equal(settled.state.slices.company.companies[owner].cashCents, reserve);
+  assert.ok(queued.queuedCommands.every(command => settled.state.commandReceipts[command.id]?.status === 'accepted'));
+  assert.equal(settled.state.slices.company.companies[owner].cashCents, cash - finalCost);
+  assert.equal(decisionCashGuard(settled.state, { ...policy, cashReserveCents: reserve }), null, 'The same reserve can resume after the valid cut has actually applied.');
 });
 
-test('a grouped staffing and cloud plan includes new salaries while an ordinary cloud cut can fund the reserve', () => {
+test('a grouped staffing and cloud plan includes recruiting fees, new salaries and increased rent', () => {
   const game = createInitialState(), owner = game.playerCompanyId, role = CONTENT.staff.find(role => role.id === 'data')!;
   const queued = queue(game, { kind: 'apply_studio_plan', commands: [
     { kind: 'set_cloud_capacity', cu: game.slices.compute.fleets[owner].cloudCU + 2 * U }, { kind: 'hire_staff', role: 'data' },
@@ -78,14 +83,47 @@ test('a grouped staffing and cloud plan includes new salaries while an ordinary 
   assert.ok(decisionCashGuard(queued, { ...policy, cashReserveCents: reserve + 1 }));
   const settled = advanceWeek(queued); assert.ok(settled.accepted, settled.reason?.message);
   assert.equal(settled.state.slices.company.companies[owner].cashCents, reserve);
-  const cut = queue(settled.state, { kind: 'set_cloud_capacity', cu: game.slices.compute.fleets[owner].cloudCU });
-  const cutReserve = reserve - getWeeklyBaseCost(game) - role.weeklyCents;
-  assert.ok(decisionCashGuard(settled.state, { ...policy, cashReserveCents: cutReserve }));
-  assert.equal(decisionCashGuard(cut, { ...policy, cashReserveCents: cutReserve }), null);
-  const dismissed = queue(settled.state, { kind: 'dismiss_staff', staffId: Object.keys(settled.state.slices.company.staff).find(id => settled.state.slices.company.staff[id].companyId === owner)! });
-  const dismissalReserve = reserve - 2 * role.weeklyCents - (finalCost - role.weeklyCents);
-  assert.equal(decisionCashGuard(dismissed, { ...policy, cashReserveCents: dismissalReserve }), null);
-  assert.ok(decisionCashGuard(dismissed, { ...policy, cashReserveCents: dismissalReserve + 1 }));
+});
+
+test('dismissal savings count after the reviewed dismissal is manually applied, allowing the same reserve to resume', () => {
+  const opening = createInitialState(), owner = opening.playerCompanyId, role = CONTENT.staff.find(role => role.id === 'data')!;
+  const setup = queue(opening, { kind: 'apply_studio_plan', commands: [
+    { kind: 'allocate_compute', serving: 0, development: 0, research: 0 },
+    { kind: 'set_cloud_capacity', cu: 0 }, { kind: 'hire_staff', role: 'data' },
+  ] });
+  const hired = advanceWeek(setup); assert.ok(hired.accepted, hired.reason?.message);
+  const member = Object.values(hired.state.slices.company.staff).find(staff => staff.companyId === owner)!;
+  assert.ok(member);
+  const dismissed = queue(hired.state, { kind: 'dismiss_staff', staffId: member.id });
+  const remainingBill = getWeeklyBaseCost(hired.state) - role.weeklyCents;
+  const reserve = hired.state.slices.company.companies[owner].cashCents - 2 * role.weeklyCents - 2 * remainingBill;
+  assert.ok(decisionCashGuard(dismissed, { ...policy, cashReserveCents: reserve }));
+  const settled = advanceWeek(dismissed); assert.ok(settled.accepted, settled.reason?.message);
+  assert.equal(settled.state.slices.company.staff[member.id], undefined);
+  assert.equal(settled.state.slices.company.companies[owner].cashCents, reserve + remainingBill);
+  assert.equal(decisionCashGuard(settled.state, { ...policy, cashReserveCents: reserve }), null);
+  assert.ok(decisionCashGuard(settled.state, { ...policy, cashReserveCents: reserve + 1 }));
+});
+
+test('a rejected cloud reduction cannot fund Next decision and manual advancement keeps its actual billed outcome', () => {
+  const game = createInitialState(), owner = game.playerCompanyId;
+  let queued = queue(game, { kind: 'set_cloud_capacity', cu: 6 * U });
+  queued = queue(queued, { kind: 'allocate_compute', serving: 0, development: 4 * U, research: 0 });
+  queued = queue(queued, { kind: 'set_cloud_capacity', cu: 2 * U });
+  const reserve = game.slices.company.companies[owner].cashCents - getWeeklyBaseCost(game);
+  const before = canonicalStateHash(queued);
+  assert.match(decisionCashGuard(queued, { ...policy, cashReserveCents: reserve })?.reason ?? '', /higher bills.*cash reserve/);
+  assert.ok(decisionStartGuard(queued, { ...policy, cashReserveCents: reserve }));
+  assert.equal(canonicalStateHash(queued), before);
+  const settled = advanceWeek(queued); assert.ok(settled.accepted, settled.reason?.message);
+  const [increase, allocation, reduction] = queued.queuedCommands;
+  assert.equal(settled.state.commandReceipts[increase.id].status, 'accepted');
+  assert.equal(settled.state.commandReceipts[allocation.id].status, 'accepted');
+  assert.equal(settled.state.commandReceipts[reduction.id].status, 'rejected');
+  assert.equal(settled.state.commandReceipts[reduction.id].reason!.code, 'CAPACITY_EXCEEDED');
+  assert.equal(settled.state.slices.compute.fleets[owner].cloudCU, 6 * U);
+  assert.equal(settled.state.slices.company.companies[owner].cashCents, 4_660_000);
+  assert.ok(settled.state.slices.company.companies[owner].cashCents < reserve, 'Next week remains an explicit manual budget choice.');
 });
 
 test('a pinned offer stops before its acceptance deadline and expired immutable goals do not trap later decision runs', () => {

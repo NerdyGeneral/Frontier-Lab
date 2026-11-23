@@ -1,0 +1,30 @@
+✔ Next decision adopts guarded stop rules during continuous play and its stop control pauses the run (224.562134ms)
+✔ an unstarted origin picker stays unsaved when the page is hidden; a started origin can persist (88.667914ms)
+✔ failed autosave pauses play, cannot resume through a failed retry, and can resume after saving recovers (301.860712ms)
+✔ lifecycle saves cannot overwrite another session, a blocked original, or a busy transfer (56.519859ms)
+✔ a delayed autosave from a replaced campaign cannot write or rebind stale state (43.154006ms)
+✔ a weekly result outside supported save capacity is not committed (114.265696ms)
+✔ portable replacement blocks competing replacements while workspace binding is pending (71.727348ms)
+✔ a delayed imported workspace cannot complete after its session is cleaned up (56.632484ms)
+✔ previous-run review and restore retain paid work, queued decisions and the exact planning workspace (350.885322ms)
+✔ the actual new-lab callback creates a savable randomized garage while preserving the previous workspace (507.338688ms)
+✔ the actual new-lab callback creates a savable randomized university while preserving the previous workspace (412.058029ms)
+✔ the actual new-lab callback creates a savable randomized consultancy while preserving the previous workspace (462.870588ms)
+✔ previous-run review accepts historical engine-only backups without borrowing current drafts (273.195942ms)
+✔ replacement backs up the latest live planning edits even when their browser sidecar cannot be written (222.361466ms)
+✔ replacement flushes queued engine changes before binding their previous-run planning backup (286.505578ms)
+✔ a failed pre-replacement save preserves the current company, previous backup and all live drafts (215.865342ms)
+✔ starting the first origin saves it without requiring a previous-run save receipt (196.252714ms)
+✔ confirmed replacement of a blocked original preserves its exact bytes without attaching the displayed drafts (130.566986ms)
+✔ memory-only replacement restores imported drafts without writing browser primary or recovery data (175.712257ms)
+✔ a stale callback from an observer, stopped session or busy operation cannot replace the saved lab (325.766807ms)
+✔ failed archive write preserves the current company and planning workspace during replacement (165.527299ms)
+✔ failed primary write preserves the current company and planning workspace during replacement (171.005372ms)
+ℹ tests 22
+ℹ suites 0
+ℹ pass 22
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 7908.671458

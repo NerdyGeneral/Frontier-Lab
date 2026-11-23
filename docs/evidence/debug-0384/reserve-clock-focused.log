@@ -1,0 +1,46 @@
+✔ decision run observes real paid completion without changing weekly engine results (168.779926ms)
+✔ cash reserve includes queued purchases and known recurring bills (5.067755ms)
+✔ cash guard catches a zero-upfront cloud increase before known rent crosses the reserve (29.264628ms)
+✔ the cash guard retains pending peak rent and credits a valid lower reservation after manual settlement (25.717697ms)
+✔ a grouped staffing and cloud plan includes recruiting fees, new salaries and increased rent (27.218179ms)
+✔ dismissal savings count after the reviewed dismissal is manually applied, allowing the same reserve to resume (53.824195ms)
+✔ a rejected cloud reduction cannot fund Next decision and manual advancement keeps its actual billed outcome (27.243837ms)
+✔ a pinned offer stops before its acceptance deadline and expired immutable goals do not trap later decision runs (3.596015ms)
+✔ disabled optional stops still obey bounded duration and terminal cash state (22.549513ms)
+✔ current paid private service and customer-hosted support stop on a new shortfall, including fully credited outages (773.724556ms)
+✔ assured API support and qualification shortfalls stop even when public fulfillment remains healthy (608.376761ms)
+✔ connected plan performs paid preparation, training and evaluation once, then stops for review across reload (262.497142ms)
+✔ a completed custom design is rejected before a delegated plan consumes a week or active slot (43.435071ms)
+✔ a queued custom design blocks direct and delegated duplicates but does not reject its own commit (40.345653ms)
+✔ the advertised minimum deadline survives admission and permits the last evaluation week (38.579929ms)
+✔ pause and resume preserve a paid training run and charge its setup only once (125.708992ms)
+✔ same-boundary pause or cancellation prevents a queued paid stage from charging, and pause can retry once (165.45427ms)
+✔ a tightened fee budget stops the next handoff and revising it continues without repeating preparation (70.277066ms)
+✔ cash reserve considers known weekly bills and earlier committed fees before a delegated stage (37.348329ms)
+✔ a delegated stage protects its reserve from a later queued purchase in ordinary and purchase-first order (158.817839ms)
+✔ multiple due purchases reserve their combined fees without double-counting a purchase already committed (125.40044ms)
+✔ queued cloud, payroll and atomic Studio increases count in a delegated stage cash reserve (220.611773ms)
+✔ a later rejected capacity reduction cannot hide a pending rent increase from delegated admission (70.019022ms)
+✔ zero-fee pending orders do not double-charge a stage that exactly meets its cash reserve (58.638739ms)
+✔ rejected earlier paid orders release their reservation and already-applied payroll savings count (85.315043ms)
+✔ a plan reserve does not revoke an explicit manual purchase that chooses to spend below it (51.984762ms)
+✔ deadline stops active work after its final week and an extension resumes the same paid run (79.571951ms)
+✔ saving limits without resuming preserves the exact deadline and paid paused work across reload (71.448887ms)
+✔ a blocked plan can save another limit with its original expired deadline without restarting or moving the deadline (103.470096ms)
+✔ cancelling a capacity-limited plan releases paid work while paused and blocked plans retain their limits (163.07134ms)
+✔ cancelled preparation resumes and completes without restarting automatic training (57.580316ms)
+✔ cancelled evaluation resumes to one paid report without rewriting the cancelled plan (171.846361ms)
+✔ review preserves the real report date if an individually resumed evaluation finishes while the plan is paused (134.332822ms)
+✔ malformed authorizations and forged stage receipts are rejected even after the recent fee ledger is gone (64.28623ms)
+✔ a saved systems objective runs its real paid challenge after the capability baseline and survives reload (124.305724ms)
+✔ parallel projects reserve distinct senior leads and real capacity, and losing a lead stops that project (78.411178ms)
+✔ finished plans compact before the 101st authorization without losing paid outputs or archived proof (10087.639312ms)
+✔ planning pins customer terms and exposes missing capacity and acceptance-window risk (50.58481ms)
+ℹ tests 38
+ℹ suites 0
+ℹ pass 38
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 13112.634906

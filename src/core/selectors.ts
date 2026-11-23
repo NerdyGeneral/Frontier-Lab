@@ -1,10 +1,11 @@
 import { formatWorkPoints } from '../modules/workforce-points';
 import { isCapabilitySuite } from '../modules/evaluation-classification';
-import type { GameContent, GameState, GameView, JobStatus, TrainingRun } from '../contracts/types';
+import type { CommandPayload, GameCommand, GameContent, GameState, GameView, JobStatus, TrainingRun } from '../contracts/types';
 import { RESOURCE_SCALE } from '../contracts/types';
 import { CONTENT } from '../content/catalog';
 import { getInfrastructureBaseCost } from '../modules/compute-pools';
 import { getPayrollCents, getWorkforce } from '../modules/company';
+import { careerSalary } from '../modules/staff-careers';
 import { checkedAdd, formatUnits, mulDiv } from './math';
 import { freezeDeep } from './canonical';
 
@@ -13,6 +14,31 @@ export function reservedCash(state: GameState, companyId = state.playerCompanyId
 }
 export function getWeeklyBaseCost(state: GameState, content: GameContent = CONTENT, companyId = state.playerCompanyId): number {
   return checkedAdd(checkedAdd(mulDiv(state.slices.compute.fleets[companyId].cloudCU, content.opening.rentCentsPerCUWeek, RESOURCE_SCALE), content.opening.overheadCentsPerWeek), checkedAdd(getPayrollCents(state, companyId, content), getInfrastructureBaseCost(state, companyId, content)));
+}
+/** Count current bills and pending increases without executing work or forecasting
+ * revenue. Pending savings can still fail admission, so they count only after
+ * application. Commit callers pass only remaining commands to avoid double counts. */
+export function getKnownWeeklyBaseCost(state: GameState, content: GameContent = CONTENT, {
+  companyId = state.playerCompanyId, commands = state.queuedCommands, week = state.week + 1,
+}: { companyId?: string; commands?: readonly GameCommand[]; week?: number } = {}): number {
+  const fleet = state.slices.compute.fleets[companyId];
+  const salaries = new Map(Object.values(state.slices.company.staff).filter(member => member.companyId === companyId)
+    .map(member => [member.id, careerSalary(member, content.staff.find(role => role.id === member.role)!.weeklyCents)]));
+  const payroll = () => [...salaries.values()].reduce(checkedAdd, 0);
+  const currentPayroll = payroll(), rent = (cu: number) => mulDiv(cu, content.opening.rentCentsPerCUWeek, RESOURCE_SCALE);
+  let cloudCU = fleet.cloudCU;
+  const project = (payload: CommandPayload, id: string) => {
+    if (payload.kind === 'apply_studio_plan') payload.commands.forEach((member, index) => project(member, `${id}:plan:${index}`));
+    else if (payload.kind === 'set_cloud_capacity') cloudCU = Math.max(cloudCU, payload.cu);
+    else if (payload.kind === 'set_batch_capacity') cloudCU = Math.max(cloudCU, payload.cloudCU);
+    else if (payload.kind === 'hire_staff') {
+      const role = content.staff.find(role => role.id === payload.role);
+      if (role) salaries.set(`staff:${id}`, role.weeklyCents);
+    }
+  };
+  for (const command of commands) if (command.companyId === companyId && command.issuedForWeek <= week
+    && !Object.hasOwn(state.commandReceipts, command.id)) project(command.payload, command.id);
+  return checkedAdd(getWeeklyBaseCost(state, content, companyId), checkedAdd(rent(cloudCU) - rent(fleet.cloudCU), payroll() - currentPayroll));
 }
 /** Last week's delivered recurring service, after credits. Briefs, agent jobs,
  * batch deliveries and hardware/appliance sales remain cash receipts, but their

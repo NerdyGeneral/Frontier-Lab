@@ -72,10 +72,10 @@ function commandQuote(state: Readonly<GameState>, command: GameCommand, content:
   return quote;
 }
 interface CommandAssessment { rejection?: Rejection; quote?: CommandQuote }
-function assessCommand(state: GameState, command: GameCommand, content: GameContent, modules: readonly DomainModule[], availableCash?: number): CommandAssessment {
+function assessCommand(state: GameState, command: GameCommand, content: GameContent, modules: readonly DomainModule[], availableCash?: number, pendingDue?: readonly GameCommand[]): CommandAssessment {
   const rejected = (rejection: Rejection): CommandAssessment => ({ rejection });
   const malformed = validatePayload(command.payload); if (malformed) return rejected(malformed);
-  const planAdmission = developmentStageAdmission(state, command, content, availableCash); if (planAdmission) return rejected(planAdmission);
+  const planAdmission = developmentStageAdmission(state, command, content, availableCash, pendingDue); if (planAdmission) return rejected(planAdmission);
   if (!Object.hasOwn(state.slices.company.companies, command.companyId)) return rejected({ code: 'UNKNOWN_COMPANY', message: 'The company does not exist.' });
   if (state.slices.company.companies[command.companyId].arrearsCents) return rejected({ code: 'ARREARS', message: 'The company has unpaid bills. Inspect or export this run, or start a new lab.' });
   if (STUDIO_PLAN_CONFLICT_KINDS.includes(command.payload.kind)) {
@@ -231,7 +231,7 @@ export function advanceWeek(state: GameState, content: GameContent = CONTENT, mo
       if (phase === 'commit') {
         const stopPriority = (command: GameCommand) => command.payload.kind === 'cancel_development_plan' || command.payload.kind === 'set_development_plan_paused' && command.payload.paused ? 0 : 1;
         const due = next.queuedCommands.filter(c => c.issuedForWeek <= next.week).sort((a, b) => stopPriority(a) - stopPriority(b)); next.queuedCommands = next.queuedCommands.filter(c => c.issuedForWeek > next.week);
-        for (const command of due) {
+        for (const [index, command] of due.entries()) {
           if (Object.hasOwn(next.commandReceipts, command.id)) continue;
           const committed = facts.filter(f => f.companyId === command.companyId && f.kind === 'expense' && !Object.hasOwn(next.slices.company.postedFacts, f.id)).reduce((sum, f) => checkedAdd(sum, f.amountCents), 0);
           const available = next.slices.company.companies[command.companyId].cashCents - committed - reservedCash(next, command.companyId);
@@ -248,7 +248,7 @@ export function advanceWeek(state: GameState, content: GameContent = CONTENT, mo
             }
             continue;
           }
-          const assessment = assessCommand(next, command, content, modules, available);
+          const assessment = assessCommand(next, command, content, modules, available, due.slice(index + 1));
           if (assessment.rejection) { next.commandReceipts[command.id] = { id: command.id, week: next.week, status: 'rejected', reason: assessment.rejection }; if (command.companyId === next.playerCompanyId) event(next, 'command', assessment.rejection.message); continue; }
           const owner = modules.find(m => m.commandKinds?.includes(command.payload.kind))!;
           const quote = assessment.quote!;
