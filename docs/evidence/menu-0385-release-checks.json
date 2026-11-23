@@ -9,7 +9,8 @@
     "Compact searchable All menus with all 27 features and 12 shortcuts retained",
     "Read-only menu directory does not pause the clock",
     "Compare has one canonical Projects tab",
-    "Follow newly committed product offers without replacing explicit new-offer drafts"
+    "Follow newly committed product offers without replacing explicit new-offer drafts",
+    "Long workstation details wrap within their list cards"
   ],
   "engineBaseline": {
     "command": "node scripts/test-wave0.mjs development-plans decision-clock campaign-origins customer-briefs wave30b-journey wave30-task-state wave30b-task-state wave30d-navigation",
@@ -169,7 +170,8 @@
     "todo": 0,
     "durationMs": 80905.930702,
     "exitCode": 0,
-    "build": "0.38.5"
+    "build": "0.38.5",
+    "scopeNote": "Completed before the final CSS-only workstation text-wrapping adjustment; no TypeScript, engine or save behavior changed afterward."
   },
   "typecheck": {
     "command": "node node_modules/typescript/bin/tsc --noEmit",
@@ -178,22 +180,33 @@
   "build": {
     "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.7/scripts/build-site.mjs",
     "exitCode": 0,
-    "remainingWarning": "Some chunks exceed 500 kB after minification; no build error."
+    "remainingWarning": "Some chunks exceed 500 kB after minification; no build error.",
+    "finalLog": "docs/evidence/menu-0385-build-final.log"
   },
   "browser": {
-    "baselineBuild": "0.38.4",
-    "observedDefect": "Company Journal -> Research -> Company resets to Overview & ledger.",
-    "ordinaryGameplay": {
-      "origin": "garage",
-      "preparationCompletedWeek": 2,
-      "trainingCompletedWeek": 8,
-      "trainingCUw": 12,
-      "evaluationCompletedWeek": 9,
-      "cashAfterEvaluationCents": 3800000,
-      "checkpointGameHash": "d94e79ea",
-      "checkpointWorkspaceHash": "390a9655"
+    "liveEvidence": "docs/evidence/menu-0385-live-browser.json",
+    "gameplay": {
+      "week": 14,
+      "gameHash": "905d783a",
+      "workspaceHash": "390a9655",
+      "cashCents": 3306000,
+      "arrearsCents": 0,
+      "ownedOffers": 1,
+      "offerStatus": "active",
+      "liveWeek": 12,
+      "usage": {
+        "week": 14,
+        "billedAccounts": 5,
+        "billedCents": 6000,
+        "fulfillmentBps": 10000,
+        "physicalWork": 135000000
+      },
+      "nextWeekAccounts": 10,
+      "nextWeekTrials": 17,
+      "allQueuedCommands": 2,
+      "playerQueuedCommands": 0
     },
-    "postPublicationStatus": "Pending live menu, product launch, enlarged-text, reload and original-lab restoration checks; results reported with deployment.",
+    "postPublicationStatus": "Live navigation, draft, launch, billing, keyboard disclosure and clock checks passed. Final CSS wrap, reload and original restoration follow the wrapping publish.",
     "privateExports": "Excluded from source and deployment."
   },
   "scopeLimitations": [
@@ -202,6 +215,11 @@
     "Callback/retained-frame UI tests do not prove native browser focus or layout."
   ],
   "evidence": [
+    {
+      "path": "docs/evidence/menu-0385-build-final.log",
+      "bytes": 2094,
+      "sha256": "8ff1b76fd0a55f6b7f6290fd77c90e5fe3f15e5bb0bbf1af3ab0b5cff29e5fd9"
+    },
     {
       "path": "docs/evidence/menu-0385-build.log",
       "bytes": 1767,
@@ -226,6 +244,11 @@
       "path": "docs/evidence/menu-0385-engine-unchanged.json",
       "bytes": 25386,
       "sha256": "cc69da40bda18ec4dae6b3e3a252cfe5b54b52346460e7fcd3f787d465328c81"
+    },
+    {
+      "path": "docs/evidence/menu-0385-live-browser.json",
+      "bytes": 2417,
+      "sha256": "620aa78144fa83114df22babbc87bd3acd459df95b0b243881ffe657f2da350b"
     },
     {
       "path": "docs/evidence/menu-0385-natural-baseline.json",

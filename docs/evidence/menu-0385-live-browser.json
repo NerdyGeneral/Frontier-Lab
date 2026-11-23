@@ -1,0 +1,62 @@
+{
+  "build": "0.38.5",
+  "publishedSourceBeforeWrapping": "eaad00e52d123c876f6406ff05af6b2957b1892e",
+  "method": "Ordinary live UI actions, weekly settlement and downloaded save inspection. The original campaign export is private and excluded.",
+  "gameplay": {
+    "week": 14,
+    "gameHash": "905d783a",
+    "workspaceHash": "390a9655",
+    "cashCents": 3306000,
+    "arrearsCents": 0,
+    "ownedOffers": 1,
+    "offerStatus": "active",
+    "liveWeek": 12,
+    "usage": {
+      "week": 14,
+      "billedAccounts": 5,
+      "billedCents": 6000,
+      "fulfillmentBps": 10000,
+      "physicalWork": 135000000
+    },
+    "nextWeekAccounts": 10,
+    "nextWeekTrials": 17,
+    "allQueuedCommands": 2,
+    "playerQueuedCommands": 0
+  },
+  "earlierMilestones": {
+    "preparationCompletedWeek": 2,
+    "trainingCompletedWeek": 8,
+    "trainingCUw": 12,
+    "evaluationCompletedWeek": 9,
+    "heldOutCasesPassed": 16,
+    "heldOutCasesTotal": 20,
+    "allocationAppliedWeek": 10,
+    "launchQueuedWeek": 10,
+    "offerCreatedWeek": 11
+  },
+  "interactionChecks": {
+    "companyJournalRoundTrip": "passed",
+    "menuSearchHireShortcut": "passed",
+    "hiringDraftDataEngineerRoundTrip": "passed",
+    "directRoomComputeEntry": "passed, zero visible dialogs and menus",
+    "directListDataEntry": "passed",
+    "offerSelectedAfterCommit": "passed, Menu QA Chat selected at Week11",
+    "explicitNewOfferDraft": "passed, name and $17 price retained across workspace switches and normal weekly progression without submission",
+    "menuKeyboardDisclosure": "passed, Enter opens Projects",
+    "readOnlyMenuClock": "passed, All menus preserves Continuous play; manually paused before Week15",
+    "lockedForecastRoute": "passed, authoritative unlock reason is visible in Operations"
+  },
+  "visual": {
+    "viewportCssWidth": 1363,
+    "pageScrollWidth": 1363,
+    "desktopMenusAndList": "inspected",
+    "listOverflowBeforeFix": {
+      "detailClientWidth": 224,
+      "detailScrollWidth": 348,
+      "inheritedWhiteSpace": "nowrap"
+    },
+    "wrappingFix": "Scoped CSS sets list text to normal whitespace with overflow wrapping; final live verification follows publication.",
+    "zoomAndMobile": "Browser shortcuts did not change the viewport. No enlarged-text or physical mobile result is claimed."
+  },
+  "finalReloadAndOriginalRestoration": "Pending after the wrapping publish; final result will be reported in chat."
+}
