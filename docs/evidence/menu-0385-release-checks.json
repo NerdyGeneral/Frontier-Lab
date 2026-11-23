@@ -1,0 +1,266 @@
+{
+  "release": "0.38.5",
+  "contentVersion": "0.38.0",
+  "saveSchema": 5,
+  "baselineCommit": "6eeb41f41dbf9876bb3a212a573398e2f08eacf9",
+  "changes": [
+    "Direct room and list workstation navigation",
+    "Per-company remembered workspace sections on sidebar navigation",
+    "Compact searchable All menus with all 27 features and 12 shortcuts retained",
+    "Read-only menu directory does not pause the clock",
+    "Compare has one canonical Projects tab",
+    "Follow newly committed product offers without replacing explicit new-offer drafts"
+  ],
+  "engineBaseline": {
+    "command": "node scripts/test-wave0.mjs development-plans decision-clock campaign-origins customer-briefs wave30b-journey wave30-task-state wave30b-task-state wave30d-navigation",
+    "tests": 100,
+    "pass": 100,
+    "fail": 0,
+    "exitCode": 0,
+    "durationMs": 18755.764307,
+    "build": "0.38.4"
+  },
+  "naturalGameplay": {
+    "build": "0.38.4",
+    "method": "Ordinary submitCommand/advanceWeek only, no resource grants or direct progress mutation. Navigation/preview inspections assert canonical immutability. Reload checks compare restored state and separately advanced next-week outcomes.",
+    "cases": [
+      {
+        "name": "manual-garage",
+        "origin": "garage",
+        "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2",
+        "finalWeek": 11,
+        "cashCents": 3618000,
+        "minimumCashCents": 3618000,
+        "arrearsCents": 0,
+        "preparedWeek": 2,
+        "trainedWeek": 6,
+        "evaluatedWeek": 7,
+        "paidTrainingCUw": 12,
+        "deploymentReadyWeek": 9,
+        "liveWeek": 9,
+        "firstInvoiceWeek": 11,
+        "firstPayingServiceChapterWeek": 11,
+        "pilot": null
+      },
+      {
+        "name": "manual-consultancy",
+        "origin": "consultancy",
+        "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2:consultancy",
+        "finalWeek": 10,
+        "cashCents": 3018000,
+        "minimumCashCents": 2590000,
+        "arrearsCents": 0,
+        "preparedWeek": 2,
+        "trainedWeek": 5,
+        "evaluatedWeek": 6,
+        "paidTrainingCUw": 12,
+        "deploymentReadyWeek": 8,
+        "liveWeek": 8,
+        "firstInvoiceWeek": 10,
+        "firstPayingServiceChapterWeek": 10,
+        "pilot": {
+          "targetId": null,
+          "contractGeneration": 0,
+          "baselineCostCents": 0,
+          "id": "consultancy-pilot",
+          "startedWeek": 0,
+          "deadlineWeek": 8,
+          "finishedWeek": 8,
+          "status": "completed",
+          "qualifyingWeeks": 1,
+          "feedback": "The tested Basic Chat pilot is live."
+        }
+      },
+      {
+        "name": "delegated-university",
+        "origin": "university",
+        "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2:university",
+        "finalWeek": 10,
+        "cashCents": 1218000,
+        "minimumCashCents": 1218000,
+        "arrearsCents": 0,
+        "reviewedWeek": 6,
+        "stages": 3,
+        "deploymentReadyWeek": 8,
+        "liveWeek": 8,
+        "firstInvoiceWeek": 10,
+        "firstPayingServiceChapterWeek": 10
+      },
+      {
+        "name": "consultancy-expiry",
+        "origin": "consultancy",
+        "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2:consultancy",
+        "finalWeek": 9,
+        "cashCents": 2430000,
+        "minimumCashCents": 2430000,
+        "arrearsCents": 0,
+        "pilot": {
+          "targetId": null,
+          "contractGeneration": 0,
+          "baselineCostCents": 0,
+          "id": "consultancy-pilot",
+          "startedWeek": 0,
+          "deadlineWeek": 8,
+          "finishedWeek": 8,
+          "status": "expired",
+          "qualifyingWeeks": 0,
+          "feedback": "Prepare the training data and start pilot training."
+        }
+      },
+      {
+        "name": "cancel-paid-preparation",
+        "origin": "garage",
+        "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2",
+        "finalWeek": 5,
+        "cashCents": 4200000,
+        "minimumCashCents": 4200000,
+        "arrearsCents": 0,
+        "paidPreparationCompletedWeek": 4,
+        "noAutomaticTraining": true
+      },
+      {
+        "name": "cancel-queued-handoff",
+        "origin": "garage",
+        "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2",
+        "finalWeek": 2,
+        "cashCents": 4600000,
+        "minimumCashCents": 4600000,
+        "arrearsCents": 0,
+        "cancelledStageCharged": false
+      }
+    ],
+    "pairedSaveContinuationChecks": 17
+  },
+  "engineAndPersistence": {
+    "changed": false,
+    "verifiedTrackedFiles": 234,
+    "manifest": "docs/evidence/menu-0385-engine-unchanged.json"
+  },
+  "focusedDirectory": {
+    "pass": 23,
+    "fail": 0,
+    "exitCode": 0
+  },
+  "focusedProduct": {
+    "before": {
+      "pass": 1,
+      "fail": 6
+    },
+    "after": {
+      "pass": 15,
+      "fail": 0,
+      "exitCode": 0
+    },
+    "method": "Production components with retained hook/effect frames and actual engine commands; not a mounted browser."
+  },
+  "focusedContinuity": {
+    "pass": 10,
+    "fail": 0,
+    "exitCode": 0,
+    "method": "Production shell callbacks and JSX bindings with the actual task reducer; browser focus checked separately."
+  },
+  "finalUi": {
+    "command": "node --import tsx --test --test-reporter=spec tests/*.test.tsx src/ui/*.test.tsx",
+    "tests": 287,
+    "pass": 287,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "todo": 0,
+    "durationMs": 80905.930702,
+    "exitCode": 0,
+    "build": "0.38.5"
+  },
+  "typecheck": {
+    "command": "node node_modules/typescript/bin/tsc --noEmit",
+    "exitCode": 0
+  },
+  "build": {
+    "command": "node /home/agent/.codex/plugins/cache/openai-curated-remote/sites/1.1.7/scripts/build-site.mjs",
+    "exitCode": 0,
+    "remainingWarning": "Some chunks exceed 500 kB after minification; no build error."
+  },
+  "browser": {
+    "baselineBuild": "0.38.4",
+    "observedDefect": "Company Journal -> Research -> Company resets to Overview & ledger.",
+    "ordinaryGameplay": {
+      "origin": "garage",
+      "preparationCompletedWeek": 2,
+      "trainingCompletedWeek": 8,
+      "trainingCUw": 12,
+      "evaluationCompletedWeek": 9,
+      "cashAfterEvaluationCents": 3800000,
+      "checkpointGameHash": "d94e79ea",
+      "checkpointWorkspaceHash": "390a9655"
+    },
+    "postPublicationStatus": "Pending live menu, product launch, enlarged-text, reload and original-lab restoration checks; results reported with deployment.",
+    "privateExports": "Excluded from source and deployment."
+  },
+  "scopeLimitations": [
+    "No full engine-suite rerun: 100 focused cases and 6 fresh natural routes cover the relevant behavior; engine/persistence source unchanged.",
+    "Native physical mobile devices and a new late-game browser campaign are outside this run.",
+    "Callback/retained-frame UI tests do not prove native browser focus or layout."
+  ],
+  "evidence": [
+    {
+      "path": "docs/evidence/menu-0385-build.log",
+      "bytes": 1767,
+      "sha256": "df1789f0fefd6fbd8ccd635118f1fe84e47a5c5b658bb12cc716a85fa48912b2"
+    },
+    {
+      "path": "docs/evidence/menu-0385-continuity.log",
+      "bytes": 1230,
+      "sha256": "21b0ad652c93ec32a50569a8587e3ca4ff95d1f272d58bb113aae94466a67c5f"
+    },
+    {
+      "path": "docs/evidence/menu-0385-directory.log",
+      "bytes": 2733,
+      "sha256": "4f0e4a4fcfc52da7967bcc22bb528255796856d820543b98398479ff6fece167"
+    },
+    {
+      "path": "docs/evidence/menu-0385-engine-baseline.log",
+      "bytes": 11656,
+      "sha256": "1744cb198f30a88524e447b65ef74cd5cedb6fbd814ff8be5fc62a4e6b957bdd"
+    },
+    {
+      "path": "docs/evidence/menu-0385-engine-unchanged.json",
+      "bytes": 25386,
+      "sha256": "cc69da40bda18ec4dae6b3e3a252cfe5b54b52346460e7fcd3f787d465328c81"
+    },
+    {
+      "path": "docs/evidence/menu-0385-natural-baseline.json",
+      "bytes": 70678,
+      "sha256": "0f9ae57818207bf93e04ddf671cde236445676cf40c78524c15fbea6349425c8"
+    },
+    {
+      "path": "docs/evidence/menu-0385-natural-baseline.log",
+      "bytes": 1971,
+      "sha256": "01925af6cc34347d13715f55602c72fbcb4aa22483c005c6a2cd8933a96ab42a"
+    },
+    {
+      "path": "docs/evidence/menu-0385-natural-baseline.mts",
+      "bytes": 11980,
+      "sha256": "77806e0b59942845a4a5dc01e19859cff96aa9b5318227a108175cdc1d146341"
+    },
+    {
+      "path": "docs/evidence/menu-0385-product-before.log",
+      "bytes": 6819,
+      "sha256": "1d8df238238e53723bb2a7f05723be84451779169e562704755158304447dd25"
+    },
+    {
+      "path": "docs/evidence/menu-0385-product-fixed.log",
+      "bytes": 1810,
+      "sha256": "f55e04efbfe05fa9945c74d3b19d5c1bbe0b81f8670624335d3a757012924f9e"
+    },
+    {
+      "path": "docs/evidence/menu-0385-typecheck.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/menu-0385-ui-final.log",
+      "bytes": 32607,
+      "sha256": "a7b020a89317f0530fe70d86a69bcc24940f70caa6adf27e0c86dd2e434f3ec3"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+✔ first launch follows the created offer through the real intercepted action and paid service (4854.856722ms)
+✔ a retained form reopening after it skipped the queue and settlement selects the created offer (564.490961ms)
+✔ explicit New keeps its draft across unrelated updates without showing first-launch totals (1559.533862ms)
+✔ a second launch selects its new stable ID instead of the older active offer (661.375993ms)
+✔ an explicit existing-offer choice during deployment is retained after that launch settles (412.472019ms)
+✔ two ordinary queued offers select the first newly committed offer deterministically (390.93806ms)
+✔ Developer API launch selects its own new offer without taking over a Basic Chat draft (6753.837937ms)
+✔ W30B-L01: first launch carries the older candidate and its exact report while leaving game state intact (135.107736ms)
+✔ W30B-L02: missing and foreign explicit candidates require selection instead of falling back to the newer candidate (24.800574ms)
+✔ W30B-L03: unavailable and mismatched reports cannot be replaced by another candidate’s qualifying evidence (49.429124ms)
+✔ W30B-L04: a non-capability report never enables a launch even when that model has a separate qualifying report (10.444251ms)
+✔ W30B-L05: an explicit nonqualifying capability report stays nonqualifying (11.198704ms)
+✔ W30B-L06: an unavailable launch intent is visible even before the company has an evaluated candidate (8.707378ms)
+✔ W30B-L07: Basic Chat launch intentions do not override the separate Developer API form (13.375005ms)
+✔ W30B-L08: an existing Basic Chat stays in its product workspace without a second first-launch form (38.859237ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19375.411086

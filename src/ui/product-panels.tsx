@@ -1,7 +1,7 @@
 'use client';
 
 import { formatWorkPoints } from '../modules/workforce-points';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { CommandPayload, GameState, ProductFeatures, ProductKind } from '../contracts/types';
 import { CONTENT } from '../content/catalog';
 import { DEFAULT_FEATURES, SEGMENT_BY_ID } from '../content/wave2-market';
@@ -45,7 +45,8 @@ function TermsForm({ game, canAct, onQueue, kind, current }: PanelProps & { kind
   const isApi = kind === 'developer-api';
   const launchSelection = useStudioLaunchSelection();
   const taskActions = useStudioTaskActions();
-  const focusedLaunch = useStudioTaskMode() === 'launch-basic-chat' && !isApi && !current;
+  const firstOffer = !Object.values(game.slices.products.offers).some(item => item.companyId === game.playerCompanyId);
+  const focusedLaunch = useStudioTaskMode() === 'launch-basic-chat' && !isApi && !current && firstOffer;
   const selection = !current && (launchSelection?.productKind ?? 'basic-chat') === kind ? launchSelection : null;
   const candidates = ownEvaluatedModels(game);
   const [price, setPrice] = useState(String((current?.contract.weeklyPriceCents ?? (isApi ? SEGMENT_BY_ID.developers.referencePriceCents : CONTENT.firstSale.defaultPriceCents)) / 100));
@@ -98,7 +99,7 @@ function TermsForm({ game, canAct, onQueue, kind, current }: PanelProps & { kind
     </div>}
     <ActionControl game={game} payload={payload} label={current ? 'Update price and allowance' : 'Deploy ' + productName(kind)} taskAction={!current && !isApi ? 'launch-basic-chat' : undefined} canAct={canAct} onQueue={onQueue} emptyReason={problem ?? (!model && !current ? 'Complete a separate capability test before launching.' : undefined)} />
     {!current && !isApi && taskActions && <div className="studio-journey-actions"><button type="button" className="studio-surface-button" onClick={taskActions.reviewResources}>Review people and compute</button></div>}
-    {!current && !isApi && <p className="small-note">This change starts in Week {game.week + 1}. Finish deployment to open Basic Chat. You earn your first sale when a customer moves from a trial to paid service.</p>}
+    {!current && !isApi && <p className="small-note">This change starts in Week {game.week + 1}. {firstOffer ? 'Finish deployment to open Basic Chat. You earn your first sale when a customer moves from a trial to paid service.' : 'Finish deployment to open this offer. New subscribers begin paying after their trial.'}</p>}
     </>}>
     {problem && <p className="bottleneck" role="status">{problem}</p>}
     {!current && <label className="line-control wide-select" htmlFor={kind + '-deploy-model'}>{isApi ? 'Model' : problem ? 'Choose a model to launch' : 'Launch model'}<select id={kind + '-deploy-model'} value={problem ? '' : model?.id ?? ''} onChange={event => chooseModel(event.target.value)} disabled={!canAct || !candidates.length}>{(!model || problem) && <option value="">{candidates.length ? 'Choose a tested model' : 'Evaluate a model first'}</option>}{candidates.map(item => <option key={item.id} value={item.id}>{item.name}</option>)}</select></label>}
@@ -183,7 +184,13 @@ function ProductSection(props: PanelProps & { kind: PlayerProductKind }) {
   const taskMode = useStudioTaskMode();
   const [selectedOfferId, setSelectedOfferId] = useState('');
   const [consumedLaunchIntent, setConsumedLaunchIntent] = useState<number | null>(null);
-  const products = Object.values(game.slices.products.offers).filter(item => item.companyId === game.playerCompanyId && item.kind === kind);
+  const portfolio = Object.values(game.slices.products.offers).filter(item => item.companyId === game.playerCompanyId);
+  const products = portfolio.filter(item => item.kind === kind);
+  const knownOfferIds = useRef(new Set(products.map(item => item.id)));
+  // A hidden retained form can skip both the queue and settlement renders. Use
+  // committed offer IDs, not onQueue (which Studio's command provider bypasses).
+  // Multiple launches follow the first new offer in the engine's commit order.
+  const createdOffer = products.find(item => !knownOfferIds.current.has(item.id) && item.retiredWeek === undefined);
   const selectedLiveProduct = products.find(item => item.id === selectedOfferId && item.retiredWeek === undefined) ?? products.find(item => item.retiredWeek === undefined);
   const matchingLaunch = !!launchSelection && (launchSelection.productKind ?? 'basic-chat') === kind;
   const incomingLaunch = matchingLaunch && launchSelection.intentId !== consumedLaunchIntent;
@@ -193,21 +200,29 @@ function ProductSection(props: PanelProps & { kind: PlayerProductKind }) {
       setSelectedOfferId(handoffOfferId); setConsumedLaunchIntent(launchSelection.intentId);
     }
   }, [incomingLaunch, handoffOfferId, launchSelection]);
-  const effectiveOfferId = incomingLaunch ? handoffOfferId : selectedOfferId;
+  useEffect(() => {
+    knownOfferIds.current = new Set(products.map(item => item.id));
+    if (!incomingLaunch && selectedOfferId === 'new' && createdOffer) setSelectedOfferId(createdOffer.id);
+  }, [products, createdOffer, incomingLaunch, selectedOfferId]);
+  const chooseOffer = (id: string) => {
+    // Choosing New is an explicit draft, even immediately after another launch.
+    knownOfferIds.current = new Set(products.map(item => item.id)); setSelectedOfferId(id);
+  };
+  const effectiveOfferId = incomingLaunch ? handoffOfferId : selectedOfferId === 'new' && createdOffer ? createdOffer.id : selectedOfferId;
   const product = effectiveOfferId === 'new' ? undefined : products.find(item => item.id === effectiveOfferId) ?? products.find(item => item.retiredWeek === undefined) ?? products[0];
   const current = product ? getProductView(game, product.id, CONTENT) : undefined;
   const deployment = product ? game.slices.products.deployments[product.deploymentId] : undefined;
   const usage = current?.usage;
   const isApi = kind === 'developer-api';
-  const focusedFirstLaunch = taskMode === 'launch-basic-chat' && !isApi && !current;
+  const focusedFirstLaunch = taskMode === 'launch-basic-chat' && !isApi && !current && portfolio.length === 0;
   const invoices = game.slices.products.invoices.filter(invoice => invoice.productId === product?.id && invoice.companyId === game.playerCompanyId);
   if (product?.retiredWeek !== undefined && current) return <Section title={productName(kind)} id={isApi ? 'developer-api' : 'product'}>
-    <ProductPortfolioPicker game={game} kind={kind} value={product.id} onChange={setSelectedOfferId} />
+    <ProductPortfolioPicker game={game} kind={kind} value={product.id} onChange={chooseOffer} />
     <h4>{product.name} · Retired Week {product.retiredWeek}</h4><p className="small-note">{current.model.name}. This archived offer has no remaining customers. Its model, terms and {invoices.length} recent invoices remain available for review.</p>
     <Metrics><Metric label="Last weekly revenue">{formatMoney(current.usage?.billedCents ?? 0)}</Metric><Metric label="Last subscription price">{formatMoney(current.contract.weeklyPriceCents)}</Metric></Metrics>
   </Section>;
   return <Section title={productName(kind)} id={isApi ? 'developer-api' : 'product'}>
-    <ProductPortfolioPicker game={game} kind={kind} value={product?.id ?? 'new'} onChange={setSelectedOfferId} />
+    <ProductPortfolioPicker game={game} kind={kind} value={product?.id ?? 'new'} onChange={chooseOffer} />
     {current && product ? <>
       <p className="small-heading">{product.name} · {current.model.name}<span className="status-inline">{product.status === 'deploying' ? 'Deploying' : product.status === 'paused' ? 'Paused' : 'Live'}</span></p>
       <ProductWorkloadControls key={product.id + '-workload-controls'} {...props} product={product} />
@@ -231,8 +246,8 @@ function ProductSection(props: PanelProps & { kind: PlayerProductKind }) {
       {product.status !== 'deploying' && <details className="inline-details"><summary>Pause, resume or retire this offer</summary><p className="small-note">Pausing stops service and acquisition. Cloud, payroll, and installed hardware bills continue.</p><ActionControl game={game} payload={{ kind: 'set_product_paused', productId: product.id, paused: product.status !== 'paused' }} label={product.status === 'paused' ? 'Resume ' + product.name : 'Pause ' + product.name} canAct={canAct} onQueue={onQueue} /><RetireProductControl {...props} product={product} /></details>}
       <details className="inline-details"><summary>Recent invoices</summary>{invoices.length ? <div className="table-scroll"><table className="compact-table"><thead><tr><th>Week</th><th>Accounts</th><th>Credits</th><th>Net bill</th></tr></thead><tbody>{invoices.slice(-6).reverse().map(invoice => <tr key={invoice.id}><td>{invoice.week}</td><td>{invoice.accounts}</td><td>{formatMoney(invoice.creditsCents)}</td><td>{formatMoney(invoice.amountCents)}</td></tr>)}</tbody></table></div> : <p className="small-note">Invoices begin when converted accounts enter a paid week.</p>}</details>
     </> : <>
-      {!isApi && <div className="studio-first-launch-overview" hidden={focusedFirstLaunch}><Metrics><Metric label="Waiting for first access">{game.slices.markets.waitlistRemaining}</Metric><Metric label="Subscribed accounts">0</Metric></Metrics></div>}
-      <p className="small-note" hidden={focusedFirstLaunch}>{isApi ? 'Serve developers through a metered API. The model needs a held-out capability report, coding 50, and reliability 80.' : 'Launch a tested conversation model, attract trial users, and turn them into paying customers.'}</p>
+      {!isApi && portfolio.length === 0 && <div className="studio-first-launch-overview" hidden={focusedFirstLaunch}><Metrics><Metric label="Waiting for first access">{game.slices.markets.waitlistRemaining}</Metric><Metric label="Subscribed accounts">0</Metric></Metrics></div>}
+      <p className="small-note" hidden={focusedFirstLaunch}>{portfolio.length > 0 ? `Create ${products.length ? 'another' : 'a'} ${productName(kind)} offer. Choose its model, price and customer workload. Existing offers keep their own customers and terms.` : isApi ? 'Serve developers through a metered API. The model needs a held-out capability report, coding 50, and reliability 80.' : 'Launch a tested conversation model, attract trial users, and turn them into paying customers.'}</p>
       {view.progress.trained || ownEvaluatedModels(game).length > 0 || (!isApi && launchSelection) ? <TermsForm {...props} /> : <p className="planned-note">Test your first model, then launch it.</p>}
       {isApi && <BatchInferencePanel {...props} />}
     </>}

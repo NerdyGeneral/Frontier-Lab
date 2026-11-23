@@ -1,0 +1,2101 @@
+{
+  "build": "0.38.4",
+  "content": "0.38.0",
+  "sourceCommit": "6eeb41f41dbf9876bb3a212a573398e2f08eacf9",
+  "method": "Ordinary submitCommand/advanceWeek only, no resource grants or direct progress mutation. Navigation/preview inspections assert canonical immutability. Reload checks compare restored state and separately advanced next-week outcomes.",
+  "cases": [
+    {
+      "name": "manual-garage",
+      "origin": "garage",
+      "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2",
+      "finalWeek": 11,
+      "cashCents": 3618000,
+      "minimumCashCents": 3618000,
+      "arrearsCents": 0,
+      "preparedWeek": 2,
+      "trainedWeek": 6,
+      "evaluatedWeek": 7,
+      "paidTrainingCUw": 12,
+      "deploymentReadyWeek": 9,
+      "liveWeek": 9,
+      "firstInvoiceWeek": 11,
+      "firstPayingServiceChapterWeek": 11,
+      "pilot": null,
+      "commands": [
+        {
+          "week": 0,
+          "id": "manual-garage-1",
+          "payload": {
+            "kind": "prepare_data",
+            "packetId": "starter-public"
+          },
+          "quotedUpfrontCents": 100000
+        },
+        {
+          "week": 0,
+          "id": "manual-garage-2",
+          "payload": {
+            "kind": "allocate_compute",
+            "serving": 0,
+            "development": 4000000000,
+            "research": 0
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 2,
+          "id": "manual-garage-3",
+          "payload": {
+            "kind": "start_training",
+            "baseModelId": "seed-0",
+            "packetId": "starter-public"
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 3,
+          "id": "manual-garage-4",
+          "payload": {
+            "kind": "set_job_paused",
+            "jobId": "training-manual-garage-3",
+            "paused": true
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 4,
+          "id": "manual-garage-5",
+          "payload": {
+            "kind": "set_job_paused",
+            "jobId": "training-manual-garage-3",
+            "paused": false
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 6,
+          "id": "manual-garage-6",
+          "payload": {
+            "kind": "evaluate_model",
+            "modelId": "model-manual-garage-3"
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 7,
+          "id": "manual-garage-7",
+          "payload": {
+            "kind": "deploy_product",
+            "modelId": "model-manual-garage-3",
+            "priceCents": 1200,
+            "allowance": 100
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 7,
+          "id": "manual-garage-8",
+          "payload": {
+            "kind": "allocate_compute",
+            "serving": 2000000000,
+            "development": 2000000000,
+            "research": 0
+          },
+          "quotedUpfrontCents": 0
+        }
+      ],
+      "checkpoints": [
+        {
+          "label": "opening",
+          "week": 0,
+          "cashCents": 4800000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 1,
+          "cashCents": 4600000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "working",
+            "title": "Preparing Starter public sample",
+            "detail": "20 / 40 Data points",
+            "projectId": "preparation-manual-garage-1",
+            "progressBps": 5000,
+            "packetId": "starter-public",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "preparation-manual-garage-1"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 2,
+          "cashCents": 4500000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "ready",
+            "title": "Starter public sample is ready for training",
+            "detail": "Choose what to train, pick a method, and check the model, data and cost before starting.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Train with this dataset",
+              "action": {
+                "kind": "train",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "training queued",
+          "week": 2,
+          "cashCents": 4500000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "queued",
+            "title": "Training queued for Week 3",
+            "detail": "Conversation adaptation from Seed 0 will use Starter public sample. Advance to Week 3 to start. Follow the run in Projects.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 3,
+          "cashCents": 4400000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "working",
+            "title": "Conversation adaptation in progress",
+            "detail": "Train new version · 4 / 12 development CUw",
+            "projectId": "training-manual-garage-3",
+            "progressBps": 3333,
+            "packetId": "starter-public",
+            "candidateId": "model-manual-garage-3",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "training-manual-garage-3"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 4,
+          "cashCents": 4300000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "waiting",
+            "title": "Conversation adaptation in progress",
+            "detail": "This project is paused. Open its progress view to resume it.",
+            "projectId": "training-manual-garage-3",
+            "progressBps": 3333,
+            "packetId": "starter-public",
+            "candidateId": "model-manual-garage-3",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "training-manual-garage-3"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "paid training paused",
+          "week": 4,
+          "cashCents": 4300000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "waiting",
+            "title": "Conversation adaptation in progress",
+            "detail": "This project is paused. Open its progress view to resume it.",
+            "projectId": "training-manual-garage-3",
+            "progressBps": 3333,
+            "packetId": "starter-public",
+            "candidateId": "model-manual-garage-3",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "training-manual-garage-3"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 5,
+          "cashCents": 4200000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "working",
+            "title": "Conversation adaptation in progress",
+            "detail": "Train new version · 8 / 12 development CUw · checkpoint saved",
+            "projectId": "training-manual-garage-3",
+            "progressBps": 6666,
+            "packetId": "starter-public",
+            "candidateId": "model-manual-garage-3",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "training-manual-garage-3"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 6,
+          "cashCents": 4100000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "evaluate",
+            "status": "ready",
+            "title": "Test Conversation 1",
+            "detail": "Reliability 70 → 86 compared with Seed 0. Run a held-out test to see how this version performs on unfamiliar examples.",
+            "candidateId": "model-manual-garage-3",
+            "primary": {
+              "label": "Test this model",
+              "action": {
+                "kind": "evaluate",
+                "modelId": "model-manual-garage-3"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "training complete",
+          "week": 6,
+          "cashCents": 4100000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "evaluate",
+            "status": "ready",
+            "title": "Test Conversation 1",
+            "detail": "Reliability 70 → 86 compared with Seed 0. Run a held-out test to see how this version performs on unfamiliar examples.",
+            "candidateId": "model-manual-garage-3",
+            "primary": {
+              "label": "Test this model",
+              "action": {
+                "kind": "evaluate",
+                "modelId": "model-manual-garage-3"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 7,
+          "cashCents": 4000000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "ready",
+            "title": "Conversation 1 passed the Basic Chat skill requirements",
+            "detail": "Set a price and chat allowance, then check the launch costs. Serving is set to 0 CU, so customers cannot try Basic Chat. Set Serving above 0 CU in the compute planner. If your GPUs are fully allocated, move some capacity from Development or Research.",
+            "candidateId": "model-manual-garage-3",
+            "reportId": "report-evaluation-manual-garage-6",
+            "primary": {
+              "label": "Prepare Basic Chat",
+              "action": {
+                "kind": "launch",
+                "modelId": "model-manual-garage-3",
+                "reportId": "report-evaluation-manual-garage-6"
+              }
+            },
+            "secondary": {
+              "label": "View this report",
+              "action": {
+                "kind": "report",
+                "reportId": "report-evaluation-manual-garage-6"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "evaluation complete",
+          "week": 7,
+          "cashCents": 4000000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "ready",
+            "title": "Conversation 1 passed the Basic Chat skill requirements",
+            "detail": "Set a price and chat allowance, then check the launch costs. Serving is set to 0 CU, so customers cannot try Basic Chat. Set Serving above 0 CU in the compute planner. If your GPUs are fully allocated, move some capacity from Development or Research.",
+            "candidateId": "model-manual-garage-3",
+            "reportId": "report-evaluation-manual-garage-6",
+            "primary": {
+              "label": "Prepare Basic Chat",
+              "action": {
+                "kind": "launch",
+                "modelId": "model-manual-garage-3",
+                "reportId": "report-evaluation-manual-garage-6"
+              }
+            },
+            "secondary": {
+              "label": "View this report",
+              "action": {
+                "kind": "report",
+                "reportId": "report-evaluation-manual-garage-6"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "launch queued",
+          "week": 7,
+          "cashCents": 4000000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "queued",
+            "title": "Basic Chat deployment queued for Week 8",
+            "detail": "Your plan is queued. Work can start next week once its requirements are checked. Resume the game or advance one week when you’re ready.",
+            "candidateId": "model-manual-garage-3",
+            "primary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 8,
+          "cashCents": 3900000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "waiting",
+            "title": "Basic Chat is ready to open",
+            "detail": "Basic Chat opens in Week 9. Your first sale comes when a customer pays to use it.",
+            "candidateId": "model-manual-garage-3",
+            "projectId": "deployment:manual-garage-7",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            },
+            "secondary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 9,
+          "cashCents": 3800000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "deployed",
+            "status": "complete",
+            "title": "Basic Chat is live",
+            "detail": "Basic Chat is open. Leave enough compute for free trials. Customers who subscribe can start paying in a later week.",
+            "candidateId": "model-manual-garage-3",
+            "projectId": "deployment:manual-garage-7",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            },
+            "secondary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "live product",
+          "week": 9,
+          "cashCents": 3800000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "deployed",
+            "status": "complete",
+            "title": "Basic Chat is live",
+            "detail": "Basic Chat is open. Leave enough compute for free trials. Customers who subscribe can start paying in a later week.",
+            "candidateId": "model-manual-garage-3",
+            "projectId": "deployment:manual-garage-7",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            },
+            "secondary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 10,
+          "cashCents": 3700000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "deployed",
+            "status": "complete",
+            "title": "Basic Chat is live",
+            "detail": "Basic Chat is open. Leave enough compute for free trials. Customers who subscribe can start paying in a later week.",
+            "candidateId": "model-manual-garage-3",
+            "projectId": "deployment:manual-garage-7",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            },
+            "secondary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 11,
+          "cashCents": 3618000,
+          "earnedRevenueCents": 18000,
+          "publicInvoiceCents": 18000,
+          "journey": {
+            "stage": "sale",
+            "status": "complete",
+            "title": "Your first sale!",
+            "detail": "A customer has paid to use your product. Keep an eye on demand, compute and service quality as your lab grows.",
+            "candidateId": "model-manual-garage-3",
+            "projectId": "deployment:manual-garage-7",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": 11
+        }
+      ],
+      "reloads": [
+        {
+          "label": "paid training active",
+          "week": 3,
+          "checksum": "b1eb62d2",
+          "nextWeekChecksum": "a3b3a056"
+        },
+        {
+          "label": "paid training paused",
+          "week": 4,
+          "checksum": "ebb9a02d",
+          "nextWeekChecksum": "54ffbb2e"
+        },
+        {
+          "label": "evaluation queued",
+          "week": 6,
+          "checksum": "c28670cd",
+          "nextWeekChecksum": "4e6ec6be"
+        },
+        {
+          "label": "launch queued",
+          "week": 7,
+          "checksum": "65aab0a2",
+          "nextWeekChecksum": "8a09d2a2"
+        },
+        {
+          "label": "first billed public service",
+          "week": 11,
+          "checksum": "71f0ead9",
+          "nextWeekChecksum": "ae8370c1"
+        }
+      ]
+    },
+    {
+      "name": "manual-consultancy",
+      "origin": "consultancy",
+      "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2:consultancy",
+      "finalWeek": 10,
+      "cashCents": 3018000,
+      "minimumCashCents": 2590000,
+      "arrearsCents": 0,
+      "preparedWeek": 2,
+      "trainedWeek": 5,
+      "evaluatedWeek": 6,
+      "paidTrainingCUw": 12,
+      "deploymentReadyWeek": 8,
+      "liveWeek": 8,
+      "firstInvoiceWeek": 10,
+      "firstPayingServiceChapterWeek": 10,
+      "pilot": {
+        "targetId": null,
+        "contractGeneration": 0,
+        "baselineCostCents": 0,
+        "id": "consultancy-pilot",
+        "startedWeek": 0,
+        "deadlineWeek": 8,
+        "finishedWeek": 8,
+        "status": "completed",
+        "qualifyingWeeks": 1,
+        "feedback": "The tested Basic Chat pilot is live."
+      },
+      "commands": [
+        {
+          "week": 0,
+          "id": "manual-consultancy-1",
+          "payload": {
+            "kind": "prepare_data",
+            "packetId": "starter-public"
+          },
+          "quotedUpfrontCents": 100000
+        },
+        {
+          "week": 0,
+          "id": "manual-consultancy-2",
+          "payload": {
+            "kind": "allocate_compute",
+            "serving": 0,
+            "development": 4000000000,
+            "research": 0
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 2,
+          "id": "manual-consultancy-3",
+          "payload": {
+            "kind": "start_training",
+            "baseModelId": "seed-0",
+            "packetId": "starter-public"
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 5,
+          "id": "manual-consultancy-4",
+          "payload": {
+            "kind": "evaluate_model",
+            "modelId": "model-manual-consultancy-3"
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 6,
+          "id": "manual-consultancy-5",
+          "payload": {
+            "kind": "deploy_product",
+            "modelId": "model-manual-consultancy-3",
+            "priceCents": 1200,
+            "allowance": 100
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 6,
+          "id": "manual-consultancy-6",
+          "payload": {
+            "kind": "allocate_compute",
+            "serving": 2000000000,
+            "development": 2000000000,
+            "research": 0
+          },
+          "quotedUpfrontCents": 0
+        }
+      ],
+      "checkpoints": [
+        {
+          "label": "opening",
+          "week": 0,
+          "cashCents": 3600000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 1,
+          "cashCents": 3370000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "working",
+            "title": "Preparing Starter public sample",
+            "detail": "25 / 40 Data points",
+            "projectId": "preparation-manual-consultancy-1",
+            "progressBps": 6250,
+            "packetId": "starter-public",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "preparation-manual-consultancy-1"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 2,
+          "cashCents": 3240000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "ready",
+            "title": "Starter public sample is ready for training",
+            "detail": "Choose what to train, pick a method, and check the model, data and cost before starting.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Train with this dataset",
+              "action": {
+                "kind": "train",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "training queued",
+          "week": 2,
+          "cashCents": 3240000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "queued",
+            "title": "Training queued for Week 3",
+            "detail": "Conversation adaptation from Seed 0 will use Starter public sample. Advance to Week 3 to start. Follow the run in Projects.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 3,
+          "cashCents": 3110000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "working",
+            "title": "Conversation adaptation in progress",
+            "detail": "Train new version · 4 / 12 development CUw",
+            "projectId": "training-manual-consultancy-3",
+            "progressBps": 3333,
+            "packetId": "starter-public",
+            "candidateId": "model-manual-consultancy-3",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "training-manual-consultancy-3"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 4,
+          "cashCents": 2980000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "working",
+            "title": "Conversation adaptation in progress",
+            "detail": "Train new version · 8 / 12 development CUw · checkpoint saved",
+            "projectId": "training-manual-consultancy-3",
+            "progressBps": 6666,
+            "packetId": "starter-public",
+            "candidateId": "model-manual-consultancy-3",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "training-manual-consultancy-3"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 5,
+          "cashCents": 2850000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "evaluate",
+            "status": "ready",
+            "title": "Test Conversation 1",
+            "detail": "Reliability 70 → 86 compared with Seed 0. Run a held-out test to see how this version performs on unfamiliar examples.",
+            "candidateId": "model-manual-consultancy-3",
+            "primary": {
+              "label": "Test this model",
+              "action": {
+                "kind": "evaluate",
+                "modelId": "model-manual-consultancy-3"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "training complete",
+          "week": 5,
+          "cashCents": 2850000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "evaluate",
+            "status": "ready",
+            "title": "Test Conversation 1",
+            "detail": "Reliability 70 → 86 compared with Seed 0. Run a held-out test to see how this version performs on unfamiliar examples.",
+            "candidateId": "model-manual-consultancy-3",
+            "primary": {
+              "label": "Test this model",
+              "action": {
+                "kind": "evaluate",
+                "modelId": "model-manual-consultancy-3"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 6,
+          "cashCents": 2720000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "ready",
+            "title": "Conversation 1 passed the Basic Chat skill requirements",
+            "detail": "Set a price and chat allowance, then check the launch costs. Serving is set to 0 CU, so customers cannot try Basic Chat. Set Serving above 0 CU in the compute planner. If your GPUs are fully allocated, move some capacity from Development or Research.",
+            "candidateId": "model-manual-consultancy-3",
+            "reportId": "report-evaluation-manual-consultancy-4",
+            "primary": {
+              "label": "Prepare Basic Chat",
+              "action": {
+                "kind": "launch",
+                "modelId": "model-manual-consultancy-3",
+                "reportId": "report-evaluation-manual-consultancy-4"
+              }
+            },
+            "secondary": {
+              "label": "View this report",
+              "action": {
+                "kind": "report",
+                "reportId": "report-evaluation-manual-consultancy-4"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "evaluation complete",
+          "week": 6,
+          "cashCents": 2720000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "ready",
+            "title": "Conversation 1 passed the Basic Chat skill requirements",
+            "detail": "Set a price and chat allowance, then check the launch costs. Serving is set to 0 CU, so customers cannot try Basic Chat. Set Serving above 0 CU in the compute planner. If your GPUs are fully allocated, move some capacity from Development or Research.",
+            "candidateId": "model-manual-consultancy-3",
+            "reportId": "report-evaluation-manual-consultancy-4",
+            "primary": {
+              "label": "Prepare Basic Chat",
+              "action": {
+                "kind": "launch",
+                "modelId": "model-manual-consultancy-3",
+                "reportId": "report-evaluation-manual-consultancy-4"
+              }
+            },
+            "secondary": {
+              "label": "View this report",
+              "action": {
+                "kind": "report",
+                "reportId": "report-evaluation-manual-consultancy-4"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "launch queued",
+          "week": 6,
+          "cashCents": 2720000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "queued",
+            "title": "Basic Chat deployment queued for Week 7",
+            "detail": "Your plan is queued. Work can start next week once its requirements are checked. Resume the game or advance one week when you’re ready.",
+            "candidateId": "model-manual-consultancy-3",
+            "primary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 7,
+          "cashCents": 2590000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "waiting",
+            "title": "Basic Chat is ready to open",
+            "detail": "Basic Chat opens in Week 8. Your first sale comes when a customer pays to use it.",
+            "candidateId": "model-manual-consultancy-3",
+            "projectId": "deployment:manual-consultancy-5",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            },
+            "secondary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 8,
+          "cashCents": 3260000,
+          "earnedRevenueCents": 800000,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "sale",
+            "status": "complete",
+            "title": "Your first sale!",
+            "detail": "A customer has paid to use your product. Keep an eye on demand, compute and service quality as your lab grows.",
+            "candidateId": "model-manual-consultancy-3",
+            "projectId": "deployment:manual-consultancy-5",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "live product",
+          "week": 8,
+          "cashCents": 3260000,
+          "earnedRevenueCents": 800000,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "sale",
+            "status": "complete",
+            "title": "Your first sale!",
+            "detail": "A customer has paid to use your product. Keep an eye on demand, compute and service quality as your lab grows.",
+            "candidateId": "model-manual-consultancy-3",
+            "projectId": "deployment:manual-consultancy-5",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 9,
+          "cashCents": 3130000,
+          "earnedRevenueCents": 800000,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "sale",
+            "status": "complete",
+            "title": "Your first sale!",
+            "detail": "A customer has paid to use your product. Keep an eye on demand, compute and service quality as your lab grows.",
+            "candidateId": "model-manual-consultancy-3",
+            "projectId": "deployment:manual-consultancy-5",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 10,
+          "cashCents": 3018000,
+          "earnedRevenueCents": 818000,
+          "publicInvoiceCents": 18000,
+          "journey": {
+            "stage": "sale",
+            "status": "complete",
+            "title": "Your first sale!",
+            "detail": "A customer has paid to use your product. Keep an eye on demand, compute and service quality as your lab grows.",
+            "candidateId": "model-manual-consultancy-3",
+            "projectId": "deployment:manual-consultancy-5",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": 10
+        }
+      ],
+      "reloads": [
+        {
+          "label": "paid training active",
+          "week": 3,
+          "checksum": "8cebeffe",
+          "nextWeekChecksum": "93e1cde7"
+        },
+        {
+          "label": "evaluation queued",
+          "week": 5,
+          "checksum": "888e1064",
+          "nextWeekChecksum": "fe69c4e0"
+        },
+        {
+          "label": "launch queued",
+          "week": 6,
+          "checksum": "4a2d2b7a",
+          "nextWeekChecksum": "69338ae9"
+        },
+        {
+          "label": "first billed public service",
+          "week": 10,
+          "checksum": "70c75ff4",
+          "nextWeekChecksum": "a233234a"
+        }
+      ]
+    },
+    {
+      "name": "delegated-university",
+      "origin": "university",
+      "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2:university",
+      "finalWeek": 10,
+      "cashCents": 1218000,
+      "minimumCashCents": 1218000,
+      "arrearsCents": 0,
+      "reviewedWeek": 6,
+      "stages": 3,
+      "deploymentReadyWeek": 8,
+      "liveWeek": 8,
+      "firstInvoiceWeek": 10,
+      "firstPayingServiceChapterWeek": 10,
+      "commands": [
+        {
+          "week": 0,
+          "id": "delegated-university-1",
+          "payload": {
+            "kind": "start_development_plan",
+            "name": "Normal delegated opening",
+            "training": {
+              "kind": "start_training",
+              "baseModelId": "seed-0",
+              "packetId": "starter-public"
+            },
+            "suiteId": "basic-conversation-1",
+            "feeBudgetCents": 100000,
+            "cashReserveCents": 300000,
+            "deadlineWeek": 24,
+            "leadStaffId": "founder",
+            "capacityShareBps": 10000
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 0,
+          "id": "delegated-university-2",
+          "payload": {
+            "kind": "allocate_compute",
+            "serving": 0,
+            "development": 4000000000,
+            "research": 0
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 6,
+          "id": "delegated-university-3",
+          "payload": {
+            "kind": "deploy_product",
+            "modelId": "model-development-stage-17",
+            "priceCents": 1200,
+            "allowance": 100
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 6,
+          "id": "delegated-university-4",
+          "payload": {
+            "kind": "allocate_compute",
+            "serving": 2000000000,
+            "development": 2000000000,
+            "research": 0
+          },
+          "quotedUpfrontCents": 0
+        }
+      ],
+      "checkpoints": [
+        {
+          "label": "opening",
+          "week": 0,
+          "cashCents": 3000000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 1,
+          "cashCents": 2830000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "queued",
+            "title": "Data preparation queued for Week 2",
+            "detail": "Your plan is queued. Work can start next week once its requirements are checked. Resume the game or advance one week when you’re ready.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 2,
+          "cashCents": 2560000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "queued",
+            "title": "Training queued for Week 3",
+            "detail": "Conversation adaptation from Seed 0 will use Starter public sample. Advance to Week 3 to start. Follow the run in Projects.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 3,
+          "cashCents": 2390000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "working",
+            "title": "Conversation adaptation in progress",
+            "detail": "Train new version · 4 / 12 development CUw",
+            "projectId": "training-development-stage-17",
+            "progressBps": 3333,
+            "packetId": "starter-public",
+            "candidateId": "model-development-stage-17",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "training-development-stage-17"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 4,
+          "cashCents": 2220000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "working",
+            "title": "Conversation adaptation in progress",
+            "detail": "Train new version · 8 / 12 development CUw · checkpoint saved",
+            "projectId": "training-development-stage-17",
+            "progressBps": 6666,
+            "packetId": "starter-public",
+            "candidateId": "model-development-stage-17",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "training-development-stage-17"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 5,
+          "cashCents": 2050000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "evaluate",
+            "status": "queued",
+            "title": "Evaluation queued for Week 6",
+            "detail": "Your plan is queued. Work can start next week once its requirements are checked. Resume the game or advance one week when you’re ready.",
+            "candidateId": "model-development-stage-17",
+            "primary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 6,
+          "cashCents": 1880000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "ready",
+            "title": "Conversation 1 passed the Basic Chat skill requirements",
+            "detail": "Set a price and chat allowance, then check the launch costs. Serving is set to 0 CU, so customers cannot try Basic Chat. Set Serving above 0 CU in the compute planner. If your GPUs are fully allocated, move some capacity from Development or Research.",
+            "candidateId": "model-development-stage-17",
+            "reportId": "report-evaluation-development-stage-26",
+            "primary": {
+              "label": "Prepare Basic Chat",
+              "action": {
+                "kind": "launch",
+                "modelId": "model-development-stage-17",
+                "reportId": "report-evaluation-development-stage-26"
+              }
+            },
+            "secondary": {
+              "label": "View this report",
+              "action": {
+                "kind": "report",
+                "reportId": "report-evaluation-development-stage-26"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "launch queued",
+          "week": 6,
+          "cashCents": 1880000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "queued",
+            "title": "Basic Chat deployment queued for Week 7",
+            "detail": "Your plan is queued. Work can start next week once its requirements are checked. Resume the game or advance one week when you’re ready.",
+            "candidateId": "model-development-stage-17",
+            "primary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 7,
+          "cashCents": 1710000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "launch",
+            "status": "waiting",
+            "title": "Basic Chat is ready to open",
+            "detail": "Basic Chat opens in Week 8. Your first sale comes when a customer pays to use it.",
+            "candidateId": "model-development-stage-17",
+            "projectId": "deployment:delegated-university-3",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            },
+            "secondary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 8,
+          "cashCents": 1540000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "deployed",
+            "status": "complete",
+            "title": "Basic Chat is live",
+            "detail": "Basic Chat is open. Leave enough compute for free trials. Customers who subscribe can start paying in a later week.",
+            "candidateId": "model-development-stage-17",
+            "projectId": "deployment:delegated-university-3",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            },
+            "secondary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "live product",
+          "week": 8,
+          "cashCents": 1540000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "deployed",
+            "status": "complete",
+            "title": "Basic Chat is live",
+            "detail": "Basic Chat is open. Leave enough compute for free trials. Customers who subscribe can start paying in a later week.",
+            "candidateId": "model-development-stage-17",
+            "projectId": "deployment:delegated-university-3",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            },
+            "secondary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 9,
+          "cashCents": 1370000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "deployed",
+            "status": "complete",
+            "title": "Basic Chat is live",
+            "detail": "Basic Chat is open. Leave enough compute for free trials. Customers who subscribe can start paying in a later week.",
+            "candidateId": "model-development-stage-17",
+            "projectId": "deployment:delegated-university-3",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            },
+            "secondary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 10,
+          "cashCents": 1218000,
+          "earnedRevenueCents": 18000,
+          "publicInvoiceCents": 18000,
+          "journey": {
+            "stage": "sale",
+            "status": "complete",
+            "title": "Your first sale!",
+            "detail": "A customer has paid to use your product. Keep an eye on demand, compute and service quality as your lab grows.",
+            "candidateId": "model-development-stage-17",
+            "projectId": "deployment:delegated-university-3",
+            "progressBps": 10000,
+            "primary": {
+              "label": "View Basic Chat",
+              "action": {
+                "kind": "product"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": 10
+        }
+      ],
+      "reloads": [
+        {
+          "label": "delegated preparation queued",
+          "week": 1,
+          "checksum": "2c69cbe4",
+          "nextWeekChecksum": "c2545eb8"
+        },
+        {
+          "label": "delegated training active",
+          "week": 3,
+          "checksum": "496478ca",
+          "nextWeekChecksum": "1ec3492f"
+        },
+        {
+          "label": "paid report awaiting review",
+          "week": 6,
+          "checksum": "cb60da9c",
+          "nextWeekChecksum": "60a5bb5e"
+        },
+        {
+          "label": "launch queued",
+          "week": 6,
+          "checksum": "85c4fb78",
+          "nextWeekChecksum": "0701a7ef"
+        },
+        {
+          "label": "first billed public service",
+          "week": 10,
+          "checksum": "3765531a",
+          "nextWeekChecksum": "f02905e4"
+        }
+      ]
+    },
+    {
+      "name": "consultancy-expiry",
+      "origin": "consultancy",
+      "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2:consultancy",
+      "finalWeek": 9,
+      "cashCents": 2430000,
+      "minimumCashCents": 2430000,
+      "arrearsCents": 0,
+      "pilot": {
+        "targetId": null,
+        "contractGeneration": 0,
+        "baselineCostCents": 0,
+        "id": "consultancy-pilot",
+        "startedWeek": 0,
+        "deadlineWeek": 8,
+        "finishedWeek": 8,
+        "status": "expired",
+        "qualifyingWeeks": 0,
+        "feedback": "Prepare the training data and start pilot training."
+      },
+      "commands": [],
+      "checkpoints": [
+        {
+          "label": "opening",
+          "week": 0,
+          "cashCents": 3600000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 1,
+          "cashCents": 3470000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 2,
+          "cashCents": 3340000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 3,
+          "cashCents": 3210000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 4,
+          "cashCents": 3080000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 5,
+          "cashCents": 2950000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 6,
+          "cashCents": 2820000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 7,
+          "cashCents": 2690000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 8,
+          "cashCents": 2560000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 9,
+          "cashCents": 2430000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        }
+      ],
+      "reloads": [
+        {
+          "label": "before inclusive pilot deadline",
+          "week": 7,
+          "checksum": "94e598c5",
+          "nextWeekChecksum": "2acb9d94"
+        }
+      ]
+    },
+    {
+      "name": "cancel-paid-preparation",
+      "origin": "garage",
+      "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2",
+      "finalWeek": 5,
+      "cashCents": 4200000,
+      "minimumCashCents": 4200000,
+      "arrearsCents": 0,
+      "paidPreparationCompletedWeek": 4,
+      "noAutomaticTraining": true,
+      "commands": [
+        {
+          "week": 0,
+          "id": "cancel-paid-preparation-1",
+          "payload": {
+            "kind": "start_development_plan",
+            "name": "Normal delegated opening",
+            "training": {
+              "kind": "start_training",
+              "baseModelId": "seed-0",
+              "packetId": "starter-public"
+            },
+            "suiteId": "basic-conversation-1",
+            "feeBudgetCents": 100000,
+            "cashReserveCents": 300000,
+            "deadlineWeek": 24,
+            "leadStaffId": "founder",
+            "capacityShareBps": 10000
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 2,
+          "id": "cancel-paid-preparation-2",
+          "payload": {
+            "kind": "cancel_development_plan",
+            "planId": "development-cancel-paid-preparation-1"
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 3,
+          "id": "cancel-paid-preparation-3",
+          "payload": {
+            "kind": "set_job_paused",
+            "jobId": "preparation-development-stage-9",
+            "paused": false
+          },
+          "quotedUpfrontCents": 0
+        }
+      ],
+      "checkpoints": [
+        {
+          "label": "opening",
+          "week": 0,
+          "cashCents": 4800000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 1,
+          "cashCents": 4700000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "queued",
+            "title": "Data preparation queued for Week 2",
+            "detail": "Your plan is queued. Work can start next week once its requirements are checked. Resume the game or advance one week when you’re ready.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 2,
+          "cashCents": 4500000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "working",
+            "title": "Preparing Starter public sample",
+            "detail": "20 / 40 Data points",
+            "projectId": "preparation-development-stage-9",
+            "progressBps": 5000,
+            "packetId": "starter-public",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "preparation-development-stage-9"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 3,
+          "cashCents": 4400000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "waiting",
+            "title": "Preparing Starter public sample",
+            "detail": "This project is paused. Open its progress view to resume it.",
+            "projectId": "preparation-development-stage-9",
+            "progressBps": 5000,
+            "packetId": "starter-public",
+            "primary": {
+              "label": "View this project",
+              "action": {
+                "kind": "project",
+                "projectId": "preparation-development-stage-9"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 4,
+          "cashCents": 4300000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "ready",
+            "title": "Starter public sample is ready for training",
+            "detail": "Choose what to train, pick a method, and check the model, data and cost before starting.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Train with this dataset",
+              "action": {
+                "kind": "train",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 5,
+          "cashCents": 4200000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "train",
+            "status": "ready",
+            "title": "Starter public sample is ready for training",
+            "detail": "Choose what to train, pick a method, and check the model, data and cost before starting.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Train with this dataset",
+              "action": {
+                "kind": "train",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        }
+      ],
+      "reloads": [
+        {
+          "label": "cancelled paid preparation",
+          "week": 3,
+          "checksum": "b1e426a1",
+          "nextWeekChecksum": "d48e7c7a"
+        }
+      ]
+    },
+    {
+      "name": "cancel-queued-handoff",
+      "origin": "garage",
+      "seed": "campaign-6eeb41f41dbf9876bb3a212a573398e2",
+      "finalWeek": 2,
+      "cashCents": 4600000,
+      "minimumCashCents": 4600000,
+      "arrearsCents": 0,
+      "cancelledStageCharged": false,
+      "commands": [
+        {
+          "week": 0,
+          "id": "cancel-queued-handoff-1",
+          "payload": {
+            "kind": "start_development_plan",
+            "name": "Normal delegated opening",
+            "training": {
+              "kind": "start_training",
+              "baseModelId": "seed-0",
+              "packetId": "starter-public"
+            },
+            "suiteId": "basic-conversation-1",
+            "feeBudgetCents": 100000,
+            "cashReserveCents": 300000,
+            "deadlineWeek": 24,
+            "leadStaffId": "founder",
+            "capacityShareBps": 10000
+          },
+          "quotedUpfrontCents": 0
+        },
+        {
+          "week": 1,
+          "id": "cancel-queued-handoff-2",
+          "payload": {
+            "kind": "cancel_development_plan",
+            "planId": "development-cancel-queued-handoff-1"
+          },
+          "quotedUpfrontCents": 0
+        }
+      ],
+      "checkpoints": [
+        {
+          "label": "opening",
+          "week": 0,
+          "cashCents": 4800000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 1,
+          "cashCents": 4700000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "queued",
+            "title": "Data preparation queued for Week 2",
+            "detail": "Your plan is queued. Work can start next week once its requirements are checked. Resume the game or advance one week when you’re ready.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Review people and compute",
+              "action": {
+                "kind": "resources"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        },
+        {
+          "label": "settled",
+          "week": 2,
+          "cashCents": 4600000,
+          "earnedRevenueCents": 0,
+          "publicInvoiceCents": 0,
+          "journey": {
+            "stage": "prepare",
+            "status": "ready",
+            "title": "Prepare your training data",
+            "detail": "Starter public sample needs to be prepared before training. Check the cost and Data points, then finish preparation to make the data usable.",
+            "packetId": "starter-public",
+            "primary": {
+              "label": "Prepare this dataset",
+              "action": {
+                "kind": "prepare",
+                "packetId": "starter-public"
+              }
+            }
+          },
+          "firstPayingServiceChapterWeek": null
+        }
+      ],
+      "reloads": [
+        {
+          "label": "queued stage plus cancellation",
+          "week": 1,
+          "checksum": "2bba4b56",
+          "nextWeekChecksum": "6c0bfeb6"
+        }
+      ]
+    }
+  ],
+  "pairedSaveContinuationChecks": 17
+}

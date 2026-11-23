@@ -176,6 +176,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   const [pinned, setPinned] = useState<string[]>([]);
   const [projectFilter, setProjectFilter] = useState<ProjectFilter>('active');
   const [projectTab, setProjectTab] = useState<'work' | 'plan'>('work');
+  const workspaceVisits = useRef<{ epoch: number; targets: Partial<Record<Screen, StudioReturnTarget>> }>({ epoch: plannerEpoch, targets: {} });
   const [completion, setCompletion] = useState('');
   const inspectorRef = useRef<HTMLElement>(null);
   const shellRef = useRef<HTMLElement>(null);
@@ -272,6 +273,22 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     setResultActionError(''); setCommandError(''); setCompletion(''); previousAnnouncement.current = null;
     setJourneyFocus({}); setInspectedProjectId(null); setNavigationMessage('');
   }, [plannerEpoch]);
+
+  // Sidebar navigation returns to the last ordinary section in each workspace.
+  // A task or review remains an explicit draft to continue, never an automatic
+  // popup when returning. This presentation history belongs to one company only.
+  function rememberWorkspaceSection() {
+    if (workspaceVisits.current.epoch !== plannerEpoch) {
+      workspaceVisits.current = { epoch: plannerEpoch, targets: {} };
+      return;
+    }
+    if (forceSaveOpen || menusOpen || resultsOpen || task && task.owner !== 'planner') return;
+    const canonical = getStudioScreenTarget(screen).screen;
+    if (canonical === 'studio' || canonical === 'save') return;
+    workspaceVisits.current.targets[canonical] = { screen: canonical, panel, projectTab };
+  }
+
+  useEffect(rememberWorkspaceSection, [screen, panel, projectTab, task?.owner, task?.phase, plannerEpoch, forceSaveOpen, menusOpen, resultsOpen]);
 
   useEffect(() => {
     if (!prefsReady) return;
@@ -434,7 +451,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
   function openMenus() {
     if (forceSaveOpen || busy || inFlight.current || task?.phase === 'submitting') return;
     menuReturnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
-    setResultsOpen(false); setResultActionError(''); setMenusOpen(true); onPause();
+    setResultsOpen(false); setResultActionError(''); setMenusOpen(true);
   }
 
   function closeMenus() {
@@ -544,14 +561,24 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     }
   }
 
-  function selectScreen(next: Screen) {
+  function selectWorkspace(next: Screen) {
+    const canonical = getStudioScreenTarget(next).screen;
+    const remembered = workspaceVisits.current.epoch === plannerEpoch ? workspaceVisits.current.targets[canonical] : undefined;
+    selectScreen(next, remembered);
+  }
+
+  function selectScreen(next: Screen, remembered?: StudioReturnTarget) {
     if (forceSaveOpen && next !== 'save' || task?.phase === 'submitting') return;
-    const target = getStudioScreenTarget(next);
+    const target = remembered ?? getStudioScreenTarget(next);
     dispatchTask({ type: 'close' }); dispatchTask({ type: 'clearDetour' });
+    if (target.panel === 'capacity') {
+      dispatchTask({ type: 'open', task: 'plan-week', returnTo: { screen: 'operations', panel: 'people' } });
+      onPause();
+    }
     setMenusOpen(false); setResultsOpen(false); setResultActionError(''); setCommandError(''); setInspectedProjectId(null); setNavigationMessage(''); setScreen(target.screen); setPanel(target.panel);
-    if (target.screen === 'projects') setProjectTab('work');
+    if (target.screen === 'projects') setProjectTab(remembered?.projectTab ?? 'work');
     requestAnimationFrame(() => {
-      document.querySelector<HTMLElement>(target.panel ? '#studio-inspector' : target.screen === 'research' ? '#studio-research-tree' : target.screen === 'projects' ? '#studio-project-board' : '.studio-brand')?.focus({ preventScroll: true });
+      document.querySelector<HTMLElement>(target.panel === 'capacity' ? '#studio-plan-workbench' : target.panel ? '#studio-inspector' : target.screen === 'research' ? '#studio-research-tree' : target.screen === 'projects' ? '#studio-project-board' : '.studio-brand')?.focus({ preventScroll: true });
       shellRef.current?.querySelector<HTMLElement>('.studio-play-area')?.scrollTo({ top: 0, behavior: 'auto' });
       window.scrollTo({ top: 0, behavior: 'auto' });
     });
@@ -967,21 +994,6 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
     setPanel(null); setInspectedProjectId(project.id); setNavigationMessage('');
   }
 
-  function stationActions(target: StudioPanelId) {
-    const registered = taskForPanel(target);
-    return [
-      { id: 'inspect', label: 'Inspect ' + PANEL_TITLES[target].toLowerCase(), description: 'See progress and available actions.', onSelect: () => openPanel(target) },
-      ...(target === 'people' ? [
-        { id: 'hire', label: 'Hire staff', description: 'Check hiring costs, weekly pay and start dates.', onSelect: () => hireStaff() },
-        { id: 'assign', label: 'Team output', description: 'See which points your team generates each week.', onSelect: () => assignStaff() },
-      ] : target === 'compute' ? [
-        { id: 'allocate', label: 'Allocate compute', description: 'Split capacity between serving, development and research.', onSelect: () => openNamedTask('allocate-compute') },
-        { id: 'rent', label: 'Rent or release compute', description: 'Review the cloud capacity and weekly bill.', onSelect: () => openNamedTask('rent-compute') },
-      ] : registered ? [{ id: 'task', label: STUDIO_TASKS[registered].title, description: 'Choose settings and review the cost.', onSelect: () => openTask(registered) }] : []),
-      { id: 'resources', label: 'Plan people and compute', description: 'Plan next week’s staff and compute.', onSelect: openPlanner },
-    ];
-  }
-
   function followLink(event: MouseEvent<HTMLElement>) {
     if (!(event.target instanceof Element)) return;
     const anchor = event.target.closest<HTMLAnchorElement>('a[href^="#"]');
@@ -1078,7 +1090,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
         <div className="studio-clock" aria-busy={busy}><span className="studio-week">Week <strong>{String(game.week).padStart(2, '0')}</strong></span><span className={'studio-clock-label ' + (!busy && !paused ? 'is-running' : '')}><span />{busy ? 'Working' : paused ? 'Paused' : decisionRunActive ? 'Decision run' : 'Continuous play'}</span><button className="studio-play" type="button" onClick={() => { activateSound(); onToggleRunning(); }} disabled={!canAct || busy} aria-label={paused ? 'Resume simulation' : 'Pause simulation'}>{paused ? <Play size={15} fill="currentColor" /> : <Pause size={15} fill="currentColor" />}</button><div className="studio-speeds" role="group" aria-label="Simulation speed">{([1, 2, 5] as const).map(value => <button type="button" key={value} aria-pressed={speed === value} onClick={() => onSpeed(value)} disabled={!isController || busy}>{value}×</button>)}</div><button className="studio-step" type="button" onClick={() => { activateSound(); onStep(); }} disabled={!canAct || busy}>Next week <ChevronRight size={15} /></button></div>
       </header>
       <div className="studio-sidebar" ref={sidebarRef}>
-        <StudioNavigation screen={screen} disabled={forceSaveOpen || task?.phase === 'submitting'} projectCount={activeProjects.length + planCounts.active} onSelect={selectScreen} />
+        <StudioNavigation screen={screen} disabled={forceSaveOpen || task?.phase === 'submitting'} projectCount={activeProjects.length + planCounts.active} onSelect={selectWorkspace} />
         <div className="studio-utilities" aria-label="Lab utilities"><button type="button" className="studio-all-menus-toggle" aria-expanded={menusOpen} aria-controls="studio-menu-directory" aria-keyshortcuts="Control+K Meta+K" onClick={menusOpen ? closeMenus : openMenus} disabled={forceSaveOpen || busy}><LayoutGrid size={17} />All menus</button><button type="button" className="studio-results-toggle" onClick={openResults} disabled={forceSaveOpen || busy} aria-label={'Open Results, ' + (results?.unreadCount ?? 0) + ' unreviewed'}><Inbox size={17} />Results<strong>{results?.unreadCount ?? 0}</strong></button>
           <button type="button" onClick={() => openPanel('save')}><Save size={15} />Save</button>
           <StudioContextMenu label="Settings and utilities" trigger={<button type="button" aria-label="Settings and utilities"><Settings size={15} />Settings</button>} items={preferenceItems} />
@@ -1094,7 +1106,7 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
       {!taskModal && !taskSession.detour && resumeDrafts.length > 0 && <div className="studio-task-drafts" aria-label="Task drafts"><span>Drafts</span>{resumeDrafts.map(record => <button key={record.owner} type="button" onClick={() => openTask(record.task)} disabled={forceSaveOpen || busy}>Continue: {STUDIO_TASKS[record.task].title}<ChevronRight size={14} /></button>)}</div>}
     </div>
 
-    {menusOpen && <div className="studio-menu-host studio-only" id="studio-menu-directory" role="region" aria-label="All menus workspace" tabIndex={-1}><StudioMenuDirectory sections={sections} disabled={forceSaveOpen || busy} onNavigate={navigateMenuTarget} onClose={closeMenus} /></div>}
+    {menusOpen && <div className="studio-menu-host studio-only" id="studio-menu-directory" role="region" aria-label="All menus workspace" tabIndex={-1}><StudioMenuDirectory sections={sections} currentWorkspace={getStudioScreenTarget(screen).screen} disabled={forceSaveOpen || busy} onNavigate={navigateMenuTarget} onClose={closeMenus} /></div>}
     <div className="studio-play-area" hidden={menusOpen}>
       <StudioWorkspaceHeader screen={screen} panel={panel} projectTab={projectTab} sections={sections} disabled={forceSaveOpen || task?.phase === 'submitting'} onDevelop={openModelDesigner} onSelect={id => {
         if (id === 'plan' || id === 'capacity') openPlanner();
@@ -1118,11 +1130,11 @@ export function StudioShell({ game, paused, speed, canAct, isController, notice,
             <div className={'studio-founder at-data' + (!paused ? ' is-idle' : '')} title="Founder · automatic project support" aria-hidden="true"><img src="/studio/founder.webp" width={1208} height={1302} alt="" /></div>
             {hasEngineer && <div className={'studio-founder at-lab' + (engineerWorking ? ' is-working' : !paused ? ' is-idle' : '')} title="ML engineering desk" aria-hidden="true"><img src="/studio/engineer.webp" width={1208} height={1302} alt="" /></div>}
             {!reducedMotion && <StudioDeskContribution game={game} />}
-            {studio.stations.map(item => { const art = { ...STATION_ART[item.id], ...(campusStudio ? CAMPUS_STATION_POSITIONS[item.id] : expandedStudio ? STUDIO_STATION_POSITIONS[item.id] : {}) }; return <StudioContextMenu key={item.id} label={item.title} items={stationActions(item.targetPanel)} trigger={<button type="button" className={'studio-hotspot status-' + item.status + (panel === item.targetPanel ? ' is-selected' : '') + (paused ? ' is-paused' : '')} style={{ '--station-x': art.x + '%', '--station-y': art.y + '%' } as CSSProperties} aria-label={item.title + ' actions, ' + STATUS_LABELS[item.status]}><art.icon size={16} /><span>{art.label}</span><small>{STATUS_LABELS[item.status]}</small></button>} />; })}
+            {studio.stations.map(item => { const art = { ...STATION_ART[item.id], ...(campusStudio ? CAMPUS_STATION_POSITIONS[item.id] : expandedStudio ? STUDIO_STATION_POSITIONS[item.id] : {}) }; return <button key={item.id} type="button" className={'studio-hotspot status-' + item.status + (panel === item.targetPanel ? ' is-selected' : '') + (paused ? ' is-paused' : '')} style={{ '--station-x': art.x + '%', '--station-y': art.y + '%' } as CSSProperties} aria-label={'Open ' + item.title.toLowerCase() + ', ' + STATUS_LABELS[item.status]} disabled={forceSaveOpen || task?.phase === 'submitting'} onClick={() => openPanel(item.targetPanel)}><art.icon size={16} /><span>{art.label}</span><small>{STATUS_LABELS[item.status]}</small></button>; })}
           </div>}
           {(!sceneVisible || sceneFailed) && <div className="studio-station-list">
-            <p className="studio-list-note">Choose a workstation to see its tasks.</p>
-            {studio.stations.map(item => { const Icon = STATION_ART[item.id].icon; return <StudioContextMenu key={item.id} label={item.title} items={stationActions(item.targetPanel)} trigger={<button type="button" aria-label={item.title + ' actions'}><Icon size={20} /><span><strong>{STATION_ART[item.id].label}</strong><small>{item.bottleneck || item.detail}</small></span><Status status={item.status} /><ChevronRight size={16} /></button>} />; })}
+            <p className="studio-list-note">Open a workstation to manage its projects and resources.</p>
+            {studio.stations.map(item => { const Icon = STATION_ART[item.id].icon; return <button key={item.id} type="button" aria-label={'Open ' + item.title.toLowerCase()} disabled={forceSaveOpen || task?.phase === 'submitting'} onClick={() => openPanel(item.targetPanel)}><Icon size={20} /><span><strong>{STATION_ART[item.id].label}</strong><small>{item.bottleneck || item.detail}</small></span><Status status={item.status} /></button>; })}
           </div>}
           </div>
           {pinnedProjects.length > 0 && <section className="studio-pinned" aria-label="Pinned projects"><div className="studio-block-title"><h2><Pin size={14} />Pinned projects <small>{pinnedProjects.length}/4</small></h2><button type="button" onClick={() => { setProjectTab('work'); selectScreen('projects'); }}>All projects <ArrowUpRight size={14} /></button></div><div className="studio-pinned-grid">{pinnedProjects.map(project => projectCard(project, true))}</div></section>}

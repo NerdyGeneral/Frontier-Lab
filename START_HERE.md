@@ -1,4 +1,4 @@
-# Frontier Lab 0.38.4 — source checkout
+# Frontier Lab 0.38.5 — source checkout
 
 This repository contains the complete source, game artwork, dependency lockfile,
 test fixtures, and verification notes for the published Frontier Lab game.

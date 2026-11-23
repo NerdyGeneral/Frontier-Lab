@@ -1,0 +1,18 @@
+✔ sidebar round trips restore independent regular sections, including canonical screen aliases (286.737808ms)
+✔ named editing and review surfaces never replace a workspace return target or reopen automatically (94.875057ms)
+✔ a first visit made through a named task falls back to the ordinary workspace instead of the task (26.044336ms)
+✔ workspace history is usable in the same company epoch and rejected immediately in a new epoch (42.471351ms)
+✔ explicit All menus screens, Work queue and brand remain exact despite remembered sections (64.870189ms)
+✔ capacity returns as its retained resource page with pause, draft identity and planner focus (37.628977ms)
+✔ returning to capacity after a task detour does not revive the parent review or its return link (30.009545ms)
+✔ opening and closing read-only All menus leaves the clock and current regular section alone (46.613404ms)
+✔ forced save and submitting task guards still prevent sidebar restoration or menu opening (31.543318ms)
+✔ room workstation controls render as direct buttons and open their exact ordinary workbench (104.160507ms)
+ℹ tests 10
+ℹ suites 0
+ℹ pass 10
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4004.436961

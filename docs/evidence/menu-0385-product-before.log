@@ -1,0 +1,151 @@
+✖ first launch follows the created offer through the real intercepted action and paid service (3177.259673ms)
+✖ a retained form reopening after it skipped the queue and settlement selects the created offer (223.926747ms)
+✖ explicit New keeps its draft across unrelated updates without showing first-launch totals (586.98118ms)
+✖ a second launch selects its new stable ID instead of the older active offer (125.43794ms)
+✔ an explicit existing-offer choice during deployment is retained after that launch settles (124.410153ms)
+✖ two ordinary queued offers select the first newly committed offer deterministically (100.638705ms)
+✖ Developer API launch selects its own new offer without taking over a Basic Chat draft (2396.570457ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 1
+ℹ fail 6
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8546.514719
+
+✖ failing tests:
+
+test at tests/product-offer-navigation-ui.test.tsx:1:7796
+✖ first launch follows the created offer through the real intercepted action and paid service (3177.259673ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'new'
+  - 'product:offer-navigation-1-command-1'
+  
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/product-offer-navigation-ui.test.tsx:168:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.start (node:internal/test_runner/test:1262:17)
+      at startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'new',
+    expected: 'product:offer-navigation-1-command-1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/product-offer-navigation-ui.test.tsx:1:9144
+✖ a retained form reopening after it skipped the queue and settlement selects the created offer (223.926747ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'new'
+  - 'product:offer-navigation-2-command-1'
+  
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/product-offer-navigation-ui.test.tsx:185:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'new',
+    expected: 'product:offer-navigation-2-command-1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/product-offer-navigation-ui.test.tsx:1:9511
+✖ explicit New keeps its draft across unrelated updates without showing first-launch totals (586.98118ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  
+  true !== false
+  
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/product-offer-navigation-ui.test.tsx:197:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: true,
+    expected: false,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/product-offer-navigation-ui.test.tsx:1:10468
+✖ a second launch selects its new stable ID instead of the older active offer (125.43794ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'new'
+  - 'product:offer-navigation-4-command-1'
+  
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/product-offer-navigation-ui.test.tsx:208:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'new',
+    expected: 'product:offer-navigation-4-command-1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/product-offer-navigation-ui.test.tsx:1:11488
+✖ two ordinary queued offers select the first newly committed offer deterministically (100.638705ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'new'
+  - 'product:offer-navigation-6-command-1'
+  
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/product-offer-navigation-ui.test.tsx:229:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'new',
+    expected: 'product:offer-navigation-6-command-1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/product-offer-navigation-ui.test.tsx:1:12255
+✖ Developer API launch selects its own new offer without taking over a Basic Chat draft (2396.570457ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + 'new'
+  - 'product:offer-navigation-api-command-1'
+  
+      at TestContext.<anonymous> (/workspace/sites/frontier-lab/.sites-checkout/tests/product-offer-navigation-ui.test.tsx:244:10)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'new',
+    expected: 'product:offer-navigation-api-command-1',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

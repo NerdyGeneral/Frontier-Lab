@@ -94,7 +94,7 @@ test('Programs stays visible before unlocks and owns both programs and architect
   for (const { panel, activeTask, selected } of cases) {
     const html = renderToStaticMarkup(<StudioResearchNavigation panel={panel} activeTask={activeTask} sections={sections} disabled={false} onNavigate={noAction} />);
     const items = buttons(html);
-    assert.deepEqual(items.map(item => item.text.replace(/ — locked$/, '')), ['Discoveries', 'Programs', 'Challenges', 'Applications', 'Synthetic data', 'Compare']);
+    assert.deepEqual(items.map(item => item.text.replace(/ — locked$/, '')), ['Discoveries', 'Programs', 'Challenges', 'Applications', 'Synthetic data']);
     assert.deepEqual(items.filter(item => item.attributes.includes('aria-pressed="true"')).map(item => item.text), [selected]);
     assert.doesNotMatch(items.find(item => item.text === 'Programs')!.attributes, /disabled/);
     assert.equal(items.some(item => item.text === 'Architecture' || item.text === 'Catalog'), false);

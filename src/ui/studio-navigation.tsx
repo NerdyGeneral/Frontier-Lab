@@ -116,7 +116,6 @@ const RESEARCH_SECTIONS: readonly { id: string; label: string; target: StudioMen
   { id: 'challenges', label: 'Challenges', panel: 'model-challenges', target: { kind: 'panel', panel: 'model-challenges' } },
   { id: 'applications', label: 'Applications', panel: 'applied-research', target: { kind: 'panel', panel: 'applied-research' } },
   { id: 'synthetic', label: 'Synthetic data', panel: 'synthetic-data', target: { kind: 'panel', panel: 'synthetic-data' } },
-  { id: 'compare', label: 'Compare', panel: 'model-corpus-compare', target: { kind: 'panel', panel: 'model-corpus-compare' } },
 ];
 
 export function StudioResearchNavigation({ panel, activeTask, sections, disabled, onNavigate }: {
